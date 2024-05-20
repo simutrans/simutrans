@@ -16,6 +16,7 @@
 #include "../../simline.h"
 #include "../../world/simworld.h"
 #include "../../vehicle/vehicle.h"
+#include "../../display/viewport.h"
 
 // for convoy tools
 #include "../../tool/simmenu.h"
@@ -162,6 +163,17 @@ bool convoy_is_schedule_editor_open(convoi_t *cnv)
 bool convoy_is_loading(convoi_t *cnv)
 {
 	return cnv->get_state() == convoi_t::LOADING;
+}
+
+bool convoy_is_follow(convoi_t *cnv)
+{
+	if (cnv  &&  cnv->get_vehicle_count() > 0) {	
+		convoihandle_t follow_convoi = welt->get_viewport()->get_follow_convoi();
+		if(follow_convoi.is_bound()  &&  follow_convoi->get_vehicle_count()>0) {
+			return cnv->self.get_id() == follow_convoi.get_id();
+		}
+	}
+	return false;
 }
 
 call_tool_init convoy_change_schedule(convoi_t *cnv, player_t *player, schedule_t *sched)
@@ -363,6 +375,10 @@ void export_convoy(HSQUIRRELVM vm)
 	 * @returns true if convoy is currently waiting (for way clearance)
 	 */
 	register_method(vm, convoy_is_loading, "is_loading", true);
+	/**
+	 * @returns true if convoy is currently following
+	 */
+	register_method(vm, convoy_is_follow, "is_following", true);
 	/**
 	 * Destroy the convoy.
 	 * The convoy will be marked for destroying, it will be destroyed when the simulation continues.

@@ -72,6 +72,7 @@ BEGIN {
 	export_types_scenario["convoy_x::change_schedule"] = "void(player_x, schedule_x)"
 	export_types_scenario["convoy_x::calc_max_speed"] = "integer(integer, integer, integer)"
 	export_types_scenario["convoy_x::speed_to_tiles_per_month"] = "integer(integer)"
+	export_types_scenario["convoy_x::is_following"] = "bool()"
 	export_types_scenario["factory_x::is_valid"] = "bool()"
 	export_types_scenario["factory_x::get_consumers"] = "array<coord>()"
 	export_types_scenario["factory_x::get_suppliers"] = "array<coord>()"
