@@ -194,7 +194,7 @@ welt_gui_t::welt_gui_t() :
 		inp_intercity_road_len.add_listener(this);
 		inp_intercity_road_len.set_limits(0,99999);
 		inp_intercity_road_len.set_value( env_t::intercity_road_length );
-		inp_intercity_road_len.set_increment_mode( env_t::intercity_road_length>=100000 ? 100 : 20 );
+		inp_intercity_road_len.set_increment_mode( env_t::intercity_road_length>=10000 ? 100 : 20 );
 		add_component( &inp_intercity_road_len );
 
 		// Factories
@@ -456,7 +456,7 @@ bool welt_gui_t::action_triggered( gui_action_creator_t *comp,value_t v)
 	}
 	else if(comp==&inp_intercity_road_len) {
 		env_t::intercity_road_length = v.i;
-		inp_intercity_road_len.set_increment_mode( v.i>=100000 ? 100 : 20 );
+		inp_intercity_road_len.set_increment_mode( v.i>=10000 ? 100 : 20 );
 	}
 	else if(comp==&inp_other_industries) {
 		sets->set_factory_count( v.i );
