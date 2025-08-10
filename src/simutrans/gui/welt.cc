@@ -178,13 +178,13 @@ welt_gui_t::welt_gui_t() :
 		// Number of towns
 		new_component<gui_label_t>("5WORLD_CHOOSE");
 		inp_number_of_towns.add_listener(this);
-		inp_number_of_towns.init(abs(sets->get_city_count()), 0, 999);
+		inp_number_of_towns.init(abs(sets->get_city_count()), 0, 99999);
 		add_component( &inp_number_of_towns );
 
 		// Town size
 		new_component<gui_label_t>("Median Citizen per town");
 		inp_town_size.add_listener(this);
-		inp_town_size.set_limits(0,999999);
+		inp_town_size.set_limits(0,9999999);
 		inp_town_size.set_increment_mode(50);
 		inp_town_size.set_value( sets->get_mean_citizen_count() );
 		add_component( &inp_town_size );
@@ -192,22 +192,22 @@ welt_gui_t::welt_gui_t() :
 		// Intercity road length
 		new_component<gui_label_t>("Intercity road len:");
 		inp_intercity_road_len.add_listener(this);
-		inp_intercity_road_len.set_limits(0,9999);
+		inp_intercity_road_len.set_limits(0,99999);
 		inp_intercity_road_len.set_value( env_t::intercity_road_length );
-		inp_intercity_road_len.set_increment_mode( env_t::intercity_road_length>=1000 ? 100 : 20 );
+		inp_intercity_road_len.set_increment_mode( env_t::intercity_road_length>=100000 ? 100 : 20 );
 		add_component( &inp_intercity_road_len );
 
 		// Factories
 		new_component<gui_label_t>("No. of Factories");
 		inp_other_industries.add_listener(this);
-		inp_other_industries.set_limits(0,999);
+		inp_other_industries.set_limits(0,99999);
 		inp_other_industries.set_value(abs(sets->get_factory_count()) );
 		add_component( &inp_other_industries );
 
 		// Tourist attr.
 		new_component<gui_label_t>("Tourist attractions");
 		inp_tourist_attractions.add_listener(this);
-		inp_tourist_attractions.set_limits(0,999);
+		inp_tourist_attractions.set_limits(0,99999);
 		inp_tourist_attractions.set_value(abs(sets->get_tourist_attractions()) );
 		add_component( &inp_tourist_attractions );
 
@@ -456,7 +456,7 @@ bool welt_gui_t::action_triggered( gui_action_creator_t *comp,value_t v)
 	}
 	else if(comp==&inp_intercity_road_len) {
 		env_t::intercity_road_length = v.i;
-		inp_intercity_road_len.set_increment_mode( v.i>=1000 ? 100 : 20 );
+		inp_intercity_road_len.set_increment_mode( v.i>=100000 ? 100 : 20 );
 	}
 	else if(comp==&inp_other_industries) {
 		sets->set_factory_count( v.i );

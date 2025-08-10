@@ -91,13 +91,13 @@ enlarge_map_frame_t::enlarge_map_frame_t() :
 		// Number of towns
 		new_component<gui_label_t>("5WORLD_CHOOSE");
 		inp_number_of_towns.add_listener(this);
-		inp_number_of_towns.init(abs(sets->get_city_count()), 0, 999);
+		inp_number_of_towns.init(abs(sets->get_city_count()), 0, 99999);
 		add_component( &inp_number_of_towns );
 
 		// Town size
 		new_component<gui_label_t>("Median Citizen per town");
 		inp_town_size.add_listener(this);
-		inp_town_size.set_limits(0,999999);
+		inp_town_size.set_limits(0,9999999);
 		inp_town_size.set_increment_mode(50);
 		inp_town_size.set_value( sets->get_mean_citizen_count() );
 		add_component( &inp_town_size );
