@@ -8,13 +8,6 @@
 #include "../utils/plainstring.h"
 #include "../dataobj/environment.h"
 #include "music.h"
-#ifndef _WIN32
-#if !defined __APPLE__ && !defined __ANDROID__
-#include <SDL2/SDL.h>
-#else
-#include <SDL.h>
-#endif
-#endif
 
 // fluidsynth music routine interfaces
 static int         midi_number = -1;
@@ -209,14 +202,7 @@ bool dr_init_midi()
 #elif defined(__ANDROID__) && __ANDROID__
 	std::string fluidsynth_driver = "oboe";
 #else
-	std::string fluidsynth_driver = "sdl2";
-
-	if(  !SDL_WasInit(SDL_INIT_AUDIO)  ) {
-		if(  SDL_InitSubSystem( SDL_INIT_AUDIO ) != 0  ) {
-			dbg->warning("dr_init_midi()", "FluidSynth: SDL_INIT_AUDIO failed.");
-			return false;
-		}
-	}
+	std::string fluidsynth_driver = "pulseaudio";
 #endif
 
 	if(  !(settings = new_fluid_settings())  ) {
