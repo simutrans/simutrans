@@ -2,12 +2,12 @@
 SectionGroup /e "Pak64: main and addons" pak64group
 
 Section /o "pak" pak
-  AddSize 16532
+  AddSize 16464
   StrCpy $downloadlink "http://downloads.sourceforge.net/project/simutrans/pak64/124-4/simupak64-124-4.zip"
   SetOutPath $PAKDIR
   StrCpy $archievename "simupak64-124-4.zip"
   StrCpy $downloadname "pak"
-  StrCpy $VersionString "pak64 124.4 r2222"
+  StrCpy $VersionString "pak64 124.4 r2222M"
   Call DownloadInstallZip
 SectionEnd
 Section /o "pak64 Food addon"
@@ -27,12 +27,12 @@ SectionGroupEnd
 
 
 Section /o "pak128" pak128
-  AddSize 415892
+  AddSize 415900
   StrCpy $downloadlink "http://downloads.sourceforge.net/project/simutrans/pak128/pak128%20for%20ST%20124.4up%20%282.10.1%29/simupak128-2-10-1-for124-4up.zip"
   SetOutPath $PAKDIR
   StrCpy $archievename "simupak128-2-10-1-for124-4up.zip"
   StrCpy $downloadname "pak128"
-  StrCpy $VersionString "pak128 2.10.1 for 124.4 git r683 hash e8556c7c"
+  StrCpy $VersionString "pak128 2.10.1 for 124.4 git r699 hash 6dccf5d4"
   Call DownloadInstallZip
 SectionEnd
 
@@ -53,6 +53,16 @@ Section /o "pak64.german" pak64.german
   StrCpy $archievename "pak64.german_0-124-4-0-1_full.zip"
   StrCpy $downloadname "pak64.german"
   StrCpy $VersionString "pak64.german 0.124.4.0.1"
+  Call DownloadInstallZip
+SectionEnd
+
+Section /o "PAK128.german" PAK128.german
+  AddSize 576132
+  StrCpy $downloadlink "http://downloads.sourceforge.net/project/simutrans/PAK128.german/PAK128.german_2.4_for_ST_124.3.1/PAK128.german_2.4_for_ST_124.3.1.zip"
+  SetOutPath $PAKDIR
+  StrCpy $archievename "PAK128.german_2.4_for_ST_124.3.1.zip"
+  StrCpy $downloadname "PAK128.german"
+  StrCpy $VersionString "Pak128.german VS 2.4 (Rev. 547)"
   Call DownloadInstallZip
 SectionEnd
 
@@ -93,16 +103,6 @@ Section /o "pak128.Britain" pak128.Britain
   StrCpy $archievename "pak128.Britain.1.18-120-3.zip"
   StrCpy $downloadname "pak128.Britain"
   StrCpy $VersionString "pak128.Britain 1.18 120.3 r1991"
-  Call DownloadInstallZip
-SectionEnd
-
-Section /o "PAK128.german" PAK128.german
-  AddSize 576132
-  StrCpy $downloadlink "http://pak128-german.de/PAK128.german_2.4_for_ST_124.3.1.zip"
-  SetOutPath $PAKDIR
-  StrCpy $archievename "PAK128.german_2.4_for_ST_124.3.1.zip"
-  StrCpy $downloadname "PAK128.german"
-  StrCpy $VersionString "Pak128.german VS 2.4 (Rev. 547)"
   Call DownloadInstallZip
 SectionEnd
 

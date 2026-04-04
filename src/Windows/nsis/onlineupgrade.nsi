@@ -24,7 +24,7 @@ RequestExecutionLevel user
 !define MULTIUSER_INSTALLMODE_INSTDIR "Simutrans"
 !define MULTIUSER_EXECUTIONLEVEL Standard
 
-Name "Simutrans Pakset Installer"
+Name "Simutrans Pakset Installer for 124.0"
 OutFile "download-paksets.exe"
 
 ; The default installation directory

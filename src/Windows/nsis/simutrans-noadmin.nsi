@@ -12,7 +12,7 @@
 ; untgz
 ; ShellLink
 
-!define VERSION "0.124.3.0"
+!define VERSION "0.124.4.0"
 
 RequestExecutionLevel user
 !define MULTIUSER_EXECUTIONLEVEL user
@@ -50,7 +50,7 @@ Function PostExeInstall
 
   ; just change to simuconf.tab "singleuser_install = 1"
   FileOpen $0 "$INSTDIR\config\simuconf.tab" a
-  FileSeek $0 924
+  FileSeek $0 903
   FileWrite $0 "singleuser_install = 1 "
   FileClose $0
   goto finishGDIexe
@@ -70,8 +70,8 @@ FunctionEnd
 
 Section /o "Executable (GDI)" GDIexe
   AddSize 19612
-  StrCpy $downloadlink "http://downloads.sourceforge.net/project/simutrans/simutrans/124-3/simuwin-124-3.zip"
-  StrCpy $archievename "simuwin-124-3.zip"
+  StrCpy $downloadlink "http://downloads.sourceforge.net/project/simutrans/simutrans/124-4/simuwin-124-4.zip"
+  StrCpy $archievename "simuwin-124-4.zip"
   StrCpy $downloadname "Simutrans Executable (GDI)"
   SetOutPath $INSTDIR
   Call DownloadInstallZip
@@ -80,8 +80,8 @@ SectionEnd
 
 Section "Executable (SDL2)" SDLexe
   AddSize 21988
-  StrCpy $downloadlink "http://downloads.sourceforge.net/project/simutrans/simutrans/124-3/simuwin-sdl-124-3.zip"
-  StrCpy $archievename "simuwin-sdl-124-3.zip"
+  StrCpy $downloadlink "http://downloads.sourceforge.net/project/simutrans/simutrans/124-4/simuwin-sdl-124-4.zip"
+  StrCpy $archievename "simuwin-sdl-124-4.zip"
   StrCpy $downloadname "Simutrans Executable (SDL2)"
   SetOutPath $INSTDIR
   Call DownloadInstallZip
@@ -90,8 +90,8 @@ SectionEnd
 
 Section /o "Executable (GDI 64bit)" GDI64exe
   AddSize 18940
-  StrCpy $downloadlink "http://downloads.sourceforge.net/project/simutrans/simutrans/124-3/simuwin-x64-124-3.zip"
-  StrCpy $archievename "simuwin-x64-124-3.zip"
+  StrCpy $downloadlink "http://downloads.sourceforge.net/project/simutrans/simutrans/124-4/simuwin-x64-124-4.zip"
+  StrCpy $archievename "simuwin-x64-124-4.zip"
   StrCpy $downloadname "Simutrans Executable (GDI) only needed for huge maps"
   SetOutPath $INSTDIR
   Call DownloadInstallZip
@@ -100,8 +100,8 @@ SectionEnd
 
 Section /o "Executable (SDL2 64bit)" SDL64exe
   AddSize 21128
-  StrCpy $downloadlink "http://downloads.sourceforge.net/project/simutrans/simutrans/124-3/simuwin-x64-sdl-124-3.zip"
-  StrCpy $archievename "simuwin-sdl-x64-124-3.zip"
+  StrCpy $downloadlink "http://downloads.sourceforge.net/project/simutrans/simutrans/124-4/simuwin-x64-sdl-124-4.zip"
+  StrCpy $archievename "simuwin-sdl-x64-124-4.zip"
   StrCpy $downloadname "Simutrans Executable (SDL2) only needed for huge maps"
   SetOutPath $INSTDIR
   Call DownloadInstallZip

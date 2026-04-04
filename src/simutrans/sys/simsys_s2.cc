@@ -310,6 +310,7 @@ bool dr_os_init(const int* parameter)
 	SDL_EventState( SDL_MULTIGESTURE, SDL_ENABLE );
 	SDL_EventState( SDL_CLIPBOARDUPDATE, SDL_DISABLE );
 	SDL_EventState( SDL_DROPFILE, SDL_DISABLE );
+//	SDL_SetHint(SDL_HINT_ANDROID_TRAP_BACK_BUTTON, "1");
 
 	// termination event: save current map and settings
 	SDL_SetEventFilter(my_event_filter, 0);

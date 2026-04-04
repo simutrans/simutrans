@@ -6,7 +6,6 @@
 #ifndef SIMVERSION_H
 #define SIMVERSION_H
 
-
 #ifndef REVISION
 // include external generated revision file
 #include "revision.h"
@@ -19,7 +18,7 @@
 #define SIM_VERSION_MAJOR 124
 #define SIM_VERSION_MINOR   4
 #define SIM_VERSION_PATCH   0
-#define SIM_VERSION_BUILD SIM_BUILD_RELEASE_CANDIDATE
+#define SIM_VERSION_BUILD SIM_BUILD_RELEASE
 
 // Beware: SAVEGAME minor is often ahead of version minor when there were patches.
 // ==> These have no direct connection at all!
