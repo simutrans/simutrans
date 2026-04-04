@@ -1,6 +1,6 @@
-<title>乗り物一覧　ヘルプ</title>
+<title>編成一覧</title>
 
-<h1><strong>乗り物一覧</strong></h1>
+<h1><strong>編成一覧</strong></h1>
 
 <p>
 <strong>乗り物リスト</strong>には情報が表示され、異なる<a href="convoiinfo.txt">車両</a>をフィルタリングしてリストアップするための操作機能があります（車両は稼働中の車両または車両ユニットの組み合わせで構成されています）。

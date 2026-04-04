@@ -1,4 +1,4 @@
-<title>ゲーム情報 ／ サーバー　ヘルプ</title>
+<title>ゲーム情報 ／ サーバー</title>
 <h1><strong>ゲーム情報 ／ サーバー</strong></h1>
 <p>
 <strong>Game information / Server</strong> will show you the current state of the game running, including the date, map size, number of companies, towns, citizens, factories, vehicles running, and so on.

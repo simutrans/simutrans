@@ -12,7 +12,7 @@ m+10r.bdf
 #                             Language: ja Japanese                            #
 #                                Encoding: UTF-8                               #
 #                                Font: m+10r.bdf                               #
-#                           Date Created: 11.03 2026                           #
+#                            Date Created: 4.04 2026                           #
 #                                                                              #
 ################################################################################
 #__________________________________button_text__________________________________
@@ -166,7 +166,7 @@ A building blocks the construction
 Bridge blocked by way below or above.
 建設予定地の上または下に別の軌道があるため橋梁を建設できません
 Can't buy obsolete vehicles!
-旧型の乗り物は購入できません。
+旧型車両は購入できません。
 Cannot alter water
 この窪地にはこれ以上、水を満たすことも排出することもできません。
 Cannot build on a double slope!
@@ -198,7 +198,7 @@ Das Feld gehoert\neinem anderen Spieler\n
 Depots cannot be built on runways!
 格納庫を滑走路上に建設することはできません！
 Depots must be built on flat dead-end way tiles!
-車庫は平坦な道路の行き止まりに建設できます。
+車庫は、平坦な道の端にのみ建設できます。
 Der Besitzer erlaubt das Entfernen nicht
 撤去できません。\nここは他社の所有地です。\n
 Diese Zusammenstellung kann nicht fahren!\n
@@ -238,7 +238,7 @@ No curves on runways
 No suitable crossing
 適切な交差がありません!\n(最高速度が速すぎるのかもしれません)
 No suitable way on the ground!
-この場所には適切な道 (線路や道路) がありません!
+駅は平坦で直線的な\n対応する道の上にしか\n建設できません！
 No through station here!
 ここに通り抜け可能な駅を建設できません!
 Not allowed to copy object.
@@ -290,7 +290,7 @@ Unknown error
 Upgrade must have\na higher level
 この駅にはアップグレードできません\n\nよりレベルの高い駅を選択するか、\n一度撤去してから、置き換えてください
 Vehicle %s cannot choose because stop too short!
-編成 %s が停車できません。ホームが短すぎます！
+%s が停車できません。\nホームが短すぎます！
 Watertable reached
 これ以上低くできません！\n水面に達しました。
 Zughalt muss auf\nSchiene liegen!\n
@@ -300,7 +300,7 @@ Zughalt muss auf\nSchiene liegen!\n
 <h1>Index</h1><p>*: only english</p><p>General</p>%s<p>Usage</p>%s<p>Tools</p>%s<p>Start</p>%s<p>How to play</p>%s<p>Others:</p>%s
 <title>ヘルプ</title><h1>総合ヘルプ</h1><p>*：未訳（英文で表示）</p><p><it>Simutransについて</it></p>%1$s<p><it>使い方</it></p>%2$s<p><it>ゲームの開始</it></p>%4$s<p><it>遊び方</it></p>%5$s<p><it>ツール</it></p>%3$s<p><it>その他のダイアログ</it></p>%6$s
 <title>Keyboard Help</title>\n<h1><strong>Keyboard Help</strong></h1><p>\n
-<title>キーボード ヘルプ</title><h1>キーボード ヘルプ</h1><p>キー割り当ての一覧表です。何も操作が割り当てられていないキーを押すと、<br>このキーボードヘルプウィンドウが開きます。</p><p>アルファベットの大文字と小文字は区別されます。大文字の場合は、<br>shiftキーを押しながらキーを押します。日本語入力は解除してください。</p><p><i>ウィンドウ操作</i><br>Backspace - すべてのウィンドウ/ツールバーを閉じます<br>Delete, ESC - アクティブなウィンドウ/ツールバーを閉じます<br>F1 - ヘルプウィンドウを開きます</p><p><i>ゲーム画面のスクロール</i>　（数字キー、矢印キー）<br>1,2,3,4,6,7,8,9 - ゲーム画面をスクロールします<br>↑,↓,→,← - ゲーム画面をスクロールします</p><p><i>ゲーム画面のズーム</i><br>＞,PageUp - ゲーム画面をズームインします<br>＜,PageDown - ゲーム画面をズームアウトします</p><p><i>[Ctrl]+道路/線路/トンネルツール</i><br>直線の道路/線路を敷設できます。<br>既存の道路/線路を、低速な道路/線路で置き換えます。<br>トンネルの入り口のみを建設します。</p><p><i>[Ctrl]+V</i><br>クリップボードからテキストを貼り付けます。(Windowsのみ)</p><p>以下の操作キーは「(pakフォルダ)/config/menuconf.tab」ファイル<br>で定義されています。このファイルを編集して、操作キーの割り当てを変更<br>したり、別のツールに、新たに操作キーを割り当てることができます。</p><p><i>現在の操作キー一覧</i><br></p>
+<title>キーボードショートカット</title>\n\n<h1><strong>キーボードのヘルプ</strong></h1>\n\n<p>割り当てられていないキーを押すか、<a href="general.txt">総合ヘルプ</a>からこの画面を開くことができます。</p>\n<p>アルファベットの大文字と小文字は区別されます。大文字を入力するには [<em>Shift</em>] キーを押しながらキーをを押します。日本語入力は解除してください。</p>\n<p><i>主要なキー設定</i></p>\n<p>\n· [<em>↑, ↓, →, ←</em>]: ゲーム画面を指定の方向にスクロールします。<br>· [<em>Backspace</em>]: すべてのウィンドウ、ツールバー、ヘルプを閉じます。<br>· [<em>Delete</em>] または [<em>ESC</em>]: 最前面のウィンドウ（またはツールバー、ヘルプ）を閉じます。<br>· [<em>PageUp</em>] または [<em>＞</em>]: 画面をズームイン（拡大）します。<br>· [<em>PageDown</em>] または [<em>＜</em>]: 画面をズームアウト（縮小）します。<br>· [<em>Ctrl</em>] + 道路/線路/トンネルツール：<br>  - 直線的に道路/線路などを敷設します（既存の路を上書きして敷設する場合も含みます）。<br>  - トンネルの入り口のみを建設します。<br>  - 「情報の取得」や「削除」の際、選択の優先順位を逆にします。<br>· [<em>Ctrl</em>+<em>V</em>]：<br>  クリップボードからテキストを貼り付けます。(Windows のみ)\n</p><p>以下のショートカットキーは、使用中の「(pakフォルダ)/config/menuconf.tab」ファイルで定義されています。<br>このファイルを編集することで、既存のキー割り当てを変更したり、別のツールに新しいショートカットキーを割り当てたりすることが可能です。</p><p><i>現在の操作キー一覧</i><br></p>
 At least one stop is connected to the town.
 1つ以上の輸送施設が接続されている街だけを表示する
 At least one tile is connected to one stop.
@@ -338,11 +338,11 @@ Overlay town names
 Please click on the map to add\nwaypoints or stops to this\nschedule.
 マップをクリックして、中継点または\n駅をスケジュールに追加してください。
 Remove double stops from schedule
-スケジュールから二重停車を削除します
+連続する重複登録を削除します
 Set tile climate %s
 地面タイルの気候を%sに変更します。
 Show capacity and if halt is overcrowded
-各駅/停留所の待合室定員の大きさと混雑度を表示
+駅容量と過密状態を表示
 Show how many convoi reach a station
 駅への到着編成数を表示
 Show how many people/much is waiting at halts
@@ -368,11 +368,11 @@ Show usage of network
 Shows a listing with all industries on the map.
 マップ上に存在する全ての産業のリスト
 Sum of departure/arrivals at halts
-到着・出発した乗り物の数を表示
+発着合計数を表示します
 #____________________________________ki_text____________________________________
 #____________________________________ki_text____________________________________
 %s now\noffers bus services\nbetween %s\nand attraction\n%s\nat (%i,%i).\n
-%s社は\n現在、バスの便を\n%s町から名所旧跡\n「%s」(%i,%i)に\n提供しています。\n
+%s社は\n現在、バスの便を\n%sから\n名所旧跡\n「%s」(%i, %i) に\n提供しています。\n
 %s now\noffers bus services\nbetween %s\nand factory\n%s\nat (%i,%i).\n
 %sは現在、\n%sと工場\n%s (%i, %i) 間で\nバスの運行を行っています。\n
 %s\nnow operates\n%i trucks between\n%s at (%i,%i)\nand %s at (%i,%i).
@@ -380,11 +380,11 @@ Sum of departure/arrivals at halts
 %s\nopened a new railway\nbetween %s\nat (%i,%i) and\n%s at (%i,%i).
 %sは\n%s(%i,%i)と\n%s(%i,%i)の間で\n新たな鉄道を開通しました。
 Airline service by\n%s\nnow between\n%s \nand %s.\n
-%s社は\n現在、航空便を\n%s町と\n%s町\nとの間に提供しています。\n
+%s社は\n現在、航空便を\n%sと\n%s\nの間に提供しています。\n
 Ferry service by\n%s\nnow between\n%s \nand %s.\n
-%s社は\n現在、船便を\n%s町と\n%s町\nとの間に提供しています。\n
+%s社は\n現在、船便を\n%sと\n%s\nの間に提供しています。\n
 Travellers now\nuse %s's\nbusses between\n%s \nand %s.\n
-旅行者は現在、\n%s社が運行している\n%s町と\n%s町を結ぶ\nバスを利用しています。
+旅行者は現在、\n%s社が運行している\n%sと\n%sを結ぶ\nバスを利用しています。
 #___________________________________menu_text___________________________________
 #___________________________________menu_text___________________________________
 EDITTOOLS
@@ -482,15 +482,15 @@ Line Filter
 \nBauzeit von
 \n登場する年: 
 \nCan't open heightfield file.\n
-\nマップファイルを\n読み込むことが出来ません。\n
+\nハイトマップを開けません。\n
 \ndirection:
 \n接続方向: 
 \nelektrified
 \n電化
 \nHeightfield has wrong image type.\n
-\nマップファイルの\nイメージ形式が不正です。\n
+\nハイトマップの\n画像形式が正しくありません。\n
 \nis reserved by:
-\n予約車: 
+\n予約車両: 
 \nminimum speed:
 \n最低速度: 
 \nnot elektrified
@@ -500,7 +500,7 @@ Line Filter
 \nRibi (unmasked)
 \n全接続方向　: 
 \nSet phases:
-\n信号サイクル\n南北（秒）/ 東西（秒）/ オフセット\n\n切り替わり時間\n南北（秒）/ 東西（秒）
+\n信号サイクル（秒）\n東西 / 南北 / オフセット\n切り替わり時間（秒）\n東西 / 南北
 \nsingle way
 \n一方通行
 \nway1 reserved by
@@ -532,7 +532,7 @@ Line Filter
 %s factory %s %s
 %s %s前 %s
 %s has entered a depot.
-%s は車庫に着きました。
+%s\nは車庫に着きました。
 %s has left.
 %s がオフラインになりました。
 %s land %d %s
@@ -563,6 +563,8 @@ Line Filter
 スケジュールクリア
 <create new line>
 <新しい路線を作成>
+<em>%s</em> - %s<br>\n
+[<em>%s</em>]: %s<br>\n
 <h1>Error</h1><p><strong>
 <H1>エラー: メインpakディレクトリ内でオブジェクトが重複しています</H1><p><strong>発生箇所: 
 <h1>Warning</h1><p><strong>addons for
@@ -570,7 +572,7 @@ Line Filter
 <individual schedule>
 <個別のスケジュール>
 <no line>
-<路線指定なし>
+<路線未設定>
 <no schedule set>
 <スケジュールなし>
 <promote to line>
@@ -608,9 +610,9 @@ Line Filter
 8WORLD_CHOOSE
 夜間は暗くする
 A bridge must end on a way!
-橋梁はまっすぐな道路/線路上に\n設置してください。
+橋の終端には道路/線路が必要です。
 A bridge must start on a way!
-橋梁はまっすぐな道路/線路上に\n設置してください。
+橋の始点と終点は、\n同じ種類の道の端か\n何もない坂でなければなりません！\n
 Abfrage
 調査ツール
 Abnehmer
@@ -634,7 +636,7 @@ Active player only
 Add forest
 森を作成する
 Add random citycar
-自家用車を道路上に配置
+ランダムな自家用車を配置
 add server
 サーバーを追加
 Add Stop
@@ -654,7 +656,7 @@ Airport
 AIRTOOLS
 航空機ツール
 All
-全て
+すべて
 all convoi tooltips
 常に編成の状態を表示
 Allow city growth
@@ -758,13 +760,13 @@ Build air depot
 build choosesignals
 入線振分信号の建設
 Build city market
-最寄りの都市に産業網を誘致
+最寄りの都市に新たな市場を誘致する
 Build drain
-変圧所を作る
+変圧所
 build HQ
 本社を建設する
 Build land consumer
-発電所を作る
+新しい発電所を建設する
 Build maglev depot
 リニア車庫の建設
 Build monorail depot
@@ -772,15 +774,15 @@ Build monorail depot
 Build narrowgauge depot
 ナローゲージ車庫の建設
 Build powerline
-高圧線を作る
+高圧送電線を敷設
 Build presignals
-プレシグナルの建設
+プレシグナルを設置
 Build road depot
 車庫の建設
 Build ship depot
 造船所の建設
 Build signals
-信号の建設
+信号の設置
 Build train depot
 機関庫の建設
 Build tram depot
@@ -788,7 +790,7 @@ Build tram depot
 Build truck depot
 車庫の建設
 Building costs estimates
-建設費
+建設費概算
 Buildings
 市街地
 Built artifical slopes
@@ -806,21 +808,21 @@ Cancel
 Cannot connect to offline server!
 オフラインのサーバーには接続出来ません。
 Capacity
-積載
+積載量
 Capacity:
-定員/積載量:
+定員/最大積載量:
 Capacity: %.0f MW
 送電容量: %.0fMW\n
 Capacity: %d%s %s\n
-定員/積載量: %d%s %s\n
+定員/最大積載量: %d%s %s\n
 Capacity: %s\nLoad: %d (%d%%)
-定員/容量: %s\n乗車/積載: %d (%d%%)
+定員/最大積載量: %s\n乗車/積載: %d (%d%%)
 Cars are not available yet!
 自動車は・・・\nいえ、馬すら見あたりません・・・
 cars.\nstate
 車\n
 Cash
-現金
+手許資金
 Category
 カテゴリー
 Change label style
@@ -834,7 +836,7 @@ Chat_msg
 Choose direction
 向きを選択してください
 Choose operation executed on clicking stored/new vehicles
-クリックした乗り物に適用される操作を選んでください
+車両選択時のアクションを選択してください
 chooses a random map
 マップ番号を無作為に選びます
 citicens
@@ -844,9 +846,9 @@ Cities can only be built on flat empty ground!
 City attraction
 都市内施設
 City industries
-産業チェーンの数
+産業チェーン数
 City list
-町一覧
+街一覧
 City size
 街の規模
 city_road
@@ -938,7 +940,7 @@ Congratulation\nScenario was complete in\n%i months %i years.
 Connect factory
 産業施設を接続する
 Connected stops
-接続されている停留所:
+接続している停車場:
 Connected with server
 サーバーと接続しました。
 connection
@@ -1003,6 +1005,8 @@ curlist_title
 名所旧跡一覧
 CURRENCY
 ¥
+CURRENCY_LEFT
+1
 Current game
 現在のゲーム
 Currently playing:
@@ -1063,6 +1067,8 @@ Destroying map ...
 現在のマップを終了しています ...
 Details
 詳細
+Developed by the Simutrans Team
+開発：Simutrans Team
 Die Bruecke ist nicht frei!\n
 橋梁上が空ではないか、\n他社の所有物です。\n
 diesel
@@ -1072,7 +1078,7 @@ direct_chat_to:
 directmail
 広告郵便
 Direkt erreichbare Haltestellen
-ここから運行されている　駅・停留所・港
+直通駅
 disable midi
 BGMオフ
 Display bars above factory to show the status
@@ -1102,7 +1108,7 @@ Durchsatz
 Economy
 経済と都市
 Eigenbesitz\n
-公共物\n
+公共物\n\n
 Ein %s\npasst hier nicht.\n
 '%s' を\nここに建てることはできません。\n
 Einstellungen
@@ -1136,7 +1142,7 @@ Es wird bereits\nein Fahrplan\neingegeben\n
 Extract files
 ファイルを展開中
 Fabrikanschluss
-接続されている産業
+接続している産業
 Fabrikname
 産業名
 Factories
@@ -1198,7 +1204,7 @@ Fracht
 Frame time:
 描画時間:
 Free Capacity
-空席/空荷
+空き容量
 freeplay mode
 フリープレイ モード
 Freight
@@ -1280,7 +1286,7 @@ Helligk.
 Help
 ヘルプ
 Help text not found
-申し訳ありませんが、この項目のヘルプはまだありません
+申し訳ありません。この項目のヘルプはまだありません
 hide all building
 全ての建物を隠す
 hide city building
@@ -1530,7 +1536,7 @@ Lock game
 Lokomotive_tab
 機関車
 m3
-立方m
+m³
 Maglev
 リニア
 maglev vehicle
@@ -1702,7 +1708,7 @@ No suitable ground!
 No suitable townhall available for this climate!
 気候に適合する役所建築物がありません！
 No terminal station here!
-この形式の停車場は走路の終端に\n建ててください！
+終端駅を建てるには、\n行き止まりの道路や線路が必要です。
 no timeline
 年代設定: 無効
 no tree
@@ -2258,7 +2264,7 @@ Stops
 Storage
 在庫量
 Storage capacity
-待合室定員
+収容量
 Strassendepot
 車庫
 Strassentunnel
@@ -2300,7 +2306,7 @@ Tile not empty.
 timeline
 年代設定: 有効
 tl_title
-町一覧
+街一覧
 To attract more tourists\n%s built\na %s\nwith the aid of\n%i tax payers.
 より多くの乗降客を\n%sに呼び込むため\n「%s」を\n%i人の住民の援助により\n建設しました。
 To heavy traffic\nresults in traffic jam.\n
@@ -2310,7 +2316,7 @@ To: %s
 Toggle day/night view
 昼/夜を交互に切り替えます
 Toggle vehicle tooltips
-乗り物の状態(ツールチップ)表示の切り替え
+車両ツールチップの切り替え
 tonnen
 t
 Toolbar position:
@@ -2360,7 +2366,7 @@ transparencies
 transparent background
 透明な背景
 transparent station coverage
-駅の有効範囲は半透明色で表示する
+駅の有効範囲を半透明色で表示する
 Transported
 輸送実績
 Trees disabled!
@@ -2374,13 +2380,13 @@ tt_Other
 Tunnel muss an\neinfachem\nHang beginnen!\n
 トンネルは直線の\n坂に作ってください。\n
 Tunnel must start on single way!
-トンネルはまっすぐな道路/線路上に\n設置してください。
+トンネルはまっすぐな道路/線路上に建設してください。
 Tunnelboden
 トンネル内部
 under the Artistic License
 Artistic License の下で公開されています
 underground mode
-地下路線建設モード
+地下表示モード
 UNDO failed!
 この操作を取り消すことはできません。\n路線の敷設を取り消せるのは、\nその区間に信号、駅、停留所、\nその他の構造物が\nまだ設置されていない場合だけです。
 Undo last ways construction
@@ -2472,7 +2478,7 @@ way %s now available:\n
 Way toll
 通行料
 Ways not connected
-道路/線路が\n繋がっていません。
+道路/線路が繋がっていません。
 waytype
 経路の種類
 Wegpunkt

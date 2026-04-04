@@ -1,4 +1,5 @@
-<title>路線編集　ヘルプ</title>
+<title>路線編集</title>
+
 <h1><strong>路線編集</strong></h1>
 <p>
 <strong>路線一覧</strong> 路線を管理します（同じルートを共有する<a href="convoiinfo.txt">車両</a>のグループ）

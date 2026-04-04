@@ -1,4 +1,4 @@
-<title>駅一覧フィルター　ヘルプ</title>
+<title>駅一覧フィルター</title>
 <h1><strong>駅一覧フィルター</strong></h1>
 <p>
 <strong>駅一覧フィルター</strong>では、乗客の乗り降りを行う<a href="station.txt">ストップ（駅・停留所）</a>（水上輸送のための港も含む）を<a href="haltlist.txt">駅一覧</a>に表示するかどうかを設定することができます。

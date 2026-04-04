@@ -1,4 +1,4 @@
-<title>気候の設定　ヘルプ</title>
+<title>気候の設定</title>
 
 <h1><strong>気候の設定</strong></h1>
 

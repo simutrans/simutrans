@@ -1,4 +1,4 @@
-<title>サウンド設定のヘルプ</title>
+<title>サウンド設定</title>
 
 <h1><strong>サウンド設定</strong></h1>
 

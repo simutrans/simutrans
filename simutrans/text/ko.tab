@@ -12,7 +12,7 @@ cyr.bdf
 #                              Language: ko Korean                             #
 #                                Encoding: UTF-8                               #
 #                                 Font: cyr.bdf                                #
-#                            Date Created: 3.04 2025                           #
+#                            Date Created: 4.04 2026                           #
 #                                                                              #
 ################################################################################
 #__________________________________button_text__________________________________
@@ -1822,7 +1822,7 @@ Unemployed
 Unhappy
 불행
 units/day
-단위/개월
+단위/개월　
 Update Line
 노선 수정
 upgrade HQ

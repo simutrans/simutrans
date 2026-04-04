@@ -22,7 +22,7 @@
 </p>
 
 <p>
-町、工場、駅、車両、輸送ラインなど、いくつかのオブジェクトの名前は編集可能です。編集するには、<a href="inspection_tool.txt">虫眼鏡（調査ツール）</a>で開いたダイアログの名前欄をマウスでクリックします（下図）。編集した内容はすぐに有効になります。Returnキーを押してフィールドを終了します。
+街、工場、駅、車両、輸送ラインなど、いくつかのオブジェクトの名前は編集可能です。編集するには、<a href="inspection_tool.txt">虫眼鏡（調査ツール）</a>で開いたダイアログの名前欄をマウスでクリックします（下図）。編集した内容はすぐに有効になります。Returnキーを押してフィールドを終了します。
 </p>
 
 <p>
@@ -92,7 +92,7 @@
 <a href="list.txt"><em>一覧表:</em></a> 一覧表のアイコンをクリックすると、次の7種類の一覧表が表示されるサブメニューにつながります:
 <br> · <a href="haltlist.txt">駅一覧</a>
 <br> · <a href="convoi.txt">乗り物一覧</a>
-<br> · <a href="citylist_filter.txt">町一覧</a>
+<br> · <a href="citylist_filter.txt">街一覧</a>
 <br> · <a href="goods_filter.txt">貨物一覧</a>
 <br> · <a href="factorylist_filter.txt">産業一覧</a>
 <br> · <a href="curiositylist_filter.txt">名所旧跡一覧</a>

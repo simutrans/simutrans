@@ -1,4 +1,5 @@
-<title>産業一覧　ヘルプ</title>
+<title>産業一覧</title>
+
 <h1><strong>産業一覧</strong></h1>
 <p>
 <strong>産業一覧</strong>には、現在のゲームに登場するすべての<a href="industry_info.txt">産業</a>（商品の供給者と消費者）の情報が表示されます。

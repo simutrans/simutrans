@@ -1,4 +1,4 @@
-<title>ゲームオプションヘルプ</title>
+<title>ゲームオプション</title>
 
 <h1><strong>ゲームオプション</strong></h1>
 

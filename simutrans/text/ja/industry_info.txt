@@ -1,4 +1,4 @@
-<title>産業情報　ヘルプ</title>
+<title>産業情報</title>
 
 <h1><strong>産業情報</strong></h1>
 

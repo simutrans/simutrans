@@ -1,4 +1,5 @@
-<title>乗り物の一覧フィルター　ヘルプ</title>
+<title>乗り物の一覧フィルター</title>
+
 <h1><strong>乗り物の一覧フィルター</strong></h1>
 <p>
 <strong>乗り物の一覧フィルター</strong>には、<a href="convoi.txt">乗り物一覧</a>に表示する<a href="convoiinfo.txt">車両</a>を決定するオプションがあります。

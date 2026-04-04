@@ -7,7 +7,7 @@ Section /o "pak" pak
   SetOutPath $PAKDIR
   StrCpy $archievename "simupak64-124-4.zip"
   StrCpy $downloadname "pak"
-  StrCpy $VersionString "pak64 124.4 r2222M"
+  StrCpy $VersionString "pak64 124.4 r2223"
   Call DownloadInstallZip
 SectionEnd
 Section /o "pak64 Food addon"

@@ -52,7 +52,7 @@
 ・・<a href="haltlist_filter.txt">駅一覧フィルター</a><br>
 ・<a href="convoi.txt">乗り物一覧</a><br>
 ・・<a href="convoi_filter.txt">乗り物一覧フィルター</a><br>
-・<a href="citylist_filter.txt">※町一覧</a><br>
+・<a href="citylist_filter.txt">※街一覧</a><br>
 ・<a href="goods_filter.txt">貨物一覧</a><br>
 ・<a href="factorylist_filter.txt">産業一覧</a><br>
 ・<a href="curiositylist_filter.txt">名所旧跡一覧</a><br>

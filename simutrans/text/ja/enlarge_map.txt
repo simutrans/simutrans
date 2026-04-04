@@ -1,4 +1,4 @@
-<title>マップ拡張ヘルプ</title>
+<title>マップ拡張</title>
 
 <h1>マップ拡張</h1>
 

@@ -1,4 +1,4 @@
-<title>一覧表　ヘルプ</title>
+<title>一覧表</title>
 
 <h1><strong>一覧表</strong></h1>
 
@@ -22,7 +22,7 @@
 <a href="convoi.txt"><em>乗り物一覧:</em></a> 道路・鉄道<a href="convoiinfo.txt">車両</a>、航空機、船舶。
 </p>
 <p>
-<a href="citylist_filter.txt"><em>町一覧:</em></a> <a href="citywindow.txt">各都市</a> （村、町、市）。
+<a href="citylist_filter.txt"><em>街一覧:</em></a> <a href="citywindow.txt">各都市</a> （村、町、市）。
 </p>
 <p>
 <a href="goods_filter.txt"><em>貨物一覧:</em></a> 異なる商品、乗客、郵便から受け取る収入（相対的な収入を調整するためのコントロールを含む）。

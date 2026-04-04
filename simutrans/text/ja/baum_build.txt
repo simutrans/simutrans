@@ -1,4 +1,4 @@
-<title>木を植える　ヘルプ</title>
+<title>木を植える</title>
 
 <h1><strong>木を植える</strong></h1>
 

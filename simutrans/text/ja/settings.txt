@@ -1,4 +1,4 @@
-<title>高度な設定ヘルプ</title>
+<title>高度な設定</title>
 
 <h1>高度な設定</h1>
 
