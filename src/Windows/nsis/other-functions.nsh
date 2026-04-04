@@ -452,14 +452,15 @@ Function DownloadInstallZip
 DownloadInstallZipDo:
   ; ok old directory rename
   Call ConnectInternet
-  RMdir /r "$TEMP\simutrans"
+  RMdir /r "tmp"
 ; since https fails with builtin NSISdl ...
 ;  NSISdl::download $downloadlink "$TEMP\$archievename"
 ;  Pop $R0 ;Get the return value
 ;  StrCmp $R0 "success" +3
 ;     MessageBox MB_OK "Download of $archievename failed: $R0"
 ;     Quit
-  inetc::get /WEAKSECURITY $downloadlink "$Temp\$archievename" /END
+; /WEAKSECURITY no working without admin ...
+  inetc::get $downloadlink "$TEMP\$archievename" /END
   Pop $0
   StrCmp $0 "OK" +3
      MessageBox MB_OK "Download of $archievename failed: $R0" /SD IDOK
@@ -498,7 +499,7 @@ Function DownloadInstallNoRemoveZip
 ;  StrCmp $R0 "success" +3
 ;     MessageBox MB_OK "Download of $archievename failed: $R0"
 ;     Quit
-  inetc::get /WEAKSECURITY $downloadlink "$Temp\$archievename" /END
+  inetc::get $downloadlink "$Temp\$archievename" /END
   Pop $0
   StrCmp $0 "OK" +4
      MessageBox MB_OK "Download of $archievename failed: $R0" /SD IDOK
@@ -538,7 +539,7 @@ Function DownloadInstallAddonZip
 ;  StrCmp $R0 "success" +3
 ;     MessageBox MB_OK "Download of $archievename failed: $R0"
 ;     Quit
-  inetc::get /WEAKSECURITY $downloadlink "$Temp\$archievename" /END
+  inetc::get $downloadlink "$Temp\$archievename" /END
   Pop $0
   StrCmp $0 "OK" +4
      MessageBox MB_OK "Download of $archievename failed: $R0" /SD IDOK
@@ -569,7 +570,7 @@ Function DownloadInstallAddonZipPortable
 ;  StrCmp $R0 "success" +3
 ;     MessageBox MB_OK "Download of $archievename failed: $R0"
 ;     Quit
-  inetc::get /WEAKSECURITY $downloadlink "$Temp\$archievename" /END
+  inetc::get $downloadlink "$Temp\$archievename" /END
   Pop $0
   StrCmp $0 "OK" +4
      MessageBox MB_OK "Download of $archievename failed: $R0" /SD IDOK
@@ -605,7 +606,7 @@ DownloadInstallZipWithoutSimutransDo:
   RMdir /r "$TEMP\simutrans"
   CreateDirectory "$TEMP\simutrans"
 # since we also want to download from addons ...
-  inetc::get /WEAKSECURITY $downloadlink "$Temp\simutrans\$archievename" /END
+  inetc::get $downloadlink "$Temp\simutrans\$archievename" /END
   POP $0
   StrCmp $0 "OK" +4
      MessageBox MB_OK "Download of $archievename failed: $R0" /SD IDOK
@@ -644,7 +645,7 @@ DownloadInstallCabWithoutSimutransDo:
   RMdir /r "$TEMP\simutrans"
   CreateDirectory "$TEMP\simutrans"
   Call ConnectInternet
-  inetc::get /WEAKSECURITY $downloadlink "$Temp\simutrans\$archievename" /END
+  inetc::get $downloadlink "$Temp\simutrans\$archievename" /END
   POP $0
   StrCmp $0 "OK" +5
     DetailPrint "Download error $R0" ;print error message to log
@@ -681,7 +682,7 @@ Function DownloadInstallTgzWithoutSimutrans
   Call ConnectInternet
   RMdir /r "$TEMP\simutrans"
   CreateDirectory "$TEMP\simutrans"
-  inetc::get /WEAKSECURITY $downloadlink "$Temp\simutrans\$archievename" /END
+  inetc::get $downloadlink "$Temp\simutrans\$archievename" /END
   POP $0
   StrCmp $0 "OK" +5
     DetailPrint "Download error $R0" ;print error message to log

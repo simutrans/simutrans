@@ -77,7 +77,7 @@ Section /o "Executable (GDI)" GDIexe
   AddSize 19732
   StrCpy $downloadlink "http://downloads.sourceforge.net/project/simutrans/simutrans/124-4/simuwin-124-4.zip"
   StrCpy $archievename "simuwin-124-4.zip"
-  StrCpy $downloadname "Simutrans Executable (GDI)"
+  StrCpy $downloadname "nodelete"
   SetOutPath $INSTDIR
   Call DownloadInstallZip
   Call PostExeInstall
@@ -87,7 +87,7 @@ Section "Executable (SDL2)" SDLexe
   AddSize 22147
   StrCpy $downloadlink "http://downloads.sourceforge.net/project/simutrans/simutrans/124-4/simuwin-sdl-124-4.zip"
   StrCpy $archievename "simuwin-sdl-124-4.zip"
-  StrCpy $downloadname "Simutrans Executable (SDL2)"
+  StrCpy $downloadname "nodelete"
   SetOutPath $INSTDIR
   Call DownloadInstallZip
   Call PostExeInstall
@@ -97,7 +97,7 @@ Section /o "Executable (GDI 64bit)" GDI64exe
   AddSize 19048
   StrCpy $downloadlink "http://downloads.sourceforge.net/project/simutrans/simutrans/124-4/simuwin-x64-124-4.zip"
   StrCpy $archievename "simuwin-x64-124-4.zip"
-  StrCpy $downloadname "Simutrans Executable (GDI) only needed for huge maps"
+  StrCpy $downloadname "nodelete"
   SetOutPath $INSTDIR
   Call DownloadInstallZip
   Call PostExeInstall
@@ -106,8 +106,8 @@ SectionEnd
 Section /o "Executable (SDL2 64bit)" SDL64exe
   AddSize 21240
   StrCpy $downloadlink "http://downloads.sourceforge.net/project/simutrans/simutrans/124-4/simuwin-x64-sdl-124-4.zip"
-  StrCpy $archievename "simuwin-sdl-x64-124-4.zip"
-  StrCpy $downloadname "Simutrans Executable (SDL2) only needed for huge maps"
+  StrCpy $archievename "simuwin-x64-sdl-124-4.zip"
+  StrCpy $downloadname "nodelete"
   SetOutPath $INSTDIR
   Call DownloadInstallZip
   Call PostExeInstall
