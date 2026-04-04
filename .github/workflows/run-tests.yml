@@ -37,7 +37,7 @@ jobs:
     - name: Install pak64
       run: |
         pushd simutrans
-        printf '1\ni\ny\n' | ../tools/get_pak.sh
+        ../tools/get_pak.sh pak64
         popd
     - name: Install language files
       run: tools/get_lang_files.sh
