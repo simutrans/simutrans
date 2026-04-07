@@ -1225,6 +1225,7 @@ void karte_t::init(settings_t* const sets, sint8 const* const h_field)
 	settings = *sets;
 	// names during creation time
 	settings.set_name_language_iso(env_t::language_iso);
+	translator::init_custom_names(settings.get_name_language_id());
 	settings.set_use_timeline(settings.get_use_timeline() & 1);
 
 	ticks = 0;
