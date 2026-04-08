@@ -1484,10 +1484,7 @@ void settings_t::parse_colours(tabfile_t& simuconf)
 
 int settings_t::get_name_language_id() const
 {
-	int lang = -1;
-	if(  env_t::networkmode  ) {
-		lang = translator::get_language( language_code_names );
-	}
+	int lang = translator::get_language( language_code_names );
 	if(  lang == -1  ) {
 		lang = translator::get_language();
 	}

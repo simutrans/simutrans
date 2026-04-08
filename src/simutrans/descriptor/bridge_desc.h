@@ -61,10 +61,14 @@ public:
 	image_id get_background(img_t img, uint8 season) const {
 		const image_t *image = NULL;
 		if(season && number_of_seasons == 1) {
-			image = get_child<image_list_t>(3 + offset)->get_image(img);
+			if (const image_list_t* il = get_child<image_list_t>(3 + offset)) {
+				image = il->get_image(img);
+			}
 		}
 		if(image == NULL) {
-			image = get_child<image_list_t>(0 + offset)->get_image(img);
+			if (const image_list_t* il = get_child<image_list_t>(0 + offset)) {
+				image = il->get_image(img);
+			}
 		}
 		return image != NULL ? image->get_id() : IMG_EMPTY;
 	}
@@ -72,10 +76,14 @@ public:
 	image_id get_foreground(img_t img, uint8 season) const {
 		const image_t *image = NULL;
 		if(season && number_of_seasons == 1) {
-			image = get_child<image_list_t>(4 + offset)->get_image(img);
+			if (const image_list_t* il = get_child<image_list_t>(4 + offset)) {
+				image = il->get_image(img);
+			}
 		}
 		if(image == NULL) {
-			image = get_child<image_list_t>(1 + offset)->get_image(img);
+			if (const image_list_t* il = get_child<image_list_t>(1 + offset)) {
+				image = il->get_image(img);
+			}
 		}
 		return image != NULL ? image->get_id() : IMG_EMPTY;
 	}

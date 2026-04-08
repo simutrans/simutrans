@@ -173,8 +173,12 @@ public:
 	 */
 	/// @{
 
-	/// current language
-	static const char *language_iso;
+	/// default GUI language
+	static const char* language_iso;
+
+	/// current name language (for towns, stops, ...)
+	/// if empty, the same as for the main language
+	static const char* language_names_iso;
 
 	/// controls scrolling speed and scrolling direction
 	static sint16 scroll_multi;

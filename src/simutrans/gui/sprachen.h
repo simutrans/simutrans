@@ -11,6 +11,7 @@
 #include "components/action_listener.h"
 #include "components/gui_button.h"
 #include "components/gui_textarea.h"
+#include "components/gui_tab_panel.h"
 #include "../utils/cbuffer.h"
 
 #include "../tpl/vector_tpl.h"
@@ -23,6 +24,8 @@ class sprachengui_t : public gui_frame_t, private action_listener_t
 private:
 	cbuffer_t buf;
 	gui_textarea_t text_label;
+	gui_tab_panel_t tab;
+	gui_aligned_container_t button_plane;
 
 	struct language_button_t {
 		button_t* button;

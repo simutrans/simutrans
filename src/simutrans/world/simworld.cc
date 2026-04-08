@@ -1224,7 +1224,7 @@ void karte_t::init(settings_t* const sets, sint8 const* const h_field)
 
 	settings = *sets;
 	// names during creation time
-	settings.set_name_language_iso(env_t::language_iso);
+	settings.set_name_language_iso(env_t::language_names_iso);
 	translator::init_custom_names(settings.get_name_language_id());
 	settings.set_use_timeline(settings.get_use_timeline() & 1);
 
@@ -4373,9 +4373,9 @@ void karte_t::rdwr_gamestate(loadsave_t *file, loadingscreen_t *ls)
 			if (file->is_version_less(122, 1)) {
 				setsimrand(settings.get_random_counter(), 0xFFFFFFFFu );
 			}
-
-			translator::init_custom_names(settings.get_name_language_id());
 		}
+		// it will use the saved language of the game
+		translator::init_custom_names(settings.get_name_language_id());
 
 		if(  !env_t::networkmode  ||  (env_t::server  &&  socket_list_t::get_playing_clients()==0)  ) {
 			if (settings.get_allow_player_change()  &&  env_t::default_settings.get_use_timeline() < 2) {

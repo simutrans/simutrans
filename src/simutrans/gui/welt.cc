@@ -549,6 +549,7 @@ bool welt_gui_t::action_triggered( gui_action_creator_t *comp,value_t v)
 		welt->get_message()->clear();
 		create_win({ 200, 100 }, new news_img("Erzeuge neue Karte.\n", skinverwaltung_t::neueweltsymbol->get_image_id(0)), w_info, magic_none);
 		env_t::default_settings = *sets;
+		translator::set_language(translator::get_language());	// reset also ingame names
 		delete sets;
 		sets = NULL;
 		if(loaded_heightfield) {

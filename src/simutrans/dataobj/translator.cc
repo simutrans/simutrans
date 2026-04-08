@@ -595,8 +595,6 @@ void translator::set_language(int lang)
 		single_instance.current_lang = lang;
 		current_langinfo = langs+lang;
 		env_t::language_iso = langs[lang].iso;
-		env_t::default_settings.set_name_language_iso( langs[lang].iso );
-		init_custom_names(lang);
 		current_langinfo->ellipsis_width = proportional_string_width( translate("...") );
 		DBG_MESSAGE("translator::set_language()", "%s, unicode %d", langs[lang].name, true);
 	}

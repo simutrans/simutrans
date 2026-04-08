@@ -515,8 +515,14 @@ public:
 
 	int get_name_language_id() const;
 	void set_name_language_iso( const char *iso ) {
-		language_code_names[0] = iso[0];
-		language_code_names[1] = iso[1];
+		if (!iso) {
+			language_code_names[0] = 0;
+			language_code_names[1] = 0;
+		}
+		else {
+			language_code_names[0] = iso[0];
+			language_code_names[1] = iso[1];
+		}
 		language_code_names[2] = 0;
 	}
 
