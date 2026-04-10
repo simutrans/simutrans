@@ -164,9 +164,6 @@ public:
 	 */
 	void finish_rd() OVERRIDE;
 
-	// currently animated
-	bool is_sync() const { return sync; }
-
 	/**
 	 * @returns pointer to first tile of a multi-tile building.
 	 */
