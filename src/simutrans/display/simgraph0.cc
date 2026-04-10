@@ -101,37 +101,30 @@ void display_set_player_color_scheme(const int, const uint8, const uint8)
 {
 }
 
+
 void register_image(image_t* image)
 {
 	image->imageid = 1;
 }
+
 
 bool display_snapshot(const scr_rect &)
 {
 	return false;
 }
 
-void display_get_image_offset(image_id image, scr_coord_val *xoff, scr_coord_val *yoff, scr_coord_val *xw, scr_coord_val *yw)
+
+scr_rect display_get_image_offset(image_id image)
 {
-	if(  image < 2  ) {
-		// initialize offsets with dummy values
-		*xoff = 0;
-		*yoff = 0;
-		*xw   = 0;
-		*yw   = 0;
-	}
+	return scr_rect{ 0, 0, 0, 0 };
 }
 
-void display_get_base_image_offset(image_id image, scr_coord_val *xoff, scr_coord_val *yoff, scr_coord_val *xw, scr_coord_val *yw)
+
+scr_rect display_get_base_image_offset(image_id image)
 {
-	if(  image < 2  ) {
-		// initialize offsets with dummy values
-		*xoff = 0;
-		*yoff = 0;
-		*xw   = 0;
-		*yw   = 0;
-	}
+	return scr_rect{ 0, 0, 0, 0 };
 }
+
 
 clip_dimension display_get_clip_wh(CLIP_NUM_DEF_NOUSE0)
 {

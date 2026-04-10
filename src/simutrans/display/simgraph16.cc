@@ -1917,25 +1917,35 @@ void display_free_all_images_above( image_id above )
 
 
 // query offsets
-void display_get_image_offset(image_id image, scr_coord_val *xoff, scr_coord_val *yoff, scr_coord_val *xw, scr_coord_val *yw)
+scr_rect display_get_image_offset(image_id image)
 {
 	if(  image < anz_images  ) {
-		*xoff = images[image].x;
-		*yoff = images[image].y;
-		*xw   = images[image].w;
-		*yw   = images[image].h;
+		return scr_rect{
+			images[image].x,
+			images[image].y,
+			images[image].w,
+			images[image].h
+		};
+	}
+	else {
+		return scr_rect{ 0, 0, 0, 0 };
 	}
 }
 
 
 // query un-zoomed offsets
-void display_get_base_image_offset(image_id image, scr_coord_val *xoff, scr_coord_val *yoff, scr_coord_val *xw, scr_coord_val *yw)
+scr_rect display_get_base_image_offset(image_id image)
 {
 	if(  image < anz_images  ) {
-		*xoff = images[image].base_x;
-		*yoff = images[image].base_y;
-		*xw   = images[image].base_w;
-		*yw   = images[image].base_h;
+		return scr_rect{
+			images[image].base_x,
+			images[image].base_y,
+			images[image].base_w,
+			images[image].base_h
+		};
+	}
+	else {
+		return scr_rect{ 0, 0, 0, 0 };
 	}
 }
 

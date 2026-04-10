@@ -22,16 +22,15 @@ gui_image_t::gui_image_t( const image_id i, const uint8 p, control_alignment_t a
 scr_size gui_image_t::get_min_size() const
 {
 	if( id  !=  IMG_EMPTY ) {
-		scr_coord_val x=0, y=0, w=0, h=0;
-		display_get_base_image_offset( id, &x, &y, &w, &h );
+		scr_rect r = display_get_base_image_offset(id);
 
 		if (remove_enabled) {
-			return scr_size(w, h);
+			return scr_size(r.w, r.h);
 		}
 		else {
 			// FIXME
 			assert(0);
-			return scr_size(x+w, y+h);
+			return scr_size(r.x+r.w, r.y+r.h);
 		}
 	}
 	return gui_component_t::get_min_size();
@@ -41,14 +40,13 @@ scr_size gui_image_t::get_min_size() const
 void gui_image_t::set_size( scr_size size_par )
 {
 	if( id  !=  IMG_EMPTY ) {
-		scr_coord_val x=0, y=0, w=0, h=0;
-		display_get_base_image_offset( id, &x, &y, &w, &h );
+		scr_rect r = display_get_base_image_offset(id);
 
 		if( remove_enabled ) {
-			remove_offset = scr_coord(-x,-y);
+			remove_offset = scr_coord(-r.x,-r.y);
 		}
 
-		size_par = scr_size( x+w+remove_offset.x, y+h+remove_offset.y );
+		size_par = scr_size( r.x+r.w+remove_offset.x, r.y+r.h+remove_offset.y );
 	}
 
 	gui_component_t::set_size(size_par);
@@ -76,28 +74,26 @@ void gui_image_t::set_image( const image_id i, bool remove_offsets ) {
 void gui_image_t::draw( scr_coord offset ) {
 
 	if(  id!=IMG_EMPTY  ) {
-		scr_coord_val x=0, y=0, w=0, h=0;
-		display_get_base_image_offset( id, &x, &y, &w, &h );
+		scr_rect r = display_get_base_image_offset(id);
 
 		switch (alignment) {
-
 			case ALIGN_RIGHT:
-				offset.x += size.w - w + remove_offset.x;
+				offset.x += size.w - r.w + remove_offset.x;
 				break;
 
 			case ALIGN_BOTTOM:
-				offset.y += size.h - h + remove_offset.y;
+				offset.y += size.h - r.h + remove_offset.y;
 				break;
 
 			case ALIGN_CENTER_H:
-				offset.x += D_GET_CENTER_ALIGN_OFFSET(w,size.w);
+				offset.x += D_GET_CENTER_ALIGN_OFFSET(r.w, size.w);
 				break;
 
 			case ALIGN_CENTER_V:
-				offset.y += D_GET_CENTER_ALIGN_OFFSET(h,size.h);
+				offset.y += D_GET_CENTER_ALIGN_OFFSET(r.h, size.h);
 				break;
-
 		}
+
 		if (color_index) {
 			display_base_img_blend(id , pos.x+offset.x+remove_offset.x, pos.y+offset.y+remove_offset.y, player_nr, color_index, false, true);
 		}

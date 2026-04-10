@@ -117,8 +117,8 @@ gui_settings_t::gui_settings_t()
 	base_icon_height = 32;
 	if (tool_t::general_tool[TOOL_QUERY]->get_icon(NULL) != IMG_EMPTY)
 	{
-		scr_coord_val dummy;
-		display_get_base_image_offset(tool_t::general_tool[TOOL_QUERY]->get_icon(NULL), &dummy, &dummy, &dummy, &base_icon_height);
+		scr_rect r = display_get_base_image_offset(tool_t::general_tool[TOOL_QUERY]->get_icon(NULL));
+		base_icon_height = r.h;
 	}
 	// find current zoom factor
 	for (icon_zoom = 0; icon_zoom <= MAX_ZOOM_FACTOR; icon_zoom++) {

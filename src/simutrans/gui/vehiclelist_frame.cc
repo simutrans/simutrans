@@ -39,13 +39,13 @@ vehiclelist_stats_t::vehiclelist_stats_t(const vehicle_desc_t *v) :
 	veh = v;
 
 	// width of image
-	scr_coord_val x, y, w, h;
 	const image_id image = veh->get_image_id( ribi_t::dir_south, veh->get_freight_type() );
-	display_get_base_image_offset(image, &x, &y, &w, &h );
-	if( w > img_width ) {
-		img_width = w + D_H_SPACE;
+	const scr_rect r = display_get_base_image_offset(image);
+
+	if( r.w > img_width ) {
+		img_width = r.w + D_H_SPACE;
 	}
-	height = h;
+	height = r.h;
 
 	// name is the widest entry in column 1
 	name_width = proportional_string_width( translator::translate( veh->get_name(), world()->get_settings().get_name_language_id() ) );
@@ -127,10 +127,10 @@ void vehiclelist_stats_t::draw( scr_coord offset )
 
 	offset.x += D_MARGIN_LEFT;
 	offset.y += D_V_SPACE/2;
-	scr_coord_val x, y, w, h;
+
 	const image_id image = veh->get_image_id( ribi_t::dir_south, veh->get_freight_type() );
-	display_get_base_image_offset(image, &x, &y, &w, &h );
-	display_base_img(image, offset.x - x, offset.y - y, world()->get_active_player_nr(), false, true);
+	const scr_rect r = display_get_base_image_offset(image);
+	display_base_img(image, offset.x - r.x, offset.y - r.y, world()->get_active_player_nr(), false, true);
 
 	// first name
 	offset.x += img_width;
@@ -141,6 +141,7 @@ void vehiclelist_stats_t::draw( scr_coord offset )
 		veh->is_future(month) ? SYSCOL_TEXT_HIGHLIGHT : (veh->is_available(month) ? SYSCOL_TEXT : gui_theme_t::gui_color_obsolete),
 		false
 	);
+
 	if( veh->get_power() > 0 ) {
 		char str[ 256 ];
 		sprintf( str, " (%s)", translator::translate( vehicle_builder_t::engine_type_names[ veh->get_engine_type() + 1 ] ) );
@@ -160,18 +161,18 @@ void vehiclelist_stats_t::draw( scr_coord offset )
 	display_multiline_text_rgb( offset.x + col1_width, yyy, part2, SYSCOL_TEXT );
 }
 
+
 const char *vehiclelist_stats_t::get_text() const
 {
 	return translator::translate( veh->get_name() );
 }
+
 
 bool vehiclelist_stats_t::compare(const gui_component_t *aa, const gui_component_t *bb)
 {
 	bool result = vehicle_builder_t::compare_vehicles( dynamic_cast<const vehiclelist_stats_t*>(aa)->veh, dynamic_cast<const vehiclelist_stats_t*>(bb)->veh, (vehicle_builder_t::sort_mode_t)vehiclelist_stats_t::sort_mode );
 	return vehiclelist_stats_t::reverse ? !result : result;
 }
-
-
 
 
 vehiclelist_frame_t::vehiclelist_frame_t() :

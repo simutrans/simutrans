@@ -591,9 +591,9 @@ scr_size gui_flowtext_intern_t::output(scr_coord offset, bool doit, bool return_
 			case ATT_IMG_START:
 				if (image != images.end()) {
 					//display image
-					scr_coord_val xoff, yoff, xw, yw;
-					display_get_base_image_offset( image->id, &xoff, &yoff, &xw, &yw );
-					if (  xpos + xw > max_width  &&  xpos != 0  ) {
+					const scr_rect area = display_get_base_image_offset(image->id);
+
+					if (  xpos + area.w > max_width  &&  xpos != 0  ) {
 						// New Line if image is too large to fit on line (unless already at new line)
 						xpos=0;
 						ypos += LINESPACE + extra_pixel + extra_pixels;
@@ -607,13 +607,13 @@ scr_size gui_flowtext_intern_t::output(scr_coord offset, bool doit, bool return_
 						// this will display the scaled tool image, not the original one
 						// and therefore causes graphical glitches when zooming in/out.
 						// Force displaying non-scaled tool image instead.
-						display_fit_img_to_width(image->id, xw);
+						display_fit_img_to_width(image->id, area.w);
 
-						display_base_img(image->id, offset.x + xpos + 1 - xoff + D_MARGIN_LEFT, offset.y + ypos + yoff, 0, false, false);
+						display_base_img(image->id, offset.x + xpos + 1 - area.x + D_MARGIN_LEFT, offset.y + ypos + area.y, 0, false, false);
 					}
-					xpos += xw+2;
-					if ( extra_pixels < yw - LINESPACE ) {
-						extra_pixels = yw - LINESPACE;	// Set extra pixels for new line based on height of image.
+					xpos += area.w+2;
+					if ( extra_pixels < area.h - LINESPACE ) {
+						extra_pixels = area.h - LINESPACE;	// Set extra pixels for new line based on height of image.
 					}
 					image++;
 				}

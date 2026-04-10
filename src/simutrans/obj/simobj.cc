@@ -309,12 +309,11 @@ void obj_t::mark_image_dirty(image_id image, sint16 yoff) const
 		display_mark_img_dirty( image, scr_pos.x + xpos, scr_pos.y + ypos + yoff);
 
 		// too close to border => set dirty to be sure (smoke, skyscrapers, birds, or the like)
-		scr_coord_val xbild = 0, ybild = 0, wbild = 0, hbild = 0;
-		display_get_image_offset( image, &xbild, &ybild, &wbild, &hbild );
-		const sint16 distance_to_border = 3 - (yoff+get_yoff()+ybild)/(rasterweite/4);
+		const scr_rect r = display_get_image_offset(image);
+		const sint16 distance_to_border = 3 - (yoff+get_yoff()+r.y)/(rasterweite/4);
 		if(  pos.x <= distance_to_border  ||  pos.y <= distance_to_border  ) {
 			// but only if the image is actually visible ...
-			if(   scr_pos.x+xbild+wbild >= 0  &&  xpos <= display_get_width()  &&   scr_pos.y+ybild+hbild >= 0  &&  ypos+ybild < display_get_height()  ) {
+			if(   scr_pos.x+r.x+r.w >= 0  &&  xpos <= display_get_width()  &&   scr_pos.y+r.y+r.h >= 0  &&  ypos+r.y < display_get_height()  ) {
 				welt->set_background_dirty();
 			}
 		}

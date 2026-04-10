@@ -192,11 +192,10 @@ scr_size button_t::get_min_size() const
 		}
 
 		case imagebox: {
-			scr_coord_val x = 0, y = 0, w = 0, h = 0;
-			display_get_image_offset(img, &x, &y, &w, &h);
+			scr_rect r = display_get_image_offset(img);
 			scr_size size(gui_theme_t::gui_pos_button_size);
-			size.w = max(size.w, w+2);
-			size.h = max(size.h, h+2);
+			size.w = max(size.w, r.w+2);
+			size.h = max(size.h, r.h+2);
 			return size;
 		}
 

@@ -487,15 +487,14 @@ void planquadrat_t::display_obj(const sint16 xpos, const sint16 ypos, const sint
 			sint16 max_height = 0;
 			sint16 rw = get_base_tile_raster_width();
 			const sint16 clip_h = rw / 2 + (env_t::pak_height_conversion_factor * rw / 8);
-			scr_coord_val x, y, w, h;
+
 			for (uint8 i = 0; i < gr0->obj_count(); i++) {
-				sint16 max_h = 0;
 				obj_t* o = gr0->obj_bei(i);
 				if (o->get_typ() == obj_t::baum   ||  dynamic_cast<gebaeude_t *>(o)) {
 					image_id img = o->get_image();
 					if (img != IMG_EMPTY) {
-						display_get_image_offset(img, &x, &y, &w, &h);
-						max_height = max(max_height, (h - y) / clip_h);
+						const scr_rect area = display_get_image_offset(img);
+						max_height = max(max_height, (area.h - area.y) / clip_h);
 					}
 				}
 			}

@@ -92,14 +92,13 @@ void gui_image_list_t::draw(scr_coord parent_pos)
 			}
 
 			// Get image data
-			scr_coord_val x,y,w,h;
-			display_get_base_image_offset( idata.image, &x, &y, &w, &h );
+			scr_rect r = display_get_base_image_offset(idata.image);
 
 			// calculate image offsets
-			y = -y + (grid.y-h) - 6; // align to bottom mark
-			x = -x + 2;              // Add 2 pixel margin
+			r.y = -r.y + (grid.y-r.h) - 6; // align to bottom mark
+			r.x = -r.x + 2;                // Add 2 pixel margin
 			//display_base_img(idata.image, xpos + placement.x, ypos + placement.y, player_nr, false, true);
-			display_base_img(idata.image, xpos + x, ypos + y, player_nr, false, true);
+			display_base_img(idata.image, xpos + r.x, ypos + r.y, player_nr, false, true);
 
 			// If necessary, display a number:
 			if(idata.count > 0) {

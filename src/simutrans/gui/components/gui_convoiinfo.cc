@@ -44,14 +44,13 @@ public:
 		scr_size s(0,0);
 		unsigned count = cnv.is_bound() ? cnv->get_vehicle_count() : 0;
 		for(unsigned i=0; i<count; i++) {
-			scr_coord_val x, y, w, h;
 			const image_id image = cnv->get_vehicle(i)->get_loaded_image();
-			display_get_base_image_offset(image, &x, &y, &w, &h );
+			scr_rect r = display_get_base_image_offset(image);
 			if (display_images) {
-				display_base_img(image, p.x + s.w - x, p.y - y - h/2, cnv->get_owner()->get_player_nr(), false, true);
+				display_base_img(image, p.x + s.w - r.x, p.y - r.y - r.h/2, cnv->get_owner()->get_player_nr(), false, true);
 			}
-			s.w += (w*2)/3;
-			s.h = max(s.h, h);
+			s.w += (r.w*2)/3;
+			s.h = max(s.h, r.h);
 		}
 		return s;
 	}
