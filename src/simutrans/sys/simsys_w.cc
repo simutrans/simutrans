@@ -747,7 +747,7 @@ LRESULT WINAPI WindowProc(HWND this_hwnd, UINT msg, WPARAM wParam, LPARAM lParam
 							}
 							unsigned char pixel_width;
 							unsigned char unused;
-							get_next_char_with_metrics( composition, unused, pixel_width );
+							g_simgraph->get_next_char_with_metrics( composition, unused, pixel_width );
 							x += pixel_width;
 						}
 						icp->pt.x = x;
