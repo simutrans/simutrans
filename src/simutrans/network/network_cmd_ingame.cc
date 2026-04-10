@@ -336,7 +336,7 @@ void nwc_chat_t::add_message(karte_t* welt) const
 {
 	cbuffer_t buf;  // Output which will be printed to chat window
 
-	FLAGGED_PIXVAL color = player_nr < PLAYER_UNOWNED  ? PLAYER_FLAG | player_nr :  color_idx_to_rgb(COL_WHITE);
+	FLAGGED_PIXVAL color = player_nr < PLAYER_UNOWNED  ? PLAYER_FLAG | player_nr :  g_simgraph->palette_lookup(COL_WHITE);
 	uint16 flag = message_t::chat;
 
 	if (  destination == NULL  ) {

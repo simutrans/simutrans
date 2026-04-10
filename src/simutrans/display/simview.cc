@@ -71,8 +71,8 @@ void *display_region_thread( void *ptr )
 
 	while(true) {
 		simthread_barrier_wait( &display_barrier_start ); // wait for all to start
-		clear_all_poly_clip( view->thread_num );
-		display_set_clip_wh( view->lt_cl.x, view->lt_cl.y, view->wh_cl.x, view->wh_cl.y, view->thread_num );
+		g_simgraph->clear_all_poly_clip( view->thread_num );
+		g_simgraph->set_clip_rect( view->lt_cl.x, view->lt_cl.y, view->wh_cl.x, view->wh_cl.y, view->thread_num, false);
 		view->show_routine->display_region( view->lt, view->wh, view->y_min, view->y_max, false, true, view->thread_num );
 		simthread_barrier_wait( &display_barrier_end ); // wait for all to finish
 	}
@@ -98,15 +98,14 @@ void main_view_t::display(bool force_dirty)
 
 #if COLOUR_DEPTH != 0
 	DBG_DEBUG4("main_view_t::display", "starting ...");
-	display_set_image_proc(true);
+	g_simgraph->set_image_procs(true);
 
-	const sint16 disp_width = display_get_width();
-	const sint16 disp_real_height = display_get_height();
-	const sint16 IMG_SIZE = get_tile_raster_width();
+	const scr_size screen = g_simgraph->get_screen_size();
+	const sint16 IMG_SIZE = g_simgraph->get_tile_raster_width();
 
-	const sint16 disp_height = display_get_height() - win_get_statusbar_height() - (!ticker::empty() ? TICKER_HEIGHT : 0);
+	const sint16 disp_height = screen.h - win_get_statusbar_height() - (!ticker::empty() ? TICKER_HEIGHT : 0);
 
-	scr_rect clip_rr(0, env_t::iconsize.w, disp_width, disp_height - env_t::iconsize.h);
+	scr_rect clip_rr(0, env_t::iconsize.w, screen.w, disp_height - env_t::iconsize.h);
 	switch (env_t::menupos) {
 	case MENU_TOP:
 		// rect default
@@ -115,25 +114,26 @@ void main_view_t::display(bool force_dirty)
 		clip_rr.y = win_get_statusbar_height() + (!ticker::empty() ? TICKER_HEIGHT : 0);
 		break;
 	case MENU_LEFT:
-		clip_rr = scr_rect(env_t::iconsize.w, 0, disp_width - env_t::iconsize.w, disp_height);
+		clip_rr = scr_rect(env_t::iconsize.w, 0, screen.w - env_t::iconsize.w, disp_height);
 		break;
 	case MENU_RIGHT:
-		clip_rr = scr_rect(0, 0, disp_width - env_t::iconsize.w, disp_height);
+		clip_rr = scr_rect(0, 0, screen.w - env_t::iconsize.w, disp_height);
 		break;
 	}
-	display_set_clip_wh(clip_rr.x, clip_rr.y, clip_rr.w, clip_rr.h);
+
+	g_simgraph->set_clip_rect(clip_rr.x, clip_rr.y, clip_rr.w, clip_rr.h CLIP_NUM_DEFAULT, false);
 
 	// redraw everything?
 	force_dirty = force_dirty || welt->is_dirty();
 	welt->unset_dirty();
 	if(  force_dirty  ) {
-		mark_screen_dirty();
+		g_simgraph->mark_screen_dirty();
 		welt->set_background_dirty();
 		force_dirty = false;
 	}
 
-	const int dpy_width = display_get_width()/IMG_SIZE + 2;
-	const int dpy_height = (disp_real_height*4)/IMG_SIZE;
+	const int dpy_width  = screen.w / IMG_SIZE + 2;
+	const int dpy_height = (screen.h*4)/IMG_SIZE;
 
 	const int i_off = viewport->get_world_position().x + viewport->get_viewport_ij_offset().x;
 	const int j_off = viewport->get_world_position().y + viewport->get_viewport_ij_offset().y;
@@ -143,10 +143,10 @@ void main_view_t::display(bool force_dirty)
 	// change to night mode?
 	// images will be recalculated only, when there has been a change, so we set always
 	if(grund_t::underground_mode == grund_t::ugm_all) {
-		display_day_night_shift(0);
+		g_simgraph->set_daynight_level(0);
 	}
 	else if(!env_t::night_shift) {
-		display_day_night_shift(env_t::daynight_level);
+		g_simgraph->set_daynight_level(env_t::daynight_level);
 	}
 	else {
 		// calculate also days if desired
@@ -161,13 +161,13 @@ void main_view_t::display(bool force_dirty)
 		else {
 			hours2 = ( (ticks_this_month * 3) >> (welt->ticks_per_world_month_shift-4) )%48;
 		}
-		display_day_night_shift(hours2night[hours2]+env_t::daynight_level);
+		g_simgraph->set_daynight_level(hours2night[hours2]+env_t::daynight_level);
 	}
 
 	// not very elegant, but works:
 	// fill everything with black for Underground mode ...
 	if( grund_t::underground_mode ) {
-		display_fillbox_wh_rgb(clip_rr.x, clip_rr.y, clip_rr.w, clip_rr.h, color_idx_to_rgb(COL_BLACK), force_dirty);
+		g_simgraph->draw_rect(clip_rr.x, clip_rr.y, clip_rr.w, clip_rr.h, g_simgraph->palette_lookup(COL_BLACK), force_dirty);
 	}
 	else if( welt->is_background_dirty()  &&  outside_visible  ) {
 		// we check if background will be visible, no need to clear screen if it's not.
@@ -191,7 +191,7 @@ void main_view_t::display(bool force_dirty)
 		((y_min-(clip_rr.w - const_x_off) / (IMG_SIZE/2) - 1) >> 1) + j_off);
 
 	sint16 const worst_case_mountain_extra = (welt->max_height - welt->min_height) / 2;
-	koord const estimated_max((((dpy_height+4*4)+(disp_width - const_x_off) / (IMG_SIZE/2) - 1) >> 1) + i_off + worst_case_mountain_extra,
+	koord const estimated_max((((dpy_height+4*4)+(screen.w - const_x_off) / (IMG_SIZE/2) - 1) >> 1) + i_off + worst_case_mountain_extra,
 		(((dpy_height+4*4)-(-2-(((dpy_height+4*4)+dpy_width) & 1))) >> 1) + j_off + worst_case_mountain_extra);
 
 	rect_t view_rect(estimated_min, estimated_max - estimated_min + koord(1, 1));
@@ -249,22 +249,22 @@ void main_view_t::display(bool force_dirty)
 		simthread_barrier_wait( &display_barrier_start );
 
 		// the last we can run ourselves, setting clip_wh to the screen edge instead of wh_x (in case disp_width % num_threads != 0)
-		clear_all_poly_clip( env_t::num_threads - 1 );
-		display_set_clip_wh( lt_x, clip_rr.y, clip_rr.w, clip_rr.h, env_t::num_threads - 1 );
+		g_simgraph->clear_all_poly_clip( env_t::num_threads - 1 );
+		g_simgraph->set_clip_rect( lt_x, clip_rr.y, clip_rr.w, clip_rr.h, env_t::num_threads - 1, false);
 		display_region( koord( lt_x - IMG_SIZE / 2, clip_rr.y ), koord( clip_rr.x + clip_rr.w + IMG_SIZE, clip_rr.h ), y_min, dpy_height + 4 * 4, false, true, env_t::num_threads - 1 );
 
 		simthread_barrier_wait( &display_barrier_end );
 
-		clear_all_poly_clip( 0 );
-		display_set_clip_wh(clip_rr.x, clip_rr.y, clip_rr.w, clip_rr.h);
+		g_simgraph->clear_all_poly_clip( CLIP_NUM_DEFAULT_VALUE );
+		g_simgraph->set_clip_rect(clip_rr.x, clip_rr.y, clip_rr.w, clip_rr.h CLIP_NUM_DEFAULT, false);
 	}
 	else {
 		// slow serial way of display
-		clear_all_poly_clip( 0 );
+		g_simgraph->clear_all_poly_clip( CLIP_NUM_DEFAULT_VALUE );
 		display_region( koord(clip_rr.x, clip_rr.y), koord(clip_rr.w, clip_rr.h), y_min, dpy_height + 4 * 4, false, false, 0 );
 	}
 #else
-	clear_all_poly_clip();
+	g_simgraph->clear_all_poly_clip();
 	display_region(koord(clip_rr.x, clip_rr.y), koord(clip_rr.w, clip_rr.h), y_min, dpy_height + 4 * 4, false );
 #endif
 
@@ -309,17 +309,17 @@ void main_view_t::display(bool force_dirty)
 				const FLAGGED_PIXVAL transparent = TRANSPARENT25_FLAG|OUTLINE_FLAG| env_t::cursor_overlay_color;
 				if(  gr->get_image()==IMG_EMPTY  ) {
 					if(  gr->hat_wege()  ) {
-						display_img_blend( gr->obj_bei(0)->get_image(), background_pos.x, background_pos.y, transparent, 0, dirty );
+						g_simgraph->draw_img_blend( gr->obj_bei(0)->get_image(), background_pos.x, background_pos.y, transparent, 0, dirty );
 					}
 					else {
-						display_img_blend( ground_desc_t::get_ground_tile(gr), background_pos.x, background_pos.y, transparent, 0, dirty );
+						g_simgraph->draw_img_blend( ground_desc_t::get_ground_tile(gr), background_pos.x, background_pos.y, transparent, 0, dirty );
 					}
 				}
 				else if(  gr->get_typ()==grund_t::wasser  ) {
-					display_img_blend( ground_desc_t::sea->get_image(gr->get_image(),wasser_t::stage), background_pos.x, background_pos.y, transparent, 0, dirty );
+					g_simgraph->draw_img_blend( ground_desc_t::sea->get_image(gr->get_image(),wasser_t::stage), background_pos.x, background_pos.y, transparent, 0, dirty );
 				}
 				else {
-					display_img_blend( gr->get_image(), background_pos.x, background_pos.y, transparent, 0, dirty );
+					g_simgraph->draw_img_blend( gr->get_image(), background_pos.x, background_pos.y, transparent, 0, dirty );
 				}
 			}
 		}
@@ -373,14 +373,15 @@ void main_view_t::display_region( koord lt, koord wh, sint16 y_min, sint16 y_max
 void main_view_t::display_region( koord lt, koord wh, sint16 y_min, sint16 y_max, bool /*force_dirty*/ )
 #endif
 {
-	const sint16 IMG_SIZE = get_tile_raster_width();
+	const sint16 IMG_SIZE = g_simgraph->get_tile_raster_width();
 
 	const int i_off = viewport->get_world_position().x + viewport->get_viewport_ij_offset().x;
 	const int j_off = viewport->get_world_position().y + viewport->get_viewport_ij_offset().y;
 	const int const_x_off = viewport->get_x_off();
 	const int const_y_off = viewport->get_y_off();
 
-	const int dpy_width = display_get_width() / IMG_SIZE + 2;
+	const scr_size screen = g_simgraph->get_screen_size();
+	const int dpy_width = screen.w / IMG_SIZE + 2;
 
 	// to save calls to grund_t::get_disp_height
 	const sint8 hmax_ground = (grund_t::underground_mode == grund_t::ugm_level) ? grund_t::underground_level : 127;
@@ -446,7 +447,7 @@ void main_view_t::display_region( koord lt, koord wh, sint16 y_min, sint16 y_max
 					outside_visible = true;
 					if(  env_t::draw_outside_tile  ) {
 						const sint16 yypos = ypos - tile_raster_scale_y( welt->min_height * TILE_HEIGHT_STEP, IMG_SIZE );
-						display_normal( ground_desc_t::outside->get_image(0), xpos, yypos, 0, true, false  CLIP_NUM_PAR);
+						g_simgraph->draw_normal( ground_desc_t::outside->get_image(0), xpos, yypos, 0, true, false  CLIP_NUM_PAR);
 					}
 				}
 			}
@@ -596,6 +597,6 @@ void main_view_t::display_region( koord lt, koord wh, sint16 y_min, sint16 y_max
 void main_view_t::display_background( scr_coord_val xp, scr_coord_val yp, scr_coord_val w, scr_coord_val h, bool dirty )
 {
 	if(  !(env_t::draw_earth_border  &&  env_t::draw_outside_tile)  ) {
-		display_fillbox_wh_rgb(xp, yp, w, h, env_t::background_color, dirty );
+		g_simgraph->draw_rect(xp, yp, w, h, env_t::background_color, dirty );
 	}
 }

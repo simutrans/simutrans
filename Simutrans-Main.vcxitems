@@ -82,6 +82,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)src\simutrans\descriptor\vehicle_desc.cc" />
     <ClCompile Include="$(MSBuildThisFileDirectory)src\simutrans\descriptor\way_desc.cc" />
     <ClCompile Include="$(MSBuildThisFileDirectory)src\simutrans\display\font.cc" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\simutrans\display\simgraph.cc" />
     <ClCompile Include="$(MSBuildThisFileDirectory)src\simutrans\display\simview.cc" />
     <ClCompile Include="$(MSBuildThisFileDirectory)src\simutrans\display\viewport.cc" />
     <ClCompile Include="$(MSBuildThisFileDirectory)src\simutrans\freight_list_sorter.cc" />

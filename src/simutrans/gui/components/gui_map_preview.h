@@ -36,10 +36,10 @@ class gui_map_preview_t : public gui_component_t
 		 * Draws the component.
 		 */
 		void draw(scr_coord offset) OVERRIDE {
-			display_ddd_box_clip_rgb(pos.x + offset.x, pos.y + offset.y, size.w, size.h, color_idx_to_rgb(MN_GREY0), color_idx_to_rgb(MN_GREY4));
+			g_simgraph->draw_box3d_clipped(pos.x + offset.x, pos.y + offset.y, size.w, size.h, g_simgraph->palette_lookup(MN_GREY0), g_simgraph->palette_lookup(MN_GREY4));
 
 			if(map_data) {
-				display_array_wh(pos.x + offset.x + 1, pos.y + offset.y + 1, map_data->get_width(), map_data->get_height(), map_data->to_array());
+				g_simgraph->draw_array(pos.x + offset.x + 1, pos.y + offset.y + 1, map_data->get_width(), map_data->get_height(), map_data->to_array());
 			}
 		}
 

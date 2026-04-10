@@ -46,8 +46,8 @@ public:
 			scr_coord p = get_pos() + offset;
 			scr_size mapsize( gi->get_map()->get_width(), gi->get_map()->get_height() );
 			// 3D border around the map graphic
-			display_ddd_box_clip_rgb(p.x, p.y, mapsize.w + 2, mapsize.h + 2, color_idx_to_rgb(MN_GREY0), color_idx_to_rgb(MN_GREY4) );
-			display_array_wh( p.x + 1, p.y + 1, mapsize.w, mapsize.h, gi->get_map()->to_array() );
+			g_simgraph->draw_box3d_clipped(p.x, p.y, mapsize.w + 2, mapsize.h + 2, g_simgraph->palette_lookup(MN_GREY0), g_simgraph->palette_lookup(MN_GREY4) );
+			g_simgraph->draw_array( p.x + 1, p.y + 1, mapsize.w, mapsize.h, gi->get_map()->to_array() );
 		}
 	}
 
@@ -428,7 +428,8 @@ bool server_frame_t::action_triggered (gui_action_creator_t *comp, value_t p)
 			join.disable();
 			server_scrollitem_t *item = (server_scrollitem_t*)serverlist.get_element( p.i );
 			if(  item->online()  ) {
-				display_show_load_pointer(1);
+				g_simgraph->set_show_load_cursor(true);
+
 				const char *err = network_gameinfo( ((server_scrollitem_t*)serverlist.get_element( p.i ))->get_dns(), &gi );
 				if(  err  &&  *((server_scrollitem_t*)serverlist.get_element(p.i))->get_altdns()  ) {
 					item->set_color(MONEY_MINUS);
@@ -442,7 +443,7 @@ bool server_frame_t::action_triggered (gui_action_creator_t *comp, value_t p)
 					item->set_color( MONEY_MINUS );
 					update_error( err );
 				}
-				display_show_load_pointer(0);
+				g_simgraph->set_show_load_cursor(false);
 			}
 			else {
 				item->set_color( MONEY_MINUS );
@@ -456,7 +457,7 @@ bool server_frame_t::action_triggered (gui_action_creator_t *comp, value_t p)
 
 			dbg->warning("action_triggered()", "newserver_name: %s", newserver_name);
 
-			display_show_load_pointer(1);
+			g_simgraph->set_show_load_cursor(true);
 			const char *err = network_gameinfo( newserver_name, &gi );
 			if (  err == NULL  ) {
 				custom_valid = true;
@@ -467,7 +468,7 @@ bool server_frame_t::action_triggered (gui_action_creator_t *comp, value_t p)
 				join.disable();
 				update_error( "Server did not respond!" );
 			}
-			display_show_load_pointer(0);
+			g_simgraph->set_show_load_cursor(false);
 			serverlist.set_selection( -1 );
 		}
 	}
@@ -506,21 +507,21 @@ bool server_frame_t::action_triggered (gui_action_creator_t *comp, value_t p)
 
 		// Prefer serverlist entry if one is selected
 		if (  serverlist.get_selection() >= 0  ) {
-			display_show_load_pointer(1);
+			g_simgraph->set_show_load_cursor(true);
 			filename += ((server_scrollitem_t*)serverlist.get_selected_item())->get_dns();
 			destroy_win( this );
 			welt->load( filename.c_str() );
 			welt->type_of_generation = karte_t::CLIENT_WORLD;
-			display_show_load_pointer(0);
+			g_simgraph->set_show_load_cursor(false);
 		}
 		// If we have a valid custom server entry, connect to that
 		else if (  custom_valid  ) {
-			display_show_load_pointer(1);
+			g_simgraph->set_show_load_cursor(true);
 			filename += newserver_name;
 			destroy_win( this );
 			welt->load( filename.c_str() );
 			welt->type_of_generation = karte_t::CLIENT_WORLD;
-			display_show_load_pointer(0);
+			g_simgraph->set_show_load_cursor(false);
 		}
 		else {
 			dbg->error( "server_frame_t::action_triggered()", "join pressed without valid selection or custom server entry" );

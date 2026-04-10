@@ -56,7 +56,7 @@ public:
 			bt_whisper_to.add_listener(this);
 			add_component(&bt_whisper_to);
 			buf.printf("%s <%s>", sender.c_str(), p->get_name());
-			new_component<gui_label_t>(buf.get_str(), color_idx_to_rgb(p->get_player_color1() + env_t::gui_player_color_dark));
+			new_component<gui_label_t>(buf.get_str(), g_simgraph->palette_lookup(p->get_player_color1() + env_t::gui_player_color_dark));
 		}
 		else {
 			new_component_span<gui_label_t>(sender.c_str(), 2);
@@ -163,8 +163,10 @@ public:
 		const bool is_dark_theme = (env_t::gui_player_color_dark >= env_t::gui_player_color_bright);
 		const int base_blend_percent = tail_dir == tail_right ? 60 : 80;
 		player_t* player = world()->get_player(player_nr);
-		const PIXVAL base_color = color_idx_to_rgb(player ? player->get_player_color1() + env_t::gui_player_color_bright : COL_GREY4);
-		bgcolor = display_blend_colors(base_color, color_idx_to_rgb(COL_WHITE), is_dark_theme ? (95 - base_blend_percent) : base_blend_percent);
+		const PIXVAL base_color = g_simgraph->palette_lookup(player ? player->get_player_color1() + env_t::gui_player_color_bright : COL_GREY4);
+
+		bgcolor = g_simgraph->blend_colors(base_color, g_simgraph->palette_lookup(COL_WHITE), is_dark_theme ? (95 - base_blend_percent) : base_blend_percent);
+
 		if (msg_time) { // old save messages does not have date
 			update_time_diff(time(NULL));
 			char date[18];
@@ -247,20 +249,21 @@ public:
 		lb_time_diff.set_pos(message.get_pos()+scr_size(bsize.w-D_MARGIN_RIGHT-lb_time_diff.get_size().w-2, message.get_size().h));
 
 		// draw ballon
-		display_filled_roundbox_clip(offset.x + off_w + 1, offset.y + 1, bsize.w, bsize.h, display_blend_colors(bgcolor, SYSCOL_SHADOW, 75), false);
-		display_filled_roundbox_clip(offset.x + off_w, offset.y, bsize.w, bsize.h, bgcolor, false);
+		g_simgraph->draw_rounded_rect_clipped(offset.x + off_w + 1, offset.y + 1, bsize.w, bsize.h, g_simgraph->blend_colors(bgcolor, SYSCOL_SHADOW, 75), false);
+		g_simgraph->draw_rounded_rect_clipped(offset.x + off_w, offset.y, bsize.w, bsize.h, bgcolor, false);
 		if (tail_dir) {
 			scr_coord_val h = LINESPACE / 2;
 			for (scr_coord_val x = 0; x < h; x++) {
 				if (tail_dir == tail_right) {
-					display_vline_wh_clip_rgb(offset.x + off_w + bsize.w + x, offset.y + bsize.h - 10 - h + x, h - x, bgcolor, true);
+					g_simgraph->draw_vline_clipped(offset.x + off_w + bsize.w + x, offset.y + bsize.h - 10 - h + x, h - x, bgcolor, true CLIP_NUM_DEFAULT);
 				}
 				else {
-					display_vline_wh_clip_rgb(offset.x + off_w - x, offset.y + h, h - x, bgcolor, true);
+					g_simgraph->draw_vline_clipped(offset.x + off_w - x,           offset.y + h,                    h - x, bgcolor, true CLIP_NUM_DEFAULT);
 				}
 			}
+
 			if (tail_dir == tail_right) {
-				display_fillbox_wh_clip_rgb(offset.x + off_w + bsize.w, offset.y + bsize.h - 10, h, 1, display_blend_colors(bgcolor, SYSCOL_SHADOW, 75), true);
+				g_simgraph->draw_rect_clipped(offset.x + off_w + bsize.w, offset.y + bsize.h - 10, h, 1, g_simgraph->blend_colors(bgcolor, SYSCOL_SHADOW, 75), true CLIP_NUM_DEFAULT);
 			}
 		}
 		scr_coord_val old_h = message.get_size().h;
@@ -387,7 +390,7 @@ void chat_frame_t::fill_list()
 		break;
 	case CH_COMPANY:
 		lb_channel.set_text(current_player->get_name());
-		lb_channel.set_color(color_idx_to_rgb(current_player->get_player_color1() + env_t::gui_player_color_dark));
+		lb_channel.set_color(g_simgraph->palette_lookup(current_player->get_player_color1() + env_t::gui_player_color_dark));
 		env_t::chat_unread_company = 0;
 		break;
 	case CH_WHISPER:

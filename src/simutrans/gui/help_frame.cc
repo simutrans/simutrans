@@ -272,6 +272,8 @@ void help_frame_t::set_text(const char * buf, bool resize_frame )
 {
 	helptext.set_text(buf);
 
+	const scr_size screen = g_simgraph->get_screen_size();
+
 	if(  resize_frame  ) {
 
 		// try to get the following sizes
@@ -289,8 +291,8 @@ void help_frame_t::set_text(const char * buf, bool resize_frame )
 
 		if(  generaltext.is_visible()  ) {
 			generaltext.set_pos( scr_coord(D_MARGIN_LEFT, D_MARGIN_TOP) );
-			generaltext.set_size( scr_size( min(180,display_get_width()/3), 0 ) );
-			int generalwidth = min( display_get_width()/3, generaltext.get_preferred_size().w );
+			generaltext.set_size( scr_size( min(180, screen.w/3), 0 ) );
+			int generalwidth = min( screen.w/3, generaltext.get_preferred_size().w );
 			generaltext.set_size( scr_size( generalwidth, helptext.get_size().h ) );
 			generaltext.set_size( generaltext.get_preferred_size() );
 		}
@@ -305,11 +307,11 @@ void help_frame_t::set_text(const char * buf, bool resize_frame )
 			size_x += generaltext.get_size().w + D_SCROLLBAR_WIDTH + D_H_SPACE;
 		}
 		// set window size
-		if(  size_x > display_get_width()-32  ) {
-			size_x = display_get_width()-32;
+		if(  size_x > screen.w-32  ) {
+			size_x = screen.w-32;
 		}
 
-		const scr_coord_val h = display_get_height() - D_TITLEBAR_HEIGHT - win_get_statusbar_height() - TICKER_HEIGHT;
+		const scr_coord_val h = screen.h - D_TITLEBAR_HEIGHT - win_get_statusbar_height() - TICKER_HEIGHT;
 		if(  size_y>h) {
 			size_y = h;
 		}

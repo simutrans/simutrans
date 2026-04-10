@@ -1934,7 +1934,7 @@ void stadt_t::step_passagiere()
 				city_history_month[0][history_type + HIST_OFFSET_WALKED] += pax_left_to_do;
 
 				// probably not a good idea to mark them as player only cares about remote traffic
-				//merke_passagier_ziel(dest_pos, color_idx_to_rgb(COL_YELLOW));
+				//merke_passagier_ziel(dest_pos, g_simgraph->palette_lookup(COL_YELLOW));
 			}
 			else if(  route_result==haltestelle_t::ROUTE_OVERCROWDED  ) {
 				// overcrowded routes cause unhappiness to be logged

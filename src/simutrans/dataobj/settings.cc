@@ -774,7 +774,6 @@ void settings_t::parse_simuconf( tabfile_t& simuconf, sint16& disp_width, sint16
 
 	simuconf.read( contents );
 
-#if COLOUR_DEPTH != 0
 	// special day/night colors
 	for( int i = 0; i < LIGHT_COUNT; i++ ) {
 		char str[ 256 ];
@@ -783,16 +782,12 @@ void settings_t::parse_simuconf( tabfile_t& simuconf, sint16& disp_width, sint16
 
 		if( c.get_count() >= 6 ) {
 			// now update RGB values
-			display_day_lights[i].r = c[0];
-			display_day_lights[i].g = c[1];
-			display_day_lights[i].b = c[2];
+			const rgb888_t day_light   = { (uint8)c[0], (uint8)c[1], (uint8)c[2] };
+			const rgb888_t night_light = { (uint8)c[3], (uint8)c[4], (uint8)c[5] };
 
-			display_night_lights[i].r = c[3];
-			display_night_lights[i].g = c[4];
-			display_night_lights[i].b = c[5];
+			g_simgraph->set_light_color(i, day_light, night_light);
 		}
 	}
-#endif
 
 	// check for fontname, must be a valid name!
 	// will be only changed if default!

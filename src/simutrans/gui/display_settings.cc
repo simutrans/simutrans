@@ -117,12 +117,12 @@ gui_settings_t::gui_settings_t()
 	base_icon_height = 32;
 	if (tool_t::general_tool[TOOL_QUERY]->get_icon(NULL) != IMG_EMPTY)
 	{
-		scr_rect r = display_get_base_image_offset(tool_t::general_tool[TOOL_QUERY]->get_icon(NULL));
+		scr_rect r = g_simgraph->get_base_image_offset(tool_t::general_tool[TOOL_QUERY]->get_icon(NULL));
 		base_icon_height = r.h;
 	}
 	// find current zoom factor
 	for (icon_zoom = 0; icon_zoom <= MAX_ZOOM_FACTOR; icon_zoom++) {
-		if (env_t::iconsize.h >= (base_icon_height * zoom_num[icon_zoom]) / zoom_den[icon_zoom]) {
+		if (env_t::iconsize.h >= (base_icon_height * g_simgraph->zoom_num[icon_zoom]) / g_simgraph->zoom_den[icon_zoom]) {
 			// since we go from large size
 			break;
 		}
@@ -206,7 +206,7 @@ void gui_settings_t::draw(scr_coord offset)
 	uint32 loops = world()->get_realFPS();
 	PIXVAL color = SYSCOL_TEXT_HIGHLIGHT;
 	if(  loops < (target_fps*16*3)/4  ) {
-		color = color_idx_to_rgb(( loops <= target_fps*16/2 ) ? COL_RED : COL_YELLOW);
+		color = g_simgraph->palette_lookup(( loops <= target_fps*16/2 ) ? COL_RED : COL_YELLOW);
 	}
 	fps_value_label.set_color(color);
 	fps_value_label.buf().printf(" %d fps", loops/16 );
@@ -221,7 +221,7 @@ void gui_settings_t::draw(scr_coord offset)
 	loops = world()->get_simloops();
 	color = SYSCOL_TEXT_HIGHLIGHT;
 	if(  loops <= 30  ) {
-		color = color_idx_to_rgb((loops<=20) ? COL_RED : COL_YELLOW);
+		color = g_simgraph->palette_lookup((loops<=20) ? COL_RED : COL_YELLOW);
 	}
 	simloops_value_label.set_color(color);
 	simloops_value_label.buf().printf(" %d%c%d", loops/10, get_fraction_sep(), loops%10 );
@@ -263,7 +263,7 @@ bool gui_settings_t::action_triggered(gui_action_creator_t *comp, value_t v)
 	return true;
 
 icon_resize:
-	scr_coord_val new_size = (zoom_num[icon_zoom] * base_icon_height) / zoom_den[icon_zoom];
+	scr_coord_val new_size = (g_simgraph->zoom_num[icon_zoom] * base_icon_height) / g_simgraph->zoom_den[icon_zoom];
 	env_t::iconsize.h = env_t::iconsize.w = new_size;
 
 	// reload windows to update

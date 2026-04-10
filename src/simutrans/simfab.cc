@@ -3383,13 +3383,13 @@ void fabrik_t::display_status(sint16 xpos, sint16 ypos)
 	const sint16 count = input.get_count()+output.get_count();
 
 	ypos += -D_WAITINGBAR_WIDTH - LINESPACE/6;
-	xpos -= (count * D_WAITINGBAR_WIDTH - get_tile_raster_width()) / 2;
+	xpos -= (count * D_WAITINGBAR_WIDTH - g_simgraph->get_tile_raster_width()) / 2;
 
 	if( input.get_count() ) {
 		if(  currently_producing  ) {
-			display_ddd_box_clip_rgb(xpos-2,  ypos-1, D_WAITINGBAR_WIDTH*input.get_count()+4, 6, color_idx_to_rgb(10), color_idx_to_rgb(12));
+			g_simgraph->draw_box3d_clipped(xpos-2,  ypos-1, D_WAITINGBAR_WIDTH*input.get_count()+4, 6, g_simgraph->palette_lookup(10), g_simgraph->palette_lookup(12));
 		}
-		display_fillbox_wh_clip_rgb(xpos-1, ypos, D_WAITINGBAR_WIDTH*input.get_count()+2, 4, color_idx_to_rgb(150), true);
+		g_simgraph->draw_rect_clipped(xpos-1, ypos, D_WAITINGBAR_WIDTH*input.get_count()+2, 4, g_simgraph->palette_lookup(150), true CLIP_NUM_DEFAULT);
 
 		for(uint32 i=0; i < input.get_count(); i++) {
 			ware_production_t const& goods = input[i];
@@ -3406,13 +3406,13 @@ void fabrik_t::display_status(sint16 xpos, sint16 ypos)
 				const uint16 v = min(25, (uint16)(25 * stock_quantity / storage_capacity)) + 2;
 
 				if (currently_producing) {
-					display_fillbox_wh_clip_rgb(xpos, ypos - v - 1, 1, v, color_idx_to_rgb(COL_GREY4), true);
-					display_fillbox_wh_clip_rgb(xpos + 1, ypos - v - 1, D_WAITINGBAR_WIDTH - 2, v, goods_color, true);
-					display_fillbox_wh_clip_rgb(xpos + D_WAITINGBAR_WIDTH - 1, ypos - v - 1, 1, v, color_idx_to_rgb(COL_GREY1), true);
+					g_simgraph->draw_rect_clipped(xpos, ypos - v - 1, 1, v, g_simgraph->palette_lookup(COL_GREY4), true CLIP_NUM_DEFAULT);
+					g_simgraph->draw_rect_clipped(xpos + 1, ypos - v - 1, D_WAITINGBAR_WIDTH - 2, v, goods_color, true CLIP_NUM_DEFAULT);
+					g_simgraph->draw_rect_clipped(xpos + D_WAITINGBAR_WIDTH - 1, ypos - v - 1, 1, v, g_simgraph->palette_lookup(COL_GREY1), true CLIP_NUM_DEFAULT);
 				}
 				else {
-					display_blend_wh_rgb(xpos + 1, ypos - v - 1, D_WAITINGBAR_WIDTH - 2, v, goods_color, 60);
-					mark_rect_dirty_wc(xpos + 1, ypos - v - 1, xpos + D_WAITINGBAR_WIDTH - 1, ypos - 1);
+					g_simgraph->tint_rect(xpos + 1, ypos - v - 1, D_WAITINGBAR_WIDTH - 2, v, goods_color, 60);
+					g_simgraph->mark_rect_dirty_wc(xpos + 1, ypos - v - 1, xpos + D_WAITINGBAR_WIDTH - 1, ypos - 1);
 				}
 			}
 
@@ -3423,9 +3423,9 @@ void fabrik_t::display_status(sint16 xpos, sint16 ypos)
 
 	if( output.get_count() ) {
 		if(  currently_producing  ) {
-			display_ddd_box_clip_rgb(xpos-2,  ypos-1, D_WAITINGBAR_WIDTH*output.get_count()+4, 6, color_idx_to_rgb(10), color_idx_to_rgb(12));
+			g_simgraph->draw_box3d_clipped(xpos-2,  ypos-1, D_WAITINGBAR_WIDTH*output.get_count()+4, 6, g_simgraph->palette_lookup(10), g_simgraph->palette_lookup(12));
 		}
-		display_fillbox_wh_clip_rgb(xpos-1, ypos, D_WAITINGBAR_WIDTH*output.get_count()+2, 4, color_idx_to_rgb(COL_ORANGE), true);
+		g_simgraph->draw_rect_clipped(xpos-1, ypos, D_WAITINGBAR_WIDTH*output.get_count()+2, 4, g_simgraph->palette_lookup(COL_ORANGE), true CLIP_NUM_DEFAULT);
 
 		for(uint32 i=0; i < output.get_count(); i++) {
 			ware_production_t const& goods = output[i];
@@ -3441,13 +3441,13 @@ void fabrik_t::display_status(sint16 xpos, sint16 ypos)
 
 				// the blended bars are too faint for me
 				if (currently_producing) {
-					display_fillbox_wh_clip_rgb(xpos, ypos - v - 1, 1, v, color_idx_to_rgb(COL_GREY4), true);
-					display_fillbox_wh_clip_rgb(xpos + 1, ypos - v - 1, D_WAITINGBAR_WIDTH - 2, v, goods_color, true);
-					display_fillbox_wh_clip_rgb(xpos + D_WAITINGBAR_WIDTH - 1, ypos - v - 1, 1, v, color_idx_to_rgb(COL_GREY1), true);
+					g_simgraph->draw_rect_clipped(xpos, ypos - v - 1, 1, v, g_simgraph->palette_lookup(COL_GREY4), true CLIP_NUM_DEFAULT);
+					g_simgraph->draw_rect_clipped(xpos + 1, ypos - v - 1, D_WAITINGBAR_WIDTH - 2, v, goods_color, true CLIP_NUM_DEFAULT);
+					g_simgraph->draw_rect_clipped(xpos + D_WAITINGBAR_WIDTH - 1, ypos - v - 1, 1, v, g_simgraph->palette_lookup(COL_GREY1), true CLIP_NUM_DEFAULT);
 				}
 				else {
-					display_blend_wh_rgb(xpos + 1, ypos - v - 1, D_WAITINGBAR_WIDTH - 2, v, goods_color, 60);
-					mark_rect_dirty_wc(xpos + 1, ypos - v - 1, xpos + D_WAITINGBAR_WIDTH - 1, ypos - 1);
+					g_simgraph->tint_rect(xpos + 1, ypos - v - 1, D_WAITINGBAR_WIDTH - 2, v, goods_color, 60);
+					g_simgraph->mark_rect_dirty_wc(xpos + 1, ypos - v - 1, xpos + D_WAITINGBAR_WIDTH - 1, ypos - 1);
 				}
 			}
 

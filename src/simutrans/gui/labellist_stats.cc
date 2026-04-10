@@ -78,7 +78,7 @@ labellist_stats_t::labellist_stats_t(koord label_pos)
 
 	if (const label_t *lb = get_label()) {
 		if (lb->get_owner()) {
-			label.set_color(PLAYER_FLAG | color_idx_to_rgb(lb->get_owner()->get_player_color1() + env_t::gui_player_color_dark));
+			label.set_color(PLAYER_FLAG | g_simgraph->palette_lookup(lb->get_owner()->get_player_color1() + env_t::gui_player_color_dark));
 		}
 		else {
 			label.set_color(env_t::default_window_title_color);

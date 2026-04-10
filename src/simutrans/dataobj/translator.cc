@@ -595,7 +595,7 @@ void translator::set_language(int lang)
 		single_instance.current_lang = lang;
 		current_langinfo = langs+lang;
 		env_t::language_iso = langs[lang].iso;
-		current_langinfo->ellipsis_width = proportional_string_width( translate("...") );
+		current_langinfo->ellipsis_width = g_simgraph->calc_text_width( translate("...") );
 		DBG_MESSAGE("translator::set_language()", "%s, unicode %d", langs[lang].name, true);
 	}
 	else {

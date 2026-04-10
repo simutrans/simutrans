@@ -57,7 +57,7 @@ size_t gui_textinput_t::calc_cursor_pos(const int x)
 		uint8 pixel_width = 0;
 		scr_coord_val current_offset = 0;
 		const scr_coord_val adjusted_offset = x - 1 + scroll_offset;
-		while(  get_next_char_with_metrics(tmp_text, byte_length, pixel_width)  &&  adjusted_offset>(current_offset+(pixel_width>>1))  ) {
+		while(  g_simgraph->get_next_char_with_metrics(tmp_text, byte_length, pixel_width)  &&  adjusted_offset>(current_offset+(pixel_width>>1))  ) {
 			current_offset += pixel_width;
 			new_cursor_pos += byte_length;
 		}
@@ -101,7 +101,7 @@ void gui_textinput_t::set_composition_status( char *c, int start, int length )
 			composition_target_length = length;
 
 			const scr_coord gui_xy = win_get_pos( win_get_top() );
-			const int offset_to_target = proportional_string_len_width( composition.get_str(), composition_target_start );
+			const int offset_to_target = g_simgraph->calc_text_width_n( composition.get_str(), composition_target_start );
 			const scr_coord_val x = pos.x + gui_xy.x + get_current_cursor_x() + offset_to_target;
 			const scr_coord_val y = pos.x + gui_xy.y + D_TITLEBAR_HEIGHT;
 			dr_notify_input_pos({ x, y });
@@ -192,7 +192,7 @@ bool gui_textinput_t::infowin_event(const event_t *ev)
 							uint8 byte_length = 0;
 							uint8 pixel_width = 0;
 							// first skip over all contiguous space characters to the left
-							while(  head_cursor_pos>0  &&  get_prev_char_with_metrics(tmp_text, text, byte_length, pixel_width)==SIM_KEYCODE_SPACE  ) {
+							while(  head_cursor_pos>0  &&  g_simgraph->get_prev_char_with_metrics(tmp_text, text, byte_length, pixel_width)==SIM_KEYCODE_SPACE  ) {
 								head_cursor_pos -= byte_length;
 							}
 							// revert text pointer for further processing
@@ -200,7 +200,7 @@ bool gui_textinput_t::infowin_event(const event_t *ev)
 								tmp_text += byte_length;
 							}
 							// then skip over all contiguous non-space characters further to the left
-							while(  head_cursor_pos>0  &&  get_prev_char_with_metrics(tmp_text, text, byte_length, pixel_width)!=SIM_KEYCODE_SPACE  ) {
+							while(  head_cursor_pos>0  &&  g_simgraph->get_prev_char_with_metrics(tmp_text, text, byte_length, pixel_width)!=SIM_KEYCODE_SPACE  ) {
 								head_cursor_pos -= byte_length;
 							}
 						}
@@ -221,7 +221,7 @@ bool gui_textinput_t::infowin_event(const event_t *ev)
 							uint8 byte_length = 0;
 							uint8 pixel_width = 0;
 							// first skip over all contiguous non-space characters to the right
-							while(  head_cursor_pos<len  &&  get_next_char_with_metrics(tmp_text, byte_length, pixel_width)!=SIM_KEYCODE_SPACE  ) {
+							while(  head_cursor_pos<len  &&  g_simgraph->get_next_char_with_metrics(tmp_text, byte_length, pixel_width)!=SIM_KEYCODE_SPACE  ) {
 								head_cursor_pos += byte_length;
 							}
 							// revert text pointer for further processing
@@ -229,7 +229,7 @@ bool gui_textinput_t::infowin_event(const event_t *ev)
 								tmp_text -= byte_length;
 							}
 							// then skip over all contiguous space characters further to the right
-							while(  head_cursor_pos<len  &&  get_next_char_with_metrics(tmp_text, byte_length, pixel_width)==SIM_KEYCODE_SPACE  ) {
+							while(  head_cursor_pos<len  &&  g_simgraph->get_next_char_with_metrics(tmp_text, byte_length, pixel_width)==SIM_KEYCODE_SPACE  ) {
 								head_cursor_pos += byte_length;
 							}
 						}
@@ -455,7 +455,7 @@ bool gui_textinput_t::infowin_event(const event_t *ev)
 		// use mouse *click* position; update both head and tail cursors
 		tail_cursor_pos = 0;
 		if(  text  ) {
-			tail_cursor_pos = head_cursor_pos = display_fit_proportional( text, ev->click_pos.x - 2 + scroll_offset );
+			tail_cursor_pos = head_cursor_pos = g_simgraph->calc_text_index_for_width( text, ev->click_pos.x - 2 + scroll_offset );
 		}
 		cursor_reference_time = dr_time(); // update reference time for cursor blinking
 		return true;
@@ -470,7 +470,7 @@ bool gui_textinput_t::infowin_event(const event_t *ev)
 		// use mouse *move* position; update head cursor only in order to enable text selection
 		head_cursor_pos = 0;
 		if(  text  ) {
-			head_cursor_pos = display_fit_proportional( text, ev->mouse_pos.x - 1 + scroll_offset );
+			head_cursor_pos = g_simgraph->calc_text_index_for_width( text, ev->mouse_pos.x - 1 + scroll_offset );
 		}
 		cursor_reference_time = dr_time(); // update reference time for cursor blinking
 		return true;
@@ -487,13 +487,13 @@ bool gui_textinput_t::infowin_event(const event_t *ev)
 		const char* tmp_text = text + tail_cursor_pos;
 		uint8 byte_length;
 		uint8 pixel_width;
-		while(  tail_cursor_pos>0  &&  get_prev_char_with_metrics(tmp_text, text, byte_length, pixel_width)!=SIM_KEYCODE_SPACE  ) {
+		while(  tail_cursor_pos>0  &&  g_simgraph->get_prev_char_with_metrics(tmp_text, text, byte_length, pixel_width)!=SIM_KEYCODE_SPACE  ) {
 			tail_cursor_pos -= byte_length;
 		}
 		// for head cursor pos -> skip over all contiguous non-space characters to the right
 		const size_t len = strlen(text);
 		tmp_text = text + head_cursor_pos;
-		while(  head_cursor_pos<len  &&  get_next_char_with_metrics(tmp_text, byte_length, pixel_width)!=SIM_KEYCODE_SPACE  ) {
+		while(  head_cursor_pos<len  &&  g_simgraph->get_next_char_with_metrics(tmp_text, byte_length, pixel_width)!=SIM_KEYCODE_SPACE  ) {
 			head_cursor_pos += byte_length;
 		}
 	}
@@ -583,10 +583,10 @@ void gui_textinput_t::display_with_focus(scr_coord offset, bool has_focus)
 void gui_textinput_t::display_with_cursor(scr_coord offset, bool cursor_active, bool cursor_visible)
 {
 	if (!enabled) {
-		display_img_stretch_blend(gui_theme_t::editfield, scr_rect(pos + offset, size), TRANSPARENT50_FLAG|SYSCOL_EDIT_TEXT_DISABLED);
+		g_simgraph->draw_stretch_map_blend(gui_theme_t::editfield, scr_rect(pos + offset, size), TRANSPARENT50_FLAG|SYSCOL_EDIT_TEXT_DISABLED);
 	}
 	else {
-		display_img_stretch(gui_theme_t::editfield, scr_rect(pos + offset, size));
+		g_simgraph->draw_stretch_map(gui_theme_t::editfield, scr_rect(pos + offset, size));
 	}
 
 	if(  text  ) {
@@ -597,9 +597,9 @@ void gui_textinput_t::display_with_cursor(scr_coord offset, bool cursor_active, 
 		}
 
 		// recalculate scroll offset
-		const int text_width = proportional_string_width(text);
+		const int text_width = g_simgraph->calc_text_width(text);
 		const scr_coord_val view_width = size.w - 3;
-		const int cursor_offset = cursor_active ? proportional_string_len_width(text, head_cursor_pos) : 0;
+		const int cursor_offset = cursor_active ? g_simgraph->calc_text_width_n(text, head_cursor_pos) : 0;
 		if(  text_width<=view_width  ) {
 			// case : text is shorter than displayable width of the text input
 			//        -> the only case where left and right alignments differ
@@ -641,45 +641,45 @@ void gui_textinput_t::display_with_cursor(scr_coord offset, bool cursor_active, 
 		const int y_offset = pos.y+offset.y+D_GET_CENTER_ALIGN_OFFSET(LINESPACE,size.h);
 
 		// display text (before composition)
-		display_text_proportional_len_clip_rgb(x_base_offset, y_offset, text, ALIGN_LEFT | DT_CLIP, enabled ? textcol : SYSCOL_EDIT_TEXT_DISABLED, true, head_cursor_pos);
-		int x_offset = proportional_string_len_width(text, head_cursor_pos);
+		g_simgraph->draw_text_clipped_n(x_base_offset, y_offset, text, ALIGN_LEFT | DT_CLIP, enabled ? textcol : SYSCOL_EDIT_TEXT_DISABLED, true, head_cursor_pos CLIP_NUM_DEFAULT);
+		int x_offset = g_simgraph->calc_text_width_n(text, head_cursor_pos);
 
 		// IME text to display?
 		if(  composition.len()  ) {
 //			assert(head_cursor_pos==tail_cursor_pos);
 
-			display_proportional_clip_rgb(x_base_offset+x_offset, y_offset, composition.get_str(), ALIGN_LEFT | DT_CLIP, enabled ? textcol : SYSCOL_EDIT_TEXT_DISABLED, true);
+			g_simgraph->draw_text_clipped(x_base_offset+x_offset, y_offset, composition.get_str(), ALIGN_LEFT | DT_CLIP, enabled ? textcol : SYSCOL_EDIT_TEXT_DISABLED, true);
 
 			// draw underline
-			int composition_width = proportional_string_width(composition.get_str());
-			display_direct_line_rgb(x_base_offset+x_offset, y_offset+LINESPACE, x_base_offset+x_offset+composition_width, y_offset+LINESPACE-1, textcol);
+			int composition_width = g_simgraph->calc_text_width(composition.get_str());
+			g_simgraph->draw_line(x_base_offset+x_offset, y_offset+LINESPACE, x_base_offset+x_offset+composition_width, y_offset+LINESPACE-1, textcol);
 
 			// mark targeted part in a similar manner to selected text
-			int start_offset = proportional_string_len_width(composition.get_str(), composition_target_start);
-			int highlight_width = proportional_string_len_width(composition.get_str()+composition_target_start, composition_target_length);
-			display_fillbox_wh_clip_rgb(x_base_offset+x_offset+start_offset, y_offset, highlight_width, LINESPACE, SYSCOL_EDIT_BACKGROUND_SELECTED, true);
-			display_text_proportional_len_clip_rgb(x_base_offset+x_offset+start_offset, y_offset, composition.get_str()+composition_target_start, ALIGN_LEFT|DT_CLIP, SYSCOL_EDIT_TEXT_SELECTED, false, composition_target_length);
+			int start_offset = g_simgraph->calc_text_width_n(composition.get_str(), composition_target_start);
+			int highlight_width = g_simgraph->calc_text_width_n(composition.get_str()+composition_target_start, composition_target_length);
+			g_simgraph->draw_rect_clipped(x_base_offset+x_offset+start_offset, y_offset, highlight_width, LINESPACE, SYSCOL_EDIT_BACKGROUND_SELECTED, true CLIP_NUM_DEFAULT);
+			g_simgraph->draw_text_clipped_n(x_base_offset+x_offset+start_offset, y_offset, composition.get_str()+composition_target_start, ALIGN_LEFT|DT_CLIP, SYSCOL_EDIT_TEXT_SELECTED, false, composition_target_length CLIP_NUM_DEFAULT);
 
 			x_offset += composition_width;
 		}
 
 		// display text (after composition)
-		display_proportional_clip_rgb(x_base_offset+x_offset, y_offset, text+head_cursor_pos, ALIGN_LEFT | DT_CLIP, enabled ? textcol : SYSCOL_EDIT_TEXT_DISABLED, true);
+		g_simgraph->draw_text_clipped(x_base_offset+x_offset, y_offset, text+head_cursor_pos, ALIGN_LEFT | DT_CLIP, enabled ? textcol : SYSCOL_EDIT_TEXT_DISABLED, true);
 
 		if(  cursor_active  &&  enabled  ) {
 			// display selected text block with light grey text on charcoal bounding box
 			if(  head_cursor_pos!= tail_cursor_pos  ) {
 				const size_t start_pos = min(head_cursor_pos, tail_cursor_pos);
 				size_t end_pos = ::max(head_cursor_pos, tail_cursor_pos);
-				const scr_coord_val start_offset = proportional_string_len_width(text, start_pos);
-				const scr_coord_val highlight_width = proportional_string_len_width(text+start_pos, end_pos-start_pos);
-				display_fillbox_wh_clip_rgb(x_base_offset+start_offset, y_offset, highlight_width, LINESPACE, SYSCOL_EDIT_BACKGROUND_SELECTED, true);
-				display_text_proportional_len_clip_rgb(x_base_offset+start_offset, y_offset, text+start_pos, ALIGN_LEFT|DT_CLIP, SYSCOL_EDIT_TEXT_SELECTED, false, end_pos-start_pos);
+				const scr_coord_val start_offset = g_simgraph->calc_text_width_n(text, start_pos);
+				const scr_coord_val highlight_width = g_simgraph->calc_text_width_n(text+start_pos, end_pos-start_pos);
+				g_simgraph->draw_rect_clipped(x_base_offset+start_offset, y_offset, highlight_width, LINESPACE, SYSCOL_EDIT_BACKGROUND_SELECTED, true CLIP_NUM_DEFAULT);
+				g_simgraph->draw_text_clipped_n(x_base_offset+start_offset, y_offset, text+start_pos, ALIGN_LEFT|DT_CLIP, SYSCOL_EDIT_TEXT_SELECTED, false, end_pos-start_pos CLIP_NUM_DEFAULT);
 			}
 
 			// display blinking cursor
 			if(  cursor_visible  ) {
-				display_fillbox_wh_clip_rgb(x_base_offset+cursor_offset-1, y_offset, 1, LINESPACE, SYSCOL_CURSOR_BEAM, true);
+				g_simgraph->draw_rect_clipped(x_base_offset+cursor_offset-1, y_offset, 1, LINESPACE, SYSCOL_CURSOR_BEAM, true CLIP_NUM_DEFAULT);
 			}
 		}
 
@@ -721,7 +721,7 @@ bool gui_hidden_textinput_t::infowin_event(const event_t *ev)
 		}
 		// acting on release causes unwanted recalculations of cursor position for long strings and (cursor_offset>0)
 		// moreover, only (click) or (release) event happened inside textinput, the other one could lie outside
-		sint16 asterix_width = display_calc_proportional_string_len_width("*",1);
+		sint16 asterix_width = g_simgraph->calc_text_width_n("*", 1);
 		head_cursor_pos = 0;
 		if (  text  ) {
 			head_cursor_pos = min( strlen(text), ev->click_pos.x/asterix_width );
@@ -738,13 +738,13 @@ bool gui_hidden_textinput_t::infowin_event(const event_t *ev)
 
 void gui_hidden_textinput_t::display_with_cursor(scr_coord const offset, bool, bool const cursor_visible)
 {
-	display_img_stretch( gui_theme_t::editfield, scr_rect( pos+offset, size ) );
+	g_simgraph->draw_stretch_map( gui_theme_t::editfield, scr_rect( pos+offset, size ) );
 
 	if(  text  ) {
 		// the text will be all asterisk, thus we draw them letter by letter
 
 		// set clipping to be within textinput button
-		const clip_dimension old_clip = display_get_clip_wh();
+		const clip_dimension old_clip = g_simgraph->get_clip_rect(CLIP_NUM_DEFAULT_VALUE);
 
 		int text_clip_x = pos.x+offset.x + 1, text_clip_w = size.w - 2;
 		// something to draw?
@@ -752,7 +752,7 @@ void gui_hidden_textinput_t::display_with_cursor(scr_coord const offset, bool, b
 				return;
 		}
 		const int clip_x =  old_clip.x > text_clip_x ? old_clip.x : text_clip_x;
-		display_set_clip_wh( clip_x, old_clip.y, min(old_clip.xx, text_clip_x+text_clip_w)-clip_x, old_clip.h);
+		g_simgraph->set_clip_rect( clip_x, old_clip.y, min(old_clip.xx, text_clip_x+text_clip_w)-clip_x, old_clip.h CLIP_NUM_DEFAULT, false);
 
 		utf8 const *text_pos = (utf8 const*)text;
 		utf8 const *end = (utf8 const*)text + max;
@@ -761,16 +761,16 @@ void gui_hidden_textinput_t::display_with_cursor(scr_coord const offset, bool, b
 		do {
 			// cursor?
 			if(  cursor_visible  &&  text_pos == (utf8 const*)text + head_cursor_pos  ) {
-				display_fillbox_wh_clip_rgb( xpos, pos.y+offset.y+1+(size.h-LINESPACE)/2, 1, LINESPACE, SYSCOL_CURSOR_BEAM, true);
+				g_simgraph->draw_rect_clipped( xpos, pos.y+offset.y+1+(size.h-LINESPACE)/2, 1, LINESPACE, SYSCOL_CURSOR_BEAM, true CLIP_NUM_DEFAULT);
 			}
 			c = utf8_decoder_t::decode((utf8 const *&)text_pos);
 			if(c) {
-				xpos += display_proportional_clip_rgb( xpos, pos.y+offset.y+1+(size.h-LINESPACE)/2, "*", ALIGN_LEFT | DT_CLIP, textcol, true);
+				xpos += g_simgraph->draw_text_clipped( xpos, pos.y+offset.y+1+(size.h-LINESPACE)/2, "*", ALIGN_LEFT | DT_CLIP, textcol, true);
 			}
 		}
 		while(  text_pos < end  &&  c != UNICODE_NUL  );
 
 		// reset clipping
-		display_set_clip_wh(old_clip.x, old_clip.y, old_clip.w, old_clip.h);
+		g_simgraph->set_clip_rect(old_clip.x, old_clip.y, old_clip.w, old_clip.h CLIP_NUM_DEFAULT, false);
 	}
 }

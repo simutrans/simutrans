@@ -5295,10 +5295,10 @@ void tool_build_roadsign_t::get_values(player_t *player, uint8 &spacing, bool &r
 void tool_build_roadsign_t::draw_after(scr_coord k, bool dirty) const
 {
 	if(  icon!=IMG_EMPTY  &&  is_selected()  ) {
-		display_img_blend( icon, k.x, k.y, TRANSPARENT50_FLAG|OUTLINE_FLAG|color_idx_to_rgb(COL_BLACK), false, dirty );
+		g_simgraph->draw_img_blend(icon, k.x, k.y, TRANSPARENT50_FLAG|OUTLINE_FLAG|g_simgraph->palette_lookup(COL_BLACK), false, dirty );
 		char level_str[16];
 		sprintf(level_str, "%i", signal[welt->get_active_player_nr()].spacing);
-		display_proportional_rgb( k.x+4, k.y+4, level_str, ALIGN_LEFT, color_idx_to_rgb(COL_YELLOW), true );
+		g_simgraph->draw_text( k.x+4, k.y+4, level_str, ALIGN_LEFT, g_simgraph->palette_lookup(COL_YELLOW), true );
 	}
 }
 
@@ -7606,12 +7606,12 @@ bool tool_show_underground_t::is_selected() const
 void tool_show_underground_t::draw_after(scr_coord k, bool dirty) const
 {
 	if(  icon!=IMG_EMPTY  &&  is_selected()  ) {
-		display_img_blend( icon, k.x, k.y, TRANSPARENT50_FLAG|OUTLINE_FLAG|color_idx_to_rgb(COL_BLACK), false, dirty );
+		g_simgraph->draw_img_blend( icon, k.x, k.y, TRANSPARENT50_FLAG|OUTLINE_FLAG|g_simgraph->palette_lookup(COL_BLACK), false, dirty );
 		// additionally show level in sliced mode
 		if(  default_param!=NULL  &&  grund_t::underground_mode==grund_t::ugm_level  ) {
 			char level_str[16];
 			sprintf( level_str, "%i", grund_t::underground_level );
-			display_proportional_rgb( k.x+4, k.y+4, level_str, ALIGN_LEFT, color_idx_to_rgb(COL_YELLOW), true );
+			g_simgraph->draw_text( k.x+4, k.y+4, level_str, ALIGN_LEFT, g_simgraph->palette_lookup(COL_YELLOW), true );
 		}
 	}
 }
@@ -7621,7 +7621,7 @@ void tool_rotate90_t::draw_after(scr_coord pos, bool dirty) const
 {
 	if(  !env_t::networkmode  ) {
 		if(  skinverwaltung_t::compass_map  ) {
-			display_img_aligned( skinverwaltung_t::compass_map->get_image_id( welt->get_settings().get_rotation()+4 ), scr_rect(pos,env_t::iconsize), ALIGN_CENTER_V|ALIGN_CENTER_H, false );
+			g_simgraph->draw_img_aligned( skinverwaltung_t::compass_map->get_image_id( welt->get_settings().get_rotation()+4 ), scr_rect(pos,env_t::iconsize), ALIGN_CENTER_V|ALIGN_CENTER_H, false );
 		}
 		tool_t::draw_after( pos, dirty );
 	}
@@ -7669,14 +7669,14 @@ bool tool_toggle_reservation_t::is_selected() const
 bool tool_screenshot_t::init( player_t * )
 {
 	bool ok;
-	const scr_rect screen_area = scr_rect(0, 0, display_get_width(), display_get_height());
+	const scr_rect screen_area = { { 0, 0 }, g_simgraph->get_screen_size() };
 	const gui_frame_t *topwin = win_get_top();
 
 	if(  is_ctrl_pressed()  &&  topwin != NULL  ) {
-		ok = display_snapshot( scr_rect(win_get_pos(topwin), topwin->get_windowsize()) );
+		ok = g_simgraph->take_screenshot(scr_rect(win_get_pos(topwin), topwin->get_windowsize()));
 	}
 	else {
-		ok = display_snapshot( screen_area );
+		ok = g_simgraph->take_screenshot(screen_area);
 	}
 
 	if (ok) {
@@ -8745,7 +8745,7 @@ const char* tool_add_message_t::work(player_t* player, koord3d pos )
 			return "";
 		}
 		welt->get_message()->add_message( text+1, pos, type,
-								player == NULL || ( (type & message_t::PLAYER_MSG) != 0)  ? color_idx_to_rgb(COL_BLACK) : PLAYER_FLAG|player->get_player_nr(), IMG_EMPTY );
+								player == NULL || ( (type & message_t::PLAYER_MSG) != 0)  ? g_simgraph->palette_lookup(COL_BLACK) : PLAYER_FLAG|player->get_player_nr(), IMG_EMPTY );
 
 	}
 	return NULL;

@@ -184,7 +184,7 @@ static bool passes_filter_special(haltestelle_t const& s)
 
 	if (halt_list_frame_t::get_filter(halt_list_frame_t::ueberfuellt_filter)) {
 		PIXVAL const color = s.get_status_farbe();
-		if (color == color_idx_to_rgb(COL_RED) || color == color_idx_to_rgb(COL_ORANGE)) {
+		if (color == g_simgraph->palette_lookup(COL_RED) || color == g_simgraph->palette_lookup(COL_ORANGE)) {
 			return true; // overcrowded
 		}
 	}

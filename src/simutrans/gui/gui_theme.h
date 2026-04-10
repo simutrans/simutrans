@@ -130,7 +130,7 @@ class image_t;
 
 // The width of a typical dialogue (either list/covoi/factory) and initial width when it makes sense
 #define D_DEFAULT_WIDTH (D_MARGINS_X + D_BUTTONS_PER_ROW*D_BUTTON_WIDTH + (D_BUTTONS_PER_ROW-1)*D_H_SPACE)
-#define D_DEFAULT_HEIGHT (max(56, get_base_tile_raster_width() * 7 / 8) + 208 + D_SCROLLBAR_HEIGHT)
+#define D_DEFAULT_HEIGHT (max(56, g_simgraph->get_base_tile_raster_width() * 7 / 8) + 208 + D_SCROLLBAR_HEIGHT)
 
 // Max Kielland: align helper, returns the offset to apply to N1 for a center alignment around N2
 #define D_GET_CENTER_ALIGN_OFFSET(N1,N2) ((N2-N1)>>1)

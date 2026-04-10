@@ -21,6 +21,8 @@
 #define TRANSPARENT75_FLAG (0x600000)
 #define OUTLINE_FLAG       (0x080000)
 
+typedef uint8 palette_index_t;
+
 // pixels stored in system type (uint16)
 typedef unsigned short PIXVAL;
 // PIXVAL with above flags (eg. transparent) (uint32)
@@ -68,8 +70,8 @@ typedef unsigned int FLAGGED_PIXVAL;
 #define COL_DARK_BROWN      178
 
 // message colors
-#define CITY_KI             color_idx_to_rgb(209)
-#define NEW_VEHICLE         color_idx_to_rgb(COL_PURPLE)
+#define CITY_KI             g_simgraph->palette_lookup(209)
+#define NEW_VEHICLE         g_simgraph->palette_lookup(COL_PURPLE)
 
 // by niels
 #define COL_GREY1           208
@@ -80,15 +82,15 @@ typedef unsigned int FLAGGED_PIXVAL;
 #define COL_GREY6           15
 
 // Way colours for the map
-#define COL_ROAD            color_idx_to_rgb(COL_GREY1)
-#define COL_RAIL            color_idx_to_rgb(185)
-#define COL_CANAL           color_idx_to_rgb(23)
-#define COL_MONORAIL        color_idx_to_rgb(COL_ORANGE)
-#define COL_RUNWAY          color_idx_to_rgb(28)
-#define COL_POWERLINE       color_idx_to_rgb(COL_LIGHT_TURQUOISE)
-#define COL_HALT            color_idx_to_rgb(COL_RED)
-#define COL_BUILDING        color_idx_to_rgb(COL_GREY3)
-#define COL_VEHICLE         color_idx_to_rgb(COL_YELLOW)
+#define COL_ROAD            g_simgraph->palette_lookup(COL_GREY1)
+#define COL_RAIL            g_simgraph->palette_lookup(185)
+#define COL_CANAL           g_simgraph->palette_lookup(23)
+#define COL_MONORAIL        g_simgraph->palette_lookup(COL_ORANGE)
+#define COL_RUNWAY          g_simgraph->palette_lookup(28)
+#define COL_POWERLINE       g_simgraph->palette_lookup(COL_LIGHT_TURQUOISE)
+#define COL_HALT            g_simgraph->palette_lookup(COL_RED)
+#define COL_BUILDING        g_simgraph->palette_lookup(COL_GREY3)
+#define COL_VEHICLE         g_simgraph->palette_lookup(COL_YELLOW)
 
 // used in many dialogues graphs
 #define COL_REVENUE         142

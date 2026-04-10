@@ -28,7 +28,7 @@ const char* sort_text[curiositylist::SORT_MODES] = {
 class playername_const_scroll_item_t : public gui_scrolled_list_t::const_text_scrollitem_t {
 public:
 	const uint8 player_nr;
-	playername_const_scroll_item_t( player_t *pl ) : gui_scrolled_list_t::const_text_scrollitem_t( pl->get_name(), color_idx_to_rgb(pl->get_player_color1()+env_t::gui_player_color_dark) ), player_nr(pl->get_player_nr()) { }
+	playername_const_scroll_item_t( player_t *pl ) : gui_scrolled_list_t::const_text_scrollitem_t( pl->get_name(), g_simgraph->palette_lookup(pl->get_player_color1()+env_t::gui_player_color_dark) ), player_nr(pl->get_player_nr()) { }
 };
 
 curiositylist_frame_t::curiositylist_frame_t() :

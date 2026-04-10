@@ -34,7 +34,7 @@ void world_view_t::invalidate_all()
 world_view_t::world_view_t(scr_size size ) :
 	prepared_rect(),
 	display_rect(),
-	raster(get_base_tile_raster_width())
+	raster(g_simgraph->get_base_tile_raster_width())
 {
 	set_size( size );
 	min_size = size;
@@ -46,7 +46,7 @@ world_view_t::world_view_t(scr_size size ) :
 world_view_t::world_view_t() :
 	prepared_rect(),
 	display_rect(),
-	raster(get_base_tile_raster_width())
+	raster(g_simgraph->get_base_tile_raster_width())
 {
 	world_view_t::view_list.append(this);
 }
@@ -76,7 +76,7 @@ bool world_view_t::infowin_event(const event_t* ev)
 
 void world_view_t::internal_draw(const scr_coord offset, obj_t const* const obj)
 {
-	display_set_image_proc(false);
+	g_simgraph->set_image_procs(false);
 
 	const koord3d here3d    = get_location();
 	const koord   here      = here3d.get_2d();
@@ -110,7 +110,7 @@ void world_view_t::internal_draw(const scr_coord offset, obj_t const* const obj)
 	const scr_coord pos = get_pos() + offset + scr_coord(1, 1);
 
 	// do not draw outside (may happen with scroll bars)
-	const clip_dimension old_clip = display_get_clip_wh();
+	const clip_dimension old_clip = g_simgraph->get_clip_rect(CLIP_NUM_DEFAULT_VALUE);
 
 	// something to draw?
 	const scr_size size = get_size() - scr_size(2, 2);
@@ -136,17 +136,17 @@ void world_view_t::internal_draw(const scr_coord offset, obj_t const* const obj)
 	// prepare clip area
 	const int clip_x = max(old_clip.x, pos.x);
 	const int clip_y = max(old_clip.y, pos.y);
-	display_set_clip_wh(clip_x, clip_y, min(old_clip.xx, pos.x + size.w) - clip_x, min(old_clip.yy, pos.y + size.h) - clip_y);
+	g_simgraph->set_clip_rect(clip_x, clip_y, min(old_clip.xx, pos.x + size.w) - clip_x, min(old_clip.yy, pos.y + size.h) - clip_y CLIP_NUM_DEFAULT, false);
 
-	mark_rect_dirty_wc(pos.x, pos.y, pos.x + size.w, pos.y + size.h);
+	g_simgraph->mark_rect_dirty_wc(pos.x, pos.y, pos.x + size.w, pos.y + size.h);
 
 	/* Not very elegant, but works: Fill everything with black for underground
 	 * mode. */
 	if(  grund_t::underground_mode  ) {
-		display_fillbox_wh_clip_rgb(pos.x, pos.y, size.w, size.h, color_idx_to_rgb(COL_BLACK), true);
+		g_simgraph->draw_rect_clipped(pos.x, pos.y, size.w, size.h, g_simgraph->palette_lookup(COL_BLACK), true CLIP_NUM_DEFAULT);
 	}
 	else {
-		display_fillbox_wh_clip_rgb(pos.x, pos.y, size.w, size.h, env_t::background_color, true);
+		g_simgraph->draw_rect_clipped(pos.x, pos.y, size.w, size.h, env_t::background_color, true CLIP_NUM_DEFAULT);
 	}
 
 	const sint16 yoff = obj && obj->is_moving() ?
@@ -230,8 +230,8 @@ void world_view_t::internal_draw(const scr_coord offset, obj_t const* const obj)
 #endif
 	}
 
-	display_set_clip_wh(old_clip.x, old_clip.y, old_clip.w, old_clip.h);
-	display_ddd_box_clip_rgb(pos.x - 1, pos.y - 1, size.w + 2, size.h + 2, color_idx_to_rgb(MN_GREY0), color_idx_to_rgb(MN_GREY4));
+	g_simgraph->set_clip_rect(old_clip.x, old_clip.y, old_clip.w, old_clip.h CLIP_NUM_DEFAULT, false);
+	g_simgraph->draw_box3d_clipped(pos.x - 1, pos.y - 1, size.w + 2, size.h + 2, g_simgraph->palette_lookup(MN_GREY0), g_simgraph->palette_lookup(MN_GREY4));
 }
 
 

@@ -361,6 +361,7 @@ SOURCES += src/simutrans/descriptor/tunnel_desc.cc
 SOURCES += src/simutrans/descriptor/vehicle_desc.cc
 SOURCES += src/simutrans/descriptor/way_desc.cc
 SOURCES += src/simutrans/display/font.cc
+SOURCES += src/simutrans/display/simgraph.cc
 SOURCES += src/simutrans/display/simgraph$(COLOUR_DEPTH).cc
 SOURCES += src/simutrans/display/simview.cc
 SOURCES += src/simutrans/display/viewport.cc

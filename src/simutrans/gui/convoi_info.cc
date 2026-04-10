@@ -62,7 +62,7 @@ bool convoi_info_t::route_search_in_progress=false;
 convoi_info_t::convoi_info_t(convoihandle_t cnv, bool edit_schedule) :
 	gui_frame_t(""),
 	text(&freight_info),
-	view(scr_size(max(64, get_base_tile_raster_width()), max(56, (get_base_tile_raster_width() * 7) / 8))),
+	view(scr_size(max(64, g_simgraph->get_base_tile_raster_width()), max(56, (g_simgraph->get_base_tile_raster_width() * 7) / 8))),
 	scroll_freight(&container_freight, true, true)
 {
 	is_saving_gui = false;
@@ -181,11 +181,11 @@ void convoi_info_t::init(convoihandle_t cnv)
 	container_stats.add_table(D_BUTTONS_PER_ROW,0)->set_force_equal_columns(true);
 
 	for (int cost = 0; cost<convoi_t::MAX_CONVOI_COST; cost++) {
-		uint16 curve = chart.add_curve( color_idx_to_rgb(cost_type_color[cost]), cnv->get_finance_history(), convoi_t::MAX_CONVOI_COST, cost, MAX_MONTHS, cost_type_money[cost], false, true, cost_type_money[cost]*2 );
+		uint16 curve = chart.add_curve( g_simgraph->palette_lookup(cost_type_color[cost]), cnv->get_finance_history(), convoi_t::MAX_CONVOI_COST, cost, MAX_MONTHS, cost_type_money[cost], false, true, cost_type_money[cost]*2 );
 
 		button_t *b = container_stats.new_component<button_t>();
 		b->init(button_t::box_state_automatic  | button_t::flexible, cost_type[cost]);
-		b->background_color = color_idx_to_rgb(cost_type_color[cost]);
+		b->background_color = g_simgraph->palette_lookup(cost_type_color[cost]);
 		b->pressed = false;
 
 		button_to_chart.append(b, &chart, curve);
@@ -224,12 +224,12 @@ void convoi_info_t::init(convoihandle_t cnv)
 	details = container_details.new_component<convoi_detail_t>(cnv);
 
 	// indicator bars
-	filled_bar.add_color_value(&cnv->get_loading_limit(), color_idx_to_rgb(COL_YELLOW));
-	filled_bar.add_color_value(&cnv->get_loading_level(), color_idx_to_rgb(COL_GREEN));
+	filled_bar.add_color_value(&cnv->get_loading_limit(), g_simgraph->palette_lookup(COL_YELLOW));
+	filled_bar.add_color_value(&cnv->get_loading_level(), g_simgraph->palette_lookup(COL_GREEN));
 
 	speed_bar.set_base(max_convoi_speed);
 	speed_bar.set_vertical(false);
-	speed_bar.add_color_value(&mean_convoi_speed, color_idx_to_rgb(COL_GREEN));
+	speed_bar.add_color_value(&mean_convoi_speed, g_simgraph->palette_lookup(COL_GREEN));
 
 	// we update this ourself!
 	route_bar.init(&cnv_route_index, 0);

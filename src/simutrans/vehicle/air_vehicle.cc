@@ -730,7 +730,7 @@ air_vehicle_t::air_vehicle_t(koord3d pos, const vehicle_desc_t* desc, player_t* 
 air_vehicle_t::~air_vehicle_t()
 {
 	// mark aircraft (after_image) dirty, since we have no "real" image
-	const int raster_width = get_current_tile_raster_width();
+	const int raster_width = g_simgraph->get_current_tile_raster_width();
 	sint16 yoff = tile_raster_scale_y(-flying_height-get_hoff()-2, raster_width);
 
 	mark_image_dirty( image, yoff);
@@ -986,7 +986,7 @@ void air_vehicle_t::display_after(int xpos_org, int ypos_org, bool is_global) co
 	if(  image != IMG_EMPTY  &&  !is_on_ground()  ) {
 		int xpos = xpos_org, ypos = ypos_org;
 
-		const int raster_width = get_current_tile_raster_width();
+		const int raster_width = g_simgraph->get_current_tile_raster_width();
 		const sint16 z = get_pos().z;
 		if(  z + flying_height/TILE_HEIGHT_STEP - 1 > grund_t::underground_level  ) {
 			return;
@@ -1005,21 +1005,21 @@ void air_vehicle_t::display_after(int xpos_org, int ypos_org, bool is_global) co
 		xpos += tile_raster_scale_x(get_xoff(), raster_width);
 		get_screen_offset( xpos, ypos, raster_width );
 
-		display_swap_clip_wh(CLIP_NUM_VAR);
+		g_simgraph->swap_clip_rect(CLIP_NUM_VAR);
 		// will be dirty
 		// the aircraft!!!
-		display_color( image, xpos, ypos, get_owner_nr(), true, true/*get_flag(obj_t::dirty)*/  CLIP_NUM_PAR);
+		g_simgraph->draw_color( image, xpos, ypos, get_owner_nr(), true, true/*get_flag(obj_t::dirty)*/  CLIP_NUM_PAR);
 #ifndef MULTI_THREAD
 		vehicle_t::display_after( xpos_org, ypos_org - tile_raster_scale_y( current_flughohe - hoff - 2, raster_width ), is_global );
 #endif
-		display_swap_clip_wh(CLIP_NUM_VAR);
+		g_simgraph->swap_clip_rect(CLIP_NUM_VAR);
 	}
 #ifdef MULTI_THREAD
 }
 void air_vehicle_t::display_overlay(int xpos_org, int ypos_org) const
 {
 	if(  image != IMG_EMPTY  &&  !is_on_ground()  ) {
-		const int raster_width = get_current_tile_raster_width();
+		const int raster_width = g_simgraph->get_current_tile_raster_width();
 		const sint16 z = get_pos().z;
 		if(  z + flying_height/TILE_HEIGHT_STEP - 1 > grund_t::underground_level  ) {
 			return;

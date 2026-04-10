@@ -101,7 +101,7 @@ void pakset_manager_t::open_doubled_warning_window()
 
 bool pakset_manager_t::load_paks_from_directory(const std::string &path, bool load_addons, const char *message)
 {
-	const bool drawing = is_display_init();
+	const bool drawing = g_simgraph->is_display_init();
 
 	// step is a bitmask to decide when it's time to update the progress bar.
 	// It takes the biggest power of 2 less than the number of elements and
@@ -121,7 +121,9 @@ bool pakset_manager_t::load_paks_from_directory(const std::string &path, bool lo
 	step = (2<<step)-1;
 
 	if(drawing  &&  skinverwaltung_t::biglogosymbol==NULL) {
-		display_fillbox_wh_rgb( 0, 0, display_get_width(), display_get_height(), color_idx_to_rgb(COL_BLACK), true );
+		const scr_size screen = g_simgraph->get_screen_size();
+		g_simgraph->draw_rect( 0, 0, screen.w, screen.h, g_simgraph->palette_lookup(COL_BLACK), true);
+
 		if (!load_pak_file(path + "symbol.BigLogo.pak")) {
 			dbg->warning("pakset_manager_t::load_paks_from_directory", "File 'symbol.BigLogo.pak' cannot be read, startup logo will not be displayed!");
 		}

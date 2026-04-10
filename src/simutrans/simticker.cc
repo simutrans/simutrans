@@ -64,7 +64,7 @@ void ticker::add_msg_node(const message_node_t& msg)
 
 	if(count==0) {
 		redraw_all = true;
-		next_pos = display_get_width();
+		next_pos = g_simgraph->get_screen_size().w;
 	}
 
 	const char* txt = msg.msg;
@@ -97,7 +97,7 @@ void ticker::add_msg_node(const message_node_t& msg)
 		n.msg[i++] = 0;
 
 		n.xpos = next_pos;
-		n.w = proportional_string_width(n.msg);
+		n.w = g_simgraph->calc_text_width(n.msg);
 
 		next_pos += n.w + X_SPACING;
 		list.append(n);
@@ -124,14 +124,14 @@ void ticker::add_msg(const char* txt, koord3d pos, FLAGGED_PIXVAL color, int typ
 void ticker::update()
 {
 	const int dx = X_DIST;
-	const int display_width = display_get_width();
+	const scr_size screen = g_simgraph->get_screen_size();
 
 	for(node & n : list) {
 		n.xpos -= dx;
 	}
 
 	dx_since_last_draw += dx;
-	next_pos = std::max(next_pos - dx, display_width);
+	next_pos = std::max(next_pos - dx, screen.w);
 
 	// remove old news
 	while (!list.empty()  &&  list.front().xpos + list.front().w < 0) {
@@ -146,7 +146,8 @@ void ticker::update()
 
 void ticker::draw()
 {
-	const int start_y = env_t::menupos == MENU_BOTTOM ? win_get_statusbar_height() : display_get_height() - TICKER_HEIGHT - win_get_statusbar_height();
+	const scr_size screen = g_simgraph->get_screen_size();
+	const int start_y = env_t::menupos == MENU_BOTTOM ? win_get_statusbar_height() : screen.h - TICKER_HEIGHT - win_get_statusbar_height();
 	if (redraw_all) {
 		redraw();
 		return;
@@ -155,28 +156,29 @@ void ticker::draw()
 		// ticker not visible
 
 		// mark everything at the bottom as dirty to clear also tooltips and compass
-		mark_rect_dirty_wc(0, env_t::menupos == MENU_BOTTOM ? 0 : start_y - 128, display_get_width(), start_y + 128 + TICKER_HEIGHT);
+		g_simgraph->mark_rect_dirty_wc(0, env_t::menupos == MENU_BOTTOM ? 0 : start_y - 128, screen.w, start_y + 128 + TICKER_HEIGHT);
 		return;
 	}
 	if (dx_since_last_draw <=0) {
 		return;
 	}
 
-	const int width = display_get_width();
-	if (width <= 0) {
+	if (screen.w <= 0) {
 		return;
 	}
+
 	// do partial redraw
-	display_scroll_band( start_y, dx_since_last_draw, TICKER_HEIGHT );
+	g_simgraph->move_scroll_band(start_y, dx_since_last_draw, TICKER_HEIGHT);
 
-	display_fillbox_wh_rgb(width-dx_since_last_draw, start_y, dx_since_last_draw, TICKER_HEIGHT, SYSCOL_TICKER_BACKGROUND, true);
+	g_simgraph->draw_rect(screen.w-dx_since_last_draw, start_y, dx_since_last_draw, TICKER_HEIGHT, SYSCOL_TICKER_BACKGROUND, true);
 
-	mark_rect_dirty_wc(0, start_y, width, start_y + TICKER_HEIGHT);
+	g_simgraph->mark_rect_dirty_wc(0, start_y, screen.w, start_y + TICKER_HEIGHT);
+
 	// ok, ready for the text
-	PUSH_CLIP( width-dx_since_last_draw, start_y, dx_since_last_draw, TICKER_HEIGHT );
+	PUSH_CLIP( screen.w-dx_since_last_draw, start_y, dx_since_last_draw, TICKER_HEIGHT );
 	for(node & n : list) {
-		if (n.xpos < width) {
-			display_proportional_clip_rgb(n.xpos, start_y + TICKER_V_SPACE, n.msg, ALIGN_LEFT, n.get_player_color(welt), true);
+		if (n.xpos < screen.w) {
+			g_simgraph->draw_text_clipped(n.xpos, start_y + TICKER_V_SPACE, n.msg, ALIGN_LEFT, n.get_player_color(welt), true);
 		}
 	}
 	POP_CLIP();
@@ -187,24 +189,23 @@ void ticker::draw()
 
 void ticker::redraw()
 {
+	const scr_size screen = g_simgraph->get_screen_size();
 	set_redraw_all(false);
 	dx_since_last_draw = 0;
-	const int start_y = env_t::menupos == MENU_BOTTOM ? win_get_statusbar_height() : display_get_height() - TICKER_HEIGHT - win_get_statusbar_height();
+	const int start_y = env_t::menupos == MENU_BOTTOM ? win_get_statusbar_height() : screen.h - TICKER_HEIGHT - win_get_statusbar_height();
 
 	if (list.empty()) {
 		// mark everything at the bottom as dirty to clear also tooltips and compass
-		mark_rect_dirty_wc(0, env_t::menupos == MENU_BOTTOM ? 0 : start_y - 128, display_get_width(), start_y + 128 + TICKER_HEIGHT);
+		g_simgraph->mark_rect_dirty_wc(0, env_t::menupos == MENU_BOTTOM ? 0 : start_y - 128, screen.h, start_y + 128 + TICKER_HEIGHT);
 		world()->set_background_dirty();
 		return;
 	}
 
-	const int width = display_get_width();
-
 	// just draw the ticker in its colour ... (to be sure ... )
-	display_fillbox_wh_rgb(0, start_y, width, TICKER_HEIGHT, SYSCOL_TICKER_BACKGROUND, true);
+	g_simgraph->draw_rect(0, start_y, screen.w, TICKER_HEIGHT, SYSCOL_TICKER_BACKGROUND, true);
 	for(node & n : list) {
-		if (n.xpos < width) {
-			display_proportional_clip_rgb(n.xpos, start_y + TICKER_V_SPACE, n.msg, ALIGN_LEFT, n.get_player_color(welt), true);
+		if (n.xpos < screen.w) {
+			g_simgraph->draw_text_clipped(n.xpos, start_y + TICKER_V_SPACE, n.msg, ALIGN_LEFT, n.color, true);
 		}
 	}
 }

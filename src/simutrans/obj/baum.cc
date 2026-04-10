@@ -187,7 +187,7 @@ FLAGGED_PIXVAL baum_t::get_outline_colour() const
 void baum_t::recalc_outline_color()
 {
 	outline_color = (env_t::hide_trees  &&  env_t::hide_with_transparency) ?
-		(TRANSPARENT25_FLAG | OUTLINE_FLAG | color_idx_to_rgb(COL_BLACK)) : 0;
+		(TRANSPARENT25_FLAG | OUTLINE_FLAG | g_simgraph->palette_lookup(COL_BLACK)) : 0;
 }
 
 

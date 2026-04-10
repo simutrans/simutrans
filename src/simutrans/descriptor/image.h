@@ -78,7 +78,7 @@ public:
 
 	static image_t* create_single_pixel();
 
-	void register_image() { ::register_image(this); }
+	void register_image() { g_simgraph->register_image(this); }
 
 private:
 	friend class image_reader_t;

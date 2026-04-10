@@ -365,14 +365,14 @@ money_frame_t::money_frame_t(player_t *player) :
 					const int curve_type = cost_type[3*cost+2];
 					const int curve_precision = curve_type == gui_chart_t::STANDARD ? 0 : 2;
 					sint16 curve = i == 0
-					? chart.add_curve(  color_idx_to_rgb(cost_type_color[cost]), *chart_table_year,  MAX_PLAYER_COST_BUTTON, cost, MAX_PLAYER_HISTORY_YEARS,  curve_type, false, true, curve_precision)
-					: mchart.add_curve( color_idx_to_rgb(cost_type_color[cost]), *chart_table_month, MAX_PLAYER_COST_BUTTON, cost, MAX_PLAYER_HISTORY_MONTHS, curve_type, false, true, curve_precision);
+					? chart.add_curve(  g_simgraph->palette_lookup(cost_type_color[cost]), *chart_table_year,  MAX_PLAYER_COST_BUTTON, cost, MAX_PLAYER_HISTORY_YEARS,  curve_type, false, true, curve_precision)
+					: mchart.add_curve( g_simgraph->palette_lookup(cost_type_color[cost]), *chart_table_month, MAX_PLAYER_COST_BUTTON, cost, MAX_PLAYER_HISTORY_MONTHS, curve_type, false, true, curve_precision);
 					// add button
 					button_t *b;
 					if (i == 0) {
 						b = current->new_component<button_t>();
 						b->init(button_t::box_state_automatic | button_t::flexible, cost_type_name[cost]);
-						b->background_color = color_idx_to_rgb(cost_type_color[cost]);
+						b->background_color = g_simgraph->palette_lookup(cost_type_color[cost]);
 						b->pressed = false;
 						buttons[cost] = b;
 					}

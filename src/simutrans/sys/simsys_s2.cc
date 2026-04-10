@@ -479,8 +479,8 @@ int dr_os_open(const scr_size window_size, sint16 fs)
 	assert(tex_h <= screen->h);
 	assert(tex_w <= tex_pitch);
 
-	display_set_actual_width( tex_w );
-	display_set_height( tex_h );
+	g_simgraph->set_screen_actual_width( tex_w );
+	g_simgraph->set_screen_height( tex_h );
 	return tex_pitch;
 }
 
@@ -529,7 +529,7 @@ int dr_textur_resize(unsigned short** const textur, int tex_w, int const tex_h)
 	assert(tex_h <= screen->h);
 	assert(tex_w <= tex_pitch);
 
-	display_set_actual_width( tex_w );
+	g_simgraph->set_screen_actual_width( tex_w );
 	return tex_pitch;
 }
 
@@ -567,12 +567,13 @@ void dr_prepare_flush()
 
 void dr_flush()
 {
-	display_flush_buffer();
+	g_simgraph->flush_framebuffer();
 	if(  !use_dirty_tiles  ) {
 		SDL_UpdateTexture( screen_tx, NULL, screen->pixels, screen->pitch );
 	}
 
-	SDL_Rect rSrc  = { 0, 0, display_get_width(), display_get_height()  };
+	const scr_rect screen = g_simgraph->get_screen_size();
+	SDL_Rect rSrc  = { 0, 0, screen.w, screen.h  };
 	SDL_RenderCopy( renderer, screen_tx, &rSrc, NULL );
 
 	SDL_RenderPresent( renderer );
@@ -789,13 +790,15 @@ static void internal_GetEvents()
 		case SDL_FINGERMOTION:
 			// move whatever
 			if(  screen  &&  previous_multifinger_touch==0  &&  FirstFingerId==event.tfinger.fingerId) {
+				const scr_size screen_size = g_simgraph->get_screen_size();
+
 				if (dLastDist == 0.0) {
 					// not yet a finger down event before => we send one
 					dLastDist = 1e-99;
 					sys_event.type = SIM_MOUSE_BUTTONS;
 					sys_event.code = SIM_MOUSE_LEFTBUTTON;
-					sys_event.mx = event.tfinger.x * display_get_width();
-					sys_event.my = event.tfinger.y * display_get_height();
+					sys_event.mx = event.tfinger.x * screen_size.w;
+					sys_event.my = event.tfinger.y * screen_size.h;
 					previous_multifinger_touch = 0;
 	DBG_MESSAGE("SDL_FINGERMOTION", "SIM_MOUSE_LEFTBUTTON at %i,%i", sys_event.mx, sys_event.my);
 				}
@@ -803,8 +806,8 @@ static void internal_GetEvents()
 
 					sys_event.type = SIM_MOUSE_MOVE;
 					sys_event.code = SIM_MOUSE_MOVED;
-					sys_event.mx = event.tfinger.x * display_get_width();
-					sys_event.my = event.tfinger.y * display_get_height();
+					sys_event.mx = event.tfinger.x * screen_size.w;
+					sys_event.my = event.tfinger.y * screen_size.h;
 	DBG_MESSAGE("SDL_FINGERMOTION", "SIM_MOUSE_MOVED at %i,%i", sys_event.mx, sys_event.my);
 				}
 				sys_event.mb = MOUSE_LEFTBUTTON;
@@ -816,6 +819,8 @@ static void internal_GetEvents()
 		case SDL_FINGERUP:
 			if (screen  &&  in_finger_handling) {
 				if (FirstFingerId==event.tfinger.fingerId  ||  SDL_GetNumTouchFingers(event.tfinger.touchId)==0) {
+					const scr_size screen_size = g_simgraph->get_screen_size();
+
 					if(!previous_multifinger_touch) {
 						if (dLastDist == 0.0) {
 							dLastDist = 1e-99;
@@ -824,8 +829,9 @@ static void internal_GetEvents()
 							sys_event.code = SIM_MOUSE_LEFTBUTTON;
 							sys_event.mb = MOUSE_LEFTBUTTON;
 							sys_event.key_mod = ModifierKeys();
-							last_mx = sys_event.mx = event.tfinger.x * display_get_width();
-							last_my = sys_event.my = event.tfinger.y * display_get_height();
+							last_mx = sys_event.mx = event.tfinger.x * screen_size.w;
+							last_my = sys_event.my = event.tfinger.y * screen_size.h;
+
 							// not yet moved -> set click origin or click will be at last position ...
 							set_click_xy(sys_event.mx, sys_event.my);
 
@@ -836,8 +842,8 @@ static void internal_GetEvents()
 							sys_event.type = SIM_MOUSE_BUTTONS;
 							sys_event.code = SIM_MOUSE_LEFTUP;
 							sys_event.mb = 0;
-							sys_event.mx = (event.tfinger.x + event.tfinger.dx) * display_get_width();
-							sys_event.my = (event.tfinger.y + event.tfinger.dy) * display_get_height();
+							sys_event.mx = (event.tfinger.x + event.tfinger.dx) * screen_size.w;
+							sys_event.my = (event.tfinger.y + event.tfinger.dy) * screen_size.h;
 							sys_event.key_mod = ModifierKeys();
 		DBG_MESSAGE("SDL_FINGERUP", "SIM_MOUSE_LEFTUP at %i,%i", sys_event.mx, sys_event.my);
 						}

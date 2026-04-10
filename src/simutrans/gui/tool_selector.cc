@@ -270,25 +270,26 @@ bool tool_selector_t::infowin_event(const event_t *ev)
 void tool_selector_t::draw(scr_coord pos, scr_size sz)
 {
 	player_t* player = welt->get_active_player();
+	const scr_size screen = g_simgraph->get_screen_size();
 
 	if (toolbar_id == 0) {
 		// checks for main menu (since it can change during changing layout)
 		if (env_t::menupos == MENU_TOP || env_t::menupos == MENU_BOTTOM) {
 			offset.y = 0;
 			allow_break = false;
-			tool_icon_width = (display_get_width() + env_t::iconsize.w - 1) / env_t::iconsize.w;
+			tool_icon_width = (screen.w + env_t::iconsize.w - 1) / env_t::iconsize.w;
 			tool_icon_height = 1; // only single row for title bar
 			set_windowsize(sz);
 			// check for too large values (after changing width etc.)
-			if (display_get_width() >= (int)tools.get_count() * env_t::iconsize.w) {
+			if (screen.w >= (int)tools.get_count() * env_t::iconsize.w) {
 				tool_icon_disp_start = 0;
 				offset.x = 0;
 			}
 			else {
 				scr_coord_val wx = (tools.get_count() - tool_icon_disp_start + 1) * env_t::iconsize.w + offset.x;
-				if (wx < display_get_width()) {
+				if (wx < screen.w) {
 					tool_icon_disp_start = tool_icon_disp_end < tool_icon_height ? 0 : tool_icon_disp_end - tool_icon_width;
-					offset.x = display_get_width() - (tools.get_count() - tool_icon_disp_start) * env_t::iconsize.w;
+					offset.x = screen.w - (tools.get_count() - tool_icon_disp_start) * env_t::iconsize.w;
 				}
 			}
 			has_prev_next = (int)tools.get_count() * env_t::iconsize.w > sz.w;
@@ -300,28 +301,29 @@ void tool_selector_t::draw(scr_coord pos, scr_size sz)
 			// only single column for title bar
 			scr_rect screen = win_get_max_window_area();
 			tool_icon_height = max(1, (screen.h - win_get_statusbar_height() + env_t::iconsize.h - 1) / env_t::iconsize.h);
-			set_windowsize(scr_size(env_t::iconsize.w, display_get_height() - win_get_statusbar_height()));
+			set_windowsize(scr_size(env_t::iconsize.w, screen.h - win_get_statusbar_height()));
 
-			if (display_get_height() >= (int)tools.get_count() * env_t::iconsize.h) {
+			if (screen.h >= (int)tools.get_count() * env_t::iconsize.h) {
 				tool_icon_disp_start = 0;
 				offset.y = 0;
 			}
 			else {
 				scr_coord_val hx = (tools.get_count() - tool_icon_disp_start + 1) * env_t::iconsize.h + offset.y;
-				if (hx < display_get_height()) {
+				if (hx < screen.h) {
 					tool_icon_disp_end = tools.get_count();
 					tool_icon_disp_start = tool_icon_disp_end < tool_icon_height ? 0 : tool_icon_disp_end - tool_icon_height;
-					offset.y = display_get_height() - (tools.get_count() - tool_icon_disp_start) * env_t::iconsize.h;
+					offset.y = screen.h - (tools.get_count() - tool_icon_disp_start) * env_t::iconsize.h;
 				}
 			}
 
 			has_prev_next = (int)tools.get_count() * env_t::iconsize.h > sz.h;
 		}
 	}
-	clip_dimension const p_cr = display_get_clip_wh();
+	clip_dimension const p_cr = g_simgraph->get_clip_rect(CLIP_NUM_DEFAULT_VALUE);
 	if (toolbar_id != 0) {
-		display_set_clip_wh(pos.x, pos.y, sz.w, sz.h);
+		g_simgraph->set_clip_rect(pos.x, pos.y, sz.w, sz.h CLIP_NUM_DEFAULT, false);
 	}
+
 	for(  uint i = tool_icon_disp_start;  i < tool_icon_disp_end;  i++  ) {
 		const image_id icon_img = tools[i].tool->get_icon(player);
 #if COLOUR_DEPTH != 0
@@ -339,23 +341,23 @@ void tool_selector_t::draw(scr_coord pos, scr_size sz)
 		if(  toolbar_id>0  &&  !(strstart((param==NULL)? "" : param, "-b"))  ) {
 			if(  skinverwaltung_t::toolbar_background  &&  skinverwaltung_t::toolbar_background->get_image_id(toolbar_id) != IMG_EMPTY  ) {
 				const image_id back_img = skinverwaltung_t::toolbar_background->get_image_id(toolbar_id);
-				display_fit_img_to_width( back_img, env_t::iconsize.w );
-				display_color_img( back_img, draw_pos.x, draw_pos.y, welt->get_active_player_nr(), false, true );
+				g_simgraph->fit_img_to_width( back_img, env_t::iconsize.w );
+				g_simgraph->draw_color_img( back_img, draw_pos.x, draw_pos.y, welt->get_active_player_nr(), false, true CLIP_NUM_DEFAULT);
 			}
 			else {
-				display_fillbox_wh_clip_rgb( draw_pos.x, draw_pos.y, env_t::iconsize.w, env_t::iconsize.h, color_idx_to_rgb(MN_GREY2), false );
+				g_simgraph->draw_rect_clipped(draw_pos.x, draw_pos.y, env_t::iconsize.w, env_t::iconsize.h, g_simgraph->palette_lookup(MN_GREY2), false CLIP_NUM_DEFAULT);
 			}
 		}
 
 		// if there's no image we simply skip, button will be transparent showing toolbar background
 		if(  icon_img != IMG_EMPTY  ) {
 			bool tool_dirty = dirty  ||  (tools[i].tool->is_selected() ^ tools[i].selected);
-			display_fit_img_to_width( icon_img, env_t::iconsize.w );
-			display_color_img(icon_img, draw_pos.x, draw_pos.y, player->get_player_nr(), false, tool_dirty);
+			g_simgraph->fit_img_to_width( icon_img, env_t::iconsize.w );
+			g_simgraph->draw_color_img(icon_img, draw_pos.x, draw_pos.y, player->get_player_nr(), false, tool_dirty CLIP_NUM_DEFAULT);
 			tools[i].tool->draw_after( draw_pos, tool_dirty);
 			if (!tools[i].tool->enabled) {
 				// grey out disbaled entries
-				display_img_blend(icon_img, draw_pos.x, draw_pos.y, TRANSPARENT75_FLAG | OUTLINE_FLAG | color_idx_to_rgb(COL_WHITE), false, tool_dirty);
+				g_simgraph->draw_img_blend(icon_img, draw_pos.x, draw_pos.y, TRANSPARENT75_FLAG | OUTLINE_FLAG | g_simgraph->palette_lookup(COL_WHITE), false, tool_dirty);
 			}
 			// store whether tool was selected
 			tools[i].selected = tools[i].tool->is_selected();
@@ -363,27 +365,27 @@ void tool_selector_t::draw(scr_coord pos, scr_size sz)
 	}
 
 	if( is_dragging ) {
-		mark_rect_dirty_wc(pos.x, pos.y+D_TITLEBAR_HEIGHT, pos.x+sz.w, pos.y+sz.h+D_TITLEBAR_HEIGHT );
+		g_simgraph->mark_rect_dirty_wc(pos.x, pos.y+D_TITLEBAR_HEIGHT, pos.x+sz.w, pos.y+sz.h+D_TITLEBAR_HEIGHT );
 	}
 	else if(  dirty  &&  (tool_icon_disp_end-tool_icon_disp_start < tool_icon_width*tool_icon_height)  ) {
 		// mark empty space empty
-		mark_rect_dirty_wc(pos.x, pos.y, pos.x + tool_icon_width*env_t::iconsize.w, pos.y + tool_icon_height*env_t::iconsize.h);
+		g_simgraph->mark_rect_dirty_wc(pos.x, pos.y, pos.x + tool_icon_width*env_t::iconsize.w, pos.y + tool_icon_height*env_t::iconsize.h);
 	}
 	if (toolbar_id != 0) {
-		display_set_clip_wh(p_cr.x, p_cr.y, p_cr.w, p_cr.h);
+		g_simgraph->set_clip_rect(p_cr.x, p_cr.y, p_cr.w, p_cr.h CLIP_NUM_DEFAULT, false);
 	}
 
 	if(  offset.x != 0  &&  tool_icon_disp_start > 0  ) {
-		display_color_img(gui_theme_t::arrow_button_left_img[0], pos.x, pos.y + D_TITLEBAR_HEIGHT, 0, false, false);
+		g_simgraph->draw_color_img(gui_theme_t::arrow_button_left_img[0], pos.x, pos.y + D_TITLEBAR_HEIGHT, 0, false, false CLIP_NUM_DEFAULT);
 	}
 	if(  offset.y != 0  &&  tool_icon_disp_start > 0  ) {
-		display_color_img(gui_theme_t::arrow_button_up_img[0], pos.x, pos.y + D_TITLEBAR_HEIGHT, 0, false, false);
+		g_simgraph->draw_color_img(gui_theme_t::arrow_button_up_img[0], pos.x, pos.y + D_TITLEBAR_HEIGHT, 0, false, false CLIP_NUM_DEFAULT);
 	}
 	if(  tool_icon_height == 1  &&  (tool_icon_disp_start+tool_icon_width < tools.get_count()  ||  (-offset.x) < env_t::iconsize.w*tool_icon_width-get_windowsize().w)  ) {
-		display_color_img( gui_theme_t::arrow_button_right_img[0], pos.x+sz.w-D_ARROW_UP_WIDTH, pos.y+D_TITLEBAR_HEIGHT, 0, false, false );
+		g_simgraph->draw_color_img( gui_theme_t::arrow_button_right_img[0], pos.x+sz.w-D_ARROW_UP_WIDTH, pos.y+D_TITLEBAR_HEIGHT, 0, false, false CLIP_NUM_DEFAULT);
 	}
 	if(  tool_icon_width == 1  &&  (tool_icon_disp_start+tool_icon_height < tools.get_count()  ||  (-offset.y) < env_t::iconsize.h*tool_icon_height-get_windowsize().h)  ) {
-		display_color_img(gui_theme_t::arrow_button_down_img[0], pos.x+sz.w-D_ARROW_DOWN_WIDTH, pos.y+D_TITLEBAR_HEIGHT+sz.h-D_ARROW_DOWN_HEIGHT, 0, false, false);
+		g_simgraph->draw_color_img(gui_theme_t::arrow_button_down_img[0], pos.x+sz.w-D_ARROW_DOWN_WIDTH, pos.y+D_TITLEBAR_HEIGHT+sz.h-D_ARROW_DOWN_HEIGHT, 0, false, false CLIP_NUM_DEFAULT);
 	}
 
 	if(  !is_dragging  ) {
@@ -408,7 +410,6 @@ void tool_selector_t::draw(scr_coord pos, scr_size sz)
 	//as we do not call gui_frame_t::draw, we reset dirty flag explicitly
 	unset_dirty();
 }
-
 
 
 bool tool_selector_t::empty(player_t *player) const

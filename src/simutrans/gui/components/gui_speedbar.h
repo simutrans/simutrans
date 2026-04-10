@@ -67,7 +67,7 @@ private:
 
 public:
 	gui_routebar_t() { base = 100; state = 0; height = 9; value = 0; reserve_value = 0; }
-	void set_reservation(const sint32 *value, PIXVAL color = color_idx_to_rgb(COL_BLUE));
+	void set_reservation(const sint32 *value, PIXVAL color = g_simgraph->palette_lookup(COL_BLUE));
 	void set_reserved_color(PIXVAL color) { reserved_color = color; };
 	void set_base(sint32 base);
 	void init(const sint32 *value, uint8 state);

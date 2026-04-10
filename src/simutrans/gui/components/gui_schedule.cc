@@ -133,7 +133,7 @@ public:
 	{
 		update_label();
 		if (is_current  ||  !valid) {
-			display_fillbox_wh_clip_rgb(pos.x + offset.x, pos.y + offset.y, size.w, size.h, valid ? SYSCOL_LIST_BACKGROUND_SELECTED_F : MONEY_MINUS, false);
+			g_simgraph->draw_rect_clipped(pos.x + offset.x, pos.y + offset.y, size.w, size.h, valid ? SYSCOL_LIST_BACKGROUND_SELECTED_F : MONEY_MINUS, false CLIP_NUM_DEFAULT);
 		}
 		gui_aligned_container_t::draw(offset);
 	}

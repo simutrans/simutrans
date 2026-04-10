@@ -10,7 +10,7 @@
 
 void gui_divider_t::draw(scr_coord offset)
 {
-	display_img_stretch( gui_theme_t::divider, scr_rect( get_pos()+offset, get_size() ) );
+	g_simgraph->draw_stretch_map( gui_theme_t::divider, scr_rect( get_pos()+offset, get_size() ) );
 }
 
 

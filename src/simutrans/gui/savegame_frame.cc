@@ -31,7 +31,7 @@ public:
 	del_button_t() : button_t()
 	{
 		init(button_t::roundbox, "X");
-		w = max(D_BUTTON_HEIGHT, display_get_char_width('X') + D_BUTTON_PADDINGS_X);
+		w = max(D_BUTTON_HEIGHT, g_simgraph->get_char_width('X') + D_BUTTON_PADDINGS_X);
 	}
 	scr_size get_min_size() const OVERRIDE
 	{

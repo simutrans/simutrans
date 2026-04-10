@@ -346,7 +346,7 @@ DWORD WINAPI dr_flush_screen(LPVOID /*lpParam*/)
 		// wait for finish of thread
 		EnterCriticalSection( &redraw_underway );
 		hdc = GetDC(hwnd);
-		display_flush_buffer();
+		g_simgraph->flush_framebuffer();
 		ReleaseDC(hwnd, hdc);
 		hdc = NULL;
 		LeaveCriticalSection( &redraw_underway );
@@ -374,7 +374,7 @@ void dr_flush()
 #else
 	assert(hdc==NULL);
 	hdc = GetDC(hwnd);
-	display_flush_buffer();
+	g_simgraph->flush_framebuffer();
 	ReleaseDC(hwnd, hdc);
 	hdc = NULL;
 #endif

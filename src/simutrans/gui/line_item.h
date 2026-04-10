@@ -37,7 +37,7 @@ public:
 	// to update selected status
 	void draw( scr_coord offset ) OVERRIDE;
 	// normal items
-	line_scrollitem_t( linehandle_t l, select_modes_t sm = SELECT_ITEM) : gui_scrolled_list_t::const_text_scrollitem_t( NULL, color_idx_to_rgb(COL_ORANGE) ), select_mode(sm) { line = l; }
+	line_scrollitem_t( linehandle_t l, select_modes_t sm = SELECT_ITEM) : gui_scrolled_list_t::const_text_scrollitem_t( NULL, g_simgraph->palette_lookup(COL_ORANGE) ), select_mode(sm) { line = l; }
 	PIXVAL get_color() const OVERRIDE;
 	linehandle_t get_line() const { return line; }
 	char const* get_text() const OVERRIDE;

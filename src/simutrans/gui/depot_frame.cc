@@ -240,11 +240,11 @@ void depot_frame_t::init(depot_t *dep)
 	convoi_tile_length_sb = 0;
 	new_vehicle_length_sb = 0;
 	if(  depot->get_max_convoi_length() > 1  ) { // no convoy length bar for ships or aircraft
-		sb_convoi_length.add_color_value(&convoi_tile_length_sb, color_idx_to_rgb(COL_BROWN));
-		sb_convoi_length.add_color_value(&new_vehicle_length_sb, color_idx_to_rgb(COL_DARK_GREEN));
-		sb_convoi_length.add_color_value(&convoi_length_ok_sb, color_idx_to_rgb(COL_GREEN));
-		sb_convoi_length.add_color_value(&convoi_length_slower_sb, color_idx_to_rgb(COL_ORANGE));
-		sb_convoi_length.add_color_value(&convoi_length_too_slow_sb, color_idx_to_rgb(COL_RED));
+		sb_convoi_length.add_color_value(&convoi_tile_length_sb,     g_simgraph->palette_lookup(COL_BROWN));
+		sb_convoi_length.add_color_value(&new_vehicle_length_sb,     g_simgraph->palette_lookup(COL_DARK_GREEN));
+		sb_convoi_length.add_color_value(&convoi_length_ok_sb,       g_simgraph->palette_lookup(COL_GREEN));
+		sb_convoi_length.add_color_value(&convoi_length_slower_sb,   g_simgraph->palette_lookup(COL_ORANGE));
+		sb_convoi_length.add_color_value(&convoi_length_too_slow_sb, g_simgraph->palette_lookup(COL_RED));
 		cont_convoi.add_component(&sb_convoi_length);
 	}
 	add_component(&scrolly_convoi);
@@ -392,12 +392,12 @@ void depot_frame_t::init(depot_t *dep)
 		 */
 		scr_coord placement;
 		scr_coord grid;
-		grid.x = depot->get_x_grid() * get_base_tile_raster_width() / 64 + 4;
-		grid.y = depot->get_y_grid() * get_base_tile_raster_width() / 64 + 6;
-		placement.x = depot->get_x_placement() * get_base_tile_raster_width() / 64 + 2;
-		placement.y = depot->get_y_placement() * get_base_tile_raster_width() / 64 + 2;
-		scr_coord_val grid_dx = depot->get_x_grid() * get_base_tile_raster_width() / 64 / 2;
-		scr_coord_val placement_dx = depot->get_x_grid() * get_base_tile_raster_width() / 64 / 4;
+		grid.x = depot->get_x_grid() * g_simgraph->get_base_tile_raster_width() / 64 + 4;
+		grid.y = depot->get_y_grid() * g_simgraph->get_base_tile_raster_width() / 64 + 6;
+		placement.x = depot->get_x_placement() * g_simgraph->get_base_tile_raster_width() / 64 + 2;
+		placement.y = depot->get_y_placement() * g_simgraph->get_base_tile_raster_width() / 64 + 2;
+		scr_coord_val grid_dx = depot->get_x_grid() * g_simgraph->get_base_tile_raster_width() / 64 / 2;
+		scr_coord_val placement_dx = depot->get_x_grid() * g_simgraph->get_base_tile_raster_width() / 64 / 4;
 
 		sb_convoi_length.set_width(depot->get_max_convoi_length() * (grid.x - grid_dx));
 
@@ -714,23 +714,23 @@ void depot_frame_t::update_data()
 		}
 
 		/* color bars for current convoi: */
-		convoi_pics[0]->lcolor = color_idx_to_rgb(cnv->front()->get_desc()->can_follow(NULL) ? COL_GREEN : COL_YELLOW);
+		convoi_pics[0]->lcolor = g_simgraph->palette_lookup(cnv->front()->get_desc()->can_follow(NULL) ? COL_GREEN : COL_YELLOW);
 		{
 			unsigned i;
 			for(  i = 1;  i < cnv->get_vehicle_count();  i++  ) {
-				convoi_pics[i - 1]->rcolor = color_idx_to_rgb(cnv->get_vehicle(i-1)->get_desc()->can_lead(cnv->get_vehicle(i)->get_desc()) ? COL_GREEN : COL_RED);
-				convoi_pics[i]->lcolor     = color_idx_to_rgb(cnv->get_vehicle(i)->get_desc()->can_follow(cnv->get_vehicle(i-1)->get_desc()) ? COL_GREEN : COL_RED);
+				convoi_pics[i - 1]->rcolor = g_simgraph->palette_lookup(cnv->get_vehicle(i-1)->get_desc()->can_lead(cnv->get_vehicle(i)->get_desc()) ? COL_GREEN : COL_RED);
+				convoi_pics[i]->lcolor     = g_simgraph->palette_lookup(cnv->get_vehicle(i)->get_desc()->can_follow(cnv->get_vehicle(i-1)->get_desc()) ? COL_GREEN : COL_RED);
 			}
-			convoi_pics[i - 1]->rcolor = color_idx_to_rgb(cnv->get_vehicle(i-1)->get_desc()->can_lead(NULL) ? COL_GREEN : COL_YELLOW);
+			convoi_pics[i - 1]->rcolor = g_simgraph->palette_lookup(cnv->get_vehicle(i-1)->get_desc()->can_lead(NULL) ? COL_GREEN : COL_YELLOW);
 		}
 
 		// change green into blue for vehicles that are not available
 		for(  unsigned i = 0;  i < cnv->get_vehicle_count();  i++  ) {
 			if(  !cnv->get_vehicle(i)->get_desc()->is_available(month_now)  ) {
-				if(  convoi_pics[i]->lcolor == color_idx_to_rgb(COL_GREEN)  ) {
+				if(  convoi_pics[i]->lcolor == g_simgraph->palette_lookup(COL_GREEN)  ) {
 					convoi_pics[i]->lcolor = gui_theme_t::gui_color_obsolete;
 				}
-				if(  convoi_pics[i]->rcolor == color_idx_to_rgb(COL_GREEN)  ) {
+				if(  convoi_pics[i]->rcolor == g_simgraph->palette_lookup(COL_GREEN)  ) {
 					convoi_pics[i]->rcolor = gui_theme_t::gui_color_obsolete;
 				}
 			}
@@ -742,7 +742,7 @@ void depot_frame_t::update_data()
 	for(auto const& i : vehicle_map) {
 		vehicle_desc_t const* const    info = i.key;
 		gui_image_list_t::image_data_t& img  = *i.value;
-		const PIXVAL ok_color = info->is_available(month_now) ? color_idx_to_rgb(COL_GREEN) : gui_theme_t::gui_color_obsolete;
+		const PIXVAL ok_color = info->is_available(month_now) ? g_simgraph->palette_lookup(COL_GREEN) : gui_theme_t::gui_color_obsolete;
 
 		img.count = 0;
 		img.lcolor = ok_color;
@@ -758,25 +758,25 @@ void depot_frame_t::update_data()
 
 		if(veh_action == va_insert) {
 			if(!info->can_lead(veh)  ||  (veh  &&  !veh->can_follow(info))) {
-				img.lcolor = color_idx_to_rgb(COL_RED);
-				img.rcolor = color_idx_to_rgb(COL_RED);
+				img.lcolor = g_simgraph->palette_lookup(COL_RED);
+				img.rcolor = g_simgraph->palette_lookup(COL_RED);
 			}
 			else if(!info->can_follow(NULL)) {
-				img.lcolor = color_idx_to_rgb(COL_YELLOW);
+				img.lcolor = g_simgraph->palette_lookup(COL_YELLOW);
 			}
 		}
 		else if(veh_action == va_append) {
 			if(!info->can_follow(veh)  ||  (veh  &&  !veh->can_lead(info))) {
-				img.lcolor = color_idx_to_rgb(COL_RED);
-				img.rcolor = color_idx_to_rgb(COL_RED);
+				img.lcolor = g_simgraph->palette_lookup(COL_RED);
+				img.rcolor = g_simgraph->palette_lookup(COL_RED);
 			}
 			else if(!info->can_lead(NULL)) {
-				img.rcolor = color_idx_to_rgb(COL_YELLOW);
+				img.rcolor = g_simgraph->palette_lookup(COL_YELLOW);
 			}
 		}
 		else if( veh_action == va_sell ) {
-			img.lcolor = color_idx_to_rgb(COL_RED);
-			img.rcolor = color_idx_to_rgb(COL_RED);
+			img.lcolor = g_simgraph->palette_lookup(COL_RED);
+			img.rcolor = g_simgraph->palette_lookup(COL_RED);
 		}
 	}
 
@@ -785,8 +785,8 @@ void depot_frame_t::update_data()
 		if (gui_image_list_t::image_data_t* const imgdat = vehicle_map.get(v->get_desc())) {
 			imgdat->count++;
 			if(veh_action == va_sell) {
-				imgdat->lcolor = color_idx_to_rgb(COL_GREEN);
-				imgdat->rcolor = color_idx_to_rgb(COL_GREEN);
+				imgdat->lcolor = g_simgraph->palette_lookup(COL_GREEN);
+				imgdat->rcolor = g_simgraph->palette_lookup(COL_GREEN);
 			}
 		}
 	}
@@ -1085,7 +1085,7 @@ sint64 depot_frame_t::calc_restwert(const vehicle_desc_t *veh_type)
 
 void depot_frame_t::image_from_storage_list(gui_image_list_t::image_data_t *image_data)
 {
-	if(  image_data->lcolor != color_idx_to_rgb(COL_RED)  &&  image_data->rcolor != color_idx_to_rgb(COL_RED)  ) {
+	if(  image_data->lcolor != g_simgraph->palette_lookup(COL_RED)  &&  image_data->rcolor != g_simgraph->palette_lookup(COL_RED)  ) {
 		if(  veh_action == va_sell  ) {
 			depot->call_depot_tool('s', convoihandle_t(), image_data->text );
 		}
@@ -1467,7 +1467,7 @@ void depot_frame_t::update_vehicle_info_text(scr_coord pos)
 		// cursor over a vehicle in the selection list
 		const vector_tpl<gui_image_list_t::image_data_t*>& vec = (lst == &electrics ? electrics_vec : (lst == &pas ? pas_vec : (lst == &loks ? loks_vec : waggons_vec)));
 		veh_type = vehicle_builder_t::get_info( vec[sel_index]->text );
-		if(  vec[sel_index]->lcolor == color_idx_to_rgb(COL_RED)  ||  veh_action == va_sell  ) {
+		if(  vec[sel_index]->lcolor == g_simgraph->palette_lookup(COL_RED)  ||  veh_action == va_sell  ) {
 			// don't show new_vehicle_length_sb when can't actually add the highlighted vehicle, or selling from inventory
 			new_vehicle_length_sb_force_zero = true;
 		}

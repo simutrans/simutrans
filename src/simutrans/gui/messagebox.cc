@@ -32,7 +32,7 @@ fatal_news::fatal_news(const char* text) :
 	copy_to_clipboard.set_focusable(false);
 	add_component(&copy_to_clipboard);
 
-	textarea.set_width(display_get_width()/2);
+	textarea.set_width(g_simgraph->get_screen_size().w/2);
 	recalc_size();
 }
 
@@ -83,7 +83,7 @@ void news_img::init(image_id id)
 
 news_loc::news_loc(const char* text, koord3d k, FLAGGED_PIXVAL color) :
 	news_window(text, color),
-	view(k, scr_size( max(64, get_base_tile_raster_width()), max(56, (get_base_tile_raster_width()*7)/8) ))
+	view(k, scr_size( max(64, g_simgraph->get_base_tile_raster_width()), max(56, (g_simgraph->get_base_tile_raster_width()*7)/8) ))
 {
 	textarea.set_size(scr_size(textarea.get_size().w + view.get_size().w + D_H_SPACE + 1, 0));
 	set_embedded(&view);

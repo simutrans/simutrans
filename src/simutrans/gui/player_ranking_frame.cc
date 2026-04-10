@@ -181,7 +181,7 @@ void player_button_t::update()
 	player_t* player = world()->get_player(player_nr);
 	if (player) {
 		set_text(player->get_name());
-		background_color = color_idx_to_rgb(player->get_player_color1() + env_t::gui_player_color_bright);
+		background_color = g_simgraph->palette_lookup(player->get_player_color1() + env_t::gui_player_color_bright);
 		enable();
 		set_visible(true);
 	}
@@ -250,7 +250,7 @@ player_ranking_frame_t::player_ranking_frame_t(uint8 selected_player_nr) :
 	{
 		for (uint8 i = 0; i < MAX_PLAYER_RANKING_CHARTS; i++) {
 			bt_charts[i].init(button_t::roundbox_state | button_t::flexible, cost_type_name[i]);
-			bt_charts[i].background_color = color_idx_to_rgb(cost_type_color[i]);
+			bt_charts[i].background_color = g_simgraph->palette_lookup(cost_type_color[i]);
 			if (i == selected_item) bt_charts[i].pressed = true;
 			bt_charts[i].add_listener(this);
 			add_component(&bt_charts[i]);
@@ -410,7 +410,7 @@ void player_ranking_frame_t::update_chart(bool full_update)
 			switch (count)
 			{
 			case 1:
-				cont_players.new_component<gui_label_t>("1", color_idx_to_rgb(COL_YELLOW), gui_label_t::centered);
+				cont_players.new_component<gui_label_t>("1", g_simgraph->palette_lookup(COL_YELLOW), gui_label_t::centered);
 				break;
 			case 2:
 				cont_players.new_component<gui_label_t>("2", 0, gui_label_t::centered);
@@ -452,7 +452,7 @@ void player_ranking_frame_t::update_chart(bool full_update)
 				const int curve_type = (int)cost_type[selected_item];
 				const int curve_precision = (curve_type == gui_chart_t::STANDARD) ? 0 : (curve_type == gui_chart_t::MONEY || curve_type == gui_chart_t::PERCENT) ? 2 : 1;
 				//			gui_chart_t::chart_marker_t marker = (np==selected_player) ? gui_chart_t::square : gui_chart_t::none;
-				chart.add_curve(color_idx_to_rgb(player->get_player_color1() + 3), *p_chart_table, MAX_PLAYER_COUNT - 1, np, chart_years_back, curve_type, true, false, curve_precision, NULL);
+				chart.add_curve(g_simgraph->palette_lookup(player->get_player_color1() + 3), *p_chart_table, MAX_PLAYER_COUNT - 1, np, chart_years_back, curve_type, true, false, curve_precision, NULL);
 			}
 		}
 

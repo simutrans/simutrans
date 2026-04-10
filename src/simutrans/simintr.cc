@@ -75,6 +75,7 @@ void set_frame_time(uint32 time)
 
 void intr_refresh_display(bool dirty)
 {
+#if COLOUR_DEPTH != 0
 	wasser_t::prepare_for_refresh();
 	dr_prepare_flush();
 	main_view->display( dirty );
@@ -86,6 +87,9 @@ void intr_refresh_display(bool dirty)
 	}
 	// with a switch statement more types could be supported ...
 	dr_flush();
+#else
+	(void)dirty;
+#endif
 }
 
 

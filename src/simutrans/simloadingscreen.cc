@@ -27,13 +27,14 @@ loadingscreen_t::loadingscreen_t( const char *w, uint32 max_p, bool logo, bool c
 	last_bar_len = -1;
 	show_logo = logo;
 
-	if(  !is_display_init()  ||  continueflag  ) {
+	if(  !g_simgraph->is_display_init()  ||  continueflag  ) {
 		return;
 	}
 
 	// darkens the current screen
-	display_blend_wh_rgb(0, 0, display_get_width(), display_get_height(), color_idx_to_rgb(COL_BLACK), 50 );
-	mark_screen_dirty();
+	const scr_size screen = g_simgraph->get_screen_size();
+	g_simgraph->tint_rect(0, 0, screen.w, screen.h, g_simgraph->palette_lookup(COL_BLACK), 50 );
+	g_simgraph->mark_screen_dirty();
 
 	display_logo();
 }
@@ -43,19 +44,20 @@ loadingscreen_t::loadingscreen_t( const char *w, uint32 max_p, bool logo, bool c
 void loadingscreen_t::display_logo()
 {
 	if(  show_logo  &&  skinverwaltung_t::biglogosymbol  ) {
+		const scr_size screen = g_simgraph->get_screen_size();
 		const image_t *image0 = skinverwaltung_t::biglogosymbol->get_image(0);
 		const int w = image0->w;
 		const int h = image0->h + image0->y;
-		int x = display_get_width()/2-w;
-		int y = display_get_height()/4-w;
+		int x = screen.w/2-w;
+		int y = screen.h/4-w;
 		if(y<0) {
 			y = 1;
 		}
 
-		display_color_img(skinverwaltung_t::biglogosymbol->get_image_id(0), x, y, 0, false, true);
-		display_color_img(skinverwaltung_t::biglogosymbol->get_image_id(1), x+w, y, 0, false, true);
-		display_color_img(skinverwaltung_t::biglogosymbol->get_image_id(2), x, y+h, 0, false, true);
-		display_color_img(skinverwaltung_t::biglogosymbol->get_image_id(3), x+w, y+h, 0, false, true);
+		g_simgraph->draw_color_img(skinverwaltung_t::biglogosymbol->get_image_id(0), x,   y,   0, false, true CLIP_NUM_DEFAULT);
+		g_simgraph->draw_color_img(skinverwaltung_t::biglogosymbol->get_image_id(1), x+w, y,   0, false, true CLIP_NUM_DEFAULT);
+		g_simgraph->draw_color_img(skinverwaltung_t::biglogosymbol->get_image_id(2), x,   y+h, 0, false, true CLIP_NUM_DEFAULT);
+		g_simgraph->draw_color_img(skinverwaltung_t::biglogosymbol->get_image_id(3), x+w, y+h, 0, false, true CLIP_NUM_DEFAULT);
 	}
 }
 
@@ -63,10 +65,11 @@ void loadingscreen_t::display_logo()
 // show everything but the logo
 void loadingscreen_t::display()
 {
-	const int width = display_get_width();
-	const int half_width = width>>1;
-	const int quarter_width = width>>2;
-	const int half_height = display_get_height()>>1;
+	const scr_size screen = g_simgraph->get_screen_size();
+	const int half_width    = screen.w / 2;
+	const int quarter_width = screen.w / 4;
+	const int half_height   = screen.h / 2;
+
 	scr_coord_val const bar_height = max(LINESPACE + 10, 20);
 	scr_coord_val const bar_y = half_height - bar_height / 2 + 1;
 	scr_coord_val const bar_text_y = half_height - LINESPACE / 2 + 1;
@@ -79,21 +82,21 @@ void loadingscreen_t::display()
 		dr_prepare_flush();
 
 		if(  info  ) {
-			display_proportional_rgb( half_width, bar_y - LINESPACE - 2, info, ALIGN_CENTER_H, color_idx_to_rgb(COL_WHITE), true );
+			g_simgraph->draw_text( half_width, bar_y - LINESPACE - 2, info, ALIGN_CENTER_H, g_simgraph->palette_lookup(COL_WHITE), true );
 		}
 
 		// outline
-		display_ddd_box_rgb( quarter_width-2, bar_y, half_width+4, bar_height, color_idx_to_rgb(COL_GREY6), color_idx_to_rgb(COL_GREY4), true );
-		display_ddd_box_rgb( quarter_width-1, bar_y + 1, half_width+2, bar_height - 2, color_idx_to_rgb(COL_GREY4), color_idx_to_rgb(COL_GREY6), true );
+		g_simgraph->draw_box3d(quarter_width-2, bar_y,     half_width+4, bar_height,     g_simgraph->palette_lookup(COL_GREY6), g_simgraph->palette_lookup(COL_GREY4), true);
+		g_simgraph->draw_box3d(quarter_width-1, bar_y + 1, half_width+2, bar_height - 2, g_simgraph->palette_lookup(COL_GREY4), g_simgraph->palette_lookup(COL_GREY6), true);
 
 		// inner
-		display_fillbox_wh_rgb( quarter_width, bar_y + 2, half_width, bar_height - 4, SYSCOL_LOADINGBAR_INNER, true);
+		g_simgraph->draw_rect( quarter_width, bar_y + 2, half_width, bar_height - 4, SYSCOL_LOADINGBAR_INNER, true);
 
 		// progress
-		display_fillbox_wh_rgb( quarter_width, bar_y + 4, bar_len,  bar_height - 8, SYSCOL_LOADINGBAR_PROGRESS, true );
+		g_simgraph->draw_rect( quarter_width, bar_y + 4, bar_len,  bar_height - 8, SYSCOL_LOADINGBAR_PROGRESS, true );
 
 		if(  what  ) {
-			display_proportional_rgb( half_width, bar_text_y, what, ALIGN_CENTER_H, SYSCOL_TEXT_HIGHLIGHT, false );
+			g_simgraph->draw_text( half_width, bar_text_y, what, ALIGN_CENTER_H, SYSCOL_TEXT_HIGHLIGHT, false );
 		}
 
 		dr_flush();
@@ -103,7 +106,7 @@ void loadingscreen_t::display()
 
 void loadingscreen_t::set_progress( uint32 progress )
 {
-	if(!is_display_init()  &&  (progress != this->progress  ||  progress == 0)  ) {
+	if (!g_simgraph->is_display_init()  &&  (progress != this->progress  ||  progress == 0)  ) {
 		return;
 	}
 
@@ -114,8 +117,8 @@ void loadingscreen_t::set_progress( uint32 progress )
 	if(  ev->ev_class == EVENT_SYSTEM  ) {
 		if(  ev->ev_code == SYSTEM_RESIZE  ) {
 			// main window resized
-			simgraph_resize( ev->new_window_size );
-			display_fillbox_wh_rgb( 0, 0, ev->mouse_pos.x, ev->mouse_pos.y, color_idx_to_rgb(COL_BLACK), true );
+			g_simgraph->on_window_resized( ev->new_window_size );
+			g_simgraph->draw_rect( 0, 0, ev->mouse_pos.x, ev->mouse_pos.y, g_simgraph->palette_lookup(COL_BLACK), true );
 			display_logo();
 			// queue the event anyway, so the viewport is correctly updated on world resume (screen will be resized again).
 			queued_events.append(ev);
@@ -148,11 +151,12 @@ void loadingscreen_t::set_progress( uint32 progress )
 
 loadingscreen_t::~loadingscreen_t()
 {
-	if(is_display_init()) {
+	if (g_simgraph->is_display_init()) {
 		win_redraw_world();
-		mark_screen_dirty();
+		g_simgraph->mark_screen_dirty();
 		ticker::set_redraw_all(true);
 	}
+
 	while(  !queued_events.empty()  ) {
 		queue_event( queued_events.remove_first() );
 	}

@@ -85,7 +85,10 @@ class playername_const_scroll_item_t : public gui_scrolled_list_t::const_text_sc
 public:
 	const uint8 player_nr;
 
-	playername_const_scroll_item_t( player_t *pl ) : gui_scrolled_list_t::const_text_scrollitem_t( pl->get_name(), color_idx_to_rgb(pl->get_player_color1()+env_t::gui_player_color_dark) ), player_nr(pl->get_player_nr()) { }
+	playername_const_scroll_item_t( player_t *pl )
+		: gui_scrolled_list_t::const_text_scrollitem_t( pl->get_name(), g_simgraph->palette_lookup(pl->get_player_color1()+env_t::gui_player_color_dark) )
+		, player_nr(pl->get_player_nr())
+	{ }
 };
 
 
@@ -166,11 +169,11 @@ citylist_frame_t::citylist_frame_t() :
 	chart.set_background(SYSCOL_CHART_BACKGROUND);
 	chart.set_min_size(scr_size(0, 8*LINESPACE));
 	for (int i = 0; i<karte_t::MAX_WORLD_COST; i++) {
-		sint16 curve = chart.add_curve(color_idx_to_rgb(hist_type_color[i]), welt->get_finance_history_year(), karte_t::MAX_WORLD_COST, i, MAX_WORLD_HISTORY_YEARS, hist_type_type[i], false, true, (i==1) ? 1 : 0 );
+		sint16 curve = chart.add_curve(g_simgraph->palette_lookup(hist_type_color[i]), welt->get_finance_history_year(), karte_t::MAX_WORLD_COST, i, MAX_WORLD_HISTORY_YEARS, hist_type_type[i], false, true, (i==1) ? 1 : 0 );
 		// add button
 		buttons[i] = container_year.new_component<button_t>();
 		buttons[i]->init(button_t::box_state_automatic | button_t::flexible, hist_type[i]);
-		buttons[i]->background_color = color_idx_to_rgb(hist_type_color[i]);
+		buttons[i]->background_color = g_simgraph->palette_lookup(hist_type_color[i]);
 		buttons[i]->pressed = false;
 
 		button_to_chart.append(buttons[i], &chart, curve);
@@ -183,7 +186,7 @@ citylist_frame_t::citylist_frame_t() :
 	mchart.set_background(SYSCOL_CHART_BACKGROUND);
 	mchart.set_min_size(scr_size(0, 8*LINESPACE));
 	for (int i = 0; i<karte_t::MAX_WORLD_COST; i++) {
-		sint16 curve = mchart.add_curve(color_idx_to_rgb(hist_type_color[i]), welt->get_finance_history_month(), karte_t::MAX_WORLD_COST, i, MAX_WORLD_HISTORY_MONTHS, hist_type_type[i], false, true, (i==1) ? 1 : 0 );
+		sint16 curve = mchart.add_curve(g_simgraph->palette_lookup(hist_type_color[i]), welt->get_finance_history_month(), karte_t::MAX_WORLD_COST, i, MAX_WORLD_HISTORY_MONTHS, hist_type_type[i], false, true, (i==1) ? 1 : 0 );
 		// add button
 		container_month.add_component(buttons[i]);
 		button_to_chart.append(buttons[i], &mchart, curve);

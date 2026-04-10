@@ -22,7 +22,7 @@ class choose_color_button_t : public button_t
 public:
 	choose_color_button_t() : button_t()
 	{
-		w = max(D_BUTTON_HEIGHT, display_get_char_width('X') + D_BUTTON_PADDINGS_X);
+		w = max(D_BUTTON_HEIGHT, g_simgraph->get_char_width('X') + D_BUTTON_PADDINGS_X);
 	}
 	scr_size get_min_size() const OVERRIDE
 	{
@@ -68,7 +68,7 @@ farbengui_t::farbengui_t(player_t *player_) :
 	for(unsigned i=0;  i<28;  i++) {
 		player_color_1[i] = new_component<choose_color_button_t>();
 		player_color_1[i]->init( button_t::box_state, (used_colors1 & (1<<i) ? "X" : " "));
-		player_color_1[i]->background_color = color_idx_to_rgb(i*8+4);
+		player_color_1[i]->background_color = g_simgraph->palette_lookup(i*8+4);
 		player_color_1[i]->add_listener(this);
 	}
 	player_color_1[player->get_player_color1()/8]->pressed = true;
@@ -82,7 +82,7 @@ farbengui_t::farbengui_t(player_t *player_) :
 	for(unsigned i=0;  i<28;  i++) {
 		player_color_2[i] = new_component<choose_color_button_t>();
 		player_color_2[i]->init( button_t::box_state, (used_colors2 & (1<<i) ? "X" : " "));
-		player_color_2[i]->background_color = color_idx_to_rgb(i*8+4);
+		player_color_2[i]->background_color = g_simgraph->palette_lookup(i*8+4);
 		player_color_2[i]->add_listener(this);
 	}
 	player_color_2[player->get_player_color2()/8]->pressed = true;

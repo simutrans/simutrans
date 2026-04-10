@@ -40,7 +40,7 @@ vehiclelist_stats_t::vehiclelist_stats_t(const vehicle_desc_t *v) :
 
 	// width of image
 	const image_id image = veh->get_image_id( ribi_t::dir_south, veh->get_freight_type() );
-	const scr_rect r = display_get_base_image_offset(image);
+	const scr_rect r = g_simgraph->get_base_image_offset(image);
 
 	if( r.w > img_width ) {
 		img_width = r.w + D_H_SPACE;
@@ -48,11 +48,11 @@ vehiclelist_stats_t::vehiclelist_stats_t(const vehicle_desc_t *v) :
 	height = r.h;
 
 	// name is the widest entry in column 1
-	name_width = proportional_string_width( translator::translate( veh->get_name(), world()->get_settings().get_name_language_id() ) );
+	name_width = g_simgraph->calc_text_width( translator::translate( veh->get_name(), world()->get_settings().get_name_language_id() ) );
 	if( veh->get_power() > 0 ) {
 		char str[ 256 ];
 		sprintf( str, " (%s)", translator::translate( vehicle_builder_t::engine_type_names[ veh->get_engine_type() + 1 ] ) );
-		name_width += proportional_string_width( str );
+		name_width += g_simgraph->calc_text_width( str );
 	}
 	scr_coord_val name_h = LINESPACE;
 
@@ -85,9 +85,9 @@ vehiclelist_stats_t::vehiclelist_stats_t(const vehicle_desc_t *v) :
 			part1.printf( translator::translate( "Power: %4d kW\n" ), veh->get_power() );
 		}
 	}
-	int text1w, text1h;
-	display_calc_proportional_multiline_string_len_width( text1w, text1h, part1);
-	col1_width = text1w + D_H_SPACE;
+
+	const scr_size text1_size = g_simgraph->calc_multiline_text_size(part1);
+	col1_width = text1_size.w + D_H_SPACE;
 
 	// column 2
 	part2.clear();
@@ -100,9 +100,9 @@ vehiclelist_stats_t::vehiclelist_stats_t(const vehicle_desc_t *v) :
 		part2.append( "\n" );
 		part2.printf( translator::translate( "Constructed by %s" ), copyright );
 	}
-	int text2w, text2h;
-	display_calc_proportional_multiline_string_len_width( text2w, text2h, part2);
-	col2_width = text2w;
+
+	const scr_size text2_size = g_simgraph->calc_multiline_text_size(part2);
+	col2_width = text2_size.w;
 
 	// we need to find out manually, if we have extra text to show
 	if (strlen(veh->get_name()) < 238) {
@@ -116,7 +116,7 @@ vehiclelist_stats_t::vehiclelist_stats_t(const vehicle_desc_t *v) :
 		}
 	}
 
-	height = max( height, max( text1h, text2h ) + name_h )+D_V_SPACE;
+	height = max( height, max( text1_size.h, text2_size.h ) + name_h ) + D_V_SPACE;
 }
 
 
@@ -129,12 +129,12 @@ void vehiclelist_stats_t::draw( scr_coord offset )
 	offset.y += D_V_SPACE/2;
 
 	const image_id image = veh->get_image_id( ribi_t::dir_south, veh->get_freight_type() );
-	const scr_rect r = display_get_base_image_offset(image);
-	display_base_img(image, offset.x - r.x, offset.y - r.y, world()->get_active_player_nr(), false, true);
+	const scr_rect r = g_simgraph->get_base_image_offset(image);
+	g_simgraph->draw_base_img(image, offset.x - r.x, offset.y - r.y, world()->get_active_player_nr(), false, true CLIP_NUM_DEFAULT);
 
 	// first name
 	offset.x += img_width;
-	int dx = display_proportional_rgb(
+	int dx = g_simgraph->draw_text(
 		offset.x, offset.y,
 		translator::translate( veh->get_name(), world()->get_settings().get_name_language_id() ),
 		ALIGN_LEFT|DT_CLIP,
@@ -145,7 +145,7 @@ void vehiclelist_stats_t::draw( scr_coord offset )
 	if( veh->get_power() > 0 ) {
 		char str[ 256 ];
 		sprintf( str, " (%s)", translator::translate( vehicle_builder_t::engine_type_names[ veh->get_engine_type() + 1 ] ) );
-		display_proportional_rgb( offset.x+dx, offset.y, str, ALIGN_LEFT|DT_CLIP, SYSCOL_TEXT, false );
+		g_simgraph->draw_text( offset.x+dx, offset.y, str, ALIGN_LEFT|DT_CLIP, SYSCOL_TEXT, false );
 	}
 
 	// maybe there are detailed text to the vehicle?
@@ -156,9 +156,9 @@ void vehiclelist_stats_t::draw( scr_coord offset )
 	}
 
 	// now the rest in two columns
-	display_multiline_text_rgb( offset.x, yyy, part1, SYSCOL_TEXT );
+	g_simgraph->draw_multiline_text( offset.x, yyy, part1, SYSCOL_TEXT );
 
-	display_multiline_text_rgb( offset.x + col1_width, yyy, part2, SYSCOL_TEXT );
+	g_simgraph->draw_multiline_text( offset.x + col1_width, yyy, part2, SYSCOL_TEXT );
 }
 
 

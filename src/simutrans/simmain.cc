@@ -159,24 +159,24 @@ static void show_times(karte_t *welt, main_view_t *view)
 
 	image_id img = ground_desc_t::outside->get_image(0,0);
 
-	display_color_img(img, 120, 100, 1, 0, 1);
+	g_simgraph->draw_color_img(img, 120, 100, 1, 0, 1 CLIP_NUM_DEFAULT);
 	uint32 ms = dr_time();
 	for (i = 0;  i < 6000000;  i++) {
-		display_img_aux( img, 50, 50, 1, 0, true  CLIP_NUM_DEFAULT);
+		g_simgraph->draw_img_aux( img, 50, 50, 1, 0, true  CLIP_NUM_DEFAULT);
 	}
 	dbg->message("show_times()", "display_img() %i iterations took %li ms", i, dr_time() - ms );
 
 	image_id player_img = skinverwaltung_t::color_options->get_image_id(0);
 	ms = dr_time();
 	for (i = 0;  i < 1000000;  i++) {
-		display_color_img( player_img, 120, 100, i%15, 0, 1);
+		g_simgraph->draw_color_img( player_img, 120, 100, i%15, 0, 1 CLIP_NUM_DEFAULT);
 	}
 	dbg->message("show_times()", "display_color_img() with recolor %i iterations took %li ms", i, dr_time() - ms );
 
 	ms = dr_time();
 	for (i = 0;  i < 100000;  i++) {
-		display_color_img( img, 120, 100, 0, 1, 1);
-		display_color_img( player_img, 160, 150, 16, 1, 1);
+		g_simgraph->draw_color_img( img, 120, 100, 0, 1, 1 CLIP_NUM_DEFAULT);
+		g_simgraph->draw_color_img( player_img, 160, 150, 16, 1, 1 CLIP_NUM_DEFAULT);
 	}
 	dbg->message("show_times()", "display_color_img() 3x %i iterations took %li ms", i, dr_time() - ms );
 
@@ -191,13 +191,13 @@ static void show_times(karte_t *welt, main_view_t *view)
 
 	ms = dr_time();
 	for (i = 0;  i < 300000;  i++) {
-		display_text_proportional_len_clip_rgb(100, 120, "Dies ist ein kurzer Textetxt ...", 0, 0, false, -1);
+		g_simgraph->draw_text_clipped_n(100, 120, "Dies ist ein kurzer Textetxt ...", 0, 0, false, -1 CLIP_NUM_DEFAULT);
 	}
 	dbg->message("show_times()", "display_text_proportional_len_clip_rgb() %i iterations took %li ms", i, dr_time() - ms );
 
 	ms = dr_time();
 	for (i = 0;  i < 300000;  i++) {
-		display_fillbox_wh_rgb(100, 120, 300, 50, 0, false);
+		g_simgraph->draw_rect(100, 120, 300, 50, 0, false);
 	}
 	dbg->message("show_times()", "display_fillbox_wh_rgb() %i iterations took %li ms", i, dr_time() - ms );
 
@@ -255,7 +255,7 @@ static void show_times(karte_t *welt, main_view_t *view)
 static bool never_quit() { return false; }
 static bool no_language() { return translator::get_language()!=-1; }
 static utf16 testfor_this_character = 0;
-static bool no_font() { return has_character(testfor_this_character); }
+static bool no_font() { return g_simgraph->font_has_character(testfor_this_character); }
 #if COLOUR_DEPTH != 0
 static bool empty_objfilename() { return !env_t::pak_name.empty() ||  pakinstaller_t::finish_install; }
 static bool finish_install() { return pakinstaller_t::finish_install; }
@@ -316,7 +316,7 @@ static sint16 ask_objfilename()
  */
 static void ask_language()
 {
-	if(  display_get_width()==0  ) {
+	if(  g_simgraph->get_screen_size().w==0  ) {
 		// only console available ... => choose english for the moment
 		dbg->warning( "ask_language", "No language selected, will use english!" );
 		translator::set_language( "en" );
@@ -916,15 +916,27 @@ int simu_main(int argc, char** argv)
 		}
 	}
 
+	simgraph_type_t preferred_renderer_type =
+#if COLOUR_DEPTH == 0
+		SIMGRAPH_TYPE_NULL;
+#else
+		SIMGRAPH_TYPE_SOFTWARE;
+#endif
+
+	g_simgraph = simgraph_select(preferred_renderer_type);
+
 	DBG_MESSAGE("simu_main()", "simgraph_init disp_width=%d, disp_height=%d, fullscreen=%d", disp_width, disp_height, fullscreen);
-	if (!simgraph_init(scr_size(disp_width, disp_height), fullscreen)) {
+	if (!g_simgraph || !g_simgraph->init(scr_size(disp_width, disp_height), fullscreen)) {
 		dbg->error("simu_main()", "Failed to initialize graphics system.");
 		return EXIT_FAILURE;
 	}
-	DBG_MESSAGE("simu_main()", ".. results in disp_width=%d, disp_height=%d", display_get_width(), display_get_height());
+
+	const scr_size screen = g_simgraph->get_screen_size();
+	DBG_MESSAGE("simu_main()", ".. results in disp_width=%d, disp_height=%d", screen.w, screen.h);
+
 	// now that the graphics system has already started
 	// the saved colours can be converted to the system format
-	env_t_rgb_to_system_colors();
+	g_simgraph->env_t_rgb_to_system_colors();
 
 	// parse colours now that the graphics system has started
 	// default simuconf.tab
@@ -995,7 +1007,7 @@ int simu_main(int argc, char** argv)
 	dr_chdir( env_t::base_dir );
 
 	// The loading screen needs to be initialized
-	display_show_pointer(1);
+	g_simgraph->set_cursor_visible(true);
 
 	// if no object files given, we ask the user
 	int retries=0;
@@ -1004,7 +1016,7 @@ int simu_main(int argc, char** argv)
 			retries++;
 		}
 		if(  env_t::quit_simutrans  ) {
-			simgraph_exit();
+			g_simgraph->exit();
 			return EXIT_SUCCESS;
 		}
 		else if (env_t::pak_name.empty()) {
@@ -1022,7 +1034,7 @@ int simu_main(int argc, char** argv)
 			"\n"
 			"Please install a pak set and select it using the '-objects'\n"
 			"command line parameter or the 'pak_file_path' simuconf.tab entry.");
-		simgraph_exit();
+		g_simgraph->exit();
 		return EXIT_FAILURE;
 	}
 #endif
@@ -1040,7 +1052,7 @@ int simu_main(int argc, char** argv)
 				env_t::pak_dir.c_str());
 
 			dr_fatal_notify(errmsg);
-			simgraph_exit();
+			g_simgraph->exit();
 			return EXIT_FAILURE;
 		}
 		fclose(f);
@@ -1253,7 +1265,7 @@ int simu_main(int argc, char** argv)
 		const utf8 *new_world = (const utf8 *)translator::translate("Beenden");
 		size_t len;
 		testfor_this_character = utf8_decoder_t::decode(new_world,len);
-		if (!has_character(testfor_this_character)) {
+		if (!g_simgraph->font_has_character(testfor_this_character)) {
 			// not valid => show font selector
 			loadfont_frame_t* sel = new loadfont_frame_t();
 			destroy_all_win(true); // since eventually the successful load message is still there ....
@@ -1632,8 +1644,8 @@ int simu_main(int argc, char** argv)
 		display_set_pointer(skinverwaltung_t::mouse_cursor->get_image_id(0));
 	}
 #endif
-	display_show_pointer(true);
-	display_show_load_pointer(0);
+	g_simgraph->set_cursor_visible(true);
+	g_simgraph->set_show_load_cursor(false);
 
 	welt->set_dirty();
 
@@ -1727,7 +1739,7 @@ int simu_main(int argc, char** argv)
 	remove_port_forwarding( env_t::server );
 	network_core_shutdown();
 
-	simgraph_exit();
+	g_simgraph->exit();
 
 	close_midi();
 

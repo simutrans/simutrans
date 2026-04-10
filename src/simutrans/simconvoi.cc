@@ -3651,7 +3651,7 @@ PIXVAL convoi_t::get_status_color() const
 	}
 	else if (state == WAITING_FOR_CLEARANCE_ONE_MONTH || state == CAN_START_ONE_MONTH || get_state() == NO_ROUTE) {
 		// stuck or no route
-		return color_idx_to_rgb(COL_ORANGE);
+		return g_simgraph->palette_lookup(COL_ORANGE);
 	}
 	else if(financial_history[0][CONVOI_PROFIT]+financial_history[1][CONVOI_PROFIT]<0) {
 		// ok, not performing best

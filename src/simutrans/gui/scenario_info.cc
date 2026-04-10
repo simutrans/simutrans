@@ -84,7 +84,8 @@ scenario_info_t::scenario_info_t() :
 	}
 
 	set_resizemode(diagonal_resize);
-	scr_size ms(min(display_get_width() / 2, 500), min(display_get_height() / 2, 300));
+	const scr_size screen = g_simgraph->get_screen_size();
+	scr_size ms(min(screen.w / 2, 500), min(screen.h / 2, 300));
 	set_min_windowsize(ms);
 	set_windowsize(ms);
 }

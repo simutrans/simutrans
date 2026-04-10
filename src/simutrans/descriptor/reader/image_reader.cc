@@ -213,7 +213,7 @@ adjust_image:
 				images_adlers.put(adler,desc); // still with imageid == IMG_EMPTY!
 			}
 			// register image adds this image to the internal array maintained by simgraph??.cc
-			register_image(desc);
+			g_simgraph->register_image(desc);
 		}
 		else {
 			// no need to load doubles ...

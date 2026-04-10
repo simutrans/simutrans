@@ -1217,8 +1217,9 @@ void karte_t::init(settings_t* const sets, sint8 const* const h_field)
 	for(  uint i=0;  i<MAX_PLAYER_COUNT;  i++  ) {
 		selected_tool[i] = tool_t::general_tool[TOOL_QUERY];
 	}
-	if(is_display_init()) {
-		display_show_pointer(false);
+
+	if (g_simgraph->is_display_init()) {
+		g_simgraph->set_cursor_visible(false);
 	}
 	viewport->change_world_position( koord(0,0), 0, 0 );
 
@@ -1342,8 +1343,8 @@ DBG_DEBUG("karte_t::init()","built timeline");
 	simloops = 60;
 	reset_timer();
 
-	if(is_display_init()) {
-		display_show_pointer(true);
+	if(g_simgraph->is_display_init()) {
+		g_simgraph->set_cursor_visible(true);
 	}
 	mute_sound(false);
 }
@@ -1701,8 +1702,8 @@ void karte_t::enlarge_map(settings_t const* sets, sint8 const* const h_field)
 		mute_sound(true);
 		minimap_t::is_visible = false;
 
-		if(is_display_init()) {
-			display_show_pointer(false);
+		if (g_simgraph->is_display_init()) {
+			g_simgraph->set_cursor_visible(false);
 		}
 
 // Copy old values:
@@ -1979,8 +1980,8 @@ void karte_t::enlarge_map(settings_t const* sets, sint8 const* const h_field)
 	clear_random_mode( MAP_CREATE_RANDOM );
 
 	if ( !new_world ) {
-		if(is_display_init()) {
-			display_show_pointer(true);
+		if (g_simgraph->is_display_init()) {
+			g_simgraph->set_cursor_visible(true);
 		}
 		mute_sound(false);
 
@@ -2706,10 +2707,10 @@ void karte_t::display(uint32 delta_t)
 		vehicle_t const& v       = *follow_convoi->front();
 		koord3d   const  new_pos = v.get_pos();
 		if(new_pos!=koord3d::invalid) {
-			const sint16 rw = get_tile_raster_width();
+			const sint16 rw = g_simgraph->get_tile_raster_width();
 			int new_xoff = 0;
 			int new_yoff = 0;
-			v.get_screen_offset( new_xoff, new_yoff, get_tile_raster_width() );
+			v.get_screen_offset( new_xoff, new_yoff, g_simgraph->get_tile_raster_width() );
 			new_xoff -= tile_raster_scale_x(-v.get_xoff(), rw);
 			new_yoff -= tile_raster_scale_y(-v.get_yoff(), rw) + tile_raster_scale_y(new_pos.z * TILE_HEIGHT_STEP, rw);
 			viewport->change_world_position( new_pos.get_2d(), -new_xoff, -new_yoff );
@@ -2774,7 +2775,7 @@ void karte_t::update_frame_sleep_time()
 			simloops = (10000*32l)/(last_step_nr[last_step]-last_step_nr[steps%32]);
 		}
 		// (de-)activate faster redraw
-		env_t::simple_drawing = (env_t::simple_drawing_normal >= get_tile_raster_width());
+		env_t::simple_drawing = (env_t::simple_drawing_normal >= g_simgraph->get_tile_raster_width());
 
 		// calculate and activate fast redraw ..
 		if(  realFPS > (env_t::fps*17/16)  ) {
@@ -2785,11 +2786,11 @@ void karte_t::update_frame_sleep_time()
 		}
 		else if(  realFPS < env_t::fps*16/2  ) {
 			// activate simple redraw
-			env_t::simple_drawing_normal = max( env_t::simple_drawing_normal, get_tile_raster_width()+1 );
+			env_t::simple_drawing_normal = max( env_t::simple_drawing_normal, g_simgraph->get_tile_raster_width()+1 );
 		}
 		else if(  realFPS < (env_t::fps*15)  )  {
 			// increase fast tile redraw by one if below current tile size
-			if(  env_t::simple_drawing_normal <= (get_tile_raster_width()*3)/2  ) {
+			if(  env_t::simple_drawing_normal <= (g_simgraph->get_tile_raster_width()*3)/2  ) {
 				env_t::simple_drawing_normal ++;
 			}
 		}
@@ -2799,7 +2800,7 @@ void karte_t::update_frame_sleep_time()
 				env_t::simple_drawing_normal --;
 			}
 		}
-		env_t::simple_drawing = (env_t::simple_drawing_normal >= get_tile_raster_width());
+		env_t::simple_drawing = (env_t::simple_drawing_normal >= g_simgraph->get_tile_raster_width());
 
 		// way too slow => try to increase time ...
 		if(  frame_end_time-last_interaction > 100  ) {
@@ -2807,8 +2808,8 @@ void karte_t::update_frame_sleep_time()
 				idle_time >>= 1;
 				set_frame_time( 1+get_frame_time() );
 				// more than 1s since last zoom => check if zoom out is a way to improve it
-				if(  frame_end_time-last_interaction > 5000  &&  get_current_tile_raster_width() < 32  &&  realFPS <= 80  ) {
-					zoom_factor_up();
+				if(  frame_end_time-last_interaction > 5000  &&  g_simgraph->get_current_tile_raster_width() < 32  &&  realFPS <= (5*16)  ) {
+					g_simgraph->zoom_factor_up();
 					viewport->metrics_updated();
 					set_dirty();
 					last_interaction = frame_end_time-1000;
@@ -2856,7 +2857,7 @@ void karte_t::update_frame_sleep_time()
 			increase_frame_time();
 		}
 		// (de-)activate faster redraw
-		env_t::simple_drawing = env_t::simple_drawing_fast_forward  ||  (env_t::simple_drawing_normal >= get_tile_raster_width());
+		env_t::simple_drawing = env_t::simple_drawing_fast_forward  ||  (env_t::simple_drawing_normal >= g_simgraph->get_tile_raster_width());
 	}
 }
 
@@ -3567,7 +3568,7 @@ void karte_t::save(const char *filename, bool autosave, const char *version_str,
 	std::string savename = filename;
 	savename[savename.length()-1] = '_';
 
-	display_show_load_pointer( true );
+	g_simgraph->set_show_load_cursor(true);
 	const loadsave_t::mode_t mode = autosave ? loadsave_t::autosave_mode : loadsave_t::save_mode;
 	const int save_level = autosave ? loadsave_t::autosave_level : loadsave_t::save_level;
 
@@ -3593,7 +3594,7 @@ void karte_t::save(const char *filename, bool autosave, const char *version_str,
 		}
 		reset_interaction();
 	}
-	display_show_load_pointer( false );
+	g_simgraph->set_show_load_cursor(false);
 }
 
 
@@ -3808,7 +3809,7 @@ bool karte_t::load(const char *filename)
 	bool restore_player_nr = false;
 	bool server_reload_pwd_hashes = false;
 	mute_sound(true);
-	display_show_load_pointer(true);
+	g_simgraph->set_show_load_cursor(true);
 	loadsave_t file;
 
 	// clear hash table with missing paks (may cause some small memory loss though)
@@ -3829,7 +3830,7 @@ bool karte_t::load(const char *filename)
 		const char *err = network_connect(filename+4, this);
 		if(err) {
 			create_win( new news_img(err), w_info, magic_none );
-			display_show_load_pointer(false);
+			g_simgraph->set_show_load_cursor(false);
 			step_mode = NORMAL;
 			return false;
 		}
@@ -3968,7 +3969,7 @@ bool karte_t::load(const char *filename)
 		set_tool( tool_t::general_tool[TOOL_QUERY], get_active_player() );
 	}
 	settings.set_filename(filename);
-	display_show_load_pointer(false);
+	g_simgraph->set_show_load_cursor(false);
 	return ok;
 }
 
@@ -5614,7 +5615,7 @@ void karte_t::remove_player(uint8 player_nr)
 			active_player_nr = PLAYER_HUMAN_NR;
 			active_player = players[PLAYER_HUMAN_NR];
 			if(  !env_t::server  ) {
-				const scr_coord pos{ display_get_width()/2-128, 40 };
+				const scr_coord pos{ g_simgraph->get_screen_size().w/2 - 128, 40 };
 				create_win( pos, new news_img("Bankrott:\n\nDu bist bankrott.\n"), w_info, magic_none);
 			}
 		}
@@ -6411,7 +6412,7 @@ bool karte_t::interactive(uint32 quit_month)
 	}
 
 	intr_enable();
-	display_show_pointer(true);
+	g_simgraph->set_cursor_visible(true);
 	return finish_loop;
 #undef LRAND
 }
@@ -6598,7 +6599,7 @@ void karte_t::network_disconnect()
 	step_mode = NORMAL;
 	reset_timer();
 	clear_command_queue();
-	create_win({ display_get_width()/2-128, 40 }, new news_img("Lost synchronisation\nwith server."), w_info, magic_none);
+	create_win({ g_simgraph->get_screen_size().w/2 - 128, 40 }, new news_img("Lost synchronisation\nwith server."), w_info, magic_none);
 	ticker::add_msg( translator::translate("Lost synchronisation\nwith server."), koord3d::invalid, SYSCOL_TEXT );
 	last_active_player_nr = active_player_nr;
 	finish_loop = true; // kick me out to main screen

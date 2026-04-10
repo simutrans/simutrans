@@ -195,7 +195,7 @@ void enlarge_map_frame_t::update_preview()
 			if(  pos.x<=old_x  &&  pos.y<=old_y  ){
 				if(  i==(old_x/mx)  ||  j==(old_y/my)  ){
 					// border
-					color = color_idx_to_rgb(COL_WHITE);
+					color = g_simgraph->palette_lookup(COL_WHITE);
 				}
 				else {
 					const sint16 height = welt->lookup_hgt( pos );
@@ -212,7 +212,7 @@ void enlarge_map_frame_t::update_preview()
 	}
 	for(  uint j=0;  j<map.get_height();  j++  ) {
 		for(  uint i=(j<pre_y ? pre_x : 0);  i<map.get_width();   i++  ) {
-			map.at(i,j) = color_idx_to_rgb(COL_GREY1);
+			map.at(i,j) = g_simgraph->palette_lookup(COL_GREY1);
 		}
 	}
 	map_preview.set_map_data(&map);

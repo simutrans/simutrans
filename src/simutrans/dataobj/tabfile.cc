@@ -167,10 +167,10 @@ PIXVAL tabfileobj_t::get_color(const char *key, PIXVAL def, rgb888_t *color_rgb)
 			uint8 index = (uint8)strtoul( value, NULL, 0 );
 			// we save in settings as RGB888
 			if (color_rgb) {
-				*color_rgb = get_color_rgb(index);
+				*color_rgb = g_simgraph->get_color_rgb(index);
 			}
 			// but the functions expect in the system colour (like RGB565)
-			return color_idx_to_rgb(index);
+			return g_simgraph->palette_lookup(index);
 		}
 #else
 		(void)color_rgb;

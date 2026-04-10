@@ -112,7 +112,7 @@ public:
 	/**
 	* @return color for good table and waiting bars
 	*/
-	PIXVAL get_color() const { return color_idx_to_rgb(color); }
+	PIXVAL get_color() const { return g_simgraph->palette_lookup(color); }
 
 	void calc_checksum(checksum_t *chk) const
 	{

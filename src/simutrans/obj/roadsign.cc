@@ -553,20 +553,20 @@ void roadsign_t::display_after(int xpos, int ypos, bool ) const
 #endif
 {
 	if(  foreground_image != IMG_EMPTY  ) {
-		const int raster_width = get_current_tile_raster_width();
+		const int raster_width = g_simgraph->get_current_tile_raster_width();
 		xpos += tile_raster_scale_x( after_xoffset, raster_width );
 		ypos += tile_raster_scale_y( after_yoffset, raster_width );
 		// draw with owner
 		if(  get_owner_nr() != PLAYER_UNOWNED  ) {
 			if(  obj_t::show_owner  ) {
-				display_blend( foreground_image, xpos, ypos, 0, color_idx_to_rgb(get_owner()->get_player_color1()+2) | OUTLINE_FLAG | TRANSPARENT75_FLAG, 0, get_flag(obj_t::dirty)  CLIP_NUM_PAR);
+				g_simgraph->draw_blend( foreground_image, xpos, ypos, 0, g_simgraph->palette_lookup(get_owner()->get_player_color1()+2) | OUTLINE_FLAG | TRANSPARENT75_FLAG, 0, get_flag(obj_t::dirty)  CLIP_NUM_PAR);
 			}
 			else {
-				display_color( foreground_image, xpos, ypos, get_owner_nr(), true, get_flag(obj_t::dirty)  CLIP_NUM_PAR);
+				g_simgraph->draw_color( foreground_image, xpos, ypos, get_owner_nr(), true, get_flag(obj_t::dirty)  CLIP_NUM_PAR);
 			}
 		}
 		else {
-			display_normal( foreground_image, xpos, ypos, 0, true, get_flag(obj_t::dirty)  CLIP_NUM_PAR);
+			g_simgraph->draw_normal( foreground_image, xpos, ypos, 0, true, get_flag(obj_t::dirty)  CLIP_NUM_PAR);
 		}
 	}
 }

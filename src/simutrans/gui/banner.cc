@@ -160,7 +160,7 @@ banner_t::banner_t() : gui_frame_t("")
 
 		add_table(1,0);
 		{
-		new_component<gui_label_t>("Selling of the program is forbidden.", color_idx_to_rgb(COL_RED), gui_label_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
+		new_component<gui_label_t>("Selling of the program is forbidden.", g_simgraph->palette_lookup(COL_RED), gui_label_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
 		new_component<gui_label_t>("For questions and support please visit:", SYSCOL_TEXT_TITLE, gui_label_t::left)->set_shadow(SYSCOL_TEXT_SHADOW, true);
 		}
 		end_table();
@@ -198,7 +198,7 @@ banner_t::banner_t() : gui_frame_t("")
 
 	reset_min_windowsize();
 
-	if (get_windowsize().w > display_get_width()) {
+	if (get_windowsize().w > g_simgraph->get_screen_size().w) {
 		image1->set_visible(true);
 		image2->set_visible(false);
 		reset_min_windowsize();
@@ -291,9 +291,9 @@ void banner_text_t::draw(scr_coord offset)
 
 	PUSH_CLIP_FIT( left, cursor.y, width, height );
 
-	display_fillbox_wh_clip_rgb(left, cursor.y,          width, height, color_idx_to_rgb(COL_GREY1), true);
-	display_fillbox_wh_clip_rgb(left, cursor.y - 1,      width, 1,      color_idx_to_rgb(COL_GREY3), false);
-	display_fillbox_wh_clip_rgb(left, cursor.y + height, width, 1,      color_idx_to_rgb(COL_GREY6), false);
+	g_simgraph->draw_rect_clipped(left, cursor.y,          width, height, g_simgraph->palette_lookup(COL_GREY1), true  CLIP_NUM_DEFAULT);
+	g_simgraph->draw_rect_clipped(left, cursor.y - 1,      width, 1,      g_simgraph->palette_lookup(COL_GREY3), false CLIP_NUM_DEFAULT);
+	g_simgraph->draw_rect_clipped(left, cursor.y + height, width, 1,      g_simgraph->palette_lookup(COL_GREY6), false CLIP_NUM_DEFAULT);
 
 	cursor.y++;
 
@@ -301,14 +301,14 @@ void banner_text_t::draw(scr_coord offset)
 
 		PIXVAL color;
 		if(  row > L_BANNER_ROWS-COLOR_RAMP_SIZE+1  ) {
-			color = color_idx_to_rgb(colors[L_BANNER_ROWS-row+1]);
+			color = g_simgraph->palette_lookup(colors[L_BANNER_ROWS-row+1]);
 		}
 		else {
-			color = color_idx_to_rgb(colors[0]);
+			color = g_simgraph->palette_lookup(colors[0]);
 		}
 
-		display_proportional_clip_rgb( left + L_BANNER_TEXT_INDENT,         cursor.y - text_offset, scrolltext[text_line + row*2    ], ALIGN_LEFT,  color, false);
-		display_proportional_clip_rgb( left + width - L_BANNER_TEXT_INDENT, cursor.y - text_offset, scrolltext[text_line + row*2 + 1], ALIGN_RIGHT, color, false);
+		g_simgraph->draw_text_clipped( left +         L_BANNER_TEXT_INDENT, cursor.y - text_offset, scrolltext[text_line + row*2    ], ALIGN_LEFT,  color, false);
+		g_simgraph->draw_text_clipped( left + width - L_BANNER_TEXT_INDENT, cursor.y - text_offset, scrolltext[text_line + row*2 + 1], ALIGN_RIGHT, color, false);
 
 		cursor.y += LINESPACE;
 	}
@@ -324,5 +324,4 @@ void banner_text_t::draw(scr_coord offset)
 	if (scrolltext[text_line + (L_BANNER_ROWS+1)*2] == 0) {
 		line = 0;
 	}
-
 }

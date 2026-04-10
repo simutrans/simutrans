@@ -140,57 +140,57 @@ void gui_theme_t::init_gui_defaults()
 {
 	skinverwaltung_t::restore_all_skins();
 
-	gui_color_text                         = color_idx_to_rgb(COL_BLACK);
-	gui_color_text_highlight               = color_idx_to_rgb(COL_WHITE);
-	gui_color_text_shadow                  = color_idx_to_rgb(COL_BLACK);
-	gui_color_text_title                   = color_idx_to_rgb(207);
-	gui_color_text_strong                  = color_idx_to_rgb(COL_RED);
-	gui_color_text_minus                   = color_idx_to_rgb(COL_RED);
-	gui_color_text_plus                    = color_idx_to_rgb(COL_BLACK);
-	gui_color_text_unused                  = color_idx_to_rgb(COL_YELLOW);
+	gui_color_text                         = g_simgraph->palette_lookup(COL_BLACK);
+	gui_color_text_highlight               = g_simgraph->palette_lookup(COL_WHITE);
+	gui_color_text_shadow                  = g_simgraph->palette_lookup(COL_BLACK);
+	gui_color_text_title                   = g_simgraph->palette_lookup(207);
+	gui_color_text_strong                  = g_simgraph->palette_lookup(COL_RED);
+	gui_color_text_minus                   = g_simgraph->palette_lookup(COL_RED);
+	gui_color_text_plus                    = g_simgraph->palette_lookup(COL_BLACK);
+	gui_color_text_unused                  = g_simgraph->palette_lookup(COL_YELLOW);
 
-	gui_color_edit_text                    = color_idx_to_rgb(COL_WHITE);
-	gui_color_edit_text_selected           = color_idx_to_rgb(COL_GREY5);
-	gui_color_edit_text_disabled           = color_idx_to_rgb(COL_GREY3);
-	gui_color_edit_background_selected     = color_idx_to_rgb(COL_GREY2);
-	gui_color_edit_beam                    = color_idx_to_rgb(COL_WHITE);
+	gui_color_edit_text                    = g_simgraph->palette_lookup(COL_WHITE);
+	gui_color_edit_text_selected           = g_simgraph->palette_lookup(COL_GREY5);
+	gui_color_edit_text_disabled           = g_simgraph->palette_lookup(COL_GREY3);
+	gui_color_edit_background_selected     = g_simgraph->palette_lookup(COL_GREY2);
+	gui_color_edit_beam                    = g_simgraph->palette_lookup(COL_WHITE);
 
-	gui_color_chart_background             = color_idx_to_rgb(MN_GREY1);
-	gui_color_chart_lines_zero             = color_idx_to_rgb(MN_GREY4);
-	gui_color_chart_lines_odd              = color_idx_to_rgb(COL_WHITE);
-	gui_color_chart_lines_even             = color_idx_to_rgb(MN_GREY0);
+	gui_color_chart_background             = g_simgraph->palette_lookup(MN_GREY1);
+	gui_color_chart_lines_zero             = g_simgraph->palette_lookup(MN_GREY4);
+	gui_color_chart_lines_odd              = g_simgraph->palette_lookup(COL_WHITE);
+	gui_color_chart_lines_even             = g_simgraph->palette_lookup(MN_GREY0);
 
-	gui_color_list_text_selected_focus     = color_idx_to_rgb(COL_WHITE);
-	gui_color_list_text_selected_nofocus   = color_idx_to_rgb(MN_GREY3);
-	gui_color_list_background_selected_f   = color_idx_to_rgb(COL_BLUE);
-	gui_color_list_background_selected_nf  = color_idx_to_rgb(COL_LIGHT_BLUE);
+	gui_color_list_text_selected_focus     = g_simgraph->palette_lookup(COL_WHITE);
+	gui_color_list_text_selected_nofocus   = g_simgraph->palette_lookup(MN_GREY3);
+	gui_color_list_background_selected_f   = g_simgraph->palette_lookup(COL_BLUE);
+	gui_color_list_background_selected_nf  = g_simgraph->palette_lookup(COL_LIGHT_BLUE);
 
-	gui_color_button_text                  = color_idx_to_rgb(COL_BLACK);
-	gui_color_button_text_disabled         = color_idx_to_rgb(MN_GREY0);
-	gui_color_button_text_selected         = color_idx_to_rgb(COL_BLACK);
+	gui_color_button_text                  = g_simgraph->palette_lookup(COL_BLACK);
+	gui_color_button_text_disabled         = g_simgraph->palette_lookup(MN_GREY0);
+	gui_color_button_text_selected         = g_simgraph->palette_lookup(COL_BLACK);
 
-	gui_color_colored_button_text          = color_idx_to_rgb(COL_BLACK);
-	gui_color_colored_button_text_selected = color_idx_to_rgb(COL_WHITE);
-	gui_color_checkbox_text                = color_idx_to_rgb(COL_BLACK);
-	gui_color_checkbox_text_disabled       = color_idx_to_rgb(MN_GREY0);
-	gui_color_ticker_background            = color_idx_to_rgb(MN_GREY2);
-	gui_color_ticker_divider               = color_idx_to_rgb(COL_BLACK);
-	gui_color_statusbar_text               = color_idx_to_rgb(COL_BLACK);
-	gui_color_statusbar_background         = color_idx_to_rgb(MN_GREY1);
-	gui_color_statusbar_divider            = color_idx_to_rgb(MN_GREY4);
+	gui_color_colored_button_text          = g_simgraph->palette_lookup(COL_BLACK);
+	gui_color_colored_button_text_selected = g_simgraph->palette_lookup(COL_WHITE);
+	gui_color_checkbox_text                = g_simgraph->palette_lookup(COL_BLACK);
+	gui_color_checkbox_text_disabled       = g_simgraph->palette_lookup(MN_GREY0);
+	gui_color_ticker_background            = g_simgraph->palette_lookup(MN_GREY2);
+	gui_color_ticker_divider               = g_simgraph->palette_lookup(COL_BLACK);
+	gui_color_statusbar_text               = g_simgraph->palette_lookup(COL_BLACK);
+	gui_color_statusbar_background         = g_simgraph->palette_lookup(MN_GREY1);
+	gui_color_statusbar_divider            = g_simgraph->palette_lookup(MN_GREY4);
 
-	gui_highlight_color                    = color_idx_to_rgb(MN_GREY4);
-	gui_shadow_color                       = color_idx_to_rgb(MN_GREY0);
+	gui_highlight_color                    = g_simgraph->palette_lookup(MN_GREY4);
+	gui_shadow_color                       = g_simgraph->palette_lookup(MN_GREY0);
 
-	gui_color_loadingbar_inner             = color_idx_to_rgb(COL_GREY5);
-	gui_color_loadingbar_progress          = color_idx_to_rgb(COL_BLUE);
+	gui_color_loadingbar_inner             = g_simgraph->palette_lookup(COL_GREY5);
+	gui_color_loadingbar_progress          = g_simgraph->palette_lookup(COL_BLUE);
 
-	gui_color_obsolete                     = color_idx_to_rgb(COL_BLUE);
-	gui_color_empty                        = color_idx_to_rgb(COL_WHITE);
+	gui_color_obsolete                     = g_simgraph->palette_lookup(COL_BLUE);
+	gui_color_empty                        = g_simgraph->palette_lookup(COL_WHITE);
 
-	gui_color_image_transparency          = color_idx_to_rgb(COL_BLACK);
+	gui_color_image_transparency           = g_simgraph->palette_lookup(COL_BLACK);
 
-	gui_color_object_highlight            = color_idx_to_rgb(COL_RED);
+	gui_color_object_highlight             = g_simgraph->palette_lookup(COL_RED);
 
 	env_t::gui_player_color_bright = 4;
 	env_t::gui_player_color_dark   = 1;
@@ -214,7 +214,7 @@ void gui_theme_t::init_gui_defaults()
 	gui_indicator_size           = scr_size(20,4);
 	gui_focus_offset             = scr_coord(1,1);
 
-	gui_buttons_per_row          = max(2, min(4, display_get_width() / (D_BUTTON_WIDTH + D_H_SPACE + D_MARGIN_LEFT)));
+	gui_buttons_per_row          = max(2, min(4, g_simgraph->get_screen_size().w / (D_BUTTON_WIDTH + D_H_SPACE + D_MARGIN_LEFT)));
 
 	gui_titlebar_height  = 16;
 	gui_frame_left       = 10;
@@ -229,7 +229,7 @@ void gui_theme_t::init_gui_defaults()
 
 	gui_drop_shadows     = false;
 
-	gui_color_chat_window_network_transparency = color_idx_to_rgb(COL_WHITE);
+	gui_color_chat_window_network_transparency = g_simgraph->palette_lookup(COL_WHITE);
 }
 
 
@@ -414,7 +414,7 @@ bool gui_theme_t::themes_init(const char *file_name, bool init_fonts, bool init_
 	// reload current font if requested size differs and we are allowed to do so
 	uint8 new_size = contents.get_int("font_size", env_t::fontsize );
 	if(  init_fonts  &&  new_size!=0  &&  LINESPACE!=new_size  ) {
-		if(  display_load_font( env_t::fontname.c_str() )  ) {
+		if(  g_simgraph->load_font(env_t::fontname.c_str(), false)  ) {
 			env_t::fontsize = new_size;
 		}
 	}
@@ -583,13 +583,13 @@ gui_theme_t::gui_color_object_highlight                 = (PIXVAL)contents.get_c
 	// default iconsize scaling (must be read before the images)
 	env_t::iconscaling = contents.get_int("icon_scaling", env_t::iconscaling);
 	if (skinverwaltung_t::tool_icons_general) {
-		env_t::iconsize = display_get_best_matching_size(skinverwaltung_t::tool_icons_general->get_image_id(0), env_t::iconscaling);
+		env_t::iconsize = g_simgraph->get_best_matching_size(skinverwaltung_t::tool_icons_general->get_image_id(0), env_t::iconscaling);
 	}
 
 	env_t::chat_window_transparency =   100 - contents.get_int("gui_chat_window_network_transparency", 100 - env_t::chat_window_transparency);
 
 	// needs to be changed after resize events too
-	gui_buttons_per_row = max(2, min(4, display_get_width() / (D_BUTTON_WIDTH + D_H_SPACE + D_MARGIN_LEFT)));
+	gui_buttons_per_row = max(2, min(4, g_simgraph->get_screen_size().w / (D_BUTTON_WIDTH + D_H_SPACE + D_MARGIN_LEFT)));
 
 	if(  toolbar_last_used_t::last_used_tools  &&  init_tools  ) {
 		// only re-init if already inited
