@@ -160,8 +160,8 @@ obj_desc_t *bridge_reader_t::read_node(FILE *fp, obj_node_info_t &node)
 		desc->pillars_asymmetric = decode_uint8(p) != 0;
 		desc->axle_load = decode_uint16(p);
 		desc->max_height = decode_uint8(p);
-		desc->number_of_seasons = decode_uint8(p);
 		desc->clip_below = decode_uint8(p);
+		desc->number_of_seasons = decode_uint8(p);
 	}
 	else {
 		dbg->fatal( "bridge_reader_t::read_node()", "Cannot handle too new node version %i", version );
