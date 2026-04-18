@@ -1,4 +1,7 @@
-	FIX: reset ingame names to current language when startign a new map and expose the name language via the translator
+Release of 124.4.1 (r11930 on 18-Apr-2026):
+	CHG: reset ingame names to current language when startign a new map and expose the name language via the translator
+	FIX: crash with winter graphics on bridges without winter graphics
+	ADD: preparation for runttime switch of rendering engine
 
 
 Release of 124.4 (r11919 on 4-Apr-2026):
