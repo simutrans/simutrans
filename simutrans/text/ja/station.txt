@@ -49,8 +49,8 @@
 - <strong>目的地</strong>: 最終目的地の停留所名順（英数字順、大文字優先）<br>
 - <strong>経由地</strong>: 次の乗り換え地点の名称順<br>
 - <strong>経由地 (量)</strong>: 次の乗り換え地点ごとの合計量順<br>
-- <strong>経由プレイヤー</strong>: 次の接続を所有するプレイヤー順<br>
-- <strong>接続:</strong> 次の路線または運行便順
+- <strong>経由地（所有者）</strong>: 次の接続を所有するプレイヤー順<br>
+- <strong>路線</strong>: 次の路線または運行便順
 </p>
 
 <p><it>発着時刻</it><br>

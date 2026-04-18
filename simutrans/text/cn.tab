@@ -12,7 +12,7 @@ wenquanyi_9pt.bdf
 #                           Language: cn Sim. Chinese                          #
 #                                Encoding: UTF-8                               #
 #                            Font: wenquanyi_9pt.bdf                           #
-#                           Date Created: 11.03 2026                           #
+#                           Date Created: 18.04 2026                           #
 #                                                                              #
 ################################################################################
 #__________________________________button_text__________________________________
@@ -372,9 +372,9 @@ Sum of departure/arrivals at halts
 #____________________________________ki_text____________________________________
 #____________________________________ki_text____________________________________
 %s now\noffers bus services\nbetween %s\nand attraction\n%s\nat (%i,%i).\n
-%s 现在\n提供 %s 与\n景点 %s 间\n的公共汽车\n服务%s\nat (%i,%i)。\n
+%s 现在\n提供与\n景点 %s 间\n的公共汽车\n服务%s\nat (%i,%i)。\n
 %s now\noffers bus services\nbetween %s\nand factory\n%s\nat (%i,%i).\n
-%s 现在\n提供 %s 与\n工厂 %s 间\n的公共汽车\n服务%s\nat (%i,%i)。\n
+%s 现在\n提供与\n工厂 %s 间\n的公共汽车\n服务%s\nat (%i,%i)。\n
 %s\nnow operates\n%i trucks between\n%s at (%i,%i)\nand %s at (%i,%i).
 %s 现在运营 %i 货车往返于\n%s(%i,%i) 和 %s (%i,%i) 之间
 %s\nopened a new railway\nbetween %s\nat (%i,%i) and\n%s at (%i,%i).

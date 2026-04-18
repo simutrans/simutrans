@@ -12,7 +12,7 @@ m+10r.bdf
 #                             Language: ja Japanese                            #
 #                                Encoding: UTF-8                               #
 #                                Font: m+10r.bdf                               #
-#                            Date Created: 4.04 2026                           #
+#                           Date Created: 18.04 2026                           #
 #                                                                              #
 ################################################################################
 #__________________________________button_text__________________________________
@@ -122,7 +122,7 @@ Road toll
 Scenario
 シナリオ
 sea
-海洋性気候
+海洋
 Single GUI
 シングルGUI
 Sound range:
@@ -144,13 +144,13 @@ Tutorial
 #_________________________________climates_text_________________________________
 #_________________________________climates_text_________________________________
 arctic
-極気候
+極寒気候
 desert
 砂漠気候
 mediterran
 地中海性気候
 rocky
-氷雪気候
+高山（岩場）
 temperate
 温暖気候
 tropic
@@ -664,7 +664,7 @@ Allow city growth
 Allow player change
 プレーヤーの変更を許可する
 allowed climates:\n
-対応する気候：\n
+対応する気候\n
 Alters a schedule.
 運行スケジュールの編集
 Angenommene Waren
@@ -1546,7 +1546,7 @@ maglev_track
 Maglevdepot
 リニア車庫
 Mail Demand %d\n
-郵便需要 %d\n
+郵便需要: %d\n
 Mail level
 郵便物のレベル
 Mailbox
@@ -1748,7 +1748,7 @@ nowhere
 Number of rivers
 河川の数:
 Object
-原名
+オブジェクト名
 Oct.
 10月
 Odometer: %s km
@@ -1766,13 +1766,13 @@ on the
 On this map, you are not\nallowed to change player!\n
 このマップではプレイヤーの交代は認められ\nていません。
 Only city chains
-都市にチェーンを作成
+市内産業チェーンを建設
 Only first %d differing paks reported. There are probably more.
 違いが多いため、%d個以上は表示を省略しています。
 Only full Unicode fonts
 Unicodeを網羅したフォントに限定する
 Only land chains
-発電所/郊外のチェーンを作成
+発電所/陸上産業チェーンを建設
 Only one transformer per factory!
 産業施設ごとに変圧所は一つのみ建設できます。
 Only show goods which are currently handled by factories
@@ -1794,7 +1794,7 @@ Origin
 ost
 東
 Output
-製品
+生産
 Ownership
 所有者
 Pak which may cause severe errors:
