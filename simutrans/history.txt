@@ -1,7 +1,11 @@
+	FIX: (poppo) wayobj toll on other people's way and their removal
+
+
 Release of 124.4.1 (r11930 on 18-Apr-2026):
 	CHG: reset ingame names to current language when startign a new map and expose the name language via the translator
 	FIX: crash with winter graphics on bridges without winter graphics
 	ADD: preparation for runttime switch of rendering engine
+	FIX: capping factory mail and pax demand at (2^23-1)/9 = 932067 to avoid overflow issues
 
 
 Release of 124.4 (r11919 on 4-Apr-2026):

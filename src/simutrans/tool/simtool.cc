@@ -313,7 +313,7 @@ static halthandle_t suche_nahe_haltestelle(player_t *player, karte_t *welt, koor
 
 
 // converts a 2d koord to a suitable ground pointer
-static grund_t *tool_intern_koord_to_weg_grund(player_t *player, karte_t *welt, koord3d pos, waytype_t wt)
+static grund_t *tool_intern_koord_to_weg_grund(player_t *player, karte_t *welt, koord3d pos, waytype_t wt, const bool check_for_wayobj=true)
 {
 	// check for valid ground
 	grund_t *gr=welt->lookup(pos);
@@ -350,6 +350,11 @@ static grund_t *tool_intern_koord_to_weg_grund(player_t *player, karte_t *welt, 
 	}
 	// check for ownership
 	if(gr->get_weg(wt)->get_removal_error(player)!=NULL){
+		// the way owner is not me, but we must check wayobj owner in some cases:
+		if(  check_for_wayobj  &&  gr->get_wayobj(wt)&&gr->get_wayobj(wt)->get_removal_error(player) == NULL  ) {
+			// active player's wayobj found!
+			return gr;
+		}
 		return NULL;
 	}
 	// ok, now we have a valid ground
@@ -3865,7 +3870,7 @@ bool tool_build_wayobj_t::calc_route( route_t &verbindung, player_t *player, con
 uint8 tool_build_wayobj_t::is_valid_pos( player_t* player, const koord3d& pos, const char *&error, const koord3d & )
 {
 	// search for starting ground
-	grund_t *gr=tool_intern_koord_to_weg_grund(player, welt, pos, wt );
+	grund_t *gr = tool_intern_koord_to_weg_grund( player, welt, pos, wt, true );
 	if(  gr == NULL  ) {
 		DBG_MESSAGE("tool_build_wayobj_t::is_within_limits()", "no ground on %s",pos.get_str());
 		// wrong ground or not this way here => exit

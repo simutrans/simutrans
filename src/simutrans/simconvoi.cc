@@ -654,6 +654,7 @@ void convoi_t::add_running_cost( const weg_t *weg )
 	if(  weg  &&  weg->get_owner()!=get_owner()  &&  weg->get_owner()!=NULL  ) {
 		// running on non-public way costs toll (since running costs are positive => invert)
 		sint64 toll = -(sum_running_costs*welt->get_settings().get_way_toll_runningcost_percentage())/100l;
+		sint64 toll_wayobj = 0;
 		if(  welt->get_settings().get_way_toll_waycost_percentage()  ) {
 			if(  weg->is_electrified()  &&  (needs_electrification()  ||  can_use_electrification())) {
 				// toll for using electricity
@@ -663,7 +664,8 @@ void convoi_t::add_running_cost( const weg_t *weg )
 					obj_t *d=gr->obj_bei(i);
 					if(  wayobj_t const* const wo = obj_cast<wayobj_t>(d)  )  {
 						if(  wo->get_waytype()==weg->get_waytype()  ) {
-							toll += (wo->get_desc()->get_maintenance()*welt->get_settings().get_way_toll_waycost_percentage())/100l;
+							toll_wayobj += (wo->get_desc()->get_maintenance()*welt->get_settings().get_way_toll_waycost_percentage())/100l;
+							wo->get_owner()->book_toll_received( toll_wayobj, get_schedule()->get_waytype() );
 							break;
 						}
 					}
@@ -677,9 +679,9 @@ void convoi_t::add_running_cost( const weg_t *weg )
 			toll += (weg->get_desc()->get_maintenance()*welt->get_settings().get_way_toll_waycost_percentage())/100l;
 		}
 		weg->get_owner()->book_toll_received( toll, get_schedule()->get_waytype() );
-		get_owner()->book_toll_paid(         -toll, get_schedule()->get_waytype() );
-		book( -toll, CONVOI_WAYTOLL);
-		book( -toll, CONVOI_PROFIT);
+		get_owner()->book_toll_paid(         -toll-toll_wayobj, get_schedule()->get_waytype() );
+		book( -toll-toll_wayobj, CONVOI_WAYTOLL);
+		book( -toll-toll_wayobj, CONVOI_PROFIT);
 	}
 	get_owner()->book_running_costs( sum_running_costs, get_schedule()->get_waytype());
 
