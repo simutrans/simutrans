@@ -26,7 +26,7 @@ static void            simgraph0_exit                       ();
 static void            simgraph0_on_window_resized          (scr_size new_window_size);
 static bool            simgraph0_load_font                  (const char *fname, bool reload);
 static image_id        simgraph0_get_image_count            ();
-static void            simgraph0_register_image             (image_t *image_in);
+static image_id        simgraph0_register_image             (const image_t *image_in);
 static void            simgraph0_free_all_images_above      (image_id above );
 static scr_rect        simgraph0_get_base_image_offset      (image_id image);
 static scr_rect        simgraph0_get_image_offset           (image_id image);
@@ -291,9 +291,9 @@ static void simgraph0_set_player_color_scheme(const int, const uint8, const uint
 }
 
 
-static void simgraph0_register_image(image_t* image)
+static image_id simgraph0_register_image(const image_t *image)
 {
-	image->imageid = 1;
+	return 1;
 }
 
 

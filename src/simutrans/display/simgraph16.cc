@@ -512,7 +512,7 @@ static void            simgraph16_exit                       ();
 static void            simgraph16_on_window_resized          (scr_size new_window_size);
 static bool            simgraph16_load_font                  (const char *fname, bool reload);
 static image_id        simgraph16_get_image_count            ();
-static void            simgraph16_register_image             (image_t *image_in);
+static image_id        simgraph16_register_image             (const image_t *image_in);
 static void            simgraph16_free_all_images_above      (image_id above );
 static scr_rect        simgraph16_get_base_image_offset      (image_id image);
 static scr_rect        simgraph16_get_image_offset           (image_id image);
@@ -521,8 +521,8 @@ static void            simgraph16_mark_rect_dirty_wc         (scr_coord_val x1, 
 static void            simgraph16_mark_rect_dirty_clip       (scr_coord_val x1, scr_coord_val y1, scr_coord_val x2, scr_coord_val y2  CLIP_NUM_DEF);
 static void            simgraph16_mark_screen_dirty          ();
 static scr_size        simgraph16_get_screen_size            ();
-static void           simgraph16_set_screen_actual_width    (scr_coord_val w);
-static void           simgraph16_set_screen_height          (scr_coord_val const h);
+static void            simgraph16_set_screen_actual_width    (scr_coord_val w);
+static void            simgraph16_set_screen_height          (scr_coord_val const h);
 static scr_size        simgraph16_get_best_matching_size     (const image_id n, sint16 zoom_percent);
 static void            simgraph16_fit_img_to_width           (const image_id n, sint16 new_w);
 static void            simgraph16_set_daynight_level         (int night);
@@ -1976,15 +1976,14 @@ static void simgraph16_set_player_color_scheme(const int player, const uint8 col
 }
 
 
-static void simgraph16_register_image(image_t *image_in)
+static image_id simgraph16_register_image(const image_t *image_in)
 {
 	struct imd *image;
 
 	/* valid image? */
 	if(  image_in->len == 0  ||  image_in->h == 0  ) {
 		dbg->warning("register_image()", "Ignoring image %d because of missing data", anz_images);
-		image_in->imageid = IMG_EMPTY;
-		return;
+		return IMG_EMPTY;
 	}
 
 	if(  anz_images == alloc_images  ) {
@@ -2001,7 +2000,7 @@ static void simgraph16_register_image(image_t *image_in)
 		images = REALLOC(images, imd, alloc_images);
 	}
 
-	image_in->imageid = anz_images;
+	const image_id id = anz_images;
 	image = &images[anz_images];
 	anz_images++;
 
@@ -2056,8 +2055,7 @@ static void simgraph16_register_image(image_t *image_in)
 	// since we do not recode them, we can work with the original data
 	image->base_data = image_in->data;
 
-	// now find out, it contains player colors
-
+	return id;
 }
 
 

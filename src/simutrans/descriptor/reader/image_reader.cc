@@ -54,7 +54,7 @@ obj_desc_t *image_reader_t::read_node(FILE *fp, obj_node_info_t &node)
 		desc->alloc(decode_uint32(p)); // len
 		desc->imageid = IMG_EMPTY;
 		p += 2; // dummys
-		desc->zoomable = decode_uint8(p);
+		desc->zoomable = decode_uint8(p) != 0;
 
 		skip_reading_pixels_if_no_graphics;
 		//PAKSET_INFO("image_t::read_node()","x,y=%d,%d  w,h=%d,%d, len=%i",desc->x,desc->y,desc->w,desc->h, desc->len);
@@ -80,7 +80,7 @@ obj_desc_t *image_reader_t::read_node(FILE *fp, obj_node_info_t &node)
 		desc->h = decode_uint8(p);
 		p++; // skip version information
 		desc->alloc(decode_uint16(p)); // len
-		desc->zoomable = decode_uint8(p);
+		desc->zoomable = decode_uint8(p) != 0;
 		desc->imageid = IMG_EMPTY;
 
 		skip_reading_pixels_if_no_graphics;
@@ -98,7 +98,7 @@ obj_desc_t *image_reader_t::read_node(FILE *fp, obj_node_info_t &node)
 		p++; // skip version information
 		desc->h = decode_sint16(p);
 		desc->alloc((node.size-10)/2); // len
-		desc->zoomable = decode_uint8(p);
+		desc->zoomable = decode_uint8(p) != 0;
 		desc->imageid = IMG_EMPTY;
 
 		skip_reading_pixels_if_no_graphics;
@@ -213,7 +213,7 @@ adjust_image:
 				images_adlers.put(adler,desc); // still with imageid == IMG_EMPTY!
 			}
 			// register image adds this image to the internal array maintained by simgraph??.cc
-			gfx->register_image(desc);
+			desc->imageid = gfx->register_image(desc);
 		}
 		else {
 			// no need to load doubles ...

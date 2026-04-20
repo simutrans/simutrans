@@ -35,7 +35,7 @@ public:
 	scr_coord_val y;  ///< y offset of data[] image
 	scr_coord_val w;  ///< width of data[] image
 	scr_coord_val h;  ///< height of data[] image
-	image_id imageid; ///< set by register_image()
+	image_id imageid; ///< Graphics renderer image id
 	uint8 zoomable;   ///< some images may not be zoomed i.e. icons
 	PIXVAL *data;     ///< RLE encoded image data
 
@@ -78,7 +78,7 @@ public:
 
 	static image_t* create_single_pixel();
 
-	void register_image() { gfx->register_image(this); }
+	void register_image() { this->imageid = gfx->register_image(this); }
 
 private:
 	friend class image_reader_t;

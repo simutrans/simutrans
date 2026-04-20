@@ -158,8 +158,8 @@ struct simgraph_t
 	image_id (*get_image_count)();
 
 	/// Registers an image with the renderer so the image can be drawn.
-	/// The image handle is stored in img->imgid
-	void (*register_image)(image_t *img);
+	/// @returns the image id (should be stored to img->imgid)
+	image_id (*register_image)(const image_t *img);
 
 	// delete all images above a certain number ...
 	void (*free_all_images_above)(image_id above);
