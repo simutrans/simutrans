@@ -313,7 +313,7 @@ static halthandle_t suche_nahe_haltestelle(player_t *player, karte_t *welt, koor
 
 
 // converts a 2d koord to a suitable ground pointer
-static grund_t *tool_intern_koord_to_weg_grund(player_t *player, karte_t *welt, koord3d pos, waytype_t wt, const bool check_for_wayobj=true)
+static grund_t *tool_intern_koord_to_weg_grund(player_t *player, karte_t *welt, koord3d pos, waytype_t wt, const bool check_for_wayobj=false)
 {
 	// check for valid ground
 	grund_t *gr=welt->lookup(pos);
