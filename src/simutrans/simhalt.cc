@@ -3084,26 +3084,44 @@ void haltestelle_t::recalc_status()
 	MEMZERO(overcrowded);
 
 	uint64 total_sum = 0;
-	if(get_pax_enabled()) {
-		const uint32 max_ware = get_capacity(0);
-		total_sum += get_ware_summe(goods_manager_t::passengers);
-		if(total_sum>max_ware) {
+
+	if (get_pax_enabled()) {
+		const uint32 pax_capacity = get_capacity(0);
+		const uint32 pax_count    = get_ware_summe(goods_manager_t::passengers);
+		total_sum += pax_count;
+
+		const uint32 num_happy   = get_pax_happy();
+		const uint32 num_unhappy = get_pax_unhappy();
+		const uint32 num_routed  = num_happy + num_unhappy;
+
+		const bool is_overcrowded           = pax_count > pax_capacity;
+		const bool is_seriously_overcrowded = pax_count > pax_capacity + 200;
+
+		const uint32 satisfaction_percent = num_routed > 0 ? (num_happy * 100) / num_routed : 100;
+
+		if (is_overcrowded) {
 			overcrowded[0] |= 1;
+			status_bits |= is_seriously_overcrowded ? 2 : 1;
 		}
-		if(get_pax_unhappy() > 40 ) {
-			status_bits = (total_sum>max_ware+200 || (total_sum>max_ware  &&  get_pax_unhappy()>200)) ? 2 : 1;
+
+		if (num_unhappy >= 200 && is_overcrowded && satisfaction_percent < 75) {
+			status_bits |= 2;
 		}
-		else if(total_sum>max_ware) {
-			status_bits = total_sum>max_ware+200 ? 2 : 1;
+		else if (num_unhappy >= 40 && satisfaction_percent < 90) {
+			status_bits |= 1;
 		}
 	}
 
 	if(get_mail_enabled()) {
-		const uint32 max_ware = get_capacity(1);
-		const uint32 mail = get_ware_summe(goods_manager_t::mail);
-		total_sum += mail;
-		if(mail>max_ware) {
-			status_bits |= mail>max_ware+200 ? 2 : 1;
+		const uint32 mail_capacity = get_capacity(1);
+		const uint32 mail_count    = get_ware_summe(goods_manager_t::mail);
+		total_sum += mail_count;
+
+		const bool is_overcrowded           = mail_count > mail_capacity;
+		const bool is_seriously_overcrowded = mail_count > mail_capacity + 200;
+
+		if(is_overcrowded) {
+			status_bits |= is_seriously_overcrowded ? 2 : 1;
 			overcrowded[0] |= 2;
 		}
 	}
