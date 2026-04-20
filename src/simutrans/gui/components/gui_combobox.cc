@@ -113,11 +113,9 @@ DBG_MESSAGE("event","HOWDY!");
 			sel = 0;
 		}
 		const int cnt = droplist.get_count();
-		bool found = false;
-		for (int i = 0; i < droplist.get_count(); i++) {
+		for (uint32 i = 0; i < droplist.get_count(); i++) {
 			sel = (sel + delta + cnt) % cnt;
 			if (droplist.get_element(sel)->is_visible()) {
-				found = true;
 				break;
 			}
 		}
@@ -204,8 +202,6 @@ DBG_MESSAGE("event","HOWDY!");
 		else if (droplist.is_visible()) {
 
 			if( droplist.getroffen(ev->click_pos)  ) {
-				int old_selection = droplist.get_selection();
-
 				event_t ev2 = *ev;
 				ev2.move_origin(droplist.get_pos());
 				if(  droplist.infowin_event(&ev2)  ) {
@@ -233,12 +229,12 @@ DBG_MESSAGE("gui_combobox_t::infowin_event()","close");
 		gui_scrolled_list_t::scrollitem_t *item = droplist.get_selected_item();
 		if (droplist.is_visible() && allow_search) {
 			// we are searching, not renaming
-			int first_match = -1;
+			sint32 first_match = -1;
 			event_t ev2 = *ev;
 			ev2.move_origin(textinp.get_pos());
 			if (textinp.infowin_event(&ev2)) {
 				if (strcmp(search_str,old_searchstr)!=0) {
-					for (int i = 0; i < droplist.get_count(); i++) {
+					for (sint32 i = 0; i < (sint32)droplist.get_count(); i++) {
 						droplist.get_element(i)->set_visible(STRICMP(droplist.get_element(i)->get_text(), search_str));
 						if (droplist.get_element(i)->is_visible() && first_match <= droplist.get_selection()) {
 							first_match = i;
@@ -405,7 +401,7 @@ void gui_combobox_t::close_box()
 	if (allow_search && (search_str[0] || selection_changed)) {
 		// reset filter: set all visible again
 		search_str[0] = 0;
-		for (int i = 0; i < droplist.get_count(); i++) {
+		for (uint32 i = 0; i < droplist.get_count(); i++) {
 			droplist.get_element(i)->set_visible(true);
 		}
 		textinp.set_text(NULL, 0);  // also to reset cursor position
