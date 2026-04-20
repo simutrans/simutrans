@@ -479,8 +479,8 @@ int dr_os_open(const scr_size window_size, sint16 fs)
 	assert(tex_h <= screen->h);
 	assert(tex_w <= tex_pitch);
 
-	g_simgraph->set_screen_actual_width( tex_w );
-	g_simgraph->set_screen_height( tex_h );
+	gfx->set_screen_actual_width( tex_w );
+	gfx->set_screen_height( tex_h );
 	return tex_pitch;
 }
 
@@ -529,7 +529,7 @@ int dr_textur_resize(unsigned short** const textur, int tex_w, int const tex_h)
 	assert(tex_h <= screen->h);
 	assert(tex_w <= tex_pitch);
 
-	g_simgraph->set_screen_actual_width( tex_w );
+	gfx->set_screen_actual_width( tex_w );
 	return tex_pitch;
 }
 
@@ -567,12 +567,12 @@ void dr_prepare_flush()
 
 void dr_flush()
 {
-	g_simgraph->flush_framebuffer();
+	gfx->flush_framebuffer();
 	if(  !use_dirty_tiles  ) {
 		SDL_UpdateTexture( screen_tx, NULL, screen->pixels, screen->pitch );
 	}
 
-	const scr_rect screen = g_simgraph->get_screen_size();
+	const scr_rect screen = gfx->get_screen_size();
 	SDL_Rect rSrc  = { 0, 0, screen.w, screen.h  };
 	SDL_RenderCopy( renderer, screen_tx, &rSrc, NULL );
 
@@ -790,7 +790,7 @@ static void internal_GetEvents()
 		case SDL_FINGERMOTION:
 			// move whatever
 			if(  screen  &&  previous_multifinger_touch==0  &&  FirstFingerId==event.tfinger.fingerId) {
-				const scr_size screen_size = g_simgraph->get_screen_size();
+				const scr_size screen_size = gfx->get_screen_size();
 
 				if (dLastDist == 0.0) {
 					// not yet a finger down event before => we send one
@@ -819,7 +819,7 @@ static void internal_GetEvents()
 		case SDL_FINGERUP:
 			if (screen  &&  in_finger_handling) {
 				if (FirstFingerId==event.tfinger.fingerId  ||  SDL_GetNumTouchFingers(event.tfinger.touchId)==0) {
-					const scr_size screen_size = g_simgraph->get_screen_size();
+					const scr_size screen_size = gfx->get_screen_size();
 
 					if(!previous_multifinger_touch) {
 						if (dLastDist == 0.0) {

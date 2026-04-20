@@ -55,7 +55,7 @@ void gui_tab_panel_t::set_size(scr_size size)
 	for(tab & i : tabs) {
 		i.x_offset = required_size.w - 4;
 		if( i.title ) {
-			i.width = D_H_SPACE*2 + g_simgraph->calc_text_width( i.title );
+			i.width = D_H_SPACE*2 + gfx->calc_text_width( i.title );
 			required_size.h = max( required_size.h, LINESPACE + D_V_SPACE );
 		}
 		else if( i.img ) {
@@ -254,16 +254,16 @@ void gui_tab_panel_t::draw(scr_coord parent_pos)
 	if(  required_size.w>size.w  || tab_offset_x > 0) {
 		left.draw( parent_pos+pos );
 		right.draw( parent_pos+pos );
-		//g_simgraph->draw_rect_clipped(xpos, ypos+required_size.h-1, 10, 1, SYSCOL_TEXT_HIGHLIGHT, true CLIP_NUM_DEFAULT);
-		g_simgraph->draw_rect_clipped(xpos, ypos+required_size.h-1, D_ARROW_LEFT_WIDTH, 1, SYSCOL_HIGHLIGHT, true CLIP_NUM_DEFAULT);
+		//gfx->draw_rect_clipped(xpos, ypos+required_size.h-1, 10, 1, SYSCOL_TEXT_HIGHLIGHT, true CLIP_NUM_DEFAULT);
+		gfx->draw_rect_clipped(xpos, ypos+required_size.h-1, D_ARROW_LEFT_WIDTH, 1, SYSCOL_HIGHLIGHT, true CLIP_NUM_DEFAULT);
 		xpos += D_ARROW_LEFT_WIDTH;
 	}
 
 	int text_x = xpos + D_H_SPACE;
 	int text_y = ypos + (required_size.h - LINESPACE)/2;
 
-	//g_simgraph->draw_rect_clipped(xpos, ypos+required_size.h-1, 4, 1, g_simgraph->palette_lookup(COL_WHITE), true CLIP_NUM_DEFAULT);
-	g_simgraph->draw_rect_clipped(xpos, ypos+required_size.h-1, 4, 1, SYSCOL_HIGHLIGHT, true CLIP_NUM_DEFAULT);
+	//gfx->draw_rect_clipped(xpos, ypos+required_size.h-1, 4, 1, gfx->palette_lookup(COL_WHITE), true CLIP_NUM_DEFAULT);
+	gfx->draw_rect_clipped(xpos, ypos+required_size.h-1, 4, 1, SYSCOL_HIGHLIGHT, true CLIP_NUM_DEFAULT);
 
 	// do not draw under right button
 	int xx = required_size.w>get_size().w ? get_size().w-(D_ARROW_LEFT_WIDTH+2+D_ARROW_RIGHT_WIDTH) : get_size().w;
@@ -282,36 +282,36 @@ void gui_tab_panel_t::draw(scr_coord parent_pos)
 
 		if (i != active_tab) {
 			// Non active tabs
-			g_simgraph->draw_rect_clipped(text_x+1, ypos+2, iter.width-2, 1, SYSCOL_HIGHLIGHT, true CLIP_NUM_DEFAULT);
-			g_simgraph->draw_rect_clipped(text_x, ypos+required_size.h-1, iter.width-2, 1, SYSCOL_HIGHLIGHT, true CLIP_NUM_DEFAULT);
+			gfx->draw_rect_clipped(text_x+1, ypos+2, iter.width-2, 1, SYSCOL_HIGHLIGHT, true CLIP_NUM_DEFAULT);
+			gfx->draw_rect_clipped(text_x, ypos+required_size.h-1, iter.width-2, 1, SYSCOL_HIGHLIGHT, true CLIP_NUM_DEFAULT);
 
-			g_simgraph->draw_vline_clipped(text_x,              ypos+3, required_size.h-4, SYSCOL_HIGHLIGHT, true CLIP_NUM_DEFAULT);
-			g_simgraph->draw_vline_clipped(text_x+iter.width-1, ypos+3, required_size.h-4, SYSCOL_SHADOW,    true CLIP_NUM_DEFAULT);
+			gfx->draw_vline_clipped(text_x,              ypos+3, required_size.h-4, SYSCOL_HIGHLIGHT, true CLIP_NUM_DEFAULT);
+			gfx->draw_vline_clipped(text_x+iter.width-1, ypos+3, required_size.h-4, SYSCOL_SHADOW,    true CLIP_NUM_DEFAULT);
 
 			if(text) {
-				g_simgraph->draw_text_clipped(text_x+D_H_SPACE, text_y+2, text, ALIGN_LEFT, SYSCOL_TEXT, true);
+				gfx->draw_text_clipped(text_x+D_H_SPACE, text_y+2, text, ALIGN_LEFT, SYSCOL_TEXT, true);
 			}
 			else {
 				scr_coord_val const y = ypos   - iter.img->get_pic()->y + required_size.h / 2 - iter.img->get_pic()->h / 2 + 1;
 				scr_coord_val const x = text_x - iter.img->get_pic()->x + iter.width / 2      - iter.img->get_pic()->w / 2;
 //					display_img_blend(iter.img->get_id(), x, y, TRANSPARENT50_FLAG, false, true);
-				g_simgraph->draw_base_img(iter.img->get_id(), x, y, 1, false, true CLIP_NUM_DEFAULT);
+				gfx->draw_base_img(iter.img->get_id(), x, y, 1, false, true CLIP_NUM_DEFAULT);
 			}
 		}
 		else {
 			// Active tab
-			g_simgraph->draw_rect_clipped(text_x+1, ypos, iter.width-2, 1, SYSCOL_HIGHLIGHT, true CLIP_NUM_DEFAULT);
+			gfx->draw_rect_clipped(text_x+1, ypos, iter.width-2, 1, SYSCOL_HIGHLIGHT, true CLIP_NUM_DEFAULT);
 
-			g_simgraph->draw_vline_clipped(text_x,              ypos+1, required_size.h-2, SYSCOL_HIGHLIGHT, true CLIP_NUM_DEFAULT);
-			g_simgraph->draw_vline_clipped(text_x+iter.width-1, ypos+1, required_size.h-2, SYSCOL_SHADOW,    true CLIP_NUM_DEFAULT);
+			gfx->draw_vline_clipped(text_x,              ypos+1, required_size.h-2, SYSCOL_HIGHLIGHT, true CLIP_NUM_DEFAULT);
+			gfx->draw_vline_clipped(text_x+iter.width-1, ypos+1, required_size.h-2, SYSCOL_SHADOW,    true CLIP_NUM_DEFAULT);
 
 			if(text) {
-				g_simgraph->draw_text_clipped(text_x+D_H_SPACE, text_y, text, ALIGN_LEFT, SYSCOL_TEXT_HIGHLIGHT, true);
+				gfx->draw_text_clipped(text_x+D_H_SPACE, text_y, text, ALIGN_LEFT, SYSCOL_TEXT_HIGHLIGHT, true);
 			}
 			else {
 				scr_coord_val const y = ypos   - iter.img->get_pic()->y + required_size.h / 2 - iter.img->get_pic()->h / 2 - 1;
 				scr_coord_val const x = text_x - iter.img->get_pic()->x + iter.width / 2      - iter.img->get_pic()->w / 2;
-				g_simgraph->draw_base_img(iter.img->get_id(), x, y, 1, false, true CLIP_NUM_DEFAULT);
+				gfx->draw_base_img(iter.img->get_id(), x, y, 1, false, true CLIP_NUM_DEFAULT);
 			}
 		}
 
@@ -321,7 +321,7 @@ void gui_tab_panel_t::draw(scr_coord parent_pos)
 
 		i++;
 	}
-	g_simgraph->draw_rect_clipped(text_x, ypos+required_size.h-1, xpos+size.w-text_x, 1, SYSCOL_HIGHLIGHT, true CLIP_NUM_DEFAULT);
+	gfx->draw_rect_clipped(text_x, ypos+required_size.h-1, xpos+size.w-text_x, 1, SYSCOL_HIGHLIGHT, true CLIP_NUM_DEFAULT);
 
 	// draw tab content after tab row
 	// (combobox may open to above, and tab row may draw into it)

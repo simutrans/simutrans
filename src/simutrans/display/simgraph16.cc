@@ -2406,7 +2406,7 @@ static void simgraph16_draw_img_aligned( const image_id n, scr_rect area, int al
 			y = area.get_bottom() - images[n].y - images[n].h;
 		}
 
-		g_simgraph->draw_color_img( n, x, y, 0, false, dirty  CLIP_NUM_DEFAULT);
+		gfx->draw_color_img( n, x, y, 0, false, dirty  CLIP_NUM_DEFAULT);
 	}
 }
 
@@ -2525,14 +2525,14 @@ static void display_three_image_row( image_id i1, image_id i2, image_id i3, scr_
 {
 	if(  i1!=IMG_EMPTY  ) {
 		scr_coord_val w = images[i1].w;
-		g_simgraph->draw_color_img( i1, row.x, row.y, 0, false, true  CLIP_NUM_DEFAULT);
+		gfx->draw_color_img( i1, row.x, row.y, 0, false, true  CLIP_NUM_DEFAULT);
 		row.x += w;
 		row.w -= w;
 	}
 	// right
 	if(  i3!=IMG_EMPTY  ) {
 		scr_coord_val w = images[i3].w;
-		g_simgraph->draw_color_img( i3, row.get_right()-w, row.y, 0, false, true  CLIP_NUM_DEFAULT);
+		gfx->draw_color_img( i3, row.get_right()-w, row.y, 0, false, true  CLIP_NUM_DEFAULT);
 		row.w -= w;
 	}
 	// middle
@@ -2540,7 +2540,7 @@ static void display_three_image_row( image_id i1, image_id i2, image_id i3, scr_
 		scr_coord_val w = images[i2].w;
 		// tile it wide
 		while(  w <= row.w  ) {
-			g_simgraph->draw_color_img( i2, row.x, row.y, 0, false, true  CLIP_NUM_DEFAULT);
+			gfx->draw_color_img( i2, row.x, row.y, 0, false, true  CLIP_NUM_DEFAULT);
 			row.x += w;
 			row.w -= w;
 		}
@@ -2548,7 +2548,7 @@ static void display_three_image_row( image_id i1, image_id i2, image_id i3, scr_
 		if(  row.w > 0  ) {
 			clip_dimension const cl = simgraph16_get_clip_rect(CLIP_NUM_DEFAULT_VALUE);
 			simgraph16_set_clip_rect( cl.x, cl.y, max(0,min(row.get_right(),cl.xx)-cl.x), cl.h CLIP_NUM_DEFAULT, false);
-			g_simgraph->draw_color_img( i2, row.x, row.y, 0, false, true  CLIP_NUM_DEFAULT);
+			gfx->draw_color_img( i2, row.x, row.y, 0, false, true  CLIP_NUM_DEFAULT);
 			simgraph16_set_clip_rect(cl.x, cl.y, cl.w, cl.h CLIP_NUM_DEFAULT, false);
 		}
 	}
@@ -2629,14 +2629,14 @@ static void display_three_blend_row( image_id i1, image_id i2, image_id i3, scr_
 {
 	if(  i1!=IMG_EMPTY  ) {
 		scr_coord_val w = images[i1].w;
-		g_simgraph->draw_rezoomed_img_blend( i1, row.x, row.y, 0, color, false, true CLIPNUM_IGNORE );
+		gfx->draw_rezoomed_img_blend( i1, row.x, row.y, 0, color, false, true CLIPNUM_IGNORE );
 		row.x += w;
 		row.w -= w;
 	}
 	// right
 	if(  i3!=IMG_EMPTY  ) {
 		scr_coord_val w = images[i3].w;
-		g_simgraph->draw_rezoomed_img_blend( i3, row.get_right()-w, row.y, 0, color, false, true CLIPNUM_IGNORE );
+		gfx->draw_rezoomed_img_blend( i3, row.get_right()-w, row.y, 0, color, false, true CLIPNUM_IGNORE );
 		row.w -= w;
 	}
 	// middle
@@ -2644,7 +2644,7 @@ static void display_three_blend_row( image_id i1, image_id i2, image_id i3, scr_
 		scr_coord_val w = images[i2].w;
 		// tile it wide
 		while(  w <= row.w  ) {
-			g_simgraph->draw_rezoomed_img_blend( i2, row.x, row.y, 0, color, false, true CLIPNUM_IGNORE );
+			gfx->draw_rezoomed_img_blend( i2, row.x, row.y, 0, color, false, true CLIPNUM_IGNORE );
 			row.x += w;
 			row.w -= w;
 		}
@@ -2652,7 +2652,7 @@ static void display_three_blend_row( image_id i1, image_id i2, image_id i3, scr_
 		if(  row.w > 0  ) {
 			clip_dimension const cl = simgraph16_get_clip_rect(CLIP_NUM_DEFAULT_VALUE);
 			simgraph16_set_clip_rect( cl.x, cl.y, max(0,min(row.get_right(),cl.xx)-cl.x), cl.h CLIP_NUM_DEFAULT, false);
-			g_simgraph->draw_rezoomed_img_blend( i2, row.x, row.y, 0, color, false, true CLIPNUM_IGNORE );
+			gfx->draw_rezoomed_img_blend( i2, row.x, row.y, 0, color, false, true CLIPNUM_IGNORE );
 			simgraph16_set_clip_rect(cl.x, cl.y, cl.w, cl.h CLIP_NUM_DEFAULT, false);
 		}
 	}
@@ -4101,13 +4101,13 @@ static void simgraph16_draw_textbox3d_clipped(scr_coord_val xpos, scr_coord_val 
 
 	scr_coord_val width = simgraph16_calc_text_width_n(text, 0x7FFFu);
 
-	PIXVAL lighter = display_blend_colors_alpha32(ddd_color, g_simgraph->palette_lookup(COL_WHITE), 8 /* 25% */);
-	PIXVAL darker  = display_blend_colors_alpha32(ddd_color, g_simgraph->palette_lookup(COL_BLACK), 8 /* 25% */);
+	PIXVAL lighter = display_blend_colors_alpha32(ddd_color, gfx->palette_lookup(COL_WHITE), 8 /* 25% */);
+	PIXVAL darker  = display_blend_colors_alpha32(ddd_color, gfx->palette_lookup(COL_BLACK), 8 /* 25% */);
 
 	simgraph16_draw_rect_clipped( xpos+1, ypos - vpadding + 1, width+2*hpadding-2, LINESPACE+2*vpadding-1, ddd_color, dirty CLIP_NUM_PAR);
 
-	g_simgraph->draw_rect_clipped( xpos, ypos - vpadding,             width + 2*hpadding - 2, 1, lighter, dirty CLIP_NUM_DEFAULT);
-	g_simgraph->draw_rect_clipped( xpos, ypos + LINESPACE + vpadding, width + 2*hpadding - 2, 1, darker,  dirty CLIP_NUM_DEFAULT);
+	gfx->draw_rect_clipped( xpos, ypos - vpadding,             width + 2*hpadding - 2, 1, lighter, dirty CLIP_NUM_DEFAULT);
+	gfx->draw_rect_clipped( xpos, ypos + LINESPACE + vpadding, width + 2*hpadding - 2, 1, darker,  dirty CLIP_NUM_DEFAULT);
 
 	simgraph16_draw_vline_clipped( xpos,                          ypos - vpadding, LINESPACE + vpadding * 2, lighter, dirty CLIP_NUM_DEFAULT);
 	simgraph16_draw_vline_clipped( xpos + width + 2*hpadding - 2, ypos - vpadding, LINESPACE + vpadding * 2, darker,  dirty CLIP_NUM_DEFAULT);
@@ -4338,7 +4338,7 @@ static void simgraph16_draw_signal_direction(scr_coord_val x, scr_coord_val y, u
 			}
 			// up
 			if (sig_dir & ribi_t::east || sig_dir & ribi_t::south) {
-				g_simgraph->draw_rect_clipped(x - width/2, y + width/4, width, thickness, col1_dark, true CLIP_NUM_DEFAULT);
+				gfx->draw_rect_clipped(x - width/2, y + width/4, width, thickness, col1_dark, true CLIP_NUM_DEFAULT);
 			}
 		}
 		else {
@@ -4448,10 +4448,10 @@ static void simgraph16_draw_bezier(scr_coord_val Ax, scr_coord_val Ay, scr_coord
 
 		// fixed point: due to cycling between 0 and 32 (1<<5), we divide by 32^3 == 1<<15 because of cubic interpolation
 		if(  !draw  &&  !dontDraw  ) {
-			g_simgraph->draw_line( rx>>15, ry>>15, oldx>>15, oldy>>15, colore );
+			gfx->draw_line( rx>>15, ry>>15, oldx>>15, oldy>>15, colore );
 		}
 		else {
-			g_simgraph->draw_line_dotted( rx>>15, ry>>15, oldx>>15, oldy>>15, draw, dontDraw, colore );
+			gfx->draw_line_dotted( rx>>15, ry>>15, oldx>>15, oldy>>15, draw, dontDraw, colore );
 		}
 	}
 }
@@ -4511,10 +4511,10 @@ static void simgraph16_flush_framebuffer()
 	}
 	// no pointer image available, draw a crosshair
 	else {
-		display_fb_internal(sys_event.mx - 1, sys_event.my - 3, 3, 7, g_simgraph->palette_lookup(COL_WHITE), true, 0, disp_width, 0, disp_height);
-		display_fb_internal(sys_event.mx - 3, sys_event.my - 1, 7, 3, g_simgraph->palette_lookup(COL_WHITE), true, 0, disp_width, 0, disp_height);
-		simgraph16_draw_line( sys_event.mx-2, sys_event.my, sys_event.mx+2, sys_event.my, g_simgraph->palette_lookup(COL_BLACK) );
-		display_direct_line_rgb( sys_event.mx, sys_event.my-2, sys_event.mx, sys_event.my+2, g_simgraph->palette_lookup(COL_BLACK) );
+		display_fb_internal(sys_event.mx - 1, sys_event.my - 3, 3, 7, gfx->palette_lookup(COL_WHITE), true, 0, disp_width, 0, disp_height);
+		display_fb_internal(sys_event.mx - 3, sys_event.my - 1, 7, 3, gfx->palette_lookup(COL_WHITE), true, 0, disp_width, 0, disp_height);
+		simgraph16_draw_line( sys_event.mx-2, sys_event.my, sys_event.mx+2, sys_event.my, gfx->palette_lookup(COL_BLACK) );
+		display_direct_line_rgb( sys_event.mx, sys_event.my-2, sys_event.mx, sys_event.my+2, gfx->palette_lookup(COL_BLACK) );
 
 		// if crosshair is over the ticker, redraw it totally at next occurs
 		if(!ticker::empty() && sys_event.my+2 >= ticker_ypos_top && sys_event.my-2 <= ticker_ypos_bottom) {
@@ -4593,12 +4593,12 @@ static void simgraph16_flush_framebuffer()
 				}
 
 #ifdef DEBUG_FLUSH_BUFFER
-				display_vline_wh_rgb( (x1 << DIRTY_TILE_SHIFT) - 1, y1 << DIRTY_TILE_SHIFT, (y2 - y1) << DIRTY_TILE_SHIFT, g_simgraph->palette_lookup(COL_YELLOW), false);
-				display_vline_wh_rgb( x2 << DIRTY_TILE_SHIFT,  y1 << DIRTY_TILE_SHIFT, (y2 - y1) << DIRTY_TILE_SHIFT, g_simgraph->palette_lookup(COL_YELLOW), false);
-				display_fillbox_wh_rgb( x1 << DIRTY_TILE_SHIFT, y1 << DIRTY_TILE_SHIFT, (x2 - x1) << DIRTY_TILE_SHIFT, 1, g_simgraph->palette_lookup(COL_YELLOW), false);
-				display_fillbox_wh_rgb( x1 << DIRTY_TILE_SHIFT, (y2 << DIRTY_TILE_SHIFT) - 1, (x2 - x1) << DIRTY_TILE_SHIFT, 1, g_simgraph->palette_lookup(COL_YELLOW), false);
-				simgraph16_draw_line( x1 << DIRTY_TILE_SHIFT, y1 << DIRTY_TILE_SHIFT, x2 << DIRTY_TILE_SHIFT, (y2 << DIRTY_TILE_SHIFT) - 1, g_simgraph->palette_lookup(COL_YELLOW) );
-				simgraph16_draw_line( x1 << DIRTY_TILE_SHIFT, (y2 << DIRTY_TILE_SHIFT) - 1, x2 << DIRTY_TILE_SHIFT, y1 << DIRTY_TILE_SHIFT, g_simgraph->palette_lookup(COL_YELLOW) );
+				display_vline_wh_rgb( (x1 << DIRTY_TILE_SHIFT) - 1, y1 << DIRTY_TILE_SHIFT, (y2 - y1) << DIRTY_TILE_SHIFT, gfx->palette_lookup(COL_YELLOW), false);
+				display_vline_wh_rgb( x2 << DIRTY_TILE_SHIFT,  y1 << DIRTY_TILE_SHIFT, (y2 - y1) << DIRTY_TILE_SHIFT, gfx->palette_lookup(COL_YELLOW), false);
+				display_fillbox_wh_rgb( x1 << DIRTY_TILE_SHIFT, y1 << DIRTY_TILE_SHIFT, (x2 - x1) << DIRTY_TILE_SHIFT, 1, gfx->palette_lookup(COL_YELLOW), false);
+				display_fillbox_wh_rgb( x1 << DIRTY_TILE_SHIFT, (y2 << DIRTY_TILE_SHIFT) - 1, (x2 - x1) << DIRTY_TILE_SHIFT, 1, gfx->palette_lookup(COL_YELLOW), false);
+				simgraph16_draw_line( x1 << DIRTY_TILE_SHIFT, y1 << DIRTY_TILE_SHIFT, x2 << DIRTY_TILE_SHIFT, (y2 << DIRTY_TILE_SHIFT) - 1, gfx->palette_lookup(COL_YELLOW) );
+				simgraph16_draw_line( x1 << DIRTY_TILE_SHIFT, (y2 << DIRTY_TILE_SHIFT) - 1, x2 << DIRTY_TILE_SHIFT, y1 << DIRTY_TILE_SHIFT, gfx->palette_lookup(COL_YELLOW) );
 #else
 				dr_textur( x1 << DIRTY_TILE_SHIFT, y1 << DIRTY_TILE_SHIFT, (x2 - x1) << DIRTY_TILE_SHIFT, (y2 - y1) << DIRTY_TILE_SHIFT );
 #endif
@@ -4687,11 +4687,11 @@ static bool simgraph16_init(scr_size window_size, sint16 full_screen)
 	textur = dr_textur_init();
 
 	// init, load, and check fonts
-	if (!g_simgraph->load_font(env_t::fontname.c_str(), false)) {
+	if (!gfx->load_font(env_t::fontname.c_str(), false)) {
 		env_t::fontname = dr_get_system_font();
-		if (!g_simgraph->load_font(env_t::fontname.c_str(), false)) {
+		if (!gfx->load_font(env_t::fontname.c_str(), false)) {
 			env_t::fontname = FONT_PATH_X "cyr.bdf";
-			if (!g_simgraph->load_font(env_t::fontname.c_str(), false)) {
+			if (!gfx->load_font(env_t::fontname.c_str(), false)) {
 				dr_fatal_notify("No fonts found!");
 				return false;
 			}
@@ -4766,7 +4766,7 @@ static void simgraph16_exit()
 
 	free( tile_dirty_old );
 	free( tile_dirty );
-	g_simgraph->free_all_images_above(0);
+	gfx->free_all_images_above(0);
 	free(images);
 
 	tile_dirty = tile_dirty_old = NULL;
@@ -4807,7 +4807,7 @@ static void simgraph16_on_window_resized(scr_size new_window_size)
 			tile_dirty = MALLOCN( uint32, tile_buffer_length );
 			tile_dirty_old = MALLOCN( uint32, tile_buffer_length );
 
-			g_simgraph->set_clip_rect(0, 0, disp_actual_width, disp_height CLIP_NUM_DEFAULT, false);
+			gfx->set_clip_rect(0, 0, disp_actual_width, disp_height CLIP_NUM_DEFAULT, false);
 		}
 
 		simgraph16_mark_screen_dirty();
@@ -4862,14 +4862,14 @@ static void simgraph16_set_image_procs(bool is_global)
 		g_simgraph16.draw_color  = simgraph16_draw_color_img;
 		g_simgraph16.draw_blend  = simgraph16_draw_rezoomed_img_blend;
 		g_simgraph16.draw_alpha  = simgraph16_draw_rezoomed_img_alpha;
-		g_simgraph16.current_tile_raster_width = g_simgraph->get_tile_raster_width();
+		g_simgraph16.current_tile_raster_width = gfx->get_tile_raster_width();
 	}
 	else {
 		g_simgraph16.draw_normal = simgraph16_draw_base_img;
 		g_simgraph16.draw_color  = simgraph16_draw_base_img;
 		g_simgraph16.draw_blend  = simgraph16_draw_base_img_blend;
 		g_simgraph16.draw_alpha  = simgraph16_draw_base_img_alpha;
-		g_simgraph16.current_tile_raster_width = g_simgraph->get_base_tile_raster_width();
+		g_simgraph16.current_tile_raster_width = gfx->get_base_tile_raster_width();
 	}
 }
 

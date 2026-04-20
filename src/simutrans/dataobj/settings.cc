@@ -785,7 +785,7 @@ void settings_t::parse_simuconf( tabfile_t& simuconf, sint16& disp_width, sint16
 			const rgb888_t day_light   = { (uint8)c[0], (uint8)c[1], (uint8)c[2] };
 			const rgb888_t night_light = { (uint8)c[3], (uint8)c[4], (uint8)c[5] };
 
-			g_simgraph->set_light_color(i, day_light, night_light);
+			gfx->set_light_color(i, day_light, night_light);
 		}
 	}
 

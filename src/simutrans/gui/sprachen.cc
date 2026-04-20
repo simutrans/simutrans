@@ -67,7 +67,7 @@ void sprachengui_t::init_font_from_lang()
 	size_t len;
 	utf16 testfor_this_character = utf8_decoder_t::decode(new_world, len);
 
-	bool reload_font = !g_simgraph->font_has_character(testfor_this_character);
+	bool reload_font = !gfx->font_has_character(testfor_this_character);
 
 	if(reload_font) {
 		if (env_t::fontsize == 11) {
@@ -90,7 +90,7 @@ void sprachengui_t::init_font_from_lang()
 				do {
 					std::string fname = FONT_PATH_X;
 					fname += prop_font_file_name;
-					ok = g_simgraph->load_font(fname.c_str(), false);
+					ok = gfx->load_font(fname.c_str(), false);
 					f = strtok(NULL, ";");
 				} while (!ok && f);
 				dr_chdir(env_t::user_dir);
@@ -240,7 +240,7 @@ bool sprachengui_t::action_triggered( gui_action_creator_t *comp, value_t p)
 				// we only show matching fonts for this language
 				const utf8 *new_world = (const utf8 *)translator::translate("Beenden");
 				size_t len;
-				if (!g_simgraph->font_has_character(utf8_decoder_t::decode(new_world, len))) {
+				if (!gfx->font_has_character(utf8_decoder_t::decode(new_world, len))) {
 					// load a matching font ...
 					create_win(new loadfont_frame_t(), w_info, magic_font);
 				}

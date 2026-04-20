@@ -68,7 +68,7 @@ ki_kontroll_t::ki_kontroll_t() :
 
 		// Prepare finances button
 		player_get_finances[i].init( button_t::box | button_t::flexible, "");
-		player_get_finances[i].background_color = PLAYER_FLAG | g_simgraph->palette_lookup((player ? player->get_player_color1():i*8)+env_t::gui_player_color_bright);
+		player_get_finances[i].background_color = PLAYER_FLAG | gfx->palette_lookup((player ? player->get_player_color1():i*8)+env_t::gui_player_color_bright);
 		player_get_finances[i].add_listener(this);
 
 		// Player type selector, Combobox
@@ -94,7 +94,7 @@ ki_kontroll_t::ki_kontroll_t() :
 
 		// password/locked button
 		player_lock[i] = new_component<password_button_t>();
-		player_lock[i]->background_color = g_simgraph->palette_lookup((player && player->is_locked()) ? (player->is_unlock_pending() ? COL_YELLOW : COL_RED) : COL_GREEN);
+		player_lock[i]->background_color = gfx->palette_lookup((player && player->is_locked()) ? (player->is_unlock_pending() ? COL_YELLOW : COL_RED) : COL_GREEN);
 		player_lock[i]->add_listener(this);
 		player_lock[i]->set_rigid(true);
 
@@ -289,8 +289,8 @@ void ki_kontroll_t::update_data()
 			}
 
 			// always update locking status
-			player_get_finances[i].background_color = PLAYER_FLAG | g_simgraph->palette_lookup(player->get_player_color1()+env_t::gui_player_color_bright);
-			player_lock[i]->background_color = g_simgraph->palette_lookup(player->is_locked() ? (player->is_unlock_pending() ? COL_YELLOW : COL_RED) : COL_GREEN);
+			player_get_finances[i].background_color = PLAYER_FLAG | gfx->palette_lookup(player->get_player_color1()+env_t::gui_player_color_bright);
+			player_lock[i]->background_color = gfx->palette_lookup(player->is_locked() ? (player->is_unlock_pending() ? COL_YELLOW : COL_RED) : COL_GREEN);
 
 			// human players cannot be deactivated
 			if (i>1) {
@@ -390,7 +390,7 @@ void ki_kontroll_t::draw(scr_coord pos, scr_size size)
 			player_active[i-2].pressed = player !=NULL	&&	player->is_active();
 		}
 
-		player_lock[i]->background_color = g_simgraph->palette_lookup(player	&&	player->is_locked() ? (player->is_unlock_pending() ? COL_YELLOW : COL_RED) : COL_GREEN);
+		player_lock[i]->background_color = gfx->palette_lookup(player	&&	player->is_locked() ? (player->is_unlock_pending() ? COL_YELLOW : COL_RED) : COL_GREEN);
 	}
 
 	player_change_to[welt->get_active_player_nr()].pressed = true;

@@ -44,12 +44,12 @@ void gui_speedbar_t::draw(scr_coord offset)
 		for(info_t const& i : values) {
 			sint32 const to = size.h - min(*i.value, base) * size.h / base;
 			if(to < from) {
-				g_simgraph->draw_rect_clipped(offset.x, offset.y + to, size.w, from - to, i.color, true CLIP_NUM_DEFAULT);
+				gfx->draw_rect_clipped(offset.x, offset.y + to, size.w, from - to, i.color, true CLIP_NUM_DEFAULT);
 				from = to - 1;
 			}
 		}
 		if(from > 0) {
-			g_simgraph->draw_rect_clipped( offset.x, offset.y, size.w, from, g_simgraph->palette_lookup(MN_GREY0), true CLIP_NUM_DEFAULT);
+			gfx->draw_rect_clipped( offset.x, offset.y, size.w, from, gfx->palette_lookup(MN_GREY0), true CLIP_NUM_DEFAULT);
 		}
 	}
 	else {
@@ -57,12 +57,12 @@ void gui_speedbar_t::draw(scr_coord offset)
 		for(info_t const& i : values) {
 			sint32 const to = min(*i.value, base) * size.w / base;
 			if(to > from) {
-				g_simgraph->draw_rect_clipped(offset.x + from, offset.y, to - from, size.h, i.color, true CLIP_NUM_DEFAULT);
+				gfx->draw_rect_clipped(offset.x + from, offset.y, to - from, size.h, i.color, true CLIP_NUM_DEFAULT);
 				from = to + 1;
 			}
 		}
 		if(from < size.w) {
-			g_simgraph->draw_rect_clipped(offset.x + from, offset.y, size.w - from, size.h, g_simgraph->palette_lookup(MN_GREY0), true CLIP_NUM_DEFAULT);
+			gfx->draw_rect_clipped(offset.x + from, offset.y, size.w - from, size.h, gfx->palette_lookup(MN_GREY0), true CLIP_NUM_DEFAULT);
 		}
 	}
 }
@@ -75,7 +75,7 @@ void gui_speedbar_fixed_length_t::draw(scr_coord offset)
 	for (info_t const& i : values) {
 		sint32 const to = min(*i.value, base) * fixed_width / base;
 		if (to > from) {
-			g_simgraph->draw_rect_clipped(offset.x + from, offset.y, to - from, size.h, i.color, true CLIP_NUM_DEFAULT);
+			gfx->draw_rect_clipped(offset.x + from, offset.y, to - from, size.h, i.color, true CLIP_NUM_DEFAULT);
 			from = to + 1;
 		}
 		if (from > size.w) {
@@ -84,7 +84,7 @@ void gui_speedbar_fixed_length_t::draw(scr_coord offset)
 		}
 	}
 	if (from < size.w) {
-		g_simgraph->draw_rect_clipped(offset.x + from, offset.y, size.w - from, size.h, g_simgraph->palette_lookup(MN_GREY0), true CLIP_NUM_DEFAULT);
+		gfx->draw_rect_clipped(offset.x + from, offset.y, size.w - from, size.h, gfx->palette_lookup(MN_GREY0), true CLIP_NUM_DEFAULT);
 	}
 }
 
@@ -118,35 +118,35 @@ void gui_routebar_t::draw(scr_coord offset)
 	const uint16 w = size.w - h/2;
 
 	offset += pos;
-	g_simgraph->draw_rect_clipped(offset.x, offset.y+h/2-1, w, 3, g_simgraph->palette_lookup(MN_GREY1), true CLIP_NUM_DEFAULT);
+	gfx->draw_rect_clipped(offset.x, offset.y+h/2-1, w, 3, gfx->palette_lookup(MN_GREY1), true CLIP_NUM_DEFAULT);
 
 	PIXVAL col;
 	for (uint8 i = 0; i<5; i++) {
 		col = i % 2 ? COL_GREY4-1 : MN_GREY0;
-		g_simgraph->draw_vline_clipped(offset.x + h/2 + w*i/4, offset.y+i%2, h-(i%2)*2, g_simgraph->palette_lookup(col), true CLIP_NUM_DEFAULT);
+		gfx->draw_vline_clipped(offset.x + h/2 + w*i/4, offset.y+i%2, h-(i%2)*2, gfx->palette_lookup(col), true CLIP_NUM_DEFAULT);
 	}
 	sint32 const to = min(*value, base) * w / base;
 	if (reserve_value  &&  *reserve_value) {
 		sint32 const reserved_to = min(*reserve_value, base) * w / base;
-		g_simgraph->draw_rect_clipped(offset.x + h / 2, offset.y + h / 2 - 1, reserved_to, 3, reserved_color, true CLIP_NUM_DEFAULT);
+		gfx->draw_rect_clipped(offset.x + h / 2, offset.y + h / 2 - 1, reserved_to, 3, reserved_color, true CLIP_NUM_DEFAULT);
 	}
-	g_simgraph->draw_rect_clipped(offset.x+h/2, offset.y+h/2-1, to, 3, g_simgraph->palette_lookup(43), true CLIP_NUM_DEFAULT);
+	gfx->draw_rect_clipped(offset.x+h/2, offset.y+h/2-1, to, 3, gfx->palette_lookup(43), true CLIP_NUM_DEFAULT);
 
 	switch (state)
 	{
 		case 1:
-			g_simgraph->draw_rect_clipped(offset.x + to + 1, offset.y + 1, h - 2, h - 2, g_simgraph->palette_lookup(COL_YELLOW), true CLIP_NUM_DEFAULT);
+			gfx->draw_rect_clipped(offset.x + to + 1, offset.y + 1, h - 2, h - 2, gfx->palette_lookup(COL_YELLOW), true CLIP_NUM_DEFAULT);
 			break;
 		case 2:
-			g_simgraph->draw_rect_clipped(offset.x + to + 1, offset.y + 1, h - 2, h - 2, g_simgraph->palette_lookup(COL_ORANGE), true CLIP_NUM_DEFAULT);
+			gfx->draw_rect_clipped(offset.x + to + 1, offset.y + 1, h - 2, h - 2, gfx->palette_lookup(COL_ORANGE), true CLIP_NUM_DEFAULT);
 			break;
 		case 3:
-			g_simgraph->draw_rect_clipped(offset.x + to + 1, offset.y + 1, h - 2, h - 2, g_simgraph->palette_lookup(COL_RED), true CLIP_NUM_DEFAULT);
+			gfx->draw_rect_clipped(offset.x + to + 1, offset.y + 1, h - 2, h - 2, gfx->palette_lookup(COL_RED), true CLIP_NUM_DEFAULT);
 			break;
 		case 0:
 		default:
-			g_simgraph->draw_rect_clipped( offset.x+h/2, offset.y + 1, to-2, h - 2, g_simgraph->palette_lookup( COL_GREEN ), true CLIP_NUM_DEFAULT);
-			g_simgraph->draw_right_triangle(offset.x + to, offset.y, h, g_simgraph->palette_lookup(COL_MAGENTA), true);
+			gfx->draw_rect_clipped( offset.x+h/2, offset.y + 1, to-2, h - 2, gfx->palette_lookup( COL_GREEN ), true CLIP_NUM_DEFAULT);
+			gfx->draw_right_triangle(offset.x + to, offset.y, h, gfx->palette_lookup(COL_MAGENTA), true);
 			break;
 	}
 }

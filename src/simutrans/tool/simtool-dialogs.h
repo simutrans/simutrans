@@ -654,7 +654,7 @@ public:
 	{
 		if (icon != IMG_EMPTY) {
 			if (is_selected()) {
-				g_simgraph->draw_img_blend(icon, pos.x, pos.y, TRANSPARENT50_FLAG | OUTLINE_FLAG | g_simgraph->palette_lookup(COL_BLACK), false, dirty);
+				gfx->draw_img_blend(icon, pos.x, pos.y, TRANSPARENT50_FLAG | OUTLINE_FLAG | gfx->palette_lookup(COL_BLACK), false, dirty);
 			}
 			uint16 unread_count = env_t::chat_unread_public + env_t::chat_unread_company + env_t::chat_unread_whisper;
 			if (unread_count > 99) {
@@ -663,12 +663,12 @@ public:
 			if (unread_count) {
 				char str[16];
 				sprintf(str, "%i", unread_count);
-				scr_coord_val txt_width = g_simgraph->calc_text_width(str);
+				scr_coord_val txt_width = gfx->calc_text_width(str);
 				scr_coord_val width = max(LINEASCENT, txt_width + 2);
 				scr_coord_val xoff = env_t::iconsize.w - width - 1;
 				scr_coord_val yoff = env_t::iconsize.h - LINESPACE - 1;
-				g_simgraph->draw_rounded_rect_clipped(pos.x + xoff, pos.y + yoff, width, LINESPACE, g_simgraph->palette_lookup(COL_RED + 1), dirty);
-				g_simgraph->draw_text(pos.x + xoff + D_GET_CENTER_ALIGN_OFFSET(txt_width, width), pos.y + yoff + 1, str, ALIGN_LEFT, g_simgraph->palette_lookup(COL_WHITE), dirty);
+				gfx->draw_rounded_rect_clipped(pos.x + xoff, pos.y + yoff, width, LINESPACE, gfx->palette_lookup(COL_RED + 1), dirty);
+				gfx->draw_text(pos.x + xoff + D_GET_CENTER_ALIGN_OFFSET(txt_width, width), pos.y + yoff + 1, str, ALIGN_LEFT, gfx->palette_lookup(COL_WHITE), dirty);
 			}
 		}
 	}

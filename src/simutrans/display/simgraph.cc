@@ -9,7 +9,7 @@
 #include "simgraph16.h"
 
 
-const simgraph_t *g_simgraph;
+const simgraph_t *gfx;
 
 scr_coord_val default_font_ascent = 0;
 

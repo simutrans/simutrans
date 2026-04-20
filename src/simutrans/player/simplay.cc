@@ -121,8 +121,8 @@ sint64 player_t::add_maintenance(sint64 change, waytype_t const wt)
 void player_t::add_money_message(const sint64 amount, const koord pos)
 {
 	if(amount != 0  &&  player_nr != 1) {
-		const scr_size screen = g_simgraph->get_screen_size();
-		if(  koord_distance(welt->get_viewport()->get_world_position(),pos)<2*(uint32)(screen.w / g_simgraph->get_tile_raster_width())+3  ) {
+		const scr_size screen = gfx->get_screen_size();
+		if(  koord_distance(welt->get_viewport()->get_world_position(),pos)<2*(uint32)(screen.w / gfx->get_tile_raster_width())+3  ) {
 			// only display, if near the screen ...
 			add_message(amount, pos);
 
@@ -222,9 +222,9 @@ void player_t::display_messages()
 
 	for(income_message_t* const m : messages) {
 
-		const scr_coord scr_pos = vp->get_screen_coord(koord3d(m->pos,welt->lookup_hgt(m->pos)),koord(0,m->alter >> 4)) + scr_coord((g_simgraph->get_tile_raster_width()-g_simgraph->calc_text_width_n(m->str, 0x7FFF))/2,0);
+		const scr_coord scr_pos = vp->get_screen_coord(koord3d(m->pos,welt->lookup_hgt(m->pos)),koord(0,m->alter >> 4)) + scr_coord((gfx->get_tile_raster_width()-gfx->calc_text_width_n(m->str, 0x7FFF))/2,0);
 
-		g_simgraph->draw_text_shadowed( scr_pos.x, scr_pos.y, PLAYER_FLAG|g_simgraph->palette_lookup(player_color_1+3), g_simgraph->palette_lookup(COL_BLACK), m->str, true);
+		gfx->draw_text_shadowed( scr_pos.x, scr_pos.y, PLAYER_FLAG|gfx->palette_lookup(player_color_1+3), gfx->palette_lookup(COL_BLACK), m->str, true);
 		if(  m->pos.x < 3  ||  m->pos.y < 3  ) {
 			// very close to border => renew background
 			welt->set_background_dirty();
@@ -270,7 +270,7 @@ void player_t::set_player_color(uint8 col1, uint8 col2)
 	player_color_1 = col1;
 	player_color_2 = col2;
 
-	g_simgraph->set_player_color_scheme(player_nr, col1, col2);
+	gfx->set_player_color_scheme(player_nr, col1, col2);
 
 	// update player window
 	if (ki_kontroll_t* frame = dynamic_cast<ki_kontroll_t*>(win_get_magic(magic_ki_kontroll_t))) {
@@ -303,7 +303,7 @@ bool player_t::new_month()
 			if(  welt->get_active_player_nr()==player_nr  &&  !env_t::networkmode  ) {
 				if(  finance->get_netwealth() < 0 ) {
 					destroy_all_win(true);
-					create_win({ g_simgraph->get_screen_size().w/2-128, 40 }, new news_img("Bankrott:\n\nDu bist bankrott.\n"), w_info, magic_none);
+					create_win({ gfx->get_screen_size().w/2-128, 40 }, new news_img("Bankrott:\n\nDu bist bankrott.\n"), w_info, magic_none);
 					ticker::add_msg( translator::translate("Bankrott:\n\nDu bist bankrott.\n"), koord3d::invalid, PLAYER_FLAG | player_nr );
 					welt->stop(false);
 				}
@@ -792,7 +792,7 @@ void player_t::finish_rd()
 {
 	simlinemgmt.finish_rd();
 
-	g_simgraph->set_player_color_scheme(player_nr, player_color_1, player_color_2);
+	gfx->set_player_color_scheme(player_nr, player_color_1, player_color_2);
 
 	// recalculate vehicle value
 	calc_assets();

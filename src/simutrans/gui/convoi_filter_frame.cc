@@ -49,7 +49,7 @@ convoi_filter_frame_t::convoi_filter_frame_t(player_t *player, convoi_frame_t *m
 		filter_buttons[i].init(button_t::square_state, filter_buttons_text[i]);
 		filter_buttons[i].add_listener(this);
 		if(filter_buttons_types[i] < sub_filter) {
-			filter_buttons[i].background_color = g_simgraph->palette_lookup(COL_WHITE);
+			filter_buttons[i].background_color = gfx->palette_lookup(COL_WHITE);
 		}
 		filter_buttons[i].pressed = get_filter(filter_buttons_types[i]);
 	}

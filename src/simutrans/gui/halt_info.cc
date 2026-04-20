@@ -281,7 +281,7 @@ halt_info_t::halt_info_t(halthandle_t halt) :
 		scrolly_freight(&container_freight, true, true),
 		scrolly_departure(departure_board, true, true),
 		scrolly_details(halt_detail, true, true),
-		view(koord3d::invalid, scr_size(max(64, g_simgraph->get_base_tile_raster_width()), max(56, g_simgraph->get_base_tile_raster_width() * 7 / 8)))
+		view(koord3d::invalid, scr_size(max(64, gfx->get_base_tile_raster_width()), max(56, gfx->get_base_tile_raster_width() * 7 / 8)))
 {
 	if (halt.is_bound()) {
 		init(halt);
@@ -401,11 +401,11 @@ void halt_info_t::init(halthandle_t halt)
 	chart.set_background(SYSCOL_CHART_BACKGROUND);
 	container_chart.add_component(&chart, D_BUTTONS_PER_ROW);
 	for (int cost = 0; cost<MAX_HALT_COST; cost++) {
-		uint16 curve = chart.add_curve(g_simgraph->palette_lookup(cost_type_color[cost]), halt->get_finance_history(), MAX_HALT_COST, index_of_haltinfo[cost], MAX_MONTHS, 0, false, true, 0);
+		uint16 curve = chart.add_curve(gfx->palette_lookup(cost_type_color[cost]), halt->get_finance_history(), MAX_HALT_COST, index_of_haltinfo[cost], MAX_MONTHS, 0, false, true, 0);
 
 		button_t *b = container_chart.new_component<button_t>();
 		b->init(button_t::box_state_automatic | button_t::flexible, cost_type[cost]);
-		b->background_color = g_simgraph->palette_lookup(cost_type_color[cost]);
+		b->background_color = gfx->palette_lookup(cost_type_color[cost]);
 		b->pressed = false;
 		button_to_chart.append(b, &chart, curve);
 	}
@@ -467,13 +467,13 @@ void halt_info_t::update_components()
 		lb_happy[2].update();
 	}
 	else {
-		if(  g_simgraph->font_has_character( 0x263A )  ) {
+		if(  gfx->font_has_character( 0x263A )  ) {
 			utf8 happy[4], unhappy[4];
 			happy[ utf16_to_utf8( 0x263A, happy ) ] = 0;
 			unhappy[ utf16_to_utf8( 0x2639, unhappy ) ] = 0;
 			lb_happy[0].buf().printf(translator::translate("Passengers %d %s, %d %s, %d no route"), halt->get_pax_happy(), happy, halt->get_pax_unhappy(), unhappy, halt->get_pax_no_route());
 		}
-		else if(  g_simgraph->font_has_character( 30 )  ) {
+		else if(  gfx->font_has_character( 30 )  ) {
 			lb_happy[0].buf().printf(translator::translate("Passengers %d %c, %d %c, %d no route"), halt->get_pax_happy(), 30, halt->get_pax_unhappy(), 31, halt->get_pax_no_route());
 		}
 		else {
@@ -613,7 +613,7 @@ void gui_halt_detail_t::update_connections( halthandle_t halt )
 			new_component<gui_line_button_t>(line);
 
 			// Line labels with color of player
-			gui_label_buf_t *lb = new_component<gui_label_buf_t>(PLAYER_FLAG | g_simgraph->palette_lookup(line->get_owner()->get_player_color1()+env_t::gui_player_color_dark) );
+			gui_label_buf_t *lb = new_component<gui_label_buf_t>(PLAYER_FLAG | gfx->palette_lookup(line->get_owner()->get_player_color1()+env_t::gui_player_color_dark) );
 			lb->buf().append( line->get_name() );
 			lb->update();
 		}
@@ -633,7 +633,7 @@ void gui_halt_detail_t::update_connections( halthandle_t halt )
 			new_component<gui_convoi_button_t>(cnv);
 
 			// Line labels with color of player
-			gui_label_buf_t *lb = new_component<gui_label_buf_t>(PLAYER_FLAG | g_simgraph->palette_lookup(cnv->get_owner()->get_player_color1()+env_t::gui_player_color_dark) );
+			gui_label_buf_t *lb = new_component<gui_label_buf_t>(PLAYER_FLAG | gfx->palette_lookup(cnv->get_owner()->get_player_color1()+env_t::gui_player_color_dark) );
 			lb->buf().append( cnv->get_name() );
 			lb->update();
 		}

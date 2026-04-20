@@ -13,7 +13,7 @@
 
 obj_infowin_t::obj_infowin_t(const obj_t* obj) :
 	base_infowin_t(translator::translate( obj->get_name() ), obj->get_owner()),
-	view(obj, scr_size( max(64, g_simgraph->get_base_tile_raster_width()), max(56, (g_simgraph->get_base_tile_raster_width()*7)/8) ))
+	view(obj, scr_size( max(64, gfx->get_base_tile_raster_width()), max(56, (gfx->get_base_tile_raster_width()*7)/8) ))
 {
 	fill_buffer();
 	//textarea.set_width( textarea.get_size().w + get_base_tile_raster_width() - 64);

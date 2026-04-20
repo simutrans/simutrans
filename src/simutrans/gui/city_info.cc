@@ -141,8 +141,8 @@ public:
 		}
 		pax_destinations_last_change = current_pax_destinations;
 
-		g_simgraph->draw_array(pos.x + offset.x, pos.y + offset.y, minimaps_size.w, minimaps_size.h, pax_dest_old.to_array() );
-		g_simgraph->draw_array(pos.x + offset.x + minimap2_offset.x, pos.y + offset.y + minimap2_offset.y, minimaps_size.w, minimaps_size.h, pax_dest_new.to_array() );
+		gfx->draw_array(pos.x + offset.x, pos.y + offset.y, minimaps_size.w, minimaps_size.h, pax_dest_old.to_array() );
+		gfx->draw_array(pos.x + offset.x + minimap2_offset.x, pos.y + offset.y + minimap2_offset.y, minimaps_size.w, minimaps_size.h, pax_dest_new.to_array() );
 	}
 };
 
@@ -224,12 +224,12 @@ void city_info_t::init()
 	chart.set_seed(welt->get_last_year());
 	chart.set_background(SYSCOL_CHART_BACKGROUND);
 	for(  uint32 i = 0;  i<MAX_CITY_HISTORY-1;  i++  ) {
-		sint16 curve = chart.add_curve( g_simgraph->palette_lookup(hist_type_color[i]), city->get_city_history_year(),
+		sint16 curve = chart.add_curve( gfx->palette_lookup(hist_type_color[i]), city->get_city_history_year(),
 			MAX_CITY_HISTORY, i, 12, gui_chart_t::STANDARD, (city->stadtinfo_options & (1<<i))!=0, true, 0 );
 		// add button
 		buttons[i] = container_year.new_component<button_t>();
 		buttons[i]->init(button_t::box_state_automatic | button_t::flexible, hist_type[i]);
-		buttons[i]->background_color = g_simgraph->palette_lookup(hist_type_color[i]);
+		buttons[i]->background_color = gfx->palette_lookup(hist_type_color[i]);
 		buttons[i]->pressed = (city->stadtinfo_options & (1<<i))!=0;
 		button_to_chart.append(buttons[i], &chart, curve);
 	}
@@ -244,7 +244,7 @@ void city_info_t::init()
 	mchart.set_seed(0);
 	mchart.set_background(SYSCOL_CHART_BACKGROUND);
 	for(  uint32 i = 0;  i<MAX_CITY_HISTORY-1;  i++  ) {
-		sint16 curve = mchart.add_curve( g_simgraph->palette_lookup(hist_type_color[i]), city->get_city_history_month(),
+		sint16 curve = mchart.add_curve( gfx->palette_lookup(hist_type_color[i]), city->get_city_history_month(),
 			MAX_CITY_HISTORY, i, 12, gui_chart_t::STANDARD, (city->stadtinfo_options & (1<<i))!=0, true, 0 );
 		// add button
 		container_month.add_component(buttons[i]);
@@ -344,10 +344,10 @@ void gui_city_minimap_t::add_pax_dest( array2d_tpl<PIXVAL> &pax_dest, const spar
 	const sint16 dd_y = 1+(minimaps_size.h-1)/PAX_DESTINATIONS_SIZE;
 
 	const PIXVAL city_dest_color_lut[4] = {
-		g_simgraph->palette_lookup(pax_dest_status_colors[0]),
-		g_simgraph->palette_lookup(pax_dest_status_colors[1]),
-		g_simgraph->palette_lookup(pax_dest_status_colors[2]),
-		g_simgraph->palette_lookup(pax_dest_status_colors[3])
+		gfx->palette_lookup(pax_dest_status_colors[0]),
+		gfx->palette_lookup(pax_dest_status_colors[1]),
+		gfx->palette_lookup(pax_dest_status_colors[2]),
+		gfx->palette_lookup(pax_dest_status_colors[3])
 	};
 
 	for(  uint16 i = 0;  i < city_pax_dest.get_data_count();  i++  ) {

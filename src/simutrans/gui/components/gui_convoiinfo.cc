@@ -45,9 +45,9 @@ public:
 		unsigned count = cnv.is_bound() ? cnv->get_vehicle_count() : 0;
 		for(unsigned i=0; i<count; i++) {
 			const image_id image = cnv->get_vehicle(i)->get_loaded_image();
-			scr_rect r = g_simgraph->get_base_image_offset(image);
+			scr_rect r = gfx->get_base_image_offset(image);
 			if (display_images) {
-				g_simgraph->draw_base_img(image, p.x + s.w - r.x, p.y - r.y - r.h/2, cnv->get_owner()->get_player_nr(), false, true CLIP_NUM_DEFAULT);
+				gfx->draw_base_img(image, p.x + s.w - r.x, p.y - r.y - r.h/2, cnv->get_owner()->get_player_nr(), false, true CLIP_NUM_DEFAULT);
 			}
 			s.w += (r.w*2)/3;
 			s.h = max(s.h, r.h);
@@ -80,8 +80,8 @@ gui_convoiinfo_t::gui_convoiinfo_t(convoihandle_t cnv)
 	// second row
 	new_component<gui_empty_t>();
 	add_component(&label_profit);
-	filled_bar.add_color_value(&cnv->get_loading_limit(), g_simgraph->palette_lookup(COL_YELLOW));
-	filled_bar.add_color_value(&cnv->get_loading_level(), g_simgraph->palette_lookup(COL_GREEN));
+	filled_bar.add_color_value(&cnv->get_loading_limit(), gfx->palette_lookup(COL_YELLOW));
+	filled_bar.add_color_value(&cnv->get_loading_level(), gfx->palette_lookup(COL_GREEN));
 	add_component(&filled_bar);
 
 	// third row

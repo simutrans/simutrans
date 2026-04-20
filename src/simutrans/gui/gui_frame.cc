@@ -48,7 +48,7 @@ void gui_frame_t::set_windowsize(scr_size new_windowsize)
 	if(  new_windowsize != windowsize  ) {
 		// mark old size dirty
 		scr_coord const& pos = win_get_pos(this);
-		g_simgraph->mark_rect_dirty_wc( pos.x, pos.y, pos.x+windowsize.w, pos.y+windowsize.h );
+		gfx->mark_rect_dirty_wc( pos.x, pos.y, pos.x+windowsize.w, pos.y+windowsize.h );
 
 		// minimum size //25-may-02  markus weber  added
 		new_windowsize.clip_lefttop(min_windowsize);
@@ -96,7 +96,7 @@ void gui_frame_t::reset_min_windowsize()
  */
 FLAGGED_PIXVAL gui_frame_t::get_titlecolor() const
 {
-	return owner ? (PLAYER_FLAG | g_simgraph->palette_lookup(owner->get_player_color1()+env_t::gui_player_color_dark)) : env_t::default_window_title_color;
+	return owner ? (PLAYER_FLAG | gfx->palette_lookup(owner->get_player_color1()+env_t::gui_player_color_dark)) : env_t::default_window_title_color;
 }
 
 
@@ -167,16 +167,16 @@ void gui_frame_t::draw(scr_coord pos, scr_size size)
 	scr_size titlebar_size(0, ( has_title()*D_TITLEBAR_HEIGHT ));
 	// draw background
 	if(  opaque  ) {
-		g_simgraph->draw_stretch_map( gui_theme_t::windowback, scr_rect( pos + titlebar_size, size - titlebar_size ) );
+		gfx->draw_stretch_map( gui_theme_t::windowback, scr_rect( pos + titlebar_size, size - titlebar_size ) );
 		if(  dirty  ) {
-			g_simgraph->mark_rect_dirty_wc(pos.x, pos.y, pos.x + size.w, pos.y + titlebar_size.h );
+			gfx->mark_rect_dirty_wc(pos.x, pos.y, pos.x + size.w, pos.y + titlebar_size.h );
 		}
 	}
 	else {
 		if(  dirty  ) {
-			g_simgraph->mark_rect_dirty_wc(pos.x, pos.y, pos.x + size.w, pos.y + size.h + titlebar_size.h );
+			gfx->mark_rect_dirty_wc(pos.x, pos.y, pos.x + size.w, pos.y + size.h + titlebar_size.h );
 		}
-		g_simgraph->tint_rect( pos.x+1, pos.y+titlebar_size.h, size.w-2, size.h-titlebar_size.h, color_transparent, percent_transparent );
+		gfx->tint_rect( pos.x+1, pos.y+titlebar_size.h, size.w-2, size.h-titlebar_size.h, color_transparent, percent_transparent );
 	}
 	dirty = false;
 
@@ -186,8 +186,8 @@ void gui_frame_t::draw(scr_coord pos, scr_size size)
 
 	// for shadows of the windows
 	if(  gui_theme_t::gui_drop_shadows  ) {
-		g_simgraph->tint_rect( pos.x+size.w, pos.y+1,      2, size.h, g_simgraph->palette_lookup(COL_BLACK), 50 );
-		g_simgraph->tint_rect( pos.x+1,      pos.y+size.h, size.w, 2, g_simgraph->palette_lookup(COL_BLACK), 50 );
+		gfx->tint_rect( pos.x+size.w, pos.y+1,      2, size.h, gfx->palette_lookup(COL_BLACK), 50 );
+		gfx->tint_rect( pos.x+1,      pos.y+size.h, size.w, 2, gfx->palette_lookup(COL_BLACK), 50 );
 	}
 }
 

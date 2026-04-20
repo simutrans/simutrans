@@ -27,7 +27,7 @@ void gui_building_t::init(const building_desc_t* d, int r)
 		return;
 	}
 
-	scr_coord_val rw4 = g_simgraph->get_base_tile_raster_width()/4;
+	scr_coord_val rw4 = gfx->get_base_tile_raster_width()/4;
 	for(int i=0; i< desc->get_x(layout); i++) {
 		for(int j=0; j < desc->get_y(layout); j++) {
 			image_id id = desc->get_tile(layout,i,j)->get_background(0,0,0);
@@ -39,7 +39,7 @@ void gui_building_t::init(const building_desc_t* d, int r)
 				img->set_pos(scr_coord( 2*(i-j)*rw4, (i+j)*rw4 ));
 				images.append(img);
 				// compute bounding box
-				scr_rect r = g_simgraph->get_base_image_offset(id);
+				scr_rect r = gfx->get_base_image_offset(id);
 				tl.clip_rightbottom(img->get_pos() + scr_coord(r.x, r.y));
 				br.clip_lefttop(img->get_pos() + scr_coord(r.x + r.w, r.y+r.h));
 			}

@@ -29,6 +29,6 @@ scr_size gui_colorbox_t::get_max_size() const
 void gui_colorbox_t::draw(scr_coord offset)
 {
 	offset += pos;
-	g_simgraph->draw_box3d_clipped(offset.x,     offset.y,     size.w,     D_INDICATOR_HEIGHT,   g_simgraph->palette_lookup(MN_GREY0), g_simgraph->palette_lookup(MN_GREY4));
-	g_simgraph->draw_rect_clipped (offset.x + 1, offset.y + 1, size.w - 2, D_INDICATOR_HEIGHT-2, color, true CLIP_NUM_DEFAULT);
+	gfx->draw_box3d_clipped(offset.x,     offset.y,     size.w,     D_INDICATOR_HEIGHT,   gfx->palette_lookup(MN_GREY0), gfx->palette_lookup(MN_GREY4));
+	gfx->draw_rect_clipped (offset.x + 1, offset.y + 1, size.w - 2, D_INDICATOR_HEIGHT-2, color, true CLIP_NUM_DEFAULT);
 }

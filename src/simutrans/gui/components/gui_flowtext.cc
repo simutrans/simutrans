@@ -437,13 +437,13 @@ scr_size gui_flowtext_intern_t::output(scr_coord offset, bool doit, bool return_
 	int last_link_x     = 0;     // at this position ye need to continue underline drawing
 	int max_width    = width;
 	int text_width   = width;
-	const int space_width = g_simgraph->calc_text_width(" ");
+	const int space_width = gfx->calc_text_width(" ");
 
 	for(node_t const& i : nodes) {
 		switch (i.att) {
 			case ATT_NONE:
 			case ATT_NO_SPACE: {
-				int nxpos = xpos + g_simgraph->calc_text_width(i.text.c_str());
+				int nxpos = xpos + gfx->calc_text_width(i.text.c_str());
 
 				if (nxpos >= text_width) {
 					text_width = nxpos;
@@ -460,7 +460,7 @@ scr_size gui_flowtext_intern_t::output(scr_coord offset, bool doit, bool return_
 						if(  xpos!=last_link_x  &&  link_it  ) {
 							if(  doit  ) {
 								// close the link
-								g_simgraph->draw_rect_clipped( offset.x + last_link_x + D_MARGIN_LEFT, ypos + offset.y + LINESPACE-1, xpos-last_link_x, 1, color, false CLIP_NUM_DEFAULT);
+								gfx->draw_rect_clipped( offset.x + last_link_x + D_MARGIN_LEFT, ypos + offset.y + LINESPACE-1, xpos-last_link_x, 1, color, false CLIP_NUM_DEFAULT);
 							}
 							extra_pixel = 1;
 						}
@@ -490,12 +490,12 @@ scr_size gui_flowtext_intern_t::output(scr_coord offset, bool doit, bool return_
 
 				if (doit) {
 					if (double_it) {
-						g_simgraph->draw_text_clipped(offset.x + xpos + 1 + D_MARGIN_LEFT, offset.y + ypos + 1, i.text.c_str(), 0, double_color, false);
+						gfx->draw_text_clipped(offset.x + xpos + 1 + D_MARGIN_LEFT, offset.y + ypos + 1, i.text.c_str(), 0, double_color, false);
 						extra_pixel |= 1;
 					}
-					scr_coord_val width = g_simgraph->draw_text_clipped(offset.x + xpos + D_MARGIN_LEFT, offset.y + ypos, i.text.c_str(), 0, color, false);
+					scr_coord_val width = gfx->draw_text_clipped(offset.x + xpos + D_MARGIN_LEFT, offset.y + ypos, i.text.c_str(), 0, color, false);
 					if(  link_it  ) {
-						g_simgraph->draw_rect_clipped( offset.x + last_link_x + D_MARGIN_LEFT, ypos + offset.y + LINESPACE-1, (xpos+width)-last_link_x, 1, color, false CLIP_NUM_DEFAULT);
+						gfx->draw_rect_clipped( offset.x + last_link_x + D_MARGIN_LEFT, ypos + offset.y + LINESPACE-1, (xpos+width)-last_link_x, 1, color, false CLIP_NUM_DEFAULT);
 						last_link_x = xpos+width;
 					}
 				}
@@ -511,7 +511,7 @@ scr_size gui_flowtext_intern_t::output(scr_coord offset, bool doit, bool return_
 				if(  last_link_x<xpos  &&  link_it  ) {
 					if(  doit  ) {
 						// close the link
-						g_simgraph->draw_rect_clipped( offset.x + last_link_x + D_MARGIN_LEFT, ypos + offset.y + LINESPACE-1, xpos-last_link_x, 1, color, false CLIP_NUM_DEFAULT);
+						gfx->draw_rect_clipped( offset.x + last_link_x + D_MARGIN_LEFT, ypos + offset.y + LINESPACE-1, xpos-last_link_x, 1, color, false CLIP_NUM_DEFAULT);
 					}
 					extra_pixel = 1;
 				}
@@ -549,8 +549,8 @@ scr_size gui_flowtext_intern_t::output(scr_coord offset, bool doit, bool return_
 			case ATT_H1_END:
 				double_it = false;
 				if(doit) {
-					g_simgraph->draw_rect_clipped(offset.x + 1 + D_MARGIN_LEFT, offset.y + ypos + LINESPACE,   xpos, 1, color,        false CLIP_NUM_DEFAULT);
-					g_simgraph->draw_rect_clipped(offset.x +     D_MARGIN_LEFT, offset.y + ypos + LINESPACE-1, xpos, 1, double_color, false CLIP_NUM_DEFAULT);
+					gfx->draw_rect_clipped(offset.x + 1 + D_MARGIN_LEFT, offset.y + ypos + LINESPACE,   xpos, 1, color,        false CLIP_NUM_DEFAULT);
+					gfx->draw_rect_clipped(offset.x +     D_MARGIN_LEFT, offset.y + ypos + LINESPACE-1, xpos, 1, double_color, false CLIP_NUM_DEFAULT);
 				}
 				xpos = 0;
 				extra_pixel = 0;
@@ -591,7 +591,7 @@ scr_size gui_flowtext_intern_t::output(scr_coord offset, bool doit, bool return_
 			case ATT_IMG_START:
 				if (image != images.end()) {
 					//display image
-					const scr_rect area = g_simgraph->get_base_image_offset(image->id);
+					const scr_rect area = gfx->get_base_image_offset(image->id);
 
 					if (  xpos + area.w > max_width  &&  xpos != 0  ) {
 						// New Line if image is too large to fit on line (unless already at new line)
@@ -607,9 +607,9 @@ scr_size gui_flowtext_intern_t::output(scr_coord offset, bool doit, bool return_
 						// this will display the scaled tool image, not the original one
 						// and therefore causes graphical glitches when zooming in/out.
 						// Force displaying non-scaled tool image instead.
-						g_simgraph->fit_img_to_width(image->id, area.w);
+						gfx->fit_img_to_width(image->id, area.w);
 
-						g_simgraph->draw_base_img(image->id, offset.x + xpos + 1 - area.x + D_MARGIN_LEFT, offset.y + ypos + area.y, 0, false, false CLIP_NUM_DEFAULT);
+						gfx->draw_base_img(image->id, offset.x + xpos + 1 - area.x + D_MARGIN_LEFT, offset.y + ypos + area.y, 0, false, false CLIP_NUM_DEFAULT);
 					}
 					xpos += area.w+2;
 					if ( extra_pixels < area.h - LINESPACE ) {
@@ -626,7 +626,7 @@ scr_size gui_flowtext_intern_t::output(scr_coord offset, bool doit, bool return_
 	}
 	ypos += LINESPACE;
 	if(dirty) {
-		g_simgraph->mark_rect_dirty_wc( offset.x + D_MARGIN_LEFT, offset.y, offset.x+max_width + D_MARGIN_LEFT, offset.y+ypos );
+		gfx->mark_rect_dirty_wc( offset.x + D_MARGIN_LEFT, offset.y, offset.x+max_width + D_MARGIN_LEFT, offset.y+ypos );
 		dirty = false;
 	}
 	return scr_size( (return_max_width ? max_width : text_width)+D_MARGIN_LEFT+D_MARGIN_RIGHT, ypos);

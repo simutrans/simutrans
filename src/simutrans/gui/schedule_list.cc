@@ -236,7 +236,7 @@ bool schedule_list_gui_t::action_triggered( gui_action_creator_t *comp, value_t 
 			// try to open to the right
 			scr_coord sc = win_get_pos( this );
 			scr_coord lc = sc;
-			const scr_size screen = g_simgraph->get_screen_size();
+			const scr_size screen = gfx->get_screen_size();
 
 			lc.x += get_windowsize().w;
 			if( lc.x > screen.w ) {

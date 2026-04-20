@@ -430,11 +430,11 @@ void env_t::rdwr(loadsave_t *file)
 	if (  file->is_version_less(120, 5)  ) {
 		uint8 color_idx = COL_SOFT_BLUE;
 		file->rdwr_byte( color_idx );
-		env_t::tooltip_color_rgb = g_simgraph->get_color_rgb(color_idx);
+		env_t::tooltip_color_rgb = gfx->get_color_rgb(color_idx);
 
 		color_idx = COL_BLACK;
 		file->rdwr_byte( color_idx );
-		env_t::tooltip_textcolor_rgb = g_simgraph->get_color_rgb(color_idx);
+		env_t::tooltip_textcolor_rgb = gfx->get_color_rgb(color_idx);
 	}
 
 	file->rdwr_long( autosave );
@@ -527,13 +527,13 @@ void env_t::rdwr(loadsave_t *file)
 			file->rdwr_byte( color ); // to skip old parameter front_window_bar_color
 
 			file->rdwr_byte( color );
-			env_t::front_window_text_color_rgb = g_simgraph->get_color_rgb(color);
+			env_t::front_window_text_color_rgb = gfx->get_color_rgb(color);
 
 			file->rdwr_byte( color ); // to skip old parameter bottom_window_bar_color
 
 			color = 209; // CITY_KI
 			file->rdwr_byte( color );
-			env_t::bottom_window_text_color_rgb = g_simgraph->get_color_rgb(color);
+			env_t::bottom_window_text_color_rgb = gfx->get_color_rgb(color);
 		}
 	}
 
@@ -562,7 +562,7 @@ void env_t::rdwr(loadsave_t *file)
 		if(  file->is_version_less(120, 5)  ) {
 			uint8 color = COL_GREY2;
 			file->rdwr_byte( color );
-			env_t::background_color_rgb = g_simgraph->get_color_rgb(color);
+			env_t::background_color_rgb = gfx->get_color_rgb(color);
 		}
 		file->rdwr_bool( draw_earth_border );
 		file->rdwr_bool( draw_outside_tile );

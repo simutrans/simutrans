@@ -62,7 +62,7 @@ scr_size gui_textarea_t::calc_size() const
 			do {
 				next = strchr(buf, '\n');
 				const size_t len = next ? next-buf : 99999;
-				const int px_len = g_simgraph->calc_text_width_n(buf, len);
+				const int px_len = gfx->calc_text_width_n(buf, len);
 
 				if(  px_len > x_size  ) {
 					x_size = px_len;
@@ -89,7 +89,7 @@ void gui_textarea_t::draw(scr_coord offset)
 {
 	const char *text(*buf);
 
-	// we cannot use: display_multiline_text(pos.x+offset.x, pos.y+offset.y+10, text, g_simgraph->palette_lookup(COL_BLACK));
+	// we cannot use: display_multiline_text(pos.x+offset.x, pos.y+offset.y+10, text, gfx->palette_lookup(COL_BLACK));
 	// since we also want to dynamically change the size of the component
 	scr_coord_val new_lines = 0;
 
@@ -107,13 +107,13 @@ void gui_textarea_t::draw(scr_coord offset)
 			const size_t len = next != NULL ? next - buf : -1;
 			scr_coord_val const draw_y = y + new_lines;
 			int px_len;
-			if (  -LINESPACE <= draw_y  &&  draw_y <= g_simgraph->get_screen_size().h + LINESPACE) {
+			if (  -LINESPACE <= draw_y  &&  draw_y <= gfx->get_screen_size().h + LINESPACE) {
 				// draw when in screen area
-				px_len = g_simgraph->draw_text_clipped_n(x, draw_y, buf, ALIGN_LEFT | DT_CLIP, SYSCOL_TEXT, true, len CLIP_NUM_DEFAULT);
+				px_len = gfx->draw_text_clipped_n(x, draw_y, buf, ALIGN_LEFT | DT_CLIP, SYSCOL_TEXT, true, len CLIP_NUM_DEFAULT);
 			}
 			else {
 				// track required length when out of screen area
-				px_len = g_simgraph->calc_text_width_n(buf, len);
+				px_len = gfx->calc_text_width_n(buf, len);
 			}
 			if(px_len>x_size) {
 				x_size = px_len;

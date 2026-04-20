@@ -305,10 +305,10 @@ koord3d viewport_t::get_new_cursor_position( const scr_coord &screen_pos, bool g
 
 void viewport_t::metrics_updated()
 {
-	const scr_size screen = g_simgraph->get_screen_size();
+	const scr_size screen = gfx->get_screen_size();
 	cached_disp_width  = screen.w;
 	cached_disp_height = screen.h;
-	cached_img_size    = g_simgraph->get_tile_raster_width();
+	cached_img_size    = gfx->get_tile_raster_width();
 
 	set_viewport_ij_offset(koord(
 		- cached_disp_width/(2*cached_img_size) - cached_disp_height/cached_img_size,

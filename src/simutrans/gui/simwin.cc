@@ -190,14 +190,14 @@ static int display_gadget_box(sint8 code,
 
 	if(pushed) {
 		// mark_rect_dirty_wc(x, y, D_GADGET_WIDTH, D_TITLEBAR_HEIGHT);
-		g_simgraph->draw_rect_clipped(x, y, D_GADGET_WIDTH, D_TITLEBAR_HEIGHT, lighter, false CLIP_NUM_DEFAULT);
+		gfx->draw_rect_clipped(x, y, D_GADGET_WIDTH, D_TITLEBAR_HEIGHT, lighter, false CLIP_NUM_DEFAULT);
 	}
 
 	// Do we have a gadget image?
 	if(  img != NULL  ) {
 
 		// Max Kielland: This center the gadget image and compensates for any left/top margins within the image to be backward compatible with older PAK sets.
-		g_simgraph->draw_img_aligned(img->imageid, scr_rect(x, y, D_GADGET_WIDTH, D_TITLEBAR_HEIGHT), ALIGN_CENTER_H | ALIGN_CENTER_V, false);
+		gfx->draw_img_aligned(img->imageid, scr_rect(x, y, D_GADGET_WIDTH, D_TITLEBAR_HEIGHT), ALIGN_CENTER_H | ALIGN_CENTER_V, false);
 
 	}
 	else {
@@ -216,12 +216,12 @@ static int display_gadget_box(sint8 code,
 		else if(  code == SKIN_GADGET_PINNED  ) {
 			gadget_text = "S";
 		}
-		g_simgraph->draw_text( x+4, y+4, gadget_text, ALIGN_LEFT, SYSCOL_TEXT, false );
+		gfx->draw_text( x+4, y+4, gadget_text, ALIGN_LEFT, SYSCOL_TEXT, false );
 	}
 
 	int side = x+REVERSE_GADGETS*D_GADGET_WIDTH-1;
-	g_simgraph->draw_vline_clipped(side+1, y+1, D_TITLEBAR_HEIGHT-2, lighter, false CLIP_NUM_DEFAULT);
-	g_simgraph->draw_vline_clipped(side,   y+1, D_TITLEBAR_HEIGHT-2, darker,  false CLIP_NUM_DEFAULT);
+	gfx->draw_vline_clipped(side+1, y+1, D_TITLEBAR_HEIGHT-2, lighter, false CLIP_NUM_DEFAULT);
+	gfx->draw_vline_clipped(side,   y+1, D_TITLEBAR_HEIGHT-2, darker,  false CLIP_NUM_DEFAULT);
 
 	// return width of gadget
 	return D_GADGET_WIDTH;
@@ -336,25 +336,25 @@ static void win_draw_window_title(const scr_coord pos, const scr_size size,
 {
 	PUSH_CLIP_FIT(pos.x, pos.y, size.w, size.h);
 
-	PIXVAL lighter = g_simgraph->blend_colors(title_color, g_simgraph->palette_lookup(COL_WHITE), 25);
-	PIXVAL darker  = g_simgraph->blend_colors(title_color, g_simgraph->palette_lookup(COL_BLACK), 25);
+	PIXVAL lighter = gfx->blend_colors(title_color, gfx->palette_lookup(COL_WHITE), 25);
+	PIXVAL darker  = gfx->blend_colors(title_color, gfx->palette_lookup(COL_BLACK), 25);
 
 	// fill title bar with color
-	g_simgraph->draw_rect_clipped(pos.x, pos.y, size.w, D_TITLEBAR_HEIGHT, title_color, true CLIP_NUM_DEFAULT);
+	gfx->draw_rect_clipped(pos.x, pos.y, size.w, D_TITLEBAR_HEIGHT, title_color, true CLIP_NUM_DEFAULT);
 
 	// border of title bar
-	g_simgraph->draw_rect_clipped( pos.x + 1, pos.y,                         size.w - 2, 1, lighter, false CLIP_NUM_DEFAULT); // top
-	g_simgraph->draw_rect_clipped( pos.x + 1, pos.y + D_TITLEBAR_HEIGHT - 1, size.w - 2, 1, darker,  false CLIP_NUM_DEFAULT); // bottom
+	gfx->draw_rect_clipped( pos.x + 1, pos.y,                         size.w - 2, 1, lighter, false CLIP_NUM_DEFAULT); // top
+	gfx->draw_rect_clipped( pos.x + 1, pos.y + D_TITLEBAR_HEIGHT - 1, size.w - 2, 1, darker,  false CLIP_NUM_DEFAULT); // bottom
 
-	g_simgraph->draw_vline_clipped( pos.x,              pos.y, D_TITLEBAR_HEIGHT, lighter, false CLIP_NUM_DEFAULT); // left
-	g_simgraph->draw_vline_clipped( pos.x + size.w - 1, pos.y, D_TITLEBAR_HEIGHT, darker,  false CLIP_NUM_DEFAULT); // right
+	gfx->draw_vline_clipped( pos.x,              pos.y, D_TITLEBAR_HEIGHT, lighter, false CLIP_NUM_DEFAULT); // left
+	gfx->draw_vline_clipped( pos.x + size.w - 1, pos.y, D_TITLEBAR_HEIGHT, darker,  false CLIP_NUM_DEFAULT); // right
 
 	// Draw the gadgets and then move left and draw text.
 	flags.gotopos = (welt_pos != koord3d::invalid);
 	int width = display_gadget_boxes( &flags, pos.x+(REVERSE_GADGETS?0:size.w-D_GADGET_WIDTH), pos.y, lighter, darker, gadget_state, sticky, goto_pushed );
-	int titlewidth = g_simgraph->draw_text_clipped( pos.x + (REVERSE_GADGETS?width+4:4), pos.y+(D_TITLEBAR_HEIGHT-LINEASCENT)/2, text, ALIGN_LEFT, text_color, false );
+	int titlewidth = gfx->draw_text_clipped( pos.x + (REVERSE_GADGETS?width+4:4), pos.y+(D_TITLEBAR_HEIGHT-LINEASCENT)/2, text, ALIGN_LEFT, text_color, false );
 	if(  flags.gotopos  ) {
-		g_simgraph->draw_text_clipped( pos.x + (REVERSE_GADGETS?width+4:4)+titlewidth+8, pos.y+(D_TITLEBAR_HEIGHT-LINEASCENT)/2, welt_pos.get_fullstr(), ALIGN_LEFT, text_color, false );
+		gfx->draw_text_clipped( pos.x + (REVERSE_GADGETS?width+4:4)+titlewidth+8, pos.y+(D_TITLEBAR_HEIGHT-LINEASCENT)/2, welt_pos.get_fullstr(), ALIGN_LEFT, text_color, false );
 	}
 	POP_CLIP();
 }
@@ -370,12 +370,12 @@ static void win_draw_window_dragger(scr_coord pos, scr_size size)
 	pos += size;
 	if(  skinverwaltung_t::gadget  &&  skinverwaltung_t::gadget->get_image_id(SKIN_WINDOW_RESIZE)!=IMG_EMPTY  ) {
 		const image_t *dragger = skinverwaltung_t::gadget->get_image(SKIN_WINDOW_RESIZE);
-		g_simgraph->draw_color_img( dragger->get_id(), pos.x-dragger->get_pic()->w, pos.y-dragger->get_pic()->h, 0, false, false CLIP_NUM_DEFAULT);
+		gfx->draw_color_img( dragger->get_id(), pos.x-dragger->get_pic()->w, pos.y-dragger->get_pic()->h, 0, false, false CLIP_NUM_DEFAULT);
 	}
 	else {
 		int dragger_size = min(D_DRAGGER_WIDTH, D_DRAGGER_HEIGHT);
 		for(  int x=1;  x<dragger_size;  x++  ) {
-			g_simgraph->draw_rect_clipped( pos.x-x, pos.y-dragger_size+x, x, 1, g_simgraph->palette_lookup((x & 1) ? COL_BLACK : MN_GREY4), true CLIP_NUM_DEFAULT);
+			gfx->draw_rect_clipped( pos.x-x, pos.y-dragger_size+x, x, 1, gfx->palette_lookup((x & 1) ? COL_BLACK : MN_GREY4), true CLIP_NUM_DEFAULT);
 		}
 	}
 }
@@ -690,7 +690,7 @@ void rdwr_all_win(loadsave_t *file)
 
 scr_rect win_get_max_window_area()
 {
-	const scr_size screen = g_simgraph->get_screen_size();
+	const scr_size screen = gfx->get_screen_size();
 
 	scr_coord other_pos((env_t::menupos == MENU_LEFT) * env_t::iconsize.w, (env_t::menupos == MENU_TOP) * env_t::iconsize.h + (env_t::menupos == MENU_BOTTOM) * win_get_statusbar_height());
 	scr_size other_size{
@@ -844,7 +844,7 @@ int create_win(scr_coord pos, gui_frame_t *const gui, wintype const wt, ptrdiff_
 		if (!wins.empty()) {
 			// mark old dirty
 			const scr_size size = wins.back().gui->get_windowsize();
-			g_simgraph->mark_rect_dirty_wc( wins.back().pos.x - 1, wins.back().pos.y - 1, wins.back().pos.x + size.w + 2, wins.back().pos.y + size.h + 2 + D_TITLEBAR_HEIGHT ); // -1, +2 for env_t::window_frame_active
+			gfx->mark_rect_dirty_wc( wins.back().pos.x - 1, wins.back().pos.y - 1, wins.back().pos.x + size.w + 2, wins.back().pos.y + size.h + 2 + D_TITLEBAR_HEIGHT ); // -1, +2 for env_t::window_frame_active
 		}
 
 		wins.append( simwin_t() );
@@ -897,7 +897,7 @@ int create_win(scr_coord pos, gui_frame_t *const gui, wintype const wt, ptrdiff_
 		// use default width
 		stored.clip_lefttop(scr_size(D_DEFAULT_WIDTH, D_DEFAULT_HEIGHT));
 		// clip to display size
-		const scr_size screen = g_simgraph->get_screen_size();
+		const scr_size screen = gfx->get_screen_size();
 		stored.clip_rightbottom( scr_size(screen.w, screen.h - env_t::iconsize.h - win_get_statusbar_height() ) );
 
 		if (stored != gui->get_windowsize()) {
@@ -923,7 +923,7 @@ int create_win(scr_coord pos, gui_frame_t *const gui, wintype const wt, ptrdiff_
 				pos.y = 0;
 				if (env_t::menupos == MENU_BOTTOM) {
 					direction = -1;
-					pos.y = g_simgraph->get_screen_size().h - gui->get_windowsize().h - env_t::iconsize.h;
+					pos.y = gfx->get_screen_size().h - gui->get_windowsize().h - env_t::iconsize.h;
 				}
 				// now we just open below (above), not caring for holes
 				for (uint32 i=0;  i<wins.get_count()-1;  i++) {
@@ -939,14 +939,14 @@ int create_win(scr_coord pos, gui_frame_t *const gui, wintype const wt, ptrdiff_
 				}
 				if (env_t::menupos == MENU_RIGHT) {
 					// right aligned
-					pos.x = g_simgraph->get_screen_size().w - gui->get_windowsize().w - env_t::iconsize.w;
+					pos.x = gfx->get_screen_size().w - gui->get_windowsize().w - env_t::iconsize.w;
 				}
 				win_clamp_xywh_position(gui, pos, gui->get_windowsize(), true);
 			}
 			else {
 				// try to go next to mouse bar
 				pos.x = get_mouse_pos().x - gui->get_windowsize().w / 2;
-				pos.y = get_mouse_pos().y - gui->get_windowsize().h - g_simgraph->get_tile_raster_width()/4;
+				pos.y = get_mouse_pos().y - gui->get_windowsize().h - gfx->get_tile_raster_width()/4;
 			}
 		}
 
@@ -970,7 +970,7 @@ static int notify_top_win()
 {
 	// mark new dirty
 	scr_size size = wins.back().gui->get_windowsize();
-	g_simgraph->mark_rect_dirty_wc( wins.back().pos.x - 1, wins.back().pos.y - 1, wins.back().pos.x + size.w + 2, wins.back().pos.y + size.h + 2 ); // -1, +2 for env_t::window_frame_active
+	gfx->mark_rect_dirty_wc( wins.back().pos.x - 1, wins.back().pos.y - 1, wins.back().pos.x + size.w + 2, wins.back().pos.y + size.h + 2 ); // -1, +2 for env_t::window_frame_active
 
 	event_t ev;
 
@@ -1000,7 +1000,7 @@ int top_win(int win, bool keep_state )
 
 	// mark old dirty
 	scr_size size = wins.back().gui->get_windowsize();
-	g_simgraph->mark_rect_dirty_wc( wins.back().pos.x - 1, wins.back().pos.y - 1, wins.back().pos.x + size.w + 2, wins.back().pos.y + size.h + 2 ); // -1, +2 for env_t::window_frame_active
+	gfx->mark_rect_dirty_wc( wins.back().pos.x - 1, wins.back().pos.y - 1, wins.back().pos.x + size.w + 2, wins.back().pos.y + size.h + 2 ); // -1, +2 for env_t::window_frame_active
 	wins.back().dirty = true;
 
 	simwin_t tmp = wins[win];
@@ -1058,7 +1058,7 @@ static bool destroy_framed_win(simwin_t *wins)
 
 	// mark dirty
 	const scr_size size = wins->gui->get_windowsize();
-	g_simgraph->mark_rect_dirty_wc( wins->pos.x - 1, wins->pos.y - 1, wins->pos.x + size.w + 2, wins->pos.y + size.h + 2 ); // -1, +2 for env_t::window_frame_active
+	gfx->mark_rect_dirty_wc( wins->pos.x - 1, wins->pos.y - 1, wins->pos.x + size.w + 2, wins->pos.y + size.h + 2 ); // -1, +2 for env_t::window_frame_active
 
 	// save windowsize for later
 	save_windowsize(wins);
@@ -1175,7 +1175,7 @@ void rollup_all_win()
 			wins[curWin].rollup = true;
 			gui_frame_t *gui = wins[curWin].gui;
 			scr_size size = gui->get_windowsize();
-			g_simgraph->mark_rect_dirty_wc( wins[curWin].pos.x, wins[curWin].pos.y, wins[curWin].pos.x+size.w, wins[curWin].pos.y+size.h );
+			gfx->mark_rect_dirty_wc( wins[curWin].pos.x, wins[curWin].pos.y, wins[curWin].pos.x+size.w, wins[curWin].pos.y+size.h );
 			all_rolldown_flag = false;
 		}
 	}
@@ -1195,7 +1195,7 @@ void rolldown_all_win()
 		wins[curWin].rollup = false;
 		gui_frame_t *gui = wins[curWin].gui;
 		scr_size size = gui->get_windowsize();
-		g_simgraph->mark_rect_dirty_wc( wins[curWin].pos.x, wins[curWin].pos.y, wins[curWin].pos.x+size.w, wins[curWin].pos.y+size.h );
+		gfx->mark_rect_dirty_wc( wins[curWin].pos.x, wins[curWin].pos.y, wins[curWin].pos.x+size.w, wins[curWin].pos.y+size.h );
 	}
 }
 
@@ -1212,7 +1212,7 @@ void display_win(int win)
 	FLAGGED_PIXVAL text_color = env_t::front_window_text_color;
 	if(  (unsigned)win!=wins.get_count()-1  ) {
 		// not top => darker
-		title_color = g_simgraph->blend_colors(title_color, g_simgraph->palette_lookup(COL_BLACK), env_t::bottom_window_darkness);
+		title_color = gfx->blend_colors(title_color, gfx->palette_lookup(COL_BLACK), env_t::bottom_window_darkness);
 		text_color = env_t::bottom_window_text_color;
 	}
 	bool need_dragger = comp->get_resizemode() != gui_frame_t::no_resize;
@@ -1233,16 +1233,16 @@ void display_win(int win)
 	}
 	if(  wins[win].dirty  ) {
 		// not sure this is still a useful call
-		g_simgraph->mark_rect_dirty_wc( wins[win].pos.x, wins[win].pos.y, wins[win].pos.x+size.w+1, wins[win].pos.y+2 );
+		gfx->mark_rect_dirty_wc( wins[win].pos.x, wins[win].pos.y, wins[win].pos.x+size.w+1, wins[win].pos.y+2 );
 		wins[win].dirty = false;
 	}
 	// mark top window, if requested
 	if(env_t::window_frame_active  &&  (unsigned)win==wins.get_count()-1) {
 		if(!wins[win].rollup) {
-			g_simgraph->draw_box3d_clipped( wins[win].pos.x-1, wins[win].pos.y-1, size.w+2, size.h+2, title_color, title_color);
+			gfx->draw_box3d_clipped( wins[win].pos.x-1, wins[win].pos.y-1, size.w+2, size.h+2, title_color, title_color);
 		}
 		else {
-			g_simgraph->draw_box3d_clipped( wins[win].pos.x-1, wins[win].pos.y-1, size.w+2, D_TITLEBAR_HEIGHT + 2, title_color, title_color);
+			gfx->draw_box3d_clipped( wins[win].pos.x-1, wins[win].pos.y-1, size.w+2, D_TITLEBAR_HEIGHT + 2, title_color, title_color);
 		}
 	}
 	if(!wins[win].rollup) {
@@ -1341,7 +1341,7 @@ static void snap_check_win( const int win, scr_coord *r, const scr_coord from_po
 
 		if(  i==wins_count  ) {
 			// Allow snap to screen edge
-			const scr_size screen = g_simgraph->get_screen_size();
+			const scr_size screen = gfx->get_screen_size();
 
 			other_pos.x = (env_t::menupos==MENU_LEFT)*env_t::iconsize.w;
 			other_pos.y = (env_t::menupos==MENU_TOP)*env_t::iconsize.h + (env_t::menupos==MENU_BOTTOM)*win_get_statusbar_height();
@@ -1453,7 +1453,7 @@ static void move_win(int win, event_t *ev)
 
 	wins[win].pos += delta;
 	// need to mark all of old and new positions dirty. -1, +2 for env_t::window_frame_active
-	g_simgraph->mark_rect_dirty_wc( from_pos.x - 1, from_pos.y - 1, from_pos.x + from_size.x + 2, from_pos.y + from_size.y + 2 );
+	gfx->mark_rect_dirty_wc( from_pos.x - 1, from_pos.y - 1, from_pos.x + from_size.x + 2, from_pos.y + from_size.y + 2 );
 	wins[win].dirty = true;
 
 	// set dirty flag to refill background
@@ -1485,7 +1485,7 @@ static void resize_win(int win, event_t *ev)
 	}
 
 	// since we may be smaller afterwards
-	g_simgraph->mark_rect_dirty_wc( from_pos.x - 1, from_pos.y - 1, from_pos.x + from_size.x + 2, from_pos.y + from_size.y + 2 ); // -1, +2 for env_t::window_frame_active
+	gfx->mark_rect_dirty_wc( from_pos.x - 1, from_pos.y - 1, from_pos.x + from_size.x + 2, from_pos.y + from_size.y + 2 ); // -1, +2 for env_t::window_frame_active
 	// set dirty flag to refill background
 	if(wl) {
 		wl->set_background_dirty();
@@ -1599,7 +1599,7 @@ bool check_pos_win(event_t *ev,bool modal)
 	}
 
 	// click in main menu?
-	const scr_size screen = g_simgraph->get_screen_size();
+	const scr_size screen = gfx->get_screen_size();
 	scr_coord menuoffset((env_t::menupos == MENU_RIGHT) * (screen.w - env_t::iconsize.w), (env_t::menupos == MENU_BOTTOM) * (screen.h - env_t::iconsize.h) - D_TITLEBAR_HEIGHT);
 
 	if (!tool_t::toolbar_tool.empty()  &&
@@ -1691,13 +1691,13 @@ bool check_pos_win(event_t *ev,bool modal)
 	}
 
 	// swallow all other events in the infobar
-	if(  !IS_KEYDOWN(ev)  &&  ev->ev_class != EVENT_STRING  &&  y > g_simgraph->get_screen_size().h - win_get_statusbar_height()  ) {
+	if(  !IS_KEYDOWN(ev)  &&  ev->ev_class != EVENT_STRING  &&  y > gfx->get_screen_size().h - win_get_statusbar_height()  ) {
 		// swallow event
 		return true;
 	}
 
 	// swallow all other events in ticker (if there)
-	if(  !IS_KEYDOWN(ev)  &&  ev->ev_class != EVENT_STRING  &&  show_ticker  &&  y > g_simgraph->get_screen_size().h - win_get_statusbar_height() - TICKER_HEIGHT  ) {
+	if(  !IS_KEYDOWN(ev)  &&  ev->ev_class != EVENT_STRING  &&  show_ticker  &&  y > gfx->get_screen_size().h - win_get_statusbar_height() - TICKER_HEIGHT  ) {
 		if(  IS_LEFTCLICK(ev)  ) {
 			ticker::process_click(x);
 		}
@@ -1792,7 +1792,7 @@ bool check_pos_win(event_t *ev,bool modal)
 						wins[i].rollup ^= 1;
 						gui_frame_t *gui = wins[i].gui;
 						scr_size size = gui->get_windowsize();
-						g_simgraph->mark_rect_dirty_wc( wins[i].pos.x, wins[i].pos.y, wins[i].pos.x+size.w, wins[i].pos.y+size.h );
+						gfx->mark_rect_dirty_wc( wins[i].pos.x, wins[i].pos.y, wins[i].pos.x+size.w, wins[i].pos.y+size.h );
 						if(  wins[i].rollup  ) {
 							wl->set_background_dirty();
 						}
@@ -1848,9 +1848,9 @@ void win_poll_event(event_t* const ev)
 	// main window resized
 	if(  ev->ev_class==EVENT_SYSTEM  &&  ev->ev_code==SYSTEM_RESIZE  ) {
 		// main window resized
-		g_simgraph->on_window_resized( ev->new_window_size );
+		gfx->on_window_resized( ev->new_window_size );
 
-		const scr_size screen = g_simgraph->get_screen_size();
+		const scr_size screen = gfx->get_screen_size();
 
 		gui_theme_t::gui_buttons_per_row = max(2, min(4, screen.w / (D_BUTTON_WIDTH + D_H_SPACE + D_MARGIN_LEFT)));
 		ticker::redraw();
@@ -1865,8 +1865,8 @@ void win_poll_event(event_t* const ev)
 		ev->ev_class = IGNORE_EVENT;
 
 		// now see how much of the status text fits the display
-		scr_coord_val time_width = g_simgraph->calc_text_width(tick_to_string(wl->get_ticks()));
-		scr_coord_val player_width = g_simgraph->calc_text_width(wl->get_active_player()->get_name());
+		scr_coord_val time_width = gfx->calc_text_width(tick_to_string(wl->get_ticks()));
+		scr_coord_val player_width = gfx->calc_text_width(wl->get_active_player()->get_name());
 
 		char buffer[128];
 		if (env_t::player_finance_display_account) {
@@ -1876,8 +1876,8 @@ void win_poll_event(event_t* const ev)
 			money_to_string(buffer, (double)world()->get_active_player()->get_finance()->get_netwealth() / 100.0);
 		}
 
-		scr_coord_val money_width = g_simgraph->calc_text_width(buffer);
-		scr_coord_val position_width = g_simgraph->calc_text_width(wl->get_zeiger()->get_pos().get_str());
+		scr_coord_val money_width = gfx->calc_text_width(buffer);
+		scr_coord_val position_width = gfx->calc_text_width(wl->get_zeiger()->get_pos().get_str());
 
 		// if too long shorten radically
 		status_show_compact = (time_width + player_width + money_width + position_width) * 1.2 > ev->new_window_size.w;
@@ -1922,7 +1922,7 @@ uint16 win_get_statusbar_height()
 // finally updates the display
 void win_display_flush(double konto)
 {
-	const scr_size screen = g_simgraph->get_screen_size();
+	const scr_size screen = gfx->get_screen_size();
 
 	// display main menu
 	tool_selector_t *main_menu = tool_t::toolbar_tool[0]->get_tool_selector();
@@ -1956,21 +1956,21 @@ void win_display_flush(double konto)
 			break;
 	}
 
-	g_simgraph->set_clip_rect( menu_pos.x, menu_pos.y, menu_size.w, menu_size.h CLIP_NUM_DEFAULT, false);
+	gfx->set_clip_rect( menu_pos.x, menu_pos.y, menu_size.w, menu_size.h CLIP_NUM_DEFAULT, false);
 
 	if(  skinverwaltung_t::toolbar_background  &&  skinverwaltung_t::toolbar_background->get_image_id(0) != IMG_EMPTY  ) {
 		const image_id back_img = skinverwaltung_t::toolbar_background->get_image_id(0);
-		g_simgraph->fit_img_to_width( back_img, env_t::iconsize.w );
+		gfx->fit_img_to_width( back_img, env_t::iconsize.w );
 
 		stretch_map_t imag = {
 			{ IMG_EMPTY, IMG_EMPTY, IMG_EMPTY },
 			{ IMG_EMPTY, back_img,  IMG_EMPTY },
 			{ IMG_EMPTY, IMG_EMPTY, IMG_EMPTY }
 		};
-		g_simgraph->draw_stretch_map(imag, scr_rect(menu_pos, menu_size));
+		gfx->draw_stretch_map(imag, scr_rect(menu_pos, menu_size));
 	}
 	else {
-		g_simgraph->draw_rect( menu_pos.x, menu_pos.y, menu_size.w, menu_size.h, g_simgraph->palette_lookup(MN_GREY2), false );
+		gfx->draw_rect( menu_pos.x, menu_pos.y, menu_size.w, menu_size.h, gfx->palette_lookup(MN_GREY2), false );
 	}
 
 	// .. extra logic to enable tooltips
@@ -1981,7 +1981,7 @@ void win_display_flush(double konto)
 	main_menu->draw(menu_pos, menu_size);
 	inside_event_handling = old_inside_event_handling;
 
-	g_simgraph->set_clip_rect(clip_rr.x, clip_rr.y, clip_rr.w, clip_rr.h CLIP_NUM_DEFAULT, false);
+	gfx->set_clip_rect(clip_rr.x, clip_rr.y, clip_rr.w, clip_rr.h CLIP_NUM_DEFAULT, false);
 
 	if(show_ticker  ||  !ticker::empty()) {
 		if (!show_ticker  ||  wl->is_dirty()) {
@@ -2003,7 +2003,7 @@ void win_display_flush(double konto)
 			screen.h - env_t::iconsize.h - D_MARGIN_TOP - D_MARGIN_BOTTOM - win_get_statusbar_height() - (TICKER_HEIGHT)*show_ticker
 		};
 
-		g_simgraph->draw_img_aligned(img, area, env_t::compass_screen_position, false );
+		gfx->draw_img_aligned(img, area, env_t::compass_screen_position, false );
 	}
 
 	{
@@ -2019,20 +2019,20 @@ void win_display_flush(double konto)
 				// display tooltip when current owner is invalid or when it is within visible duration
 				uint32 elapsed_time;
 				if(  !tooltip_owner  ||  ((elapsed_time=dr_time()-tooltip_register_time)>env_t::tooltip_delay  &&  elapsed_time<=env_t::tooltip_delay+env_t::tooltip_duration)  ) {
-					const sint16 width = g_simgraph->calc_text_width(tooltip_text)+(LINESPACE/2);
+					const sint16 width = gfx->calc_text_width(tooltip_text)+(LINESPACE/2);
 					scr_coord pos{ tooltip_xpos, tooltip_ypos };
 					win_clamp_xywh_position( NULL, pos, scr_size( width, (LINESPACE*9)/7 ), true );
-					g_simgraph->draw_textbox3d_clipped( pos.x, pos.y, env_t::tooltip_color, env_t::tooltip_textcolor, tooltip_text, true CLIP_NUM_DEFAULT);
+					gfx->draw_textbox3d_clipped( pos.x, pos.y, env_t::tooltip_color, env_t::tooltip_textcolor, tooltip_text, true CLIP_NUM_DEFAULT);
 					if(wl) {
 						wl->set_background_dirty();
 					}
 				}
 			}
 			else if(!static_tooltip_text.empty()) {
-				const sint16 width = g_simgraph->calc_text_width(static_tooltip_text.c_str())+ (LINESPACE/2);
+				const sint16 width = gfx->calc_text_width(static_tooltip_text.c_str())+ (LINESPACE/2);
 				scr_coord pos = get_mouse_pos();
 				win_clamp_xywh_position( NULL, pos, scr_size(width, (LINESPACE*9)/7), true);
-				g_simgraph->draw_textbox3d_clipped(pos.x, pos.y, env_t::tooltip_color, env_t::tooltip_textcolor, static_tooltip_text.c_str(), true CLIP_NUM_DEFAULT);
+				gfx->draw_textbox3d_clipped(pos.x, pos.y, env_t::tooltip_color, env_t::tooltip_textcolor, static_tooltip_text.c_str(), true CLIP_NUM_DEFAULT);
 				if(wl) {
 					wl->set_background_dirty();
 				}
@@ -2071,10 +2071,10 @@ void win_display_flush(double konto)
 	scr_coord_val const status_bar_text_y = status_bar_y + (status_bar_height - LINESPACE) / 2;
 	scr_coord_val const status_bar_icon_y = status_bar_y + (status_bar_height - 15) / 2;
 
-	g_simgraph->set_clip_rect( 0, 0, screen.w, screen.h CLIP_NUM_DEFAULT, false);
-	g_simgraph->draw_rect(0, status_bar_y - 1, screen.w, 1, SYSCOL_STATUSBAR_DIVIDER, false);
-	g_simgraph->draw_rect(0, env_t::menupos == MENU_BOTTOM ? status_bar_height : status_bar_y - 1, screen.w, 1, SYSCOL_STATUSBAR_DIVIDER, false);
-	g_simgraph->draw_rect(0, status_bar_y, screen.w, status_bar_height, SYSCOL_STATUSBAR_BACKGROUND, false);
+	gfx->set_clip_rect( 0, 0, screen.w, screen.h CLIP_NUM_DEFAULT, false);
+	gfx->draw_rect(0, status_bar_y - 1, screen.w, 1, SYSCOL_STATUSBAR_DIVIDER, false);
+	gfx->draw_rect(0, env_t::menupos == MENU_BOTTOM ? status_bar_height : status_bar_y - 1, screen.w, 1, SYSCOL_STATUSBAR_DIVIDER, false);
+	gfx->draw_rect(0, status_bar_y, screen.w, status_bar_height, SYSCOL_STATUSBAR_BACKGROUND, false);
 
 	bool tooltip_check = env_t::menupos == MENU_BOTTOM ? get_mouse_pos().y < status_bar_height : get_mouse_pos().y > status_bar_y;
 	if(  tooltip_check  ) {
@@ -2085,7 +2085,7 @@ void win_display_flush(double konto)
 	scr_coord_val left_border = 2;
 
 	// season icon
-	g_simgraph->draw_color_img( skinverwaltung_t::seasons_icons->get_image_id(wl->get_season()), left_border, status_bar_icon_y, 0, false, true CLIP_NUM_DEFAULT);
+	gfx->draw_color_img( skinverwaltung_t::seasons_icons->get_image_id(wl->get_season()), left_border, status_bar_icon_y, 0, false, true CLIP_NUM_DEFAULT);
 	if(  tooltip_check  &&  tooltip_xpos<14  ) {
 		static char const* const seasons[] = { "q2", "q3", "q4", "q1" };
 		tooltip_text = translator::translate(seasons[wl->get_season()]);
@@ -2098,7 +2098,7 @@ void win_display_flush(double konto)
 	// shown if timeline game
 	if(  wl->use_timeline()  &&  skinverwaltung_t::timelinesymbol  ) {
 		right_border -= 14;
-		g_simgraph->draw_color_img( skinverwaltung_t::timelinesymbol->get_image_id(0), right_border, status_bar_icon_y, 0, false, true CLIP_NUM_DEFAULT);
+		gfx->draw_color_img( skinverwaltung_t::timelinesymbol->get_image_id(0), right_border, status_bar_icon_y, 0, false, true CLIP_NUM_DEFAULT);
 		if(  tooltip_check  &&  tooltip_xpos>=right_border  ) {
 			tooltip_text = translator::translate("timeline");
 			tooltip_check = false;
@@ -2108,7 +2108,7 @@ void win_display_flush(double konto)
 	// shown if connected
 	if(  env_t::networkmode  &&  skinverwaltung_t::networksymbol  ) {
 		right_border -= 14;
-		g_simgraph->draw_color_img( skinverwaltung_t::networksymbol->get_image_id(0), right_border, status_bar_icon_y, 0, false, true CLIP_NUM_DEFAULT);
+		gfx->draw_color_img( skinverwaltung_t::networksymbol->get_image_id(0), right_border, status_bar_icon_y, 0, false, true CLIP_NUM_DEFAULT);
 		if(  tooltip_check  &&  tooltip_xpos>=right_border  ) {
 			tooltip_text = translator::translate("Connected with server");
 			tooltip_check = false;
@@ -2118,7 +2118,7 @@ void win_display_flush(double konto)
 	// put pause icon
 	if(  wl->is_paused()  &&  skinverwaltung_t::pausesymbol  ) {
 		right_border -= 14;
-		g_simgraph->draw_color_img( skinverwaltung_t::pausesymbol->get_image_id(0), right_border, status_bar_icon_y, 0, false, true CLIP_NUM_DEFAULT);
+		gfx->draw_color_img( skinverwaltung_t::pausesymbol->get_image_id(0), right_border, status_bar_icon_y, 0, false, true CLIP_NUM_DEFAULT);
 		if(  tooltip_check  &&  tooltip_xpos>=right_border  ) {
 			tooltip_text = translator::translate("GAME PAUSED");
 			tooltip_check = false;
@@ -2128,7 +2128,7 @@ void win_display_flush(double konto)
 	// put fast forward icon
 	if(  wl->is_fast_forward()  &&  skinverwaltung_t::fastforwardsymbol  ) {
 		right_border -= 14;
-		g_simgraph->draw_color_img( skinverwaltung_t::fastforwardsymbol->get_image_id(0), right_border, status_bar_icon_y, 0, false, true CLIP_NUM_DEFAULT);
+		gfx->draw_color_img( skinverwaltung_t::fastforwardsymbol->get_image_id(0), right_border, status_bar_icon_y, 0, false, true CLIP_NUM_DEFAULT);
 		if(  tooltip_check  &&  tooltip_xpos>=right_border  ) {
 			tooltip_text = translator::translate("Fast forward");
 			tooltip_check = false;
@@ -2179,8 +2179,8 @@ void win_display_flush(double konto)
 	}
 #endif
 
-	left_border  += 4 + g_simgraph->draw_text(left_border,  status_bar_text_y, time, ALIGN_LEFT,  SYSCOL_STATUSBAR_TEXT, true);
-	right_border -= 4 + g_simgraph->draw_text(right_border, status_bar_text_y, info, ALIGN_RIGHT, SYSCOL_STATUSBAR_TEXT, true);
+	left_border  += 4 + gfx->draw_text(left_border,  status_bar_text_y, time, ALIGN_LEFT,  SYSCOL_STATUSBAR_TEXT, true);
+	right_border -= 4 + gfx->draw_text(right_border, status_bar_text_y, info, ALIGN_RIGHT, SYSCOL_STATUSBAR_TEXT, true);
 
 	/* Since the visual center jumps left and right with proportional fonts, we quantisze by 16 pixel
 	 */
@@ -2190,7 +2190,7 @@ void win_display_flush(double konto)
 	if(wl->get_active_player()) {
 		char buffer[256];
 		scr_coord_val textwidth_pl = 0;
-		textwidth_pl = D_H_SPACE + g_simgraph->calc_text_width(wl->get_active_player()->get_name());
+		textwidth_pl = D_H_SPACE + gfx->calc_text_width(wl->get_active_player()->get_name());
 		if (status_show_compact) {
 			number_to_string_fit(buffer, konto, 0, 10);
 			strcat(buffer, "$");
@@ -2199,12 +2199,12 @@ void win_display_flush(double konto)
 			money_to_string(buffer, konto);
 		}
 
-		scr_coord_val textwidth_mn = (g_simgraph->calc_text_width(buffer) + 15) & 0xFFFFFFF0ul;
+		scr_coord_val textwidth_mn = (gfx->calc_text_width(buffer) + 15) & 0xFFFFFFF0ul;
 		if (textwidth_mn + textwidth_pl < right_border - left_border) {
 			// everything fits
 			left_border += ( (right_border - left_border) - (textwidth_mn + textwidth_pl)  ) / 2;
-			left_border += D_H_SPACE + g_simgraph->draw_text(left_border, status_bar_text_y, wl->get_active_player()->get_name(), ALIGN_LEFT, PLAYER_FLAG | g_simgraph->palette_lookup(wl->get_active_player()->get_player_color1() + env_t::gui_player_color_dark), true);
-			g_simgraph->draw_text(left_border, status_bar_text_y, buffer, ALIGN_LEFT, konto >= 0.0 ? MONEY_PLUS : MONEY_MINUS, true);
+			left_border += D_H_SPACE + gfx->draw_text(left_border, status_bar_text_y, wl->get_active_player()->get_name(), ALIGN_LEFT, PLAYER_FLAG | gfx->palette_lookup(wl->get_active_player()->get_player_color1() + env_t::gui_player_color_dark), true);
+			gfx->draw_text(left_border, status_bar_text_y, buffer, ALIGN_LEFT, konto >= 0.0 ? MONEY_PLUS : MONEY_MINUS, true);
 		}
 		else {
 			// no space => only money
@@ -2212,10 +2212,10 @@ void win_display_flush(double konto)
 			scr_coord_val width_left = (right_border - left_border - textwidth_mn);
 			if (width_left > 50) {
 				scr_rect r(left_border, status_bar_text_y, width_left-D_H_SPACE, LINESPACE);
-				g_simgraph->draw_text_ellipsis(r, wl->get_active_player()->get_name(), ALIGN_LEFT, PLAYER_FLAG | g_simgraph->palette_lookup(wl->get_active_player()->get_player_color1() + env_t::gui_player_color_dark), true);
+				gfx->draw_text_ellipsis(r, wl->get_active_player()->get_name(), ALIGN_LEFT, PLAYER_FLAG | gfx->palette_lookup(wl->get_active_player()->get_player_color1() + env_t::gui_player_color_dark), true);
 				left_border += width_left;
 				// normal color
-				g_simgraph->draw_text(left_border, status_bar_text_y, buffer, ALIGN_LEFT, konto >= 0.0 ? MONEY_PLUS : MONEY_MINUS, true);
+				gfx->draw_text(left_border, status_bar_text_y, buffer, ALIGN_LEFT, konto >= 0.0 ? MONEY_PLUS : MONEY_MINUS, true);
 			}
 			else {
 				// just money in player color, no player name
@@ -2227,7 +2227,7 @@ void win_display_flush(double konto)
 					number_to_string_fit(buffer, konto, 0, 5);
 					strcat(buffer, "$");
 				}
-				g_simgraph->draw_text(left_border, status_bar_text_y, buffer, ALIGN_LEFT, konto >= 0.0 ? g_simgraph->palette_lookup(wl->get_active_player()->get_player_color1() + env_t::gui_player_color_dark) : MONEY_MINUS, true);
+				gfx->draw_text(left_border, status_bar_text_y, buffer, ALIGN_LEFT, konto >= 0.0 ? gfx->palette_lookup(wl->get_active_player()->get_player_color1() + env_t::gui_player_color_dark) : MONEY_MINUS, true);
 			}
 		}
 	}
@@ -2252,7 +2252,7 @@ void win_redraw_world()
 
 bool win_change_zoom_factor(bool magnify)
 {
-	const bool result = magnify ? g_simgraph->zoom_factor_up() : g_simgraph->zoom_factor_down();
+	const bool result = magnify ? gfx->zoom_factor_up() : gfx->zoom_factor_down();
 
 	if(magnify  &&  wl->is_step_mode_normal()) {
 		wl->reset_timer();
@@ -2269,7 +2269,7 @@ void win_load_font(const char *fname, uint8 fontsize)
 	bool force_reload = fontsize != env_t::fontsize;
 	env_t::fontsize = fontsize;
 
-	if (g_simgraph->load_font(fname, force_reload) ) {
+	if (gfx->load_font(fname, force_reload) ) {
 		// successfull
 		gui_theme_t::themes_init( env_t::default_theme, false, false );
 
@@ -2280,7 +2280,7 @@ void win_load_font(const char *fname, uint8 fontsize)
 	}
 	else {
 		// restore old font
-		g_simgraph->load_font(env_t::fontname.c_str(), true);
+		gfx->load_font(env_t::fontname.c_str(), true);
 	}
 	win_redraw_world();
 }
@@ -2336,7 +2336,7 @@ void win_set_tooltip(scr_coord pos, const char *text, const void *const owner, c
 	}
 
 	if (text) {
-		const scr_size tt_size = scr_size(g_simgraph->calc_text_width(text), LINESPACE + 2);
+		const scr_size tt_size = scr_size(gfx->calc_text_width(text), LINESPACE + 2);
 		win_clamp_xywh_position(NULL, pos, tt_size, true);
 		pos.y += LINESPACE / 2 + 1;
 	}
@@ -2358,7 +2358,7 @@ void win_set_static_tooltip(const char *text)
 // shows a modal dialoge
 void modal_dialogue(gui_frame_t* gui, ptrdiff_t magic, karte_t* welt, bool (*quit)(), bool dismissible)
 {
-	const scr_size screen = g_simgraph->get_screen_size();
+	const scr_size screen = gfx->get_screen_size();
 
 	if (screen.w == 0) {
 		dbg->error("modal_dialogue", "called without a display driver => nothing will be shown!");
@@ -2453,9 +2453,9 @@ void modal_dialogue(gui_frame_t* gui, ptrdiff_t magic, karte_t* welt, bool (*qui
 		clear_random_mode(MODAL_RANDOM);
 	}
 	else {
-		g_simgraph->set_cursor_visible(true);
-		g_simgraph->set_show_load_cursor(false);
-		g_simgraph->draw_rect(0, 0, screen.w, screen.h, g_simgraph->palette_lookup(COL_BLACK), true);
+		gfx->set_cursor_visible(true);
+		gfx->set_show_load_cursor(false);
+		gfx->draw_rect(0, 0, screen.w, screen.h, gfx->palette_lookup(COL_BLACK), true);
 
 		while (gui && win_is_open(gui) && !env_t::quit_simutrans && !quit()) {
 			// do not move, do not close it!
@@ -2475,7 +2475,7 @@ void modal_dialogue(gui_frame_t* gui, ptrdiff_t magic, karte_t* welt, bool (*qui
 				if (ev.ev_class == EVENT_SYSTEM) {
 					if (ev.ev_code == SYSTEM_RESIZE) {
 						// main window resized
-						g_simgraph->on_window_resized(ev.new_window_size);
+						gfx->on_window_resized(ev.new_window_size);
 						scr_coord pos{
 							(screen.w - gui->get_windowsize().w) / 2,
 							(screen.h - gui->get_windowsize().h) / 2
@@ -2484,7 +2484,7 @@ void modal_dialogue(gui_frame_t* gui, ptrdiff_t magic, karte_t* welt, bool (*qui
 						wins[wins[0].gui != gui].pos = pos;
 
 						dr_prepare_flush();
-						g_simgraph->draw_rect(0, 0, ev.new_window_size.w, ev.new_window_size.h, g_simgraph->palette_lookup(COL_BLACK), true);
+						gfx->draw_rect(0, 0, ev.new_window_size.w, ev.new_window_size.h, gfx->palette_lookup(COL_BLACK), true);
 						gui->draw(win_get_pos(gui), gui->get_windowsize());
 						dr_flush();
 					}
@@ -2507,9 +2507,9 @@ void modal_dialogue(gui_frame_t* gui, ptrdiff_t magic, karte_t* welt, bool (*qui
 				dr_sleep(50 - (end_time - frame_start_time));
 			}
 		}
-		g_simgraph->set_show_load_cursor(true);
+		gfx->set_show_load_cursor(true);
 		dr_prepare_flush();
-		g_simgraph->draw_rect(0, 0, screen.w, screen.h, g_simgraph->palette_lookup(COL_BLACK), true);
+		gfx->draw_rect(0, 0, screen.w, screen.h, gfx->palette_lookup(COL_BLACK), true);
 		dr_flush();
 	}
 

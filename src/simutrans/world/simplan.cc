@@ -485,7 +485,7 @@ void planquadrat_t::display_obj(const sint16 xpos, const sint16 ypos, const sint
 		if(  i < ground_size  ) {
 			// there are grounds above => check height of height object below
 			sint16 max_height = 0;
-			sint16 rw = g_simgraph->get_base_tile_raster_width();
+			sint16 rw = gfx->get_base_tile_raster_width();
 			const sint16 clip_h = rw / 2 + (env_t::pak_height_conversion_factor * rw / 8);
 
 			for (uint8 i = 0; i < gr0->obj_count(); i++) {
@@ -493,7 +493,7 @@ void planquadrat_t::display_obj(const sint16 xpos, const sint16 ypos, const sint
 				if (o->get_typ() == obj_t::baum   ||  dynamic_cast<gebaeude_t *>(o)) {
 					image_id img = o->get_image();
 					if (img != IMG_EMPTY) {
-						const scr_rect area = g_simgraph->get_image_offset(img);
+						const scr_rect area = gfx->get_image_offset(img);
 						max_height = max(max_height, (area.h - area.y) / clip_h);
 					}
 				}
@@ -505,7 +505,7 @@ void planquadrat_t::display_obj(const sint16 xpos, const sint16 ypos, const sint
 			}
 			else {
 				// may still need clipping
-				clip_dimension p_cr = g_simgraph->get_clip_rect( CLIP_NUM_VAR );
+				clip_dimension p_cr = gfx->get_clip_rect( CLIP_NUM_VAR );
 				bool must_pop_clip = false;
 
 				for(  uint8 j = i;  j < ground_size;  j++  ) {
@@ -536,14 +536,14 @@ void planquadrat_t::display_obj(const sint16 xpos, const sint16 ypos, const sint
 						must_pop_clip = true;
 						const sint16 yh = ypos - tile_raster_scale_y( (h + corner_nw(data.some[j]->get_grund_hang()) - h0) * TILE_HEIGHT_STEP, raster_tile_width ) + ((3 * raster_tile_width) >> 2);
 						if(  yh >= p_cr.y  ) {
-							g_simgraph->push_clip_rect(p_cr.x, yh, p_cr.w, p_cr.h + p_cr.y - yh  CLIP_NUM_PAR);
+							gfx->push_clip_rect(p_cr.x, yh, p_cr.w, p_cr.h + p_cr.y - yh  CLIP_NUM_PAR);
 						}
 						break;
 					}
 				}
 				gr0->display_obj_all( xpos, ypos, raster_tile_width, is_global  CLIP_NUM_PAR );
 				if (must_pop_clip) {
-					g_simgraph->pop_clip_rect(CLIP_NUM_VAR);
+					gfx->pop_clip_rect(CLIP_NUM_VAR);
 				}
 			}
 		}
@@ -623,22 +623,22 @@ void planquadrat_t::display_overlay(const sint16 xpos, const sint16 ypos) const
 		if(gb) {
 			fabrik_t* fab=gb->get_fabrik();
 			if(fab) {
-				FLAGGED_PIXVAL status = g_simgraph->palette_lookup(COL_RED);
+				FLAGGED_PIXVAL status = gfx->palette_lookup(COL_RED);
 				if(fab->get_desc()->is_electricity_producer()) {
-					status = g_simgraph->palette_lookup(COL_LIGHT_BLUE);
+					status = gfx->palette_lookup(COL_LIGHT_BLUE);
 					if(fab->is_transformer_connected()) {
-						status = g_simgraph->palette_lookup(COL_LIGHT_TURQUOISE);
+						status = gfx->palette_lookup(COL_LIGHT_TURQUOISE);
 					}
 				}
 				else {
 					if(fab->is_transformer_connected()) {
-						status = g_simgraph->palette_lookup(COL_ORANGE);
+						status = gfx->palette_lookup(COL_ORANGE);
 					}
 					if(fab->get_prodfactor_electric()>0) {
-						status = g_simgraph->palette_lookup(COL_GREEN);
+						status = gfx->palette_lookup(COL_GREEN);
 					}
 				}
-				g_simgraph->draw_img_blend( overlay_img(gr), xpos, ypos, status | OUTLINE_FLAG | TRANSPARENT50_FLAG, 0, true);
+				gfx->draw_img_blend( overlay_img(gr), xpos, ypos, status | OUTLINE_FLAG | TRANSPARENT50_FLAG, 0, true);
 			}
 		}
 	}
@@ -652,8 +652,8 @@ void planquadrat_t::display_overlay(const sint16 xpos, const sint16 ypos) const
 			image_id img = overlay_img(gr);
 
 			for(int halt_count = 0; halt_count < halt_list_count; halt_count++) {
-				const FLAGGED_PIXVAL transparent = PLAYER_FLAG | OUTLINE_FLAG | g_simgraph->palette_lookup(halt_list[halt_count]->get_owner()->get_player_color1() + 4);
-				g_simgraph->draw_img_blend( img, xpos, ypos, transparent | TRANSPARENT25_FLAG, 0, 0);
+				const FLAGGED_PIXVAL transparent = PLAYER_FLAG | OUTLINE_FLAG | gfx->palette_lookup(halt_list[halt_count]->get_owner()->get_player_color1() + 4);
+				gfx->draw_img_blend( img, xpos, ypos, transparent | TRANSPARENT25_FLAG, 0, 0);
 			}
 /*
 // unfortunately, too expensive for display
@@ -661,7 +661,7 @@ void planquadrat_t::display_overlay(const sint16 xpos, const sint16 ypos) const
 			// doesn't affect the colour displayed [since blend(col1,blend(col2,screen)) != blend(col2,blend(col1,screen))]
 			for(int player_count = 0; player_count<MAX_PLAYER_COUNT; player_count++) {
 				player_t *display_player = welt->get_player(player_count);
-				const FLAGGED_PIXVAL transparent = PLAYER_FLAG | OUTLINE_FLAG | g_simgraph->palette_lookup(display_player->get_player_color1() * 4 + 4);
+				const FLAGGED_PIXVAL transparent = PLAYER_FLAG | OUTLINE_FLAG | gfx->palette_lookup(display_player->get_player_color1() * 4 + 4);
 				for(int halt_count = 0; halt_count < halt_list_count; halt_count++) {
 					if(halt_list[halt_count]->get_owner() == display_player) {
 						display_img_blend( img, xpos, ypos, transparent | TRANSPARENT25_FLAG, 0, 0);
@@ -671,7 +671,7 @@ void planquadrat_t::display_overlay(const sint16 xpos, const sint16 ypos) const
 	*/
 		}
 		else {
-			const sint16 raster_tile_width = g_simgraph->get_tile_raster_width();
+			const sint16 raster_tile_width = gfx->get_tile_raster_width();
 			// opaque boxes (
 			const sint16 r=raster_tile_width/8;
 			const sint16 x=xpos+raster_tile_width/2-r;
@@ -680,14 +680,14 @@ void planquadrat_t::display_overlay(const sint16 xpos, const sint16 ypos) const
 			const sint16 off = (raster_tile_width>>5);
 			// suitable start search
 			for (size_t h = halt_list_count; h-- != 0;) {
-				g_simgraph->draw_rect_clipped(x - h * off, y + h * off, r, r, PLAYER_FLAG | g_simgraph->palette_lookup(halt_list[h]->get_owner()->get_player_color1() + 4), kartenboden_dirty CLIP_NUM_DEFAULT);
+				gfx->draw_rect_clipped(x - h * off, y + h * off, r, r, PLAYER_FLAG | gfx->palette_lookup(halt_list[h]->get_owner()->get_player_color1() + 4), kartenboden_dirty CLIP_NUM_DEFAULT);
 			}
 		}
 	}
 
 	gr->display_overlay( xpos, ypos );
 	if(  ground_size > 1  ) {
-		const sint16 raster_tile_width = g_simgraph->get_tile_raster_width();
+		const sint16 raster_tile_width = gfx->get_tile_raster_width();
 		const sint8 h0 = gr->get_disp_height();
 		for(  uint8 i = 1;  i < ground_size;  i++  ) {
 			grund_t* gr = data.some[i];

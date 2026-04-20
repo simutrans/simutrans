@@ -76,7 +76,7 @@ fabrik_info_t::fabrik_info_t(fabrik_t* fab_, const gebaeude_t* gb) :
 	gui_frame_t(""),
 	fab(fab_),
 	chart(NULL),
-	view(scr_size( max(64, g_simgraph->get_base_tile_raster_width()), max(56, (g_simgraph->get_base_tile_raster_width() * 7) / 8))),
+	view(scr_size( max(64, gfx->get_base_tile_raster_width()), max(56, (gfx->get_base_tile_raster_width() * 7) / 8))),
 	prod(&prod_buf),
 	txt(&info_buf),
 	scroll_info(&container_info)
@@ -246,7 +246,7 @@ void fabrik_info_t::draw(scr_coord pos, scr_size size)
 	boost_passenger.set_transparent(fab->get_prodfactor_pax()>0 ? 0 : TRANSPARENT50_FLAG | OUTLINE_FLAG | SYSCOL_IMAGE_TRANSPARENCY);
 	boost_mail.set_transparent(fab->get_prodfactor_mail()>0 ? 0 : TRANSPARENT50_FLAG | OUTLINE_FLAG | SYSCOL_IMAGE_TRANSPARENCY);
 
-	indicator_color.set_color( g_simgraph->palette_lookup(fabrik_t::status_to_color[fab->get_status()]) );
+	indicator_color.set_color( gfx->palette_lookup(fabrik_t::status_to_color[fab->get_status()]) );
 
 	chart.update();
 

@@ -111,7 +111,7 @@ scr_size gui_fixedwidth_textarea_t::calc_display_text(const scr_coord offset, co
 
 			const size_t len = next ? next - buf : 999;
 			// we are in the image area
-			scr_coord_val px_len = g_simgraph->calc_text_width_n(buf, len);
+			scr_coord_val px_len = gfx->calc_text_width_n(buf, len);
 			if (new_height <= reserved_area.h) {
 				px_len += reserved_area.w;
 			}
@@ -157,14 +157,14 @@ scr_size gui_fixedwidth_textarea_t::calc_display_text(const scr_coord offset, co
 			else if(  next_char==' '  ||  (next_char >= 0x3000  &&   next_char<0xFE70)  ) {
 				// ignore space at start of line
 				if(next_char!=' '  ||  x>0) {
-					x += g_simgraph->get_char_width( next_char );
+					x += gfx->get_char_width( next_char );
 				}
 				word_start = p;
 				word_x = 0;
 			}
 			else {
 				// normal char: retrieve and calculate width
-				const scr_coord_val ch_width = g_simgraph->get_char_width( next_char );
+				const scr_coord_val ch_width = gfx->get_char_width( next_char );
 				x += ch_width;
 				word_x += ch_width;
 			}
@@ -183,7 +183,7 @@ scr_size gui_fixedwidth_textarea_t::calc_display_text(const scr_coord offset, co
 
 		// start of new line or end of text
 		if(draw  &&  (line_end-line_start)!=0) {
-			g_simgraph->draw_text_clipped_n( offset.x, offset.y+y, (const char *)line_start, ALIGN_LEFT | DT_CLIP, SYSCOL_TEXT, true, (size_t)(line_end - line_start) CLIP_NUM_DEFAULT);
+			gfx->draw_text_clipped_n( offset.x, offset.y+y, (const char *)line_start, ALIGN_LEFT | DT_CLIP, SYSCOL_TEXT, true, (size_t)(line_end - line_start) CLIP_NUM_DEFAULT);
 		}
 		y += LINESPACE;
 		// back to start of new line

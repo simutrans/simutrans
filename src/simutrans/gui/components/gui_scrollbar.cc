@@ -269,7 +269,7 @@ void scrollbar_t::draw(scr_coord pos_par)
 	// Draw place holder if scrollbar is full in auto mode
 	if ( visible_mode == show_auto  &&  full  ) {
 		// Draw place holder themed with scrollbar background
-		g_simgraph->draw_stretch_map( gui_theme_t::v_scroll_back_tiles, scr_rect( pos_par, size ) );
+		gfx->draw_stretch_map( gui_theme_t::v_scroll_back_tiles, scr_rect( pos_par, size ) );
 		return;
 	}
 
@@ -279,11 +279,11 @@ void scrollbar_t::draw(scr_coord pos_par)
 
 	// now background and slider
 	if(  type == vertical  ) {
-		g_simgraph->draw_stretch_map( gui_theme_t::v_scroll_back_tiles, scr_rect( pos_par + sliderarea.get_pos(), sliderarea.get_size() ) );
-		g_simgraph->draw_stretch_map( gui_theme_t::v_scroll_knob_tiles, scr_rect( pos_par + knobarea.get_pos(), knobarea.get_size() ) );
+		gfx->draw_stretch_map( gui_theme_t::v_scroll_back_tiles, scr_rect( pos_par + sliderarea.get_pos(), sliderarea.get_size() ) );
+		gfx->draw_stretch_map( gui_theme_t::v_scroll_knob_tiles, scr_rect( pos_par + knobarea.get_pos(), knobarea.get_size() ) );
 	}
 	else {
-		g_simgraph->draw_stretch_map( gui_theme_t::h_scroll_back_tiles, scr_rect( pos_par + sliderarea.get_pos(), sliderarea.get_size() ) );
-		g_simgraph->draw_stretch_map( gui_theme_t::h_scroll_knob_tiles, scr_rect( pos_par + knobarea.get_pos(), knobarea.get_size() ) );
+		gfx->draw_stretch_map( gui_theme_t::h_scroll_back_tiles, scr_rect( pos_par + sliderarea.get_pos(), sliderarea.get_size() ) );
+		gfx->draw_stretch_map( gui_theme_t::h_scroll_knob_tiles, scr_rect( pos_par + knobarea.get_pos(), knobarea.get_size() ) );
 	}
 }

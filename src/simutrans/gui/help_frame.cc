@@ -272,7 +272,7 @@ void help_frame_t::set_text(const char * buf, bool resize_frame )
 {
 	helptext.set_text(buf);
 
-	const scr_size screen = g_simgraph->get_screen_size();
+	const scr_size screen = gfx->get_screen_size();
 
 	if(  resize_frame  ) {
 

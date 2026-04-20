@@ -178,13 +178,13 @@ void curiositylist_stats_t::draw(scr_coord offset)
 		}
 		// now decide on color
 		if(some_crowded) {
-			indicatorfarbe = g_simgraph->palette_lookup(all_crowded ? COL_RED : COL_ORANGE);
+			indicatorfarbe = gfx->palette_lookup(all_crowded ? COL_RED : COL_ORANGE);
 		}
 		else if(pax) {
-			indicatorfarbe = g_simgraph->palette_lookup(mail ? COL_TURQUOISE : COL_DARK_GREEN);
+			indicatorfarbe = gfx->palette_lookup(mail ? COL_TURQUOISE : COL_DARK_GREEN);
 		}
 		else {
-			indicatorfarbe = g_simgraph->palette_lookup(mail ? COL_BLUE : COL_YELLOW);
+			indicatorfarbe = gfx->palette_lookup(mail ? COL_BLUE : COL_YELLOW);
 		}
 
 	indicator.set_color(indicatorfarbe);

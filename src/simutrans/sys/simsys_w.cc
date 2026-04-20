@@ -346,7 +346,7 @@ DWORD WINAPI dr_flush_screen(LPVOID /*lpParam*/)
 		// wait for finish of thread
 		EnterCriticalSection( &redraw_underway );
 		hdc = GetDC(hwnd);
-		g_simgraph->flush_framebuffer();
+		gfx->flush_framebuffer();
 		ReleaseDC(hwnd, hdc);
 		hdc = NULL;
 		LeaveCriticalSection( &redraw_underway );
@@ -374,7 +374,7 @@ void dr_flush()
 #else
 	assert(hdc==NULL);
 	hdc = GetDC(hwnd);
-	g_simgraph->flush_framebuffer();
+	gfx->flush_framebuffer();
 	ReleaseDC(hwnd, hdc);
 	hdc = NULL;
 #endif
@@ -747,7 +747,7 @@ LRESULT WINAPI WindowProc(HWND this_hwnd, UINT msg, WPARAM wParam, LPARAM lParam
 							}
 							unsigned char pixel_width;
 							unsigned char unused;
-							g_simgraph->get_next_char_with_metrics( composition, unused, pixel_width );
+							gfx->get_next_char_with_metrics( composition, unused, pixel_width );
 							x += pixel_width;
 						}
 						icp->pt.x = x;

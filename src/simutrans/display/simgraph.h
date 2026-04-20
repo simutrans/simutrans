@@ -50,19 +50,19 @@ struct clip_dimension {
 // save the current clipping and set a new one
 #define PUSH_CLIP(x,y,w,h) \
 	{\
-		clip_dimension const p_cr = g_simgraph->get_clip_rect(CLIP_NUM_DEFAULT_VALUE); \
-		g_simgraph->set_clip_rect(x, y, w, h CLIP_NUM_DEFAULT, false);
+		clip_dimension const p_cr = gfx->get_clip_rect(CLIP_NUM_DEFAULT_VALUE); \
+		gfx->set_clip_rect(x, y, w, h CLIP_NUM_DEFAULT, false);
 
 // save the current clipping and set a new one
 // fit it to old clipping region
 #define PUSH_CLIP_FIT(x,y,w,h) \
 	{\
-		clip_dimension const p_cr = g_simgraph->get_clip_rect(CLIP_NUM_DEFAULT_VALUE); \
-		g_simgraph->set_clip_rect(x, y, w, h CLIP_NUM_DEFAULT, true);
+		clip_dimension const p_cr = gfx->get_clip_rect(CLIP_NUM_DEFAULT_VALUE); \
+		gfx->set_clip_rect(x, y, w, h CLIP_NUM_DEFAULT, true);
 
 // restore a saved clipping rect
 #define POP_CLIP() \
-		g_simgraph->set_clip_rect(p_cr.x, p_cr.y, p_cr.w, p_cr.h CLIP_NUM_DEFAULT, false); \
+		gfx->set_clip_rect(p_cr.x, p_cr.y, p_cr.w, p_cr.h CLIP_NUM_DEFAULT, false); \
 	}
 
 
@@ -394,7 +394,7 @@ struct simgraph_t
 const simgraph_t *simgraph_select(simgraph_type_t preferred_type);
 
 /// Assign to this the output of simgraph_select
-extern const simgraph_t *g_simgraph;
+extern const simgraph_t *gfx;
 
 
 //

@@ -623,7 +623,7 @@ static void simgraph0_set_image_procs(bool is_global)
 		g_simgraph0.draw_color  = simgraph0_draw_base_img;
 		g_simgraph0.draw_blend  = simgraph0_draw_base_img_blend;
 		g_simgraph0.draw_alpha  = simgraph0_draw_base_img_alpha;
-		g_simgraph0.current_tile_raster_width = g_simgraph->get_base_tile_raster_width();
+		g_simgraph0.current_tile_raster_width = gfx->get_base_tile_raster_width();
 	}
 }
 

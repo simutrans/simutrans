@@ -1019,7 +1019,7 @@ void tool_t::draw_after(scr_coord pos, bool dirty) const
 	// default action: grey corner if selected
 	image_id id = get_icon(welt->get_active_player());
 	if (id != IMG_EMPTY && is_selected()) {
-		g_simgraph->draw_img_blend(id, pos.x, pos.y, TRANSPARENT50_FLAG | OUTLINE_FLAG | g_simgraph->palette_lookup(COL_BLACK), false, dirty);
+		gfx->draw_img_blend(id, pos.x, pos.y, TRANSPARENT50_FLAG | OUTLINE_FLAG | gfx->palette_lookup(COL_BLACK), false, dirty);
 	}
 }
 
@@ -1228,7 +1228,7 @@ bool toolbar_t::init(player_t* player)
 				}
 			}
 			// open toolbar centered at top or bottom position (bottom, when menubar at bottom)
-			const scr_size screen = g_simgraph->get_screen_size();
+			const scr_size screen = gfx->get_screen_size();
 
 			scr_coord_val w = screen.w - (env_t::menupos == MENU_LEFT ? env_t::iconsize.w : 0) - (env_t::menupos == MENU_RIGHT ? env_t::iconsize.w : 0);
 			scr_coord_val x = (w - tool_selector->get_windowsize().w) / 2 + (env_t::menupos == MENU_LEFT ? env_t::iconsize.w : 0);
@@ -1457,9 +1457,9 @@ const char* two_click_tool_t::move(player_t* player, uint16 buttonstate, koord3d
 			return error;
 		}
 		if (value & 2) {
-			g_simgraph->set_show_load_cursor(true);
+			gfx->set_show_load_cursor(true);
 			mark_tiles(player, start, pos);
-			g_simgraph->set_show_load_cursor(false);
+			gfx->set_show_load_cursor(false);
 		}
 	}
 

@@ -11,7 +11,7 @@
 #include "../player/simplay.h"
 
 headquarter_info_t::headquarter_info_t(player_t* player) : base_infowin_t(player->get_name(), player),
-	headquarter_view(koord3d::invalid, scr_size( max(64, g_simgraph->get_base_tile_raster_width()), max(56, (g_simgraph->get_base_tile_raster_width()*7)/8) ) )
+	headquarter_view(koord3d::invalid, scr_size( max(64, gfx->get_base_tile_raster_width()), max(56, (gfx->get_base_tile_raster_width()*7)/8) ) )
 {
 	this->player = player;
 

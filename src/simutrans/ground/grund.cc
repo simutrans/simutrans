@@ -767,7 +767,7 @@ void grund_t::mark_image_dirty() const
 	// see obj_t::mark_image_dirty
 	if (imageid != IMG_EMPTY) {
 		const scr_coord scr_pos = welt->get_viewport()->get_screen_coord(koord3d(pos.get_2d(), get_disp_height()));
-		g_simgraph->mark_img_dirty(imageid, scr_pos.x, scr_pos.y);
+		gfx->mark_img_dirty(imageid, scr_pos.x, scr_pos.y);
 	}
 }
 
@@ -968,7 +968,7 @@ void grund_t::display_boden(const sint16 xpos, const sint16 ypos, const sint16 r
 			// fence before a drop
 			const sint16 offset = -tile_raster_scale_y( TILE_HEIGHT_STEP*corner_nw(get_grund_hang()), raster_tile_width);
 			const uint16 typ = abs_back_imageid - grund_t::BIID_ENCODE_FENCE_OFFSET - 1 + (artificial ? grund_t::FENCE_IMAGE_COUNT : 0);
-			g_simgraph->draw_normal( ground_desc_t::fences->get_image(typ), xpos, ypos + offset, 0, true, dirty CLIP_NUM_PAR );
+			gfx->draw_normal( ground_desc_t::fences->get_image(typ), xpos, ypos + offset, 0, true, dirty CLIP_NUM_PAR );
 		}
 		else {
 			// artificial slope
@@ -1010,12 +1010,12 @@ void grund_t::display_boden(const sint16 xpos, const sint16 ypos, const sint16 r
 							if( sl_draw->get_image( img_index ) == IMG_EMPTY ) {
 								img_index = 4 + 4 * (hgt_diff>1) + grund_t::WALL_IMAGE_COUNT * (uint16)i;
 							}
-							g_simgraph->draw_normal( sl_draw->get_image( img_index ), xpos, ypos + yoff, 0, true, dirty CLIP_NUM_PAR );
+							gfx->draw_normal( sl_draw->get_image( img_index ), xpos, ypos + yoff, 0, true, dirty CLIP_NUM_PAR );
 							yoff     -= tile_raster_scale_y( TILE_HEIGHT_STEP * (hgt_diff > 1 ? 2 : 1), raster_tile_width );
 							hgt_diff -= 2;
 						}
 					}
-					g_simgraph->draw_normal( sl_draw->get_image( back_image[i] + wall_image_offset[i] ), xpos, ypos + yoff, 0, true, dirty CLIP_NUM_PAR );
+					gfx->draw_normal( sl_draw->get_image( back_image[i] + wall_image_offset[i] ), xpos, ypos + yoff, 0, true, dirty CLIP_NUM_PAR );
 				}
 			}
 		}
@@ -1026,17 +1026,17 @@ void grund_t::display_boden(const sint16 xpos, const sint16 ypos, const sint16 r
 	if(image==IMG_EMPTY) {
 		// only check for forced redraw (of marked ... )
 		if(dirty) {
-			g_simgraph->mark_rect_dirty_clip( xpos, ypos + raster_tile_width / 2, xpos + raster_tile_width - 1, ypos + raster_tile_width - 1 CLIP_NUM_PAR );
+			gfx->mark_rect_dirty_clip( xpos, ypos + raster_tile_width / 2, xpos + raster_tile_width - 1, ypos + raster_tile_width - 1 CLIP_NUM_PAR );
 		}
 	}
 	else {
 		if(get_typ()!=wasser) {
 			// show image if tile is visible
 			if (visible)  {
-				g_simgraph->draw_normal( get_image(), xpos, ypos, 0, true, dirty CLIP_NUM_PAR );
+				gfx->draw_normal( get_image(), xpos, ypos, 0, true, dirty CLIP_NUM_PAR );
 #ifdef SHOW_FORE_GRUND
 				if (get_flag(grund_t::draw_as_obj)) {
-					g_simgraph->draw_blend( get_image(), xpos, ypos, 0, g_simgraph->palette_lookup(COL_RED) | OUTLINE_FLAG |TRANSPARENT50_FLAG, true, dirty CLIP_NUM_PAR );
+					gfx->draw_blend( get_image(), xpos, ypos, 0, gfx->palette_lookup(COL_RED) | OUTLINE_FLAG |TRANSPARENT50_FLAG, true, dirty CLIP_NUM_PAR );
 				}
 #endif
 				//display climate transitions - only needed if below snowline (snow_transition>0)
@@ -1111,7 +1111,7 @@ void grund_t::display_boden(const sint16 xpos, const sint16 ypos, const sint16 r
 									}
 								}
 								// overlay transition climates
-								g_simgraph->draw_alpha( ground_desc_t::get_climate_tile( transition_climate, slope ), ground_desc_t::get_alpha_tile( slope, overlay_corners ), ALPHA_GREEN | ALPHA_BLUE, xpos, ypos, 0, 0, true, dirty CLIP_NUM_PAR );
+								gfx->draw_alpha( ground_desc_t::get_climate_tile( transition_climate, slope ), ground_desc_t::get_alpha_tile( slope, overlay_corners ), ALPHA_GREEN | ALPHA_BLUE, xpos, ypos, 0, 0, true, dirty CLIP_NUM_PAR );
 							}
 						}
 						slope_corner /= slope_t::southeast;
@@ -1119,19 +1119,19 @@ void grund_t::display_boden(const sint16 xpos, const sint16 ypos, const sint16 r
 					// finally overlay any water transition
 					if(  water_corners  ) {
 						if(  slope  ) {
-							g_simgraph->draw_alpha( ground_desc_t::get_water_tile(slope, wasser_t::stage), ground_desc_t::get_beach_tile( slope, water_corners ), ALPHA_RED, xpos, ypos, 0, 0, true, dirty|wasser_t::change_stage CLIP_NUM_PAR );
+							gfx->draw_alpha( ground_desc_t::get_water_tile(slope, wasser_t::stage), ground_desc_t::get_beach_tile( slope, water_corners ), ALPHA_RED, xpos, ypos, 0, 0, true, dirty|wasser_t::change_stage CLIP_NUM_PAR );
 							if(  ground_desc_t::shore  ) {
 								// additional shore image
 								image_id shore = ground_desc_t::shore->get_image(slope,snow_transition<=0);
 								if(  shore==IMG_EMPTY  &&  snow_transition<=0  ) {
 									shore = ground_desc_t::shore->get_image(slope,0);
 								}
-								g_simgraph->draw_normal( shore, xpos, ypos, 0, true, dirty CLIP_NUM_PAR );
+								gfx->draw_normal( shore, xpos, ypos, 0, true, dirty CLIP_NUM_PAR );
 							}
 						}
 						else {
 							// animate
-							g_simgraph->draw_alpha( ground_desc_t::sea->get_image(0,wasser_t::stage), ground_desc_t::get_beach_tile( slope, water_corners ), ALPHA_RED, xpos, ypos, 0, 0, true, dirty|wasser_t::change_stage CLIP_NUM_PAR );
+							gfx->draw_alpha( ground_desc_t::sea->get_image(0,wasser_t::stage), ground_desc_t::get_beach_tile( slope, water_corners ), ALPHA_RED, xpos, ypos, 0, 0, true, dirty|wasser_t::change_stage CLIP_NUM_PAR );
 						}
 					}
 				}
@@ -1141,12 +1141,12 @@ void grund_t::display_boden(const sint16 xpos, const sint16 ypos, const sint16 r
 					// the gehweg flag is used for rail switches, but a slope has no switches ...
 					switch(  snow_transition  ) {
 						case 1: {
-							g_simgraph->draw_alpha( ground_desc_t::get_snow_tile(slope), ground_desc_t::get_alpha_tile(slope), ALPHA_GREEN | ALPHA_BLUE, xpos, ypos, 0, 0, true, dirty CLIP_NUM_PAR );
+							gfx->draw_alpha( ground_desc_t::get_snow_tile(slope), ground_desc_t::get_alpha_tile(slope), ALPHA_GREEN | ALPHA_BLUE, xpos, ypos, 0, 0, true, dirty CLIP_NUM_PAR );
 							break;
 						}
 						case 2: {
 							if(  slope_t::max_diff(slope) > 1  ) {
-								g_simgraph->draw_alpha( ground_desc_t::get_snow_tile(slope), ground_desc_t::get_alpha_tile(slope), ALPHA_BLUE, xpos, ypos, 0, 0, true, dirty CLIP_NUM_PAR );
+								gfx->draw_alpha( ground_desc_t::get_snow_tile(slope), ground_desc_t::get_alpha_tile(slope), ALPHA_BLUE, xpos, ypos, 0, 0, true, dirty CLIP_NUM_PAR );
 							}
 							break;
 						}
@@ -1161,17 +1161,17 @@ void grund_t::display_boden(const sint16 xpos, const sint16 ypos, const sint16 r
 				if(  show_grid  ){
 #endif
 					const uint8 hang = get_grund_hang();
-					g_simgraph->draw_normal( ground_desc_t::get_border_image(hang), xpos, ypos, 0, true, dirty CLIP_NUM_PAR );
+					gfx->draw_normal( ground_desc_t::get_border_image(hang), xpos, ypos, 0, true, dirty CLIP_NUM_PAR );
 				}
 			}
 		}
 		else {
 			// take animation into account
 			if(  underground_mode != ugm_all  ) {
-				g_simgraph->draw_normal( ground_desc_t::sea->get_image(get_image(),wasser_t::stage), xpos, ypos, 0, true, dirty|wasser_t::change_stage CLIP_NUM_PAR );
+				gfx->draw_normal( ground_desc_t::sea->get_image(get_image(),wasser_t::stage), xpos, ypos, 0, true, dirty|wasser_t::change_stage CLIP_NUM_PAR );
 			}
 			else {
-				g_simgraph->draw_blend( ground_desc_t::sea->get_image(get_image(),wasser_t::stage), xpos, ypos, 0, TRANSPARENT50_FLAG, true, dirty|wasser_t::change_stage CLIP_NUM_PAR );
+				gfx->draw_blend( ground_desc_t::sea->get_image(get_image(),wasser_t::stage), xpos, ypos, 0, TRANSPARENT50_FLAG, true, dirty|wasser_t::change_stage CLIP_NUM_PAR );
 			}
 			return;
 		}
@@ -1186,23 +1186,23 @@ void grund_t::display_boden(const sint16 xpos, const sint16 ypos, const sint16 r
 			// .. nonconvex n/w if not both n/w are active
 			if(  clip  ) {
 				const ribi_t::ribi way_ribi = (static_cast<const weg_t*>(d))->get_ribi_unmasked();
-				g_simgraph->clear_all_poly_clip( CLIP_NUM_VAR );
+				gfx->clear_all_poly_clip( CLIP_NUM_VAR );
 				const uint8 non_convex = (way_ribi & ribi_t::northwest) == ribi_t::northwest ? 0 : 16;
 				if(  way_ribi & ribi_t::west  ) {
 					const int dh = corner_nw(get_disp_way_slope()) * hgt_step;
-					g_simgraph->add_poly_clip( xpos + raster_tile_width / 2 - 1, ypos + raster_tile_width / 2 - dh, xpos - 1, ypos + 3 * raster_tile_width / 4 - dh, ribi_t::west | non_convex CLIP_NUM_PAR );
+					gfx->add_poly_clip( xpos + raster_tile_width / 2 - 1, ypos + raster_tile_width / 2 - dh, xpos - 1, ypos + 3 * raster_tile_width / 4 - dh, ribi_t::west | non_convex CLIP_NUM_PAR );
 				}
 				if(  way_ribi & ribi_t::north  ) {
 					const int dh = corner_nw(get_disp_way_slope()) * hgt_step;
-					g_simgraph->add_poly_clip( xpos + raster_tile_width, ypos + 3 * raster_tile_width / 4 - dh, xpos + raster_tile_width / 2, ypos + raster_tile_width / 2 - dh, ribi_t::north | non_convex CLIP_NUM_PAR );
+					gfx->add_poly_clip( xpos + raster_tile_width, ypos + 3 * raster_tile_width / 4 - dh, xpos + raster_tile_width / 2, ypos + raster_tile_width / 2 - dh, ribi_t::north | non_convex CLIP_NUM_PAR );
 				}
-				g_simgraph->activate_ribi_clip( (way_ribi & ribi_t::northwest) | non_convex  CLIP_NUM_PAR );
+				gfx->activate_ribi_clip( (way_ribi & ribi_t::northwest) | non_convex  CLIP_NUM_PAR );
 			}
 			d->display( xpos, ypos CLIP_NUM_PAR );
 		}
 		// end of clipping
 		if(  clip  ) {
-			g_simgraph->clear_all_poly_clip( CLIP_NUM_VAR );
+			gfx->clear_all_poly_clip( CLIP_NUM_VAR );
 		}
 	}
 }
@@ -1228,17 +1228,17 @@ void grund_t::display_border( sint16 xpos, sint16 ypos, const sint16 raster_tile
 		diff = -min(corner_sw(slope),corner_se(slope));
 		sint16 zz = pos.z - welt->min_height;
 		if(  diff < zz && ((zz-diff)&1)==1  ) {
-			g_simgraph->draw_normal( ground_desc_t::slopes->get_image(15), x, y, 0, true, false CLIP_NUM_PAR );
+			gfx->draw_normal( ground_desc_t::slopes->get_image(15), x, y, 0, true, false CLIP_NUM_PAR );
 			y -= hgt_step;
 			diff++;
 		}
 		// ok, now we have the height; since the slopes may end with a fence they are drawn in reverse order
 		while(  diff < zz  ) {
-			g_simgraph->draw_normal( ground_desc_t::slopes->get_image(19), x, y, 0, true, false CLIP_NUM_PAR );
+			gfx->draw_normal( ground_desc_t::slopes->get_image(19), x, y, 0, true, false CLIP_NUM_PAR );
 			y -= hgt_step*2;
 			diff+=2;
 		}
-		g_simgraph->draw_normal( slope_img, x, y, 0, true, false CLIP_NUM_PAR );
+		gfx->draw_normal( slope_img, x, y, 0, true, false CLIP_NUM_PAR );
 	}
 
 	if(  pos.x-welt->get_size().x+1 == 0  ) {
@@ -1251,17 +1251,17 @@ void grund_t::display_border( sint16 xpos, sint16 ypos, const sint16 raster_tile
 		diff = -min(corner_se(slope),corner_ne(slope));
 		sint16 zz = pos.z - welt->min_height;
 		if(  diff < zz && ((zz-diff)&1)==1  ) {
-			g_simgraph->draw_normal( ground_desc_t::slopes->get_image(4), x, y, 0, true, false CLIP_NUM_PAR );
+			gfx->draw_normal( ground_desc_t::slopes->get_image(4), x, y, 0, true, false CLIP_NUM_PAR );
 			y -= hgt_step;
 			diff++;
 		}
 		// ok, now we have the height; since the slopes may end with a fence they are drawn in reverse order
 		while(  diff < zz  ) {
-			g_simgraph->draw_normal( ground_desc_t::slopes->get_image(8), x, y, 0, true, false CLIP_NUM_PAR );
+			gfx->draw_normal( ground_desc_t::slopes->get_image(8), x, y, 0, true, false CLIP_NUM_PAR );
 			y -= hgt_step*2;
 			diff+=2;
 		}
-		g_simgraph->draw_normal( slope_img, x, y, 0, true, false CLIP_NUM_PAR );
+		gfx->draw_normal( slope_img, x, y, 0, true, false CLIP_NUM_PAR );
 	}
 }
 
@@ -1275,7 +1275,7 @@ void grund_t::display_if_visible(sint16 xpos, sint16 ypos, const sint16 raster_t
 	if(  !is_karten_boden_visible()  ) {
 		// only check for forced redraw (of marked ... )
 		if(  get_flag(grund_t::dirty)  ) {
-			g_simgraph->mark_rect_dirty_clip( xpos, ypos + raster_tile_width / 2, xpos + raster_tile_width - 1, ypos + raster_tile_width - 1 CLIP_NUM_PAR );
+			gfx->mark_rect_dirty_clip( xpos, ypos + raster_tile_width / 2, xpos + raster_tile_width - 1, ypos + raster_tile_width - 1 CLIP_NUM_PAR );
 		}
 		return;
 	}
@@ -1343,31 +1343,31 @@ void grund_t::display_obj_all_quick_and_dirty(const sint16 xpos, sint16 ypos, co
 	if(  visible  ) {
 		if(  is_global  &&  get_flag( grund_t::marked )  ) {
 			const uint8 hang = get_grund_hang();
-			g_simgraph->draw_img_aux( ground_desc_t::get_marker_image( hang, true ), xpos, ypos, 0, true, dirty CLIP_NUM_PAR );
+			gfx->draw_img_aux( ground_desc_t::get_marker_image( hang, true ), xpos, ypos, 0, true, dirty CLIP_NUM_PAR );
 #ifdef MULTI_THREAD
 			objlist.display_obj_quick_and_dirty( xpos, ypos, start_offset CLIP_NUM_PAR );
 #else
 			objlist.display_obj_quick_and_dirty( xpos, ypos, start_offset, is_global );
 #endif
-			g_simgraph->draw_img_aux( ground_desc_t::get_marker_image( hang, false ), xpos, ypos, 0, true, dirty CLIP_NUM_PAR );
+			gfx->draw_img_aux( ground_desc_t::get_marker_image( hang, false ), xpos, ypos, 0, true, dirty CLIP_NUM_PAR );
 			if(  !ist_karten_boden()  ) {
 				const grund_t *gr = welt->lookup_kartenboden(pos.get_2d());
 				if(  pos.z > gr->get_hoehe()  ) {
 					//display front part of marker for grunds in between
 					for(  sint8 z = pos.z - 1;  z > gr->get_hoehe();  z--  ) {
-						g_simgraph->draw_img_aux( ground_desc_t::get_marker_image(0, false), xpos, ypos - tile_raster_scale_y( (z - pos.z) * TILE_HEIGHT_STEP, raster_tile_width ), 0, true, true CLIP_NUM_PAR );
+						gfx->draw_img_aux( ground_desc_t::get_marker_image(0, false), xpos, ypos - tile_raster_scale_y( (z - pos.z) * TILE_HEIGHT_STEP, raster_tile_width ), 0, true, true CLIP_NUM_PAR );
 					}
 					//display front part of marker for ground
-					g_simgraph->draw_img_aux( ground_desc_t::get_marker_image( gr->get_grund_hang(), false ), xpos, ypos - tile_raster_scale_y( (gr->get_hoehe() - pos.z) * TILE_HEIGHT_STEP, raster_tile_width ), 0, true, true CLIP_NUM_PAR );
+					gfx->draw_img_aux( ground_desc_t::get_marker_image( gr->get_grund_hang(), false ), xpos, ypos - tile_raster_scale_y( (gr->get_hoehe() - pos.z) * TILE_HEIGHT_STEP, raster_tile_width ), 0, true, true CLIP_NUM_PAR );
 				}
 				else if(  pos.z < gr->get_disp_height()  ) {
 					//display back part of marker for grunds in between
 					for(  sint8 z = pos.z + 1;  z < gr->get_disp_height();  z++  ) {
-						g_simgraph->draw_img_aux( ground_desc_t::get_border_image(0), xpos, ypos - tile_raster_scale_y( (z - pos.z) * TILE_HEIGHT_STEP, raster_tile_width ), 0, true, true CLIP_NUM_PAR );
+						gfx->draw_img_aux( ground_desc_t::get_border_image(0), xpos, ypos - tile_raster_scale_y( (z - pos.z) * TILE_HEIGHT_STEP, raster_tile_width ), 0, true, true CLIP_NUM_PAR );
 					}
 					//display back part of marker for ground
 					const uint8 kbhang = gr->get_grund_hang() | gr->get_weg_hang();
-					g_simgraph->draw_img_aux( ground_desc_t::get_border_image(kbhang), xpos, ypos - tile_raster_scale_y( (gr->get_hoehe() - pos.z) * TILE_HEIGHT_STEP, raster_tile_width ), 0, true, true CLIP_NUM_PAR );
+					gfx->draw_img_aux( ground_desc_t::get_border_image(kbhang), xpos, ypos - tile_raster_scale_y( (gr->get_hoehe() - pos.z) * TILE_HEIGHT_STEP, raster_tile_width ), 0, true, true CLIP_NUM_PAR );
 				}
 			}
 		}
@@ -1382,12 +1382,12 @@ void grund_t::display_obj_all_quick_and_dirty(const sint16 xpos, sint16 ypos, co
 	else { // must be karten_boden
 		// in undergroundmode: draw ground grid
 		const uint8 hang = underground_mode==ugm_all ? get_grund_hang() : (uint8)slope_t::flat;
-		g_simgraph->draw_img_aux( ground_desc_t::get_border_image(hang), xpos, ypos, 0, true, dirty CLIP_NUM_PAR );
+		gfx->draw_img_aux( ground_desc_t::get_border_image(hang), xpos, ypos, 0, true, dirty CLIP_NUM_PAR );
 
 		// show marker for marked but invisible tiles
 		if(  is_global  &&  get_flag(grund_t::marked)  ) {
-			g_simgraph->draw_img_aux( ground_desc_t::get_marker_image( hang, true ), xpos, ypos, 0, true, dirty CLIP_NUM_PAR );
-			g_simgraph->draw_img_aux( ground_desc_t::get_marker_image( hang, false ), xpos, ypos, 0, true, dirty CLIP_NUM_PAR );
+			gfx->draw_img_aux( ground_desc_t::get_marker_image( hang, true ), xpos, ypos, 0, true, dirty CLIP_NUM_PAR );
+			gfx->draw_img_aux( ground_desc_t::get_marker_image( hang, false ), xpos, ypos, 0, true, dirty CLIP_NUM_PAR );
 		}
 	}
 }
@@ -1421,7 +1421,7 @@ void grund_t::display_obj_all(const sint16 xpos, const sint16 ypos, const sint16
 	}
 
 	// end of clipping
-	g_simgraph->clear_all_poly_clip( CLIP_NUM_VAR );
+	gfx->clear_all_poly_clip( CLIP_NUM_VAR );
 
 	// here: we are either ground(kartenboden) or visible
 	const bool visible = !ist_karten_boden()  ||  is_karten_boden_visible();
@@ -1467,34 +1467,34 @@ void grund_t::display_obj_all(const sint16 xpos, const sint16 ypos, const sint16
 	const uint8 non_convex = ((ribi & ribi_t::northwest) == ribi_t::northwest)  &&  back_imageid ? 0 : 16;
 	if(  ribi & ribi_t::west  ) {
 		const int dh = corner_nw(slope) * hgt_step;
-		g_simgraph->add_poly_clip( xpos + raster_tile_width / 2 - 1, ypos + raster_tile_width / 2 - dh, xpos - 1, ypos + 3 * raster_tile_width / 4 - dh, ribi_t::west | non_convex CLIP_NUM_PAR );
+		gfx->add_poly_clip( xpos + raster_tile_width / 2 - 1, ypos + raster_tile_width / 2 - dh, xpos - 1, ypos + 3 * raster_tile_width / 4 - dh, ribi_t::west | non_convex CLIP_NUM_PAR );
 	}
 	if(  ribi & ribi_t::north  ) {
 		const int dh = corner_nw(slope) * hgt_step;
-		g_simgraph->add_poly_clip( xpos + raster_tile_width, ypos + 3 * raster_tile_width / 4 - dh, xpos + raster_tile_width / 2, ypos + raster_tile_width / 2 - dh, ribi_t::north | non_convex CLIP_NUM_PAR );
+		gfx->add_poly_clip( xpos + raster_tile_width, ypos + 3 * raster_tile_width / 4 - dh, xpos + raster_tile_width / 2, ypos + raster_tile_width / 2 - dh, ribi_t::north | non_convex CLIP_NUM_PAR );
 	}
 	if(  ribi & ribi_t::east  ) {
 		const int dh = corner_se(slope) * hgt_step;
-		g_simgraph->add_poly_clip( xpos + raster_tile_width / 2, ypos + raster_tile_width - dh, xpos + raster_tile_width, ypos + 3 * raster_tile_width / 4 - dh, ribi_t::east|16 CLIP_NUM_PAR );
+		gfx->add_poly_clip( xpos + raster_tile_width / 2, ypos + raster_tile_width - dh, xpos + raster_tile_width, ypos + 3 * raster_tile_width / 4 - dh, ribi_t::east|16 CLIP_NUM_PAR );
 	}
 	if(  ribi & ribi_t::south  ) {
 		const int dh = corner_se(slope) * hgt_step;
-		g_simgraph->add_poly_clip( xpos- 1, ypos + 3 * raster_tile_width / 4  - dh, xpos + raster_tile_width / 2 - 1, ypos + raster_tile_width  - dh, ribi_t::south|16  CLIP_NUM_PAR );
+		gfx->add_poly_clip( xpos- 1, ypos + 3 * raster_tile_width / 4  - dh, xpos + raster_tile_width / 2 - 1, ypos + raster_tile_width  - dh, ribi_t::south|16  CLIP_NUM_PAR );
 	}
 
 	// display background
 	if (!tunnel_portal  ||  slope == slope_t::flat) {
-		g_simgraph->activate_ribi_clip( (ribi_t::northwest & ribi) | 16 CLIP_NUM_PAR );
+		gfx->activate_ribi_clip( (ribi_t::northwest & ribi) | 16 CLIP_NUM_PAR );
 	}
 	else {
 		// also clip along the upper edge of the tunnel tile
-		g_simgraph->activate_ribi_clip( ribi | 16 CLIP_NUM_PAR );
+		gfx->activate_ribi_clip( ribi | 16 CLIP_NUM_PAR );
 	}
 	// get offset of first vehicle
 	const uint8 offset_vh = display_obj_bg( xpos, ypos, is_global, false, visible CLIP_NUM_PAR );
 	if(  !visible  ) {
 		// end of clipping
-		g_simgraph->clear_all_poly_clip( CLIP_NUM_VAR );
+		gfx->clear_all_poly_clip( CLIP_NUM_VAR );
 		return;
 	}
 	// display vehicles of w/nw/n neighbors
@@ -1535,7 +1535,7 @@ void grund_t::display_obj_all(const sint16 xpos, const sint16 ypos, const sint16
 		grund_t *gr;
 		if(  get_neighbour( gr, invalid_wt, ribi_t::east )  ) {
 			const bool draw_other_ways = (flags&draw_as_obj)  ||  (gr->flags&draw_as_obj)  ||  !gr->ist_karten_boden();
-			g_simgraph->activate_ribi_clip( ribi_t::east|16 CLIP_NUM_PAR );
+			gfx->activate_ribi_clip( ribi_t::east|16 CLIP_NUM_PAR );
 			gr->display_obj_bg( xpos + raster_tile_width / 2, ypos + raster_tile_width / 4 - tile_raster_scale_y( (gr->get_hoehe() - pos.z) * TILE_HEIGHT_STEP, raster_tile_width ), is_global, draw_other_ways, true CLIP_NUM_PAR );
 		}
 	}
@@ -1543,7 +1543,7 @@ void grund_t::display_obj_all(const sint16 xpos, const sint16 ypos, const sint16
 		grund_t *gr;
 		if(  get_neighbour( gr, invalid_wt, ribi_t::south )  ) {
 			const bool draw_other_ways = (flags&draw_as_obj)  ||  (gr->flags&draw_as_obj)  ||  !gr->ist_karten_boden();
-			g_simgraph->activate_ribi_clip( ribi_t::south|16 CLIP_NUM_PAR );
+			gfx->activate_ribi_clip( ribi_t::south|16 CLIP_NUM_PAR );
 			gr->display_obj_bg( xpos - raster_tile_width / 2, ypos + raster_tile_width / 4 - tile_raster_scale_y( (gr->get_hoehe() - pos.z) * TILE_HEIGHT_STEP, raster_tile_width ), is_global, draw_other_ways, true CLIP_NUM_PAR );
 		}
 	}
@@ -1588,16 +1588,16 @@ void grund_t::display_obj_all(const sint16 xpos, const sint16 ypos, const sint16
 	// foreground
 	if (tunnel_portal  &&  slope != 0) {
 		// clip at the upper edge
-		g_simgraph->activate_ribi_clip( (ribi & (corner_se(slope)>0 ?  ribi_t::southeast : ribi_t::northwest) )| 16 CLIP_NUM_PAR );
+		gfx->activate_ribi_clip( (ribi & (corner_se(slope)>0 ?  ribi_t::southeast : ribi_t::northwest) )| 16 CLIP_NUM_PAR );
 	}
 	else {
-		g_simgraph->clear_all_poly_clip( CLIP_NUM_VAR );
+		gfx->clear_all_poly_clip( CLIP_NUM_VAR );
 	}
 	display_obj_fg( xpos, ypos, is_global, offset_fg CLIP_NUM_PAR );
 
 	// end of clipping
 	if (tunnel_portal) {
-		g_simgraph->clear_all_poly_clip( CLIP_NUM_VAR );
+		gfx->clear_all_poly_clip( CLIP_NUM_VAR );
 	}
 }
 
@@ -1609,18 +1609,18 @@ uint8 grund_t::display_obj_bg(const sint16 xpos, const sint16 ypos, const bool i
 	if(  visible  ) {
 		// display back part of markers
 		if(  is_global  &&  get_flag( grund_t::marked )  ) {
-			g_simgraph->draw_normal( ground_desc_t::get_marker_image( get_grund_hang(), true ), xpos, ypos, 0, true, dirty CLIP_NUM_PAR );
+			gfx->draw_normal( ground_desc_t::get_marker_image( get_grund_hang(), true ), xpos, ypos, 0, true, dirty CLIP_NUM_PAR );
 			if(  !ist_karten_boden()  ) {
 				const grund_t *gr = welt->lookup_kartenboden(pos.get_2d());
-				const sint16 raster_tile_width = g_simgraph->get_current_tile_raster_width();
+				const sint16 raster_tile_width = gfx->get_current_tile_raster_width();
 
 				if(  pos.z < gr->get_disp_height()  ) {
 					//display back part of marker for grunds in between
 					for(  sint8 z = pos.z + 1;  z < gr->get_disp_height();  z++  ) {
-						g_simgraph->draw_normal( ground_desc_t::get_marker_image(0, true), xpos, ypos - tile_raster_scale_y( (z - pos.z) * TILE_HEIGHT_STEP, raster_tile_width ), 0, true, true CLIP_NUM_PAR );
+						gfx->draw_normal( ground_desc_t::get_marker_image(0, true), xpos, ypos - tile_raster_scale_y( (z - pos.z) * TILE_HEIGHT_STEP, raster_tile_width ), 0, true, true CLIP_NUM_PAR );
 					}
 					//display back part of marker for ground
-					g_simgraph->draw_normal( ground_desc_t::get_marker_image( gr->get_grund_hang() | gr->get_weg_hang(), true ), xpos, ypos - tile_raster_scale_y( (gr->get_hoehe() - pos.z) * TILE_HEIGHT_STEP, raster_tile_width ), 0, true, true CLIP_NUM_PAR );
+					gfx->draw_normal( ground_desc_t::get_marker_image( gr->get_grund_hang() | gr->get_weg_hang(), true ), xpos, ypos - tile_raster_scale_y( (gr->get_hoehe() - pos.z) * TILE_HEIGHT_STEP, raster_tile_width ), 0, true, true CLIP_NUM_PAR );
 				}
 			}
 		}
@@ -1631,11 +1631,11 @@ uint8 grund_t::display_obj_bg(const sint16 xpos, const sint16 ypos, const bool i
 	else { // must be karten_boden
 		// in undergroundmode: draw ground grid
 		const uint8 hang = underground_mode == ugm_all ? get_grund_hang() : (slope_t::type)slope_t::flat;
-		g_simgraph->draw_normal( ground_desc_t::get_border_image(hang), xpos, ypos, 0, true, dirty CLIP_NUM_PAR );
+		gfx->draw_normal( ground_desc_t::get_border_image(hang), xpos, ypos, 0, true, dirty CLIP_NUM_PAR );
 		// show marker for marked but invisible tiles
 		if(  is_global  &&  get_flag( grund_t::marked )  ) {
-			g_simgraph->draw_img_aux( ground_desc_t::get_marker_image( hang, true  ), xpos, ypos, 0, true, dirty CLIP_NUM_PAR );
-			g_simgraph->draw_img_aux( ground_desc_t::get_marker_image( hang, false ), xpos, ypos, 0, true, dirty CLIP_NUM_PAR );
+			gfx->draw_img_aux( ground_desc_t::get_marker_image( hang, true  ), xpos, ypos, 0, true, dirty CLIP_NUM_PAR );
+			gfx->draw_img_aux( ground_desc_t::get_marker_image( hang, false ), xpos, ypos, 0, true, dirty CLIP_NUM_PAR );
 		}
 		return 255;
 	}
@@ -1658,17 +1658,17 @@ void grund_t::display_obj_fg(const sint16 xpos, const sint16 ypos, const bool is
 #endif
 	// display front part of markers
 	if(  is_global  &&  get_flag( grund_t::marked )  ) {
-		g_simgraph->draw_normal( ground_desc_t::get_marker_image( get_grund_hang(), false ), xpos, ypos, 0, true, dirty CLIP_NUM_PAR );
+		gfx->draw_normal( ground_desc_t::get_marker_image( get_grund_hang(), false ), xpos, ypos, 0, true, dirty CLIP_NUM_PAR );
 		if(  !ist_karten_boden()  ) {
 			const grund_t *gr = welt->lookup_kartenboden(pos.get_2d());
-			const sint16 raster_tile_width = g_simgraph->get_tile_raster_width();
+			const sint16 raster_tile_width = gfx->get_tile_raster_width();
 			if(  pos.z > gr->get_hoehe()  ) {
 				//display front part of marker for grunds in between
 				for(  sint8 z = pos.z - 1;  z > gr->get_hoehe();  z--  ) {
-					g_simgraph->draw_normal( ground_desc_t::get_marker_image( 0, false ), xpos, ypos - tile_raster_scale_y( (z - pos.z) * TILE_HEIGHT_STEP, raster_tile_width ), 0, true, true CLIP_NUM_PAR );
+					gfx->draw_normal( ground_desc_t::get_marker_image( 0, false ), xpos, ypos - tile_raster_scale_y( (z - pos.z) * TILE_HEIGHT_STEP, raster_tile_width ), 0, true, true CLIP_NUM_PAR );
 				}
 				//display front part of marker for ground
-				g_simgraph->draw_normal( ground_desc_t::get_marker_image( gr->get_grund_hang(), false ), xpos, ypos - tile_raster_scale_y( (gr->get_hoehe() - pos.z) * TILE_HEIGHT_STEP, raster_tile_width ), 0, true, true CLIP_NUM_PAR );
+				gfx->draw_normal( ground_desc_t::get_marker_image( gr->get_grund_hang(), false ), xpos, ypos - tile_raster_scale_y( (gr->get_hoehe() - pos.z) * TILE_HEIGHT_STEP, raster_tile_width ), 0, true, true CLIP_NUM_PAR );
 			}
 		}
 	}
@@ -1680,23 +1680,23 @@ void display_text_label(sint16 xpos, sint16 ypos, const char* text, const player
 {
 	switch( env_t::show_names >> 2 ) {
 		case 0: {
-			const PIXVAL bg_color = player ? g_simgraph->palette_lookup(player->get_player_color1()+4) : SYSCOL_TEXT_HIGHLIGHT;
-			g_simgraph->draw_textbox3d_clipped( xpos, ypos, bg_color, g_simgraph->palette_lookup(COL_BLACK), text, dirty CLIP_NUM_DEFAULT);
+			const PIXVAL bg_color = player ? gfx->palette_lookup(player->get_player_color1()+4) : SYSCOL_TEXT_HIGHLIGHT;
+			gfx->draw_textbox3d_clipped( xpos, ypos, bg_color, gfx->palette_lookup(COL_BLACK), text, dirty CLIP_NUM_DEFAULT);
 			break;
 		}
 		case 1: {
-			const PIXVAL text_color = player ? g_simgraph->palette_lookup(player->get_player_color1()+7) : SYSCOL_TEXT_HIGHLIGHT;
-			g_simgraph->draw_text_outlined(xpos, ypos, text_color, g_simgraph->palette_lookup(COL_BLACK), text, dirty);
+			const PIXVAL text_color = player ? gfx->palette_lookup(player->get_player_color1()+7) : SYSCOL_TEXT_HIGHLIGHT;
+			gfx->draw_text_outlined(xpos, ypos, text_color, gfx->palette_lookup(COL_BLACK), text, dirty);
 			break;
 		}
 		case 2: {
-			const PIXVAL dark   = player ? g_simgraph->palette_lookup(player->get_player_color1()+2) : SYSCOL_TEXT_HIGHLIGHT;
-			const PIXVAL normal = player ? g_simgraph->palette_lookup(player->get_player_color1()+4) : SYSCOL_TEXT_HIGHLIGHT;
-			const PIXVAL bright = player ? g_simgraph->palette_lookup(player->get_player_color1()+6) : SYSCOL_TEXT_HIGHLIGHT;
+			const PIXVAL dark   = player ? gfx->palette_lookup(player->get_player_color1()+2) : SYSCOL_TEXT_HIGHLIGHT;
+			const PIXVAL normal = player ? gfx->palette_lookup(player->get_player_color1()+4) : SYSCOL_TEXT_HIGHLIGHT;
+			const PIXVAL bright = player ? gfx->palette_lookup(player->get_player_color1()+6) : SYSCOL_TEXT_HIGHLIGHT;
 
-			g_simgraph->draw_text_outlined( xpos + LINESPACE + D_H_SPACE, ypos,   g_simgraph->palette_lookup(COL_YELLOW), g_simgraph->palette_lookup(COL_BLACK), text, dirty );
-			g_simgraph->draw_box3d_clipped( xpos,                         ypos,   LINESPACE,   LINESPACE,   dark, PLAYER_FLAG|bright );
-			g_simgraph->draw_rect(          xpos+1,                       ypos+1, LINESPACE-2, LINESPACE-2, normal, dirty );
+			gfx->draw_text_outlined( xpos + LINESPACE + D_H_SPACE, ypos,   gfx->palette_lookup(COL_YELLOW), gfx->palette_lookup(COL_BLACK), text, dirty );
+			gfx->draw_box3d_clipped( xpos,                         ypos,   LINESPACE,   LINESPACE,   dark, PLAYER_FLAG|bright );
+			gfx->draw_rect(          xpos+1,                       ypos+1, LINESPACE-2, LINESPACE-2, normal, dirty );
 			break;
 		}
 	}
@@ -1713,8 +1713,8 @@ void grund_t::display_overlay(const sint16 xpos, const sint16 ypos)
 	if(  get_flag(has_text)  ) {
 		if(  env_t::show_names & 1  ) {
 			const char *text = get_text();
-			const sint16 raster_tile_width = g_simgraph->get_tile_raster_width();
-			const int width = g_simgraph->calc_text_width(text) + 7;
+			const sint16 raster_tile_width = gfx->get_tile_raster_width();
+			const int width = gfx->calc_text_width(text) + 7;
 			int new_xpos = xpos - (width-raster_tile_width)/2;
 
 			const player_t* owner = get_label_owner();
@@ -1735,9 +1735,9 @@ void grund_t::display_overlay(const sint16 xpos, const sint16 ypos)
 		if( gebaeude_t *gb=find<gebaeude_t>() ) {
 			if(  fabrik_t* fab = gb->get_fabrik()  ) {
 				if( env_t::show_factory_storage_bar == 1  &&  welt->get_zeiger()->get_pos() == get_pos() ) {
-					const sint16 raster_tile_width = g_simgraph->get_tile_raster_width();
+					const sint16 raster_tile_width = gfx->get_tile_raster_width();
 					const char* text = fab->get_name();
-					const int width = g_simgraph->calc_text_width(text) + 7;
+					const int width = gfx->calc_text_width(text) + 7;
 					sint16 new_xpos = xpos - (width-raster_tile_width)/2;
 					sint16 new_ypos = ypos + 5;
 //					display_text_label( new_xpos, new_ypos, text, fab->get_owner(), dirty );
@@ -1749,8 +1749,8 @@ void grund_t::display_overlay(const sint16 xpos, const sint16 ypos)
 					if(  env_t::show_factory_storage_bar == 3  ||  (env_t::show_factory_storage_bar == 2  &&  fab->is_within_players_network( welt->get_active_player() ))  ) {
 						// name of factory
 						const char* text = fab->get_name();
-						const sint16 raster_tile_width = g_simgraph->get_tile_raster_width();
-						const sint16 width = g_simgraph->calc_text_width(text) + 7;
+						const sint16 raster_tile_width = gfx->get_tile_raster_width();
+						const sint16 width = gfx->calc_text_width(text) + 7;
 						sint16 new_xpos = xpos - (width-raster_tile_width)/2;
 						display_text_label( new_xpos, ypos, text, fab->get_owner(), dirty );
 						// ... and status
@@ -1765,8 +1765,8 @@ void grund_t::display_overlay(const sint16 xpos, const sint16 ypos)
 		if( weg_t* w = get_weg_nr( 0 ) ) {
 			if( w->has_signal() ) {
 				// display arrow here
-				PIXVAL c1 = g_simgraph->palette_lookup( COL_GREEN+2 );
-				PIXVAL c2 = g_simgraph->palette_lookup( COL_GREEN );
+				PIXVAL c1 = gfx->palette_lookup( COL_GREEN+2 );
+				PIXVAL c2 = gfx->palette_lookup( COL_GREEN );
 
 				ribi_t::ribi mask = w->get_ribi_maske();
 				if( !mask ) {
@@ -1775,17 +1775,17 @@ void grund_t::display_overlay(const sint16 xpos, const sint16 ypos)
 
 				if( signal_t* sig = find<signal_t>() ) {
 					if( sig->get_state()==roadsign_t::signalstate::STATE_RED ) {
-						c1 = g_simgraph->palette_lookup( COL_ORANGE+2 );
-						c2 = g_simgraph->palette_lookup( COL_ORANGE );
+						c1 = gfx->palette_lookup( COL_ORANGE+2 );
+						c2 = gfx->palette_lookup( COL_ORANGE );
 					}
 				}
-				g_simgraph->draw_signal_direction( xpos, ypos + tile_raster_scale_y( w->get_yoff(), g_simgraph->get_current_tile_raster_width() ),
+				gfx->draw_signal_direction( xpos, ypos + tile_raster_scale_y( w->get_yoff(), gfx->get_current_tile_raster_width() ),
 					w->get_ribi_unmasked(), mask, c1, c2, w->is_diagonal(), get_weg_hang() );
 			}
 			else if( w->get_ribi_maske() ) {
-				PIXVAL c1 = g_simgraph->palette_lookup( COL_BLUE+2 );
-				PIXVAL c2 = g_simgraph->palette_lookup( COL_BLUE );
-				g_simgraph->draw_signal_direction( xpos, ypos + tile_raster_scale_y( w->get_yoff(), g_simgraph->get_current_tile_raster_width() ),
+				PIXVAL c1 = gfx->palette_lookup( COL_BLUE+2 );
+				PIXVAL c2 = gfx->palette_lookup( COL_BLUE );
+				gfx->draw_signal_direction( xpos, ypos + tile_raster_scale_y( w->get_yoff(), gfx->get_current_tile_raster_width() ),
 					w->get_ribi_unmasked(), w->get_ribi_maske(), c1, c2, w->is_diagonal(), get_weg_hang() );
 			}
 		}

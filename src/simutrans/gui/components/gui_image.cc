@@ -22,7 +22,7 @@ gui_image_t::gui_image_t( const image_id i, const uint8 p, control_alignment_t a
 scr_size gui_image_t::get_min_size() const
 {
 	if( id  !=  IMG_EMPTY ) {
-		scr_rect r = g_simgraph->get_base_image_offset(id);
+		scr_rect r = gfx->get_base_image_offset(id);
 
 		if (remove_enabled) {
 			return scr_size(r.w, r.h);
@@ -40,7 +40,7 @@ scr_size gui_image_t::get_min_size() const
 void gui_image_t::set_size( scr_size size_par )
 {
 	if( id  !=  IMG_EMPTY ) {
-		scr_rect r = g_simgraph->get_base_image_offset(id);
+		scr_rect r = gfx->get_base_image_offset(id);
 
 		if( remove_enabled ) {
 			remove_offset = scr_coord(-r.x,-r.y);
@@ -74,7 +74,7 @@ void gui_image_t::set_image( const image_id i, bool remove_offsets ) {
 void gui_image_t::draw( scr_coord offset ) {
 
 	if(  id!=IMG_EMPTY  ) {
-		scr_rect r = g_simgraph->get_base_image_offset(id);
+		scr_rect r = gfx->get_base_image_offset(id);
 
 		switch (alignment) {
 			case ALIGN_RIGHT:
@@ -95,10 +95,10 @@ void gui_image_t::draw( scr_coord offset ) {
 		}
 
 		if (color_index) {
-			g_simgraph->draw_base_img_blend(id , pos.x+offset.x+remove_offset.x, pos.y+offset.y+remove_offset.y, player_nr, color_index, false, true CLIP_NUM_DEFAULT);
+			gfx->draw_base_img_blend(id , pos.x+offset.x+remove_offset.x, pos.y+offset.y+remove_offset.y, player_nr, color_index, false, true CLIP_NUM_DEFAULT);
 		}
 		else {
-			g_simgraph->draw_base_img( id, pos.x+offset.x+remove_offset.x, pos.y+offset.y+remove_offset.y, (sint8)player_nr, false, true CLIP_NUM_DEFAULT);
+			gfx->draw_base_img( id, pos.x+offset.x+remove_offset.x, pos.y+offset.y+remove_offset.y, (sint8)player_nr, false, true CLIP_NUM_DEFAULT);
 		}
 	}
 }

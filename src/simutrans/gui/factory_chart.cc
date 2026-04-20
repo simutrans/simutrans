@@ -176,11 +176,11 @@ void factory_chart_t::set_factory(const fabrik_t *_factory)
 			for (uint32 g = 0; g < input_count; ++g) {
 				goods_cont.new_component<gui_label_t>(input[g].get_typ()->get_name());
 				for (int s = 0; s < MAX_FAB_GOODS_STAT; ++s) {
-					uint16 curve = goods_chart.add_curve(g_simgraph->palette_lookup(goods_color[count % MAX_GOODS_COLOR] + (s * 3) / 2), input[g].get_stats(), MAX_FAB_GOODS_STAT, s, MAX_MONTH, false, false, true, 0, goods_convert[s]);
+					uint16 curve = goods_chart.add_curve(gfx->palette_lookup(goods_color[count % MAX_GOODS_COLOR] + (s * 3) / 2), input[g].get_stats(), MAX_FAB_GOODS_STAT, s, MAX_MONTH, false, false, true, 0, goods_convert[s]);
 
 					button_t* b = goods_cont.new_component<button_t>();
 					b->init(button_t::box_state_automatic | button_t::flexible, input_type[s]);
-					b->background_color = g_simgraph->palette_lookup(goods_color[count % MAX_GOODS_COLOR] + (s * 3) / 2);
+					b->background_color = gfx->palette_lookup(goods_color[count % MAX_GOODS_COLOR] + (s * 3) / 2);
 					b->pressed = false;
 					button_to_chart.append(b, &goods_chart, curve);
 
@@ -201,11 +201,11 @@ void factory_chart_t::set_factory(const fabrik_t *_factory)
 			for (uint32 g = 0; g < output_count; ++g) {
 				goods_cont.new_component<gui_label_t>(output[g].get_typ()->get_name());
 				for (int s = 0; s < 3; ++s) {
-					uint16 curve = goods_chart.add_curve(g_simgraph->palette_lookup(goods_color[count % MAX_GOODS_COLOR] + s * 2), output[g].get_stats(), MAX_FAB_GOODS_STAT, s, MAX_MONTH, false, false, true, 0, goods_convert[s]);
+					uint16 curve = goods_chart.add_curve(gfx->palette_lookup(goods_color[count % MAX_GOODS_COLOR] + s * 2), output[g].get_stats(), MAX_FAB_GOODS_STAT, s, MAX_MONTH, false, false, true, 0, goods_convert[s]);
 
 					button_t* b = goods_cont.new_component<button_t>();
 					b->init(button_t::box_state_automatic | button_t::flexible, output_type[s]);
-					b->background_color = g_simgraph->palette_lookup(goods_color[count % MAX_GOODS_COLOR] + s * 2);
+					b->background_color = gfx->palette_lookup(goods_color[count % MAX_GOODS_COLOR] + s * 2);
 					b->pressed = false;
 					button_to_chart.append(b, &goods_chart, curve);
 				}
@@ -214,7 +214,7 @@ void factory_chart_t::set_factory(const fabrik_t *_factory)
 		}
 		goods_cont.new_component<gui_empty_t>();
 		scr_size contsz = goods_cont.get_min_size();
-		if (contsz.w > g_simgraph->get_screen_size().w) {
+		if (contsz.w > gfx->get_screen_size().w) {
 			tab_panel.add_tab(&goods_pane, translator::translate("Goods"));
 		}
 		else {
@@ -241,7 +241,7 @@ void factory_chart_t::set_factory(const fabrik_t *_factory)
 			else if (prod_cell_button[cell] < MAX_FAB_STAT) {
 				uint8 s = prod_cell_button[cell];
 				// add curve
-				uint16 curve = prod_chart.add_curve( g_simgraph->palette_lookup(prod_color[s]), factory->get_stats(), MAX_FAB_STAT, s, MAX_MONTH, (2<=s  &&  s<=4) ? gui_chart_t::PERCENT : gui_chart_t::STANDARD, false, true, 0, prod_convert[s] );
+				uint16 curve = prod_chart.add_curve( gfx->palette_lookup(prod_color[s]), factory->get_stats(), MAX_FAB_STAT, s, MAX_MONTH, (2<=s  &&  s<=4) ? gui_chart_t::PERCENT : gui_chart_t::STANDARD, false, true, 0, prod_convert[s] );
 				// only show buttons, if the is something to do ...
 				if(
 					(s==FAB_BOOST_ELECTRIC  &&  (factory->get_desc()->is_electricity_producer()  ||  factory->get_desc()->get_electric_boost()==0))  ||
@@ -254,7 +254,7 @@ void factory_chart_t::set_factory(const fabrik_t *_factory)
 				// add button
 				button_t *b = prod_cont.new_component<button_t>();
 				b->init(button_t::box_state_automatic | button_t::flexible, prod_type[s]);
-				b->background_color = g_simgraph->palette_lookup(prod_color[s]);
+				b->background_color = gfx->palette_lookup(prod_color[s]);
 				b->pressed = false;
 				button_to_chart.append(b, &prod_chart, curve);
 			}
@@ -262,7 +262,7 @@ void factory_chart_t::set_factory(const fabrik_t *_factory)
 			else if (prod_cell_ref[cell] < MAX_FAB_REF_LINE) {
 				uint8 r = prod_cell_ref[cell];
 				// add curve
-				uint16 curve = prod_chart.add_curve( g_simgraph->palette_lookup(ref_color[r]), prod_ref_line_data + r, 0, 0, MAX_MONTH, r<3 ? gui_chart_t::PERCENT : gui_chart_t::STANDARD, false, true, 0, ref_convert[r] );
+				uint16 curve = prod_chart.add_curve( gfx->palette_lookup(ref_color[r]), prod_ref_line_data + r, 0, 0, MAX_MONTH, r<3 ? gui_chart_t::PERCENT : gui_chart_t::STANDARD, false, true, 0, ref_convert[r] );
 				if(
 					(r==FAB_REF_MAX_BOOST_ELECTRIC  &&  (factory->get_desc()->is_electricity_producer()  ||  factory->get_desc()->get_electric_boost()==0))  ||
 					(r==FAB_REF_MAX_BOOST_PAX       &&   factory->get_desc()->get_pax_boost()==0)  ||
@@ -277,7 +277,7 @@ void factory_chart_t::set_factory(const fabrik_t *_factory)
 				// add button
 				button_t *b = prod_cont.new_component<button_t>();
 				b->init(button_t::box_state_automatic | button_t::flexible, ref_type[r]);
-				b->background_color = g_simgraph->palette_lookup(ref_color[r]);
+				b->background_color = gfx->palette_lookup(ref_color[r]);
 				b->pressed = false;
 				button_to_chart.append(b, &prod_chart, curve);
 			}
@@ -289,7 +289,7 @@ void factory_chart_t::set_factory(const fabrik_t *_factory)
 	prod_cont.end_table();
 	prod_cont.new_component<gui_empty_t>();
 	scr_size sz = prod_cont.get_min_size();
-	if (sz.w > g_simgraph->get_screen_size().w) {
+	if (sz.w > gfx->get_screen_size().w) {
 		tab_panel.add_tab(&prod_pane, translator::translate("Production/Boost"));
 	}
 	else {

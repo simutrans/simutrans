@@ -189,8 +189,8 @@ void citybuilding_edit_frame_t::fill_list()
 		// color code for objects: BLACK: normal, YELLOW: consumer only, GREEN: source only
 		PIXVAL color;
 		switch (i->get_type()) {
-			case building_desc_t::city_res: color = g_simgraph->palette_lookup(COL_DARK_BLUE + env_t::gui_player_color_dark); break;
-			case building_desc_t::city_com: color = g_simgraph->palette_lookup(40            + env_t::gui_player_color_dark); break;
+			case building_desc_t::city_res: color = gfx->palette_lookup(COL_DARK_BLUE + env_t::gui_player_color_dark); break;
+			case building_desc_t::city_com: color = gfx->palette_lookup(40            + env_t::gui_player_color_dark); break;
 			default:                        color = SYSCOL_TEXT;                                                              break;
 		}
 		char const* const name = get_sortedby()==gui_sorting_item_t::BY_NAME_OBJECT ?  i->get_name() : translator::translate(i->get_name());

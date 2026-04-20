@@ -86,7 +86,7 @@ void gui_numberinput_t::set_value(sint32 new_value)
 		sprintf(textbuffer, "%d", new_value);
 		textinp.set_text(textbuffer, 20);
 	}
-	textinp.set_color( value == new_value ? (b_enabled ? SYSCOL_EDIT_TEXT : SYSCOL_EDIT_TEXT_DISABLED) : g_simgraph->palette_lookup(COL_RED) );
+	textinp.set_color( value == new_value ? (b_enabled ? SYSCOL_EDIT_TEXT : SYSCOL_EDIT_TEXT_DISABLED) : gfx->palette_lookup(COL_RED) );
 	value = new_value;
 }
 
@@ -115,7 +115,7 @@ void gui_numberinput_t::set_limits(sint32 _min, sint32 _max)
 	max_value = _max;
 
 	// minus sign
-	max_numbertext_width = (min_value > 0) ? 0 : g_simgraph->get_char_width('-');
+	max_numbertext_width = (min_value > 0) ? 0 : gfx->get_char_width('-');
 	// count digits
 	uint32 max_abs = max_value > 0 ? max_value : -max_value;
 	if (min_value < 0  &&  (uint32) (-min_value) > max_abs) {
@@ -123,12 +123,12 @@ void gui_numberinput_t::set_limits(sint32 _min, sint32 _max)
 	}
 	// width of digits
 	while (max_abs) {
-		max_numbertext_width += g_simgraph->get_number_width();
+		max_numbertext_width += gfx->get_number_width();
 		max_abs /= 10;
 	}
 	// enforce a min width of 5 digits
-	if (max_numbertext_width < 5 * g_simgraph->get_number_width()) {
-		max_numbertext_width = 5 * g_simgraph->get_number_width();
+	if (max_numbertext_width < 5 * gfx->get_number_width()) {
+		max_numbertext_width = 5 * gfx->get_number_width();
 	}
 }
 

@@ -80,7 +80,7 @@ void button_t::set_typ(enum type t)
 			text_color = SYSCOL_CHECKBOX_TEXT;
 			if(  !strempty(translated_text)  ) {
 				set_text(translated_text);
-				set_size( scr_size( gui_theme_t::gui_checkbox_size.w + D_H_SPACE + g_simgraph->calc_text_width(translated_text), max(gui_theme_t::gui_checkbox_size.h,LINESPACE)) );
+				set_size( scr_size( gui_theme_t::gui_checkbox_size.w + D_H_SPACE + gfx->calc_text_width(translated_text), max(gui_theme_t::gui_checkbox_size.h,LINESPACE)) );
 			}
 			else {
 				set_size( scr_size( gui_theme_t::gui_checkbox_size.w, max(gui_theme_t::gui_checkbox_size.h,LINESPACE)) );
@@ -180,19 +180,19 @@ scr_size button_t::get_min_size() const
 			return gui_theme_t::gui_arrow_down_size;
 
 		case square: {
-			scr_coord_val w = translated_text ?  D_H_SPACE + g_simgraph->calc_text_width( translated_text ) : 0;
+			scr_coord_val w = translated_text ?  D_H_SPACE + gfx->calc_text_width( translated_text ) : 0;
 			return scr_size(w + gui_theme_t::gui_checkbox_size.w, max(gui_theme_t::gui_checkbox_size.h,LINESPACE));
 		}
 		case box:
 		case roundbox: {
-			scr_coord_val w = translated_text ?  2*D_H_SPACE + g_simgraph->calc_text_width( translated_text ) : 0;
+			scr_coord_val w = translated_text ?  2*D_H_SPACE + gfx->calc_text_width( translated_text ) : 0;
 			scr_size size(gui_theme_t::gui_button_size.w, max(D_BUTTON_HEIGHT,LINESPACE));
 			size.w = max(size.w, w);
 			return size;
 		}
 
 		case imagebox: {
-			scr_rect r = g_simgraph->get_image_offset(img);
+			scr_rect r = gfx->get_image_offset(img);
 			scr_size size(gui_theme_t::gui_pos_button_size);
 			size.w = max(size.w, r.w+2);
 			size.h = max(size.h, r.h+2);
@@ -220,7 +220,7 @@ void button_t::set_text(const char * text)
 	translated_text = b_no_translate ? text : translator::translate(text);
 
 	if(  (type & TYPE_MASK) == square  &&  !strempty(translated_text)  ) {
-		set_size( scr_size( gui_theme_t::gui_checkbox_size.w + D_H_SPACE + g_simgraph->calc_text_width( translated_text ), max(gui_theme_t::gui_checkbox_size.h, LINESPACE)) );
+		set_size( scr_size( gui_theme_t::gui_checkbox_size.w + D_H_SPACE + gfx->calc_text_width( translated_text ), max(gui_theme_t::gui_checkbox_size.h, LINESPACE)) );
 	}
 }
 
@@ -332,10 +332,10 @@ void button_t::draw_focus_rect( scr_rect r, scr_coord_val offset) {
 
 	scr_coord_val w = ((offset-1)<<1);
 
-	g_simgraph->draw_rect_clipped (r.x    -offset+1, r.y-1  -offset+1, r.w+w, 1, g_simgraph->palette_lookup(COL_WHITE), false CLIP_NUM_DEFAULT);
-	g_simgraph->draw_rect_clipped (r.x    -offset+1, r.y+r.h+offset-1, r.w+w, 1, g_simgraph->palette_lookup(COL_WHITE), false CLIP_NUM_DEFAULT);
-	g_simgraph->draw_vline_clipped(r.x    -offset,   r.y    -offset+1, r.h+w,    g_simgraph->palette_lookup(COL_WHITE), false CLIP_NUM_DEFAULT);
-	g_simgraph->draw_vline_clipped(r.x+r.w+offset-1, r.y    -offset+1, r.h+w,    g_simgraph->palette_lookup(COL_WHITE), false CLIP_NUM_DEFAULT);
+	gfx->draw_rect_clipped (r.x    -offset+1, r.y-1  -offset+1, r.w+w, 1, gfx->palette_lookup(COL_WHITE), false CLIP_NUM_DEFAULT);
+	gfx->draw_rect_clipped (r.x    -offset+1, r.y+r.h+offset-1, r.w+w, 1, gfx->palette_lookup(COL_WHITE), false CLIP_NUM_DEFAULT);
+	gfx->draw_vline_clipped(r.x    -offset,   r.y    -offset+1, r.h+w,    gfx->palette_lookup(COL_WHITE), false CLIP_NUM_DEFAULT);
+	gfx->draw_vline_clipped(r.x+r.w+offset-1, r.y    -offset+1, r.h+w,    gfx->palette_lookup(COL_WHITE), false CLIP_NUM_DEFAULT);
 }
 
 
@@ -354,14 +354,14 @@ void button_t::draw(scr_coord offset)
 
 		case box: // Colored background box
 			{
-				g_simgraph->draw_stretch_map( gui_theme_t::button_tiles[get_state_offset()], area );
-				g_simgraph->draw_stretch_map_blend( gui_theme_t::button_color_tiles[b_enabled && pressed], area, background_color | TRANSPARENT75_FLAG | OUTLINE_FLAG );
+				gfx->draw_stretch_map( gui_theme_t::button_tiles[get_state_offset()], area );
+				gfx->draw_stretch_map_blend( gui_theme_t::button_color_tiles[b_enabled && pressed], area, background_color | TRANSPARENT75_FLAG | OUTLINE_FLAG );
 				if(  text  ) {
 					text_color = pressed ? SYSCOL_COLORED_BUTTON_TEXT_SELECTED : text_color;
 					// move the text to leave evt. space for a colored box top left or bottom right of it
 					scr_rect area_text = area - gui_theme_t::gui_color_button_text_offset_right;
 					area_text.set_pos( gui_theme_t::gui_color_button_text_offset + area.get_pos() );
-					g_simgraph->draw_text_ellipsis( area_text, translated_text, ALIGN_CENTER_H | ALIGN_CENTER_V | DT_CLIP, text_color, true );
+					gfx->draw_text_ellipsis( area_text, translated_text, ALIGN_CENTER_H | ALIGN_CENTER_V | DT_CLIP, text_color, true );
 				}
 				if(  win_get_focus()==this  ) {
 					draw_focus_rect( area );
@@ -371,12 +371,12 @@ void button_t::draw(scr_coord offset)
 
 		case roundbox: // button with inside text
 			{
-				g_simgraph->draw_stretch_map( gui_theme_t::round_button_tiles[get_state_offset()], area );
+				gfx->draw_stretch_map( gui_theme_t::round_button_tiles[get_state_offset()], area );
 				if(  text  ) {
 					// move the text to leave evt. space for a colored box top left or bottom right of it
 					scr_rect area_text = area - gui_theme_t::gui_button_text_offset_right;
 					area_text.set_pos( gui_theme_t::gui_button_text_offset + area.get_pos() );
-					g_simgraph->draw_text_ellipsis( area_text, translated_text, ALIGN_CENTER_H | ALIGN_CENTER_V | DT_CLIP, text_color, true );
+					gfx->draw_text_ellipsis( area_text, translated_text, ALIGN_CENTER_H | ALIGN_CENTER_V | DT_CLIP, text_color, true );
 				}
 				if(  win_get_focus()==this  ) {
 					draw_focus_rect( area );
@@ -385,9 +385,9 @@ void button_t::draw(scr_coord offset)
 			break;
 
 		case imagebox:
-			g_simgraph->draw_stretch_map(gui_theme_t::button_tiles[get_state_offset()], area);
-			g_simgraph->draw_stretch_map_blend(gui_theme_t::button_color_tiles[b_enabled && pressed], area, (pressed ? text_color: background_color) | TRANSPARENT75_FLAG | OUTLINE_FLAG);
-			g_simgraph->draw_img_aligned(img, area, ALIGN_CENTER_H | ALIGN_CENTER_V, true);
+			gfx->draw_stretch_map(gui_theme_t::button_tiles[get_state_offset()], area);
+			gfx->draw_stretch_map_blend(gui_theme_t::button_color_tiles[b_enabled && pressed], area, (pressed ? text_color: background_color) | TRANSPARENT75_FLAG | OUTLINE_FLAG);
+			gfx->draw_img_aligned(img, area, ALIGN_CENTER_H | ALIGN_CENTER_V, true);
 			if (win_get_focus() == this) {
 				draw_focus_rect(area);
 			}
@@ -395,7 +395,7 @@ void button_t::draw(scr_coord offset)
 
 		case sortarrow:
 			{
-				g_simgraph->draw_stretch_map(gui_theme_t::button_tiles[0], area);
+				gfx->draw_stretch_map(gui_theme_t::button_tiles[0], area);
 
 				const uint8 block_height = 2;
 				const uint8 bars_height = uint8((size.h-block_height-4)/4)*block_height*2 + block_height;
@@ -403,22 +403,22 @@ void button_t::draw(scr_coord offset)
 				area_drawing.set_pos(gui_theme_t::gui_color_button_text_offset + area.get_pos() + scr_coord(4/*left margin*/,D_GET_CENTER_ALIGN_OFFSET(bars_height,size.h)));
 
 				// draw an arrow
-				g_simgraph->draw_rect_clipped(area_drawing.x+2, area_drawing.y, 1, bars_height, SYSCOL_BUTTON_TEXT, false CLIP_NUM_DEFAULT);
+				gfx->draw_rect_clipped(area_drawing.x+2, area_drawing.y, 1, bars_height, SYSCOL_BUTTON_TEXT, false CLIP_NUM_DEFAULT);
 				if (pressed) {
 					// desc
-					g_simgraph->draw_rect_clipped(area_drawing.x+1, area_drawing.y+1, 3, 1, SYSCOL_BUTTON_TEXT, false CLIP_NUM_DEFAULT);
-					g_simgraph->draw_rect_clipped(area_drawing.x,   area_drawing.y+2, 5, 1, SYSCOL_BUTTON_TEXT, false CLIP_NUM_DEFAULT);
+					gfx->draw_rect_clipped(area_drawing.x+1, area_drawing.y+1, 3, 1, SYSCOL_BUTTON_TEXT, false CLIP_NUM_DEFAULT);
+					gfx->draw_rect_clipped(area_drawing.x,   area_drawing.y+2, 5, 1, SYSCOL_BUTTON_TEXT, false CLIP_NUM_DEFAULT);
 					for (uint8 row=0; row*4<bars_height; row++) {
-						g_simgraph->draw_rect_clipped(area_drawing.x + 6/*arrow width(5)+margin(1)*/, area_drawing.y + bars_height - block_height - row*block_height*2, block_height*(row+1), block_height, SYSCOL_BUTTON_TEXT, false CLIP_NUM_DEFAULT);
+						gfx->draw_rect_clipped(area_drawing.x + 6/*arrow width(5)+margin(1)*/, area_drawing.y + bars_height - block_height - row*block_height*2, block_height*(row+1), block_height, SYSCOL_BUTTON_TEXT, false CLIP_NUM_DEFAULT);
 					}
 					tooltip = "hl_btn_sort_desc";
 				}
 				else {
 					// asc
-					g_simgraph->draw_rect_clipped(area_drawing.x+1, area_drawing.y+bars_height-2, 3, 1, SYSCOL_BUTTON_TEXT, false CLIP_NUM_DEFAULT);
-					g_simgraph->draw_rect_clipped(area_drawing.x,   area_drawing.y+bars_height-3, 5, 1, SYSCOL_BUTTON_TEXT, false CLIP_NUM_DEFAULT);
+					gfx->draw_rect_clipped(area_drawing.x+1, area_drawing.y+bars_height-2, 3, 1, SYSCOL_BUTTON_TEXT, false CLIP_NUM_DEFAULT);
+					gfx->draw_rect_clipped(area_drawing.x,   area_drawing.y+bars_height-3, 5, 1, SYSCOL_BUTTON_TEXT, false CLIP_NUM_DEFAULT);
 					for (uint8 row=0; row*4<bars_height; row++) {
-						g_simgraph->draw_rect_clipped(area_drawing.x + 6/*arrow width(5)+margin(1)*/, area_drawing.y + row*block_height*2, block_height*(row+1), block_height, SYSCOL_BUTTON_TEXT, false CLIP_NUM_DEFAULT);
+						gfx->draw_rect_clipped(area_drawing.x + 6/*arrow width(5)+margin(1)*/, area_drawing.y + row*block_height*2, block_height*(row+1), block_height, SYSCOL_BUTTON_TEXT, false CLIP_NUM_DEFAULT);
 					}
 					tooltip = "hl_btn_sort_asc";
 				}
@@ -431,13 +431,13 @@ void button_t::draw(scr_coord offset)
 
 		case square: // checkbox with text
 			{
-				g_simgraph->draw_img_aligned( gui_theme_t::check_button_img[ get_state_offset() ], area, ALIGN_CENTER_V, true );
+				gfx->draw_img_aligned( gui_theme_t::check_button_img[ get_state_offset() ], area, ALIGN_CENTER_V, true );
 				if(  text  ) {
 					text_color = b_enabled ? this->text_color : SYSCOL_CHECKBOX_TEXT_DISABLED;
 					scr_rect area_text = area;
 					area_text.x += gui_theme_t::gui_checkbox_size.w + D_H_SPACE;
 					area_text.w -= gui_theme_t::gui_checkbox_size.w + D_H_SPACE;
-					g_simgraph->draw_text_ellipsis( area_text, translated_text, ALIGN_LEFT | ALIGN_CENTER_V | DT_CLIP, text_color, true );
+					gfx->draw_text_ellipsis( area_text, translated_text, ALIGN_LEFT | ALIGN_CENTER_V | DT_CLIP, text_color, true );
 				}
 				if(  win_get_focus() == this  ) {
 					draw_focus_rect( scr_rect( area.get_pos()+scr_coord(0,(area.get_size().h-gui_theme_t::gui_checkbox_size.w)/2), gui_theme_t::gui_checkbox_size ) );
@@ -453,26 +453,26 @@ void button_t::draw(scr_coord offset)
 						offset = welt->get_viewport()->is_on_center( gr->get_pos() );
 					}
 				}
-				g_simgraph->draw_img_aligned( gui_theme_t::pos_button_img[ offset ], area, ALIGN_CENTER_H|ALIGN_CENTER_V, true );
+				gfx->draw_img_aligned( gui_theme_t::pos_button_img[ offset ], area, ALIGN_CENTER_H|ALIGN_CENTER_V, true );
 			}
 			break;
 
 		case arrowleft:
 		case repeatarrowleft:
-			g_simgraph->draw_img_aligned( gui_theme_t::arrow_button_left_img[ get_state_offset() ], area, ALIGN_CENTER_H|ALIGN_CENTER_V, true );
+			gfx->draw_img_aligned( gui_theme_t::arrow_button_left_img[ get_state_offset() ], area, ALIGN_CENTER_H|ALIGN_CENTER_V, true );
 			break;
 
 		case arrowright:
 		case repeatarrowright:
-			g_simgraph->draw_img_aligned( gui_theme_t::arrow_button_right_img[ get_state_offset() ], area, ALIGN_CENTER_H|ALIGN_CENTER_V, true );
+			gfx->draw_img_aligned( gui_theme_t::arrow_button_right_img[ get_state_offset() ], area, ALIGN_CENTER_H|ALIGN_CENTER_V, true );
 			break;
 
 		case arrowup:
-			g_simgraph->draw_img_aligned( gui_theme_t::arrow_button_up_img[ get_state_offset() ], area, ALIGN_CENTER_H|ALIGN_CENTER_V, true );
+			gfx->draw_img_aligned( gui_theme_t::arrow_button_up_img[ get_state_offset() ], area, ALIGN_CENTER_H|ALIGN_CENTER_V, true );
 			break;
 
 		case arrowdown:
-			g_simgraph->draw_img_aligned( gui_theme_t::arrow_button_down_img[ get_state_offset() ], area, ALIGN_CENTER_H|ALIGN_CENTER_V, true );
+			gfx->draw_img_aligned( gui_theme_t::arrow_button_down_img[ get_state_offset() ], area, ALIGN_CENTER_H|ALIGN_CENTER_V, true );
 			break;
 
 		default: ;

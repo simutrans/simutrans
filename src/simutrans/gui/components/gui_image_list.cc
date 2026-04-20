@@ -82,23 +82,23 @@ void gui_image_list_t::draw(scr_coord parent_pos)
 
 			// display mark
 			if(idata.lcolor!=EMPTY_IMAGE_BAR) {
-				g_simgraph->draw_rect_clipped(xpos + 1, ypos + grid.y - 5, grid.x/2 - 1, 4, idata.lcolor, true CLIP_NUM_DEFAULT);
+				gfx->draw_rect_clipped(xpos + 1, ypos + grid.y - 5, grid.x/2 - 1, 4, idata.lcolor, true CLIP_NUM_DEFAULT);
 			}
 			if(idata.rcolor!=EMPTY_IMAGE_BAR) {
-				g_simgraph->draw_rect_clipped(xpos + grid.x/2, ypos + grid.y - 5, grid.x - grid.x/2 - 1, 4, idata.rcolor, true CLIP_NUM_DEFAULT);
+				gfx->draw_rect_clipped(xpos + grid.x/2, ypos + grid.y - 5, grid.x - grid.x/2 - 1, 4, idata.rcolor, true CLIP_NUM_DEFAULT);
 			}
 			if (sel_index-- == 0) {
-				g_simgraph->draw_box3d_clipped(xpos, ypos, grid.x, grid.y, g_simgraph->palette_lookup(MN_GREY4), g_simgraph->palette_lookup(MN_GREY0));
+				gfx->draw_box3d_clipped(xpos, ypos, grid.x, grid.y, gfx->palette_lookup(MN_GREY4), gfx->palette_lookup(MN_GREY0));
 			}
 
 			// Get image data
-			scr_rect r = g_simgraph->get_base_image_offset(idata.image);
+			scr_rect r = gfx->get_base_image_offset(idata.image);
 
 			// calculate image offsets
 			r.y = -r.y + (grid.y-r.h) - 6; // align to bottom mark
 			r.x = -r.x + 2;                // Add 2 pixel margin
 			//display_base_img(idata.image, xpos + placement.x, ypos + placement.y, player_nr, false, true);
-			g_simgraph->draw_base_img(idata.image, xpos + r.x, ypos + r.y, player_nr, false, true CLIP_NUM_DEFAULT);
+			gfx->draw_base_img(idata.image, xpos + r.x, ypos + r.y, player_nr, false, true CLIP_NUM_DEFAULT);
 
 			// If necessary, display a number:
 			if(idata.count > 0) {
@@ -109,11 +109,11 @@ void gui_image_list_t::draw(scr_coord parent_pos)
 				// Let's make a black background to ensure visibility
 				for(int iy = -3; iy < 0; iy++) {
 					for(int ix = 1; ix < 4; ix++) {
-						g_simgraph->draw_text_clipped(xpos + ix, ypos + iy, text, ALIGN_LEFT, g_simgraph->palette_lookup(COL_BLACK), true);
+						gfx->draw_text_clipped(xpos + ix, ypos + iy, text, ALIGN_LEFT, gfx->palette_lookup(COL_BLACK), true);
 					}
 				}
 				// Display the number white on black
-				g_simgraph->draw_text_clipped(xpos + 2, ypos - 2, text, ALIGN_LEFT, g_simgraph->palette_lookup(COL_WHITE), true);
+				gfx->draw_text_clipped(xpos + 2, ypos - 2, text, ALIGN_LEFT, gfx->palette_lookup(COL_WHITE), true);
 			}
 		}
 		// advance x, y to next position

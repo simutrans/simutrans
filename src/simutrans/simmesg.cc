@@ -66,7 +66,7 @@ void message_node_t::rdwr(loadsave_t *file)
 		// color was 16bit, with 0x8000 indicating player colors
 		uint16 c = color & PLAYER_FLAG ? 0x8000 + (color&(~PLAYER_FLAG)) : MN_GREY0;
 		file->rdwr_short(c);
-		color = c & 0x8000 ? PLAYER_FLAG + (c&(~0x8000)) : g_simgraph->palette_lookup(c);
+		color = c & 0x8000 ? PLAYER_FLAG + (c&(~0x8000)) : gfx->palette_lookup(c);
 	}
 	else {
 		file->rdwr_long( color );
@@ -84,7 +84,7 @@ PIXVAL message_node_t::get_player_color(karte_t *welt) const
 	FLAGGED_PIXVAL colorval = color;
 	if(  color&PLAYER_FLAG  ) {
 		player_t *player = welt->get_player(color&(~PLAYER_FLAG));
-		colorval = player ? PLAYER_FLAG+g_simgraph->palette_lookup(player->get_player_color1()+env_t::gui_player_color_dark) : g_simgraph->palette_lookup(MN_GREY0);
+		colorval = player ? PLAYER_FLAG+gfx->palette_lookup(player->get_player_color1()+env_t::gui_player_color_dark) : gfx->palette_lookup(MN_GREY0);
 	}
 	return (PIXVAL)colorval;
 }

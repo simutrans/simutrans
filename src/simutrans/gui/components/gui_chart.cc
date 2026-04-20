@@ -124,7 +124,7 @@ void gui_chart_t::draw(scr_coord offset)
 
 	// draw background if desired
 	if(background != TRANSPARENT_FLAGS) {
-		g_simgraph->draw_rect_clipped(offset.x, offset.y, chart_size.w, chart_size.h, background, false CLIP_NUM_DEFAULT);
+		gfx->draw_rect_clipped(offset.x, offset.y, chart_size.w, chart_size.h, background, false CLIP_NUM_DEFAULT);
 	}
 	int tmpx, factor;
 	if(env_t::left_to_right_graphs) {
@@ -137,22 +137,22 @@ void gui_chart_t::draw(scr_coord offset)
 	}
 
 	// draw zero line
-	g_simgraph->draw_line(offset.x+1, offset.y+(scr_coord_val)baseline, offset.x+chart_size.w-2, offset.y+(scr_coord_val)baseline, SYSCOL_CHART_LINES_ZERO);
+	gfx->draw_line(offset.x+1, offset.y+(scr_coord_val)baseline, offset.x+chart_size.w-2, offset.y+(scr_coord_val)baseline, SYSCOL_CHART_LINES_ZERO);
 
 	if (show_y_axis) {
 
 		// draw zero number only, if it will not disturb any other printed values!
 		if ((baseline > 18) && (baseline < chart_size.h -18)) {
-			g_simgraph->draw_text_clipped(offset.x - 4, offset.y+(scr_coord_val)baseline-3, "0", ALIGN_RIGHT, SYSCOL_TEXT_HIGHLIGHT, true );
+			gfx->draw_text_clipped(offset.x - 4, offset.y+(scr_coord_val)baseline-3, "0", ALIGN_RIGHT, SYSCOL_TEXT_HIGHLIGHT, true );
 		}
 
 		// display min/max money values
-		g_simgraph->draw_text_clipped(offset.x - 4, offset.y-5,              cmax, ALIGN_RIGHT, SYSCOL_TEXT_HIGHLIGHT, true );
-		g_simgraph->draw_text_clipped(offset.x - 4, offset.y+chart_size.h-5, cmin, ALIGN_RIGHT, SYSCOL_TEXT_HIGHLIGHT, true );
+		gfx->draw_text_clipped(offset.x - 4, offset.y-5,              cmax, ALIGN_RIGHT, SYSCOL_TEXT_HIGHLIGHT, true );
+		gfx->draw_text_clipped(offset.x - 4, offset.y+chart_size.h-5, cmin, ALIGN_RIGHT, SYSCOL_TEXT_HIGHLIGHT, true );
 	}
 
 	// draw chart frame
-	g_simgraph->draw_box3d_clipped(offset.x, offset.y, chart_size.w, chart_size.h, SYSCOL_SHADOW, SYSCOL_HIGHLIGHT);
+	gfx->draw_box3d_clipped(offset.x, offset.y, chart_size.w, chart_size.h, SYSCOL_SHADOW, SYSCOL_HIGHLIGHT);
 
 	// draw chart lines
 	scr_coord_val x_last = 0;  // remember last digit position to avoid overwriting by next label
@@ -165,11 +165,11 @@ void gui_chart_t::draw(scr_coord offset)
 			sprintf( digit, "%i", abs(seed - j) );
 			scr_coord_val x =  x0 - (seed != j ? (int)(2 * log( (double)abs(seed - j) )) : 0);
 			if(  x > x_last  ) {
-				x_last = x + g_simgraph->draw_text_clipped( x, offset.y + chart_size.h + 4, digit, ALIGN_LEFT, line_color, true );
+				x_last = x + gfx->draw_text_clipped( x, offset.y + chart_size.h + 4, digit, ALIGN_LEFT, line_color, true );
 			}
 		}
 		// year's vertical lines
-		g_simgraph->draw_vline_clipped( x0, offset.y + 1, chart_size.h - 2, line_color, false CLIP_NUM_DEFAULT );
+		gfx->draw_vline_clipped( x0, offset.y + 1, chart_size.h - 2, line_color, false CLIP_NUM_DEFAULT );
 	}
 
 	// display current value?
@@ -206,7 +206,7 @@ void gui_chart_t::draw(scr_coord offset)
 				}
 
 				// display marker(box) for financial value
-				g_simgraph->draw_rect_clipped(tmpx+factor*(chart_size.w / (x_elements - 1))*i-2, (scr_coord_val)(offset.y+baseline- (long)(tmp/scale)-2), 5, 5, c.color, true CLIP_NUM_DEFAULT);
+				gfx->draw_rect_clipped(tmpx+factor*(chart_size.w / (x_elements - 1))*i-2, (scr_coord_val)(offset.y+baseline- (long)(tmp/scale)-2), 5, 5, c.color, true CLIP_NUM_DEFAULT);
 
 				// display tooltip?
 				if(i==tooltip_n  &&  abs((int)(baseline-(int)(tmp/scale)-tooltipcoord.y))<10) {
@@ -219,7 +219,7 @@ void gui_chart_t::draw(scr_coord offset)
 
 				// draw line between two financial markers; this is only possible from the second value on
 				if (i>0) {
-					g_simgraph->draw_line(tmpx+factor*(chart_size.w / (x_elements - 1))*(i-1),
+					gfx->draw_line(tmpx+factor*(chart_size.w / (x_elements - 1))*(i-1),
 						(scr_coord_val)( offset.y+baseline-(int)(last_year/scale) ),
 						tmpx+factor*(chart_size.w / (x_elements - 1))*(i),
 						(scr_coord_val)( offset.y+baseline-(int)(tmp/scale) ),
@@ -235,10 +235,10 @@ void gui_chart_t::draw(scr_coord offset)
 						}
 
 						if(  env_t::left_to_right_graphs  ) {
-							g_simgraph->draw_textbox3d_clipped( tmpx + 8, (scr_coord_val)(offset.y+baseline-(int)(tmp/scale)-4), g_simgraph->palette_lookup(COL_GREY4), c.color, cmin, true CLIP_NUM_DEFAULT);
+							gfx->draw_textbox3d_clipped( tmpx + 8, (scr_coord_val)(offset.y+baseline-(int)(tmp/scale)-4), gfx->palette_lookup(COL_GREY4), c.color, cmin, true CLIP_NUM_DEFAULT);
 						}
 						else if(  (baseline-tmp/scale-8) > 0  &&  (baseline-tmp/scale+8) < chart_size.h  &&  abs((int)(tmp/scale)) > 9  ) {
-							g_simgraph->draw_text_clipped(tmpx - 4, (scr_coord_val)(offset.y+baseline-(int)(tmp/scale)-4), cmin, ALIGN_RIGHT, c.color, true );
+							gfx->draw_text_clipped(tmpx - 4, (scr_coord_val)(offset.y+baseline-(int)(tmp/scale)-4), cmin, ALIGN_RIGHT, c.color, true );
 						}
 					}
 				}

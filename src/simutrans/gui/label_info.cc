@@ -16,7 +16,7 @@
 
 label_info_t::label_info_t(label_t* l) :
 	gui_frame_t( translator::translate("Marker"), l->get_owner()),
-	view(l->get_pos(), scr_size( max(64, g_simgraph->get_base_tile_raster_width()), max(56, (g_simgraph->get_base_tile_raster_width()*7)/8) ))
+	view(l->get_pos(), scr_size( max(64, gfx->get_base_tile_raster_width()), max(56, (gfx->get_base_tile_raster_width()*7)/8) ))
 {
 	label = l;
 

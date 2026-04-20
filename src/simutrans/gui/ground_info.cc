@@ -13,11 +13,11 @@
 grund_info_t::grund_info_t(const grund_t* _gr) :
 	base_infowin_t("",NULL),
 	gr(_gr),
-	lview(_gr->get_pos(), scr_size(max(64, g_simgraph->get_base_tile_raster_width()), max(56, (g_simgraph->get_base_tile_raster_width() * 7) / 8)))
+	lview(_gr->get_pos(), scr_size(max(64, gfx->get_base_tile_raster_width()), max(56, (gfx->get_base_tile_raster_width() * 7) / 8)))
 {
 	fill_buffer();
 	set_embedded(&lview);
-	textarea.set_width(textarea.get_size().w + g_simgraph->get_base_tile_raster_width() - 64);
+	textarea.set_width(textarea.get_size().w + gfx->get_base_tile_raster_width() - 64);
 	recalc_size();
 }
 

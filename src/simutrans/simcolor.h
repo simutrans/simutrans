@@ -70,8 +70,8 @@ typedef unsigned int FLAGGED_PIXVAL;
 #define COL_DARK_BROWN      178
 
 // message colors
-#define CITY_KI             g_simgraph->palette_lookup(209)
-#define NEW_VEHICLE         g_simgraph->palette_lookup(COL_PURPLE)
+#define CITY_KI             gfx->palette_lookup(209)
+#define NEW_VEHICLE         gfx->palette_lookup(COL_PURPLE)
 
 // by niels
 #define COL_GREY1           208
@@ -82,15 +82,15 @@ typedef unsigned int FLAGGED_PIXVAL;
 #define COL_GREY6           15
 
 // Way colours for the map
-#define COL_ROAD            g_simgraph->palette_lookup(COL_GREY1)
-#define COL_RAIL            g_simgraph->palette_lookup(185)
-#define COL_CANAL           g_simgraph->palette_lookup(23)
-#define COL_MONORAIL        g_simgraph->palette_lookup(COL_ORANGE)
-#define COL_RUNWAY          g_simgraph->palette_lookup(28)
-#define COL_POWERLINE       g_simgraph->palette_lookup(COL_LIGHT_TURQUOISE)
-#define COL_HALT            g_simgraph->palette_lookup(COL_RED)
-#define COL_BUILDING        g_simgraph->palette_lookup(COL_GREY3)
-#define COL_VEHICLE         g_simgraph->palette_lookup(COL_YELLOW)
+#define COL_ROAD            gfx->palette_lookup(COL_GREY1)
+#define COL_RAIL            gfx->palette_lookup(185)
+#define COL_CANAL           gfx->palette_lookup(23)
+#define COL_MONORAIL        gfx->palette_lookup(COL_ORANGE)
+#define COL_RUNWAY          gfx->palette_lookup(28)
+#define COL_POWERLINE       gfx->palette_lookup(COL_LIGHT_TURQUOISE)
+#define COL_HALT            gfx->palette_lookup(COL_RED)
+#define COL_BUILDING        gfx->palette_lookup(COL_GREY3)
+#define COL_VEHICLE         gfx->palette_lookup(COL_YELLOW)
 
 // used in many dialogues graphs
 #define COL_REVENUE         142

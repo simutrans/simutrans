@@ -66,7 +66,7 @@ public:
 	void draw(scr_coord offset) OVERRIDE
 	{
 		scr_coord pos = get_pos() + offset;
-		g_simgraph->draw_rect_clipped( pos.x, pos.y+D_GET_CENTER_ALIGN_OFFSET(D_INDICATOR_BOX_HEIGHT,LINESPACE), D_INDICATOR_BOX_WIDTH, D_INDICATOR_BOX_HEIGHT, color, false CLIP_NUM_DEFAULT);
+		gfx->draw_rect_clipped( pos.x, pos.y+D_GET_CENTER_ALIGN_OFFSET(D_INDICATOR_BOX_HEIGHT,LINESPACE), D_INDICATOR_BOX_WIDTH, D_INDICATOR_BOX_HEIGHT, color, false CLIP_NUM_DEFAULT);
 		label.draw( pos+scr_size(D_INDICATOR_BOX_WIDTH+D_H_SPACE,0) );
 	}
 };
@@ -83,7 +83,7 @@ public:
 		double bar_width = (double)get_size().w/(double)MAX_SEVERITY_COLORS;
 		// color bar
 		for(  int i=0;  i<MAX_SEVERITY_COLORS;  i++  ) {
-			g_simgraph->draw_rect_clipped(pos.x + (scr_coord_val)(i*bar_width), pos.y+2, (scr_coord_val)bar_width+1, 7, minimap_t::calc_severity_color(i, MAX_SEVERITY_COLORS-1), false CLIP_NUM_DEFAULT);
+			gfx->draw_rect_clipped(pos.x + (scr_coord_val)(i*bar_width), pos.y+2, (scr_coord_val)bar_width+1, 7, minimap_t::calc_severity_color(i, MAX_SEVERITY_COLORS-1), false CLIP_NUM_DEFAULT);
 		}
 	}
 	scr_size get_min_size() const OVERRIDE
@@ -314,7 +314,7 @@ map_frame_t::map_frame_t() :
 	viewable_players[ 0 ] = -1;
 	for(  int np = 0, count = 1;  np < MAX_PLAYER_COUNT;  np++  ) {
 		if(  welt->get_player( np )  &&  welt->get_player( np )->get_finance()->has_convoi()) {
-			viewed_player_c.new_component<gui_scrolled_list_t::const_text_scrollitem_t>(welt->get_player( np )->get_name(), g_simgraph->palette_lookup(welt->get_player( np )->get_player_color1()+env_t::gui_player_color_dark));
+			viewed_player_c.new_component<gui_scrolled_list_t::const_text_scrollitem_t>(welt->get_player( np )->get_name(), gfx->palette_lookup(welt->get_player( np )->get_player_color1()+env_t::gui_player_color_dark));
 			viewable_players[ count++ ] = np;
 		}
 	}
@@ -383,7 +383,7 @@ map_frame_t::map_frame_t() :
 	filter_container.set_table_layout(1, 0);
 
 	int w = network_filter_container.get_min_size().w;
-	const int FILTER_BUTTONS_PER_ROW = max(3, min(5, max(g_simgraph->get_screen_size().w, w) / (D_BUTTON_WIDTH + D_H_SPACE + D_MARGIN_LEFT)));
+	const int FILTER_BUTTONS_PER_ROW = max(3, min(5, max(gfx->get_screen_size().w, w) / (D_BUTTON_WIDTH + D_H_SPACE + D_MARGIN_LEFT)));
 	filter_container.add_table(FILTER_BUTTONS_PER_ROW,0)->set_force_equal_columns(true);
 	// insert filter buttons in legend container
 	for (int index=0; index<MAP_MAX_BUTTONS; index++) {
@@ -437,7 +437,7 @@ void map_frame_t::update_buttons()
 {
 	for(  int i=0;  i<MAP_MAX_BUTTONS;  i++  ) {
 		filter_buttons[i].pressed = (button_init[i].mode&env_t::default_mapmode)!=0;
-		filter_buttons[i].background_color = g_simgraph->palette_lookup(filter_buttons[i].pressed ? button_init[i].select_color : button_init[i].color);
+		filter_buttons[i].background_color = gfx->palette_lookup(filter_buttons[i].pressed ? button_init[i].select_color : button_init[i].color);
 	}
 }
 
@@ -727,7 +727,7 @@ void map_frame_t::draw(scr_coord pos, scr_size size)
 	// may add compass
 	if(  skinverwaltung_t::compass_map  &&  env_t::compass_map_position!=0  ) {
 		const uint16 isometric_img_offset = minimap_t::get_instance()->is_isometric() ? 4 : 0;
-		g_simgraph->draw_img_aligned( skinverwaltung_t::compass_map->get_image_id( isometric_img_offset+welt->get_settings().get_rotation() ),
+		gfx->draw_img_aligned( skinverwaltung_t::compass_map->get_image_id( isometric_img_offset+welt->get_settings().get_rotation() ),
 							 scrolly.get_client()+pos+scr_coord(4,4+D_TITLEBAR_HEIGHT)-scr_size(8,8), env_t::compass_map_position, false );
 	}
 }

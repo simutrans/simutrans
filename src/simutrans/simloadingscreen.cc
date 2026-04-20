@@ -27,14 +27,14 @@ loadingscreen_t::loadingscreen_t( const char *w, uint32 max_p, bool logo, bool c
 	last_bar_len = -1;
 	show_logo = logo;
 
-	if(  !g_simgraph->is_display_init()  ||  continueflag  ) {
+	if(  !gfx->is_display_init()  ||  continueflag  ) {
 		return;
 	}
 
 	// darkens the current screen
-	const scr_size screen = g_simgraph->get_screen_size();
-	g_simgraph->tint_rect(0, 0, screen.w, screen.h, g_simgraph->palette_lookup(COL_BLACK), 50 );
-	g_simgraph->mark_screen_dirty();
+	const scr_size screen = gfx->get_screen_size();
+	gfx->tint_rect(0, 0, screen.w, screen.h, gfx->palette_lookup(COL_BLACK), 50 );
+	gfx->mark_screen_dirty();
 
 	display_logo();
 }
@@ -44,7 +44,7 @@ loadingscreen_t::loadingscreen_t( const char *w, uint32 max_p, bool logo, bool c
 void loadingscreen_t::display_logo()
 {
 	if(  show_logo  &&  skinverwaltung_t::biglogosymbol  ) {
-		const scr_size screen = g_simgraph->get_screen_size();
+		const scr_size screen = gfx->get_screen_size();
 		const image_t *image0 = skinverwaltung_t::biglogosymbol->get_image(0);
 		const int w = image0->w;
 		const int h = image0->h + image0->y;
@@ -54,10 +54,10 @@ void loadingscreen_t::display_logo()
 			y = 1;
 		}
 
-		g_simgraph->draw_color_img(skinverwaltung_t::biglogosymbol->get_image_id(0), x,   y,   0, false, true CLIP_NUM_DEFAULT);
-		g_simgraph->draw_color_img(skinverwaltung_t::biglogosymbol->get_image_id(1), x+w, y,   0, false, true CLIP_NUM_DEFAULT);
-		g_simgraph->draw_color_img(skinverwaltung_t::biglogosymbol->get_image_id(2), x,   y+h, 0, false, true CLIP_NUM_DEFAULT);
-		g_simgraph->draw_color_img(skinverwaltung_t::biglogosymbol->get_image_id(3), x+w, y+h, 0, false, true CLIP_NUM_DEFAULT);
+		gfx->draw_color_img(skinverwaltung_t::biglogosymbol->get_image_id(0), x,   y,   0, false, true CLIP_NUM_DEFAULT);
+		gfx->draw_color_img(skinverwaltung_t::biglogosymbol->get_image_id(1), x+w, y,   0, false, true CLIP_NUM_DEFAULT);
+		gfx->draw_color_img(skinverwaltung_t::biglogosymbol->get_image_id(2), x,   y+h, 0, false, true CLIP_NUM_DEFAULT);
+		gfx->draw_color_img(skinverwaltung_t::biglogosymbol->get_image_id(3), x+w, y+h, 0, false, true CLIP_NUM_DEFAULT);
 	}
 }
 
@@ -65,7 +65,7 @@ void loadingscreen_t::display_logo()
 // show everything but the logo
 void loadingscreen_t::display()
 {
-	const scr_size screen = g_simgraph->get_screen_size();
+	const scr_size screen = gfx->get_screen_size();
 	const int half_width    = screen.w / 2;
 	const int quarter_width = screen.w / 4;
 	const int half_height   = screen.h / 2;
@@ -82,21 +82,21 @@ void loadingscreen_t::display()
 		dr_prepare_flush();
 
 		if(  info  ) {
-			g_simgraph->draw_text( half_width, bar_y - LINESPACE - 2, info, ALIGN_CENTER_H, g_simgraph->palette_lookup(COL_WHITE), true );
+			gfx->draw_text( half_width, bar_y - LINESPACE - 2, info, ALIGN_CENTER_H, gfx->palette_lookup(COL_WHITE), true );
 		}
 
 		// outline
-		g_simgraph->draw_box3d(quarter_width-2, bar_y,     half_width+4, bar_height,     g_simgraph->palette_lookup(COL_GREY6), g_simgraph->palette_lookup(COL_GREY4), true);
-		g_simgraph->draw_box3d(quarter_width-1, bar_y + 1, half_width+2, bar_height - 2, g_simgraph->palette_lookup(COL_GREY4), g_simgraph->palette_lookup(COL_GREY6), true);
+		gfx->draw_box3d(quarter_width-2, bar_y,     half_width+4, bar_height,     gfx->palette_lookup(COL_GREY6), gfx->palette_lookup(COL_GREY4), true);
+		gfx->draw_box3d(quarter_width-1, bar_y + 1, half_width+2, bar_height - 2, gfx->palette_lookup(COL_GREY4), gfx->palette_lookup(COL_GREY6), true);
 
 		// inner
-		g_simgraph->draw_rect( quarter_width, bar_y + 2, half_width, bar_height - 4, SYSCOL_LOADINGBAR_INNER, true);
+		gfx->draw_rect( quarter_width, bar_y + 2, half_width, bar_height - 4, SYSCOL_LOADINGBAR_INNER, true);
 
 		// progress
-		g_simgraph->draw_rect( quarter_width, bar_y + 4, bar_len,  bar_height - 8, SYSCOL_LOADINGBAR_PROGRESS, true );
+		gfx->draw_rect( quarter_width, bar_y + 4, bar_len,  bar_height - 8, SYSCOL_LOADINGBAR_PROGRESS, true );
 
 		if(  what  ) {
-			g_simgraph->draw_text( half_width, bar_text_y, what, ALIGN_CENTER_H, SYSCOL_TEXT_HIGHLIGHT, false );
+			gfx->draw_text( half_width, bar_text_y, what, ALIGN_CENTER_H, SYSCOL_TEXT_HIGHLIGHT, false );
 		}
 
 		dr_flush();
@@ -106,7 +106,7 @@ void loadingscreen_t::display()
 
 void loadingscreen_t::set_progress( uint32 progress )
 {
-	if (!g_simgraph->is_display_init()  &&  (progress != this->progress  ||  progress == 0)  ) {
+	if (!gfx->is_display_init()  &&  (progress != this->progress  ||  progress == 0)  ) {
 		return;
 	}
 
@@ -117,8 +117,8 @@ void loadingscreen_t::set_progress( uint32 progress )
 	if(  ev->ev_class == EVENT_SYSTEM  ) {
 		if(  ev->ev_code == SYSTEM_RESIZE  ) {
 			// main window resized
-			g_simgraph->on_window_resized( ev->new_window_size );
-			g_simgraph->draw_rect( 0, 0, ev->mouse_pos.x, ev->mouse_pos.y, g_simgraph->palette_lookup(COL_BLACK), true );
+			gfx->on_window_resized( ev->new_window_size );
+			gfx->draw_rect( 0, 0, ev->mouse_pos.x, ev->mouse_pos.y, gfx->palette_lookup(COL_BLACK), true );
 			display_logo();
 			// queue the event anyway, so the viewport is correctly updated on world resume (screen will be resized again).
 			queued_events.append(ev);
@@ -151,9 +151,9 @@ void loadingscreen_t::set_progress( uint32 progress )
 
 loadingscreen_t::~loadingscreen_t()
 {
-	if (g_simgraph->is_display_init()) {
+	if (gfx->is_display_init()) {
 		win_redraw_world();
-		g_simgraph->mark_screen_dirty();
+		gfx->mark_screen_dirty();
 		ticker::set_redraw_all(true);
 	}
 

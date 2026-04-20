@@ -84,7 +84,7 @@ scenario_info_t::scenario_info_t() :
 	}
 
 	set_resizemode(diagonal_resize);
-	const scr_size screen = g_simgraph->get_screen_size();
+	const scr_size screen = gfx->get_screen_size();
 	scr_size ms(min(screen.w / 2, 500), min(screen.h / 2, 300));
 	set_min_windowsize(ms);
 	set_windowsize(ms);

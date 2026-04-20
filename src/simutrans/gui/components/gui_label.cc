@@ -19,12 +19,12 @@ static scr_coord_val large_money_width = 0;
 gui_label_t::gui_label_t(const char* text, PIXVAL color_, align_t align_) :
 	align(align_), tooltip(NULL)
 {
-	separator_width = g_simgraph->calc_text_width( ",00$" );
+	separator_width = gfx->calc_text_width( ",00$" );
 
 	if (get_large_money_string()) {
 		cbuffer_t buf;
 		buf.printf("%s$", get_large_money_string());
-		large_money_width = g_simgraph->calc_text_width((const char*) buf);
+		large_money_width = gfx->calc_text_width((const char*) buf);
 	}
 	else {
 		large_money_width = 0;
@@ -38,7 +38,7 @@ gui_label_t::gui_label_t(const char* text, PIXVAL color_, align_t align_) :
 
 scr_size gui_label_t::get_min_size() const
 {
-	return scr_size( text ? g_simgraph->calc_text_width(text) : D_BUTTON_WIDTH, D_LABEL_HEIGHT );
+	return scr_size( text ? gfx->calc_text_width(text) : D_BUTTON_WIDTH, D_LABEL_HEIGHT );
 }
 
 scr_size gui_label_t::get_max_size() const
@@ -63,7 +63,7 @@ void gui_label_t::set_text_pointer(const char *text_par, bool autosize)
 	text = text_par;
 
 	if (autosize && text && *text != '\0') {
-		set_size( scr_size( g_simgraph->calc_text_width(text), size.h ) );
+		set_size( scr_size( gfx->calc_text_width(text), size.h ) );
 	}
 }
 
@@ -98,20 +98,20 @@ void gui_label_t::draw(scr_coord offset)
 			}
 
 			if(separator) {
-				g_simgraph->draw_text_clipped(right.x, right.y, separator, ALIGN_LEFT, color, true);
+				gfx->draw_text_clipped(right.x, right.y, separator, ALIGN_LEFT, color, true);
 				if(  separator!=text  ) {
 					if (shadowed) {
-						g_simgraph->draw_text_clipped_n(right.x+1, right.y+1, text, ALIGN_RIGHT | DT_CLIP, color_shadow, true, separator - text CLIP_NUM_DEFAULT);
+						gfx->draw_text_clipped_n(right.x+1, right.y+1, text, ALIGN_RIGHT | DT_CLIP, color_shadow, true, separator - text CLIP_NUM_DEFAULT);
 					}
-					g_simgraph->draw_text_clipped_n(right.x, right.y, text, ALIGN_RIGHT | DT_CLIP, color, true, separator-text CLIP_NUM_DEFAULT);
+					gfx->draw_text_clipped_n(right.x, right.y, text, ALIGN_RIGHT | DT_CLIP, color, true, separator-text CLIP_NUM_DEFAULT);
 				}
 			}
 			else {
 				// integer or normal text
 				if (shadowed) {
-					g_simgraph->draw_text_clipped(right.x + 1, right.y + 1, text, ALIGN_RIGHT | DT_CLIP, color_shadow, true);
+					gfx->draw_text_clipped(right.x + 1, right.y + 1, text, ALIGN_RIGHT | DT_CLIP, color_shadow, true);
 				}
-				g_simgraph->draw_text_clipped(right.x, right.y, text, ALIGN_RIGHT, color, true);
+				gfx->draw_text_clipped(right.x, right.y, text, ALIGN_RIGHT, color, true);
 			}
 		}
 	}
@@ -119,7 +119,7 @@ void gui_label_t::draw(scr_coord offset)
 	else if(text) {
 		const scr_rect area( offset+pos, size );
 		int a = align == left ? ALIGN_LEFT : ( align == right ? ALIGN_RIGHT : ALIGN_CENTER_H);
-		g_simgraph->draw_text_ellipsis_shadowed( area, text,  a | DT_CLIP, color, true, shadowed, color_shadow );
+		gfx->draw_text_ellipsis_shadowed( area, text,  a | DT_CLIP, color, true, shadowed, color_shadow );
 	}
 
 	if ( tooltip  &&  getroffen(get_mouse_pos() - offset) ) {

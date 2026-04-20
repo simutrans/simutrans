@@ -196,7 +196,7 @@ void obj_t::display(int xpos, int ypos  CLIP_NUM_DEF) const
 	image_id image = get_image();
 	image_id const outline_image = get_outline_image();
 	if(  image!=IMG_EMPTY  ||  outline_image!=IMG_EMPTY  ) {
-		const int raster_width = g_simgraph->get_current_tile_raster_width();
+		const int raster_width = gfx->get_current_tile_raster_width();
 		const bool is_dirty = get_flag(obj_t::dirty);
 
 		if (vehicle_base_t const* const v = obj_cast<vehicle_base_t>(this)) {
@@ -208,14 +208,14 @@ void obj_t::display(int xpos, int ypos  CLIP_NUM_DEF) const
 
 		if(  owner_n != PLAYER_UNOWNED  ) {
 			if(  obj_t::show_owner  ) {
-				g_simgraph->draw_blend( image, xpos, ypos, owner_n, g_simgraph->palette_lookup(welt->get_player(owner_n)->get_player_color1()+2) | OUTLINE_FLAG | TRANSPARENT75_FLAG, 0, is_dirty  CLIP_NUM_PAR);
+				gfx->draw_blend( image, xpos, ypos, owner_n, gfx->palette_lookup(welt->get_player(owner_n)->get_player_color1()+2) | OUTLINE_FLAG | TRANSPARENT75_FLAG, 0, is_dirty  CLIP_NUM_PAR);
 			}
 			else {
-				g_simgraph->draw_color( image, xpos, ypos, owner_n, true, is_dirty  CLIP_NUM_PAR);
+				gfx->draw_color( image, xpos, ypos, owner_n, true, is_dirty  CLIP_NUM_PAR);
 			}
 		}
 		else {
-			g_simgraph->draw_normal( image, xpos, ypos, 0, true, is_dirty  CLIP_NUM_PAR);
+			gfx->draw_normal( image, xpos, ypos, 0, true, is_dirty  CLIP_NUM_PAR);
 		}
 
 		if(  outline_image != IMG_EMPTY  ) {
@@ -223,16 +223,16 @@ void obj_t::display(int xpos, int ypos  CLIP_NUM_DEF) const
 			const FLAGGED_PIXVAL transparent = get_outline_colour();
 			if(  TRANSPARENT_FLAGS&transparent  ) {
 				// only transparent outline
-				g_simgraph->draw_blend( get_outline_image(), xpos, ypos, owner_n, transparent, 0, is_dirty  CLIP_NUM_PAR);
+				gfx->draw_blend( get_outline_image(), xpos, ypos, owner_n, transparent, 0, is_dirty  CLIP_NUM_PAR);
 			}
 			else if(  obj_t::get_flag( highlight )  ) {
 				// highlight this tile
-				g_simgraph->draw_blend( image, xpos, ypos, owner_n, SYSCOL_OBJECT_HIGHLIGHT | OUTLINE_FLAG | TRANSPARENT75_FLAG, 0, is_dirty  CLIP_NUM_PAR);
+				gfx->draw_blend( image, xpos, ypos, owner_n, SYSCOL_OBJECT_HIGHLIGHT | OUTLINE_FLAG | TRANSPARENT75_FLAG, 0, is_dirty  CLIP_NUM_PAR);
 			}
 		}
 		else if(  obj_t::get_flag( highlight )  ) {
 			// highlight this tile
-			g_simgraph->draw_blend( get_image(), xpos, ypos, owner_n, SYSCOL_OBJECT_HIGHLIGHT | OUTLINE_FLAG | TRANSPARENT75_FLAG, 0, is_dirty  CLIP_NUM_PAR);
+			gfx->draw_blend( get_image(), xpos, ypos, owner_n, SYSCOL_OBJECT_HIGHLIGHT | OUTLINE_FLAG | TRANSPARENT75_FLAG, 0, is_dirty  CLIP_NUM_PAR);
 		}
 	}
 }
@@ -257,7 +257,7 @@ void obj_t::display_after(int xpos, int ypos, bool) const
 {
 	image_id image = get_front_image();
 	if(  image != IMG_EMPTY  ) {
-		const int raster_width = g_simgraph->get_current_tile_raster_width();
+		const int raster_width = gfx->get_current_tile_raster_width();
 		const bool is_dirty = get_flag( obj_t::dirty );
 
 		xpos += tile_raster_scale_x( get_xoff(), raster_width );
@@ -265,22 +265,22 @@ void obj_t::display_after(int xpos, int ypos, bool) const
 
 		if(  owner_n != PLAYER_UNOWNED  ) {
 			if(  obj_t::show_owner  ) {
-				g_simgraph->draw_blend( image, xpos, ypos, owner_n, g_simgraph->palette_lookup(welt->get_player(owner_n)->get_player_color1()+2) | OUTLINE_FLAG | TRANSPARENT75_FLAG, 0, is_dirty  CLIP_NUM_PAR);
+				gfx->draw_blend( image, xpos, ypos, owner_n, gfx->palette_lookup(welt->get_player(owner_n)->get_player_color1()+2) | OUTLINE_FLAG | TRANSPARENT75_FLAG, 0, is_dirty  CLIP_NUM_PAR);
 			}
 			else if(  obj_t::get_flag( highlight )  ) {
 				// highlight this tile
-				g_simgraph->draw_blend( image, xpos, ypos, owner_n, SYSCOL_OBJECT_HIGHLIGHT | OUTLINE_FLAG | TRANSPARENT75_FLAG, 0, is_dirty  CLIP_NUM_PAR);
+				gfx->draw_blend( image, xpos, ypos, owner_n, SYSCOL_OBJECT_HIGHLIGHT | OUTLINE_FLAG | TRANSPARENT75_FLAG, 0, is_dirty  CLIP_NUM_PAR);
 			}
 			else {
-				g_simgraph->draw_color( image, xpos, ypos, owner_n, true, is_dirty  CLIP_NUM_PAR);
+				gfx->draw_color( image, xpos, ypos, owner_n, true, is_dirty  CLIP_NUM_PAR);
 			}
 		}
 		else if(  obj_t::get_flag( highlight )  ) {
 			// highlight this tile
-			g_simgraph->draw_blend( image, xpos, ypos, owner_n, SYSCOL_OBJECT_HIGHLIGHT | OUTLINE_FLAG | TRANSPARENT75_FLAG, 0, is_dirty  CLIP_NUM_PAR);
+			gfx->draw_blend( image, xpos, ypos, owner_n, SYSCOL_OBJECT_HIGHLIGHT | OUTLINE_FLAG | TRANSPARENT75_FLAG, 0, is_dirty  CLIP_NUM_PAR);
 		}
 		else {
-			g_simgraph->draw_normal( image, xpos, ypos, 0, true, is_dirty  CLIP_NUM_PAR);
+			gfx->draw_normal( image, xpos, ypos, 0, true, is_dirty  CLIP_NUM_PAR);
 		}
 	}
 }
@@ -293,12 +293,12 @@ void obj_t::display_after(int xpos, int ypos, bool) const
 void obj_t::mark_image_dirty(image_id image, sint16 yoff) const
 {
 	if(  image != IMG_EMPTY  ) {
-		const sint16 rasterweite = g_simgraph->get_tile_raster_width();
+		const sint16 rasterweite = gfx->get_tile_raster_width();
 		int xpos=0, ypos=0;
 		if(  is_moving()  ) {
 			vehicle_base_t const* const v = obj_cast<vehicle_base_t>(this);
 			// vehicles need finer steps to appear smoother
-			v->get_screen_offset( xpos, ypos, g_simgraph->get_tile_raster_width() );
+			v->get_screen_offset( xpos, ypos, gfx->get_tile_raster_width() );
 		}
 
 		viewport_t *vp = welt->get_viewport();
@@ -306,14 +306,14 @@ void obj_t::mark_image_dirty(image_id image, sint16 yoff) const
 		// xpos, ypos, yoff are already in pixel units, no scaling needed
 
 		// mark the region after the image as dirty
-		g_simgraph->mark_img_dirty(image, scr_pos.x + xpos, scr_pos.y + ypos + yoff);
+		gfx->mark_img_dirty(image, scr_pos.x + xpos, scr_pos.y + ypos + yoff);
 
 		// too close to border => set dirty to be sure (smoke, skyscrapers, birds, or the like)
-		const scr_rect r = g_simgraph->get_image_offset(image);
+		const scr_rect r = gfx->get_image_offset(image);
 		const sint16 distance_to_border = 3 - (yoff+get_yoff()+r.y)/(rasterweite/4);
 		if(  pos.x <= distance_to_border  ||  pos.y <= distance_to_border  ) {
 			// but only if the image is actually visible ...
-			const scr_size screen = g_simgraph->get_screen_size();
+			const scr_size screen = gfx->get_screen_size();
 
 			if(   scr_pos.x+r.x+r.w >= 0  &&  xpos <= screen.w  &&   scr_pos.y+r.y+r.h >= 0  &&  ypos+r.y < screen.h  ) {
 				welt->set_background_dirty();

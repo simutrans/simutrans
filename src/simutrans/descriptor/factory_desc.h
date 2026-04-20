@@ -273,7 +273,7 @@ public:
 	site_t get_placement() const { return placement; }
 	uint16 get_distribution_weight() const { return distribution_weight; }
 
-	PIXVAL get_color() const { return g_simgraph->palette_lookup(color); }
+	PIXVAL get_color() const { return gfx->palette_lookup(color); }
 
 	void set_productivity(uint16 p) { productivity=p; }
 	uint16 get_productivity() const { return productivity; }

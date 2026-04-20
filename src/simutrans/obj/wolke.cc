@@ -68,7 +68,7 @@ image_id wolke_t::get_front_image() const
 
 sint16 wolke_t::calc_yoff() const
 {
-	return tile_raster_scale_y( base_y_off - (((long)insta_zeit * uplift * OBJECT_OFFSET_STEPS) >> 16), g_simgraph->get_current_tile_raster_width() );
+	return tile_raster_scale_y( base_y_off - (((long)insta_zeit * uplift * OBJECT_OFFSET_STEPS) >> 16), gfx->get_current_tile_raster_width() );
 }
 
 

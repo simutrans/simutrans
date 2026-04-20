@@ -110,7 +110,7 @@ line_management_gui_t::line_management_gui_t( linehandle_t line_, player_t* play
 	lb_convoi_count.set_text( "no convois" );
 	add_component( &lb_convoi_count, 3 );
 
-	capacity_bar.add_color_value( &load, g_simgraph->palette_lookup( COL_GREEN ) );
+	capacity_bar.add_color_value( &load, gfx->palette_lookup( COL_GREEN ) );
 	add_component( &capacity_bar, 2 );
 	new_component<gui_fill_t>();
 
@@ -201,11 +201,11 @@ void line_management_gui_t::init(bool not_rdwr)
 		// init_chart
 		if( chart.get_curve_count() == 0 ) {
 			for( int cost = 0; cost < MAX_LINE_COST; cost++ ) {
-				uint16 curve = chart.add_curve( g_simgraph->palette_lookup( cost_type_color[ cost ] ), line->get_finance_history(), MAX_LINE_COST, idx2cost[cost], MAX_MONTHS, cost_type_money[ cost ], cost_type_default[cost], true, cost_type_money[ cost ] * 2 );
+				uint16 curve = chart.add_curve( gfx->palette_lookup( cost_type_color[ cost ] ), line->get_finance_history(), MAX_LINE_COST, idx2cost[cost], MAX_MONTHS, cost_type_money[ cost ], cost_type_default[cost], true, cost_type_money[ cost ] * 2 );
 
 				button_t *b = container_stats.new_component<button_t>();
 				b->init( button_t::box_state_automatic | button_t::flexible, cost_type[ cost ] );
-				b->background_color = g_simgraph->palette_lookup( cost_type_color[ cost ] );
+				b->background_color = gfx->palette_lookup( cost_type_color[ cost ] );
 				b->pressed = cost_type_default[cost];
 				b->add_listener( this );
 

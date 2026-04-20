@@ -1165,7 +1165,7 @@ void vehicle_t::display_after(int xpos, int ypos, bool is_global) const
 			case convoi_t::CAN_START_ONE_MONTH:
 				if(  state>=3  ) {
 					snprintf( tooltip_text, lengthof(tooltip_text), "%s (%s)", translator::translate("Waiting for clearance!"), cnv->get_schedule()->get_current_entry().pos.get_str() );
-					color = g_simgraph->palette_lookup(COL_YELLOW);
+					color = gfx->palette_lookup(COL_YELLOW);
 				}
 				break;
 
@@ -1184,7 +1184,7 @@ void vehicle_t::display_after(int xpos, int ypos, bool is_global) const
 					else {
 						sprintf( tooltip_text, translator::translate( "Loading (%i->%i%%)!" ), cnv->get_loading_level(), cnv->get_loading_limit() );
 					}
-					color = g_simgraph->palette_lookup(COL_YELLOW);
+					color = gfx->palette_lookup(COL_YELLOW);
 				}
 				break;
 
@@ -1192,7 +1192,7 @@ void vehicle_t::display_after(int xpos, int ypos, bool is_global) const
 //			case convoi_t::ROUTING_1:
 				if(  state>=3  ) {
 					tstrncpy( tooltip_text, translator::translate("Schedule changing!"), lengthof(tooltip_text) );
-					color = g_simgraph->palette_lookup(COL_YELLOW);
+					color = gfx->palette_lookup(COL_YELLOW);
 				}
 				break;
 
@@ -1201,11 +1201,11 @@ void vehicle_t::display_after(int xpos, int ypos, bool is_global) const
 					grund_t const* const gr = welt->lookup(cnv->get_route()->back());
 					if(  gr  &&  gr->get_depot()  ) {
 						tstrncpy( tooltip_text, translator::translate("go home"), lengthof(tooltip_text) );
-						color = g_simgraph->palette_lookup(COL_GREEN);
+						color = gfx->palette_lookup(COL_GREEN);
 					}
 					else if(  cnv->get_no_load()  ) {
 						tstrncpy( tooltip_text, translator::translate("no load"), lengthof(tooltip_text) );
-						color = g_simgraph->palette_lookup(COL_GREEN);
+						color = gfx->palette_lookup(COL_GREEN);
 					}
 				}
 				break;
@@ -1213,25 +1213,25 @@ void vehicle_t::display_after(int xpos, int ypos, bool is_global) const
 			case convoi_t::LEAVING_DEPOT:
 				if(  state>=2  ) {
 					tstrncpy( tooltip_text, translator::translate("Leaving depot!"), lengthof(tooltip_text) );
-					color = g_simgraph->palette_lookup(COL_GREEN);
+					color = gfx->palette_lookup(COL_GREEN);
 				}
 				break;
 
 			case convoi_t::WAITING_FOR_CLEARANCE_TWO_MONTHS:
 			case convoi_t::CAN_START_TWO_MONTHS:
 				snprintf( tooltip_text, lengthof(tooltip_text), "%s (%s)", translator::translate("clf_chk_stucked"), cnv->get_schedule()->get_current_entry().pos.get_str() );
-				color = g_simgraph->palette_lookup(COL_ORANGE);
+				color = gfx->palette_lookup(COL_ORANGE);
 				break;
 
 			case convoi_t::NO_ROUTE:
 				tstrncpy( tooltip_text, translator::translate("clf_chk_noroute"), lengthof(tooltip_text) );
-				color = g_simgraph->palette_lookup(COL_RED);
+				color = gfx->palette_lookup(COL_RED);
 				break;
 		}
 
 		if (env_t::show_vehicle_states >= 2 && !tooltip_text[0]) {
 			// show line name or simply convoi name
-			color = g_simgraph->palette_lookup( cnv->get_owner()->get_player_color1() + 7 );
+			color = gfx->palette_lookup( cnv->get_owner()->get_player_color1() + 7 );
 			if(  cnv->get_line().is_bound()  ) {
 				snprintf( tooltip_text, lengthof( tooltip_text ), "%s - %s", cnv->get_line()->get_name(), cnv->get_name() );
 			}
@@ -1242,13 +1242,13 @@ void vehicle_t::display_after(int xpos, int ypos, bool is_global) const
 
 		// something to show?
 		if(  tooltip_text[0]  ) {
-			const int raster_width = g_simgraph->get_current_tile_raster_width();
+			const int raster_width = gfx->get_current_tile_raster_width();
 			get_screen_offset( xpos, ypos, raster_width );
 			xpos += tile_raster_scale_x(get_xoff(), raster_width);
 			ypos += tile_raster_scale_y(get_yoff(), raster_width)+14;
 
-			if(ypos>LINESPACE+32  &&  ypos+LINESPACE < g_simgraph->get_clip_rect(CLIP_NUM_DEFAULT_VALUE).yy) {
-				g_simgraph->draw_textbox3d_clipped( xpos, ypos, color, g_simgraph->palette_lookup(COL_BLACK), tooltip_text, true CLIP_NUM_DEFAULT);
+			if(ypos>LINESPACE+32  &&  ypos+LINESPACE < gfx->get_clip_rect(CLIP_NUM_DEFAULT_VALUE).yy) {
+				gfx->draw_textbox3d_clipped( xpos, ypos, color, gfx->palette_lookup(COL_BLACK), tooltip_text, true CLIP_NUM_DEFAULT);
 			}
 		}
 	}
