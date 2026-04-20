@@ -3,37 +3,32 @@
  * (see LICENSE.txt)
  */
 
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
-#include <math.h>
-#include <algorithm>
-
-#include "../simtypes.h"
-
-#include "../macros.h"
-#include "font.h"
-#include "../pathes.h"
-#include "../simconst.h"
-#include "../sys/simsys.h"
-#include "../simmem.h"
-#include "../simdebug.h"
-#include "../descriptor/image.h"
-#include "../dataobj/environment.h"
-#include "../dataobj/translator.h"
-#include "../utils/unicode.h"
-#include "../simticker.h"
-#include "../utils/simstring.h"
-#include "../utils/unicode.h"
-#include "../io/raw_image.h"
-
-#include "../gui/simwin.h"
-#include "../dataobj/environment.h"
-
-#include "../obj/roadsign.h" // for signal status indicator
-
 #include "simgraph.h"
 
+#include "font.h"
+
+#include "../dataobj/environment.h"
+#include "../dataobj/translator.h"
+#include "../descriptor/image.h"
+#include "../gui/simwin.h"
+#include "../io/raw_image.h"
+#include "../macros.h"
+#include "../obj/roadsign.h"
+#include "../pathes.h"
+#include "../simconst.h"
+#include "../simdebug.h"
+#include "../simmem.h"
+#include "../simticker.h"
+#include "../simtypes.h"
+#include "../sys/simsys.h"
+#include "../utils/simstring.h"
+#include "../utils/unicode.h"
+
+#include <algorithm>
+#include <cmath>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
 
 
 #ifdef _MSC_VER
@@ -58,8 +53,6 @@ static pthread_mutex_t recode_img_mutex;
 #define CLIPNUM_IGNORE
 #endif
 
-
-#include "simgraph.h"
 
 // undefine for debugging the update routines
 //#define DEBUG_FLUSH_BUFFER
