@@ -164,21 +164,21 @@ static void show_times(karte_t *welt, main_view_t *view)
 	for (i = 0;  i < 6000000;  i++) {
 		gfx->draw_img_aux( img, 50, 50, 1, 0, true  CLIP_NUM_DEFAULT);
 	}
-	dbg->message("show_times()", "display_img() %i iterations took %li ms", i, dr_time() - ms );
+	dbg->message("show_times()", "draw_img_aux() %i iterations took %li ms", i, dr_time() - ms );
 
 	image_id player_img = skinverwaltung_t::color_options->get_image_id(0);
 	ms = dr_time();
 	for (i = 0;  i < 1000000;  i++) {
 		gfx->draw_color_img( player_img, 120, 100, i%15, 0, 1 CLIP_NUM_DEFAULT);
 	}
-	dbg->message("show_times()", "display_color_img() with recolor %i iterations took %li ms", i, dr_time() - ms );
+	dbg->message("show_times()", "draw_color_img() with recolor %i iterations took %li ms", i, dr_time() - ms );
 
 	ms = dr_time();
 	for (i = 0;  i < 100000;  i++) {
-		gfx->draw_color_img( img, 120, 100, 0, 1, 1 CLIP_NUM_DEFAULT);
+		gfx->draw_color_img( img,        120, 100,  0, 1, 1 CLIP_NUM_DEFAULT);
 		gfx->draw_color_img( player_img, 160, 150, 16, 1, 1 CLIP_NUM_DEFAULT);
 	}
-	dbg->message("show_times()", "display_color_img() 3x %i iterations took %li ms", i, dr_time() - ms );
+	dbg->message("show_times()", "draw_color_img() 3x %i iterations took %li ms", i, dr_time() - ms );
 
 #if !defined(MULTI_THREAD)
 	ms = dr_time();
@@ -186,20 +186,20 @@ static void show_times(karte_t *welt, main_view_t *view)
 		dr_prepare_flush();
 		dr_flush();
 	}
-	dbg->message("show_times()", "display_flush_buffer() %i iterations took %li ms", i, dr_time() - ms );
+	dbg->message("show_times()", "dr_prepare_flush()/dr_flush() %i iterations took %li ms", i, dr_time() - ms );
 #endif
 
 	ms = dr_time();
 	for (i = 0;  i < 300000;  i++) {
 		gfx->draw_text_clipped_n(100, 120, "Dies ist ein kurzer Textetxt ...", 0, 0, false, -1 CLIP_NUM_DEFAULT);
 	}
-	dbg->message("show_times()", "display_text_proportional_len_clip_rgb() %i iterations took %li ms", i, dr_time() - ms );
+	dbg->message("show_times()", "draw_text_clipped_n() %i iterations took %li ms", i, dr_time() - ms );
 
 	ms = dr_time();
 	for (i = 0;  i < 300000;  i++) {
 		gfx->draw_rect(100, 120, 300, 50, 0, false);
 	}
-	dbg->message("show_times()", "display_fillbox_wh_rgb() %i iterations took %li ms", i, dr_time() - ms );
+	dbg->message("show_times()", "draw_rect() %i iterations took %li ms", i, dr_time() - ms );
 
 	ms = dr_time();
 	for (i = 0; i < 2000; i++) {
