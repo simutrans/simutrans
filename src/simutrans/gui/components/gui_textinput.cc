@@ -16,6 +16,7 @@
 gui_textinput_t::gui_textinput_t() :
 	gui_component_t(true),
 	text(NULL),
+	placeholder_text(NULL),
 	composition(),
 	composition_target_start(0),
 	composition_target_length(0),
@@ -589,18 +590,26 @@ void gui_textinput_t::display_with_cursor(scr_coord offset, bool cursor_active, 
 		g_simgraph->draw_stretch_map(gui_theme_t::editfield, scr_rect(pos + offset, size));
 	}
 
-	if(  text  ) {
-
-		if (head_cursor_pos == 0xFFFF) {
+	if (head_cursor_pos == 0xFFFF) {
+		if (text) {
 			// since before the first draw, the text was likely not set correctly
 			head_cursor_pos = strlen(text);
 		}
+		else {
+			head_cursor_pos = 0;
+		}
+	}
+
+	const char* display_text = (text && text[0]) ? text : placeholder_text;
+	PIXVAL display_color = display_text == placeholder_text ? SYSCOL_EDIT_TEXT_DISABLED : (enabled ? textcol : SYSCOL_EDIT_TEXT_DISABLED);
+	if (display_text) {
 
 		// recalculate scroll offset
-		const int text_width = g_simgraph->calc_text_width(text);
+		const int text_width = g_simgraph->calc_text_width(display_text);
 		const scr_coord_val view_width = size.w - 3;
-		const int cursor_offset = cursor_active ? g_simgraph->calc_text_width_n(text, head_cursor_pos) : 0;
-		if(  text_width<=view_width  ) {
+		const int cursor_offset = cursor_active ? g_simgraph->calc_text_width_n(display_text, head_cursor_pos) : 0;
+
+		if (text_width <= view_width) {
 			// case : text is shorter than displayable width of the text input
 			//        -> the only case where left and right alignments differ
 			//        -> pad empty spaces on the left if right-aligned
@@ -641,18 +650,18 @@ void gui_textinput_t::display_with_cursor(scr_coord offset, bool cursor_active, 
 		const int y_offset = pos.y+offset.y+D_GET_CENTER_ALIGN_OFFSET(LINESPACE,size.h);
 
 		// display text (before composition)
-		g_simgraph->draw_text_clipped_n(x_base_offset, y_offset, text, ALIGN_LEFT | DT_CLIP, enabled ? textcol : SYSCOL_EDIT_TEXT_DISABLED, true, head_cursor_pos CLIP_NUM_DEFAULT);
+		g_simgraph->draw_text_clipped_n(x_base_offset, y_offset, display_text, ALIGN_LEFT | DT_CLIP, display_color, true, head_cursor_pos CLIP_NUM_DEFAULT);
 		int x_offset = g_simgraph->calc_text_width_n(text, head_cursor_pos);
 
 		// IME text to display?
-		if(  composition.len()  ) {
-//			assert(head_cursor_pos==tail_cursor_pos);
+		if (composition.len()) {
+			//	assert(head_cursor_pos==tail_cursor_pos);
 
-			g_simgraph->draw_text_clipped(x_base_offset+x_offset, y_offset, composition.get_str(), ALIGN_LEFT | DT_CLIP, enabled ? textcol : SYSCOL_EDIT_TEXT_DISABLED, true);
+			g_simgraph->draw_text_clipped(x_base_offset + x_offset, y_offset, composition.get_str(), ALIGN_LEFT | DT_CLIP, display_color, true);
 
 			// draw underline
 			int composition_width = g_simgraph->calc_text_width(composition.get_str());
-			g_simgraph->draw_line(x_base_offset+x_offset, y_offset+LINESPACE, x_base_offset+x_offset+composition_width, y_offset+LINESPACE-1, textcol);
+			g_simgraph->draw_line(x_base_offset + x_offset, y_offset + LINESPACE, x_base_offset + x_offset + composition_width, y_offset + LINESPACE - 1, display_color);
 
 			// mark targeted part in a similar manner to selected text
 			int start_offset = g_simgraph->calc_text_width_n(composition.get_str(), composition_target_start);
@@ -664,17 +673,17 @@ void gui_textinput_t::display_with_cursor(scr_coord offset, bool cursor_active, 
 		}
 
 		// display text (after composition)
-		g_simgraph->draw_text_clipped(x_base_offset+x_offset, y_offset, text+head_cursor_pos, ALIGN_LEFT | DT_CLIP, enabled ? textcol : SYSCOL_EDIT_TEXT_DISABLED, true);
+		g_simgraph->draw_text_clipped(x_base_offset + x_offset, y_offset, display_text + head_cursor_pos, ALIGN_LEFT | DT_CLIP, display_color, true);
 
-		if(  cursor_active  &&  enabled  ) {
+		if (cursor_active && enabled) {
 			// display selected text block with light grey text on charcoal bounding box
-			if(  head_cursor_pos!= tail_cursor_pos  ) {
+			if (head_cursor_pos != tail_cursor_pos) {
 				const size_t start_pos = min(head_cursor_pos, tail_cursor_pos);
 				size_t end_pos = ::max(head_cursor_pos, tail_cursor_pos);
-				const scr_coord_val start_offset = g_simgraph->calc_text_width_n(text, start_pos);
-				const scr_coord_val highlight_width = g_simgraph->calc_text_width_n(text+start_pos, end_pos-start_pos);
-				g_simgraph->draw_rect_clipped(x_base_offset+start_offset, y_offset, highlight_width, LINESPACE, SYSCOL_EDIT_BACKGROUND_SELECTED, true CLIP_NUM_DEFAULT);
-				g_simgraph->draw_text_clipped_n(x_base_offset+start_offset, y_offset, text+start_pos, ALIGN_LEFT|DT_CLIP, SYSCOL_EDIT_TEXT_SELECTED, false, end_pos-start_pos CLIP_NUM_DEFAULT);
+				const scr_coord_val start_offset = g_simgraph->calc_text_width_n(display_text, start_pos);
+				const scr_coord_val highlight_width = g_simgraph->calc_text_width_n(display_text + start_pos, end_pos - start_pos);
+				g_simgraph->draw_rect_clipped(x_base_offset + start_offset, y_offset, highlight_width, LINESPACE, SYSCOL_EDIT_BACKGROUND_SELECTED, true CLIP_NUM_DEFAULT);
+				g_simgraph->draw_text_clipped_n(x_base_offset + start_offset, y_offset, display_text + start_pos, ALIGN_LEFT | DT_CLIP, SYSCOL_EDIT_TEXT_SELECTED, false, end_pos - start_pos CLIP_NUM_DEFAULT);
 			}
 
 			// display blinking cursor
@@ -713,7 +722,7 @@ void gui_textinput_t::set_text(char *t, size_t max)
 bool gui_hidden_textinput_t::infowin_event(const event_t *ev)
 {
 	if(  IS_LEFTRELEASE(ev)  ) {
-		// since now the focus could be received while the mouse  no there, we must release it
+		// since now the focus could be received while the mouse no there, we must release it
 		scr_rect this_comp( get_size() );
 		if(  !this_comp.contains(scr_coord(ev->click_pos.x,ev->click_pos.y) )  ) {
 			// not us, just in old focus from previous selection or tab

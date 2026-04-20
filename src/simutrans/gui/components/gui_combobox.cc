@@ -20,6 +20,7 @@
 #include "../simwin.h"
 #include "../../dataobj/loadsave.h"
 #include "../../utils/simstring.h"
+#include "../../dataobj/translator.h"
 
 
 gui_combobox_t::gui_combobox_t(gui_scrolled_list_t::item_compare_func cmp) :
@@ -43,6 +44,8 @@ gui_combobox_t::gui_combobox_t(gui_scrolled_list_t::item_compare_func cmp) :
 	first_call = true;
 	wrapping = true;
 	force_selection = false;
+	allow_search = true;
+	forbid_search = false;
 	selection_when_open = -1;
 	droplist.set_visible(false);
 	droplist.add_listener(this);
@@ -170,7 +173,8 @@ DBG_MESSAGE("event","HOWDY!");
 			scr_coord_val height_above = last_draw_y - D_V_SPACE;
 			scr_coord_val height_below = win_height - (last_draw_y + textinp.get_size().h + D_V_SPACE);
 			// we try to show all all the time
-			scr_coord_val request_height = min(max(height_above,height_below), droplist.get_max_size().h);
+			scr_coord_val drop_max_height = droplist.get_max_size().h;
+			scr_coord_val request_height = min(max(height_above,height_below), drop_max_height);
 
 			// request size of droplist, should stay inside window
 			// call returns actual height, might be smaller than request_height
@@ -187,7 +191,15 @@ DBG_MESSAGE("event","HOWDY!");
 			droplist.show_selection(sel);
 			search_str[0] = 0;
 			old_searchstr[0] = 0;
-			rename_selected_item();
+			if (!forbid_search) {
+				allow_search = drop_max_height > request_height;
+			}
+
+			if(allow_search) {
+				textinp.set_text(NULL, 0);
+				textinp.set_text(search_str, lengthof(search_str));
+				textinp.set_placeholder_text(translator::translate("Type to search..."));
+			}
 		}
 		else if (droplist.is_visible()) {
 
@@ -219,39 +231,22 @@ DBG_MESSAGE("gui_combobox_t::infowin_event()","close");
 	else {
 		// finally handle textinput
 		gui_scrolled_list_t::scrollitem_t *item = droplist.get_selected_item();
-		if (droplist.is_visible()) {
-			if (!IS_KEYBOARD(ev) || ev->ev_code == 0) {
-				return false;
-			}
+		if (droplist.is_visible() && allow_search) {
 			// we are searching, not renaming
 			int first_match = -1;
 			event_t ev2 = *ev;
 			ev2.move_origin(textinp.get_pos());
-			if (search_str[0] == 0 && IS_KEYBOARD(&ev2) && ev2.ev_code) {
-				textinp.set_text(NULL, 0);
-				textinp.set_text(search_str, lengthof(search_str));
-				textinp.set_color(SYSCOL_TEXT_STRONG);
-			}
-			strcpy(old_searchstr, search_str);
 			if (textinp.infowin_event(&ev2)) {
 				if (strcmp(search_str,old_searchstr)!=0) {
 					for (int i = 0; i < droplist.get_count(); i++) {
-						if (search_str[0] == 0) {
-							droplist.get_element(i)->set_visible(strstr(droplist.get_element(i)->get_text(), search_str));
-						}
-						else {
-							droplist.get_element(i)->set_visible(strstr(droplist.get_element(i)->get_text(), search_str));
-						}
-						if (droplist.get_element(i)->is_visible() &&  (first_match==-1  ||  first_match < droplist.get_selection()) ) {
+						droplist.get_element(i)->set_visible(STRICMP(droplist.get_element(i)->get_text(), search_str));
+						if (droplist.get_element(i)->is_visible() && first_match <= droplist.get_selection()) {
 							first_match = i;
 						}
 					}
 					droplist.show_selection(first_match);
 					droplist.set_selection(first_match);
-					if (search_str[0] == 0  &&  first_match>=0) {
-						// show name of selection instead empty string
-						reset_selected_item_name();
-					}
+					strcpy(old_searchstr, search_str);
 				}
 				return true;
 			}
@@ -407,14 +402,14 @@ void gui_combobox_t::close_box()
 		p.i = droplist.get_selection();
 		call_listeners(p);
 	}
-
-	// reset filter: set all visible again
-	search_str[0] = 0;
-	for (int i = 0; i < droplist.get_count(); i++) {
-		droplist.get_element(i)->set_visible(true);
-	}
-	if (selection_changed) {
+	if (allow_search && (search_str[0] || selection_changed)) {
+		// reset filter: set all visible again
+		search_str[0] = 0;
+		for (int i = 0; i < droplist.get_count(); i++) {
+			droplist.get_element(i)->set_visible(true);
+		}
 		textinp.set_text(NULL, 0);  // also to reset cursor position
+		textinp.set_placeholder_text(NULL);
 	}
 
 	textinp.set_text(editstr, lengthof(editstr) );

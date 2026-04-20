@@ -29,6 +29,12 @@ protected:
 	 */
 	char *text;
 
+	/**
+	 * Placeholder text to be displayed when no text has been typed
+	 * if NULL, nothing will be shown
+	 */
+	const char *placeholder_text;
+
 	// text, which has not yet inputted (i.e. by an IME)
 	cbuffer_t composition;
 	size_t composition_target_start;
@@ -109,6 +115,8 @@ public:
 	 * Sets the Text buffer
 	 */
 	void set_text(char *text, size_t max);
+
+	void set_placeholder_text(const char *ptext) { placeholder_text = ptext; };
 
 	// text which is not yet inputed (i.e. for east asian text), assuming either native or utf8 encoding
 	void set_composition_status( char *composition, int target_start, int target_length );

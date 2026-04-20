@@ -60,6 +60,9 @@ public:
 
 	void set_allow_dragging(bool b) { b_can_drag = b;  }
 
+	bool has_visible_x_scrollbar() { return scroll_x.is_visible(); }
+	bool has_visible_y_scrollbar() { return scroll_y.is_visible(); }
+
 	/**
 	* this is the maximum width a scrollbar requests as minimum size
 	* default is the stadard width of a dialoge (4*button width+3*space)

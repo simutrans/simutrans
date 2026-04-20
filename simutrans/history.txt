@@ -1,4 +1,5 @@
 	FIX: (poppo) wayobj toll on other people's way and their removal
+	CHG: (Nazalassa) combobox only searchable if not fitting on screen, "Type to search ..." shown then
 
 
 Release of 124.4.1 (r11930 on 18-Apr-2026):
