@@ -134,6 +134,15 @@ struct simgraph_t
 	/// Environment colours from RGB888 to system format
 	void (*env_t_rgb_to_system_colors)();
 
+	/// set primary and secondary company color for player
+	void (*set_player_color_scheme)(int player_idx, uint8 col1_idx, uint8 col2_idx);
+
+	/// Change the value of the day/night palette entry at index @p color_idx
+	void (*set_light_color)(int color_idx, rgb888_t day_color, rgb888_t night_color);
+
+	void (*set_daynight_level)(int night_level);
+
+
 	/// changes the raster width after loading
 	scr_coord_val (*set_base_raster_width)(scr_coord_val new_raster);
 
@@ -196,13 +205,8 @@ struct simgraph_t
 	/// force a certain size on a image (for rescaling tool images)
 	void (*fit_img_to_width)(image_id n, sint16 new_w);
 
-	void (*set_daynight_level)(int night_level);
-
 	/// scrolls horizontally @p x_offset pixels to the left, will ignore clipping etc.
 	void (*move_scroll_band)(scr_coord_val start_y, scr_coord_val x_offset, scr_coord_val h);
-
-	/// set primary and secondary company color for player
-	void (*set_player_color_scheme)(int player_idx, uint8 col1_idx, uint8 col2_idx);
 
 	/// for switching between image procedure sets, and for setting current tile raster width
 	void (*set_image_procs)(bool is_global);
@@ -385,9 +389,6 @@ struct simgraph_t
 	void (*add_poly_clip)(int x0_,int y0_, int x1, int y1, int ribi  CLIP_NUM_DEF);
 	void (*clear_all_poly_clip)(CLIP_NUM_DEF0);
 	void (*activate_ribi_clip)(int ribi  CLIP_NUM_DEF);
-
-	/// Change the value of the day/night palette entry at index @p color_idx
-	void (*set_light_color)(int color_idx, rgb888_t day_color, rgb888_t night_color);
 };
 
 

@@ -15,8 +15,11 @@ extern const sint32 zoom_den[1] = { 1 };
 
 static PIXVAL          simgraph0_palette_lookup             (palette_index_t idx);
 static palette_index_t simgraph0_palette_indexof            (PIXVAL color);
-static void            simgraph0_env_t_rgb_to_system_colors ();
 static rgb888_t        simgraph0_get_color_rgb              (palette_index_t idx);
+static void            simgraph0_env_t_rgb_to_system_colors ();
+static void            simgraph0_set_player_color_scheme    (const int player, const uint8 col1, const uint8 col2);
+static void            simgraph0_set_light_color            (int light_idx, rgb888_t day_light, rgb888_t night_light);
+static void            simgraph0_set_daynight_level         (int night);
 static scr_coord_val   simgraph0_set_base_raster_width      (scr_coord_val new_raster);
 static int             simgraph0_zoom_factor_up             ();
 static int             simgraph0_zoom_factor_down           ();
@@ -39,9 +42,7 @@ static void            simgraph0_set_screen_actual_width    (scr_coord_val w);
 static void            simgraph0_set_screen_height          (scr_coord_val const h);
 static scr_size        simgraph0_get_best_matching_size     (const image_id n, sint16 zoom_percent);
 static void            simgraph0_fit_img_to_width           (const image_id n, sint16 new_w);
-static void            simgraph0_set_daynight_level         (int night);
 static void            simgraph0_move_scroll_band           (scr_coord_val start_y, scr_coord_val x_offset, scr_coord_val h);
-static void            simgraph0_set_player_color_scheme    (const int player, const uint8 col1, const uint8 col2);
 static void            simgraph0_set_image_procs            (bool is_global);
 static void            simgraph0_draw_img_aligned           (const image_id n, scr_rect area, int align, const bool dirty);
 static void            simgraph0_draw_img_aux               (const image_id, scr_coord_val, scr_coord_val, const sint8, const bool, const bool  CLIP_NUM_DEF_NOUSE);
@@ -104,7 +105,6 @@ static void            simgraph0_clear_all_poly_clip        ();
 static void            simgraph0_activate_ribi_clip         (int);
 #endif
 
-static void           simgraph0_set_light_color             (int light_idx, rgb888_t day_light, rgb888_t night_light);
 
 
 simgraph_t g_simgraph0 = {
@@ -125,6 +125,9 @@ simgraph_t g_simgraph0 = {
 	/*.palette_indexof             =*/ simgraph0_palette_indexof,
 	/*.get_color_rgb               =*/ simgraph0_get_color_rgb,
 	/*.env_t_rgb_to_system_colors  =*/ simgraph0_env_t_rgb_to_system_colors,
+	/*.set_player_color_scheme     =*/ simgraph0_set_player_color_scheme,
+	/*.set_light_color             =*/ simgraph0_set_light_color,
+	/*.set_daynight_level          =*/ simgraph0_set_daynight_level,
 	/*.set_base_raster_width       =*/ simgraph0_set_base_raster_width,
 	/*.zoom_factor_up              =*/ simgraph0_zoom_factor_up,
 	/*.zoom_factor_down            =*/ simgraph0_zoom_factor_down,
@@ -147,9 +150,7 @@ simgraph_t g_simgraph0 = {
 	/*.set_screen_actual_width     =*/ simgraph0_set_screen_actual_width,
 	/*.get_best_matching_size      =*/ simgraph0_get_best_matching_size,
 	/*.fit_img_to_width            =*/ simgraph0_fit_img_to_width,
-	/*.set_daynight_level          =*/ simgraph0_set_daynight_level,
 	/*.move_scroll_band            =*/ simgraph0_move_scroll_band,
-	/*.set_player_color_scheme     =*/ simgraph0_set_player_color_scheme,
 	/*.set_image_procs             =*/ simgraph0_set_image_procs,
 	/*.draw_img_aligned            =*/ simgraph0_draw_img_aligned,
 	/*.draw_img_aux                =*/ simgraph0_draw_img_aux,
@@ -204,8 +205,6 @@ simgraph_t g_simgraph0 = {
 	/*.add_poly_clip               =*/ simgraph0_add_poly_clip,
 	/*.clear_all_poly_clip         =*/ simgraph0_clear_all_poly_clip,
 	/*.activate_ribi_clip          =*/ simgraph0_activate_ribi_clip,
-
-	/*.set_light_color             =*/ simgraph0_set_light_color
 };
 
 

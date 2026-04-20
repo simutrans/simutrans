@@ -501,8 +501,11 @@ static const rgb888_t special_pal[SPECIAL_COLOR_COUNT] =
 
 static PIXVAL          simgraph16_palette_lookup             (palette_index_t idx);
 static palette_index_t simgraph16_palette_indexof            (PIXVAL color);
-static void            simgraph16_env_t_rgb_to_system_colors ();
 static rgb888_t        simgraph16_get_color_rgb              (palette_index_t idx);
+static void            simgraph16_env_t_rgb_to_system_colors ();
+static void            simgraph16_set_player_color_scheme    (const int player, const uint8 col1, const uint8 col2);
+static void            simgraph16_set_light_color            (int color_idx, rgb888_t day_colour, rgb888_t night_colour);
+static void            simgraph16_set_daynight_level         (int night);
 static scr_coord_val   simgraph16_set_base_raster_width      (scr_coord_val new_raster);
 static int             simgraph16_zoom_factor_up             ();
 static int             simgraph16_zoom_factor_down           ();
@@ -525,9 +528,7 @@ static void            simgraph16_set_screen_actual_width    (scr_coord_val w);
 static void            simgraph16_set_screen_height          (scr_coord_val const h);
 static scr_size        simgraph16_get_best_matching_size     (const image_id n, sint16 zoom_percent);
 static void            simgraph16_fit_img_to_width           (const image_id n, sint16 new_w);
-static void            simgraph16_set_daynight_level         (int night);
 static void            simgraph16_move_scroll_band           (scr_coord_val start_y, scr_coord_val x_offset, scr_coord_val h);
-static void            simgraph16_set_player_color_scheme    (const int player, const uint8 col1, const uint8 col2);
 static void            simgraph16_draw_img_aligned           (const image_id n, scr_rect area, int align, const bool dirty);
 static void            simgraph16_set_image_procs            (bool is_global);
 static void            simgraph16_draw_img_aux               (const image_id, scr_coord_val, scr_coord_val, const sint8, const bool, const bool  CLIP_NUM_DEF_NOUSE);
@@ -579,7 +580,6 @@ static clip_dimension  simgraph16_get_clip_rect              (CLIP_NUM_DEF_NOUSE
 static void            simgraph16_push_clip_rect             (scr_coord_val, scr_coord_val, scr_coord_val, scr_coord_val  CLIP_NUM_DEF_NOUSE);
 static void            simgraph16_swap_clip_rect             (CLIP_NUM_DEF_NOUSE0);
 static void            simgraph16_pop_clip_rect              (CLIP_NUM_DEF_NOUSE0);
-static void            simgraph16_set_light_color            (int color_idx, rgb888_t day_colour, rgb888_t night_colour);
 static void            simgraph16_add_poly_clip              (int x0,int y0, int x1, int y1, int ribi  CLIP_NUM_DEF);
 static void            simgraph16_clear_all_poly_clip        (CLIP_NUM_DEF0);
 static void            simgraph16_activate_ribi_clip         (int ribi  CLIP_NUM_DEF);
@@ -603,6 +603,9 @@ simgraph_t g_simgraph16 = {
 	/*.palette_indexof             =*/ simgraph16_palette_indexof,
 	/*.get_color_rgb               =*/ simgraph16_get_color_rgb,
 	/*.env_t_rgb_to_system_colors  =*/ simgraph16_env_t_rgb_to_system_colors,
+	/*.set_player_color_scheme     =*/ simgraph16_set_player_color_scheme,
+	/*.set_light_color             =*/ simgraph16_set_light_color,
+	/*.set_daynight_level          =*/ simgraph16_set_daynight_level,
 
 	/*.set_base_raster_width       =*/ simgraph16_set_base_raster_width,
 	/*.zoom_factor_up              =*/ simgraph16_zoom_factor_up,
@@ -626,9 +629,7 @@ simgraph_t g_simgraph16 = {
 	/*.set_screen_actual_width     =*/ simgraph16_set_screen_actual_width,
 	/*.get_best_matching_size      =*/ simgraph16_get_best_matching_size,
 	/*.fit_img_to_width            =*/ simgraph16_fit_img_to_width,
-	/*.set_daynight_level          =*/ simgraph16_set_daynight_level,
 	/*.move_scroll_band            =*/ simgraph16_move_scroll_band,
-	/*.set_player_color_scheme     =*/ simgraph16_set_player_color_scheme,
 	/*.set_image_procs             =*/ simgraph16_set_image_procs,
 	/*.draw_img_aligned            =*/ simgraph16_draw_img_aligned,
 	/*.draw_img_aux                =*/ simgraph16_draw_img_aux,
@@ -683,7 +684,6 @@ simgraph_t g_simgraph16 = {
 	/*.add_poly_clip               =*/ simgraph16_add_poly_clip,
 	/*.clear_all_poly_clip         =*/ simgraph16_clear_all_poly_clip,
 	/*.activate_ribi_clip          =*/ simgraph16_activate_ribi_clip,
-	/*.set_light_color             =*/ simgraph16_set_light_color,
 };
 
 static uint32 zoom_factor = ZOOM_NEUTRAL;
