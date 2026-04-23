@@ -3,7 +3,7 @@
 
 name: Nightly Build Windows32 GDI
 
-on: [push]
+on: [workflow_dispatch]
 
 jobs:
   winGDI-32:

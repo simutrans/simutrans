@@ -1,6 +1,6 @@
 name: Nightly build makeobj
 
-on: [push]
+on: [workflow_dispatch]
 
 jobs:
   makeobj_windows-nightly:

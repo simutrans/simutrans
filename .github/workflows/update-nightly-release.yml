@@ -1,6 +1,6 @@
 name: Update tag
 
-on: [push]
+on: [workflow_dispatch]
 
 jobs:
   update-nightly:
