@@ -610,7 +610,7 @@ char const *dr_query_homedir()
 	int maxlen = PATH_MAX + 22;
 	int n;
 	if( getenv("XDG_DATA_HOME") == NULL ) {
-		n = snprintf(buffer, maxlen, "%s/simutrans", getenv("HOME"));
+		n = snprintf(buffer, maxlen, "%s/.local/share/simutrans", getenv("HOME"));
 	}
 	else {
 		n = snprintf(buffer, maxlen, "%s/simutrans", getenv("XDG_DATA_HOME"));
@@ -662,7 +662,7 @@ char const *dr_query_installdir()
 	int maxlen = PATH_MAX + 22;
 	int n;
 	if( getenv("XDG_DATA_HOME") == NULL ) {
-		n = snprintf(buffer, maxlen, "%s/simutrans/paksets", getenv("HOME"));
+		n = snprintf(buffer, maxlen, "%s/.local/share/simutrans/paksets", getenv("HOME"));
 	}
 	else {
 		n = snprintf(buffer, maxlen, "%s/simutrans/paksets", getenv("XDG_DATA_HOME"));
