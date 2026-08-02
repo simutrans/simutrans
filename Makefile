@@ -562,6 +562,7 @@ SOURCES += src/simutrans/script/api/api_pathfinding.cc
 SOURCES += src/simutrans/script/api/api_player.cc
 SOURCES += src/simutrans/script/api/api_scenario.cc
 SOURCES += src/simutrans/script/api/api_schedule.cc
+SOURCES += src/simutrans/script/api/api_schedule_route_test.cc
 SOURCES += src/simutrans/script/api/api_settings.cc
 SOURCES += src/simutrans/script/api/api_simple.cc
 SOURCES += src/simutrans/script/api/api_tiles.cc

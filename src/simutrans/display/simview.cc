@@ -92,6 +92,170 @@ static bool can_multithreading = true;
 #endif
 
 
+#if COLOUR_DEPTH != 0
+/**
+ * The area the tile loop of main_view_t::display() covers, in the rotated coordinates
+ * it uses itself: u across, v down. A route runs anywhere on the map, while
+ * get_screen_coord() returns sint16 and wraps a few hundred tiles away from the view,
+ * so tiles are checked here, before they are projected.
+ */
+struct route_area_t {
+	sint32 i_off, j_off;
+	sint32 u_lim, v_lo, v_hi;
+
+	/// which borders @p pos lies beyond, as a bit per border
+	uint8 outcode(const koord3d &pos) const {
+		const sint32 di = (sint32)pos.x - i_off;
+		const sint32 dj = (sint32)pos.y - j_off;
+		const sint32 u = di - dj;
+		const sint32 v = di + dj;
+		return (u < -u_lim ? 1 : 0) | (u > u_lim ? 2 : 0) | (v < v_lo ? 4 : 0) | (v > v_hi ? 8 : 0);
+	}
+};
+
+
+/**
+ * A corner of the route shown by a schedule editor, held as a place on the route
+ * rather than as a screen position: either the centre of the tile route[step], or the
+ * midpoint of the tile edge the step from route[step] to route[step+1] crosses.
+ *
+ * It is projected only once the segment it belongs to is known to be drawn, because
+ * get_screen_coord() works in sint16 (see viewport.cc) and wraps a few hundred tiles
+ * away from the view: a tile that far never reaches it this way.
+ */
+struct route_point_t {
+	uint32 step;
+	bool   is_edge;
+	uint8  code;
+
+	scr_coord project(const viewport_t *viewport, const vector_tpl<koord3d> &route, const koord &centre) const {
+		const scr_coord a = viewport->get_screen_coord( route[step], centre );
+		if(  !is_edge  ) {
+			return a;
+		}
+		// scr_coord_val is 32 bit, so the two ends can be added before halving them
+		const scr_coord b = viewport->get_screen_coord( route[step+1], centre );
+		return scr_coord( (a.x+b.x)/2, (a.y+b.y)/2 );
+	}
+};
+
+
+/**
+ * One segment of the route shown by a schedule editor: a coloured core with a dark
+ * line below it, so that it stays visible on any ground. Both grow when zooming in.
+ *
+ * Nothing is drawn, and nothing is projected either, when both ends lie beyond the
+ * same border of the drawn area, so that whatever enters, leaves or crosses the view
+ * is still drawn whole.
+ */
+static void display_route_segment(const viewport_t *viewport, const vector_tpl<koord3d> &route, const route_point_t &from, const route_point_t &to, const koord &centre, PIXVAL col, PIXVAL dark, sint16 core, sint16 edge)
+{
+	if(  (from.code & to.code) != 0  ) {
+		return;
+	}
+	const scr_coord a = from.project( viewport, route, centre );
+	const scr_coord b = to.project( viewport, route, centre );
+	for(  sint16 i = core;  i < core+edge;  i++  ) {
+		gfx->draw_line( a.x, a.y+i, b.x, b.y+i, dark );
+	}
+	for(  sint16 i = 0;  i < core;  i++  ) {
+		gfx->draw_line( a.x, a.y+i, b.x, b.y+i, col );
+	}
+}
+
+
+/**
+ * Last step of the alternating pattern that starts at step @p a, or @p a itself when
+ * the steps there do not alternate. Step k leads from route[k] to route[k+1], and
+ * @p last is the final tile of the stretch under consideration.
+ */
+static uint32 diagonal_run_end(const vector_tpl<koord3d> &route, uint32 last, uint32 a)
+{
+	// below three steps a staircase cannot be told from a single bend
+	if(  a+3 > last  ) {
+		return a;
+	}
+	const koord d0 = (route[a+1] - route[a]).get_2d();
+	const koord d1 = (route[a+2] - route[a+1]).get_2d();
+	if(  d0 == d1  ||  d0 == -d1  ) {
+		// carrying straight on, or turning back: neither one makes a diagonal
+		return a;
+	}
+	uint32 b = a+1;
+	while(  b+2 <= last  &&  (route[b+2] - route[b+1]).get_2d() == (((b+1-a) & 1) ? d1 : d0)  ) {
+		b++;
+	}
+	return b;
+}
+
+
+/**
+ * Longest diagonal run drawn as a single line.
+ *
+ * A run advances one tile per step along one of the two screen axes, so a long one ends
+ * hundreds of tiles from the view, where get_screen_coord() wraps; and it cannot simply
+ * be dropped, because it may well cross the view. All the edge midpoints of a run are
+ * on the same straight line, so cutting it on them adds points without moving any, and
+ * every piece is then short enough to be projected: a piece display_route_segment()
+ * keeps has one end within the drawn area, hence both ends at most this many tiles
+ * beyond it, that is 64*(IMG_SIZE/2) past its border at the very most. That leaves half
+ * of the sint16 range to spare on the largest tiles and screens in use.
+ */
+static const uint32 ROUTE_DIAGONAL_MAX_STEPS = 64;
+
+
+/**
+ * Draws the tiles [first,last] of the route shown by a schedule editor, which are
+ * known to be a stretch without a gap in it.
+ *
+ * A diagonal way is a staircase of orthogonal steps, so a line from tile centre to
+ * tile centre zigzags exactly where the way graphics show a straight line. The centres
+ * of such a staircase swing half a tile to either side of the line through the midpoints
+ * of the shared tile edges, and those midpoints are collinear. A run of at least three
+ * alternating steps is therefore entered and left on the midpoint of its first and of its
+ * last step: both sit on that straight line, and both sit on the way of the straight part
+ * before and after it, because a run can only begin where the step before it either
+ * pointed the same way or turned a real corner. Straight runs and single bends keep the
+ * tile centres they always had, and so do both ends of the stretch.
+ *
+ * A segment is left undrawn only when both of its ends lie beyond the same border of
+ * @p area, so anything that enters, leaves or crosses the view is still drawn whole.
+ * The midpoint of two tiles is beyond a border whenever both of them are, hence the
+ * bitwise and of their two outcodes.
+ */
+static void display_route_stretch(const viewport_t *viewport, const vector_tpl<koord3d> &route, uint32 first, uint32 last, const koord &centre, PIXVAL col, PIXVAL dark, sint16 core, sint16 edge, const route_area_t &area)
+{
+	route_point_t previous = { first, false, area.outcode( route[first] ) };
+	uint32 t = first;
+	while(  t < last  ) {
+		const uint32 b = diagonal_run_end( route, last, t );
+		if(  b >= t+2  ) {
+			// a diagonal: cross it in one straight line, from edge midpoint to edge
+			// midpoint, in pieces of at most ROUTE_DIAGONAL_MAX_STEPS steps each
+			uint32 s = t;
+			while(  true  ) {
+				const route_point_t here = { s, true, (uint8)(area.outcode( route[s] ) & area.outcode( route[s+1] )) };
+				display_route_segment( viewport, route, previous, here, centre, col, dark, core, edge );
+				previous = here;
+				if(  s == b  ) {
+					break;
+				}
+				s = ( b-s > ROUTE_DIAGONAL_MAX_STEPS ? s+ROUTE_DIAGONAL_MAX_STEPS : b );
+			}
+			// the tile the run ends on keeps its centre, so that the next corner is drawn there
+			t = b+1;
+		}
+		else {
+			t++;
+		}
+		const route_point_t here = { t, false, area.outcode( route[t] ) };
+		display_route_segment( viewport, route, previous, here, centre, col, dark, core, edge );
+		previous = here;
+	}
+}
+#endif
+
+
 void main_view_t::display(bool force_dirty)
 {
 	const uint32 rs = get_random_seed();
@@ -291,6 +455,47 @@ void main_view_t::display(bool force_dirty)
 					}
 				}
 			}
+		}
+	}
+
+	// route of the schedule shown by a schedule editor (display only, see karte_t)
+	const vector_tpl<koord3d> &schedule_route = welt->get_schedule_route();
+	if(  !schedule_route.empty()  ) {
+		DBG_DEBUG4("main_view_t::display", "display schedule route");
+		const player_t *pl = welt->get_player( welt->get_schedule_route_player_nr() );
+		const PIXVAL col  = gfx->palette_lookup( pl ? pl->get_player_color1()+3 : COL_WHITE );
+		const PIXVAL dark = gfx->palette_lookup( COL_BLACK );
+		// centre of the top surface of a tile, in the internal 64 per tile units
+		const koord centre( OBJECT_OFFSET_STEPS*2, OBJECT_OFFSET_STEPS*3 );
+		// The line grows when zooming in, so that it does not get lost on a large tile,
+		// and keeps a visible minimum when zooming out. Zooming in only reaches twice the
+		// tile size, hence the half steps; even at its widest the line is a few pixels on
+		// a tile of at least 128, so the way below it stays visible.
+		const sint16 core = clamp( (2*IMG_SIZE)/gfx->get_base_tile_raster_width() - 1, 1, 3 );
+		const sint16 edge = (core+1)/2;
+		// the same area the tile loop above walked, with room to spare for the line width,
+		// for tall ground and for a tile that only sticks into the view by a corner
+		route_area_t area;
+		area.i_off = i_off;
+		area.j_off = j_off;
+		area.u_lim = dpy_width + 16;
+		area.v_lo  = -64;
+		area.v_hi  = dpy_height + 4*4 + 64;
+
+		// koord3d::invalid separates legs without a route: each stretch is drawn on its own
+		const uint32 count = schedule_route.get_count();
+		uint32 first = 0;
+		while(  first < count  ) {
+			if(  schedule_route[first] == koord3d::invalid  ) {
+				first++;
+				continue;
+			}
+			uint32 last = first;
+			while(  last+1 < count  &&  schedule_route[last+1] != koord3d::invalid  ) {
+				last++;
+			}
+			display_route_stretch( viewport, schedule_route, first, last, centre, col, dark, core, edge, area );
+			first = last+1;
 		}
 	}
 

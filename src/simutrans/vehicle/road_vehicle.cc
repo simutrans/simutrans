@@ -111,8 +111,7 @@ bool road_vehicle_t::check_next_tile(const grund_t *bd) const
 	if(str==NULL  ||  str->get_max_speed()==0) {
 		return false;
 	}
-	bool electric = cnv!=NULL  &&  cnv->needs_electrification();
-	if(electric  &&  !str->is_electrified()) {
+	if(needs_electrification()  &&  !str->is_electrified()) {
 		return false;
 	}
 	// check for signs

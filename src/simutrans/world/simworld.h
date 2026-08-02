@@ -54,6 +54,7 @@ class records_t;
 class loadingscreen_t;
 class terraformer_t;
 class building_desc_t;
+class schedule_t;
 
 /**
  * Threaded function caller.
@@ -944,6 +945,19 @@ public:
 	 * we defer it to outside sync_step
 	 */
 	void set_deferred_move_to(koord3d pos, uint8 flags);
+
+	/* Route of the schedule that is currently shown by a schedule editor.
+	 * Display only, never saved. Like the deferred move above the route search
+	 * must not run from the GUI, so the editor only asks for it here and it is
+	 * calculated in interactive(). @p owner identifies the asking component, so
+	 * that closing an old window cannot drop the route of a newer one.
+	 */
+	void request_schedule_route(schedule_t *schedule, player_t *pl, uint32 owner, uint16 speed_kmh, bool needs_electrification);
+	void clear_schedule_route(uint32 owner); ///< owner 0 clears unconditionally
+	void step_schedule_route();
+	const vector_tpl<koord3d> &get_schedule_route() const;
+	uint32 get_schedule_route_owner() const;
+	uint8 get_schedule_route_player_nr() const;
 
 	/**
 	 * Calls the work method of the tool.

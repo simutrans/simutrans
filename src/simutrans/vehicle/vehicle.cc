@@ -79,6 +79,10 @@ void vehicle_t::set_convoi(convoi_t *c)
 			c.finish_rd(welt);
 		}
 	}
+	else {
+		// out of a convoi there is nothing left to demand catenary for
+		needs_electric = false;
+	}
 }
 
 
@@ -375,6 +379,7 @@ vehicle_t::vehicle_t(koord3d pos, const vehicle_desc_t* desc, player_t* player) 
 	check_for_finish = false;
 	use_calc_height = true;
 	has_driven = false;
+	needs_electric = false;
 
 	previous_direction = direction = ribi_t::none;
 	target_halt = halthandle_t();
@@ -397,6 +402,7 @@ vehicle_t::vehicle_t() :
 	leading = last = false;
 	check_for_finish = false;
 	use_calc_height = true;
+	needs_electric = false;
 
 	previous_direction = direction = ribi_t::none;
 }

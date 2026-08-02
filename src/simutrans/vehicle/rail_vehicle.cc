@@ -157,7 +157,6 @@ bool rail_vehicle_t::check_next_tile(const grund_t *bd) const
 	}
 
 	// check for electrification
-	const bool needs_electric = cnv != NULL  &&  cnv->needs_electrification();
 	if(  needs_electric  &&  !sch->is_electrified()  ) {
 		return false;
 	}
@@ -247,7 +246,6 @@ bool rail_vehicle_t::is_target(const grund_t* gr, const grund_t* prev_gr) const
 					return false;
 				}
 				// make sure that we are at the end of the platform or usable area
-				const bool needs_electric = cnv != NULL && cnv->needs_electrification();
 				grund_t* to;
 				if (gr->get_neighbour(to, get_waytype(), ribi)) {
 					weg_t* w = to->get_weg(get_waytype());

@@ -268,6 +268,7 @@ target_sources(simutrans PRIVATE
 		src/simutrans/script/api/api_player.cc
 		src/simutrans/script/api/api_scenario.cc
 		src/simutrans/script/api/api_schedule.cc
+		src/simutrans/script/api/api_schedule_route_test.cc
 		src/simutrans/script/api/api_settings.cc
 		src/simutrans/script/api/api_simple.cc
 		src/simutrans/script/api/api_tiles.cc

@@ -359,6 +359,9 @@ public:
 	/* true, if electrification needed for this convoi */
 	bool needs_electrification() const { return needs_electric; }
 
+	/* set it here and on every vehicle, since check_next_tile() reads it there */
+	void set_needs_electrification(bool janein);
+
 	/* true, if electrification needed for this convoi */
 	bool can_use_electrification() const { return sum_gear_and_power_electric!=0; }
 

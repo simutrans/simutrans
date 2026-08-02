@@ -78,6 +78,7 @@ protected:
 	bool smoke:1;
 	bool check_for_finish:1; // true, if on the last tile
 	bool has_driven:1;
+	bool needs_electric:1;   // true, if this vehicle may only drive on electrified ways
 
 	bool check_next_tile(const grund_t* ) const OVERRIDE {return false;}
 
@@ -236,6 +237,11 @@ public:
 
 	void set_last(bool janein) {last = janein;}
 	bool is_last() {return last;}
+
+	// the convoi keeps this in sync, so that check_next_tile() does not have to ask it;
+	// a test driver without a convoi can then be given the same restriction
+	void set_needs_electrification(bool janein) { needs_electric = janein; }
+	bool needs_electrification() const { return needs_electric; }
 
 	// marks the vehicle as really used
 	void set_driven() { has_driven = true; }

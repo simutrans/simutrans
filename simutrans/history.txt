@@ -26,6 +26,7 @@
 	     + new building parameter in dat file "height_clearance" The allowed spacing to grounds above it
 		 (If not set recalculated from the images)
 	FIX: Crash when using makeobj 'merge' or 'extract' commands
+	ADD: (victor_18993) schedule editor shows the route of the schedule on the map
 
 
 Release of 124.5 (r11993 on 31-May-2026):
