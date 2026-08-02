@@ -627,8 +627,8 @@ bool way_builder_t::is_allowed_step(const grund_t *from, const grund_t *to, sint
 			}
 			if(gb) {
 				// no halt => citybuilding => do not touch
-				// also check for too high buildings ...
-				if(!check_owner(gb->get_owner(),player_builder)  ||  gb->get_tile()->has_upper_storey()) {
+				// the whole building must fit below the deck, not just the crossed tile
+				if(!check_owner(gb->get_owner(),player_builder)  ||  gb->get_tile()->get_desc()->get_height_clearance() > get_way_height_offset(to)) {
 					return false;
 				}
 				// building above houses is expensive ... avoid it!
