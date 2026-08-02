@@ -140,9 +140,25 @@ struct route_point_t {
 };
 
 
+/// @p n divided by @p d and rounded to nearest, for a positive @p d and either sign of @p n
+static sint32 route_line_offset(sint32 n, sint32 d)
+{
+	return n >= 0 ? (2*n + d) / (2*d) : -((-2*n + d) / (2*d));
+}
+
+
 /**
  * One segment of the route shown by a schedule editor: a coloured core with a dark
  * line below it, so that it stays visible on any ground. Both grow when zooming in.
+ *
+ * The copies are shifted along the normal of the segment and not simply downwards.
+ * A diagonal way runs straight down the screen, and shifting such a line in y only
+ * makes it longer, never thicker: it stayed one pixel wide with no dark line beside
+ * it at all, however far one zoomed in. The normal is scaled to its own length, so
+ * that one step is one pixel of width in every direction and the line keeps the width
+ * it always had; and it is turned to point down the screen, so that the dark line
+ * keeps to the same side of the coloured one whatever the direction is, which is also
+ * what makes the two directions of a leg land on each other.
  *
  * Nothing is drawn, and nothing is projected either, when both ends lie beyond the
  * same border of the drawn area, so that whatever enters, leaves or crosses the view
@@ -155,11 +171,28 @@ static void display_route_segment(const viewport_t *viewport, const vector_tpl<k
 	}
 	const scr_coord a = from.project( viewport, route, centre );
 	const scr_coord b = to.project( viewport, route, centre );
+
+	sint32 nx = -(sint32)(b.y - a.y);
+	sint32 ny =  (sint32)(b.x - a.x);
+	if(  ny < 0  ||  (ny == 0  &&  nx < 0)  ) {
+		nx = -nx;
+		ny = -ny;
+	}
+	const sint32 len = (sint32)sqrt_i64( (uint64)nx*nx + (uint64)ny*ny );
+	// the coloured core sits on the line itself, so it does not drift off the way
+	const sint16 first = -((core-1)/2);
+
 	for(  sint16 i = core;  i < core+edge;  i++  ) {
-		gfx->draw_line( a.x, a.y+i, b.x, b.y+i, dark );
+		const sint32 k  = first + i;
+		const sint32 ox = len ? route_line_offset( k*nx, len ) : 0;
+		const sint32 oy = len ? route_line_offset( k*ny, len ) : k;
+		gfx->draw_line( a.x+ox, a.y+oy, b.x+ox, b.y+oy, dark );
 	}
 	for(  sint16 i = 0;  i < core;  i++  ) {
-		gfx->draw_line( a.x, a.y+i, b.x, b.y+i, col );
+		const sint32 k  = first + i;
+		const sint32 ox = len ? route_line_offset( k*nx, len ) : 0;
+		const sint32 oy = len ? route_line_offset( k*ny, len ) : k;
+		gfx->draw_line( a.x+ox, a.y+oy, b.x+ox, b.y+oy, col );
 	}
 }
 
