@@ -810,6 +810,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)src\simutrans\script\api\api_schedule.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\simutrans\script\api\api_schedule_route_test.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)src\simutrans\script\api\api_settings.cc">
       <Filter>Source Files</Filter>
     </ClCompile>

@@ -283,6 +283,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)src\simutrans\script\api\api_player.cc" />
     <ClCompile Include="$(MSBuildThisFileDirectory)src\simutrans\script\api\api_scenario.cc" />
     <ClCompile Include="$(MSBuildThisFileDirectory)src\simutrans\script\api\api_schedule.cc" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\simutrans\script\api\api_schedule_route_test.cc" />
     <ClCompile Include="$(MSBuildThisFileDirectory)src\simutrans\script\api\api_settings.cc" />
     <ClCompile Include="$(MSBuildThisFileDirectory)src\simutrans\script\api\api_simple.cc" />
     <ClCompile Include="$(MSBuildThisFileDirectory)src\simutrans\script\api\api_tiles.cc" />
