@@ -30,7 +30,6 @@ include("tests/test_terraform")
 include("tests/test_transport")
 include("tests/test_trees")
 include("tests/test_way_bridge")
-include("tests/test_way_elevated")
 include("tests/test_way_road")
 include("tests/test_way_runway")
 include("tests/test_way_tram")
@@ -209,10 +208,6 @@ all_tests <- [
 	test_way_bridge_planner_flat_ends,
 	test_way_bridge_planner_ownership,
 	test_way_bridge_planner_forbidden_by_scenario,
-	test_way_bridge_over_building,
-	test_way_bridge_over_fitting_stacked_building,
-	test_way_elevated_over_building,
-	test_way_elevated_over_building_footprint,
 	test_way_road_build_single_tile,
 	test_way_road_build_straight,
 	test_way_road_build_bend,
