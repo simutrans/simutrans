@@ -17,13 +17,9 @@
 //   owner      the id of the editor component the route currently belongs to
 //   stop mark  the existing red highlight of the schedule stops
 //
-// Run the suite with -theme classic.tab. That is a precondition of these tests,
-// not a workaround: a headless build loads no theme by design, while these tests
-// are the only ones that build a real gui_schedule_t, and a schedule entry reads
-// skinverwaltung_t::gadget for its delete button. Without a theme the process dies
-// as the first test opens an editor - no assertion, no verdict, the log simply
-// stops. Whether that read should be guarded is a question about gui_schedule_t
-// and is discussed on its own, deliberately not settled by this patch.
+// These are the only tests that build a real gui_schedule_t, whose entries read
+// skinverwaltung_t::gadget unchecked. The themes in simutrans/themes are loaded
+// even by a headless build; a tree without them dies here without a verdict.
 //
 
 
