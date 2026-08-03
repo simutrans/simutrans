@@ -86,7 +86,10 @@ public:
 		add_component(&down);
 
 		del.init( button_t::imagebox, NULL );
-		del.set_image( skinverwaltung_t::gadget->get_image_id(SKIN_GADGET_CLOSE) );
+		if(  skinverwaltung_t::gadget  ) {
+			// no theme is loaded when there is no display, then the button stays blank
+			del.set_image( skinverwaltung_t::gadget->get_image_id(SKIN_GADGET_CLOSE) );
+		}
 		del.set_size( gui_theme_t::gui_arrow_left_size );
 		del.add_listener( this );
 		del.set_tooltip( "Delete the current stop" );
