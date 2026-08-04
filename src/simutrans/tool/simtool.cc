@@ -2587,8 +2587,11 @@ const way_desc_t *tool_build_way_t::get_desc() const
 	if (default_param && (n = strchr(default_param, ','))) {
 		char name[256];
 		long len = (long)(n-default_param);
-		tstrncpy( name, default_param, min(255,len));
-		desc = way_builder_t::get_desc(default_param, 0);
+		// tstrncpy terminates at dest[n-1], so ask for one more than the name length
+		tstrncpy( name, default_param, min(255l,len)+1 );
+		// look the way up by the name half only - default_param still carries the
+		// ",<automatic>" suffix, and no descriptor is ever called "<name>,1"
+		desc = way_builder_t::get_desc(name, 0);
 	}
 	else {
 		desc = default_param ? way_builder_t::get_desc(default_param, 0) : NULL;
