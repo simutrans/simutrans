@@ -575,19 +575,30 @@ function sroute_clear_catenary_loop(pl)
 }
 
 
+// stop at the first match instead of filtering the whole list: the pakset has 148 rail
+// vehicles and filter() spends an opcode budget on all of them to hand back a list whose
+// first entry is the only one used. The scripts run on a shared budget of 10000 opcodes,
+// so a scan that costs 727 where 18 will do is what makes these tests fail as soon as
+// anything is added ahead of them.
 function sroute_electric_loco()
 {
-	local list = vehicle_desc_x.get_available_vehicles(wt_rail).filter(@(idx, v) (v.needs_electrification() && v.can_be_first()))
-	ASSERT_TRUE(list.len() > 0)
-	return list[0]
+	foreach (v in vehicle_desc_x.get_available_vehicles(wt_rail)) {
+		if (v.needs_electrification()  &&  v.can_be_first()) {
+			return v
+		}
+	}
+	ASSERT_TRUE(false)
 }
 
 
 function sroute_diesel_loco()
 {
-	local list = vehicle_desc_x.get_available_vehicles(wt_rail).filter(@(idx, v) (!v.needs_electrification() && v.can_be_first() && v.get_power() > 0))
-	ASSERT_TRUE(list.len() > 0)
-	return list[0]
+	foreach (v in vehicle_desc_x.get_available_vehicles(wt_rail)) {
+		if (!v.needs_electrification()  &&  v.can_be_first()  &&  v.get_power() > 0) {
+			return v
+		}
+	}
+	ASSERT_TRUE(false)
 }
 
 
