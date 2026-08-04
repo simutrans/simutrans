@@ -105,7 +105,8 @@ adjust_image:
 	// drop the pixels but keep x/y/w/h: descriptors derive data from them
 	// (building_desc_t::calc_height_clearance), and that must not depend on the backend
 	if(  desc->len > 0  ) {
-		desc->len = 4;
+		// alloc() releases the buffer read above, setting len alone would keep it
+		desc->alloc(4);
 		memset(desc->data, 0, desc->len*sizeof(PIXVAL));
 	}
 #else
