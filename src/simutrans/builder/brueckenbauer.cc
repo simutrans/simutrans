@@ -11,6 +11,7 @@
 #include "../dataobj/scenario.h"
 
 #include "../descriptor/bridge_desc.h"
+#include "../descriptor/building_desc.h"
 
 #include "../ground/boden.h"
 #include "../ground/brueckenboden.h"
@@ -20,6 +21,7 @@
 
 #include "../obj/bruecke.h"
 #include "../obj/depot.h"
+#include "../obj/gebaeude.h"
 #include "../obj/leitung2.h"
 #include "../obj/pillar.h"
 #include "../obj/signal.h"
@@ -511,6 +513,21 @@ const char *bridge_builder_t::can_span_bridge(const player_t* player, koord3d st
 		grund_t* gr = pl->get_kartenboden();
 		if (desc->get_max_height()  &&  height - gr->get_hoehe() > desc->get_max_height()) {
 			return "bridge is too high for its type!";
+		}
+
+		// every building below must fit under the deck ("" lets a higher deck be tried)
+		for (unsigned b = 0; b < pl->get_boden_count(); b++) {
+			grund_t* below = pl->get_boden_bei(b);
+			if (below->get_hoehe() >= height) {
+				continue;
+			}
+			const gebaeude_t* gb = below->find<gebaeude_t>();
+			if (gb == NULL) {
+				gb = below->get_depot();
+			}
+			if (gb  &&  height - below->get_hoehe() < gb->get_tile()->get_desc()->get_height_clearance()) {
+				return "";
+			}
 		}
 
 		if (gr->hat_weg(air_wt)  &&  gr->get_styp(air_wt) == type_runway) {

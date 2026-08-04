@@ -102,19 +102,12 @@ obj_desc_t *image_reader_t::read_node(FILE *fp, obj_node_info_t &node)
 
 #if COLOUR_DEPTH == 0
 adjust_image:
-	// reset image parameters, but only for non-empty images
-	if(  desc->h > 0  ) {
-		desc->h = 1;
-	}
-	if(  desc->w > 0  ) {
-		desc->w = 1;
-	}
+	// drop the pixels but keep x/y/w/h: descriptors derive data from them
+	// (building_desc_t::calc_height_clearance), and that must not depend on the backend
 	if(  desc->len > 0  ) {
 		desc->len = 4;
 		memset(desc->data, 0, desc->len*sizeof(PIXVAL));
 	}
-	desc->x = 0;
-	desc->y = 0;
 #else
 	if (!image_has_valid_data(desc)) {
 		delete desc;
@@ -123,7 +116,7 @@ adjust_image:
 #endif
 
 	// check for left corner
-	if(version<2  &&  desc->h>0) {
+	if(COLOUR_DEPTH != 0  &&  version<2  &&  desc->h>0) {
 		// find left border
 		uint16 left = 255;
 		uint16 *dest = desc->data;

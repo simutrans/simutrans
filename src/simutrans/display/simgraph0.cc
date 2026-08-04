@@ -237,9 +237,13 @@ static void simgraph0_env_t_rgb_to_system_colors()
 {
 }
 
-static scr_coord_val simgraph0_set_base_raster_width(scr_coord_val)
+static scr_coord_val simgraph0_set_base_raster_width(scr_coord_val new_raster)
 {
-	return 0;
+	// nothing is drawn, but descriptors scale by it and must not differ from a graphical build
+	const scr_coord_val old = g_simgraph0.base_tile_raster_width;
+	g_simgraph0.base_tile_raster_width = new_raster;
+	g_simgraph0.tile_raster_width      = new_raster;
+	return old;
 }
 
 void set_zoom_factor(int)
