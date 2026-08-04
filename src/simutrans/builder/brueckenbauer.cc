@@ -909,6 +909,13 @@ void bridge_builder_t::build_ramp(player_t* player, koord3d end, ribi_t::ribi ri
 			bruecke->neuen_weg_bauen(weg, ribi_neu, 0);
 			weg->set_owner(player);
 		}
+		else {
+			// A way that was already here is paying maintenance to its owner, while the one
+			// built just above is booked to nobody. From here on both are part of the bridge,
+			// and remove() drops the owner of a way on a bridge tile rather than refunding it
+			// - so a charge left standing here is never given back.
+			player_t::add_maintenance( weg->get_owner(), -weg->get_desc()->get_maintenance(), weg->get_desc()->get_finance_waytype() );
+		}
 		weg->set_max_speed(desc->get_topspeed());
 	}
 	else {
