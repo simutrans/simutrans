@@ -8972,7 +8972,6 @@ bool tool_work_world_t::init(player_t*)
 			env_t::default_settings.heightfield = "";
 			welt->init(&env_t::default_settings, 0);
 		}
-		welt->step_month(env_t::default_settings.get_starting_month());
 		welt->set_pause(false);
 		destroy_all_win(true);
 		welt->type_of_generation = karte_t::NEW_WORLD;

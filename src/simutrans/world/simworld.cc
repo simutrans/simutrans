@@ -1242,7 +1242,9 @@ void karte_t::init(settings_t* const sets, sint8 const* const h_field)
 		// before the first town hall no city could be founded, so do not start there
 		settings.set_starting_year( max( settings.get_starting_year(), hausbauer_t::get_earliest_townhall_year() ) );
 	}
-	last_month = 0;
+	// the whole starting date is set here, so the map is generated with the timeline of the
+	// month it starts in and not with January
+	last_month = clamp( settings.get_starting_month(), (sint16)0, (sint16)11 );
 	last_year = settings.get_starting_year();
 	current_month = last_month + (last_year*12);
 	set_ticks_per_world_month_shift(settings.get_bits_per_month());
