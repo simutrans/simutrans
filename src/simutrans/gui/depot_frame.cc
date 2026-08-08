@@ -1113,7 +1113,7 @@ void depot_frame_t::image_from_convoi_list(uint nr, bool to_end)
 		while(  start_nr > 0  ) {
 			start_nr--;
 			const vehicle_desc_t *info = cnv->get_vehicle(start_nr)->get_desc();
-			if(  info->get_trailer_count() != 1  ) {
+			if (info->get_trailer_count() != 1  ||  info->get_trailer(0) != vehicle_desc_t::any_vehicle) {
 				start_nr++;
 				break;
 			}

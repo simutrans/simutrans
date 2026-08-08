@@ -8458,10 +8458,17 @@ bool tool_change_depot_t::init( player_t *player )
 					int nr = start_nr;
 
 					// find end
-					while(nr<cnv->get_vehicle_count()) {
-						const vehicle_desc_t *info = cnv->get_vehicle(nr)->get_desc();
-						nr ++;
-						if(info->get_trailer_count()!=1) {
+					while (nr < cnv->get_vehicle_count()) {
+						const vehicle_desc_t* info = cnv->get_vehicle(nr)->get_desc();
+						nr++;
+						if (info->get_trailer_count() == 1) {
+							vehicle_desc_t const* const veh = info->get_trailer(0);
+							// the leading is any, we should keep it.
+							if (veh != vehicle_desc_t::any_vehicle) {
+								break;
+							}
+						}
+						else {
 							break;
 						}
 					}
