@@ -1238,6 +1238,10 @@ void karte_t::init(settings_t* const sets, sint8 const* const h_field)
 	schedule_counter = 0;
 	// ticks = 0x7FFFF800;  // Testing the 31->32 bit step
 
+	if(  settings.get_use_timeline()  ) {
+		// before the first town hall no city could be founded, so do not start there
+		settings.set_starting_year( max( settings.get_starting_year(), hausbauer_t::get_earliest_townhall_year() ) );
+	}
 	last_month = 0;
 	last_year = settings.get_starting_year();
 	current_month = last_month + (last_year*12);

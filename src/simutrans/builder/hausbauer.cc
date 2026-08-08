@@ -848,6 +848,20 @@ const building_desc_t* hausbauer_t::get_random_station(const building_desc_t::bt
 }
 
 
+sint16 hausbauer_t::get_earliest_townhall_year()
+{
+	uint16 earliest = 0xFFFF;
+	for(building_desc_t const* const desc : townhalls) {
+		earliest = min( earliest, desc->get_intro_year_month() );
+	}
+	if(  earliest == 0xFFFF  ) {
+		return 0;
+	}
+	// a town hall introduced during a year is of no use to a game starting in January
+	return (earliest + 11) / 12;
+}
+
+
 const building_desc_t* hausbauer_t::get_special(uint32 bev, building_desc_t::btype type, uint16 time, bool ignore_retire, climate cl)
 {
 	weighted_vector_tpl<const building_desc_t *> auswahl(16);

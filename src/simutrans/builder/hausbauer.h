@@ -96,6 +96,12 @@ public:
 	/// @returns headquarters with level @p level (takes the first matching one)
 	static const building_desc_t* get_headquarters(int level, uint16 time);
 
+	/**
+	 * @returns the first year in which a town hall can be built, so no city could
+	 * exist before it. Zero if the pakset has no town hall to ask.
+	 */
+	static sint16 get_earliest_townhall_year();
+
 	/// @returns a random tourist attraction matching the requirements.
 	static const building_desc_t* get_random_attraction(uint16 time, bool ignore_retire, climate cl)
 	{
