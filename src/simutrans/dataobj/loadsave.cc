@@ -1051,7 +1051,7 @@ void loadsave_t::rdwr_str( char* result_buffer, size_t const size)
 	if(!is_xml()) {
 		uint16 len;
 		if(is_saving()) {
-			len = (uint16)min(LS_MAX_STRING_LEN,strlen(result_buffer));
+			len = (uint16)min(LS_MAX_STRING_LEN, strlen(result_buffer));
 #ifdef SIM_BIG_ENDIAN
 			{
 				sint16 ii = endian(len);
@@ -1066,7 +1066,7 @@ void loadsave_t::rdwr_str( char* result_buffer, size_t const size)
 			read(&len, sizeof(uint16));
 			len = endian(len);
 			if(  len >= size) {
-				fatal( "loadsave_t::rdwr_str()","string longer (%i) than allowed size (%i)", len, size );
+				fatal( "loadsave_t::rdwr_str()","string longer (%hi) than allowed size (%zi)", len, size );
 			}
 			read(result_buffer, len);
 			result_buffer[len] = '\0';
@@ -1132,7 +1132,7 @@ void loadsave_t::rdwr_str( char* result_buffer, size_t const size)
 					}
 				}
 				*s = 0;
-				fatal( "loadsave_t::rdwr_str()","string too long (exceeded %i characters)", size );
+				fatal( "loadsave_t::rdwr_str()","string too long (exceeded %zi characters)", size );
 			}
 		}
 	}
