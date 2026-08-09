@@ -4275,7 +4275,7 @@ DBG_MESSAGE("karte_t::load()", "%d factories loaded", all_factories.get_count())
 	// show message about server
 	if(  file->is_version_atleast(112, 8)  ) {
 		xml_tag_t t( file, "motd_t" );
-		char msg[0x7FFE];
+		char msg[MAX_MOTD_LEN+1] = { 0 };
 		file->rdwr_str( msg, lengthof(msg));
 
 		if (env_t::server) {
@@ -4286,13 +4286,13 @@ DBG_MESSAGE("karte_t::load()", "%d factories loaded", all_factories.get_count())
 				struct stat st;
 				stat(env_t::server_motd_filename.c_str(), &st);
 
-				sint32 len = min(32760, st.st_size + 1);
+				sint32 len = min(MAX_MOTD_LEN, st.st_size);
 				char* motd = (char*)malloc(len);
-				if (fread(motd, len - 1, 1, fmotd) != 1) {
-					len = 1;
+				if (fread(motd, len, 1, fmotd) != 1) {
+					len = 0;
 				}
 				fclose(fmotd);
-				motd[len - 1] = 0;
+				motd[len] = 0;
 				settings.motd = motd;
 				free(motd);
 			}

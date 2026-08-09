@@ -19,6 +19,8 @@
 #include "../utils/log.h"
 
 
+#define MAX_MOTD_LEN 0x7FFF
+
 #define TILE_HEIGHT_STEP (env_t::pak_tile_height_step)
 
 enum { MENU_LEFT, MENU_TOP, MENU_RIGHT, MENU_BOTTOM };

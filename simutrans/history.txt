@@ -27,6 +27,7 @@
 		 (If not set recalculated from the images)
 	FIX: Crash when using makeobj 'merge' or 'extract' commands
 	ADD: (victor_18993) schedule editor shows the route of the schedule on the map
+	FIX: Crash on Windows when receiving gameinfo for server with motd with >= 260 chars
 
 
 Release of 124.5 (r11993 on 31-May-2026):

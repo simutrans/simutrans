@@ -172,8 +172,10 @@ void gameinfo_t::rdwr(loadsave_t *file)
 		pak_name = temp;
 	}
 	if (file->is_version_atleast(124, 4)) {
-		// get motd from server (to keep paket small, max message is truncated to 1024 bytes)
-		tstrncpy(temp, motd.c_str(), lengthof(temp));
+		// cannot use the temp buffer above because PATH_MAX is 260 on Windows
+		// which is too small (need at least MAX_MOTD_LEN+1
+		char motd_buf[MAX_MOTD_LEN+1];
+		tstrncpy(temp, motd.c_str(), lengthof(motd_buf));
 		file->rdwr_str(temp, lengthof(temp)); // motd for server
 		if (file->is_loading()) {
 			motd = temp;
