@@ -4275,8 +4275,8 @@ DBG_MESSAGE("karte_t::load()", "%d factories loaded", all_factories.get_count())
 	// show message about server
 	if(  file->is_version_atleast(112, 8)  ) {
 		xml_tag_t t( file, "motd_t" );
-		char msg[32766];
-		file->rdwr_str( msg, 32766 );
+		char msg[0x7FFE];
+		file->rdwr_str( msg, lengthof(msg));
 
 		if (env_t::server) {
 			// maybe show message about server
