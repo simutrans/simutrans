@@ -158,6 +158,15 @@ SQInteger command_work(HSQUIRRELVM vm)
 	 * (2) tool.work(pl, pos, param)
 	 * (3) tool.work(pl, pos, pos2, param)
 	 */
+	// In convention (3) the last argument is the tool's default_param and has to
+	// be a string: otherwise sq_getstring() below fails unnoticed, the tool is
+	// initialized with a NULL param, and that is reported as the unrelated
+	// "Error during initializing tool". Convention (2) is not checked, since its
+	// third argument may legitimately be a coord3d.
+	if (top>4  &&  sq_gettype(vm, top) != OT_STRING  &&  sq_gettype(vm, top) != OT_NULL) {
+		return sq_raise_error(vm, "Tool parameter must be a string or null; descriptors have to be passed as <desc>.get_name()");
+	}
+
 	const char* default_param = top>3 ? param<const char*>::get(vm, top) : NULL;
 	koord3d     pos2          = top>4 ? param<koord3d>::get(vm, 4)       : koord3d::invalid;
 

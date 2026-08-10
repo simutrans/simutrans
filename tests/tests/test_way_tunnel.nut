@@ -570,3 +570,49 @@ function test_way_tunnel_make_public()
 	ASSERT_EQUAL(command_x.grid_lower(public_pl, coord3d(5, 4, 1)), null)
 	RESET_ALL_PLAYER_FUNDS()
 }
+
+
+function test_way_tunnel_build_invalid_param_type()
+{
+	local digger = command_x(tool_build_tunnel)
+	local default_tunnel = tunnel_desc_x.get_available_tunnels(wt_road)[0]
+	local pl = player_x(0)
+
+	ASSERT_TRUE(default_tunnel != null)
+
+	// The fourth argument is the tool's default_param and has to be a string.
+	// A descriptor passed there used to be swallowed by the string conversion,
+	// leaving default_param NULL, and only surfaced further down as the
+	// misleading "Error during initializing tool".
+	{
+		local error_caught = false
+		try {
+			digger.work(pl, coord3d(3, 1, 0), coord3d(3, 2, 0), default_tunnel)
+		}
+		catch (e) {
+			error_caught = true
+			ASSERT_EQUAL(e, "Tool parameter must be a string or null; descriptors have to be passed as <desc>.get_name()")
+		}
+		ASSERT_TRUE(error_caught)
+	}
+
+	// null is a valid parameter and must pass the check: it reaches the tool,
+	// which then reports its own error because no tunnel is named. A string is
+	// valid too and is exercised with a real descriptor name by
+	// test_way_tunnel_build_up_down and test_way_tunnel_build_above_tunnel_slope.
+	{
+		local error_caught = false
+		try {
+			digger.work(pl, coord3d(3, 1, 0), coord3d(3, 2, 0), null)
+		}
+		catch (e) {
+			error_caught = true
+			ASSERT_EQUAL(e, "Error during initializing tool")
+		}
+		ASSERT_TRUE(error_caught)
+	}
+
+	// Nothing was built: the check happens before the tool is initialized,
+	// and a tunnel would show up as maintenance here.
+	RESET_ALL_PLAYER_FUNDS()
+}

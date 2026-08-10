@@ -256,6 +256,7 @@ all_tests <- [
 	test_way_tunnel_build_above_tunnel_slope,
 	test_way_tunnel_build_across_tunnel_slope,
 	test_way_tunnel_make_public,
+	test_way_tunnel_build_invalid_param_type,
 	test_wayobj_build_straight,
 	test_wayobj_build_disconnected,
 	test_wayobj_upgrade_downgrade,
