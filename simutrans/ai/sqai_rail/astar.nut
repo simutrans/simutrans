@@ -1972,7 +1972,7 @@ function expand_station(pl, fields, wt, select_station, start_fld, combined_halt
           rotation = 0
         }
 
-        if (debug) gui.add_message_at(pl, "(1952) ---=> set the rotation for build " + rotation, fields[i])
+        //if (debug) gui.add_message_at(pl, "(1952) ---=> set the rotation for build " + rotation, fields[i])
 
         err = command_x.build_station(pl, fields[i], select_station, rotation)
         if ( err ) {
