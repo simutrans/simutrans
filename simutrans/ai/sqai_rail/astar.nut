@@ -4305,7 +4305,7 @@ function optimize_way_line(route, wt, int_run, o_line) {
   // 2 = tunnel
   // 3 = crossing
   // 4 = terraform
-  local print_message_box = 2
+  local print_message_box = 0
 
   if ( print_message_box > 5 ) { //wt == wt_road && wt == wt_rail &&
     gui.add_message_at(our_player, " optimize_way_line(route, wt) ", tile_x(route[0].x, route[0].y, route[0].z))
