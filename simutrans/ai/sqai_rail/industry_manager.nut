@@ -130,7 +130,6 @@ class industry_manager_t extends manager_t
     base.constructor("industry_manager_t")
     link_list = {}
     ::industry_manager = this
-    debug = false
   }
 
   /// Generate unique key from link data
@@ -556,7 +555,7 @@ class industry_manager_t extends manager_t
   function check_link_line(link, line)
   {
 
-    if ( debug ) ::debug.set_pause_on_error(true)
+    if ( debug.messages ) ::debug.set_pause_on_error(true)
 
     // set first run as line build time
     /*if ( line.build_line == 0 ) {
@@ -573,6 +572,7 @@ class industry_manager_t extends manager_t
     // 4 = cnv status retired / all to old
     // 5 = electrified
     // 6 and pl 4
+    // 7 upgrade way
     local print_message_box = 0
 
     local wt = line.get_waytype()
@@ -1047,10 +1047,10 @@ class industry_manager_t extends manager_t
         if ( gt[0].is_bridge == false && gt[1].is_bridge == false ) {
           local bridge_obj = find_object("bridge", wt, line.line_way_speed)
           command_x.build_bridge(our_player, gt[0], gt[1], bridge_obj)
-          if ( debug ) gui.add_message_at(our_player, "**** line 800 - build missing bridge in route ## ", gt[0])
+          if ( debug.messages ) gui.add_message_at(our_player, "**** line 800 - build missing bridge in route ## ", gt[0])
         }
       }
-      //if ( debug ) gui.add_message_at(our_player, "**** line 816 - line_bridges_count = " + line.line_bridges_count + " ## ", g[0])
+      //if ( debug.messages ) gui.add_message_at(our_player, "**** line 816 - line_bridges_count = " + line.line_bridges_count + " ## ", g[0])
 
     }
 
@@ -1088,7 +1088,7 @@ class industry_manager_t extends manager_t
       }
       if ( line.line_bridges.len() > 0 ) {
         local g = line.line_bridges[0]
-        if ( debug ) gui.add_message_at(our_player, "**** line 828 - line_bridges_count = " + line.line_bridges_count + " ## ", g[0])
+        if ( debug.messages ) gui.add_message_at(our_player, "**** line 828 - line_bridges_count = " + line.line_bridges_count + " ## ", g[0])
       }
     }
 
@@ -1165,6 +1165,7 @@ class industry_manager_t extends manager_t
       local way_obj = find_object("way", wt, cnv_max_speed)
       //gui.add_message_at(our_player, " way max speed new " + way_obj.get_topspeed(), world.get_time())
 
+      local err = null
       if ( cnv_max_speed >= way_speed && upgrade_tiles > 2 ) {
         local costs = (upgrade_tiles*(way_obj.get_cost()/100))
         local count_build = 0
@@ -1176,7 +1177,22 @@ class industry_manager_t extends manager_t
             local tile_way_1 = tile_x(nexttile[i-1].x, nexttile[i-1].y, nexttile[i-1].z)
             local tile_way_2 = tile_x(nexttile[i].x, nexttile[i].y, nexttile[i].z)
             if ( tile_way_2.find_object(mo_way) != null && (tile_way_2.find_object(mo_way).get_owner().nr == our_player_nr || tile_way_2.find_object(mo_way).get_owner().nr == 1) && tile_way_2.find_object(mo_way).get_desc().get_topspeed() < way_obj.get_topspeed() ) {
-              command_x.build_way(our_player, tile_way_1, tile_way_2, way_obj, true)
+              err = command_x.build_way(our_player, tile_way_1, tile_way_2, way_obj, true)
+              if ( print_message_box == 7 && err != null ) {
+                gui.add_message_at(our_player, " ## err upgrade way: " + err, tile_way_1)
+              }
+              while ( err != null ) {
+                tile_way_1 = square_x(tile_way_1.x, tile_way_1.y).get_ground_tile()
+                tile_way_2 = square_x(tile_way_2.x, tile_way_2.y).get_ground_tile()
+                if ( tile_way_1.find_object(mo_way) && tile_way_2.find_object(mo_way) ) {
+                  // way check
+                  err = command_x.build_way(our_player, tile_way_1, tile_way_2, way_obj, true)
+                } else {
+                  // bridge check ?
+                  err = null
+                }
+
+              }
               count_build++
             }
           }
@@ -1800,16 +1816,16 @@ class industry_manager_t extends manager_t
             if ( ret ) {
               line.halt_length = st_lenght
               // set new line entries
-              local entries = line.get_schedule().entries
+              /*local entries = line.get_schedule().entries
               if ( entries.len() >= 2 ) {
                 start_l = tile_x(entries[0].x, entries[0].y, entries[0].z)
                 end_l = tile_x(entries[entries.len()-1].x, entries[entries.len()-1].y, entries[entries.len()-1].z)
-              }
+              }*/
             }
           }
 
           if ( wt == wt_rail && proto.veh[0].needs_electrification() ) {
-            build_catenary(start_l, end_l, depot, line)
+            build_catenary(depot, line)
           }
 
           local msgtext = format(translate("%s build additional convoy to line: %s"), our_player.get_name(), line.get_name())
@@ -2041,7 +2057,7 @@ class industry_manager_t extends manager_t
     }
 
     if ( wt == wt_rail && c.p_convoy.veh[0].needs_electrification() ) {
-      build_catenary(route[0], route[route.len()-1], depot, line)
+      build_catenary(depot, line)
     }
 
     c.p_withdraw = true
@@ -2354,18 +2370,24 @@ class industry_manager_t extends manager_t
           break
       }
 
-
+      local err = null
       for ( local i = 0; i <= b_count; i++ ) {
         local station_obj = (i % 2) ? station_s_obj : station_e_obj
-        if ( print_message_box == 1 ) {
+        if ( print_message_box == 0 ) {
           gui.add_message_at(our_player, "####### [i] " + i, expand_station[i])
         }
 
         if ( expand_station[i].find_object(mo_way) == null ) {
           local build_tile = (i % 2) ? start_l : end_l
-          if ( terraform_tile(expand_station[i], build_tile.z) ) {
-            command_x.build_way(our_player, build_tile, expand_station[i], way_obj, true)
-            command_x.build_station(our_player, expand_station[i], station_obj)
+          local terraform_tile = terraform_tile(expand_station[i], build_tile.z)
+          //gui.add_message_at(our_player, " ---=> terraform " + terraform_tile, build_tile)
+          if ( terraform_tile ) {
+            expand_station[i] = square_x(expand_station[i].x, expand_station[i].y).get_ground_tile()
+            err = command_x.build_way(our_player, build_tile, expand_station[i], way_obj, true)
+            if ( err ) {
+              gui.add_message_at(our_player, err + " ####### build way to tile " + coord3d_to_string(expand_station[i]), expand_station[i])
+            }
+            err = command_x.build_station(our_player, expand_station[i], station_obj)
             if ( catenary_obj != null ) {
               command_x.build_wayobj(our_player, build_tile, expand_station[i], catenary_obj)
             }
@@ -2384,6 +2406,28 @@ class industry_manager_t extends manager_t
             }
             //::debug.pause()
 
+          } else {
+            // error by terraform
+            local t = null
+            local j = 1
+            if ( build_tile == nexttile[nexttile.len()-1] ) {
+              t = nexttile[nexttile.len()-1-station_exist]
+              while( t.find_object(mo_building) != null ) {
+                t = nexttile[nexttile.len()-1-station_exist-j]
+                j++
+              }
+            } else if ( build_tile = nexttile[0] ) {
+              t = nexttile[station_exist]
+              while( t.find_object(mo_building) != null ) {
+                t = nexttile[station_exist+j]
+                j++
+              }
+            }
+            //gui.add_message_at(our_player, "t " + coord3d_to_string(t), world.get_time())
+            err = command_x.build_station(our_player, t, station_obj)
+            if ( err != null ) {
+              return false
+            }
           }
           //::debug.pause()
         } else {
@@ -2405,6 +2449,8 @@ class industry_manager_t extends manager_t
       local message_text = format(translate("%s expand the station %s (%s) and station %s (%s)"), our_player.get_name(), start_l.get_halt().get_name(), coord_to_string(start_l), end_l.get_halt().get_name(), coord_to_string(end_l))
       gui.add_message_at(our_player, message_text, start_l)
       //::debug.pause()
+
+      sleep()
 
       return true
     }
@@ -2460,9 +2506,18 @@ class industry_manager_t extends manager_t
 
   }
 
-  function build_catenary(start_l, end_l, depot, line) {
+  function build_catenary(depot, line) {
     local print_message_box = 0
     local wt = line.get_waytype()
+
+    local start_l = null
+    local end_l = null
+
+    local entries = line.get_schedule().entries
+    if ( entries.len() >= 2 ) {
+      start_l = tile_x(entries[0].x, entries[0].y, entries[0].z)
+      end_l = tile_x(entries[entries.len()-1].x, entries[entries.len()-1].y, entries[entries.len()-1].z)
+    }
 
     local way_obj = start_l.find_object(mo_way).get_desc() //way_list[0]
     if ( !way_obj.is_available(world.get_time()) ) {

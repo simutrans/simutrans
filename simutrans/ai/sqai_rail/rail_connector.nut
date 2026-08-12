@@ -42,7 +42,7 @@ class rail_connector_t extends manager_t
   constructor()
   {
     base.constructor("rail_connector_t")
-    debug = false
+    //debug = false
   }
 
   function work()
@@ -56,8 +56,6 @@ class rail_connector_t extends manager_t
 
     local s_src = null
     local s_dest = null
-
-
 
     if ( phase == 0 ) {
       if ( !check_link_catg_goods(fsrc, fdest, freight) ) {
@@ -82,9 +80,9 @@ class rail_connector_t extends manager_t
       }
       if ( (build_check_month > world.get_time().ticks || build_cost > build_cash) && industry_manager.get_combined_link(fsrc, fdest, freight) == 0 ) {
         // not build link
-        if ( debug ) gui.add_message_at(our_player, "#rail_conn# not build line : build_check_month = " + build_check_month + " or build cost link > cash : build cost line " + industry_manager.get_link_build_cost(fsrc, fdest, freight, 1) + " | build cost link " + industry_manager.get_link_build_cost(fsrc, fdest, freight, 0), world.get_time())
-        if ( debug ) gui.add_message_at(our_player, " ---> link " + fsrc + "  " + fsrc.get_name() + " - " + fdest.get_name(), world.get_time())
-        //if ( debug ) gui.add_message_at(our_player, " ---> phase " + phase, world.get_time())
+        if ( debug.messages ) gui.add_message_at(our_player, "#rail_conn# not build line : build_check_month = " + build_check_month + " or build cost link > cash : build cost line " + industry_manager.get_link_build_cost(fsrc, fdest, freight, 1) + " | build cost link " + industry_manager.get_link_build_cost(fsrc, fdest, freight, 0), world.get_time())
+        if ( debug.messages ) gui.add_message_at(our_player, " ---> link " + fsrc + "  " + fsrc.get_name() + " - " + fdest.get_name(), world.get_time())
+        //if ( debug.messages ) gui.add_message_at(our_player, " ---> phase " + phase, world.get_time())
 
         industry_manager.set_link_state(fsrc, fdest, freight, industry_link_t.st_missing)
 
@@ -140,7 +138,7 @@ class rail_connector_t extends manager_t
                 }
               }
             }
-            if ( debug ) {
+            if ( debug.messages ) {
               gui.add_message_at(pl, "c_start " + coord_to_string(c_start[0]) + " c_end " + coord_to_string(c_end[0]), c_end[0])
               ::debug.pause
 
@@ -873,8 +871,8 @@ class depot_pathfinder extends astar_builder
 
       for (local i = 1; i<route.len(); i++) {
         local err = command_x.build_way(our_player, route[i-1], route[i], way, false )
-        if (debug) gui.add_message_at(our_player, "command_x.build_way rail  search_route : " + err, world.get_time())
-        if (err) {
+        if ( debug.messages ) gui.add_message_at(our_player, "command_x.build_way rail  search_route : " + err, world.get_time())
+        if ( err ) {
           gui.add_message_at(our_player, "Failed to build rail from  " + coord_to_string(route[i-1]) + " to " + coord_to_string(route[i]) +"\n" + err, route[i])
           return { err =  err }
         }

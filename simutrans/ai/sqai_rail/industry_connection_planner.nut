@@ -54,7 +54,7 @@ class industry_connection_planner_t extends manager_t
   {
     base.constructor("industry_connection_planner_t");
     fsrc = s; fdest = d; freight = f;
-    debug = false
+    //debug = false
   }
 
   /**
@@ -65,8 +65,11 @@ class industry_connection_planner_t extends manager_t
    */
   function step()
   {
-    wt_name.resize(17, null)
-    wt_name.insert(16, "wt_air")
+    if ( wt_name.len() == 4 ) {
+      wt_name.resize(17, null)
+      wt_name.insert(16, "wt_air")
+
+    }
 
     local tic = get_ops_total();
 
@@ -211,7 +214,9 @@ class industry_connection_planner_t extends manager_t
       // distance factorys
       distance = abs(fsrc.x - fdest.x) + abs(fsrc.y - fdest.y)
       // add 10% from distance
-      distance + (distance / 100 * 10)
+      if ( wt != wt_air ) {
+        distance + (distance / 100 * 10)
+      }
     }
 
     // plan convoy prototype
@@ -249,20 +254,21 @@ class industry_connection_planner_t extends manager_t
       local t = tile_x(fsrc.x, fsrc.y, 0)
       gui.add_message_at(our_player, "Plan " + wt_name[wt] + " link for " + freight + " from " + fsrc.get_name() + " at " + fsrc.x + "," + fsrc.y + " to "+ fdest.get_name() + " at " + fdest.x + "," + fdest.y, t)
     }
-    if ( debug ) {
+    if ( debug && print_message_box == 0 ) {
       local t = tile_x(fsrc.x, fsrc.y, 0)
       gui.add_message_at(our_player, "Plan " + wt_name[wt] + " link for " + freight + " from " + fsrc.get_name() + " at " + fsrc.x + "," + fsrc.y + " to "+ fdest.get_name() + " at " + fdest.x + "," + fdest.y, t)
     }
     local bound_valuator = valuator_simple_t.valuate_monthly_transport.bindenv(cnv_valuator)
     prototyper.valuate = bound_valuator
 
-    if ( print_message_box > 0 ) {
-      //local v = valuator_simple_t.valuate_monthly_transport.bindenv(cnv_valuator)
-      gui.add_message_at(our_player, wt_name[wt] + " - prototyper.step().has_failed() "  + prototyper.step().has_failed(), world.get_time())
-    }
 
     if (prototyper.step().has_failed()) {
-      if (debug) gui.add_message_at(our_player, "ERROR # no " + wt_name[wt] + " vehicle found for freight " + freight, world.get_time())
+      if ( debug && print_message_box == 0 ) gui.add_message_at(our_player, "ERROR # no " + wt_name[wt] + " vehicle found for freight " + freight, world.get_time())
+      if ( print_message_box > 0 ) {
+        //local v = valuator_simple_t.valuate_monthly_transport.bindenv(cnv_valuator)
+        gui.add_message_at(our_player, "ERROR # no " + wt_name[wt] + " vehicle found for freight " + freight, world.get_time())
+        gui.add_message_at(our_player, "___________________________ End  plan_simple_connection __________________________", world.get_time())
+      }
       return null
     }
     local planned_convoy = prototyper.best
@@ -280,6 +286,14 @@ class industry_connection_planner_t extends manager_t
     }
     else if (wt == wt_air) {
       planned_way = openair
+
+      local taxiway = find_object("way", wt_air, 100, st_flat)
+      //local runway  = find_object("way", wt_air, 100, st_runway)
+
+      cnv_valuator.way_maintenance = taxiway.get_maintenance()
+
+      local test = cnv_valuator.valuate_monthly_transport(planned_convoy)
+      r.gain_per_m = test
     }
     else {
       local way_list = way_desc_x.get_available_ways(wt, st_flat)
@@ -351,10 +365,6 @@ class industry_connection_planner_t extends manager_t
     // valuate again with best way
     //r.gain_per_m = cnv_valuator.valuate_monthly_transport(planned_convoy)
 
-    if ( print_message_box == 1 ) {
-      gui.add_message_at(our_player, "*** ", world.get_time())
-      gui.add_message_at(our_player, "plan station ", world.get_time())
-    }
     // plan station
     local planned_station = null
     local planned_harbour_flat = null
@@ -368,6 +378,11 @@ class industry_connection_planner_t extends manager_t
     }
     if (wt != wt_water) {
       local station_list = building_desc_x.get_available_stations(building_desc_x.station, wt, good_desc_x(freight))
+
+      if ( station_list.len() == 0 && wt == wt_air) {
+        station_list = building_desc_x.get_available_stations(building_desc_x.station, wt, {})
+      }
+
       if ( wt == wt_rail ) {
         planned_station = select_station(station_list, 8, planned_convoy.capacity)
       }
@@ -386,6 +401,10 @@ class industry_connection_planner_t extends manager_t
       station_list = building_desc_x.get_available_stations(building_desc_x.flat_harbour, wt_water, good_desc_x(freight))
       planned_harbour_flat = select_station(station_list, 1, planned_convoy.capacity)
 
+    }
+    if ( print_message_box == 1 ) {
+      gui.add_message_at(our_player, "*** ", world.get_time())
+      gui.add_message_at(our_player, "plan station " + planned_station, world.get_time())
     }
 
 
@@ -530,7 +549,7 @@ class industry_connection_planner_t extends manager_t
           r.points += 0
           break
         case wt_air:
-          r.points += 20
+          r.points += 30
           break
       }
     }
@@ -545,6 +564,9 @@ class industry_connection_planner_t extends manager_t
           break
         case wt_water:
           r.points += 0
+          break
+        case wt_air:
+          r.points -= 30
           break
       }
     }
@@ -687,6 +709,10 @@ class industry_connection_planner_t extends manager_t
             cash_buffer = 10
           }
           break
+        case wt_air:
+          r.points -= 30
+          cash_buffer = 10
+          break
       }
     }
 
@@ -708,6 +734,9 @@ class industry_connection_planner_t extends manager_t
           } else if ( planned_bridge.tiles > 15 ) {
             r.points -= (15*bridge_year_factor)
           }
+          break
+        case wt_air:
+          r.points += 30
           break
       }
     }
@@ -775,7 +804,7 @@ class industry_connection_planner_t extends manager_t
 
           break
         case wt_air:
-          r.points += 20
+          r.points += 30
           break
       }
     }
@@ -945,7 +974,7 @@ class industry_connection_planner_t extends manager_t
     // retire station
     local min_retire = planned_station.get_retire_date().raw
     // retire way
-    if ( ( wt != wt_water && wt != wt_air ) && planned_way.get_retire_date().raw < min_retire ) {
+    if ( wt != wt_water && wt != wt_air && planned_way.get_retire_date().raw < min_retire ) {
       min_retire = planned_way.get_retire_date().raw
     }
     // retire depot

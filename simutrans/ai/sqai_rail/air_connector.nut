@@ -44,7 +44,7 @@ class air_connector_t extends manager_t
   constructor()
   {
     base.constructor("air_connector_t")
-    debug = false
+    //debug = false
   }
 
   function work()
@@ -81,8 +81,8 @@ class air_connector_t extends manager_t
       }
       if ( (build_check_month > world.get_time().ticks || build_cost > build_cash) && industry_manager.get_combined_link(fsrc, fdest, freight) == 0 ) {
         // not build link
-        if ( debug ) gui.add_message_at(our_player, "#air_conn# not build line : build_check_month = " + build_check_month + " or build cost link > cash : build cost line " + industry_manager.get_link_build_cost(fsrc, fdest, freight, 4) + " | build cost link " + industry_manager.get_link_build_cost(fsrc, fdest, freight, 0), world.get_time())
-        if ( debug ) gui.add_message_at(our_player, " ---> link " + fsrc + "  " + fsrc.get_name() + " - " + fdest.get_name(), world.get_time())
+        if ( debug.messages ) gui.add_message_at(our_player, "#air_conn# not build line : build_check_month = " + build_check_month + " or build cost link > cash : build cost line " + industry_manager.get_link_build_cost(fsrc, fdest, freight, 4) + " | build cost link " + industry_manager.get_link_build_cost(fsrc, fdest, freight, 0), world.get_time())
+        if ( debug.messages ) gui.add_message_at(our_player, " ---> link " + fsrc + "  " + fsrc.get_name() + " - " + fdest.get_name(), world.get_time())
 
         industry_manager.set_link_state(fsrc, fdest, freight, industry_link_t.st_missing)
 
@@ -220,15 +220,15 @@ class air_connector_t extends manager_t
 
           // check accept goods
           local accept_freight = planned_station.enables_freight()
-            gui.add_message_at(our_player, "air - planned_station.enables_freight() " + accept_freight, world.get_time())
+            //gui.add_message_at(our_player, "air - planned_station.enables_freight() " + accept_freight, world.get_time())
           if ( !accept_freight ) {
             local extension = find_extension(wt_air)
             if ( extension != null ) {
-              if ( !build_exrension(start_airport[0]) ) {
+              if ( !build_extension(start_airport[0], extension) ) {
                 // not build extension
               }
 
-              if ( !build_exrension(end_airport[0]) ) {
+              if ( !build_extension(end_airport[0], extension) ) {
                 err = command_x.build_station(our_player, end_airport[1], extension)
               }
 
@@ -527,7 +527,7 @@ class air_connector_t extends manager_t
     return false
   }
 
-  function build_exrension(tile) {
+  function build_extension(tile, extension) {
     local d = tile.get_way_dirs(wt_air)
               local tiles = []
               switch(d) {
@@ -571,8 +571,10 @@ class air_connector_t extends manager_t
 
               for ( local i = 0; i < tiles.len(); i++ ) {
                 if ( test_tile_is_empty(tiles[i]) ) {
-                  local err = command_x.build_station(our_player, tiles[i], extension)
-                  return true
+                  local  err = command_x.build_station(our_player, tiles[i], extension)
+                  if ( err == null ) {
+                    return true
+                  }
                 }
               }
     return false
