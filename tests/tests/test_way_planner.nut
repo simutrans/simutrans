@@ -186,3 +186,76 @@ function test_way_planner_unconfigured()
 	ASSERT_FALSE(planner.is_allowed_step(tile_x(2, 2, 0), tile_x(3, 2, 0)))
 	ASSERT_EQUAL(planner.get_step_cost(tile_x(2, 2, 0), tile_x(3, 2, 0)), null)
 }
+
+
+function test_way_planner_tram_shares_road()
+{
+	local pl   = player_x(0)
+	local road = way_desc_x.get_available_ways(wt_road, st_flat)[0]
+	local tram = way_desc_x.get_available_ways(wt_rail, st_tram)[0]
+	local rail = way_desc_x.get_available_ways(wt_rail, st_flat)[0]
+	ASSERT_TRUE(tram != null)
+
+	ASSERT_EQUAL(command_x.build_way(pl, coord3d(3, 1, 0), coord3d(3, 4, 0), road, true), null)
+
+	local tram_planner = way_planner_x(pl)
+	tram_planner.set_build_types(tram)
+	local rail_planner = way_planner_x(pl)
+	rail_planner.set_build_types(rail)
+
+	// a tram runs along the road it shares, a normal track has to cross it
+	ASSERT_EQUAL(tram_planner.get_step_cost(tile_x(3, 2, 0), tile_x(3, 3, 0)), WAY_COUNT_NO_WAY + WAY_COUNT_STRAIGHT)
+	ASSERT_FALSE(rail_planner.is_allowed_step(tile_x(3, 2, 0), tile_x(3, 3, 0)))
+
+	local remover = command_x(tool_remove_way)
+	ASSERT_EQUAL(remover.work(pl, tile_x(3, 1, 0), tile_x(3, 4, 0), "" + wt_road), null)
+
+	RESET_ALL_PLAYER_FUNDS()
+}
+
+
+function test_way_planner_elevated_passes_over_road()
+{
+	local pl       = player_x(0)
+	local road     = way_desc_x.get_available_ways(wt_road, st_flat)[0]
+	local elevated = way_desc_x.get_available_ways(wt_monorail, st_elevated)[0]
+	local flat     = way_desc_x.get_available_ways(wt_monorail, st_flat)[0]
+	ASSERT_TRUE(elevated != null)
+
+	ASSERT_EQUAL(command_x.build_way(pl, coord3d(3, 1, 0), coord3d(3, 4, 0), road, true), null)
+
+	local high = way_planner_x(pl)
+	high.set_build_types(elevated)
+	local low = way_planner_x(pl)
+	low.set_build_types(flat)
+
+	// the elevated way passes above the road, the flat way of the same type cannot
+	ASSERT_EQUAL(high.get_step_cost(tile_x(2, 2, 0), tile_x(3, 2, 0)), WAY_COUNT_NO_WAY)
+	ASSERT_FALSE(low.is_allowed_step(tile_x(2, 2, 0), tile_x(3, 2, 0)))
+
+	local remover = command_x(tool_remove_way)
+	ASSERT_EQUAL(remover.work(pl, tile_x(3, 1, 0), tile_x(3, 4, 0), "" + wt_road), null)
+
+	RESET_ALL_PLAYER_FUNDS()
+}
+
+
+function test_way_planner_runway_is_not_elevated()
+{
+	local pl    = player_x(0)
+	local taxi  = way_desc_x.get_available_ways(wt_air, st_flat)[0]
+	local rway  = way_desc_x.get_available_ways(wt_air, st_runway)[0]
+	ASSERT_TRUE(rway != null)
+
+	// st_runway and st_elevated are the same value, so a runway must stay a flat air way
+	ASSERT_EQUAL(command_x.build_way(pl, coord3d(6, 1, 0), coord3d(6, 4, 0), taxi, true), null)
+
+	local planner = way_planner_x(pl)
+	planner.set_build_types(rway)
+	ASSERT_TRUE(planner.is_allowed_step(tile_x(6, 2, 0), tile_x(6, 3, 0)))
+
+	local remover = command_x(tool_remove_way)
+	ASSERT_EQUAL(remover.work(pl, tile_x(6, 1, 0), tile_x(6, 4, 0), "" + wt_air), null)
+
+	RESET_ALL_PLAYER_FUNDS()
+}

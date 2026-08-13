@@ -108,7 +108,15 @@ SQInteger way_builder_constructor(HSQUIRRELVM vm) // instance, player
 void way_builder_set_build_types(way_builder_t *bob, const way_desc_t *way)
 {
 	if (way) {
-		bob->init_builder( (way_builder_t::bautyp_t)way->get_waytype(), way, NULL /*tunnel*/, NULL /*bridge*/);
+		way_builder_t::bautyp_t bautyp = (way_builder_t::bautyp_t)way->get_waytype();
+		if (way->is_tram()) {
+			bautyp = way_builder_t::schiene_tram;
+		}
+		// type_elevated and type_runway share the same value, so air stays flat
+		if (way->get_styp() == type_elevated && way->get_waytype() != air_wt) {
+			bautyp |= way_builder_t::elevated_flag;
+		}
+		bob->init_builder( bautyp, way, NULL /*tunnel*/, NULL /*bridge*/);
 	}
 }
 
