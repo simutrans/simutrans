@@ -231,6 +231,7 @@ all_tests <- [
 	test_way_planner_step_cost_refused,
 	test_way_planner_step_cost_invalid,
 	test_way_planner_step_cost_matches_is_allowed_step,
+	test_way_planner_unconfigured,
 	test_way_road_build_single_tile,
 	test_way_road_build_straight,
 	test_way_road_build_bend,

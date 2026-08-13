@@ -176,3 +176,13 @@ function test_way_planner_step_cost_matches_is_allowed_step()
 
 	RESET_ALL_PLAYER_FUNDS()
 }
+
+
+function test_way_planner_unconfigured()
+{
+	// An unconfigured planner has no way to build, and must reject every step.
+	local planner = way_planner_x(player_x(0))
+
+	ASSERT_FALSE(planner.is_allowed_step(tile_x(2, 2, 0), tile_x(3, 2, 0)))
+	ASSERT_EQUAL(planner.get_step_cost(tile_x(2, 2, 0), tile_x(3, 2, 0)), null)
+}
