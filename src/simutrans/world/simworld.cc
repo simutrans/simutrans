@@ -4473,6 +4473,12 @@ void karte_t::rdwr_gamestate(loadsave_t *file, loadingscreen_t *ls)
 			dbg->fatal("karte_t::rdwr_gamestate", "Year out of range (%d >= %d)", last_year+1, INT_MAX/12);
 		}
 
+		if (!settings.get_use_timeline() && (last_year < hausbauer_t::get_earliest_townhall_year() || last_year >= 2999)) {
+			// disable timeline for out of bound years
+			settings.set_use_timeline(false);
+		}
+
+
 		// old game might have wrong month
 		last_month %= 12;
 		// set the current month count
@@ -6505,7 +6511,7 @@ bool karte_t::interactive(uint32 quit_month)
 						}
 
 						// remove passwords before transfer on the server and set default client mask
-						// they will be restored in karte_t::laden
+						// they will be restored in karte_t::load
 						for (int i = 0; i < PLAYER_UNOWNED; i++) {
 							if (players[i]  &&  !players[i]->access_password_hash().empty()) {
 								players[i]->access_password_hash().clear();
