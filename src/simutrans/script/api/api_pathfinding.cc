@@ -12,6 +12,7 @@
 #include "../api_class.h"
 #include "../api_function.h"
 #include "../../builder/brueckenbauer.h"
+#include "../../builder/tunnelbauer.h"
 #include "../../builder/wegbauer.h"
 #include "../../dataobj/settings.h"
 #include "../../descriptor/bridge_desc.h"
@@ -202,6 +203,22 @@ SQInteger bridge_planner_find_end(HSQUIRRELVM vm)
 }
 
 
+koord3d tunnel_builder_find_end_pos(player_t *player, koord3d pos, my_ribi_t mribi, const tunnel_desc_t *tunnel)
+{
+	ribi_t::ribi ribi(mribi);
+
+	if (player == NULL  ||  tunnel == NULL) {
+		return koord3d::invalid;
+	}
+	// koord(ribi) turns anything but a single direction into a diagonal, a
+	// different cardinal, or zero, and a zero vector never leaves the start tile
+	if (!ribi_t::is_single(ribi)) {
+		return koord3d::invalid;
+	}
+	return tunnel_builder_t::find_end_pos(player, pos, koord(ribi), tunnel);
+}
+
+
 void export_pathfinding(HSQUIRRELVM vm)
 {
 	/**
@@ -305,6 +322,27 @@ void export_pathfinding(HSQUIRRELVM vm)
 	                         func_signature_t<bfe_type>::get_typemask(false).c_str(), true /* static */);
 
 	log_squirrel_type(func_signature_t<bfe_type>::get_squirrel_class(false), "find_end", func_signature_t<bfe_type>::get_squirrel_type(false, 0));
+
+	end_class(vm);
+
+	/**
+	 * Class with helper methods for tunnel planning.
+	 */
+	create_class(vm, "tunnel_planner_x", 0);
+	/**
+	 * Find the far portal of a tunnel starting at @p pos and going into direction @p dir.
+	 *
+	 * The search runs until it finds a place for the second portal or until it leaves the
+	 * map, just as it does for the tunnel tool of a player. Nothing is built, and the start
+	 * tile is not validated: if it cannot carry a portal, the answer is just the next tile.
+	 *
+	 * @param pl who wants to build a tunnel
+	 * @param pos start tile of the tunnel, the tile that would carry the first portal
+	 * @param dir direction, must be a single direction
+	 * @param tunnel tunnel descriptor
+	 * @returns coordinate of the far portal or an invalid coordinate
+	 */
+	STATIC register_method(vm, tunnel_builder_find_end_pos, "find_end", false, true);
 
 	end_class(vm);
 }

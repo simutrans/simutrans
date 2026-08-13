@@ -15,6 +15,7 @@
  *
  * @section api-trunk Current trunk
  *
+ * - Added @ref tunnel_planner_x::find_end to plan the far portal of a tunnel
  * - Added @ref way_planner_x::get_step_cost
  * - Changed @ref bridge_planner_x::find_end which accepts two optional parameters now, to search for longer bridges and for ends on flat ground
  * - Added @ref command_x::grid_lower, @ref command_x::grid_raise
