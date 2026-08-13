@@ -33,6 +33,7 @@ include("tests/test_way_bridge")
 include("tests/test_way_bridge_maintenance")
 include("tests/test_way_bridge_maintenance_auto")
 include("tests/test_way_elevated")
+include("tests/test_way_planner")
 include("tests/test_way_road")
 include("tests/test_way_runway")
 include("tests/test_way_tram")
@@ -225,6 +226,11 @@ all_tests <- [
 	test_way_bridge_maintenance_auto,
 	test_way_bridge_maintenance_auto_equals_manual,
 	test_way_bridge_maintenance_auto_off,
+	test_way_planner_step_cost_ground,
+	test_way_planner_step_cost_slope,
+	test_way_planner_step_cost_refused,
+	test_way_planner_step_cost_invalid,
+	test_way_planner_step_cost_matches_is_allowed_step,
 	test_way_road_build_single_tile,
 	test_way_road_build_straight,
 	test_way_road_build_bend,

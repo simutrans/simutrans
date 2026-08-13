@@ -122,6 +122,24 @@ bool way_builder_is_allowed_step(way_builder_t *bob, grund_t *from, grund_t *to)
 }
 
 
+SQInteger way_builder_get_step_cost(HSQUIRRELVM vm) // instance, from, to
+{
+	way_builder_t *bob = param<way_builder_t*>::get(vm, 1);
+	if (bob == NULL) {
+		return sq_raise_error(vm, "Not a way_planner_x instance"); // should not happen
+	}
+	grund_t *from = param<grund_t*>::get(vm, 2);
+	grund_t *to   = param<grund_t*>::get(vm, 3);
+
+	sint32 costs = 0;
+	if (from == NULL || to == NULL || !bob->is_allowed_step(from, to, &costs)) {
+		sq_pushnull(vm);
+		return 1;
+	}
+	return param<sint32>::push(vm, costs);
+}
+
+
 /**
  * Highest length a script may ask for: bridge_builder_t::find_end_pos counts the
  * tested lengths in an uint8, so 255 would never terminate.
@@ -241,6 +259,17 @@ void export_pathfinding(HSQUIRRELVM vm)
 	 * @param to to here, @p from and @p to must be adjacent.
 	 */
 	register_method(vm, way_builder_is_allowed_step, "is_allowed_step", true);
+	/**
+	 * Costs of the step from @p from to @p to, as used by the route search of the way builder.
+	 * These are the weights derived from the way_count_* settings, not an amount of money.
+	 * @param from from here
+	 * @param to to here, @p from and @p to must be adjacent.
+	 * @returns costs of the step, or null if @ref is_allowed_step refuses it
+	 * @typemask integer(tile_x,tile_x)
+	 */
+	register_function(vm, way_builder_get_step_cost, "get_step_cost", 3, "x t|x|y t|x|y");
+
+	log_squirrel_type("way_planner_x", "get_step_cost", "integer(tile_x, tile_x)");
 
 	end_class(vm);
 

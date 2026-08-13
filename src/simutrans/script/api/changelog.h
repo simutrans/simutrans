@@ -15,6 +15,7 @@
  *
  * @section api-trunk Current trunk
  *
+ * - Added @ref way_planner_x::get_step_cost
  * - Changed @ref bridge_planner_x::find_end which accepts two optional parameters now, to search for longer bridges and for ends on flat ground
  * - Added @ref command_x::grid_lower, @ref command_x::grid_raise
  * - Added @ref settings::has_double_slopes, @ref settings::get_way_height_clearance
