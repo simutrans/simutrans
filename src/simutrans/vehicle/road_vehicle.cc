@@ -231,6 +231,18 @@ bool road_vehicle_t::choose_route(sint32 &restart_speed, ribi_t::ribi start_dire
 		return true;
 	}
 
+	// find if there is an end_of?choose on the route and continue if yes
+	for (uint32 ri = route_index + 1; ri < cnv->get_route()->get_count(); ri++) {
+		if (grund_t* gr = welt->lookup(cnv->get_route()->at(ri))) {
+			if (roadsign_t* rs = gr->find<roadsign_t>()) {
+				if (rs->get_desc()->is_end_choose_signal()) {
+					// ignore choose_sign if end_of_choose sign is on the route 
+					return true;
+				}
+			}
+		}
+	}
+
 	// are we heading to a target?
 	route_t *rt = cnv->access_route();
 	target_halt = haltestelle_t::get_halt( rt->back(), get_owner(), false );
