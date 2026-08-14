@@ -306,6 +306,10 @@ void export_pathfinding(HSQUIRRELVM vm)
 	 * Checks if player can build way from @p from to @p to.
 	 * @param from from here
 	 * @param to to here, @p from and @p to must be adjacent.
+	 * @returns true if the planner accepts this step, false if it rejects it
+	 * @note This tests one step with the way set by @ref set_build_types, it is not a route
+	 *       search. An accepted step does not mean that a construction command will succeed:
+	 *       the tool that builds applies its own checks.
 	 */
 	register_method(vm, way_builder_is_allowed_step, "is_allowed_step", true);
 	/**

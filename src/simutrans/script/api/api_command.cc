@@ -581,6 +581,13 @@ void export_commands(HSQUIRRELVM vm)
 	 * Proof-of-concept to make tools available to scripts.
 	 *
 	 * The default_param is not checked. Use at own risk.
+	 *
+	 * The methods that call a tool report its result the way the tool does:
+	 * null if it succeeded, a string if it failed. Test against null, not
+	 * against the string: a tool that fails without a message returns an empty
+	 * string. A non-empty string provides a message describing the failure; it
+	 * is not a stable identifier of its cause.
+	 *
 	 * @ingroup game_cmd
 	 */
 	create_class(vm, "command_x");
@@ -609,7 +616,7 @@ void export_commands(HSQUIRRELVM vm)
 	 * @note In network games script will be suspended until the command is executed.
 	 * @param pl player to pay for the work
 	 * @param pos coordinate, where something should happen
-	 * @returns null upon success, an error string otherwise
+	 * @returns null upon success, an error string otherwise, which is empty if no message is available
 	 * @typemask string(player_x,coord3d)
 	 */
 	register_function(vm, command_work, "work", -3, "x t|x|y t|x|y");
@@ -624,7 +631,7 @@ void export_commands(HSQUIRRELVM vm)
 	 * @param pl player to pay for the work
 	 * @param pos coordinate, where something should happen
 	 * @param param magic parameter string
-	 * @returns null upon success, an error string otherwise
+	 * @returns null upon success, an error string otherwise, which is empty if no message is available
 	 * @typemask string(player_x,coord3d,string)
 	 */
 	register_function(vm,, "work");
@@ -637,7 +644,7 @@ void export_commands(HSQUIRRELVM vm)
 	 * @param start coordinate, where work begins
 	 * @param end   coordinate, where work ends
 	 * @param param magic parameter string
-	 * @returns null upon success, an error string otherwise
+	 * @returns null upon success, an error string otherwise, which is empty if no message is available
 	 * @typemask string(player_x,coord3d,coord3d,string)
 	 */
 	register_function(vm,, "work");
@@ -650,6 +657,7 @@ void export_commands(HSQUIRRELVM vm)
 	 * @param way type of way to be built
 	 * @param straight force building of straight ways, similar as building way with control key pressed
 	 * @param terraform (optional parameter) if true then slopes can be changed to build the way, no bridges and no tunnels are built. Defaults to false.
+	 * @returns null upon success, an error string otherwise, which is empty if no message is available
 	 */
 	STATIC register_function(vm, command_build_way, "build_way", -6 /* at least 6 parameters */,
 							 func_signature_t<bwa_type>::get_typemask(false).c_str(), true /* static */);
@@ -664,6 +672,7 @@ void export_commands(HSQUIRRELVM vm)
 	 * @param straight force building of straight ways, similar as building way with control key pressed
 	 * @param keep_city_roads if true city roads will not be replaced
 	 * @param terraform (optional parameter) if true then slopes can be changed to build the road, no bridges and no tunnels are built. Defaults to false.
+	 * @returns null upon success, an error string otherwise, which is empty if no message is available
 	 */
 	STATIC register_function(vm, command_build_road, "build_road", -7 /* at least 7 parameters */,
 							 func_signature_t<bro_type>::get_typemask(false).c_str(), true /* static */);
@@ -674,6 +683,7 @@ void export_commands(HSQUIRRELVM vm)
 	 * @param pl player to pay for the work
 	 * @param pos position to place the depot
 	 * @param depot type of depot to be built
+	 * @returns null upon success, an error string otherwise, which is empty if no message is available
 	 */
 	STATIC register_method(vm, build_depot, "build_depot", false, true);
 	/**
@@ -682,6 +692,7 @@ void export_commands(HSQUIRRELVM vm)
 	 * @param pos position to place the depot
 	 * @param station type of station to be built
 	 * @param layout (optional parameter) rotation of building (only used for flat docks and extensions, ribi are not allowed and must be converted!)
+	 * @returns null upon success, an error string otherwise, which is empty if no message is available
 	 */
 	STATIC register_function(vm, command_build_station, "build_station", -4 /* at least 4 parameters */,
 							 func_signature_t<bsr_type>::get_typemask(false).c_str(), false /* static */);
@@ -694,6 +705,7 @@ void export_commands(HSQUIRRELVM vm)
 	 * @param start coordinate, where bridge begins
 	 * @param end   coordinate, where bridge ends
 	 * @param bridge type of bridge to be built
+	 * @returns null upon success, an error string otherwise, which is empty if no message is available
 	 */
 	STATIC register_method(vm, build_bridge, "build_bridge", false, true);
 	/**
@@ -706,6 +718,7 @@ void export_commands(HSQUIRRELVM vm)
 	 * @param start coordinate, where bridge begins, the end point will be automatically determined
 	 * @param bridge type of bridge to be built
 	 * @param max_length (optional parameter) bridge should not be longer than this, zero or negative means as long as allowed. Defaults to 10.
+	 * @returns null upon success, an error string otherwise, which is empty if no message is available
 	 */
 	STATIC register_function(vm, command_build_bridge_at, "build_bridge_at", -4 /* at least 4 parameters */,
 							 func_signature_t<bba_type>::get_typemask(false).c_str(), true /* static */);
@@ -716,12 +729,14 @@ void export_commands(HSQUIRRELVM vm)
 	 * @param pl player to pay for the work
 	 * @param pos position of tile
 	 * @param slope new slope, can also be one of @ref slope::all_up_slope or @ref slope::all_down_slope.
+	 * @returns null upon success, an error string otherwise, which is empty if no message is available
 	 */
 	STATIC register_method(vm, set_slope, "set_slope", false, true);
 	/**
 	 * Restore natural slope of one tile.
 	 * @param pl player to pay for the work
 	 * @param pos position of tile
+	 * @returns null upon success, an error string otherwise, which is empty if no message is available
 	 */
 	STATIC register_method(vm, restore_slope, "restore_slope", false, true);
 	/**
@@ -729,7 +744,7 @@ void export_commands(HSQUIRRELVM vm)
 	 * @param pl player
 	 * @param pos position
 	 * @param slope new slope, can also be one of @ref slope::all_up_slope or @ref slope::all_down_slope
-	 * @returns null (if allowed) or an error message otherwise
+	 * @returns null if allowed, an error string otherwise, which is empty if no message is available
 	 */
 	STATIC register_method(vm, can_set_slope, "can_set_slope", false, true);
 	/**
@@ -742,6 +757,7 @@ void export_commands(HSQUIRRELVM vm)
 	 * @param pl player to pay for the work
 	 * @param pos position of tile
 	 * @param sign type of road-sign or signal to be built
+	 * @returns null upon success, an error string otherwise, which is empty if no message is available
 	 */
 	STATIC register_method(vm, build_sign_at, "build_sign_at", false, true);
 	/**
@@ -750,6 +766,7 @@ void export_commands(HSQUIRRELVM vm)
 	 * @param start coordinate, where work begins
 	 * @param end   coordinate, where work ends
 	 * @param wayobj type of wayobj to be built
+	 * @returns null upon success, an error string otherwise, which is empty if no message is available
 	 */
 	STATIC register_method(vm, build_wayobj, "build_wayobj", false, true);
 	/**
@@ -757,6 +774,7 @@ void export_commands(HSQUIRRELVM vm)
 	 * @param pl player to pay for the work
 	 * @param pos coordinate of tile
 	 * @param climate new climate, possible values see @ref climates
+	 * @returns null upon success, an error string otherwise, which is empty if no message is available
 	 */
 	STATIC register_method(vm, change_climate_at, "change_climate_at", false, true);
 
@@ -764,12 +782,14 @@ void export_commands(HSQUIRRELVM vm)
 	 * Lower grid point
 	 * @param pl player to pay for the work
 	 * @param pos coordinate of tile, grid point in nw corner will be lowered
+	 * @returns null upon success, an error string otherwise, which is empty if no message is available
 	 */
 	STATIC register_method_fv(vm, lower_raise, "grid_lower", freevariable<bool>(true), false, true);
 	/**
 	 * Raise grid point
 	 * @param pl player to pay for the work
 	 * @param pos coordinate of tile, grid point in nw corner will be lowered
+	 * @returns null upon success, an error string otherwise, which is empty if no message is available
 	 */
 	STATIC register_method_fv(vm, lower_raise, "grid_raise", freevariable<bool>(false), false, true);
 
