@@ -2700,8 +2700,10 @@ bool tool_build_way_t::init( player_t *player )
 	}
 
 	const char* n;
+	terraform_only = false; // a tool instance can be reused with another parameter
 	if (default_param && (n = strchr(default_param, ','))!=NULL) {
 		automatic_tunnel_and_bridges = n[1] == '1';
+		terraform_only = n[1] == '2';
 		if (n[2] == ',') {
 			max_length = atol(n + 3);
 		}
@@ -2712,6 +2714,13 @@ bool tool_build_way_t::init( player_t *player )
 		return false;
 	}
 	return desc!=NULL;
+}
+
+void tool_build_way_t::rdwr_custom_data(memory_rw_t *packet)
+{
+	two_click_tool_t::rdwr_custom_data(packet);
+	// init() cannot recover this: the network gets the name of the way alone
+	packet->rdwr_bool(terraform_only);
 }
 
 waytype_t tool_build_way_t::get_waytype() const
@@ -2810,6 +2819,10 @@ const char *tool_build_way_t::calc_route( way_builder_t &bauigel, const koord3d 
 		bautyp |= way_builder_t::terraform_flag;
 		br = bridge_builder_t::find_bridge(desc->get_wtyp(), desc->get_topspeed(), welt->get_timeline_year_month());
 		tunnel = tunnel_builder_t::get_tunnel_desc(desc->get_wtyp(), desc->get_topspeed(), welt->get_timeline_year_month());
+	}
+	else if (terraform_only) {
+		// terraforming, but without a tunnel or bridge to fall back on
+		bautyp |= way_builder_t::terraform_flag;
 	}
 
 	bauigel.init_builder(bautyp, desc, tunnel, br);

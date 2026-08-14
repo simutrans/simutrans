@@ -326,7 +326,7 @@ const char* is_available(const obj_desc_timelined_t* desc)
 }
 
 
-call_tool_work build_way(player_t* pl, koord3d start, koord3d end, const way_desc_t* way, bool straight, bool keep_city_roads)
+call_tool_work build_way(player_t* pl, koord3d start, koord3d end, const way_desc_t* way, bool straight, bool keep_city_roads, bool terraform)
 {
 	if (way == NULL) {
 		return call_tool_work("No way provided");
@@ -334,7 +334,52 @@ call_tool_work build_way(player_t* pl, koord3d start, koord3d end, const way_des
 	if (const char* err = is_available(way)) {
 		return call_tool_work(err);
 	}
-	return call_tool_work(TOOL_BUILD_WAY | GENERAL_TOOL, way->get_name(), (straight ? 2 : 0) + (keep_city_roads ? 1 : 0), pl, start, end);
+	// the tool takes the building policy as second field of its parameter
+	cbuffer_t buf;
+	if (terraform) {
+		buf.printf("%s,2", way->get_name());
+	}
+	else {
+		buf.printf("%s", way->get_name());
+	}
+	return call_tool_work(TOOL_BUILD_WAY | GENERAL_TOOL, buf, (straight ? 2 : 0) + (keep_city_roads ? 1 : 0), pl, start, end);
+}
+
+
+typedef call_tool_work(*bwa_type)(player_t*, koord3d, koord3d, const way_desc_t*, bool, bool);
+typedef call_tool_work(*bro_type)(player_t*, koord3d, koord3d, const way_desc_t*, bool, bool, bool);
+
+call_tool_work build_way_replacing_city_roads(player_t* pl, koord3d start, koord3d end, const way_desc_t* way, bool straight, bool terraform)
+{
+	return build_way(pl, start, end, way, straight, false, terraform);
+}
+
+SQInteger command_build_way(HSQUIRRELVM vm)
+{
+	/* possible calling conventions:
+	 *
+	 * build_way(player, start, end, way, straight)            - top == 6
+	 * build_way(player, start, end, way, straight, terraform) - top == 7
+	 */
+	if (sq_gettop(vm) == 6) {
+		// no terraforming, as the old binding did
+		sq_pushbool(vm, false);
+	}
+	return embed_call_t<bwa_type>::call_function(vm, build_way_replacing_city_roads, false);
+}
+
+SQInteger command_build_road(HSQUIRRELVM vm)
+{
+	/* possible calling conventions:
+	 *
+	 * build_road(player, start, end, way, straight, keep_city_roads)            - top == 7
+	 * build_road(player, start, end, way, straight, keep_city_roads, terraform) - top == 8
+	 */
+	if (sq_gettop(vm) == 7) {
+		// no terraforming, as the old binding did
+		sq_pushbool(vm, false);
+	}
+	return embed_call_t<bro_type>::call_function(vm, build_way, false);
 }
 
 
@@ -604,8 +649,12 @@ void export_commands(HSQUIRRELVM vm)
 	 * @param end   coordinate, where work ends
 	 * @param way type of way to be built
 	 * @param straight force building of straight ways, similar as building way with control key pressed
+	 * @param terraform (optional parameter) if true then slopes can be changed to build the way, no bridges and no tunnels are built. Defaults to false.
 	 */
-	STATIC register_method_fv(vm, build_way, "build_way", freevariable<bool>(false), false, true);
+	STATIC register_function(vm, command_build_way, "build_way", -6 /* at least 6 parameters */,
+							 func_signature_t<bwa_type>::get_typemask(false).c_str(), true /* static */);
+
+	log_squirrel_type(func_signature_t<bwa_type>::get_squirrel_class(false), "build_way", func_signature_t<bwa_type>::get_squirrel_type(false, 0));
 	/**
 	 * Build a road.
 	 * @param pl player to pay for the work
@@ -614,8 +663,12 @@ void export_commands(HSQUIRRELVM vm)
 	 * @param way type of way to be built
 	 * @param straight force building of straight ways, similar as building way with control key pressed
 	 * @param keep_city_roads if true city roads will not be replaced
+	 * @param terraform (optional parameter) if true then slopes can be changed to build the road, no bridges and no tunnels are built. Defaults to false.
 	 */
-	STATIC register_method(vm, build_way, "build_road", false, true);
+	STATIC register_function(vm, command_build_road, "build_road", -7 /* at least 7 parameters */,
+							 func_signature_t<bro_type>::get_typemask(false).c_str(), true /* static */);
+
+	log_squirrel_type(func_signature_t<bro_type>::get_squirrel_class(false), "build_road", func_signature_t<bro_type>::get_squirrel_type(false, 0));
 	/**
 	 * Build a depot.
 	 * @param pl player to pay for the work
