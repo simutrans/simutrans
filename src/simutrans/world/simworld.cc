@@ -4396,13 +4396,6 @@ void karte_t::rdwr_gamestate(loadsave_t *file, loadingscreen_t *ls)
 		// it will use the saved language of the game
 		translator::init_custom_names(settings.get_name_language_id());
 
-		if(  !env_t::networkmode  ||  (env_t::server  &&  socket_list_t::get_playing_clients()==0)  ) {
-			if (settings.get_allow_player_change()  &&  env_t::default_settings.get_use_timeline() < 2) {
-				// not locked => eventually switch off timeline settings, if explicitly stated
-				settings.set_use_timeline(env_t::default_settings.get_use_timeline());
-				DBG_DEBUG("karte_t::rdwr_gamestate()", "timeline: reset to %i", env_t::default_settings.get_use_timeline() );
-			}
-		}
 		if (settings.get_beginner_mode()) {
 			goods_manager_t::set_multiplier(settings.get_beginner_price_factor());
 		}
@@ -4473,9 +4466,9 @@ void karte_t::rdwr_gamestate(loadsave_t *file, loadingscreen_t *ls)
 			dbg->fatal("karte_t::rdwr_gamestate", "Year out of range (%d >= %d)", last_year+1, INT_MAX/12);
 		}
 
-		if (!settings.get_use_timeline() && (last_year < hausbauer_t::get_earliest_townhall_year() || last_year >= 2999)) {
+		if (settings.get_use_timeline() && (last_year < hausbauer_t::get_earliest_townhall_year() || last_year >= 2999)) {
 			// disable timeline for out of bound years
-			settings.set_use_timeline(false);
+			settings.set_use_timeline(0);
 		}
 
 
