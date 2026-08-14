@@ -106,7 +106,7 @@ SQInteger way_builder_constructor(HSQUIRRELVM vm) // instance, player
 	return SQ_OK;
 }
 
-void way_builder_set_build_types(way_builder_t *bob, const way_desc_t *way)
+void way_builder_set_build_types(way_builder_t *bob, const way_desc_t *way, bool terraform)
 {
 	if (way) {
 		way_builder_t::bautyp_t bautyp = (way_builder_t::bautyp_t)way->get_waytype();
@@ -117,8 +117,28 @@ void way_builder_set_build_types(way_builder_t *bob, const way_desc_t *way)
 		if (way->get_styp() == type_elevated && way->get_waytype() != air_wt) {
 			bautyp |= way_builder_t::elevated_flag;
 		}
+		if (terraform) {
+			bautyp |= way_builder_t::terraform_flag;
+		}
 		bob->init_builder( bautyp, way, NULL /*tunnel*/, NULL /*bridge*/);
 	}
+}
+
+
+typedef void(*sbt_type)(way_builder_t*, const way_desc_t*, bool);
+
+SQInteger way_planner_set_build_types(HSQUIRRELVM vm)
+{
+	/* possible calling conventions:
+	 *
+	 * set_build_types(way)            - top == 2
+	 * set_build_types(way, terraform) - top == 3
+	 */
+	if (sq_gettop(vm) == 2) {
+		// no terraforming, as the old binding did
+		sq_pushbool(vm, false);
+	}
+	return embed_call_t<sbt_type>::call_function(vm, way_builder_set_build_types, true);
 }
 
 bool way_builder_is_allowed_step(way_builder_t *bob, grund_t *from, grund_t *to)
@@ -276,8 +296,12 @@ void export_pathfinding(HSQUIRRELVM vm)
 	/**
 	 * Sets way descriptor, which is needed for @ref is_allowed_step.
 	 * @param way descriptor of way to be planned.
+	 * @param terraform (optional parameter) if true then steps that need a slope to be changed are allowed as well, no bridges and no tunnels are planned. Defaults to false.
 	 */
-	register_method(vm, way_builder_set_build_types, "set_build_types", true);
+	register_function(vm, way_planner_set_build_types, "set_build_types", -2 /* at least 2 parameters */,
+					  func_signature_t<sbt_type>::get_typemask(true).c_str());
+
+	log_squirrel_type(func_signature_t<sbt_type>::get_squirrel_class(true), "set_build_types", func_signature_t<sbt_type>::get_squirrel_type(true, 0));
 	/**
 	 * Checks if player can build way from @p from to @p to.
 	 * @param from from here

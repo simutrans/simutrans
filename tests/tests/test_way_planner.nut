@@ -259,3 +259,235 @@ function test_way_planner_runway_is_not_elevated()
 
 	RESET_ALL_PLAYER_FUNDS()
 }
+
+
+function test_way_planner_terraform_defaults_to_off()
+{
+	local pl       = player_x(0)
+	local road     = way_desc_x.get_available_ways(wt_road, st_flat)[0]
+	local legacy   = way_planner_x(pl)
+	local explicit = way_planner_x(pl)
+
+	legacy.set_build_types(road)
+	explicit.set_build_types(road, false)
+
+	// a slope across the way: neither planner may follow it
+	ASSERT_EQUAL(command_x.set_slope(pl, coord3d(4, 4, 0), slope.south), null)
+
+	ASSERT_FALSE(legacy.is_allowed_step(tile_x(3, 4, 0), tile_x(4, 4, 0)))
+	ASSERT_FALSE(explicit.is_allowed_step(tile_x(3, 4, 0), tile_x(4, 4, 0)))
+	ASSERT_EQUAL(legacy.get_step_cost(tile_x(3, 4, 0), tile_x(4, 4, 0)), null)
+	ASSERT_EQUAL(explicit.get_step_cost(tile_x(3, 4, 0), tile_x(4, 4, 0)), null)
+
+	// and they price the legal steps exactly alike
+	ASSERT_EQUAL(legacy.get_step_cost(tile_x(2, 2, 0), tile_x(3, 2, 0)), WAY_COUNT_NO_WAY)
+	ASSERT_EQUAL(explicit.get_step_cost(tile_x(2, 2, 0), tile_x(3, 2, 0)), WAY_COUNT_NO_WAY)
+	ASSERT_EQUAL(explicit.get_step_cost(tile_x(4, 3, 0), tile_x(4, 4, 0)),
+	             legacy.get_step_cost(tile_x(4, 3, 0), tile_x(4, 4, 0)))
+
+	// clean up
+	ASSERT_EQUAL(command_x.set_slope(pl, coord3d(4, 4, 0), slope.flat), null)
+	RESET_ALL_PLAYER_FUNDS()
+}
+
+
+function test_way_planner_terraform_across_slope()
+{
+	local pl   = player_x(0)
+	local road = way_desc_x.get_available_ways(wt_road, st_flat)[0]
+	local off  = way_planner_x(pl)
+	local on   = way_planner_x(pl)
+
+	off.set_build_types(road, false)
+	on.set_build_types(road, true)
+
+	ASSERT_EQUAL(command_x.set_slope(pl, coord3d(4, 4, 0), slope.south), null)
+
+	// the step across the slope is the one the flag is about
+	ASSERT_FALSE(off.is_allowed_step(tile_x(3, 4, 0), tile_x(4, 4, 0)))
+	ASSERT_EQUAL(off.get_step_cost(tile_x(3, 4, 0), tile_x(4, 4, 0)), null)
+
+	ASSERT_TRUE(on.is_allowed_step(tile_x(3, 4, 0), tile_x(4, 4, 0)))
+	ASSERT_TRUE(on.get_step_cost(tile_x(3, 4, 0), tile_x(4, 4, 0)) != null)
+
+	// the same slope turned by 90 degrees, so this is not one lucky orientation
+	ASSERT_EQUAL(command_x.set_slope(pl, coord3d(4, 4, 0), slope.flat), null)
+	ASSERT_EQUAL(command_x.set_slope(pl, coord3d(9, 4, 0), slope.east), null)
+
+	ASSERT_FALSE(off.is_allowed_step(tile_x(9, 3, 0), tile_x(9, 4, 0)))
+	ASSERT_TRUE(on.is_allowed_step(tile_x(9, 3, 0), tile_x(9, 4, 0)))
+	ASSERT_TRUE(on.get_step_cost(tile_x(9, 3, 0), tile_x(9, 4, 0)) != null)
+
+	// clean up
+	ASSERT_EQUAL(command_x.set_slope(pl, coord3d(9, 4, 0), slope.flat), null)
+	RESET_ALL_PLAYER_FUNDS()
+}
+
+
+function test_way_planner_terraform_matches_executor()
+{
+	local pl      = player_x(0)
+	local road    = way_desc_x.get_available_ways(wt_road, st_flat)[0]
+	local remover = command_x(tool_remove_way)
+	local off     = way_planner_x(pl)
+	local on      = way_planner_x(pl)
+
+	off.set_build_types(road, false)
+	on.set_build_types(road, true)
+
+	ASSERT_EQUAL(command_x.set_slope(pl, coord3d(9, 9, 0), slope.south), null)
+
+	// one adjacent pair, planned and built with the same policy on both sides.
+	// without terraforming the planner refuses the step and the tool cannot build it
+	ASSERT_FALSE(off.is_allowed_step(tile_x(8, 9, 0), tile_x(9, 9, 0)))
+	ASSERT_EQUAL(off.get_step_cost(tile_x(8, 9, 0), tile_x(9, 9, 0)), null)
+	ASSERT_EQUAL(command_x.build_way(pl, coord3d(8, 9, 0), coord3d(9, 9, 0), road, true), "")
+	ASSERT_FALSE(tile_x(9, 9, 0).has_way(wt_road))
+
+	// the failed attempt left the slope alone, so both halves see the same world
+	ASSERT_EQUAL(tile_x(9, 9, 0).get_slope(), slope.south)
+
+	// with terraforming the planner accepts it and the tool builds that very pair
+	ASSERT_TRUE(on.is_allowed_step(tile_x(8, 9, 0), tile_x(9, 9, 0)))
+	ASSERT_TRUE(on.get_step_cost(tile_x(8, 9, 0), tile_x(9, 9, 0)) != null)
+	ASSERT_EQUAL(command_x.build_way(pl, coord3d(8, 9, 0), coord3d(9, 9, 0), road, true, true), null)
+
+	// and it got there by taking the slope down, not by some other route
+	ASSERT_EQUAL(tile_x(9, 9, 0).get_slope(), slope.northeast)
+
+	// exactly the two tiles of the step, no detour
+	ASSERT_WAY_PATTERN(wt_road, coord3d(7, 8, 0),
+		[
+			"0000",
+			"0280",
+			"0000",
+			"0000"
+		])
+
+	// and no bridge and no tunnel were used to get there
+	ASSERT_FALSE(tile_x(9, 9, 0).is_bridge())
+	ASSERT_FALSE(tile_x(9, 9, 0).is_tunnel())
+	ASSERT_TRUE(square_x(9, 9).get_tile_at_height(1) == null)
+
+	// clean up
+	ASSERT_EQUAL(remover.work(pl, coord3d(8, 9, 0), coord3d(9, 9, 0), "" + wt_road), null)
+	ASSERT_EQUAL(command_x.set_slope(pl, coord3d(9, 9, 0), slope.flat), null)
+	ASSERT_EQUAL(pl.get_current_maintenance(), 0)
+	RESET_ALL_PLAYER_FUNDS()
+}
+
+
+function test_way_planner_terraform_is_no_bypass()
+{
+	local pl         = player_x(0)
+	local road       = way_desc_x.get_available_ways(wt_road, st_flat)[0]
+	local setclimate = command_x(tool_set_climate)
+	local on         = way_planner_x(pl)
+
+	on.set_build_types(road, true)
+
+	// water is not a slope, and terraforming is no licence to fill it in
+	ASSERT_EQUAL(setclimate.work(pl, coord3d(4, 4, 0), coord3d(4, 4, 0), "" + cl_water), null)
+	ASSERT_TRUE(tile_x(4, 4, 0).is_water())
+
+	ASSERT_FALSE(on.is_allowed_step(tile_x(4, 3, 0), tile_x(4, 4, 0)))
+	ASSERT_EQUAL(on.get_step_cost(tile_x(4, 3, 0), tile_x(4, 4, 0)), null)
+
+	// a planner without it refuses the very same step, so terraforming changed nothing here
+	local off = way_planner_x(pl)
+	off.set_build_types(road, false)
+	ASSERT_FALSE(off.is_allowed_step(tile_x(4, 3, 0), tile_x(4, 4, 0)))
+
+	// control: the planner is not simply refusing everything
+	ASSERT_TRUE(on.is_allowed_step(tile_x(2, 2, 0), tile_x(3, 2, 0)))
+
+	// clean up
+	ASSERT_EQUAL(setclimate.work(pl, coord3d(4, 4, 0), coord3d(4, 4, 0), "" + cl_mediterran), null)
+	RESET_ALL_PLAYER_FUNDS()
+}
+
+
+function test_way_planner_terraform_does_not_build()
+{
+	local pl   = player_x(0)
+	local road = way_desc_x.get_available_ways(wt_road, st_flat)[0]
+	local on   = way_planner_x(pl)
+
+	on.set_build_types(road, true)
+
+	ASSERT_EQUAL(command_x.set_slope(pl, coord3d(4, 4, 0), slope.south), null)
+
+	local cash        = pl.get_current_cash()
+	local maintenance = pl.get_current_maintenance()
+
+	// asking is not building: the accepted step must leave the world alone
+	for (local i = 0; i < 5; ++i) {
+		ASSERT_TRUE(on.is_allowed_step(tile_x(3, 4, 0), tile_x(4, 4, 0)))
+		ASSERT_TRUE(on.get_step_cost(tile_x(3, 4, 0), tile_x(4, 4, 0)) != null)
+	}
+
+	ASSERT_EQUAL(tile_x(4, 4, 0).get_slope(), slope.south)
+	ASSERT_FALSE(tile_x(4, 4, 0).has_way(wt_road))
+	ASSERT_FALSE(tile_x(3, 4, 0).has_way(wt_road))
+	ASSERT_EQUAL(pl.get_current_cash(), cash)
+	ASSERT_EQUAL(pl.get_current_maintenance(), maintenance)
+
+	// clean up
+	ASSERT_EQUAL(command_x.set_slope(pl, coord3d(4, 4, 0), slope.flat), null)
+	RESET_ALL_PLAYER_FUNDS()
+}
+
+
+function test_way_planner_terraform_not_kept_by_the_planner()
+{
+	local pl      = player_x(0)
+	local road    = way_desc_x.get_available_ways(wt_road, st_flat)[0]
+	local planner = way_planner_x(pl)
+
+	ASSERT_EQUAL(command_x.set_slope(pl, coord3d(4, 4, 0), slope.south), null)
+
+	// the option belongs to the configuration, not to the planner for good
+	planner.set_build_types(road, true)
+	ASSERT_TRUE(planner.is_allowed_step(tile_x(3, 4, 0), tile_x(4, 4, 0)))
+
+	planner.set_build_types(road, false)
+	ASSERT_FALSE(planner.is_allowed_step(tile_x(3, 4, 0), tile_x(4, 4, 0)))
+	ASSERT_EQUAL(planner.get_step_cost(tile_x(3, 4, 0), tile_x(4, 4, 0)), null)
+
+	// and the legacy call has to clear it just as well
+	planner.set_build_types(road, true)
+	ASSERT_TRUE(planner.is_allowed_step(tile_x(3, 4, 0), tile_x(4, 4, 0)))
+
+	planner.set_build_types(road)
+	ASSERT_FALSE(planner.is_allowed_step(tile_x(3, 4, 0), tile_x(4, 4, 0)))
+	ASSERT_EQUAL(planner.get_step_cost(tile_x(3, 4, 0), tile_x(4, 4, 0)), null)
+
+	// clean up
+	ASSERT_EQUAL(command_x.set_slope(pl, coord3d(4, 4, 0), slope.flat), null)
+	RESET_ALL_PLAYER_FUNDS()
+}
+
+
+function test_way_planner_terraform_keeps_way_type()
+{
+	local pl       = player_x(0)
+	local road     = way_desc_x.get_available_ways(wt_road, st_flat)[0]
+	local tram     = way_desc_x.get_available_ways(wt_rail, st_tram)[0]
+	local elevated = way_desc_x.get_available_ways(wt_monorail, st_elevated)[0]
+	local remover  = command_x(tool_remove_way)
+
+	ASSERT_EQUAL(command_x.build_way(pl, coord3d(3, 1, 0), coord3d(3, 4, 0), road, true), null)
+
+	// terraforming is added to the way type, it does not take its place
+	local tram_planner = way_planner_x(pl)
+	tram_planner.set_build_types(tram, true)
+	ASSERT_EQUAL(tram_planner.get_step_cost(tile_x(3, 2, 0), tile_x(3, 3, 0)), WAY_COUNT_NO_WAY + WAY_COUNT_STRAIGHT)
+
+	local high = way_planner_x(pl)
+	high.set_build_types(elevated, true)
+	ASSERT_EQUAL(high.get_step_cost(tile_x(2, 2, 0), tile_x(3, 2, 0)), WAY_COUNT_NO_WAY)
+
+	// clean up
+	ASSERT_EQUAL(remover.work(pl, tile_x(3, 1, 0), tile_x(3, 4, 0), "" + wt_road), null)
+	RESET_ALL_PLAYER_FUNDS()
+}
