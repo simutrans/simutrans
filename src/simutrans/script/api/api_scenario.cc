@@ -96,7 +96,8 @@ static plainstring get_tool_key_intern(uint16 tool_id)
 	}
 
 	char mod[2];
-	mod[0] = tool->command_flags == 2 ? '+' : (tool->command_flags == 1 ? '^' : 0);
+	// menuconf writes '^' for control and '+' for shift, see str_to_key()
+	mod[0] = tool->command_flags == SIM_KEYMOD_CTRL ? '^' : (tool->command_flags == SIM_KEYMOD_SHIFT ? '+' : 0);
 	mod[1] = 0;
 
 	// keypad
