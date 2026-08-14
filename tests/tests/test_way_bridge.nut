@@ -906,3 +906,191 @@ function test_way_bridge_planner_forbidden_by_scenario()
 	ASSERT_EQUAL(pl.get_current_maintenance(), 0)
 	RESET_ALL_PLAYER_FUNDS()
 }
+
+
+// counts the tiles of the deck of a bridge that starts at @p start_pos and runs south
+function BRIDGE_DECK_LEN(start_pos)
+{
+	local len = 0
+	while (true) {
+		local sq = square_x(start_pos.x, start_pos.y + len + 1)
+		if (!sq.is_valid()) {
+			break
+		}
+		local tile = sq.get_tile_at_height(start_pos.z + 1)
+		if (tile == null  ||  !tile.is_bridge()) {
+			break
+		}
+		len++
+	}
+	return len
+}
+
+
+// helper for the build_bridge_at tests: puts a ramp at the end of the corridor,
+// builds the bridge and reports how far it really got, then removes it again.
+// Returns the length of the bridge on success and the error message on failure.
+function BRIDGE_BUILD_AT(pl, bridge_desc, start_pos, len, max_length)
+{
+	local end_pos = start_pos + coord3d(0, len, 0)
+	ASSERT_EQUAL(command_x.set_slope(pl, end_pos, slope.north), null)
+
+	local cash = pl.get_current_cash()
+	local err
+	if (max_length == null) {
+		// the call as it was available before max_length was added
+		err = command_x.build_bridge_at(pl, start_pos, bridge_desc)
+	}
+	else {
+		err = command_x.build_bridge_at(pl, start_pos, bridge_desc, max_length)
+	}
+
+	local span = BRIDGE_DECK_LEN(start_pos) + 1
+
+	if (err == null) {
+		// the bridge is there, it was paid for, and it can be removed again
+		ASSERT_TRUE(tile_x(end_pos.x, end_pos.y, end_pos.z).is_bridge())
+		ASSERT_TRUE(pl.get_current_cash() < cash)
+		ASSERT_EQUAL(command_x(tool_remove_way).work(pl, start_pos, start_pos + coord3d(0, span, 0), "" + wt_road), null)
+	}
+	else {
+		// nothing was built and nothing was paid
+		ASSERT_EQUAL(BRIDGE_DECK_LEN(start_pos), 0)
+		ASSERT_FALSE(tile_x(start_pos.x, start_pos.y, start_pos.z).is_bridge())
+		ASSERT_EQUAL(pl.get_current_cash(), cash)
+	}
+
+	ASSERT_EQUAL(command_x.set_slope(pl, end_pos, slope.flat), null)
+	return err == null ? span : err
+}
+
+
+function test_way_bridge_build_at_max_length()
+{
+	local pl          = player_x(0)
+	local start_pos   = coord3d(11, 1, 0)
+	local bridge_desc = bridge_desc_x.get_available_bridges(wt_road)[0]
+	local too_long    = "Bridge is too long for this type!\n"
+
+	// this test needs a bridge that can span more than ten tiles
+	ASSERT_TRUE(bridge_desc != null)
+	ASSERT_TRUE(bridge_desc.get_max_length() >= 12)
+
+	ASSERT_EQUAL(command_x.set_slope(pl, start_pos, slope.south), null)
+
+	// the old three parameter call keeps its length limit of ten tiles
+	ASSERT_EQUAL(BRIDGE_BUILD_AT(pl, bridge_desc, start_pos, 10, null), 10)
+	ASSERT_EQUAL(BRIDGE_BUILD_AT(pl, bridge_desc, start_pos, 11, null), too_long)
+	ASSERT_EQUAL(BRIDGE_BUILD_AT(pl, bridge_desc, start_pos, 12, null), too_long)
+
+	// asking for ten explicitly is the same as not asking at all
+	ASSERT_EQUAL(BRIDGE_BUILD_AT(pl, bridge_desc, start_pos, 10, 10), 10)
+	ASSERT_EQUAL(BRIDGE_BUILD_AT(pl, bridge_desc, start_pos, 11, 10), too_long)
+
+	// with an explicit maximum length longer bridges are built
+	ASSERT_EQUAL(BRIDGE_BUILD_AT(pl, bridge_desc, start_pos, 11, 11), 11)
+	ASSERT_EQUAL(BRIDGE_BUILD_AT(pl, bridge_desc, start_pos, 12, 12), 12)
+
+	// ... but the maximum length is obeyed
+	ASSERT_EQUAL(BRIDGE_BUILD_AT(pl, bridge_desc, start_pos, 12, 11), too_long)
+
+	// clean up
+	ASSERT_EQUAL(command_x.set_slope(pl, start_pos, slope.flat), null)
+	ASSERT_EQUAL(pl.get_current_maintenance(), 0)
+	RESET_ALL_PLAYER_FUNDS()
+}
+
+
+function test_way_bridge_build_at_max_length_zero()
+{
+	local pl          = player_x(0)
+	local start_pos   = coord3d(11, 1, 0)
+	local bridge_desc = bridge_desc_x.get_available_bridges(wt_road)[0]
+	local too_long    = "Bridge is too long for this type!\n"
+
+	// a bridge with a limit of its own, to show that zero is not "unlimited"
+	local short_one = null
+	foreach (b in bridge_desc_x.get_available_bridges(wt_road)) {
+		if (short_one == null  &&  b.get_max_length() > 0  &&  b.get_max_length() < 10) {
+			short_one = b
+		}
+	}
+	ASSERT_TRUE(short_one != null)
+	ASSERT_TRUE(bridge_desc.get_max_length() >= 12)
+
+	ASSERT_EQUAL(command_x.set_slope(pl, start_pos, slope.south), null)
+
+	// zero means: as long as this bridge and the settings allow, negative is the same
+	ASSERT_EQUAL(BRIDGE_BUILD_AT(pl, bridge_desc, start_pos, 12,  0), 12)
+	ASSERT_EQUAL(BRIDGE_BUILD_AT(pl, bridge_desc, start_pos, 12, -1), 12)
+
+	// ... it does not lift the limit of the bridge itself
+	local max_span = short_one.get_max_length() + 1
+	ASSERT_EQUAL(BRIDGE_BUILD_AT(pl, short_one, start_pos, max_span,     0), max_span)
+	ASSERT_EQUAL(BRIDGE_BUILD_AT(pl, short_one, start_pos, max_span + 1, 0), too_long)
+
+	// clean up
+	ASSERT_EQUAL(command_x.set_slope(pl, start_pos, slope.flat), null)
+	ASSERT_EQUAL(pl.get_current_maintenance(), 0)
+	RESET_ALL_PLAYER_FUNDS()
+}
+
+
+function test_way_bridge_build_at_planner_parity()
+{
+	local pl          = player_x(0)
+	local start_pos   = coord3d(11, 1, 0)
+	local bridge_desc = bridge_desc_x.get_available_bridges(wt_road)[0]
+	local invalid     = coord3d(-1, -1, -1).tostring()
+
+	ASSERT_TRUE(bridge_desc.get_max_length() >= 12)
+	ASSERT_EQUAL(command_x.set_slope(pl, start_pos, slope.south), null)
+
+	foreach (span in [5, 10, 11, 12]) {
+		foreach (max_length in [10, 12, 0]) {
+			local planned = BRIDGE_FIND_END(pl, bridge_desc, start_pos, span, max_length, null)
+			local built   = BRIDGE_BUILD_AT(pl, bridge_desc, start_pos, span, max_length)
+
+			if (planned == invalid) {
+				// what the planner refuses to plan is not built either
+				ASSERT_EQUAL(built, "Bridge is too long for this type!\n")
+			}
+			else {
+				// ... and where it puts the end, there the bridge really ends
+				ASSERT_TRUE(typeof built == "integer")
+				ASSERT_EQUAL((start_pos + coord3d(0, built, 0)).tostring(), planned)
+			}
+		}
+	}
+
+	// clean up
+	ASSERT_EQUAL(command_x.set_slope(pl, start_pos, slope.flat), null)
+	ASSERT_EQUAL(pl.get_current_maintenance(), 0)
+	RESET_ALL_PLAYER_FUNDS()
+}
+
+
+function test_way_bridge_build_at_no_end()
+{
+	local pl          = player_x(0)
+	local start_pos   = coord3d(11, 1, 0)
+	local bridge_desc = bridge_desc_x.get_available_bridges(wt_road)[0]
+	local too_long    = "Bridge is too long for this type!\n"
+
+	ASSERT_EQUAL(command_x.set_slope(pl, start_pos, slope.south), null)
+
+	// there is no ramp anywhere in the corridor
+	local cash = pl.get_current_cash()
+	ASSERT_EQUAL(command_x.build_bridge_at(pl, start_pos, bridge_desc),     too_long)
+	ASSERT_EQUAL(command_x.build_bridge_at(pl, start_pos, bridge_desc, 12), too_long)
+	ASSERT_EQUAL(command_x.build_bridge_at(pl, start_pos, bridge_desc,  0), too_long)
+
+	ASSERT_EQUAL(pl.get_current_cash(), cash)
+	ASSERT_EQUAL(BRIDGE_DECK_LEN(start_pos), 0)
+	ASSERT_FALSE(tile_x(start_pos.x, start_pos.y, start_pos.z).is_bridge())
+
+	// clean up
+	ASSERT_EQUAL(command_x.set_slope(pl, start_pos, slope.flat), null)
+	ASSERT_EQUAL(pl.get_current_maintenance(), 0)
+	RESET_ALL_PLAYER_FUNDS()
+}

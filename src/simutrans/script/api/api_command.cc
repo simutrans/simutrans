@@ -422,7 +422,13 @@ call_tool_work build_bridge(player_t* pl, koord3d start, koord3d end, const brid
 	return call_tool_work(TOOL_BUILD_BRIDGE | GENERAL_TOOL, bridge->get_name(), 2, pl, start, end);
 }
 
-call_tool_work build_bridge_at(player_t* pl, koord3d start, const bridge_desc_t* bridge)
+/**
+ * Highest length a script may ask for: bridge_builder_t::find_end_pos counts the
+ * tested lengths in an uint8, and way_max_bridge_len can be set higher than that.
+ */
+static const uint32 MAX_SCRIPT_BRIDGE_LEN = 254;
+
+call_tool_work build_bridge_at(player_t* pl, koord3d start, const bridge_desc_t* bridge, sint32 max_length)
 {
 	if (bridge == NULL) {
 		return call_tool_work("No bridge provided");
@@ -433,13 +439,33 @@ call_tool_work build_bridge_at(player_t* pl, koord3d start, const bridge_desc_t*
 	if (grund_t *gr = world()->lookup(start)) {
 		sint8 height;
 		koord3d end = start;
-		if (const char *err = bridge_builder_t::find_end_pos(pl, start, -koord(gr->get_weg_hang()), height, bridge, 1, 10, false)) {
+		// max_length <= 0 means: as far as this bridge and the settings allow
+		const uint32 length = max_length <= 0 ? MAX_SCRIPT_BRIDGE_LEN : min( (uint32)max_length, MAX_SCRIPT_BRIDGE_LEN );
+		if (const char *err = bridge_builder_t::find_end_pos(pl, start, -koord(gr->get_weg_hang()), height, bridge, 1, length, false)) {
 			return call_tool_work(err); // to keep compatibility with old error message
 		}
 		return call_tool_work(TOOL_BUILD_BRIDGE | GENERAL_TOOL, bridge->get_name(), 0, pl, start, end);
 	}
 	return call_tool_work("Bridge is too long for this type!\n"); // to keep compatibility with old error message
 }
+
+
+typedef call_tool_work(*bba_type)(player_t*, koord3d, const bridge_desc_t*, sint32);
+
+SQInteger command_build_bridge_at(HSQUIRRELVM vm)
+{
+	/* possible calling conventions:
+	 *
+	 * build_bridge_at(player, pos, bridge)             - top == 4
+	 * build_bridge_at(player, pos, bridge, max_length) - top == 5
+	 */
+	if (sq_gettop(vm) == 4) {
+		// keep the length the old binding used
+		sq_pushinteger(vm, 10);
+	}
+	return embed_call_t<bba_type>::call_function(vm, build_bridge_at, false);
+}
+
 
 call_tool_work set_slope(player_t* pl, koord3d start, my_slope_t slope)
 {
@@ -618,13 +644,20 @@ void export_commands(HSQUIRRELVM vm)
 	 */
 	STATIC register_method(vm, build_bridge, "build_bridge", false, true);
 	/**
-	 * Build a bridge.
-	 * Similar to one click with mouse on suitable start tile: program will figure out bridge span itself.
+	 * Build a bridge, the end point is searched automatically.
+	 *
+	 * The search never goes further than the player could build: it is limited by the
+	 * maximum length of @p bridge and by the @c way_max_bridge_len setting.
+	 *
 	 * @param pl player to pay for the work
 	 * @param start coordinate, where bridge begins, the end point will be automatically determined
 	 * @param bridge type of bridge to be built
+	 * @param max_length (optional parameter) bridge should not be longer than this, zero or negative means as long as allowed. Defaults to 10.
 	 */
-	STATIC register_method(vm, build_bridge_at, "build_bridge_at", false, true);
+	STATIC register_function(vm, command_build_bridge_at, "build_bridge_at", -4 /* at least 4 parameters */,
+							 func_signature_t<bba_type>::get_typemask(false).c_str(), true /* static */);
+
+	log_squirrel_type(func_signature_t<bba_type>::get_squirrel_class(false), "build_bridge_at", func_signature_t<bba_type>::get_squirrel_type(false, 0));
 	/**
 	 * Modify the slope of one tile.
 	 * @param pl player to pay for the work
