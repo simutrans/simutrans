@@ -116,11 +116,12 @@ persistent = {}
  * Error messages are sent back over network to clients.
  * Does not work with waybuilding, use the rules.forbid_* functions in this case.
  *
+ * @param name is parameter (string) i.e. description for way tools
  * @param pos is a table with coordinate { x=, y=, z=}
  * @param tool is a table with current tool properties {coord3d start_pos, bool is_drag_tool, bool is_ctrl, bool is_shift}
  * @return null if allowed, an error message otherwise
  */
-function is_work_allowed_here(pl, tool_id, pos, tool)
+function is_work_allowed_here(pl, tool_id, name, pos, tool)
 {
 	return null
 }
