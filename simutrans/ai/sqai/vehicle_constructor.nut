@@ -34,9 +34,12 @@ class vehicle_constructor_t extends node_t
 					// it should be the last in the list
 					local cnv_list = p_depot.get_convoy_list()
 
-					local trythis = cnv_list[cnv_list.len()-1]
-					if (check_convoy(trythis)) {
-						c_cnv = trythis
+					c_cnv = null // do not keep the convoy of the previous round
+					if (cnv_list.len() > 0) {
+						local trythis = cnv_list[cnv_list.len()-1]
+						if (check_convoy(trythis)) {
+							c_cnv = trythis
+						}
 					}
 
 					if (c_cnv == null) {
@@ -46,6 +49,11 @@ class vehicle_constructor_t extends node_t
 								break
 							}
 						}
+					}
+					if (c_cnv == null) {
+						// append_vehicle cannot report that the depot tool failed
+						print("Appending vehicle failed.")
+						return r_t(RT_TOTAL_FAIL)
 					}
 					phase ++
 				}
