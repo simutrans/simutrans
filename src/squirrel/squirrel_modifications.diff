@@ -1,8 +1,6 @@
-diff --git b/simutrans/trunk/squirrel/sqstdlib/sqstdaux.cc a/simutrans/trunk/squirrel/sqstdlib/sqstdaux.cc
-index e569acfcf..0d196d9d7 100644
---- b/simutrans/trunk/squirrel/sqstdlib/sqstdaux.cc
-+++ a/simutrans/trunk/squirrel/sqstdlib/sqstdaux.cc
-@@ -23,13 +23,14 @@ void sqstd_printcallstack(HSQUIRRELVM v)
+--- a/src/squirrel/sqstdlib/sqstdaux.cc
++++ b/src/squirrel/sqstdlib/sqstdaux.cc
+@@ -23,13 +23,14 @@
  			const SQChar *src=_SC("unknown");
  			if(si.funcname)fn=si.funcname;
  			if(si.source)src=si.source;
@@ -11,7 +9,7 @@ index e569acfcf..0d196d9d7 100644
 +			pf(v,_SC("<em>* FUNCTION [%s()] <br>* %s"), fn,src);
 +			if (si.line > 0) {
 +				pf(v,_SC("* line [%d]"),si.line);
- 			}
+ 		}
 -		level=0;
 -		pf(v,_SC("\nLOCALS\n"));
 +			pf(v,_SC("</em>\n"));
@@ -22,7 +20,7 @@ index e569acfcf..0d196d9d7 100644
  			seq=0;
  			while((name = sq_getlocal(v,level,seq)))
  			{
-@@ -37,63 +38,83 @@ void sqstd_printcallstack(HSQUIRRELVM v)
+@@ -37,63 +38,83 @@
  				switch(sq_gettype(v,-1))
  				{
  				case OT_NULL:
@@ -94,7 +92,7 @@ index e569acfcf..0d196d9d7 100644
 +							if (SQ_SUCCEEDED(sq_getstring(v, -1, &cn))) {
 +								pf(v,_SC("- - - [%s] INSTANCE(%s)\n"),name, cn);
 +								sq_pop(v, 3);
- 								break;
+ 					break;
 +							}
 +						}
 +						sq_poptop(v);
@@ -122,14 +120,14 @@ index e569acfcf..0d196d9d7 100644
  		}
  	}
  }
-@@ -102,16 +123,18 @@ static SQInteger _sqstd_aux_printerror(HSQUIRRELVM v)
+@@ -102,16 +123,18 @@
  {
  	SQPRINTFUNCTION pf = sq_geterrorfunc(v);
  	if(pf) {
 +		pf(v,_SC("<error>"));
  		const SQChar *sErr = 0;
  		if(sq_gettop(v)>=1) {
- 			if(SQ_SUCCEEDED(sq_getstring(v,2,&sErr)))	{
+ 			if(SQ_SUCCEEDED(sq_getstring(v,2,&sErr)))   {
 -				pf(v,_SC("\nAN ERROR HAS OCCURRED [%s]\n"),sErr);
 +				pf(v,_SC("\n<st>Error: [%s]</st>\n"),sErr);
  			}
@@ -143,7 +141,7 @@ index e569acfcf..0d196d9d7 100644
  	}
  	return 0;
  }
-@@ -120,7 +143,9 @@ void _sqstd_compiler_error(HSQUIRRELVM v,const SQChar *sErr,const SQChar *sSourc
+@@ -120,7 +143,9 @@
  {
  	SQPRINTFUNCTION pf = sq_geterrorfunc(v);
  	if(pf) {
@@ -153,11 +151,9 @@ index e569acfcf..0d196d9d7 100644
  	}
  }
  
-diff --git b/simutrans/trunk/squirrel/sqstdlib/sqstdblob.cc a/simutrans/trunk/squirrel/sqstdlib/sqstdblob.cc
-index 13d68f0c0..dac94cc62 100644
---- b/simutrans/trunk/squirrel/sqstdlib/sqstdblob.cc
-+++ a/simutrans/trunk/squirrel/sqstdlib/sqstdblob.cc
-@@ -185,22 +185,6 @@ static const SQRegFunction _blob_methods[] = {
+--- a/src/squirrel/sqstdlib/sqstdblob.cc
++++ b/src/squirrel/sqstdlib/sqstdblob.cc
+@@ -185,22 +185,6 @@
  
  //GLOBAL FUNCTIONS
  
@@ -180,7 +176,7 @@ index 13d68f0c0..dac94cc62 100644
  static SQInteger _g_blob_swap2(HSQUIRRELVM v)
  {
  	SQInteger i;
-@@ -231,8 +215,6 @@ static SQInteger _g_blob_swapfloat(HSQUIRRELVM v)
+@@ -231,8 +215,6 @@
  
  #define _DECL_GLOBALBLOB_FUNC(name,nparams,typecheck) {_SC(#name),_g_blob_##name,nparams,typecheck}
  static const SQRegFunction bloblib_funcs[]={
@@ -189,11 +185,20 @@ index 13d68f0c0..dac94cc62 100644
  	_DECL_GLOBALBLOB_FUNC(swap2,2,_SC(".n")),
  	_DECL_GLOBALBLOB_FUNC(swap4,2,_SC(".n")),
  	_DECL_GLOBALBLOB_FUNC(swapfloat,2,_SC(".n")),
-diff --git b/simutrans/trunk/squirrel/squirrel.h a/simutrans/trunk/squirrel/squirrel.h
-index 65df9c5bb..2fb201356 100644
---- b/simutrans/trunk/squirrel/squirrel.h
-+++ a/simutrans/trunk/squirrel/squirrel.h
-@@ -60,7 +60,7 @@ struct SQDelegable;
+--- a/src/squirrel/sqstdlib/sqstdio.cc
++++ b/src/squirrel/sqstdlib/sqstdio.cc
+@@ -5,6 +5,8 @@
+ #include "../sqstdio.h"
+ #include "sqstdstream.h"
+ 
++#include "../../simutrans/sys/simsys.h"
++
+ #define SQSTD_FILE_TYPE_TAG ((SQUnsignedInteger)(SQSTD_STREAM_TYPE_TAG | 0x00000001))
+ //basic API
+ SQFILE sqstd_fopen(const SQChar *filename ,const SQChar *mode)
+--- a/src/squirrel/squirrel.h
++++ b/src/squirrel/squirrel.h
+@@ -60,7 +60,7 @@
  struct SQOuter;
  
  #ifdef _UNICODE
@@ -202,7 +207,7 @@ index 65df9c5bb..2fb201356 100644
  #endif
  
  #include "sqconfig.h"
-@@ -398,10 +399,10 @@ SQUIRREL_API void sq_setnativedebughook(HSQUIRRELVM v,SQDEBUGHOOK hook);
+@@ -398,10 +399,10 @@
  #define SQ_FAILED(res) (res<0)
  #define SQ_SUCCEEDED(res) (res>=0)
  
@@ -216,11 +221,9 @@ index 65df9c5bb..2fb201356 100644
  #endif
  
  #ifdef __cplusplus
-diff --git b/simutrans/trunk/squirrel/squirrel/sqapi.cc a/simutrans/trunk/squirrel/squirrel/sqapi.cc
-index 4ab6f00ba..a19cd0e39 100644
---- b/simutrans/trunk/squirrel/squirrel/sqapi.cc
-+++ a/simutrans/trunk/squirrel/squirrel/sqapi.cc
-@@ -1078,8 +1078,10 @@ SQRESULT sq_rawget(HSQUIRRELVM v,SQInteger idx)
+--- a/src/squirrel/squirrel/sqapi.cc
++++ b/src/squirrel/squirrel/sqapi.cc
+@@ -1078,8 +1078,10 @@
  		v->Pop();
  		return sq_throwerror(v,_SC("rawget works only on array/table/instance and class"));
  	}
@@ -232,7 +235,7 @@ index 4ab6f00ba..a19cd0e39 100644
  }
  
  SQRESULT sq_getstackobj(HSQUIRRELVM v,SQInteger idx,HSQOBJECT *po)
-@@ -1172,20 +1174,33 @@ SQRESULT sq_resume(HSQUIRRELVM v,SQBool retval,SQBool raiseerror)
+@@ -1172,20 +1174,33 @@
  	return sq_throwerror(v,_SC("only generators can be resumed"));
  }
  
@@ -256,13 +259,13 @@ index 4ab6f00ba..a19cd0e39 100644
 +		}
 +		if(retval){
 +			v->Push(res); return SQ_OK;
- 		}
+ 	}
 -	if(!v->_suspended)
 -		v->Pop(params); //pop args
 -	if(retval)
 -		v->Push(res); // push result
- 		return SQ_OK;
- 	}
+ 	return SQ_OK;
+ }
 +	else {
 +		v->Pop(params);
 +		return SQ_ERROR; // sq_throwerror(v,_SC("call failed"));
@@ -273,7 +276,7 @@ index 4ab6f00ba..a19cd0e39 100644
  SQRESULT sq_tailcall(HSQUIRRELVM v, SQInteger nparams)
  {
  	SQObjectPtr &res = v->GetUp(-(nparams + 1));
-@@ -1204,6 +1219,7 @@ SQRESULT sq_tailcall(HSQUIRRELVM v, SQInteger nparams)
+@@ -1204,6 +1219,7 @@
  	}
  	return SQ_TAILCALL_FLAG;
  }
@@ -281,7 +284,7 @@ index 4ab6f00ba..a19cd0e39 100644
  
  SQRESULT sq_suspendvm(HSQUIRRELVM v)
  {
-@@ -1223,7 +1239,7 @@ SQRESULT sq_wakeupvm(HSQUIRRELVM v,SQBool wakeupret,SQBool retval,SQBool raiseer
+@@ -1223,7 +1239,7 @@
  		v->Pop();
  	} else if(target != -1) { v->GetAt(v->_stackbase+v->_suspended_target).Null(); }
  	SQObjectPtr dummy;
@@ -290,11 +293,9 @@ index 4ab6f00ba..a19cd0e39 100644
  		return SQ_ERROR;
  	}
  	if(retval)
-diff --git b/simutrans/trunk/squirrel/squirrel/sqbaselib.cc a/simutrans/trunk/squirrel/squirrel/sqbaselib.cc
-index aa9f07d5e..130f2a191 100644
---- b/simutrans/trunk/squirrel/squirrel/sqbaselib.cc
-+++ a/simutrans/trunk/squirrel/squirrel/sqbaselib.cc
-@@ -955,9 +955,14 @@ static SQInteger string_find(HSQUIRRELVM v)
+--- a/src/squirrel/squirrel/sqbaselib.cc
++++ b/src/squirrel/squirrel/sqbaselib.cc
+@@ -955,9 +955,14 @@
  	return 1; \
  }
  
@@ -309,7 +310,7 @@ index aa9f07d5e..130f2a191 100644
  
  const SQRegFunction SQSharedState::_string_default_delegate_funcz[]={
  	{_SC("len"),default_delegate_len,1, _SC("s")},
-@@ -968,6 +973,7 @@ const SQRegFunction SQSharedState::_string_default_delegate_funcz[]={
+@@ -968,6 +973,7 @@
  	{_SC("find"),string_find,-2, _SC("s s n")},
  	{_SC("tolower"),string_tolower,-1, _SC("s n n")},
  	{_SC("toupper"),string_toupper,-1, _SC("s n n")},
@@ -317,7 +318,7 @@ index aa9f07d5e..130f2a191 100644
  	{_SC("weakref"),obj_delegate_weakref,1, NULL },
  	{NULL,(SQFUNCTION)0,0,NULL}
  };
-@@ -990,11 +996,13 @@ static SQInteger closure_pcall(HSQUIRRELVM v)
+@@ -990,11 +996,13 @@
  
  static SQInteger closure_call(HSQUIRRELVM v)
  {
@@ -331,11 +332,9 @@ index aa9f07d5e..130f2a191 100644
  	return SQ_SUCCEEDED(sq_call(v, sq_gettop(v) - 1, SQTrue, SQTrue)) ? 1 : SQ_ERROR;
  }
  
-diff --git b/simutrans/trunk/squirrel/squirrel/sqcompiler.cc a/simutrans/trunk/squirrel/squirrel/sqcompiler.cc
-index 3f23b9054..774d9cfbe 100644
---- b/simutrans/trunk/squirrel/squirrel/sqcompiler.cc
-+++ a/simutrans/trunk/squirrel/squirrel/sqcompiler.cc
-@@ -940,6 +940,19 @@ public:
+--- a/src/squirrel/squirrel/sqcompiler.cc
++++ b/src/squirrel/squirrel/sqcompiler.cc
+@@ -940,6 +940,19 @@
  		 SQInteger stackbase = _fs->PopTarget();
  		 SQInteger closure = _fs->PopTarget();
  		 _fs->AddInstruction(_OP_CALL, _fs->PushTarget(), closure, stackbase, nargs);
@@ -355,7 +354,7 @@ index 3f23b9054..774d9cfbe 100644
  		 if (_token == '{')
  		 {
  			 SQInteger retval = _fs->TopTarget();
-@@ -964,6 +977,7 @@ public:
+@@ -964,6 +977,7 @@
  			 }
  			 Lex();
  		 }
@@ -363,11 +362,9 @@ index 3f23b9054..774d9cfbe 100644
  	}
  	void ParseTableOrClass(SQInteger separator,SQInteger terminator)
  	{
-diff --git b/simutrans/trunk/squirrel/squirrel/sqdebug.cc a/simutrans/trunk/squirrel/squirrel/sqdebug.cc
-index 06fcf4ddb..dcf35c090 100644
---- b/simutrans/trunk/squirrel/squirrel/sqdebug.cc
-+++ a/simutrans/trunk/squirrel/squirrel/sqdebug.cc
-@@ -60,9 +60,14 @@ void SQVM::Raise_Error(const SQChar *s, ...)
+--- a/src/squirrel/squirrel/sqdebug.cc
++++ b/src/squirrel/squirrel/sqdebug.cc
+@@ -60,9 +60,14 @@
  {
  	va_list vl;
  	va_start(vl, s);
@@ -383,20 +380,47 @@ index 06fcf4ddb..dcf35c090 100644
  	_lasterror = SQString::Create(_ss(this),_spval,-1);
  }
  
-diff --git b/simutrans/trunk/squirrel/squirrel/sqopcodes.h a/simutrans/trunk/squirrel/squirrel/sqopcodes.h
-index a74893ede..4cffe1393 100644
---- b/simutrans/trunk/squirrel/squirrel/sqopcodes.h
-+++ a/simutrans/trunk/squirrel/squirrel/sqopcodes.h
-@@ -99,7 +99,7 @@ enum SQOpcode
- 	_OP_THROW=				0x39,
- 	_OP_NEWSLOTA=			0x3A,
+--- a/src/squirrel/squirrel/sqfuncproto.h
++++ b/src/squirrel/squirrel/sqfuncproto.h
+@@ -19,12 +19,6 @@
+ 		_src=src;
+ 		_type=t;
+ 	}
+-	SQOuterVar(const SQOuterVar &ov)
+-	{
+-		_type=ov._type;
+-		_src=ov._src;
+-		_name=ov._name;
+-	}
+ 	SQOuterType _type;
+ 	SQObjectPtr _name;
+ 	SQObjectPtr _src;
+@@ -33,13 +27,6 @@
+ struct SQLocalVarInfo
+ {
+ 	SQLocalVarInfo():_start_op(0),_end_op(0),_pos(0){}
+-	SQLocalVarInfo(const SQLocalVarInfo &lvi)
+-	{
+-		_name=lvi._name;
+-		_start_op=lvi._start_op;
+-		_end_op=lvi._end_op;
+-		_pos=lvi._pos;
+-	}
+ 	SQObjectPtr _name;
+ 	SQUnsignedInteger _start_op;
+ 	SQUnsignedInteger _end_op;
+--- a/src/squirrel/squirrel/sqopcodes.h
++++ b/src/squirrel/squirrel/sqopcodes.h
+@@ -99,7 +99,7 @@
+ 	_OP_THROW=			  0x39,
+ 	_OP_NEWSLOTA=		   0x3A,
  	_OP_GETBASE=			0x3B,
 -	_OP_CLOSE=			  0x3C
 +	_OP_CLOSE=				0x3C,
  };
  
  struct SQInstructionDesc {
-@@ -110,7 +110,8 @@ struct SQInstruction
+@@ -110,7 +110,8 @@
  {
  	SQInstruction(){};
  	SQInstruction(SQOpcode _op,SQInteger a0=0,SQInteger a1=0,SQInteger a2=0,SQInteger a3=0)
@@ -406,11 +430,9 @@ index a74893ede..4cffe1393 100644
  		_arg0 = (unsigned char)a0;_arg1 = (SQInt32)a1;
  		_arg2 = (unsigned char)a2;_arg3 = (unsigned char)a3;
  	}
-diff --git b/simutrans/trunk/squirrel/squirrel/sqvm.cc a/simutrans/trunk/squirrel/squirrel/sqvm.cc
-index 61a65d877..82085aad2 100644
---- b/simutrans/trunk/squirrel/squirrel/sqvm.cc
-+++ a/simutrans/trunk/squirrel/squirrel/sqvm.cc
-@@ -126,6 +126,10 @@ SQVM::SQVM(SQSharedState *ss)
+--- a/src/squirrel/squirrel/sqvm.cc
++++ b/src/squirrel/squirrel/sqvm.cc
+@@ -126,6 +126,10 @@
  	ci = NULL;
  	_releasehook = NULL;
  	INIT_CHAIN();ADD_TO_CHAIN(&_ss(this)->_gc_chain,this);
@@ -421,7 +443,7 @@ index 61a65d877..82085aad2 100644
  }
  
  void SQVM::Finalize()
-@@ -386,8 +388,9 @@ bool SQVM::StartCall(SQClosure *closure,SQInteger target,SQInteger args,SQIntege
+@@ -386,8 +388,9 @@
  	{
  		paramssize--;
  		if (nargs < paramssize) {
@@ -433,7 +455,7 @@ index 61a65d877..82085aad2 100644
  			return false;
  		}
  
-@@ -413,8 +416,9 @@ bool SQVM::StartCall(SQClosure *closure,SQInteger target,SQInteger args,SQIntege
+@@ -413,8 +416,9 @@
  			}
  		}
  		else {
@@ -445,7 +467,7 @@ index 61a65d877..82085aad2 100644
  			return false;
  		}
  	}
-@@ -679,7 +683,8 @@ bool SQVM::IsFalse(SQObjectPtr &o)
+@@ -679,7 +683,8 @@
  	return false;
  }
  extern SQInstructionDesc g_InstrDesc[];
@@ -455,7 +477,7 @@ index 61a65d877..82085aad2 100644
  {
  	if ((_nnativecalls + 1) > MAX_NATIVE_CALLS) { Raise_Error(_SC("Native stack overflow")); return false; }
  	_nnativecalls++;
-@@ -717,6 +722,26 @@ exception_restore:
+@@ -717,6 +722,26 @@
  	{
  		for(;;)
  		{
@@ -482,7 +504,7 @@ index 61a65d877..82085aad2 100644
  			const SQInstruction &_i_ = *ci->_ip++;
  			//dumpstack(_stackbase);
  			//scprintf("\n[%d] %s %d %d %d %d\n",ci->_ip-_closure(ci->_closure)->_function->_instructions,g_InstrDesc[_i_.op].name,arg0,arg1,arg2,arg3);
-@@ -730,7 +755,11 @@ exception_restore:
+@@ -730,7 +755,11 @@
  #else
  				TARGET = (SQInteger)((SQInt32)arg1); continue;
  #endif
@@ -495,7 +517,7 @@ index 61a65d877..82085aad2 100644
  			case _OP_DLOAD: TARGET = ci->_literals[arg1]; STK(arg2) = ci->_literals[arg3];continue;
  			case _OP_TAILCALL:{
  				SQObjectPtr &t = STK(arg1);
-@@ -932,7 +961,7 @@ exception_restore:
+@@ -932,7 +961,7 @@
  					break;
  				case AAT_FLOAT:
  					val._type = OT_FLOAT;
@@ -504,7 +526,7 @@ index 61a65d877..82085aad2 100644
  					break;
  				case AAT_BOOL:
  					val._type = OT_BOOL;
-@@ -1165,7 +1194,8 @@ bool SQVM::CallNative(SQNativeClosure *nclosure, SQInteger nargs, SQInteger newb
+@@ -1165,7 +1194,8 @@
  	if(nparamscheck && (((nparamscheck > 0) && (nparamscheck != nargs)) ||
  		((nparamscheck < 0) && (nargs < (-nparamscheck)))))
  	{
@@ -514,7 +536,7 @@ index 61a65d877..82085aad2 100644
  		return false;
  	}
  
-@@ -1577,14 +1607,14 @@ bool SQVM::DeleteSlot(const SQObjectPtr &self,const SQObjectPtr &key,SQObjectPtr
+@@ -1577,14 +1607,14 @@
  	return true;
  }
  
@@ -531,11 +553,17 @@ index 61a65d877..82085aad2 100644
  		break;
  	case OT_NATIVECLOSURE:{
  		bool dummy;
-diff --git b/simutrans/trunk/squirrel/squirrel/sqvm.h a/simutrans/trunk/squirrel/squirrel/sqvm.h
-index c82e44c26..e768220e0 100644
---- b/simutrans/trunk/squirrel/squirrel/sqvm.h
-+++ a/simutrans/trunk/squirrel/squirrel/sqvm.h
-@@ -55,7 +55,7 @@ public:
+--- a/src/squirrel/squirrel/sqvm.h
++++ b/src/squirrel/squirrel/sqvm.h
+@@ -20,7 +20,6 @@
+ struct SQExceptionTrap{
+ 	SQExceptionTrap() {}
+ 	SQExceptionTrap(SQInteger ss, SQInteger stackbase,SQInstruction *ip, SQInteger ex_target){ _stacksize = ss; _stackbase = stackbase; _ip = ip; _extarget = ex_target;}
+-	SQExceptionTrap(const SQExceptionTrap &et) { (*this) = et;  }
+ 	SQInteger _stackbase;
+ 	SQInteger _stacksize;
+ 	SQInstruction *_ip;
+@@ -55,7 +54,7 @@
  	SQVM(SQSharedState *ss);
  	~SQVM();
  	bool Init(SQVM *friendvm, SQInteger stacksize);
@@ -544,7 +572,7 @@ index c82e44c26..e768220e0 100644
  	//starts a native call return when the NATIVE closure returns
  	bool CallNative(SQNativeClosure *nclosure, SQInteger nargs, SQInteger newbase, SQObjectPtr &retval, SQInt32 target, bool &suspend,bool &tailcall);
  	bool TailCall(SQClosure *closure, SQInteger firstparam, SQInteger nparams);
-@@ -63,7 +63,8 @@ public:
+@@ -63,7 +62,8 @@
  	bool StartCall(SQClosure *closure, SQInteger target, SQInteger nargs, SQInteger stackbase, bool tailcall);
  	bool CreateClassInstance(SQClass *theclass, SQObjectPtr &inst, SQObjectPtr &constructor);
  	//call a generic closure pure SQUIRREL or NATIVE
@@ -554,7 +582,7 @@ index c82e44c26..e768220e0 100644
  	SQRESULT Suspend();
  
  	void CallDebugHook(SQInteger type,SQInteger forcedline=0);
-@@ -85,6 +86,7 @@ public:
+@@ -85,6 +85,7 @@
  
  
  	void Raise_Error(const SQChar *s, ...);
@@ -562,7 +590,7 @@ index c82e44c26..e768220e0 100644
  	void Raise_Error(const SQObjectPtr &desc);
  	void Raise_IdxError(const SQObjectPtr &o);
  	void Raise_CompareError(const SQObject &o1, const SQObject &o2);
-@@ -177,6 +179,11 @@ public:
+@@ -177,6 +178,11 @@
  	SQBool _suspended_root;
  	SQInteger _suspended_target;
  	SQInteger _suspended_traps;
@@ -574,27 +602,3 @@ index c82e44c26..e768220e0 100644
  };
  
  struct AutoDec{
-diff --git b/simutrans/trunk/squirrel/update_squirrel.sh a/simutrans/trunk/squirrel/update_squirrel.sh
-index e3f41794c..a23dc59be 100755
---- b/simutrans/trunk/squirrel/update_squirrel.sh
-+++ a/simutrans/trunk/squirrel/update_squirrel.sh
-@@ -41,11 +41,11 @@ for i in *.h; do gawk -f ../update_squirrel.awk "$i" > temp; mv temp "$i"; done
- cd ..
- 
- cd ..
--git diff -w --ignore-blank-lines --ignore-space-at-eol -b -R > update_squirrel.diff
--#
--# git checkout -- squirrel/squirrel
--# git checkout -- squirrel/sqstdlib
--# git checkout -- squirrel/sq*.h
--# git checkout -- simutrans/license_squirrel.txt
--#
--# patch --ignore-whitespace -p3 < update_squirrel.diff
-+git diff -w --ignore-blank-lines --ignore-space-at-eol -b > update_squirrel.diff
-+
-+git checkout -- squirrel/squirrel
-+git checkout -- squirrel/sqstdlib
-+git checkout -- squirrel/sq*.h
-+git checkout -- simutrans/license_squirrel.txt
-+
-+patch --ignore-whitespace -p3 < update_squirrel.diff
