@@ -26,6 +26,7 @@ include("tests/test_scenario")
 include("tests/test_schedule_route")
 include("tests/test_sign")
 include("tests/test_slope")
+include("tests/test_squirrel_vm")
 include("tests/test_terraform")
 include("tests/test_transport")
 include("tests/test_trees")
@@ -62,7 +63,8 @@ all_tests <- [
 	test_city_add_on_existing_townhall,
 	test_city_add_near_map_border,
 	test_city_change_size_invalid_params,
-	test_city_change_size_to_minimum
+	test_city_change_size_to_minimum,
+	test_city_remove_with_multitile_townhall,
 	test_climate_invalid,
 	test_climate_flat,
 	test_climate_cliff,
@@ -156,6 +158,7 @@ all_tests <- [
 	test_reservation_clear_road,
 	test_reservation_clear_rail,
 	test_scenario_rules_allow_forbid_tool,
+	test_scenario_rules_allow_forbid_way_tool,
 	test_scenario_rules_allow_forbid_way_tool_rect,
 	test_scenario_rules_allow_forbid_way_tool_cube,
 	test_scenario_rules_allow_forbid_tool_stacked_rect,
@@ -177,6 +180,16 @@ all_tests <- [
 	test_slope_restore_on_bridge,
 	test_slope_restore_on_label,
 	test_slope_max_height_diff,
+	test_vm_ops_counters_are_integers,
+	test_vm_ops_counters_track_each_other,
+	test_vm_suspend_resume_keeps_state,
+	test_vm_suspend_refills_budget,
+	test_vm_arity_diagnostic_native,
+	test_vm_arity_diagnostic_squirrel,
+	test_vm_float_literals,
+	test_vm_tail_recursion_reuses_the_frame,
+	test_vm_non_tail_recursion_grows_the_stack,
+	test_vm_closure_call,
 	test_terraform_raise_lower_land,
 	test_terraform_raise_lower_land_at_map_border,
 	test_terraform_raise_lower_land_at_water_center,
