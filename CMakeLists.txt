@@ -391,12 +391,12 @@ endif ()
 #
 add_custom_target(test
 	$<TARGET_FILE:simutrans>
-		-set_workdir ${CMAKE_CURRENT_SOURCE_DIR}/simutrans
 		-objects pak
 		-scenario automated-tests
 		-debug 2
 		-lang en
 		-fps 100
+	WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/simutrans
 	DEPENDS simutrans
 )
 
