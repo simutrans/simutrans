@@ -847,6 +847,35 @@ function test_way_bridge_planner_flat_ends()
 }
 
 
+function test_way_bridge_planner_flat_start_over_obstacle()
+{
+	local pl          = player_x(0)
+	local start_pos   = coord3d(9, 12, 0)
+	local blocked     = coord3d(9, 13, 0)
+	local end_pos     = coord3d(9, 14, 0)
+	local bridge_desc = bridge_desc_x.get_available_bridges(wt_road)[0]
+	local invalid     = coord3d(-1, -1, -1).tostring()
+
+	if (!player_x(2).is_valid()) {
+		world.create_player(2, 1)
+	}
+	local other = player_x(2)
+
+	// the tile next to the start carries an object of another player, so no bridge can end there
+	ASSERT_EQUAL(label_x.create(blocked, other, "Foo Bar"), null)
+
+	// the start is flat, so the search for a slope end already matches the blocked neighbour
+	ASSERT_EQUAL(bridge_planner_x.find_end(pl, start_pos, dir.south, bridge_desc, 1, 4, false).tostring(), invalid)
+	// asking for flat ends has to keep searching behind it
+	ASSERT_EQUAL(bridge_planner_x.find_end(pl, start_pos, dir.south, bridge_desc, 1, 4, true).tostring(), end_pos.tostring())
+
+	// clean up
+	ASSERT_EQUAL(command_x(tool_remover).work(other, blocked), null)
+	ASSERT_EQUAL(pl.get_current_maintenance(), 0)
+	RESET_ALL_PLAYER_FUNDS()
+}
+
+
 function test_way_bridge_planner_ownership()
 {
 	local pl          = player_x(0)

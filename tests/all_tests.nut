@@ -223,6 +223,7 @@ all_tests <- [
 	test_way_bridge_planner_max_length,
 	test_way_bridge_planner_desc_limits,
 	test_way_bridge_planner_flat_ends,
+	test_way_bridge_planner_flat_start_over_obstacle,
 	test_way_bridge_planner_ownership,
 	test_way_bridge_planner_forbidden_by_scenario,
 	test_way_bridge_build_at_max_length,

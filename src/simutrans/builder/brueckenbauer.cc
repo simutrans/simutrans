@@ -704,15 +704,18 @@ const char *bridge_builder_t::find_end_pos(player_t* player, koord3d &pos, const
 				pos = end;
 				return NULL;
 			}
-			max_length = i-1;  // try shorter bridge then
 			break;
 		}
 	}
 
 	if(also_flat_ends) {
-		// now try shorter bridge
+		// a flat end may be found at any length, also beyond the slope tested above
 		for (uint8 i = min_length;  i <= max_length; i++) {
-			const grund_t* gr_end = welt->lookup_kartenboden(pos.get_2d() + zv * i);	// must succeed, we tested above
+			const grund_t* gr_end = welt->lookup_kartenboden(pos.get_2d() + zv * i);
+			if (!gr_end) {
+				// not on map any more
+				break;
+			}
 			koord3d end = gr_end->get_pos();
 			if (const char* err = bridge_builder_t::can_build_bridge(player, pos, end, bridge_height, desc)) {
 				if (err && *err) {
