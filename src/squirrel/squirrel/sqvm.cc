@@ -590,7 +590,7 @@ bool SQVM::FOREACH_OP(SQObjectPtr &o1,SQObjectPtr &o2,SQObjectPtr
 
 #define _GUARD(exp) { if(!exp) { SQ_THROW();} }
 
-bool SQVM::CLOSURE_OP(SQObjectPtr &target, SQFunctionProto *func)
+bool SQVM::CLOSURE_OP(SQObjectPtr &target, SQFunctionProto *func,SQInteger boundtarget)
 {
 	SQInteger nouters;
 	SQClosure *closure = SQClosure::Create(_ss(this), func,_table(_roottable)->GetWeakRef(OT_TABLE));
@@ -612,6 +612,19 @@ bool SQVM::CLOSURE_OP(SQObjectPtr &target, SQFunctionProto *func)
 		for(SQInteger i = 0; i < ndefparams; i++) {
 			SQInteger spos = func->_defaultparams[i];
 			closure->_defaultparams[i] = _stack._vals[_stackbase + spos];
+		}
+	}
+	if (boundtarget != 0xFF) {
+		SQObjectPtr &val = _stack._vals[_stackbase + boundtarget];
+		SQObjectType t = sq_type(val);
+		if (t == OT_TABLE || t == OT_CLASS || t == OT_INSTANCE || t == OT_ARRAY) {
+			closure->_env = _refcounted(val)->GetWeakRef(t);
+			__ObjAddRef(closure->_env);
+		}
+		else {
+			Raise_Error(_SC("cannot bind a %s as environment object"), IdType2Name(t));
+			closure->Release();
+			return false;
 		}
 	}
 	target = closure;
@@ -1032,7 +1045,7 @@ exception_restore:
 			case _OP_CLOSURE: {
 				SQClosure *c = ci->_closure._unVal.pClosure;
 				SQFunctionProto *fp = c->_function;
-				if(!CLOSURE_OP(TARGET,fp->_functions[arg1]._unVal.pFunctionProto)) { SQ_THROW(); }
+				if(!CLOSURE_OP(TARGET,fp->_functions[arg1]._unVal.pFunctionProto,arg2)) { SQ_THROW(); }
 				continue;
 			}
 			case _OP_YIELD:{
