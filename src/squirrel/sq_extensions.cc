@@ -25,7 +25,7 @@ void unregister_vm(HSQUIRRELVM v)
 void* get_instanceup(HSQUIRRELVM vm, SQInteger index, void* tag, const char* type)
 {
 	void* ptr = NULL;
-	if(SQ_SUCCEEDED(sq_getinstanceup(vm, index, &ptr, tag))) {
+	if(SQ_SUCCEEDED(sq_getinstanceup(vm, index, &ptr, tag, SQTrue))) {
 		return ptr;
 	}
 	else {

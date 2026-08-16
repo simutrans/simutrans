@@ -59,7 +59,7 @@ template<class D> struct access_objs {
 	{
 		SQUserPointer tag = obj_t_tag + bind_code<D>::objtype;
 		SQUserPointer p = NULL;
-		if (SQ_SUCCEEDED(sq_getinstanceup(vm, index, &p, tag))  &&  p) {
+		if (SQ_SUCCEEDED(sq_getinstanceup(vm, index, &p, tag, SQTrue))  &&  p) {
 			D *obj = static_cast<D*>(p);
 			koord3d pos = param<koord3d>::get(vm, index);
 			grund_t *gr = welt->lookup(pos);

@@ -214,7 +214,7 @@ namespace script_api {
 	C* get_attached_instance(HSQUIRRELVM vm, SQInteger index, SQUserPointer tag)
 	{
 		SQUserPointer up;
-		if (SQ_SUCCEEDED(sq_getinstanceup(vm, index, &up, tag))) {
+		if (SQ_SUCCEEDED(sq_getinstanceup(vm, index, &up, tag, SQTrue))) {
 			return (C*)up;
 		}
 		return NULL;
