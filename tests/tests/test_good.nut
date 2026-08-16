@@ -37,6 +37,15 @@ function test_good_speed_bonus()
 
 	ASSERT_TRUE(concrete.calc_revenue(wt_road, 0) == concrete.calc_revenue(wt_road, 999)) // this has a speed bonus of 0
 
+	local custom_vehicle = vehicle_desc_x("SpeedBonusTest50_70")
+	local legacy_city_revenue = pax.calc_revenue(wt_road, 25)
+	local custom_city_revenue = pax.calc_revenue_for_vehicle(wt_road, 25, custom_vehicle)
+	ASSERT_TRUE(custom_city_revenue > legacy_city_revenue)
+
+	local custom_fast_revenue = pax.calc_revenue_for_vehicle(wt_road, 250, custom_vehicle)
+	local custom_faster_revenue = pax.calc_revenue_for_vehicle(wt_road, 999, custom_vehicle)
+	ASSERT_EQUAL(custom_fast_revenue, custom_faster_revenue)
+
 	local wtypes = [ wt_road, wt_rail, wt_water, wt_monorail, wt_maglev, wt_narrowgauge ]
 	local goods = [ pax, concrete ]
 
@@ -47,6 +56,17 @@ function test_good_speed_bonus()
 				local current = g.calc_revenue(wt, speed)
 				ASSERT_TRUE(current >= last)
 				last = current
+			}
+
+			// Legacy vehicle descriptors with default individual settings must
+			// produce exactly the legacy revenue.
+			foreach (vehicle in vehicle_desc_x.get_available_vehicles(wt)) {
+				if (vehicle.get_name() == custom_vehicle.get_name()) {
+					continue
+				}
+				foreach (test_speed in [0, 25, 100, 250, 999]) {
+					ASSERT_EQUAL(g.calc_revenue_for_vehicle(wt, test_speed, vehicle), g.calc_revenue(wt, test_speed))
+				}
 			}
 		}
 	}

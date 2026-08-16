@@ -19,6 +19,8 @@ void vehicle_desc_t::calc_checksum(checksum_t *chk) const
 #if MSG_LEVEL>0
 	if(capacity) PAKSET_INFO("payload=","%d",capacity);
 	if(loading_time!=1000) PAKSET_INFO("loading_time=","%d",loading_time);
+	if(speed_bonus_reference_percent!=100) PAKSET_INFO("speed_bonus_reference_percent=","%d",speed_bonus_reference_percent);
+	if(speed_bonus_max_percent!=0) PAKSET_INFO("speed_bonus_max_percent=","%d",speed_bonus_max_percent);
 	if(weight) PAKSET_INFO("weight=","%d",weight/1000);
 	if(power) {
 		PAKSET_INFO("power=","%d",power);
@@ -55,6 +57,8 @@ void vehicle_desc_t::calc_checksum(checksum_t *chk) const
 #endif
 	chk->input(capacity);
 	chk->input(loading_time);
+	chk->input(speed_bonus_reference_percent);
+	chk->input(speed_bonus_max_percent);
 	chk->input(weight);
 	chk->input(power);
 	chk->input(running_cost);

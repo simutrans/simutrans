@@ -1,6 +1,14 @@
 #!/bin/bash
 set -e
 
+repo_dir=$(pwd)
+mkdir -p ~/simutrans/addons/pak
+pushd tests/pak
+"$repo_dir/build/default/makeobj/makeobj" pak64 \
+	~/simutrans/addons/pak/vehicle.SpeedBonusTest50_70.pak \
+	vehicle-speed-bonus-test.dat
+popd
+
 
 pushd simutrans
 ../sim -use_workdir -objects pak -lang en -scenario automated-tests -addons -debug 2 2>&1 | ts -s | tee output.log &

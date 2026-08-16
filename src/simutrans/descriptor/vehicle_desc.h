@@ -67,6 +67,8 @@ private:
 	sint64 running_cost = 0;
 	uint16 capacity     = 0;
 	uint32 loading_time = 1000; // time per full loading/unloading
+	uint16 speed_bonus_reference_percent = 100; // 1..65535, percentage of the waytype reference speed
+	uint16 speed_bonus_max_percent       = 0;   // 0: no vehicle-specific cap; otherwise 1..65535 percent
 
 	uint16 gear = 64;       // engine gear (power multiplier), 64=100
 
@@ -239,6 +241,8 @@ public:
 
 	uint16 get_capacity() const { return capacity; }
 	uint32 get_loading_time() const { return loading_time; } // ms per full loading/unloading
+	uint16 get_speed_bonus_reference_percent() const { return speed_bonus_reference_percent; }
+	uint16 get_speed_bonus_max_percent() const { return speed_bonus_max_percent; }
 	uint32 get_weight() const { return weight; }
 	uint32 get_power() const { return power; }
 	sint64 get_running_cost() const { return running_cost; }

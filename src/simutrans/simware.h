@@ -15,6 +15,7 @@
 class goods_manager_t;
 class karte_t;
 class player_t;
+class vehicle_desc_t;
 
 
 /// Class to handle goods packets (and their destinations)
@@ -127,8 +128,10 @@ public:
 	 * @param desc the freight
 	 * @param wt waytype of vehicle
 	 * @param speedkmh actual achieved speed in km/h
+	 * @param vehicle_desc vehicle carrying the goods, or NULL for the legacy
+	 * calculation without vehicle-specific settings
 	 */
-	static sint64 calc_revenue(const goods_desc_t *desc, waytype_t wt, sint32 speedkmh);
+	static sint64 calc_revenue(const goods_desc_t *desc, waytype_t wt, sint32 speedkmh, const vehicle_desc_t *vehicle_desc = NULL);
 
 	/// Adds the number of goods to this goods packet.
 	/// @return Any excess goods that could not be added, eg due to logical limits.

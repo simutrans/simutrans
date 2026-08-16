@@ -34,6 +34,7 @@ jobs:
     - name: Build Simutrans
       run: |
         CC="ccache clang" CXX="ccache clang++" make -j$(nproc)
+        CC="ccache clang" CXX="ccache clang++" make -j$(nproc) makeobj
     - name: Install pak64
       run: |
         pushd simutrans

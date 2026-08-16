@@ -17,6 +17,7 @@
 #include "dataobj/koord.h"
 
 #include "descriptor/goods_desc.h"
+#include "descriptor/vehicle_desc.h"
 #include "builder/goods_manager.h"
 
 
@@ -173,15 +174,30 @@ void ware_t::update_factory_target()
 }
 
 
-sint64 ware_t::calc_revenue(const goods_desc_t* desc, waytype_t wt, sint32 speedkmh)
+sint64 ware_t::calc_revenue(const goods_desc_t* desc, waytype_t wt, sint32 speedkmh, const vehicle_desc_t* vehicle_desc)
 {
 	static karte_ptr_t welt;
 
-	const sint32 ref_kmh = welt->get_average_speed( wt );
-	const sint32 kmh_base = (100 * speedkmh) / ref_kmh - 100;
+	if (vehicle_desc == NULL ||
+		(vehicle_desc->get_speed_bonus_reference_percent() == 100 && vehicle_desc->get_speed_bonus_max_percent() == 0)) {
+		const sint32 ref_kmh = welt->get_average_speed( wt );
+		const sint32 kmh_base = (100 * speedkmh) / ref_kmh - 100;
 
-	const sint64 grundwert128    = welt->get_settings().get_bonus_basefactor(); // minimal bonus factor
-	const sint64 grundwert_bonus = 1000 + kmh_base*desc->get_speed_bonus();     // speed bonus factor
+		const sint64 grundwert128    = welt->get_settings().get_bonus_basefactor(); // minimal bonus factor
+		const sint64 grundwert_bonus = 1000 + kmh_base*desc->get_speed_bonus();     // speed bonus factor
+
+		return desc->get_value() * std::max(grundwert128, grundwert_bonus);
+	}
+
+	const sint32 waytype_ref_kmh = welt->get_average_speed(wt);
+	const sint32 ref_kmh = std::max(1, (sint32)((sint64)waytype_ref_kmh * vehicle_desc->get_speed_bonus_reference_percent() / 100));
+	const sint64 kmh_base = ((sint64)100 * speedkmh) / ref_kmh - 100;
+
+	const sint64 grundwert128 = welt->get_settings().get_bonus_basefactor();
+	sint64 grundwert_bonus = 1000 + kmh_base * desc->get_speed_bonus();
+	if (vehicle_desc->get_speed_bonus_max_percent() > 0) {
+		grundwert_bonus = std::min(grundwert_bonus, (sint64)vehicle_desc->get_speed_bonus_max_percent() * 10);
+	}
 
 	return desc->get_value() * std::max(grundwert128, grundwert_bonus);
 }

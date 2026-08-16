@@ -46,7 +46,33 @@ obj_desc_t *vehicle_reader_t::read_node(FILE *fp, obj_node_info_t &node)
 
 	vehicle_desc_t *desc = new vehicle_desc_t();
 
-	if (version == 13) {
+	if (version == 14) {
+		// individual speed bonus
+		desc->price              = decode_sint64(p);
+		desc->capacity           = decode_uint16(p);
+		desc->loading_time       = decode_uint32(p);
+		desc->topspeed           = decode_uint16(p);
+		desc->weight             = decode_uint32(p);
+		desc->axle_load          = decode_uint16(p);
+		desc->power              = decode_uint32(p);
+		desc->running_cost       = decode_sint64(p);
+		desc->maintenance        = decode_sint64(p);
+
+		desc->intro_date         = decode_uint16(p);
+		desc->retire_date        = decode_uint16(p);
+		desc->gear               = decode_uint16(p);
+
+		desc->wtyp               = decode_uint8(p);
+		desc->sound              = decode_sint8(p);
+		desc->engine_type        = decode_uint8(p);
+		desc->len                = decode_uint8(p);
+		desc->leader_count       = decode_uint8(p);
+		desc->trailer_count      = decode_uint8(p);
+		desc->freight_image_type = decode_uint8(p);
+		desc->speed_bonus_reference_percent = decode_uint16(p);
+		desc->speed_bonus_max_percent       = decode_uint16(p);
+	}
+	else if (version == 13) {
 		// loading time as uint32
 		desc->price              = decode_sint64(p);
 		desc->capacity           = decode_uint16(p);

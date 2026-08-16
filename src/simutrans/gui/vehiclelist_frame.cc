@@ -77,6 +77,14 @@ vehiclelist_stats_t::vehiclelist_stats_t(const vehicle_desc_t *v) :
 		part1.printf("%s%s\n", translator::translate("Loading time:"), difftick_to_string(veh->get_loading_time(), false));
 	}
 	part1.printf( "%s %3d km/h\n", translator::translate( "Max. speed:" ), veh->get_topspeed() );
+	if( veh->get_speed_bonus_reference_percent() != 100 ) {
+		part1.printf( translator::translate( "Fare reference speed: %u%% of era speed" ), veh->get_speed_bonus_reference_percent() );
+		part1.append( "\n" );
+	}
+	if( veh->get_speed_bonus_max_percent() != 0 ) {
+		part1.printf( translator::translate( "Maximum speed payment: %u%%" ), veh->get_speed_bonus_max_percent() );
+		part1.append( "\n" );
+	}
 	if( veh->get_power() > 0 ) {
 		if( veh->get_gear() != 64 ) {
 			part1.printf( "%s %4d kW (x%0.2f)\n", translator::translate( "Power:" ), veh->get_power(), veh->get_gear() / 64.0 );

@@ -63,7 +63,7 @@ public:
 			// cnv_kmh == SPEED_UNLIMITED means that meaningful revenue
 			// cannot be calculated yet (e.g. vehicle in depot or stopped at station)
 			if(v->get_cargo_max() > 0 && cnv_kmh != SPEED_UNLIMITED) {
-				max_income += (v->get_cargo_max() * ware_t::calc_revenue(v->get_cargo_type(), v->get_waytype(), cnv_kmh))/3000;
+				max_income += (v->get_cargo_max() * ware_t::calc_revenue(v->get_cargo_type(), v->get_waytype(), cnv_kmh, v->get_desc()))/3000;
 			}
 			add_table(2,1);
 			{
@@ -77,6 +77,16 @@ public:
 			if (v->get_desc()->get_capacity() > 0) {
 				l = new_component<gui_label_buf_t>();
 				l->buf().printf("%s%s", translator::translate("Loading time:"), difftick_to_string(v->get_desc()->get_loading_time(),false) );
+				l->update();
+			}
+			if (v->get_desc()->get_speed_bonus_reference_percent() != 100) {
+				l = new_component<gui_label_buf_t>();
+				l->buf().printf(translator::translate("Fare reference speed: %u%% of era speed"), v->get_desc()->get_speed_bonus_reference_percent());
+				l->update();
+			}
+			if (v->get_desc()->get_speed_bonus_max_percent() != 0) {
+				l = new_component<gui_label_buf_t>();
+				l->buf().printf(translator::translate("Maximum speed payment: %u%%"), v->get_desc()->get_speed_bonus_max_percent());
 				l->update();
 			}
 			// power

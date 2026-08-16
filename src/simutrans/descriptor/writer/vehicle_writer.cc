@@ -61,7 +61,10 @@ void vehicle_writer_t::write_obj(FILE* fp, obj_node_t& parent, tabfileobj_t& obj
 	int i;
 	uint8  uv8;
 
-	uint32 total_len = 57; // version 13 size
+	const uint16 speed_bonus_reference_percent = obj.get_int_clamped("speed_bonus_reference_percent", 100, 1, 65535);
+	const uint16 speed_bonus_max_percent = obj.get_int_clamped("speed_bonus_max_percent", 0, 0, 65535);
+
+	uint32 total_len = 61; // version 14 size
 
 	// must be done here since it may affect the len of the header!
 	string sound_str = ltrim( obj.get("sound") );
@@ -88,7 +91,7 @@ void vehicle_writer_t::write_obj(FILE* fp, obj_node_t& parent, tabfileobj_t& obj
 
 	write_name_and_copyright(fp, node, obj);
 
-	node.write_version(fp, 13);
+	node.write_version(fp, 14);
 
 	// Price of this vehicle in cent
 	const sint64 price = obj.get_int64("cost", 0);
@@ -329,6 +332,8 @@ void vehicle_writer_t::write_obj(FILE* fp, obj_node_t& parent, tabfileobj_t& obj
 	node.write_sint8(fp, leader_count);
 	node.write_sint8(fp, trailer_count);
 	node.write_uint8(fp, (uint8) freight_image_type);
+	node.write_uint16(fp, speed_bonus_reference_percent);
+	node.write_uint16(fp, speed_bonus_max_percent);
 
 	sint8 sound_str_len = sound_str.size();
 	if (sound_str_len > 0) {

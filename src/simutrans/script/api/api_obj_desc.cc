@@ -82,6 +82,12 @@ sint64 get_scaled_maintenance_building(const building_desc_t* desc)
 }
 
 
+sint64 calc_revenue_without_vehicle(const goods_desc_t *desc, waytype_t wt, sint32 speedkmh)
+{
+	return ware_t::calc_revenue(desc, wt, speedkmh, NULL);
+}
+
+
 bool building_enables(const building_desc_t* desc, uint8 which)
 {
 	return desc ? desc->get_enabled() & which : 0;
@@ -793,7 +799,18 @@ void export_goods_desc(HSQUIRRELVM vm)
 	 * @param speedkmh actual achieved speed in km/h
 	 * @returns revenue
 	 */
-	register_method(vm, &ware_t::calc_revenue, "calc_revenue", true);
+	register_method(vm, &calc_revenue_without_vehicle, "calc_revenue", true);
+	/**
+	 * Calculates transport revenue per tile and freight unit using the speed
+	 * bonus settings of a specific vehicle descriptor.
+	 * Value contains an additional factor of 3000. Divide by 3000 *after*
+	 * calculating revenue for a loaded convoy.
+	 * @param wt waytype of vehicle
+	 * @param speedkmh actual achieved speed in km/h
+	 * @param vehicle vehicle carrying the freight
+	 * @returns revenue
+	 */
+	register_method(vm, &ware_t::calc_revenue, "calc_revenue_for_vehicle", true);
 	end_class(vm);
 
 	/**

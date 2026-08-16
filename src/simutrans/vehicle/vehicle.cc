@@ -733,7 +733,7 @@ sint64 vehicle_t::calc_revenue(const koord3d& start, const koord3d& end) const
 
 		// calculate freight revenue incl. speed-bonus
 		if (ware.get_desc() != last_freight) {
-			freight_revenue = ware_t::calc_revenue(ware.get_desc(), get_desc()->get_waytype(), cnv_kmh);
+			freight_revenue = ware_t::calc_revenue(ware.get_desc(), get_desc()->get_waytype(), cnv_kmh, get_desc());
 			last_freight = ware.get_desc();
 		}
 		const sint64 price = freight_revenue * (sint64)dist * (sint64)ware.amount;

@@ -127,6 +127,8 @@ enum {
 	LB_VEH_CAPACITY,
 	LB_VEH_DATE,
 	LB_VEH_SPEED,
+	LB_VEH_SPEED_BONUS_REFERENCE,
+	LB_VEH_SPEED_BONUS_MAX,
 	LB_VEH_AUTHOR,
 	LB_VEH_POWER,
 	LB_VEH_VALUE,
@@ -376,6 +378,8 @@ void depot_frame_t::init(depot_t *dep)
 	cont_vehicle_labels->add_component(labels[LB_VEH_LOADINGTIME]);
 	cont_vehicle_labels->add_component(labels[LB_VEH_SPEED]);
 	cont_vehicle_labels->add_component(labels[LB_VEH_DATE]);
+	cont_vehicle_labels->add_component(labels[LB_VEH_SPEED_BONUS_REFERENCE]);
+	cont_vehicle_labels->add_component(labels[LB_VEH_SPEED_BONUS_MAX]);
 	cont_vehicle_labels->add_component(labels[LB_VEH_POWER]);
 	cont_vehicle_labels->add_component(labels[LB_VEH_VALUE]);
 	cont_vehicle_labels->add_component(labels[LB_VEH_AUTHOR]);
@@ -1524,6 +1528,18 @@ void depot_frame_t::update_vehicle_info_text(scr_coord pos)
 		}
 
 		labels[LB_VEH_SPEED]->buf().printf( "%s %3d km/h\n", translator::translate("Max. speed:"), veh_type->get_topspeed() );
+		if( veh_type->get_speed_bonus_reference_percent() != 100 ) {
+			labels[LB_VEH_SPEED_BONUS_REFERENCE]->buf().printf( translator::translate("Fare reference speed: %u%% of era speed"), veh_type->get_speed_bonus_reference_percent() );
+		}
+		else {
+			labels[LB_VEH_SPEED_BONUS_REFERENCE]->buf().clear();
+		}
+		if( veh_type->get_speed_bonus_max_percent() != 0 ) {
+			labels[LB_VEH_SPEED_BONUS_MAX]->buf().printf( translator::translate("Maximum speed payment: %u%%"), veh_type->get_speed_bonus_max_percent() );
+		}
+		else {
+			labels[LB_VEH_SPEED_BONUS_MAX]->buf().clear();
+		}
 
 		if(  veh_type->get_power() > 0  ) {
 			if(  veh_type->get_gear() != 64  ){
