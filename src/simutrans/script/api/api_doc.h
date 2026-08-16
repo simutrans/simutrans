@@ -18,6 +18,11 @@
  * The scripts have to be written in squirrel. The manual can be found at <a href="http://squirrel-lang.org/">Squirrel main page</a>.
  * As squirrels like to crack nuts, understandably the script files get the extension '.nut'.
  *
+ * The embedded Squirrel runtime was updated to upstream v3.2. Compatibility notes for
+ * script authors, including the table-iteration-order change, are described in
+ * @ref squirrel32_en "Squirrel 3.2 runtime update"
+ * (@ref squirrel32_es "en español").
+ *
  * @section s_scenarios Scripted scenarios
  *
  * See also @ref scen_skel and @ref scen_only.

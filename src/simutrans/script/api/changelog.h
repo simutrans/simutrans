@@ -7,6 +7,10 @@
 
 /** @page changelog Changelog
  *
+ * - Updated the embedded Squirrel runtime to upstream v3.2, see @ref squirrel32_en. The
+ *   documented Script API is unchanged. Squirrel tables gained @c map, functions accept
+ *   an inline environment binding, and the iteration order of tables must not be relied
+ *   upon unless it is explicitly documented.
  * - Added @ref halt_x::get_owners
  * - Added @ref halt_x::get_permissions
  * - Added @ref halt_x::set_permissions
