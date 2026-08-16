@@ -246,6 +246,9 @@ public:
 	bool check_slope( const grund_t *from, const grund_t *to );
 
 	bool check_terraforming( const grund_t *from, const grund_t *to, uint8* new_from_slope=NULL, uint8* new_to_slope=NULL) const;
+	bool check_terraforming( const grund_t *from, const grund_t *to, slope_t::type from_slope, sint8 from_hgt, slope_t::type to_slope, sint8 to_hgt, uint8* new_from_slope, uint8* new_to_slope) const;
+	/// Replays the whole terraform sequence without touching the world.
+	bool terraforming_leaves_way_slopes() const;
 	void do_terraforming();
 
 	void build();

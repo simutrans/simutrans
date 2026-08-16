@@ -997,26 +997,30 @@ bool way_builder_t::is_allowed_step(const grund_t *from, const grund_t *to, sint
 
 bool way_builder_t::check_terraforming( const grund_t *from, const grund_t *to, uint8* new_from_slope, uint8* new_to_slope) const
 {
-	// only for normal green tiles
-	const slope_t::type from_slope = from->get_weg_hang();
-	const slope_t::type to_slope = to->get_weg_hang();
-	const sint8 from_hgt = from->get_hoehe();
-	const sint8 to_hgt = to->get_hoehe();
+	return check_terraforming( from, to, from->get_weg_hang(), from->get_hoehe(), to->get_weg_hang(), to->get_hoehe(), new_from_slope, new_to_slope );
+}
 
+
+bool way_builder_t::check_terraforming( const grund_t *from, const grund_t *to, slope_t::type from_slope, sint8 from_hgt, slope_t::type to_slope, sint8 to_hgt, uint8* new_from_slope, uint8* new_to_slope) const
+{
+	// the heights are given rather than read, so that a caller may ask about a state it
+	// has not applied to the world: the lookups have to follow them, not the tiles' own z
+	const koord3d from_pos( from->get_pos().get_2d(), from_hgt );
+	const koord3d to_pos( to->get_pos().get_2d(), to_hgt );
 	// we may change slope of a tile if it is sloped already
-	if(  (from_slope == slope_t::flat  ||  from->get_hoehe() == welt->get_water_hgt( from->get_pos().get_2d() ))
-	  &&  (to_slope == slope_t::flat  ||  to->get_hoehe() == welt->get_water_hgt( to->get_pos().get_2d() ))  ) {
+	if(  (from_slope == slope_t::flat  ||  from_hgt == welt->get_water_hgt( from_pos.get_2d() ))
+	  &&  (to_slope == slope_t::flat  ||  to_hgt == welt->get_water_hgt( to_pos.get_2d() ))  ) {
 		return false;
 	}
 	else if(  abs( from_hgt - to_hgt ) <= (desc->has_double_slopes() ? 2 : 1)  ) {
 		// extra check for double heights
-		if(  abs( from_hgt - to_hgt) == 2  &&  (welt->lookup( from->get_pos() - koord3d(0,0,2) ) != NULL  ||  welt->lookup( from->get_pos() + koord3d(0, 0, 2) ) != NULL
-		  ||  welt->lookup( to->get_pos() - koord3d(0, 0, 2) ) != NULL  ||  welt->lookup( to->get_pos() + koord3d(0, 0, 2) ) != NULL)  ) {
+		if(  abs( from_hgt - to_hgt) == 2  &&  (welt->lookup( from_pos - koord3d(0,0,2) ) != NULL  ||  welt->lookup( from_pos + koord3d(0, 0, 2) ) != NULL
+		  ||  welt->lookup( to_pos - koord3d(0, 0, 2) ) != NULL  ||  welt->lookup( to_pos + koord3d(0, 0, 2) ) != NULL)  ) {
 			return false;
 		}
 		// monorail above / tunnel below
-		if (welt->lookup(from->get_pos() - koord3d(0,0,1))!=NULL  ||  welt->lookup(from->get_pos() + koord3d(0,0,1))!=NULL
-			||  welt->lookup(to->get_pos() - koord3d(0,0,1))!=NULL  ||  welt->lookup(to->get_pos() + koord3d(0,0,1))!=NULL) {
+		if (welt->lookup(from_pos - koord3d(0,0,1))!=NULL  ||  welt->lookup(from_pos + koord3d(0,0,1))!=NULL
+			||  welt->lookup(to_pos - koord3d(0,0,1))!=NULL  ||  welt->lookup(to_pos + koord3d(0,0,1))!=NULL) {
 				return false;
 		}
 		// can safely change slope of at least one of the tiles
@@ -1027,7 +1031,7 @@ bool way_builder_t::check_terraforming( const grund_t *from, const grund_t *to, 
 		assert(new_from_slope);
 		assert(new_to_slope);
 		// direction of way
-		const koord dir = (to->get_pos() - from->get_pos()).get_2d();
+		const koord dir = (to_pos - from_pos).get_2d();
 		sint8 start  = from_hgt * 2;
 		sint8 middle = from_hgt * 2;
 		sint8 end    = to_hgt * 2;
@@ -1100,6 +1104,69 @@ bool way_builder_t::check_terraforming( const grund_t *from, const grund_t *to, 
 	}
 
 	return false;
+}
+
+
+/// Ground do_terraforming() installs for a computed slope; mirrors its four branches.
+static void terraformed_ground(uint8 &slope, sint8 &hgt)
+{
+	if(  slope == slope_t::all_up_two  ) {
+		hgt += 2;
+		slope = slope_t::flat;
+	}
+	else if(  slope != slope_t::all_up_one  ) {
+		if(  slope > slope_t::all_up_one  &&  slope_t::is_single( slope-slope_t::all_up_one )  ) {
+			hgt += 1;
+			slope -= slope_t::all_up_one;
+		}
+	}
+	else {
+		hgt += 1;
+		slope = slope_t::flat;
+	}
+}
+
+
+bool way_builder_t::terraforming_leaves_way_slopes() const
+{
+	if(  terraform_index.empty()  ) {
+		return true;
+	}
+	// a tile the route passes through is terraformed twice, once from either side, and
+	// only the second pass makes it flat: so the steps have to be replayed in order
+	vector_tpl<uint8> slopes( route.get_count() );
+	vector_tpl<sint8> hgts( route.get_count() );
+	for(  uint32 n = 0;  n < route.get_count();  n++  ) {
+		const grund_t *gr = welt->lookup( route[n] );
+		slopes.append( gr ? gr->get_grund_hang() : (uint8)slope_t::flat );
+		hgts.append( gr ? gr->get_hoehe() : route[n].z );
+	}
+
+	for(uint32 const i : terraform_index) {
+		const grund_t *from = welt->lookup( route[i] );
+		const grund_t *to = welt->lookup( route[i+1] );
+		if(  from == NULL  ||  to == NULL  ) {
+			return false;
+		}
+		uint8 from_slope = slopes[i];
+		uint8 to_slope = slopes[i+1];
+		check_terraforming( from, to, slopes[i], hgts[i], slopes[i+1], hgts[i+1], &from_slope, &to_slope );
+		if(  from_slope != slopes[i]  ) {
+			terraformed_ground( from_slope, hgts[i] );
+			slopes[i] = from_slope;
+		}
+		if(  to_slope != slopes[i+1]  ) {
+			terraformed_ground( to_slope, hgts[i+1] );
+			slopes[i+1] = to_slope;
+		}
+	}
+
+	for(uint32 const i : terraform_index) {
+		if(  !slope_t::is_way( slopes[i] )  ||  !slope_t::is_way( slopes[i+1] )  ) {
+			return false;
+		}
+	}
+	return true;
 }
 
 
@@ -2308,6 +2375,10 @@ const char *way_builder_t::calc_straight_route(koord3d start, const koord3d ziel
 			intern_calc_straight_route(ziel,start);
 		}
 	}
+	if(  !terraforming_leaves_way_slopes()  ) {
+		route.clear();
+		terraform_index.clear();
+	}
 	return warn_fail;
 }
 
@@ -2365,6 +2436,11 @@ uint32 ms = dr_time();
 			INT_CHECK("wegbauer 1165");
 			if(cost2 < 0) {
 				intern_calc_route( ziel, start );
+				// the retry may have found a route, and it returns from here
+				if(  !terraforming_leaves_way_slopes()  ) {
+					route.clear();
+					terraform_index.clear();
+				}
 				return warn_fail;
 			}
 		}
@@ -2391,6 +2467,10 @@ uint32 ms = dr_time();
 #endif
 	}
 	INT_CHECK("wegbauer 778");
+	if(  !terraforming_leaves_way_slopes()  ) {
+		route.clear();
+		terraform_index.clear();
+	}
 #ifdef DEBUG_ROUTES
 DBG_MESSAGE("calc_route::calc_route", "took %u ms", dr_time() - ms );
 #endif

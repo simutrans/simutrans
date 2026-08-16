@@ -347,19 +347,32 @@ function test_way_planner_terraform_matches_executor()
 	// the failed attempt left the slope alone, so both halves see the same world
 	ASSERT_EQUAL(tile_x(9, 9, 0).get_slope(), slope.south)
 
-	// with terraforming the planner accepts it and the tool builds that very pair
+	// with terraforming the planner accepts the step: it is asked about this one move
+	// alone, and the move is usable - as the first half of a way across the slope
 	ASSERT_TRUE(on.is_allowed_step(tile_x(8, 9, 0), tile_x(9, 9, 0)))
 	ASSERT_TRUE(on.get_step_cost(tile_x(8, 9, 0), tile_x(9, 9, 0)) != null)
-	ASSERT_EQUAL(command_x.build_way(pl, coord3d(8, 9, 0), coord3d(9, 9, 0), road, true, true), null)
+
+	// a route stopping on the slope only ever levels the near edge, which would leave
+	// the tile with a single raised corner, so the tool refuses to build it at all
+	ASSERT_EQUAL(command_x.build_way(pl, coord3d(8, 9, 0), coord3d(9, 9, 0), road, true, true), "")
+	ASSERT_EQUAL(tile_x(9, 9, 0).get_slope(), slope.south)
+	ASSERT_FALSE(tile_x(8, 9, 0).has_way(wt_road))
+	ASSERT_FALSE(tile_x(9, 9, 0).has_way(wt_road))
+	ASSERT_EQUAL(pl.get_current_maintenance(), 0)
+
+	// carry the same route one tile further and the far edge is levelled too: this is
+	// where planner and executor have to agree, and they do
+	ASSERT_TRUE(on.is_allowed_step(tile_x(9, 9, 0), tile_x(10, 9, 0)))
+	ASSERT_EQUAL(command_x.build_way(pl, coord3d(8, 9, 0), coord3d(10, 9, 0), road, true, true), null)
 
 	// and it got there by taking the slope down, not by some other route
-	ASSERT_EQUAL(tile_x(9, 9, 0).get_slope(), slope.northeast)
+	ASSERT_EQUAL(tile_x(9, 9, 0).get_slope(), slope.flat)
 
-	// exactly the two tiles of the step, no detour
+	// exactly the three tiles of the run, no detour
 	ASSERT_WAY_PATTERN(wt_road, coord3d(7, 8, 0),
 		[
 			"0000",
-			"0280",
+			"02A8",
 			"0000",
 			"0000"
 		])
@@ -370,8 +383,7 @@ function test_way_planner_terraform_matches_executor()
 	ASSERT_TRUE(square_x(9, 9).get_tile_at_height(1) == null)
 
 	// clean up
-	ASSERT_EQUAL(remover.work(pl, coord3d(8, 9, 0), coord3d(9, 9, 0), "" + wt_road), null)
-	ASSERT_EQUAL(command_x.set_slope(pl, coord3d(9, 9, 0), slope.flat), null)
+	ASSERT_EQUAL(remover.work(pl, coord3d(8, 9, 0), coord3d(10, 9, 0), "" + wt_road), null)
 	ASSERT_EQUAL(pl.get_current_maintenance(), 0)
 	RESET_ALL_PLAYER_FUNDS()
 }

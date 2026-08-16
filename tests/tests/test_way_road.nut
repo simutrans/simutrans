@@ -1438,18 +1438,27 @@ function test_way_road_build_terraform_single_step()
 
 	ASSERT_EQUAL(command_x.set_slope(pl, coord3d(9, 9, 0), slope.south), null)
 
-	// this is how the bundled ai scripts build: one step of the planned route at a time
+	// building one step of a planned route at a time, the way the bundled ai scripts do,
+	// cannot stop on the slope: only the near edge would be levelled and the tile would
+	// be left with a single raised corner, so the tool refuses and changes nothing
 	ASSERT_FALSE(planner.is_allowed_step(tile_x(8, 9, 0), tile_x(9, 9, 0)))
-	ASSERT_EQUAL(command_x.build_way(pl, coord3d(8, 9, 0), coord3d(9, 9, 0), road_desc, true, true), null)
+	ASSERT_EQUAL(command_x.build_way(pl, coord3d(8, 9, 0), coord3d(9, 9, 0), road_desc, true, true), "")
+	ASSERT_EQUAL(tile_x(9, 9, 0).get_slope(), slope.south)
+	ASSERT_FALSE(tile_x(8, 9, 0).has_way(wt_road))
+	ASSERT_FALSE(tile_x(9, 9, 0).has_way(wt_road))
+	ASSERT_EQUAL(pl.get_current_maintenance(), 0)
 
-	// only the corner in the way is taken down, the rest of the slope stays
-	ASSERT_EQUAL(tile_x(9, 9, 0).get_slope(), slope.northeast)
+	// the step has to be taken together with the one that levels the far edge
+	ASSERT_EQUAL(command_x.build_way(pl, coord3d(8, 9, 0), coord3d(10, 9, 0), road_desc, true, true), null)
 
-	// exactly the two tiles of the step, no detour
+	// with both edges taken down the tile ends up flat
+	ASSERT_EQUAL(tile_x(9, 9, 0).get_slope(), slope.flat)
+
+	// exactly the three tiles of the run, no detour
 	ASSERT_WAY_PATTERN(wt_road, coord3d(7, 8, 0),
 		[
 			"0000",
-			"0280",
+			"02A8",
 			"0000",
 			"0000"
 		])
@@ -1458,8 +1467,7 @@ function test_way_road_build_terraform_single_step()
 	ASSERT_TRUE(square_x(9, 9).get_tile_at_height(1) == null)
 
 	// clean up
-	ASSERT_EQUAL(remover.work(pl, coord3d(8, 9, 0), coord3d(9, 9, 0), "" + wt_road), null)
-	ASSERT_EQUAL(command_x.set_slope(pl, coord3d(9, 9, 0), slope.flat), null)
+	ASSERT_EQUAL(remover.work(pl, coord3d(8, 9, 0), coord3d(10, 9, 0), "" + wt_road), null)
 	ASSERT_EQUAL(pl.get_current_maintenance(), 0)
 	RESET_ALL_PLAYER_FUNDS()
 }
