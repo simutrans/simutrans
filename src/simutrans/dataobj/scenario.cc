@@ -655,9 +655,9 @@ const char* scenario_t::is_work_allowed_here(const player_t* player, uint16 tool
 		}
 	}
 
-	// then call the script
-	// cannot be done for two_click_tool_t's as they depend on routefinding,
-	// which is done per client
+	// then call the script, only where the authoritative vm runs: single player or server
+	// the validity of two_click_tool_t's also depends on routefinding, which is done per
+	// client and thus cannot be decided here; only their interaction state is passed on
 	if (what_scenario == SCRIPTED) {
 		koord3d start_pos = pos;
 		bool is_drag_tool = false;

@@ -235,15 +235,38 @@ register_function("is_tool_allowed");
 		return "You cannot do this. The guy living at (" + coord_to_string({x=47, y=11}) + ") does not like you!"
    @endcode
  *
+ * Tools that need two positions report the first one in @ref tool_data_x::start_pos, so both
+ * ends of the interaction can be checked while the player is still dragging.
+ * @code
+	function is_work_allowed_here(pl, tool_id, name, pos, tool)
+	{
+		if (tool.is_drag_tool) {
+			// second position pending: tool.start_pos .. pos is the current selection
+			if (tool.start_pos.z != pos.z) {
+				return "Both ends must be at the same height."
+			}
+		}
+		return null
+	}
+   @endcode
+ *
  * @attention Does not work with waybuilding and all tools that need path-finding, use the functions provided in #rules in this case.
  *
  * @param pl player number
  * @param tool_id see @ref tool_ids
- * @param name is parameter (string) i.e. description for way tools
- * @param pos coordinate
+ * @param name is parameter (string) i.e. description for way tools, null if the tool has none
+ * @param pos the map position that is being checked, i.e. where the tool is about to be
+ *            applied - not the mouse pointer. One interaction can call this function
+ *            several times with different positions, for example once for the first click
+ *            of a two-click tool and again for the position it is finally applied to.
+ * @param tool state of the tool interaction, see @ref tool_data_x. Use @ref tool_data_x::start_pos
+ *             together with @p pos to get both ends of a two-click interaction.
+ *
+ * @note Scenarios cannot read the mouse pointer of a client. Use these parameters, they are
+ * derived from the tool interaction itself and therefore also correct in network games.
  *
  * @return null if allowed, an error message otherwise
- * @typemask string(integer,integer,coord3d)
+ * @typemask string(integer,integer,string,coord3d,tool_data_x)
  * @ingroup scen_skel
  * @ingroup quick_return_func
  */

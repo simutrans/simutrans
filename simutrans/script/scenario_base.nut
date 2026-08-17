@@ -56,7 +56,15 @@ function is_tool_allowed(pl, tool_id, wt, name)
  * Does not work with waybuilding etc use the rules.forbid_* functions in this case.
  *
  * @param name is parameter (string) i.e. description for way tools
- * @param pos is a table with coordinate { x=, y=, z=}
+ * @param pos is the coord3d that is being checked, i.e. where the tool is about to be
+ *        applied. It is not the mouse pointer. One interaction can call this function
+ *        several times with different positions, e.g. for the first click of a two-click
+ *        tool and again for the position it is finally applied to.
+ * @param tool is a table describing the current tool interaction:
+ *        start_pos    (coord3d) first clicked position of a two-click tool, invalid while
+ *                     the first click is still pending
+ *        is_drag_tool (bool)    true if the first click happened and the second is pending
+ *        is_ctrl, is_shift (bool) modifier keys of the tool invocation
  * @return null if allowed, an error message otherwise
  */
 function is_work_allowed_here(pl, tool_id, name, pos, tool)

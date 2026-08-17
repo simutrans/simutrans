@@ -46,6 +46,28 @@ public:
 	integer next_month_ticks; ///< new month will start at this time
 #endif
 }; // end_class
+
+/**
+ * Struct to hold the state of the tool interaction that triggered a callback.
+ * It is only filled by the game, it is never used as argument to api-calls.
+ * The values describe the tool currently selected by the player, which is not
+ * necessarily the tool named by the callback's tool_id parameter.
+ * @see is_work_allowed_here
+ */
+class tool_data_x { // begin_class("tool_data_x")
+public:
+#ifdef SQAPI_DOC // document members
+	/// Position of the first click of a two-click tool.
+	/// Invalid as long as the first click is still pending, and for all other tools
+	/// it is simply the position that is being checked.
+	coord3d start_pos;
+	/// True if a two-click tool already received its first click and the second
+	/// position is still pending. It does not tell whether a tool can be dragged.
+	bool is_drag_tool;
+	bool is_ctrl;  ///< ctrl-key state of the tool invocation
+	bool is_shift; ///< shift-key state of the tool invocation
+#endif
+}; // end_class
 #endif
 
 // pushes table = { raw = , year = , month = }
@@ -67,6 +89,7 @@ SQInteger param<mytime_ticks_t>::push(HSQUIRRELVM vm, mytime_ticks_t const& v)
 	return 1;
 }
 
+// pushes table = { start_pos = , is_drag_tool = , is_ctrl = , is_shift = }
 SQInteger param<mytool_data_t>::push(HSQUIRRELVM vm, mytool_data_t const& v)
 {
 	sq_newtableex(vm, 6);
