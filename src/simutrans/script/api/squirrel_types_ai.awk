@@ -68,6 +68,8 @@ BEGIN {
 	export_types_ai["convoy_x::is_followed"] = "integer()"
 	export_types_ai["convoy_x::set_followed"] = "integer()"
 	export_types_ai["convoy_x::is_loading"] = "bool()"
+	export_types_ai["convoy_x::has_no_route"] = "bool()"
+	export_types_ai["convoy_x::is_stuck"] = "bool()"
 	export_types_ai["convoy_x::destroy"] = "void(player_x)"
 	export_types_ai["convoy_x::is_schedule_editor_open"] = "bool()"
 	export_types_ai["convoy_x::get_tile_length"] = "integer()"

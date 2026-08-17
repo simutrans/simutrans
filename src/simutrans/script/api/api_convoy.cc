@@ -178,6 +178,26 @@ bool convoy_is_loading(convoi_t const *cnv)
 	return cnv->get_state() == convoi_t::LOADING;
 }
 
+bool convoy_has_no_route(convoi_t const *cnv)
+{
+	return cnv->get_state() == convoi_t::NO_ROUTE;
+}
+
+bool convoy_is_stuck(convoi_t const *cnv)
+{
+	// The two states the GUI presents as "stuck" (clf_chk_stucked): see the
+	// tooltip in vehicle_t::display_overlay() and the list filter in
+	// convoi_frame_t::is_filter_active(). convoi_t escalates a blocked convoy
+	// from WAITING_FOR_CLEARANCE / CAN_START through the ONE_MONTH states to
+	// these in new_month(), so the waiting history is already in the state.
+	//
+	// Do NOT implement this with vehicle_t::is_stuck(). That is a different
+	// question - it is cnv->is_waiting(), used to propagate road traffic jams -
+	// and it is true for a convoy that has been waiting a moment at a signal.
+	return cnv->get_state() == convoi_t::WAITING_FOR_CLEARANCE_TWO_MONTHS
+	    || cnv->get_state() == convoi_t::CAN_START_TWO_MONTHS;
+}
+
 call_tool_init convoy_change_schedule(convoi_t *cnv, player_t *player, schedule_t *sched)
 {
 	if (sched) {
@@ -386,6 +406,26 @@ void export_convoy(HSQUIRRELVM vm)
 	 * @returns true if convoy is currently loading or unloading at a stop
 	 */
 	register_method(vm, convoy_is_loading, "is_loading", true);
+	/**
+	 * Route search for the current schedule entry failed, and the convoy cannot
+	 * reach its next stop. This is the condition displayed as "no route".
+	 * The convoy retries the route search on its own.
+	 * @returns true if the convoy has no route to its next stop
+	 */
+	register_method(vm, convoy_has_no_route, "has_no_route", true);
+	/**
+	 * The convoy has been unable to proceed for long enough that the game
+	 * reports it as stuck: it is waiting for way clearance, or waiting to
+	 * start, and has been doing so for more than two months.
+	 * This is the condition displayed as "stuck", and it is the same one the
+	 * convoy list filters on.
+	 *
+	 * A convoy that is merely waiting at a signal is not stuck; use
+	 * @ref is_waiting for that. A convoy with no route is not stuck either;
+	 * use @ref has_no_route.
+	 * @returns true if the convoy has been blocked long enough to be reported
+	 */
+	register_method(vm, convoy_is_stuck, "is_stuck", true);
 	/**
 	 * Destroy the convoy.
 	 * The convoy will be marked for destroying, it will be destroyed when the simulation continues.

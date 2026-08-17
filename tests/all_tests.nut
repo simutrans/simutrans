@@ -11,6 +11,7 @@
 include("tests/test_building")
 include("tests/test_city")
 include("tests/test_climate")
+include("tests/test_convoy_state")
 include("tests/test_depot")
 include("tests/test_dir")
 include("tests/test_factory")
@@ -68,6 +69,8 @@ all_tests <- [
 	test_climate_invalid,
 	test_climate_flat,
 	test_climate_cliff,
+	test_convoy_state_in_depot,
+	test_convoy_state_no_route,
 	test_depot_build_invalid_params,
 	test_depot_build_invalid_pos,
 	test_depot_build_road,

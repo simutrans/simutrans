@@ -16,6 +16,7 @@
  * - Added @ref halt_x::set_permissions
  * - Added @ref halt_x::can_use_halt
  * - Added @ref world_x::create_player
+ * - Added @ref convoy_x::has_no_route, @ref convoy_x::is_stuck
  *
  * @section api-trunk Current trunk
  *
