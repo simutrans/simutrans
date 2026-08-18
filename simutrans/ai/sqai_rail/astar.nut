@@ -673,7 +673,18 @@ class astar_builder extends astar
             }
 
             if ( build_bridge ) {
-              err = command_x.build_bridge(our_player, route[i-1], route[i], bridger.bridge)
+              // A tile that already carries a bridge of this waytype cannot
+              // start a bridge: one click there would replace the bridge that
+              // is already on it, so the script api refuses the two coordinate
+              // call by raising, and the recovery below never gets to run.
+              // Treat it as a failed build instead and let that recovery say
+              // whether the connection is there already.
+              local st = tile_x(route[i-1].x, route[i-1].y, route[i-1].z)
+              if ( st.is_bridge()  &&  st.has_way(way.get_waytype()) ) {
+                err = ""
+              } else {
+                err = command_x.build_bridge(our_player, route[i-1], route[i], bridger.bridge)
+              }
               if (err) {
                 // check whether bridge exists
                 sleep()
@@ -4668,8 +4679,13 @@ function optimize_way_line(route, wt, int_run, o_line) {
         local tool = command_x(tool_remove_way)
         err = tool.work(our_player, tile_1, build_tile, "" + wt)
 
+        // One coordinate, not two: from the surface the tunnel tool has no
+        // two-click mode at all, it digs to the far side of the hill by
+        // itself. Asking for two coordinates makes the script api refuse
+        // the call with "First click has side effects", because the first
+        // click would already have built the tunnel.
         local tool = command_x(tool_build_tunnel)
-        err = tool.work(our_player, tile_1, build_tile, tunnel_obj.get_name())
+        err = tool.work(our_player, tile_1, tunnel_obj.get_name())
 
         //err = command_x.build_tunnel_at(our_player, tile_1, tunnel_obj)
         if (err != null ) {
