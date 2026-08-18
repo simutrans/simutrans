@@ -407,12 +407,9 @@ bool scenario_check_convoy(karte_t *welt, player_t *player, convoihandle_t cnv, 
 
 bool depot_t::start_convoi(convoihandle_t cnv, bool local_execution)
 {
-	// close schedule window if not yet closed
-	if(cnv.is_bound() &&  cnv->get_schedule()!=NULL) {
-		if(!cnv->get_schedule()->is_editing_finished()) {
-			// close the schedule window
-			destroy_win((ptrdiff_t)cnv->get_schedule());
-		}
+	// close the schedule editor if not yet closed; closing applies its edits
+	if(cnv.is_bound()) {
+		cnv->close_schedule_editor();
 	}
 
 	// convoi not in depot anymore, maybe user double-clicked on start-button

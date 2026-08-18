@@ -1140,8 +1140,8 @@ bool depot_frame_t::action_triggered( gui_action_creator_t *comp, value_t p)
 	if(  comp != NULL  ) { // message from outside!
 		if(  comp == &bt_start  ) {
 			if(  cnv.is_bound()  ) {
-				//first: close schedule (will update schedule on clients)
-				destroy_win( (ptrdiff_t)cnv->get_schedule() );
+				//first: close schedule editor (will update schedule on clients)
+				cnv->close_schedule_editor();
 				// only then call the tool to start
 				char tool = (event_get_last_control_shift() ^ tool_t::control_invert)==2 ? 'B' : 'b'; // start all with CTRL-click
 				depot->call_depot_tool( tool, cnv, NULL);

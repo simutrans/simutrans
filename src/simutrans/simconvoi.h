@@ -640,6 +640,14 @@ public:
 	void open_schedule_window( bool show );
 
 	/**
+	 * Closes an open schedule editing session of this convoy, if any.
+	 * The schedule editor is the schedule tab of the convoy info window;
+	 * closing that window applies the pending entries, like every other
+	 * way of leaving the editor. No-op when nobody is editing.
+	 */
+	void close_schedule_editor();
+
+	/**
 	* pruefe ob Beschraenkungen fuer alle Fahrzeuge erfuellt sind
 	*/
 	bool pruefe_alle();

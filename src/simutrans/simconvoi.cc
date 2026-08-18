@@ -216,9 +216,6 @@ DBG_MESSAGE("convoi_t::~convoi_t()", "destroying %d, %p", self.get_id(), this);
 
 	// force asynchronous recalculation
 	if(schedule) {
-		if(!schedule->is_editing_finished()) {
-			destroy_win((ptrdiff_t)schedule);
-		}
 		if (!schedule->empty() && !line.is_bound()) {
 			welt->set_schedule_counter();
 		}
@@ -2821,6 +2818,16 @@ void convoi_t::open_schedule_window( bool show )
 }
 
 
+void convoi_t::close_schedule_editor()
+{
+	if(  schedule  &&  !schedule->is_editing_finished()  ) {
+		// the schedule dialog was its own window with the schedule as magic
+		// once; nowadays it is the schedule tab of the info window
+		destroy_win( magic_convoi_info+self.get_id() );
+	}
+}
+
+
 /**
  * Check validity of convoi with respect to vehicle constraints
  */
@@ -3302,10 +3309,6 @@ void convoi_t::destroy()
 		}
 	}
 	state = SELF_DESTRUCT;
-
-	if(schedule!=NULL  &&  !schedule->is_editing_finished()) {
-		destroy_win((ptrdiff_t)schedule);
-	}
 
 	if(  line.is_bound()  ) {
 		// needs to be done here to remove correctly ware catg from lines
