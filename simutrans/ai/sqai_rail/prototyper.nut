@@ -20,7 +20,6 @@ class cnv_proto_t
 
   missing_freight = true // convoy misses vehicles to transport desired freight
   veh = null             // the vehicles of the convoy (array)
-  debug = false          // without this slot the constructor would write into the root table
 
   // set by valuator
   nr_convoys = 0     // number of convoys that should be built

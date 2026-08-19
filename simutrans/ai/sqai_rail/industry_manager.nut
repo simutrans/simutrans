@@ -1050,7 +1050,7 @@ class industry_manager_t extends manager_t
           if ( ::debug.messages ) gui.add_message_at(our_player, "**** line 800 - build missing bridge in route ## ", gt[0])
         }
       }
-      //if ( debug.messages ) gui.add_message_at(our_player, "**** line 816 - line_bridges_count = " + line.line_bridges_count + " ## ", g[0])
+      //if ( ::debug.messages ) gui.add_message_at(our_player, "**** line 816 - line_bridges_count = " + line.line_bridges_count + " ## ", g[0])
 
     }
 
@@ -1527,7 +1527,13 @@ class industry_manager_t extends manager_t
             }
           }
 
-          if (count_build > 0 ) {
+          // build catenary
+          if ( count_build > 0 && start_l.find_object(mo_wayobj) != null ) {
+            gui.add_message_at(our_player, " catenary ", start_l)
+            build_catenary(null, line)
+          }
+
+          if ( count_build > 0 ) {
             local msgtext = format(translate("%s extends the route from %s (%s) to %s (%s)"), our_player.get_name(), start_l.get_halt().get_name(), coord_to_string(start_l), end_l.get_halt().get_name(), coord_to_string(end_l))
             gui.add_message_at(our_player, msgtext, start_l)
           }
@@ -2506,6 +2512,16 @@ class industry_manager_t extends manager_t
 
   }
 
+  /**
+    * build catenary
+    *
+    * @param depot = tile_x depot or null
+    * @param line  = line object
+    *
+    * @return true (build catenary)
+    *         false (not build catenary)
+    *
+    */
   function build_catenary(depot, line) {
     local print_message_box = 0
     local wt = line.get_waytype()
@@ -2531,16 +2547,25 @@ class industry_manager_t extends manager_t
       if ( catenary_obj != null && !catenary_obj.is_available(world.get_time()) && !catenary_obj.is_overhead_line() ) {
         catenary_obj = find_object("catenary", wt, way_obj.get_topspeed())
         build_catenary = true
+      } else if ( catenary_obj != null && !catenary_obj.is_available(world.get_time()) ) {
+        catenary_obj = find_object("catenary", wt, way_obj.get_topspeed())
+        build_catenary = true
+      } else if ( catenary_obj != null && catenary_obj.is_available(world.get_time()) ) {
+        build_catenary = true
       }
     } else {
       catenary_obj = find_object("catenary", wt, way_obj.get_topspeed())
       build_catenary = true
     }
 
+    //gui.add_message_at(our_player, "####### build_catenary(depot, line) - build_catenary " + build_catenary, world.get_time())
+
     if ( build_catenary ) {
       command_x.build_wayobj(our_player, start_l, end_l, catenary_obj)
       command_x.build_wayobj(our_player, end_l, start_l, catenary_obj)
-      command_x.build_wayobj(our_player, depot, start_l, catenary_obj)
+      if ( depot != null ) {
+        command_x.build_wayobj(our_player, depot, start_l, catenary_obj)
+      }
 
       local msgtext = format(translate("%s electrified the line %s"), our_player.get_name(), line.get_name())
       gui.add_message_at(our_player, msgtext, world.get_time())

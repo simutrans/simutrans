@@ -11,7 +11,7 @@ ai <- {}
 ai.short_description <- "AI player implementation road/ship/rail"
 
 ai.author <- "dwachs/Andarix"
-ai.version <- "0.10.1.3"
+ai.version <- "0.10.1.4"
 
 // includes
 include("basic")  // .. definition of basic node classes
@@ -45,6 +45,7 @@ month_count_ticks <- world.get_time().next_month_ticks
 build_check_month <- world.get_time().ticks
 // set factory strategie - 0 = traditional method, taken from C++ implementation
 factory_strategie <- 0
+
 // gate for the optional diagnostic output of this AI
 ::debug.messages <- false
 

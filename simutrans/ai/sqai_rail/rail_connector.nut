@@ -82,7 +82,7 @@ class rail_connector_t extends manager_t
         // not build link
         if ( ::debug.messages ) gui.add_message_at(our_player, "#rail_conn# not build line : build_check_month = " + build_check_month + " or build cost link > cash : build cost line " + industry_manager.get_link_build_cost(fsrc, fdest, freight, 1) + " | build cost link " + industry_manager.get_link_build_cost(fsrc, fdest, freight, 0), world.get_time())
         if ( ::debug.messages ) gui.add_message_at(our_player, " ---> link " + fsrc + "  " + fsrc.get_name() + " - " + fdest.get_name(), world.get_time())
-        //if ( debug.messages ) gui.add_message_at(our_player, " ---> phase " + phase, world.get_time())
+        //if ( ::debug.messages ) gui.add_message_at(our_player, " ---> phase " + phase, world.get_time())
 
         industry_manager.set_link_state(fsrc, fdest, freight, industry_link_t.st_missing)
 
