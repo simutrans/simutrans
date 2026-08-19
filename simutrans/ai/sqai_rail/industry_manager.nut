@@ -1529,7 +1529,7 @@ class industry_manager_t extends manager_t
 
           // build catenary
           if ( count_build > 0 && start_l.find_object(mo_wayobj) != null ) {
-            gui.add_message_at(our_player, " catenary ", start_l)
+            //gui.add_message_at(our_player, " catenary ", start_l)
             build_catenary(null, line)
           }
 
