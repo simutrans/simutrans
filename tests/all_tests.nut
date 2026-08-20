@@ -71,6 +71,7 @@ all_tests <- [
 	test_climate_cliff,
 	test_convoy_state_in_depot,
 	test_convoy_state_no_route,
+	test_convoy_state_schedule_editor,
 	test_depot_build_invalid_params,
 	test_depot_build_invalid_pos,
 	test_depot_build_road,

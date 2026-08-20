@@ -157,7 +157,11 @@ call_tool_init convoy_generic_tool(convoi_t *cnv, player_t *player, uint8 cnvtoo
 
 bool convoy_is_schedule_editor_open(convoi_t *cnv)
 {
-	return cnv->get_state() == convoi_t::EDIT_SCHEDULE;
+	// a convoy on the map is halted in EDIT_SCHEDULE while its schedule dialog
+	// is open; a convoy waiting inside a depot stays in INITIAL, there only the
+	// schedule itself carries the editing state
+	return cnv->get_state() == convoi_t::EDIT_SCHEDULE
+		||  (cnv->in_depot()  &&  cnv->get_schedule()  &&  !cnv->get_schedule()->is_editing_finished());
 }
 
 sint32 convoy_is_followed(convoi_t const *cnv)
@@ -434,6 +438,11 @@ void export_convoy(HSQUIRRELVM vm)
 	 */
 	register_method_fv(vm, convoy_generic_tool, "destroy", freevariable<uint8>('x'), true);
 	/**
+	 * Checks if the schedule of the convoy is currently being edited.
+	 * A convoy on the map is halted while its schedule dialog is open, which is
+	 * synchronized in network games. Opening the schedule of a convoy inside a
+	 * depot does not stop anything and happens only on the client with the
+	 * dialog: there the answer is only visible where the dialog is open.
 	 * @returns returns true if the schedule of the convoy is currently being edited.
 	 */
 	register_method(vm, convoy_is_schedule_editor_open, "is_schedule_editor_open", true);

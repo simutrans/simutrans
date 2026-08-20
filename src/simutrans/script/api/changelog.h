@@ -17,6 +17,7 @@
  * - Added @ref halt_x::can_use_halt
  * - Added @ref world_x::create_player
  * - Added @ref convoy_x::has_no_route, @ref convoy_x::is_stuck
+ * - Changed @ref convoy_x::is_schedule_editor_open which reports the schedule dialog of a convoy inside a depot now
  *
  * @section api-trunk Current trunk
  *

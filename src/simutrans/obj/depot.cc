@@ -338,6 +338,11 @@ convoihandle_t depot_t::copy_convoi(convoihandle_t old_cnv, bool local_execution
 				new_cnv->set_schedule(old_cnv->get_schedule()->copy());
 			}
 		}
+		if (schedule_t *copied = new_cnv->get_schedule()) {
+			// the copy inherited the editing flag of its source; nobody is
+			// editing the new convoy's schedule in any window
+			copied->finish_editing();
+		}
 
 		// make this the current selected convoi
 		depot_frame_t *win = dynamic_cast<depot_frame_t *>(win_get_magic( (ptrdiff_t)this ));
