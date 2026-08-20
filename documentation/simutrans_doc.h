@@ -106,9 +106,14 @@
  * - An overlong composition is clipped at the field border.
  * - The full automated test suite passes on both backends, before and after the change.
  *
- * Korean input goes through the same mechanism and the implementation is script-generic, but
- * product-level Korean validation has not been performed yet; it remains an explicit follow-up
- * and is deliberately not claimed here.
+ * Korean was validated separately, after this page was first written: native Hangul composition
+ * (Microsoft Korean IME) is visible in empty and non-empty fields on both backends, Backspace
+ * during composition steps through the syllable jamo by jamo exactly as in a native Windows edit
+ * control, committed UTF-8 is byte-exact, and clipboard transfer and savegame persistence of
+ * Hangul text were verified. One property of the Microsoft Korean IME is worth knowing when
+ * testing: it has no cancel gesture - Escape commits the pending syllable and is then forwarded
+ * to the application (closing the topmost window, for example), which matches the behaviour of
+ * native Windows edit controls and is not a Simutrans defect.
  *
  *
  * @section nls_ime_open Known limitations still open
