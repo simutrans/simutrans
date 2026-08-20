@@ -601,6 +601,13 @@ void gui_textinput_t::display_with_cursor(scr_coord offset, bool cursor_active, 
 	}
 
 	const char* display_text = (text && text[0]) ? text : placeholder_text;
+	if(  display_text == NULL  &&  composition.len() > 0  ) {
+		// an active IME composition must stay visible even when there is
+		// neither committed text nor a placeholder to draw; otherwise the
+		// pre-edit is invisible in an emptied field
+		display_text = "";
+		head_cursor_pos = tail_cursor_pos = 0;
+	}
 	PIXVAL display_color = display_text == placeholder_text ? SYSCOL_EDIT_TEXT_DISABLED : (enabled ? textcol : SYSCOL_EDIT_TEXT_DISABLED);
 	if (display_text) {
 
@@ -651,7 +658,7 @@ void gui_textinput_t::display_with_cursor(scr_coord offset, bool cursor_active, 
 
 		// display text (before composition)
 		gfx->draw_text_clipped_n(x_base_offset, y_offset, display_text, ALIGN_LEFT | DT_CLIP, display_color, true, head_cursor_pos CLIP_NUM_DEFAULT);
-		int x_offset = gfx->calc_text_width_n(text, head_cursor_pos);
+		int x_offset = text ? gfx->calc_text_width_n(text, head_cursor_pos) : 0;
 
 		// IME text to display?
 		if (composition.len()) {
