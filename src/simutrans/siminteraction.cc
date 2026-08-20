@@ -243,11 +243,17 @@ void interaction_t::interactive_event( const event_t &ev )
 	}
 
 	// mouse wheel scrolled -> rezoom
-	if (ev.ev_class == EVENT_CLICK) {
+	if (ev.ev_class == EVENT_CLICK  &&  (ev.ev_code==MOUSE_WHEELUP  ||  ev.ev_code==MOUSE_WHEELDOWN)) {
+
+		/* anchor zooming on the tile under the mouse; the zeiger position may be
+		 * stale here, since it is only updated by move_cursor(): after navigating
+		 * with the minimap it still holds the tile from before the jump, and
+		 * anchoring there would make the view jump away again
+		 */
+		tool_t *tool = world->get_tool(world->get_active_player_nr());
+		const koord3d cursor_pos = viewport->get_new_cursor_position(scr_coord(ev.mouse_pos.x,ev.mouse_pos.y), tool->is_grid_tool());
 
 		// first, we need to check cursor is valid, won't zoom otherwise
-
-		const koord3d cursor_pos = world->get_zeiger()->get_pos();
 
 		if( cursor_pos == koord3d::invalid) {
 			//ignore event
