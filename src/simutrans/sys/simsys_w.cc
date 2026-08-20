@@ -940,9 +940,9 @@ static void internal_GetEvents(bool const wait)
 {
 	do {
 		// wait for keybord/mouse event
-		GetMessage(&msg, NULL, 0, 0);
+		GetMessageW(&msg, NULL, 0, 0);
 		TranslateMessage(&msg);
-		DispatchMessage(&msg);
+		DispatchMessageW(&msg);
 	} while(wait && sys_event.type == SIM_NOEVENT);
 
 }
@@ -950,7 +950,7 @@ static void internal_GetEvents(bool const wait)
 
 void GetEvents()
 {
-	if (sys_event.type==SIM_NOEVENT  &&  PeekMessage(&msg, NULL, 0, 0, PM_NOREMOVE)) {
+	if (sys_event.type==SIM_NOEVENT  &&  PeekMessageW(&msg, NULL, 0, 0, PM_NOREMOVE)) {
 		internal_GetEvents(false);
 	}
 }
