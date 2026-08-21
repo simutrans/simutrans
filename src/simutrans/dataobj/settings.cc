@@ -1209,7 +1209,7 @@ void settings_t::parse_simuconf( tabfile_t& simuconf, sint16& disp_width, sint16
 			int k = 0;
 			for( k = 0; k < i; k++ ) {
 				if( locality_factor_per_year[ k ].year > test[ 0 ] ) {
-					for( int l = j; l >= k; l-- )
+					for( int l = j - 1; l >= k; l-- )
 						memcpy( &locality_factor_per_year[ l + 1 ], &locality_factor_per_year[ l ], sizeof( yearly_locality_factor_t ) );
 					break;
 				}
@@ -1588,6 +1588,10 @@ uint32 settings_t::get_locality_factor(sint16 const year) const
 	if(  i==0  ) {
 		// too early: use first entry
 		return locality_factor_per_year[0].factor;
+	}
+	else if(  i==10  ) {
+		// all ten entries are in the past: use the last one
+		return locality_factor_per_year[9].factor;
 	}
 	else {
 #if 0
