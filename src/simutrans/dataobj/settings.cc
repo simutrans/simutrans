@@ -1148,7 +1148,7 @@ void settings_t::parse_simuconf( tabfile_t& simuconf, sint16& disp_width, sint16
 			int k = 0;
 			for( k = 0; k < i; k++ ) {
 				if( startingmoneyperyear[ k ].year > test[ 0 ] ) {
-					for( int l = j; l >= k; l-- )
+					for( int l = j - 1; l >= k; l-- )
 						memcpy( &startingmoneyperyear[ l + 1 ], &startingmoneyperyear[ l ], sizeof( yearmoney ) );
 					break;
 				}
@@ -1553,6 +1553,10 @@ sint64 settings_t::get_starting_money(sint16 const year) const
 	if (i==0) {
 		// too early: use first entry
 		return startingmoneyperyear[0].money;
+	}
+	else if (i==10) {
+		// all ten entries are in the past: use the last one
+		return startingmoneyperyear[9].money;
 	}
 	else {
 		// now: startingmoneyperyear[i-1].year <= year < startingmoneyperyear[i].year
