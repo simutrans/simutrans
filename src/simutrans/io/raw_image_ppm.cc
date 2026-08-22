@@ -34,7 +34,7 @@ bool raw_image_t::read_ppm(const char *filename)
 	char id[2];
 	if (fread(id, sizeof(char), 2, file) != 2 || id[0]!='P' || id[1]!='6') {
 		fclose(file);
-		dbg->error("raw_image::read_ppm", "Malformed ppm file");
+		dbg->error("raw_image_t::read_ppm", "Malformed ppm file");
 		return false;
 	}
 
@@ -50,7 +50,7 @@ bool raw_image_t::read_ppm(const char *filename)
 		// but comments can be anywhere
 		if(  *c==0  ) {
 			if(  read_line(buf, sizeof(buf), file) == NULL  ) {
-				dbg->error("raw_image::read_ppm", "Malformed ppm file");
+				dbg->error("raw_image_t::read_ppm", "Malformed ppm file");
 				fclose(file);
 				return false;
 			}
@@ -95,6 +95,7 @@ bool raw_image_t::read_ppm(const char *filename)
 
 			if(  R==EOF  ||  G==EOF  || B==EOF  ) {
 				dbg->error("raw_image_t::read_ppm", "Malformed ppm file");
+				fclose(file);
 				return false;
 			}
 
