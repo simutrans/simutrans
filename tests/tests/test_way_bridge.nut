@@ -107,6 +107,7 @@ function test_way_bridge_build_ground()
 			"........",
 			"........"
 		])
+	RESET_ALL_PLAYER_FUNDS()
 }
 
 

@@ -1353,6 +1353,7 @@ function test_halt_make_public_underground()
 	ASSERT_EQUAL(command_x.grid_lower(public_pl, coord3d(5, 3, 0)), null)
 	ASSERT_EQUAL(command_x.grid_lower(public_pl, coord3d(4, 4, 0)), null)
 	ASSERT_EQUAL(command_x.grid_lower(public_pl, coord3d(5, 4, 0)), null)
+	RESET_ALL_PLAYER_FUNDS()
 }
 
 
