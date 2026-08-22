@@ -21,6 +21,10 @@
 bool raw_image_t::read_ppm(const char *filename)
 {
 	FILE *file = dr_fopen(filename, "rb");
+	if (!file) {
+		dbg->warning("raw_image_t::read_ppm", "Cannot open %s", filename);
+		return false;
+	}
 
 	// ppm format
 	char buf[255];
