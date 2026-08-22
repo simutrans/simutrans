@@ -1515,6 +1515,12 @@ void two_click_tool_t::cleanup(bool delete_start_marker)
 
 	// delete tooltip.
 	win_set_static_tooltip(NULL);
+
+	// The preview this estimate described has just been torn down, so the
+	// estimate goes with it. cleanup() runs before every mark_tiles() and from
+	// init()/exit(), which covers cancelling, switching tools, finishing a drag
+	// and being reset by the network layer.
+	win_clear_tool_estimate();
 }
 
 

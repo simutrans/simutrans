@@ -341,7 +341,7 @@ function test_way_planner_terraform_matches_executor()
 	// without terraforming the planner refuses the step and the tool cannot build it
 	ASSERT_FALSE(off.is_allowed_step(tile_x(8, 9, 0), tile_x(9, 9, 0)))
 	ASSERT_EQUAL(off.get_step_cost(tile_x(8, 9, 0), tile_x(9, 9, 0)), null)
-	ASSERT_EQUAL(command_x.build_way(pl, coord3d(8, 9, 0), coord3d(9, 9, 0), road, true), "")
+	ASSERT_EQUAL(command_x.build_way(pl, coord3d(8, 9, 0), coord3d(9, 9, 0), road, true), "Slope is too steep")
 	ASSERT_FALSE(tile_x(9, 9, 0).has_way(wt_road))
 
 	// the failed attempt left the slope alone, so both halves see the same world

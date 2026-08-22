@@ -154,6 +154,23 @@ static const void * tooltip_owner = 0;   // owner of the registered tooltip
 static const void * tooltip_group = 0;   // group to which the owner belongs
 static uint32 tooltip_register_time = 0; // time at which a tooltip is initially registered
 
+// Contextual build bar: the estimate published by the tool that computed the
+// current preview. The owner is kept so an estimate belonging to a tool that is
+// no longer armed can simply be ignored instead of having to be chased down.
+static const tool_t *tool_estimate_owner = NULL;
+static sint64 tool_estimate_length = 0;
+static sint64 tool_estimate_cost = 0;
+
+// ... and, when the preview cannot be built at all, why not. Same owner rule,
+// and never both at once. A live owner with a NULL text is the honest "cannot
+// be built and the engine did not say why" state: nothing is invented here.
+static const tool_t *tool_problem_owner = NULL;
+static const char *tool_problem_text = NULL;
+
+// Where the bar was last painted, so the world underneath can be repainted when
+// it shrinks or goes away.
+static scr_rect tool_context_last_rect;
+
 static bool show_ticker=0;
 
 /* if we are inside the event handler,
@@ -1919,6 +1936,215 @@ uint16 win_get_statusbar_height()
 }
 
 
+/**
+ * Contextual build bar: what the armed tool is about to do, painted in a band
+ * next to the status bar.
+ *
+ * Not part of the status bar and not a tooltip.
+ *
+ * The status bar is already at capacity: it has its own ladder for giving up
+ * content when it runs out of width (compact date, then ellipsised player name,
+ * then short money, then money alone - see win_display_flush below), so a
+ * second variable-width tenant would push the money off screen on small
+ * displays. A tooltip is wrong for a different reason: it would tie active
+ * build feedback both to env_t::show_tooltips and to a mouse hovering
+ * something, and neither is true of a build in progress - least of all on
+ * touch, where there is no hover at all.
+ *
+ * Painted over the world rather than reserving space, so appearing and
+ * disappearing never reflows windows or the viewport.
+ *
+ * @param screen current screen size
+ * @param show_ticker_now whether the ticker band is occupying its slot
+ */
+static void display_tool_context_bar(const scr_size &screen, bool show_ticker_now)
+{
+	tool_t *tool = wl ? wl->get_tool( wl->get_active_player_nr() ) : NULL;
+	const char *label = tool ? tool->get_context_label() : NULL;
+
+	tool_hint_t hints[TOOL_MAX_HINTS];
+	uint8 hint_count = 0;
+
+#ifndef __ANDROID__
+	// Hints name keys to press, and that is only advice anyone can act on where
+	// there are keys to press. A touch-only device has neither Ctrl nor Shift,
+	// and its text keyboard is not a substitute: it is for typing, it covers the
+	// screen, and it does not stay up once the map is being touched again. So
+	// they are held back here instead of being printed as an instruction that
+	// cannot be followed. Only the hints: the label, length, cost and refusal
+	// below describe the build rather than the input device, so they are the
+	// same everywhere.
+	//
+	// The tool is untouched - a keyboard attached to an Android device still
+	// does what it always did, it just goes unadvertised. Drop this guard once
+	// the effects can be reached by touch, which is a UI of its own and not a
+	// platform test.
+
+	// The modifier state as the tool would really see it: tool_t::control_invert
+	// is the "Lock Control key" toggle, and tool->flags is back to 0 by the time
+	// anything gets drawn (see interaction_t::move_view).
+	const uint8 mod_flags = (uint8)(event_get_last_control_shift() ^ tool_t::control_invert);
+
+	if(  label  ) {
+		hint_count = tool->get_modifier_hints( hints, mod_flags );
+	}
+#endif
+
+	// An estimate only counts while the tool that computed it is still the armed
+	// one. That is what keeps a figure from a previous tool off the screen.
+	const bool has_estimate = label  &&  tool_estimate_owner == tool;
+	const bool has_problem  = label  &&  tool_problem_owner  == tool;
+
+	// Primary line: what is being built, how long it is, what it costs - or,
+	// when it cannot be built, that it cannot, plus the engine's reason when
+	// there is one. Every text here already exists as a translation: the two
+	// figures are the ones tooltip_with_price_length() has always used, and the
+	// reason arrives as whatever string the builder recorded.
+	static cbuffer_t primary;
+	primary.clear();
+	if(  has_estimate  ) {
+		char buf[256];
+		sprintf( buf, translator::translate( "length: %d" ), (int)tool_estimate_length );
+		primary.append( buf );
+		primary.append( " | " );
+		primary.append( translator::translate( "Building costs estimates" ) );
+		primary.append( ": " );
+		money_to_string( buf, (double)tool_estimate_cost / -100.0 );
+		primary.append( buf );
+	}
+	else if(  has_problem  ) {
+		// The generic state is always shown, so a rejection the engine cannot
+		// explain still reads as a rejection rather than as nothing at all.
+		primary.append( translator::translate( "Cannot build here" ) );
+		// An empty reason is the engine's own "refused, quietly" and has to read
+		// the same as no reason at all - a scenario rule with no message set is
+		// the way that happens.
+		if(  tool_problem_text  &&  *tool_problem_text  ) {
+			primary.append( " - " );
+			primary.append( translator::translate( tool_problem_text ) );
+		}
+	}
+
+	const scr_coord_val v_space = 2;
+	const scr_coord_val h_space = 4;
+	const scr_coord_val line_h  = LINESPACE;
+
+	scr_coord_val bar_h = 0;
+	if(  label  ) {
+		bar_h = 2 * v_space + line_h + (hint_count > 0 ? line_h : 0);
+	}
+
+	// Sit next to the status bar, on the far side of the ticker if that is up.
+	const scr_coord_val status_bar_height = win_get_statusbar_height();
+	const scr_coord_val ticker_h = show_ticker_now ? TICKER_HEIGHT : 0;
+	const scr_coord_val bar_y = env_t::menupos == MENU_BOTTOM
+		? status_bar_height + ticker_h
+		: screen.h - status_bar_height - ticker_h - bar_h;
+
+	const scr_rect bar( 0, bar_y, screen.w, bar_h );
+
+	// Repaint the world wherever the bar used to be but no longer is.
+	if(  tool_context_last_rect != bar  &&  tool_context_last_rect.h > 0  ) {
+		gfx->mark_rect_dirty_wc( tool_context_last_rect.x, tool_context_last_rect.y,
+			tool_context_last_rect.x + tool_context_last_rect.w,
+			tool_context_last_rect.y + tool_context_last_rect.h );
+		if(  wl  ) {
+			wl->set_background_dirty();
+		}
+	}
+	tool_context_last_rect = bar;
+
+	if(  bar_h == 0  ||  screen.w <= 0  ) {
+		return;
+	}
+
+	// Degradation policy when the width runs out, in this order:
+	//   1. drop the tool name, keep length and cost;
+	//   2. drop modifier hints from the right, always keeping the first one;
+	//   3. clip what is left.
+	// Cost and length are the numbers a player is actually reading off the bar,
+	// so they are the last thing to go.
+	bool show_label = label != NULL;
+	scr_coord_val avail = screen.w - 2 * h_space;
+
+	static cbuffer_t primary_full;
+	primary_full.clear();
+	if(  show_label  ) {
+		primary_full.append( label );
+		if(  primary.len() > 0  ) {
+			primary_full.append( " | " );
+		}
+	}
+	primary_full.append( primary );
+
+	if(  gfx->calc_text_width( primary_full ) > avail  &&  primary.len() > 0  ) {
+		show_label = false;
+		primary_full.clear();
+		primary_full.append( primary );
+	}
+
+	// Measure the hints, dropping from the right until they fit.
+	const char *mod_sep = "   ";
+	const scr_coord_val sep_w = gfx->calc_text_width( mod_sep );
+	while(  hint_count > 1  ) {
+		scr_coord_val w = 0;
+		for(  uint8 i = 0;  i < hint_count;  i++  ) {
+			w += gfx->calc_text_width( translator::translate( hints[i].key ) )
+			   + gfx->calc_text_width( ": " )
+			   + gfx->calc_text_width( translator::translate( hints[i].text ) );
+			if(  i + 1 < hint_count  ) {
+				w += sep_w;
+			}
+		}
+		if(  w <= avail ) {
+			break;
+		}
+		hint_count--;
+	}
+
+	gfx->set_clip_rect( 0, 0, screen.w, screen.h CLIP_NUM_DEFAULT, false );
+	gfx->draw_rect( bar.x, bar.y, bar.w, bar.h, SYSCOL_STATUSBAR_BACKGROUND, true );
+	gfx->draw_rect( bar.x, env_t::menupos == MENU_BOTTOM ? bar.y + bar.h - 1 : bar.y, bar.w, 1, SYSCOL_STATUSBAR_DIVIDER, true );
+
+	scr_coord_val y = bar.y + v_space;
+	{
+		scr_rect r( h_space, y, avail, line_h );
+		gfx->draw_text_ellipsis( r, primary_full, ALIGN_LEFT, SYSCOL_STATUSBAR_TEXT, true );
+	}
+
+	if(  hint_count > 0  ) {
+		y += line_h;
+		scr_coord_val x = h_space;
+		for(  uint8 i = 0;  i < hint_count;  i++  ) {
+			const char *key  = translator::translate( hints[i].key );
+			const char *text = translator::translate( hints[i].text );
+			const scr_coord_val key_w = gfx->calc_text_width( key );
+
+			// A held modifier marks only its own key, using the theme's own
+			// "this entry is selected" pair rather than a colour of our own.
+			if(  hints[i].active  ) {
+				gfx->draw_rect( x - 1, y, key_w + 2, line_h, SYSCOL_LIST_BACKGROUND_SELECTED_F, true );
+				gfx->draw_text( x, y, key, ALIGN_LEFT, SYSCOL_LIST_TEXT_SELECTED_FOCUS, true );
+			}
+			else {
+				gfx->draw_text( x, y, key, ALIGN_LEFT, SYSCOL_STATUSBAR_TEXT, true );
+			}
+			x += key_w;
+			x += gfx->draw_text( x, y, ": ", ALIGN_LEFT, SYSCOL_STATUSBAR_TEXT, true );
+			x += gfx->draw_text( x, y, text, ALIGN_LEFT, SYSCOL_STATUSBAR_TEXT, true );
+			if(  i + 1 < hint_count  ) {
+				x += gfx->draw_text( x, y, mod_sep, ALIGN_LEFT, SYSCOL_STATUSBAR_TEXT, true );
+			}
+		}
+	}
+	// No set_background_dirty() here on purpose: the band is repainted opaquely
+	// every frame and everything above is drawn dirty, so the world underneath
+	// only needs redrawing where the band shrank away, which is handled above.
+	// Asking for a background redraw every frame instead would pay for a
+	// display_background() on every frame the map edge happens to be in view.
+}
+
+
 // finally updates the display
 void win_display_flush(double konto)
 {
@@ -2047,6 +2273,10 @@ void win_display_flush(double konto)
 		}
 
 		POP_CLIP();
+
+		// Deliberately outside the env_t::show_tooltips block above: hover
+		// tooltips stay under that setting, active build feedback does not.
+		display_tool_context_bar( screen, show_ticker );
 
 		if(!wl) {
 			// no infos during loading etc
@@ -2352,6 +2582,35 @@ void win_set_tooltip(scr_coord pos, const char *text, const void *const owner, c
 void win_set_static_tooltip(const char *text)
 {
 	static_tooltip_text = text ? text : "";
+}
+
+
+void win_set_tool_estimate(const tool_t *owner, sint64 length, sint64 cost)
+{
+	tool_estimate_owner  = owner;
+	tool_estimate_length = length;
+	tool_estimate_cost   = cost;
+	// A preview that has a price is not a preview that failed.
+	tool_problem_owner = NULL;
+	tool_problem_text  = NULL;
+}
+
+
+void win_set_tool_problem(const tool_t *owner, const char *reason)
+{
+	tool_problem_owner = owner;
+	tool_problem_text  = reason;
+	// ... and vice versa, so a cost from an earlier position cannot be left
+	// sitting next to "cannot build here".
+	tool_estimate_owner = NULL;
+}
+
+
+void win_clear_tool_estimate()
+{
+	tool_estimate_owner = NULL;
+	tool_problem_owner  = NULL;
+	tool_problem_text   = NULL;
 }
 
 

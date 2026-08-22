@@ -190,6 +190,28 @@ enum {
 };
 
 
+/**
+ * What a modifier key does for the tool that is currently armed, and whether
+ * that effect applies with the keys held right now.
+ *
+ * One entry per *effect*, not per key. A tool where one key drives two
+ * independent effects reports two entries carrying the same key name; that is
+ * how the hints stay truthful about what the tool actually does instead of
+ * pretending a key has a single meaning.
+ */
+struct tool_hint_t {
+	/// Modifier name as a translation key. Use the tokens the keyboard help
+	/// already uses - "[CTRL]", "[SHIFT]" - so the key names stay spelled the
+	/// same everywhere and come out already localised.
+	const char *key;
+	const char *text; ///< translation key describing the effect
+	bool active;      ///< the effect applies with the modifiers currently held
+};
+
+/// Number of hints tool_t::get_modifier_hints() may write.
+#define TOOL_MAX_HINTS (4)
+
+
 class tool_t {
 protected:
 	image_id icon;
@@ -321,6 +343,25 @@ public:
 	virtual void draw_after(scr_coord pos, bool dirty) const;
 
 	virtual const char *get_tooltip(const player_t *) const { return NULL; }
+
+	/**
+	 * Short translated name of what this tool builds, for the contextual build
+	 * bar. Returning NULL (the default) keeps the bar hidden for this tool, so
+	 * only tools that opt in ever appear there.
+	 */
+	virtual const char *get_context_label() const { return NULL; }
+
+	/**
+	 * Report what Shift and Ctrl currently do for this tool.
+	 *
+	 * @param hints     array of at least TOOL_MAX_HINTS entries to fill in
+	 * @param mod_flags effective modifier state as WFL_SHIFT|WFL_CTRL bits.
+	 *                  The caller has already applied tool_t::control_invert,
+	 *                  so this is what the tool would really see, not the raw
+	 *                  keyboard state.
+	 * @returns number of hints written
+	 */
+	virtual uint8 get_modifier_hints(tool_hint_t *hints, uint8 mod_flags) const { (void)hints; (void)mod_flags; return 0; }
 
 	/**
 	 * @return true if this tool operates over the grid, not the map tiles.

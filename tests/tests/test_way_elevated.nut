@@ -23,7 +23,7 @@ function test_way_elevated_over_building()
 	// (B) Theatre draws two levels although no tile carries a second image row,
 	//     so the old has_upper_storey() test let a way through it
 	ASSERT_EQUAL(command_x(tool_build_house).work(public_pl, coord3d(3, 4, 0), "1#Theatre"), null)
-	ASSERT_EQUAL(command_x.build_way(public_pl, coord3d(3, 4, 0), coord3d(4, 4, 0), elevated, true), "")
+	ASSERT_EQUAL(command_x.build_way(public_pl, coord3d(3, 4, 0), coord3d(4, 4, 0), elevated, true), "A building blocks the construction")
 	ASSERT_TRUE(square_x(3, 4).get_tile_at_height(1) == null)
 	ASSERT_TRUE(square_x(4, 4).get_tile_at_height(1) == null)
 	ASSERT_EQUAL(command_x(tool_remover).work(public_pl, coord3d(3, 4, 0)), null) // removes the whole 2x2
@@ -53,7 +53,7 @@ function test_way_elevated_over_building_footprint()
 	// the far row of the 2x2 Theatre carries no anchor, and the height belongs to
 	// the building and not to the tile, so crossing it must be refused as well
 	ASSERT_EQUAL(command_x(tool_build_house).work(public_pl, coord3d(3, 4, 0), "1#Theatre"), null)
-	ASSERT_EQUAL(command_x.build_way(public_pl, coord3d(3, 5, 0), coord3d(4, 5, 0), elevated, true), "")
+	ASSERT_EQUAL(command_x.build_way(public_pl, coord3d(3, 5, 0), coord3d(4, 5, 0), elevated, true), "A building blocks the construction")
 	ASSERT_TRUE(square_x(3, 5).get_tile_at_height(1) == null)
 	ASSERT_TRUE(square_x(4, 5).get_tile_at_height(1) == null)
 

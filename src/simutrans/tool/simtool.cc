@@ -2651,6 +2651,60 @@ const char* tool_build_way_t::get_tooltip(const player_t *) const
 	return toolstr;
 }
 
+const char* tool_build_way_t::get_context_label() const
+{
+	const way_desc_t *desc = get_desc();
+	return desc ? translator::translate( desc->get_name() ) : NULL;
+}
+
+
+uint8 tool_build_way_t::get_modifier_hints(tool_hint_t *hints, uint8 mod_flags) const
+{
+	const bool ctrl  = (mod_flags & WFL_CTRL)  != 0;
+	const bool shift = (mod_flags & WFL_SHIFT) != 0;
+
+	uint8 n = 0;
+
+	// Ctrl drives two independent effects here, decided in two different places
+	// in calc_route(): the straight route just below the parallel-way check, and
+	// the overwrite permission right after init_builder(). They are reported
+	// separately because they do not switch together - holding Shift as well
+	// cancels the overwrite but not the straight route - and because
+	// env_t::straight_way_without_control removes one of them from Ctrl
+	// altogether. This is descriptive: nothing here changes the behaviour.
+	bool straight_is_forced = env_t::straight_way_without_control  &&  !env_t::networkmode;
+#ifdef USE_TOWN_ROAD_BUILDER_TOOL
+	straight_is_forced |= get_id() == (TOOL_BUILD_CITYROAD | GENERAL_TOOL);
+#endif
+	if(  !straight_is_forced  ) {
+		hints[n].key    = "[CTRL]";
+		hints[n].text   = "straight route";
+		hints[n].active = ctrl;
+		n++;
+	}
+
+	hints[n].key    = "[CTRL]";
+	hints[n].text   = "replace existing ways";
+	hints[n].active = ctrl  &&  !shift;
+	n++;
+
+	if(  desc  &&  desc->get_styp() == type_flat  &&  desc->get_wtyp() == road_wt  ) {
+		hints[n].key    = "[SHIFT]";
+		hints[n].text   = "keep city roads";
+		hints[n].active = shift;
+		n++;
+	}
+	else if(  desc  &&  desc->get_styp() == type_elevated  &&  desc->get_wtyp() != air_wt  ) {
+		hints[n].key    = "[SHIFT]";
+		hints[n].text   = "stay on this level";
+		hints[n].active = shift;
+		n++;
+	}
+
+	return n;
+}
+
+
 // default ways are not initialized synchronously for different clients
 // always return the name of a way, never the string containing the waytype
 const char* tool_build_way_t::get_default_param(player_t *player) const
@@ -2952,8 +3006,8 @@ void tool_build_way_t::mark_tiles(player_t* player, const koord3d& start, const 
 	uint8 offset = is_elevated ? welt->get_settings().get_way_height_clearance() : 0;
 
 	if (bauigel.get_count() > 1) {
-		// Set tooltip first (no dummygrounds, if bauigel.calc_casts() is called).
-		win_set_static_tooltip(tooltip_with_price_length("Building costs estimates", bauigel.calc_costs(), bauigel.get_count()));
+		// Publish the estimate first (no dummygrounds, if bauigel.calc_costs() is called).
+		win_set_tool_estimate(this, bauigel.get_count(), bauigel.calc_costs());
 
 		// make dummy route from bauigel
 		for (uint32 j = 0; j < bauigel.get_count(); j++) {
@@ -3045,8 +3099,16 @@ void tool_build_way_t::mark_tiles(player_t* player, const koord3d& start, const 
 			way->mark_image_dirty(way->get_image(), 0);
 		}
 	}
-	else if (err) {
-		win_set_static_tooltip(translator::translate(err));
+	else {
+		// The route search did not get through. err is exactly what
+		// way_builder_t::calc_route() returned, i.e. its warn_fail, so the
+		// reason the engine already knows goes on the contextual bar instead of
+		// into a hover tooltip: this is feedback about a build in progress, and
+		// it has to survive env_t::show_tooltips being off.
+		// err == NULL is published too. That is the "cannot build here, and the
+		// engine did not say why" state, and saying that much is still better
+		// than the silence it used to be. No reason gets invented for it.
+		win_set_tool_problem(this, err);
 	}
 }
 
@@ -3287,7 +3349,14 @@ void tool_build_bridge_t::mark_tiles( player_t *player, const koord3d &start, co
 			}
 		}
 	}
-	win_set_static_tooltip( tooltip_with_price_length("Building costs estimates", costs, koord_distance(start, pos)+1 ) );
+	win_set_tool_estimate( this, koord_distance(start, pos)+1, costs );
+}
+
+
+const char* tool_build_bridge_t::get_context_label() const
+{
+	const bridge_desc_t *desc = bridge_builder_t::get_desc(default_param);
+	return desc ? translator::translate( desc->get_name() ) : NULL;
 }
 
 
@@ -3338,6 +3407,32 @@ waytype_t tool_build_tunnel_t::get_waytype() const
 }
 
 
+const char* tool_build_tunnel_t::get_context_label() const
+{
+	const tunnel_desc_t *desc = tunnel_builder_t::get_desc(default_param);
+	return desc ? translator::translate( desc->get_name() ) : NULL;
+}
+
+
+uint8 tool_build_tunnel_t::get_modifier_hints(tool_hint_t *hints, uint8 mod_flags) const
+{
+	const bool ctrl = (mod_flags & WFL_CTRL) != 0;
+
+	// Ctrl means two things here too, but unlike the way builder they always
+	// switch together: check_pos() prices a portal only, and calc_route() drops
+	// set_keep_existing_faster_ways().
+	hints[0].key    = "[CTRL]";
+	hints[0].text   = "build portal only";
+	hints[0].active = ctrl;
+
+	hints[1].key    = "[CTRL]";
+	hints[1].text   = "replace existing ways";
+	hints[1].active = ctrl;
+
+	return 2;
+}
+
+
 bool tool_build_tunnel_t::init( player_t *player )
 {
 	two_click_tool_t::init( player );
@@ -3367,6 +3462,10 @@ const char *tool_build_tunnel_t::check_pos( player_t *player, koord3d pos)
 			}
 			if( gr->ist_karten_boden() ) {
 				win_set_static_tooltip( translator::translate("No suitable ground!") );
+				// Every path out of here that is not a usable estimate has to
+				// drop the previous one, or hovering off a valid slope leaves
+				// the last cost on screen.
+				win_clear_tool_estimate();
 
 				slope_t::type sl = gr->get_grund_hang();
 				if(  sl == slope_t::flat  ||  !slope_t::is_way( sl ) ) {
@@ -3384,7 +3483,7 @@ const char *tool_build_tunnel_t::check_pos( player_t *player, koord3d pos)
 				// first check for building portal only
 				if(  is_ctrl_pressed()  ) {
 					// estimate costs for tunnel portal
-					win_set_static_tooltip( tooltip_with_price_length("Building costs estimates", (-(sint64)desc->get_price())*2, 1 ) );
+					win_set_tool_estimate( this, 1, (-(sint64)desc->get_price())*2 );
 					return NULL;
 				}
 
@@ -3395,7 +3494,7 @@ const char *tool_build_tunnel_t::check_pos( player_t *player, koord3d pos)
 					return "";
 				}
 				// estimate costs for full tunnel
-				win_set_static_tooltip( tooltip_with_price_length("Building costs estimates", (-(sint64)desc->get_price())*koord_distance(pos,end), koord_distance(pos,end) ) );
+				win_set_tool_estimate( this, koord_distance(pos,end), (-(sint64)desc->get_price())*koord_distance(pos,end) );
 				return NULL;
 			}
 		}
@@ -3545,8 +3644,9 @@ void tool_build_tunnel_t::mark_tiles(  player_t *player, const koord3d &start, c
 	welt->lookup_kartenboden(end.get_2d())->clear_flag(grund_t::marked);
 
 	if(  bauigel.get_count()>1  ) {
-		// Set tooltip first (no dummygrounds, if bauigel.calc_casts() is called).
-		win_set_static_tooltip( tooltip_with_price_length("Building costs estimates", -bauigel.calc_costs(), bauigel.get_count() ) );
+		// Publish the estimate first (no dummygrounds, if bauigel.calc_costs() is called).
+		// Sign kept exactly as it was: this one negates, the way builder does not.
+		win_set_tool_estimate( this, bauigel.get_count(), -bauigel.calc_costs() );
 
 		// make dummy route from bauigel
 		for(  uint32 j=0;  j<bauigel.get_count();  j++  ) {
@@ -4081,8 +4181,33 @@ void tool_build_wayobj_t::mark_tiles( player_t* player, const koord3d &start, co
 				marked.insert( way_obj );
 			}
 		}
-		win_set_static_tooltip( tooltip_with_price_length("Building costs estimates", -cost_estimate, verbindung.get_count() ) );
+		win_set_tool_estimate( this, verbindung.get_count(), -cost_estimate );
 	}
+}
+
+
+const char* tool_build_wayobj_t::get_context_label() const
+{
+	if(  !build  ) {
+		waytype_t wt = (waytype_t)atoi( default_param );
+		sprintf( toolstr, translator::translate("Remove wayobj %s"), translator::translate(weg_t::waytype_to_string(wt)) );
+		return toolstr;
+	}
+	const way_obj_desc_t *desc = get_desc();
+	return desc ? translator::translate( desc->get_name() ) : NULL;
+}
+
+
+uint8 tool_build_wayobj_t::get_modifier_hints(tool_hint_t *hints, uint8 mod_flags) const
+{
+	if(  !build  ) {
+		// the remover reads no modifiers at all
+		return 0;
+	}
+	hints[0].key    = "[CTRL]";
+	hints[0].text   = "replace faster wayobjs";
+	hints[0].active = (mod_flags & WFL_CTRL) != 0;
+	return 1;
 }
 
 
@@ -5412,6 +5537,13 @@ const char *tool_build_roadsign_t::get_tooltip(const player_t *) const
 }
 
 
+const char *tool_build_roadsign_t::get_context_label() const
+{
+	const roadsign_desc_t *rs_desc = roadsign_t::find_desc(default_param);
+	return rs_desc ? translator::translate( rs_desc->get_name() ) : NULL;
+}
+
+
 bool tool_build_roadsign_t::init(player_t *player)
 {
 	desc = roadsign_t::find_desc(default_param);
@@ -5558,7 +5690,7 @@ void tool_build_roadsign_t::mark_tiles(player_t *player, const koord3d &start, c
 	}
 
 	delete dummy_rs;
-	win_set_static_tooltip( tooltip_with_price_length("Building costs estimates", cost, route.get_count() ) );
+	win_set_tool_estimate( this, route.get_count(), cost );
 }
 
 

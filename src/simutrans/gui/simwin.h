@@ -25,6 +25,7 @@ class scr_coord;
 class loadsave_t;
 class gui_frame_t;
 class gui_component_t;
+class tool_t;
 struct event_t;
 
 /* Types for the window */
@@ -225,6 +226,43 @@ void win_set_tooltip(scr_coord pos, const char *text, const void *const owner = 
  * *MUST* be explicitly unset!
  */
 void win_set_static_tooltip(const char *text);
+
+/**
+ * Publish the cost estimate of the build currently being previewed, for the
+ * contextual build bar.
+ *
+ * Deliberately separate from win_set_static_tooltip(): that one is the hover
+ * channel and stays under env_t::show_tooltips, this one is active build
+ * feedback and does not. Keeping them apart is also what stops the same
+ * numbers being drawn twice when tooltips are on.
+ *
+ * @param owner  the tool the estimate belongs to. The bar ignores an estimate
+ *               whose owner is no longer the active tool, so switching tools
+ *               cannot leave a stale figure on screen even if a tool forgets
+ *               to clear up after itself.
+ * @param length tiles the preview covers
+ * @param cost   in the same sign convention the tools already use, i.e. what
+ *               tooltip_with_price_length() is handed
+ */
+void win_set_tool_estimate(const tool_t *owner, sint64 length, sint64 cost);
+
+/**
+ * Publish why the build currently being previewed cannot be made, for the
+ * contextual build bar.
+ *
+ * Same channel and same owner rule as win_set_tool_estimate(), and mutually
+ * exclusive with it: a preview that failed has no cost to report, and one that
+ * succeeded has nothing to complain about, so publishing either drops the other.
+ *
+ * @param owner  the tool that computed the failed preview
+ * @param reason what the engine gave as the reason, or NULL when it gave none.
+ *               Taken as-is: the bar does the translating and the formatting,
+ *               so nothing here has to happen inside a route search.
+ */
+void win_set_tool_problem(const tool_t *owner, const char *reason);
+
+/// Drop any published estimate or problem. Called whenever a preview is torn down.
+void win_clear_tool_estimate();
 
 // shows a modal dialoge (blocks other interaction)
 void modal_dialogue(gui_frame_t* gui, ptrdiff_t magic, karte_t* welt, bool (*quit)(), bool dismissible = false);

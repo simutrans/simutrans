@@ -315,6 +315,8 @@ public:
 	image_id get_icon(player_t*) const OVERRIDE;
 	static const way_desc_t* get_default_desc(waytype_t wt);
 	char const* get_tooltip(player_t const*) const OVERRIDE;
+	char const* get_context_label() const OVERRIDE;
+	uint8 get_modifier_hints(tool_hint_t*, uint8) const OVERRIDE;
 	char const* get_default_param(player_t*) const OVERRIDE;
 	bool is_selected() const OVERRIDE;
 	bool init(player_t*) OVERRIDE;
@@ -351,6 +353,8 @@ public:
 	tool_build_bridge_t() : two_click_tool_t(TOOL_BUILD_BRIDGE | GENERAL_TOOL) {}
 	image_id get_icon(player_t*) const OVERRIDE { return grund_t::underground_mode==grund_t::ugm_all ? IMG_EMPTY : icon; }
 	char const* get_tooltip(player_t const*) const OVERRIDE;
+	char const* get_context_label() const OVERRIDE;
+	// no get_modifier_hints(): the bridge builder reads neither Ctrl nor Shift
 	bool is_init_keeps_game_state() const OVERRIDE { return true; }
 	waytype_t get_waytype() const OVERRIDE;
 	bool remove_preview_necessary() const OVERRIDE { return !is_first_click(); }
@@ -367,6 +371,8 @@ private:
 public:
 	tool_build_tunnel_t() : two_click_tool_t(TOOL_BUILD_TUNNEL | GENERAL_TOOL) {}
 	char const* get_tooltip(player_t const*) const OVERRIDE;
+	char const* get_context_label() const OVERRIDE;
+	uint8 get_modifier_hints(tool_hint_t*, uint8) const OVERRIDE;
 	char const* check_pos(player_t*, koord3d) OVERRIDE;
 	bool is_init_keeps_game_state() const OVERRIDE { return true; }
 	waytype_t get_waytype() const OVERRIDE;
@@ -408,6 +414,8 @@ private:
 public:
 	tool_build_wayobj_t(uint16 const id = TOOL_BUILD_WAYOBJ | GENERAL_TOOL, bool b = true) : two_click_tool_t(id), build(b) {}
 	char const* get_tooltip(player_t const*) const OVERRIDE;
+	char const* get_context_label() const OVERRIDE;
+	uint8 get_modifier_hints(tool_hint_t*, uint8) const OVERRIDE;
 	bool is_selected() const OVERRIDE;
 	bool init(player_t*) OVERRIDE;
 	bool is_init_keeps_game_state() const OVERRIDE { return true; }
@@ -483,6 +491,12 @@ public:
 public:
 	/// @copydoc tool_t::get_tooltip
 	const char *get_tooltip(const player_t *player) const OVERRIDE;
+
+	/// @copydoc tool_t::get_context_label
+	const char *get_context_label() const OVERRIDE;
+
+	// no get_modifier_hints(): Ctrl opens the spacing dialogue at init() time,
+	// it is not a modifier that changes what a drag builds
 
 	/// @copydoc tool_t::init
 	bool init(player_t*) OVERRIDE;

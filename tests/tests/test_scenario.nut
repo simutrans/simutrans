@@ -29,11 +29,13 @@ function test_scenario_rules_allow_forbid_way_tool()
 	local rail = way_desc_x.get_available_ways(wt_rail, st_flat)[0]
 	local pl = player_x(0)
 
+	// The message given here now reaches the player: way_builder_t used to drop
+	// the scenario's own refusal on the floor and refuse silently.
 	rules.forbid_way_tool_rect(0, tool_build_way, wt_road, road.get_name(), coord(2, 2), coord(5, 5), "Foo Bar")
 
 	// Fully in forbiden zone
 	{
-		ASSERT_EQUAL(command_x.build_way(pl, coord3d(2, 2, 0), coord3d(5, 5, 0), road, true), "")
+		ASSERT_EQUAL(command_x.build_way(pl, coord3d(2, 2, 0), coord3d(5, 5, 0), road, true), "Foo Bar")
 		ASSERT_WAY_PATTERN(wt_road, coord3d(0, 0, 0),
 			[
 				"........",
@@ -49,7 +51,7 @@ function test_scenario_rules_allow_forbid_way_tool()
 
 	// Ending in forbidden zone
 	{
-		ASSERT_EQUAL(command_x.build_way(pl, coord3d(0, 2, 0), coord3d(2, 2, 0), road, true), "")
+		ASSERT_EQUAL(command_x.build_way(pl, coord3d(0, 2, 0), coord3d(2, 2, 0), road, true), "Foo Bar")
 		ASSERT_WAY_PATTERN(wt_road, coord3d(0, 0, 0),
 			[
 				"........",
@@ -65,7 +67,7 @@ function test_scenario_rules_allow_forbid_way_tool()
 
 	// Starting in forbidden zone
 	{
-		ASSERT_EQUAL(command_x.build_way(pl, coord3d(2, 2, 0), coord3d(0, 2, 0), road, true), "")
+		ASSERT_EQUAL(command_x.build_way(pl, coord3d(2, 2, 0), coord3d(0, 2, 0), road, true), "Foo Bar")
 		ASSERT_WAY_PATTERN(wt_road, coord3d(0, 0, 0),
 			[
 				"........",
@@ -114,7 +116,7 @@ function test_scenario_rules_allow_forbid_way_tool_rect()
 
 	// Fully in forbiden zone
 	{
-		ASSERT_EQUAL(command_x.build_way(pl, coord3d(2, 2, 0), coord3d(5, 5, 0), road, true), "")
+		ASSERT_EQUAL(command_x.build_way(pl, coord3d(2, 2, 0), coord3d(5, 5, 0), road, true), "Foo Bar")
 		ASSERT_WAY_PATTERN(wt_road, coord3d(0, 0, 0),
 			[
 				"........",
@@ -130,7 +132,7 @@ function test_scenario_rules_allow_forbid_way_tool_rect()
 
 	// Ending in forbidden zone
 	{
-		ASSERT_EQUAL(command_x.build_way(pl, coord3d(0, 2, 0), coord3d(2, 2, 0), road, true), "")
+		ASSERT_EQUAL(command_x.build_way(pl, coord3d(0, 2, 0), coord3d(2, 2, 0), road, true), "Foo Bar")
 		ASSERT_WAY_PATTERN(wt_road, coord3d(0, 0, 0),
 			[
 				"........",
@@ -146,7 +148,7 @@ function test_scenario_rules_allow_forbid_way_tool_rect()
 
 	// Starting in forbidden zone
 	{
-		ASSERT_EQUAL(command_x.build_way(pl, coord3d(2, 2, 0), coord3d(0, 2, 0), road, true), "")
+		ASSERT_EQUAL(command_x.build_way(pl, coord3d(2, 2, 0), coord3d(0, 2, 0), road, true), "Foo Bar")
 		ASSERT_WAY_PATTERN(wt_road, coord3d(0, 0, 0),
 			[
 				"........",
@@ -216,7 +218,7 @@ function test_scenario_rules_allow_forbid_way_tool_cube()
 		ASSERT_EQUAL(setslope(pl, coord3d(3, 4, 0), slope.all_up_slope), null)
 		ASSERT_EQUAL(setslope(pl, coord3d(3, 3, 0), slope.north), null)
 
-		ASSERT_EQUAL(command_x.build_way(pl, coord3d(3, 0, 0), coord3d(3, 4, 1), road, true), "")
+		ASSERT_EQUAL(command_x.build_way(pl, coord3d(3, 0, 0), coord3d(3, 4, 1), road, true), "Foo Bar")
 		ASSERT_WAY_PATTERN(wt_road, coord3d(0, 0, 0),
 			[
 				"........",
@@ -339,7 +341,7 @@ function test_scenario_rules_allow_forbid_tool_stacked_rect()
 
 	// try building from inside allowed ring to outside, must fail => we cannot cross border
 	{
-		ASSERT_EQUAL(command_x.build_way(pl, coord3d(0, 0, 0), coord3d(2, 5, 0), road_desc, false), "")
+		ASSERT_EQUAL(command_x.build_way(pl, coord3d(0, 0, 0), coord3d(2, 5, 0), road_desc, false), "Foo Bar 1")
 		ASSERT_WAY_PATTERN(wt_road, coord3d(0, 0, 0),
 			[
 				"6AAAA8..",
@@ -438,7 +440,7 @@ function test_scenario_rules_allow_forbid_tool_stacked_cube()
 
 	// try building from inside allowed ring to outside, must fail => we cannot cross border
 	{
-		ASSERT_EQUAL(command_x.build_way(pl, coord3d(0, 0, 0), coord3d(2, 5, 0), road_desc, false), "")
+		ASSERT_EQUAL(command_x.build_way(pl, coord3d(0, 0, 0), coord3d(2, 5, 0), road_desc, false), "Foo Bar 1")
 		ASSERT_WAY_PATTERN(wt_road, coord3d(0, 0, 0),
 			[
 				"6AAAA8..",
