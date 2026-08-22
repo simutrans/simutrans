@@ -156,6 +156,10 @@ gui_settings_t::gui_settings_t()
 	reselect_closes_tool.pressed = env_t::reselect_closes_tool;
 	add_component( &reselect_closes_tool, 3 );
 
+	show_construction_info.init( button_t::square_state, "show_construction_info" );
+	show_construction_info.pressed = env_t::show_construction_info;
+	add_component( &show_construction_info, 3 );
+
 	fullscreen.init( button_t::square_state, "Fullscreen (changed after restart)" );
 	fullscreen.pressed = ( dr_get_fullscreen() == FULLSCREEN );
 	fullscreen.enable(dr_has_fullscreen());
@@ -620,6 +624,7 @@ color_gui_t::color_gui_t() :
 	gui_settings.single_toolbar.add_listener(this);
 	gui_settings.stack_toolbars.add_listener(this);
 	gui_settings.reselect_closes_tool.add_listener(this);
+	gui_settings.show_construction_info.add_listener(this);
 	gui_settings.fullscreen.add_listener( this );
 	gui_settings.borderless.add_listener( this );
 
@@ -680,6 +685,12 @@ bool color_gui_t::action_triggered( gui_action_creator_t *comp, value_t)
 	if(  comp == &gui_settings.stack_toolbars  ) {
 		env_t::stack_toolbars = !env_t::stack_toolbars;
 		gui_settings.stack_toolbars.pressed = env_t::stack_toolbars;
+		return true;
+	}
+
+	if(  comp == &gui_settings.show_construction_info  ) {
+		env_t::show_construction_info = !env_t::show_construction_info;
+		gui_settings.show_construction_info.pressed = env_t::show_construction_info;
 		return true;
 	}
 

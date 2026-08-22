@@ -258,6 +258,9 @@ public:
 	static sint16 iconscaling;
 	static scr_size iconsize;
 
+	/// show the contextual construction band beside the status bar
+	static bool show_construction_info;
+
 	/// customize your tooltips
 	static bool show_tooltips;
 	static rgb888_t tooltip_color_rgb;

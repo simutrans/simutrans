@@ -827,6 +827,7 @@ void settings_t::parse_simuconf( tabfile_t& simuconf, sint16& disp_width, sint16
 	env_t::stack_toolbars            = contents.get_int( "stack_toolbars",            env_t::stack_toolbars ) != 0;
 	env_t::dpi_scale                 = contents.get_int( "dpi_scaling",               env_t::dpi_scale );
 
+	env_t::show_construction_info = contents.get_int(     "show_construction_info", env_t::show_construction_info ) != 0;
 	env_t::show_tooltips      = contents.get_int(         "show_tooltips",      env_t::show_tooltips ) != 0;
 	env_t::tooltip_delay      = contents.get_int_clamped( "tooltip_delay",      env_t::tooltip_delay,      0, INT_MAX);
 	env_t::tooltip_duration   = contents.get_int_clamped( "tooltip_duration",   env_t::tooltip_duration,   0, INT_MAX);

@@ -382,6 +382,10 @@ numpad_always_moves_map = 1
 # display scaling factor in percent or -1 for auto
 # dpi_scaling = 100
 
+# 1=show the construction information band beside the status bar (cost,
+# length, why a build is refused). Turn it off to keep the screen space.
+#show_construction_info = 1
+
 ###################################money stuff##################################
 #
 # These values are usually set in the pak files

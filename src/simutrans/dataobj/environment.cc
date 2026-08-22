@@ -170,6 +170,7 @@ uint32 env_t::fps;
 uint32 env_t::ff_fps;
 sint16 env_t::max_acceleration;
 uint8 env_t::num_threads;
+bool env_t::show_construction_info;
 bool env_t::show_tooltips;
 rgb888_t env_t::tooltip_color_rgb;
 PIXVAL env_t::tooltip_color;
@@ -310,6 +311,7 @@ void env_t::init()
 
 	sound_distance_scaling = 10;
 
+	show_construction_info = true;
 	show_tooltips = true;
 	tooltip_color_rgb     = { 0x39, 0x64, 0xD0 }; // COL_SOFT_BLUE
 	tooltip_textcolor_rgb = { 0x00, 0x00, 0x00 }; // COL_BLACK
@@ -680,6 +682,7 @@ void env_t::rdwr(loadsave_t *file)
 
 	if (file->is_version_atleast(124, 6)) {
 		file->rdwr_bool(horizontal_stripe_owner);
+		file->rdwr_bool(show_construction_info);
 	}
 
 	// server settings are not saved, since they are server specific

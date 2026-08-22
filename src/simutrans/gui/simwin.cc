@@ -1960,7 +1960,13 @@ uint16 win_get_statusbar_height()
 static void display_tool_context_bar(const scr_size &screen, bool show_ticker_now)
 {
 	tool_t *tool = wl ? wl->get_tool( wl->get_active_player_nr() ) : NULL;
-	const char *label = tool ? tool->get_context_label() : NULL;
+
+	// Taking the label away is what switches the band off: the height below is
+	// then zero, and the repaint of the rectangle the band used to occupy still
+	// happens further down, so nothing of it is left on screen. The tools go on
+	// publishing their estimates either way - this decides what is drawn, never
+	// what is built or what a tool reports back.
+	const char *label = (tool  &&  env_t::show_construction_info) ? tool->get_context_label() : NULL;
 
 	tool_hint_t hints[TOOL_MAX_HINTS];
 	uint8 hint_count = 0;
