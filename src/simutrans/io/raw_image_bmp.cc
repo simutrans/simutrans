@@ -80,6 +80,11 @@ static bool is_format_supported(uint16 bpp, uint32 compression)
 bool raw_image_t::read_bmp(const char *filename)
 {
 	FILE *file = dr_fopen(filename, "rb");
+	if (!file) {
+		dbg->warning("raw_image_t::read_bmp", "Cannot open %s", filename);
+		return false;
+	}
+
 	bitmap_file_header_t bmp_header;
 
 	if (fread(&bmp_header, sizeof(bitmap_file_header_t), 1, file) != 1) {
