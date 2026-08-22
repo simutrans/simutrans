@@ -187,11 +187,12 @@ int dr_mkdir(char const* const path)
 
 #ifdef _WIN32
 	const char* new_dir_with_path = path;
+	// must outlive the block below, since new_dir_with_path may point into it
+	char abs_buf[MAX_PATH];
 
 	// Perform operation needs absolute path
 	if (path[1] != ':'  &&  path[1] !=  '\\') {
 		// so let get the absolute path
-		char abs_buf[MAX_PATH];
 		dr_getcwd(abs_buf, MAX_PATH);
 		if (strlen(abs_buf) + strlen(path) + 2 >= MAX_PATH) {
 			return -1;
