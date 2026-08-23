@@ -165,10 +165,6 @@ else (MSVC) # Assume GCC/Clang
 	SIMUTRANS_CHECK_CXX_COMPILER_FLAGS(SIMUTRANS_COMMON_COMPILE_OPTIONS
 		-Wno-format-nonliteral       # Mostly for translator
 		-Wno-overloaded-virtual      # For makeobj
-		-Wno-deprecated-declarations # auto_ptr for squirrel
-		-Wno-deprecated-copy         # for squirrel
-		-Wno-cast-align              # for squirrel
-		-Wno-return-std-move         # for squirrel
 	)
 
 	if (SIMUTRANS_WARNINGS_AS_ERRORS)

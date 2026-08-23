@@ -333,6 +333,11 @@ target_sources(simutrans PRIVATE
 	src/simutrans/world/simworld.cc
 	src/simutrans/world/surface.cc
 	src/simutrans/world/terraformer.cc
+)
+
+
+# To allow separate compiler flags for Squirrel (see below)
+add_library(simusquirrel OBJECT
 	src/squirrel/sq_extensions.cc
 	src/squirrel/sqstdlib/sqstdaux.cc
 	src/squirrel/sqstdlib/sqstdblob.cc
@@ -354,4 +359,21 @@ target_sources(simutrans PRIVATE
 	src/squirrel/squirrel/sqstate.cc
 	src/squirrel/squirrel/sqtable.cc
 	src/squirrel/squirrel/sqvm.cc
+)
+
+
+if (NOT MSVC)
+	target_compile_options(simusquirrel PRIVATE
+		${SIMUTRANS_COMMON_COMPILE_OPTIONS}
+		-Wno-nontrivial-memcall
+		-Wno-deprecated-declarations # auto_ptr for squirrel
+		-Wno-deprecated-copy         # for squirrel
+		-Wno-cast-align              # for squirrel
+		-Wno-return-std-move         # for squirrel
+	)
+endif ()
+
+
+target_link_libraries(simutrans PRIVATE
+	simusquirrel
 )
