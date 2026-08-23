@@ -3688,14 +3688,15 @@ void stadt_t::generate_private_cars(koord pos, koord target)
 				if(  grund_t* gr = welt->lookup_kartenboden(k) ) {
 					const weg_t* weg = gr->get_weg(road_wt);
 					if (weg != NULL && (
-						weg->get_ribi_unmasked(road_wt) == ribi_t::northsouth ||
-						weg->get_ribi_unmasked(road_wt) == ribi_t::eastwest) &&
-						player_t::check_owner(NULL, w->get_owner()
-						) {
+						weg->get_ribi_unmasked() == ribi_t::northsouth ||
+						weg->get_ribi_unmasked() == ribi_t::eastwest) &&
+						player_t::check_owner(NULL, weg->get_owner()))
+					{
 						// already a car here => avoid congestion
-						if (gr->obj_bei(gr->get_top() - 1)->is_moving()) {
+						if (gr->obj_bei(gr->obj_count() - 1)->is_moving()) {
 							continue;
 						}
+
 						private_car_t* vt = new private_car_t(gr, target);
 						gr->obj_add(vt);
 						city_history_month[0][HIST_CITYCARS]++;

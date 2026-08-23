@@ -3637,7 +3637,7 @@ static void display_vl_internal(const scr_coord_val xp, scr_coord_val yp, scr_co
 }
 
 
-void display_vline_wh_rgb(const scr_coord_val xp, scr_coord_val yp, scr_coord_val h, const PIXVAL color, bool dirty)
+void simgraph16_draw_vline(const scr_coord_val xp, scr_coord_val yp, scr_coord_val h, const PIXVAL color, bool dirty)
 {
 	display_vl_internal(xp, yp, h, color, dirty, 0, disp_width, 0, disp_height);
 }
@@ -4070,8 +4070,8 @@ static void simgraph16_draw_box3d(scr_coord_val x1, scr_coord_val y1, scr_coord_
 
 	h -= 2;
 
-	display_vline_wh_rgb(x1,         y1 + 1, h, tl_color, dirty);
-	display_vline_wh_rgb(x1 + w - 1, y1 + 1, h, rd_color, dirty);
+	simgraph16_draw_vline(x1,         y1 + 1, h, tl_color, dirty);
+	simgraph16_draw_vline(x1 + w - 1, y1 + 1, h, rd_color, dirty);
 }
 
 
@@ -4479,7 +4479,7 @@ static void simgraph16_draw_right_triangle(scr_coord_val x, scr_coord_val y, scr
 {
 	y += (height / 2);
 	while(  height > 0  ) {
-		display_vline_wh_rgb( x, y-(height/2), height, colval, dirty );
+		simgraph16_draw_vline( x, y-(height/2), height, colval, dirty );
 		x++;
 		height -= 2;
 	}
@@ -4609,10 +4609,10 @@ static void simgraph16_flush_framebuffer()
 				}
 
 #ifdef DEBUG_FLUSH_BUFFER
-				display_vline_wh_rgb( (x1 << DIRTY_TILE_SHIFT) - 1, y1 << DIRTY_TILE_SHIFT, (y2 - y1) << DIRTY_TILE_SHIFT, gfx->palette_lookup(COL_YELLOW), false);
-				display_vline_wh_rgb( x2 << DIRTY_TILE_SHIFT,  y1 << DIRTY_TILE_SHIFT, (y2 - y1) << DIRTY_TILE_SHIFT, gfx->palette_lookup(COL_YELLOW), false);
-				display_fillbox_wh_rgb( x1 << DIRTY_TILE_SHIFT, y1 << DIRTY_TILE_SHIFT, (x2 - x1) << DIRTY_TILE_SHIFT, 1, gfx->palette_lookup(COL_YELLOW), false);
-				display_fillbox_wh_rgb( x1 << DIRTY_TILE_SHIFT, (y2 << DIRTY_TILE_SHIFT) - 1, (x2 - x1) << DIRTY_TILE_SHIFT, 1, gfx->palette_lookup(COL_YELLOW), false);
+				simgraph16_draw_vline( (x1 << DIRTY_TILE_SHIFT) - 1, y1 << DIRTY_TILE_SHIFT, (y2 - y1) << DIRTY_TILE_SHIFT, gfx->palette_lookup(COL_YELLOW), false);
+				simgraph16_draw_vline( x2 << DIRTY_TILE_SHIFT,  y1 << DIRTY_TILE_SHIFT, (y2 - y1) << DIRTY_TILE_SHIFT, gfx->palette_lookup(COL_YELLOW), false);
+				simgraph16_draw_rect( x1 << DIRTY_TILE_SHIFT, y1 << DIRTY_TILE_SHIFT, (x2 - x1) << DIRTY_TILE_SHIFT, 1, gfx->palette_lookup(COL_YELLOW), false);
+				simgraph16_draw_rect( x1 << DIRTY_TILE_SHIFT, (y2 << DIRTY_TILE_SHIFT) - 1, (x2 - x1) << DIRTY_TILE_SHIFT, 1, gfx->palette_lookup(COL_YELLOW), false);
 				simgraph16_draw_line( x1 << DIRTY_TILE_SHIFT, y1 << DIRTY_TILE_SHIFT, x2 << DIRTY_TILE_SHIFT, (y2 << DIRTY_TILE_SHIFT) - 1, gfx->palette_lookup(COL_YELLOW) );
 				simgraph16_draw_line( x1 << DIRTY_TILE_SHIFT, (y2 << DIRTY_TILE_SHIFT) - 1, x2 << DIRTY_TILE_SHIFT, y1 << DIRTY_TILE_SHIFT, gfx->palette_lookup(COL_YELLOW) );
 #else

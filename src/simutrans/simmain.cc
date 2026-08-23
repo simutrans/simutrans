@@ -1648,7 +1648,7 @@ int simu_main(int argc, char** argv)
 	// give user a mouse to work with
 	if (skinverwaltung_t::mouse_cursor != NULL) {
 		// we must use our softpointer (only Allegro!)
-		display_set_pointer(skinverwaltung_t::mouse_cursor->get_image_id(0));
+		gfx->set_default_cursor(skinverwaltung_t::mouse_cursor->get_image_id(0));
 	}
 #endif
 	gfx->set_cursor_visible(true);

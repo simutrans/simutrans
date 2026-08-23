@@ -16,11 +16,6 @@
 #include "simroadtraffic.h"
 #include "vehicle.h"
 
-#ifdef DESTINATION_CITYCARS
-// for final citycar destinations
-#include "simpeople.h"
-#endif
-
 #include "../dataobj/translator.h"
 #include "../dataobj/loadsave.h"
 #include "../dataobj/environment.h"
@@ -690,7 +685,8 @@ grund_t* private_car_t::hop_check()
 		static weighted_vector_tpl<koord3d> posliste(4);
 		posliste.clear();
 		const uint8 offset = ribi_t::is_single(ribi) ? 0 : simrand(4);
-		for(uint8 r = 0; r < 4; r++) {
+		for(uint8 i = 0; i < 4; i++) {
+			const uint8 r = (i+offset)&3;
 			if(  get_pos().get_2d()==koord::nesw[r]+pos_next.get_2d()  ) {
 				continue;
 			}
