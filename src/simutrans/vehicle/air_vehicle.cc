@@ -665,8 +665,8 @@ bool air_vehicle_t::can_enter_tile(const grund_t *gr, sint32 &restart_speed, uin
 
 	// if we have to cirle longet ...
 	if (is_flying()) {
-		// check for another circle or proceed to langing?
-		if (!target_halt.is_bound()  &&  (route_index+3 == touchdown  ||  route_index+16+3 == touchdown)) {
+		// check for another circle or proceed to landing?
+		if (!target_halt.is_bound()  &&  (route_index + 3u == touchdown  ||  route_index+16u+3u == touchdown)) {
 			grund_t* gr_free = NULL;
 			if (grund_t* gr = welt->lookup(cnv->get_route()->back())) {
 				target_halt = gr->get_halt();
@@ -686,13 +686,13 @@ bool air_vehicle_t::can_enter_tile(const grund_t *gr, sint32 &restart_speed, uin
 				}
 				goto circling;
 			}
-			if (route_index + 16 + 3 == touchdown) {
+			if (route_index + 16u + 3u == touchdown) {
 				route_index += 16;
 			}
 			state = landing;
 			return true;
 		circling:
-			if (route_index + 3 == touchdown) {
+			if (route_index + 3u == touchdown) {
 				route_index -= 16;
 			}
 			else {
@@ -948,7 +948,7 @@ void air_vehicle_t::set_convoi(convoi_t *c)
 		bool target=(bool)cnv;
 		vehicle_t::set_convoi(c);
 		if(leading) {
-			if(target  &&  route_index+3>touchdown) {
+			if(target  &&  route_index+3u > touchdown) {
 				// reinitialize the target halt
 				if (get_pos() != cnv->get_route()->back()) {
 					// but only if not already arrived ...
@@ -1010,7 +1010,7 @@ void air_vehicle_t::set_convoi(convoi_t *c)
 							target_height = get_pos().z;
 						}
 					}
-					if (route_index + 3 >= touchdown && state != taxiing) {
+					if (route_index + 3u >= touchdown && state != taxiing) {
 						block_reserver(touchdown, search_for_stop + 1, true);
 					}
 				}
@@ -1018,8 +1018,8 @@ void air_vehicle_t::set_convoi(convoi_t *c)
 			// restore reservation for takeoff
 			else {
 				target_halt = halthandle_t();
-				if (route_index >= takeoff && route_index < touchdown - 21 && state != flying) {
-					block_reserver(takeoff, takeoff + 100, true);
+				if (route_index >= takeoff && route_index + 21u < touchdown && state != flying) {
+					block_reserver(takeoff, takeoff + 100u, true);
 				}
 				else if (takeoff != INVALID_IDX  &&  route_index < takeoff) {
 					clear_route_to_runway(true);

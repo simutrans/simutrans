@@ -169,8 +169,8 @@ void savegame_frame_t::add_section(std::string &name){
 	}
 	else {
 		// user_dir path
-		size_t name_len = strlen(name.c_str());
-		size_t user_dir_len = strlen(env_t::user_dir);
+		const size_t name_len     = name.length();
+		const size_t user_dir_len = strlen(env_t::user_dir);
 
 		if ( name_len+user_dir_len > FILENAME_MAX-1 ) {
 			// shouldn't happen, but I'll control anyway
