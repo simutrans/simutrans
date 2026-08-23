@@ -168,7 +168,10 @@ else (MSVC) # Assume GCC/Clang
 	)
 
 	if (SIMUTRANS_WARNINGS_AS_ERRORS)
-		add_compile_options(-Werror)
+		add_compile_options(
+			-Werror
+			-Wno-error=unused-function   # For script tools
+		)
 	endif ()
 
 	# Only add for MinGW 32 bit buids
