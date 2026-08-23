@@ -362,14 +362,31 @@ add_library(simusquirrel OBJECT
 )
 
 
-if (NOT MSVC)
+if (MSVC)
 	target_compile_options(simusquirrel PRIVATE
 		${SIMUTRANS_COMMON_COMPILE_OPTIONS}
+		# TODO add warning-silencing flags here
+	)
+else ()
+	SIMUTRANS_CHECK_CXX_COMPILER_FLAGS(SIMUSQUIRREL_COMPILE_OPTIONS
+		-Wno-cast-align
+		-Wno-cast-qual
+		-Wno-class-memaccess
+		-Wno-deprecated-copy
+		-Wno-deprecated-declarations
+		-Wno-implicit-fallthrough
 		-Wno-nontrivial-memcall
-		-Wno-deprecated-declarations # auto_ptr for squirrel
-		-Wno-deprecated-copy         # for squirrel
-		-Wno-cast-align              # for squirrel
-		-Wno-return-std-move         # for squirrel
+		-Wno-return-std-move
+		-Wno-unused-but-set-variable
+
+		# Disabled because Squirrel internally has code that dereferences type-punned pointer
+		# See also https://github.com/albertodemichelis/squirrel/pull/257
+		-fno-strict-aliasing
+	)
+
+	target_compile_options(simusquirrel PRIVATE
+		${SIMUTRANS_COMMON_COMPILE_OPTIONS}
+		${SIMUSQUIRREL_COMPILE_OPTIONS}
 	)
 endif ()
 
