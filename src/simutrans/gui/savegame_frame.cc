@@ -177,7 +177,8 @@ void savegame_frame_t::add_section(std::string &name){
 			strcpy(path_expanded,"** ERROR ** Path too long");
 		}
 		else {
-			sprintf(path_expanded,"%s%s", env_t::user_dir, name.c_str());
+			snprintf(path_expanded, FILENAME_MAX, "%s%s", env_t::user_dir, name.c_str());
+			path_expanded[FILENAME_MAX-1] = 0;
 		}
 	}
 
