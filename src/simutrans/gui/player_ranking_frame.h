@@ -12,6 +12,8 @@
 #include "components/gui_label.h"
 #include "components/gui_chart.h"
 #include "components/gui_button.h"
+#include "components/gui_combobox.h"
+#include "components/gui_scrollpane.h"
 #include "components/action_listener.h"
 #include "simwin.h"
 

@@ -8,6 +8,8 @@
 
 
 #include "../simtypes.h"
+
+
 /**
  * Macros to pass clip_num parameter around for
  * multi-threaded drawing.

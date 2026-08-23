@@ -11,6 +11,8 @@
 #include "../simconst.h"
 #include "../simtypes.h"
 
+#include <cassert>
+#include <cstring>
 #include <typeinfo>
 
 #ifdef MULTI_THREADx
