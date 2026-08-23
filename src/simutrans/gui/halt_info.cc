@@ -575,7 +575,7 @@ void gui_halt_detail_t::update_connections( halthandle_t halt )
 	}
 
 	// which can be changed?
-	uint16 allow_change = (1 << world()->get_active_player_nr()) & halt->get_owners() ? allow_change = ~halt->get_owners() : 0;
+	uint16 allow_change = (1 << world()->get_active_player_nr()) & halt->get_owners() ? ~halt->get_owners() : 0;
 	if (world()->get_active_player()->is_public_service()) {
 		allow_change = 0xFFFF;
 	}
