@@ -38,7 +38,7 @@ private:
 	koord3d search_start;
 	koord3d search_end;
 
-	flight_state state; // functions needed for the search without destination from find_route
+	flight_state state = flight_state::taxiing; // functions needed for the search without destination from find_route
 
 	sint16 flying_height;
 	sint16 target_height;
