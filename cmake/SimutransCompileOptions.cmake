@@ -171,6 +171,7 @@ else (MSVC) # Assume GCC/Clang
 		add_compile_options(
 			-Werror
 			-Wno-error=unused-function   # For script tools
+			-Wno-error=cpp               # For 32-bit build warning
 		)
 	endif ()
 
