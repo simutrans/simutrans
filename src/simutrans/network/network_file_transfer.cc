@@ -446,8 +446,9 @@ const char* network_http_get(const char* address, const char* name, cbuffer_t& l
 			// We will get a buffer overwrite here if we continue
 			return "Error: String too long";
 		}
+
 		char request[REQ_HEADER_LEN];
-		int const len = sprintf(request, format, name, QUOTEME(REVISION), address);
+		int const len = snprintf(request, lengthof(request), format, name, QUOTEME(REVISION), address);
 		uint16 dummy;
 		if (!network_send_data(my_client_socket, request, len, dummy, 250)) {
 			err = "Server did not respond!";
@@ -527,9 +528,11 @@ const char *network_http_get_file( const char* address, const char* name, const 
 			// We will get a buffer overwrite here if we continue
 			return "Error: String too long";
 		}
+
 		char request[REQ_HEADER_LEN];
-		int const len = sprintf( request, format, name, QUOTEME(REVISION), address );
+		int const len = snprintf( request, lengthof(request), format, name, QUOTEME(REVISION), address );
 		uint16 dummy;
+
 		if (  !network_send_data( my_client_socket, request, len, dummy, 250 )  ) {
 			err = "Server did not respond!";
 		}
