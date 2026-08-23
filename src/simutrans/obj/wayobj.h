@@ -82,7 +82,7 @@ public:
 
 	// specific for wayobj
 	void set_dir(ribi_t::ribi d) { dir = d; }
-	ribi_t::ribi get_dir() const { return close_diagonal ? ribi_t::all : dir; }
+	ribi_t::ribi get_dir() const { return close_diagonal ? (ribi_t::ribi)ribi_t::all : dir; }
 	uint8 get_close_diagonal() const { return close_diagonal; }
 
 	virtual void display(int xpos, int ypos  CLIP_NUM_DEF) const OVERRIDE;
