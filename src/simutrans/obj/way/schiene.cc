@@ -113,9 +113,9 @@ bool schiene_t::reserve(convoihandle_t c, uint32 index )
 		 * direction is a diagonal (i.e. on the switching part)
 		 * and there are switching graphics
 		 */
-		if(  index > 1  &&  ribi_t::is_threeway(get_ribi_unmasked())  &&  get_desc()->has_switch_image()  ) {
+		if(  index >= 1  &&  index < c->get_route()->get_count() - 1  &&  ribi_t::is_threeway(get_ribi_unmasked())  &&  get_desc()->has_switch_image()  ) {
 			route_t const& rt = *c->get_route();
-			ribi_t::ribi dir = ribi_type(rt[index - 1], get_pos());
+			ribi_t::ribi dir = ribi_type(rt[index - 1], rt[index + 1]);
 			if (ribi_t::is_bend(dir)) {
 				mark_image_dirty(get_image(), 0);
 				mark_image_dirty(get_front_image(), 0);
