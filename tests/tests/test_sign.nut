@@ -1079,3 +1079,92 @@ function test_sign_signal_when_player_removed()
 
 	RESET_ALL_PLAYER_FUNDS()
 }
+
+
+function test_sign_signals_removed_with_bankrupt_company()
+{
+	local public_pl = player_x(1)
+	local rail   = way_desc_x.get_available_ways(wt_rail, st_flat)[0]
+	local road   = way_desc_x.get_available_ways(wt_road, st_flat)[0]
+	local signal = sign_desc_x.get_available_signs(wt_rail).filter(@(idx, s) s.is_signal())[0]
+	local eoc    = sign_desc_x.get_available_signs(wt_rail).filter(@(idx, s) s.is_end_choose_signal())[0]
+	local oneway = sign_desc_x.get_available_signs(wt_road).filter(@(idx, s) s.is_one_way())[0]
+
+	// preconditions
+	ASSERT_TRUE(rail != null)
+	ASSERT_TRUE(road != null)
+	ASSERT_TRUE(signal != null)
+	ASSERT_TRUE(eoc != null)
+	ASSERT_TRUE(oneway != null)
+
+	ASSERT_TRUE(world.create_player(2, 1))
+	local victim = player_x(2)
+	ASSERT_TRUE(victim.is_valid())
+
+	// (5,3) rail + a signal proper, which is a signal_t
+	ASSERT_EQUAL(command_x.build_way(victim, coord3d(4, 3, 0), coord3d(6, 3, 0), rail, true), null)
+	ASSERT_EQUAL(command_x(tool_build_roadsign).work(victim, coord3d(5, 3, 0), signal.get_name()), null)
+
+	// (5,5) rail + an end-of-choose sign, which is a plain roadsign_t on rail
+	ASSERT_EQUAL(command_x.build_way(victim, coord3d(4, 5, 0), coord3d(6, 5, 0), rail, true), null)
+	ASSERT_EQUAL(command_x(tool_build_roadsign).work(victim, coord3d(5, 5, 0), eoc.get_name()), null)
+
+	// (5,7) road + a road sign: the road survives, so the sign has to survive too
+	ASSERT_EQUAL(command_x.build_way(victim, coord3d(4, 7, 0), coord3d(6, 7, 0), road, true), null)
+	ASSERT_EQUAL(command_x(tool_build_roadsign).work(victim, coord3d(5, 7, 0), oneway.get_name()), null)
+
+	// (5,9) the victim's rail, but the sign belongs to the public player
+	ASSERT_EQUAL(command_x.build_way(victim, coord3d(4, 9, 0), coord3d(6, 9, 0), rail, true), null)
+	ASSERT_EQUAL(command_x(tool_build_roadsign).work(public_pl, coord3d(5, 9, 0), eoc.get_name()), null)
+
+	// before the bankruptcy
+	{
+		ASSERT_TRUE(tile_x(5, 3, 0).find_object(mo_way) != null)
+		ASSERT_TRUE(tile_x(5, 3, 0).find_object(mo_signal) != null)
+		ASSERT_EQUAL(tile_x(5, 3, 0).find_object(mo_signal).get_owner().get_name(), victim.get_name())
+
+		ASSERT_TRUE(tile_x(5, 5, 0).find_object(mo_way) != null)
+		ASSERT_EQUAL(tile_x(5, 5, 0).find_object(mo_signal), null) // not a signal_t
+		ASSERT_TRUE(tile_x(5, 5, 0).find_object(mo_roadsign) != null)
+		ASSERT_EQUAL(tile_x(5, 5, 0).find_object(mo_roadsign).get_owner().get_name(), victim.get_name())
+
+		ASSERT_TRUE(tile_x(5, 7, 0).find_object(mo_way) != null)
+		ASSERT_TRUE(tile_x(5, 7, 0).find_object(mo_roadsign) != null)
+
+		ASSERT_TRUE(tile_x(5, 9, 0).find_object(mo_way) != null)
+		ASSERT_TRUE(tile_x(5, 9, 0).find_object(mo_roadsign) != null)
+		ASSERT_EQUAL(tile_x(5, 9, 0).find_object(mo_roadsign).get_owner().get_name(), public_pl.get_name())
+	}
+
+	world.remove_player(victim)
+
+	// after the bankruptcy
+	{
+		// the rail is gone, and so is everything the company had bound to it
+		ASSERT_EQUAL(tile_x(5, 3, 0).find_object(mo_way), null)
+		ASSERT_EQUAL(tile_x(5, 3, 0).find_object(mo_signal), null)
+		ASSERT_EQUAL(tile_x(5, 3, 0).get_objects().get_count(), 0)
+
+		ASSERT_EQUAL(tile_x(5, 5, 0).find_object(mo_way), null)
+		ASSERT_EQUAL(tile_x(5, 5, 0).find_object(mo_roadsign), null) // no orphan left standing
+		ASSERT_EQUAL(tile_x(5, 5, 0).get_objects().get_count(), 0)
+
+		// the road is handed to the public player, and keeps its sign
+		ASSERT_TRUE(tile_x(5, 7, 0).find_object(mo_way) != null)
+		ASSERT_EQUAL(tile_x(5, 7, 0).find_object(mo_way).get_owner().get_name(), public_pl.get_name())
+		ASSERT_TRUE(tile_x(5, 7, 0).find_object(mo_roadsign) != null)
+		ASSERT_EQUAL(tile_x(5, 7, 0).find_object(mo_roadsign).get_owner().get_name(), public_pl.get_name())
+
+		// somebody else's sign is never touched
+		ASSERT_EQUAL(tile_x(5, 9, 0).find_object(mo_way), null)
+		ASSERT_TRUE(tile_x(5, 9, 0).find_object(mo_roadsign) != null)
+		ASSERT_EQUAL(tile_x(5, 9, 0).find_object(mo_roadsign).get_owner().get_name(), public_pl.get_name())
+	}
+
+	// clean up
+	ASSERT_EQUAL(command_x(tool_remover).work(public_pl, coord3d(5, 9, 0)), null)
+	ASSERT_EQUAL(command_x(tool_remover).work(public_pl, coord3d(5, 7, 0)), null)
+	ASSERT_EQUAL(command_x(tool_remove_way).work(public_pl, coord3d(4, 7, 0), coord3d(6, 7, 0), "" + wt_road), null)
+
+	RESET_ALL_PLAYER_FUNDS()
+}

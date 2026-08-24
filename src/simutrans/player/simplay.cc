@@ -635,6 +635,14 @@ void player_t::ai_bankrupt()
 									wt = tram_wt;
 								}
 
+								if (wt != road_wt && wt != water_wt) {
+									// Only road/water signals remain!
+									// The rest is destroyed with the way
+									obj->cleanup(this);
+									delete obj;
+									break;
+								}
+
 								this->add_maintenance(-costs, wt);
 								psplayer->add_maintenance(costs, wt);
 
