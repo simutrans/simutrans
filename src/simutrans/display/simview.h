@@ -11,7 +11,45 @@
 
 
 class karte_t;
+class koord3d;
 class viewport_t;
+template<class T> class vector_tpl;
+
+
+/**
+ * Height of the way surface at one corner of the route a schedule editor shows, in half
+ * height levels: the centre of the tile route[step], or the middle of the edge that tile
+ * shares with route[step+1].
+ *
+ * The route holds ground positions - route_t stores grund_t::get_pos() - whose z is the
+ * base height of a tile, that is its lowest corner. The way on that ground can be higher:
+ * it climbs across a tile that is a slope, and on the head of a bridge that starts on
+ * already sloped ground the way is flat but the whole tile content is lifted a level or
+ * two. grund_t::get_vmove() answers both of those together for one edge of a tile, so
+ * none of that geometry is repeated here.
+ *
+ * It is not part of the drawing code, which a headless build does not compile at all, so
+ * that the automated tests can check it.
+ */
+sint32 schedule_route_way_height2(const karte_t *welt, const vector_tpl<koord3d> &route, uint32 step, bool is_edge);
+
+
+/**
+ * Whether the route a schedule editor shows bends where it crosses the edge between
+ * route[step] and route[step+1].
+ *
+ * A way keeps one grade across a tile and changes it on the edge to the next one, so a
+ * straight line from one tile centre to the next leaves the way surface on that edge by
+ * a quarter of the change of grade there, and needs a corner of its own to follow it.
+ * Where the grade does not change the edge lies on that line already and stays implicit,
+ * which is what keeps ground without a slope exactly as it was drawn before.
+ *
+ * Height is all that can part the two: the tiles are neighbours, so the middle of the
+ * line between their centres is the middle of the edge they share.
+ *
+ * Outside the drawing code for the same reason as schedule_route_way_height2().
+ */
+bool schedule_route_edge_is_corner(const karte_t *welt, const vector_tpl<koord3d> &route, uint32 step);
 
 
 /**

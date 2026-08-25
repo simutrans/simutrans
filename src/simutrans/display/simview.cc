@@ -92,6 +92,50 @@ static bool can_multithreading = true;
 #endif
 
 
+/**
+ * @copydoc schedule_route_way_height2
+ *
+ * The way crosses a whole tile, so the middle of one is halfway between the heights of
+ * the two edges the way crosses there. The route touches one edge only where a stretch
+ * ends, and where it turns back on itself at the last stop of a leg and so leaves by the
+ * edge it came in through; the opposite edge is the second one in both of those cases.
+ */
+sint32 schedule_route_way_height2(const karte_t *welt, const vector_tpl<koord3d> &route, uint32 step, bool is_edge)
+{
+	const koord3d &pos = route[step];
+	const grund_t *gr = welt->lookup( pos );
+	if(  gr == NULL  ) {
+		// the ground went away under a route that has not been recalculated yet
+		return 2*(sint32)pos.z;
+	}
+	if(  is_edge  ) {
+		// both tiles answer the same height for the way on the edge they share, which is
+		// what makes them neighbours on a route in the first place
+		return 2*(sint32)gr->get_vmove( ribi_type( pos, route[step+1] ) );
+	}
+	// steps of a route are always neighbouring tiles, so each of these is a single
+	// direction, as get_vmove() requires
+	const bool has_prev = step > 0  &&  route[step-1] != koord3d::invalid;
+	const bool has_next = step+1 < route.get_count()  &&  route[step+1] != koord3d::invalid;
+	const ribi_t::ribi in  = has_prev ? ribi_type( pos, route[step-1] ) : (ribi_t::ribi)ribi_t::none;
+	const ribi_t::ribi out = has_next ? ribi_type( pos, route[step+1] ) : (ribi_t::ribi)ribi_t::none;
+	const ribi_t::ribi a = in ? in : ribi_t::backward( out );
+	const ribi_t::ribi b = out  &&  out != a ? out : ribi_t::backward( a );
+	return (sint32)gr->get_vmove( a ) + (sint32)gr->get_vmove( b );
+}
+
+
+/**
+ * @copydoc schedule_route_edge_is_corner
+ */
+bool schedule_route_edge_is_corner(const karte_t *welt, const vector_tpl<koord3d> &route, uint32 step)
+{
+	// the middle of the line between the two centres against the way on the edge itself
+	return 2*schedule_route_way_height2( welt, route, step, true ) !=
+		schedule_route_way_height2( welt, route, step, false ) + schedule_route_way_height2( welt, route, step+1, false );
+}
+
+
 #if COLOUR_DEPTH != 0
 /**
  * The area the tile loop of main_view_t::display() covers, in the rotated coordinates
@@ -115,26 +159,40 @@ struct route_area_t {
 
 
 /**
+ * The offset get_screen_coord() needs to put a point of the route on the surface of the
+ * way instead of on the ground below it.
+ *
+ * @param height2 height of the way there, in half height levels, from schedule_route_way_height2()
+ */
+static koord route_way_offset(const koord &centre, const koord3d &pos, sint32 height2)
+{
+	return koord( centre.x, centre.y - (sint16)((TILE_HEIGHT_STEP*(height2 - 2*(sint32)pos.z))/2) );
+}
+
+
+/**
  * A corner of the route shown by a schedule editor, held as a place on the route
  * rather than as a screen position: either the centre of the tile route[step], or the
  * midpoint of the tile edge the step from route[step] to route[step+1] crosses.
  *
  * It is projected only once the segment it belongs to is known to be drawn, because
  * get_screen_coord() works in sint16 (see viewport.cc) and wraps a few hundred tiles
- * away from the view: a tile that far never reaches it this way.
+ * away from the view: a tile that far never reaches it this way. The ground is looked
+ * up there for the same reason.
  */
 struct route_point_t {
 	uint32 step;
 	bool   is_edge;
 	uint8  code;
 
-	scr_coord project(const viewport_t *viewport, const vector_tpl<koord3d> &route, const koord &centre) const {
-		const scr_coord a = viewport->get_screen_coord( route[step], centre );
+	scr_coord project(const karte_t *welt, const viewport_t *viewport, const vector_tpl<koord3d> &route, const koord &centre) const {
+		const sint32 height2 = schedule_route_way_height2( welt, route, step, is_edge );
+		const scr_coord a = viewport->get_screen_coord( route[step], route_way_offset( centre, route[step], height2 ) );
 		if(  !is_edge  ) {
 			return a;
 		}
 		// scr_coord_val is 32 bit, so the two ends can be added before halving them
-		const scr_coord b = viewport->get_screen_coord( route[step+1], centre );
+		const scr_coord b = viewport->get_screen_coord( route[step+1], route_way_offset( centre, route[step+1], height2 ) );
 		return scr_coord( (a.x+b.x)/2, (a.y+b.y)/2 );
 	}
 };
@@ -164,13 +222,13 @@ static sint32 route_line_offset(sint32 n, sint32 d)
  * same border of the drawn area, so that whatever enters, leaves or crosses the view
  * is still drawn whole.
  */
-static void display_route_segment(const viewport_t *viewport, const vector_tpl<koord3d> &route, const route_point_t &from, const route_point_t &to, const koord &centre, PIXVAL col, PIXVAL dark, sint16 core, sint16 edge)
+static void display_route_segment(const karte_t *welt, const viewport_t *viewport, const vector_tpl<koord3d> &route, const route_point_t &from, const route_point_t &to, const koord &centre, PIXVAL col, PIXVAL dark, sint16 core, sint16 edge)
 {
 	if(  (from.code & to.code) != 0  ) {
 		return;
 	}
-	const scr_coord a = from.project( viewport, route, centre );
-	const scr_coord b = to.project( viewport, route, centre );
+	const scr_coord a = from.project( welt, viewport, route, centre );
+	const scr_coord b = to.project( welt, viewport, route, centre );
 
 	sint32 nx = -(sint32)(b.y - a.y);
 	sint32 ny =  (sint32)(b.x - a.x);
@@ -256,7 +314,7 @@ static const uint32 ROUTE_DIAGONAL_MAX_STEPS = 64;
  * The midpoint of two tiles is beyond a border whenever both of them are, hence the
  * bitwise and of their two outcodes.
  */
-static void display_route_stretch(const viewport_t *viewport, const vector_tpl<koord3d> &route, uint32 first, uint32 last, const koord &centre, PIXVAL col, PIXVAL dark, sint16 core, sint16 edge, const route_area_t &area)
+static void display_route_stretch(const karte_t *welt, const viewport_t *viewport, const vector_tpl<koord3d> &route, uint32 first, uint32 last, const koord &centre, PIXVAL col, PIXVAL dark, sint16 core, sint16 edge, const route_area_t &area)
 {
 	route_point_t previous = { first, false, area.outcode( route[first] ) };
 	uint32 t = first;
@@ -268,7 +326,7 @@ static void display_route_stretch(const viewport_t *viewport, const vector_tpl<k
 			uint32 s = t;
 			while(  true  ) {
 				const route_point_t here = { s, true, (uint8)(area.outcode( route[s] ) & area.outcode( route[s+1] )) };
-				display_route_segment( viewport, route, previous, here, centre, col, dark, core, edge );
+				display_route_segment( welt, viewport, route, previous, here, centre, col, dark, core, edge );
 				previous = here;
 				if(  s == b  ) {
 					break;
@@ -279,10 +337,18 @@ static void display_route_stretch(const viewport_t *viewport, const vector_tpl<k
 			t = b+1;
 		}
 		else {
+			// a way changes its grade on the edge between two tiles, so the line bends
+			// there too. The corner is left out where the grade does not change, which
+			// is every tile of level ground: those keep the corners they always had.
+			const route_point_t corner = { t, true, (uint8)(area.outcode( route[t] ) & area.outcode( route[t+1] )) };
+			if(  corner.code == 0  &&  schedule_route_edge_is_corner( welt, route, t )  ) {
+				display_route_segment( welt, viewport, route, previous, corner, centre, col, dark, core, edge );
+				previous = corner;
+			}
 			t++;
 		}
 		const route_point_t here = { t, false, area.outcode( route[t] ) };
-		display_route_segment( viewport, route, previous, here, centre, col, dark, core, edge );
+		display_route_segment( welt, viewport, route, previous, here, centre, col, dark, core, edge );
 		previous = here;
 	}
 }
@@ -527,7 +593,7 @@ void main_view_t::display(bool force_dirty)
 			while(  last+1 < count  &&  schedule_route[last+1] != koord3d::invalid  ) {
 				last++;
 			}
-			display_route_stretch( viewport, schedule_route, first, last, centre, col, dark, core, edge, area );
+			display_route_stretch( welt, viewport, schedule_route, first, last, centre, col, dark, core, edge, area );
 			first = last+1;
 		}
 	}

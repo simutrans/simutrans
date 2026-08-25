@@ -68,6 +68,31 @@ function sroute_schedule(wt, positions)
 }
 
 
+// Takes every way of @p wt off one row of the map, at any height, and checks that it is
+// really gone. A bridge needs a wider sweep than its own span: bridge_builder_t::build()
+// extends the way one tile past a head that would otherwise be a dead end (see the
+// "if start or end are single way" block at the end of brueckenbauer.cc), so two tiles
+// nobody asked for are left behind, and RESET_ALL_PLAYER_FUNDS() then trips over them.
+function SROUTE_CLEAR_ROW(pl, y, x0, x1, wt)
+{
+	command_x(tool_remove_way).work(pl, coord3d(x0, y, 0), coord3d(x1, y, 0), "" + wt)
+	for (local x = x0; x <= x1; ++x) {
+		for (local z = 0; z <= 2; ++z) {
+			local tile = square_x(x, y).get_tile_at_height(z)
+			if (tile != null  &&  tile.has_way(wt)) {
+				command_x(tool_remover).work(pl, coord3d(x, y, z))
+			}
+		}
+	}
+	for (local x = x0; x <= x1; ++x) {
+		for (local z = 0; z <= 2; ++z) {
+			local tile = square_x(x, y).get_tile_at_height(z)
+			ASSERT_TRUE(tile == null  ||  !tile.has_way(wt))
+		}
+	}
+}
+
+
 // every route tile must carry a way of that type: the geometry follows the
 // infrastructure and is not a straight line between the stops
 function ASSERT_ROUTE_ON_WAY(wt)
@@ -815,5 +840,395 @@ function test_schedule_route_diagonal_staircase()
 	sroute_close(0)
 	sroute_make_staircase(pl, 2, 2, 20, false)
 	ASSERT_FALSE(tile_x(3, 3, 0).has_way(wt_road))
+	RESET_ALL_PLAYER_FUNDS()
+}
+
+
+//
+// 23-26: the overlay is drawn on the surface of the way, not on the base height of the
+//        ground the route stores. sroute_way_height2() reports the height the display
+//        lifts one corner of the route to, in half height levels; a tile whose way is
+//        flat must report exactly twice its own z, and a tile whose way is higher - a
+//        slope, or the head of a bridge - must report how much higher.
+//
+//        The expected values were measured against the height code a vehicle driving on
+//        that way uses (vehicle_base_t::calc_height), not chosen to match the display.
+//
+
+// every corner of the route sits on the base height of its own ground
+function ASSERT_OVERLAY_FLAT()
+{
+	for (local i = 0; i < sroute_len(); ++i) {
+		local pos = sroute_tile(i)
+		if (pos == null) {
+			continue
+		}
+		ASSERT_EQUAL(sroute_way_height2(i, false), 2 * pos.z)
+		local next = i+1 < sroute_len() ? sroute_tile(i+1) : null
+		if (next != null) {
+			ASSERT_EQUAL(sroute_way_height2(i, true), 2 * pos.z)
+		}
+	}
+}
+
+
+// half height levels the way at the centre of the tile at @p pos is above its ground
+function OVERLAY_RISE_AT(pos)
+{
+	for (local i = 0; i < sroute_len(); ++i) {
+		local p = sroute_tile(i)
+		if (p != null && p.x == pos.x && p.y == pos.y && p.z == pos.z) {
+			return sroute_way_height2(i, false) - 2 * p.z
+		}
+	}
+	throw "tile " + pos.tostring() + " is not on the route"
+}
+
+
+//
+// 23: flat ground and a flat diagonal are untouched: the overlay stays on the ground,
+//     because on flat ground the way is the ground
+//
+function test_schedule_route_height_flat()
+{
+	local pl = player_x(0)
+	sroute_make_road(pl, coord3d(2, 2, 0), coord3d(2, 8, 0))
+	sroute_make_road(pl, coord3d(2, 8, 0), coord3d(8, 8, 0))
+
+	local sched = sroute_schedule(wt_road, [coord3d(2, 2, 0), coord3d(8, 8, 0)])
+	sroute_open(0, sched, 0)
+	sroute_mark(0, true)
+	sroute_step()
+	ASSERT_TRUE(sroute_len() > 0)
+	ASSERT_OVERLAY_FLAT()
+	sroute_close(0)
+
+	// and the same over a diagonal, where the corners are edge midpoints and not centres
+	local last = sroute_make_staircase(pl, 3, 2, 8, true)
+	local diag = sroute_schedule(wt_road, [coord3d(3, 2, 0), last])
+	sroute_open(0, diag, 0)
+	sroute_mark(0, true)
+	sroute_step()
+	ASSERT_TRUE(sroute_len() > 0)
+	ASSERT_OVERLAY_FLAT()
+	sroute_close(0)
+
+	sroute_make_staircase(pl, 3, 2, 8, false)
+	sroute_remove_way(pl, coord3d(2, 2, 0), coord3d(2, 8, 0))
+	sroute_remove_way(pl, coord3d(2, 8, 0), coord3d(8, 8, 0))
+	RESET_ALL_PLAYER_FUNDS()
+}
+
+
+//
+// 24: a way that climbs a slope. The middle of the ramp is half a height level above its
+//     ground, its low edge is on it and its high edge a whole level above it.
+//
+function test_schedule_route_height_slope()
+{
+	local pl = player_x(0)
+	local rail = way_desc_x.get_available_ways(wt_rail, st_flat)[0]
+	local setslope = command_x.set_slope
+
+	// a plateau one level up, and the tile before it as the ramp onto it
+	ASSERT_EQUAL(setslope(pl, coord3d(4, 10, 0), slope.all_up_slope), null)
+	ASSERT_EQUAL(setslope(pl, coord3d(5, 10, 0), slope.all_up_slope), null)
+	ASSERT_EQUAL(setslope(pl, coord3d(3, 10, 0), slope.west), null)
+	ASSERT_EQUAL(command_x.build_way(pl, coord3d(1, 10, 0), coord3d(5, 10, 1), rail, true), null)
+
+	local sched = sroute_schedule(wt_rail, [coord3d(1, 10, 0), coord3d(5, 10, 1)])
+	sroute_open(0, sched, 0)
+	sroute_mark(0, true)
+	sroute_step()
+	ASSERT_TRUE(sroute_len() > 0)
+
+	// the flat ground before and the plateau after are on their own ground
+	ASSERT_EQUAL(OVERLAY_RISE_AT(coord3d(2, 10, 0)), 0)
+	ASSERT_EQUAL(OVERLAY_RISE_AT(coord3d(4, 10, 1)), 0)
+	// the ramp is half a level up in the middle of the tile
+	ASSERT_EQUAL(OVERLAY_RISE_AT(coord3d(3, 10, 0)), 1)
+
+	// and its two edges, low and high
+	for (local i = 0; i < sroute_len(); ++i) {
+		local p = sroute_tile(i)
+		local n = i+1 < sroute_len() ? sroute_tile(i+1) : null
+		if (p != null && n != null && p.x == 2 && p.y == 10) {
+			ASSERT_EQUAL(sroute_way_height2(i, true), 2 * p.z)       // low edge of the ramp
+		}
+		if (p != null && n != null && p.x == 3 && p.y == 10 && n.x == 4) {
+			ASSERT_EQUAL(sroute_way_height2(i, true), 2 * p.z + 2)   // high edge of the ramp
+		}
+	}
+
+	sroute_close(0)
+	SROUTE_CLEAR_ROW(pl, 10, 1, 5, wt_rail)
+	ASSERT_EQUAL(setslope(pl, coord3d(5, 10, 1), slope.all_down_slope), null)
+	ASSERT_EQUAL(setslope(pl, coord3d(4, 10, 1), slope.all_down_slope), null)
+	ASSERT_EQUAL(setslope(pl, coord3d(3, 10, 0), slope.flat), null)
+	RESET_ALL_PLAYER_FUNDS()
+}
+
+
+//
+// 25: a bridge on flat ground. Its heads carry a sloped way and behave like a ramp; the
+//     deck is flat and untouched.
+//
+function test_schedule_route_height_bridge_head_flat()
+{
+	local pl = player_x(0)
+	local bd = bridge_desc_x.get_available_bridges(wt_rail)[0]
+	ASSERT_TRUE(bd != null)
+	ASSERT_EQUAL(command_x.build_bridge(pl, coord3d(2, 12, 0), coord3d(8, 12, 0), bd), null)
+
+	local sched = sroute_schedule(wt_rail, [coord3d(2, 12, 0), coord3d(8, 12, 0)])
+	sroute_open(0, sched, 0)
+	sroute_mark(0, true)
+	sroute_step()
+	ASSERT_TRUE(sroute_len() > 0)
+
+	ASSERT_EQUAL(OVERLAY_RISE_AT(coord3d(2, 12, 0)), 1) // head, way climbs the ramp
+	ASSERT_EQUAL(OVERLAY_RISE_AT(coord3d(8, 12, 0)), 1) // head at the far end
+	ASSERT_EQUAL(OVERLAY_RISE_AT(coord3d(5, 12, 1)), 0) // deck
+
+	sroute_close(0)
+	SROUTE_CLEAR_ROW(pl, 12, 1, 9, wt_rail)
+	RESET_ALL_PLAYER_FUNDS()
+}
+
+
+//
+// 26: a bridge whose heads stand on ground that was already sloped. There the way is flat
+//     but the whole tile content is lifted, so the rise is constant over the tile - one
+//     level on a single ramp and two on a double one. This is the case of the report.
+//
+function test_schedule_route_height_bridge_head_sloped()
+{
+	local pl = player_x(0)
+	local bd = bridge_desc_x.get_available_bridges(wt_rail)[0]
+	local setslope = command_x.set_slope
+
+	ASSERT_EQUAL(setslope(pl, coord3d(2, 14, 0), slope.east), null)
+	ASSERT_EQUAL(setslope(pl, coord3d(8, 14, 0), slope.west), null)
+	ASSERT_EQUAL(command_x.build_bridge(pl, coord3d(2, 14, 0), coord3d(8, 14, 0), bd), null)
+
+	local sched = sroute_schedule(wt_rail, [coord3d(2, 14, 0), coord3d(8, 14, 0)])
+	sroute_open(0, sched, 0)
+	sroute_mark(0, true)
+	sroute_step()
+	ASSERT_TRUE(sroute_len() > 0)
+
+	ASSERT_EQUAL(OVERLAY_RISE_AT(coord3d(2, 14, 0)), 2) // head, lifted a whole level
+	ASSERT_EQUAL(OVERLAY_RISE_AT(coord3d(8, 14, 0)), 2)
+	ASSERT_EQUAL(OVERLAY_RISE_AT(coord3d(5, 14, 1)), 0) // deck
+
+	// the lift is constant across such a head, both edges as well as the centre
+	for (local i = 0; i < sroute_len(); ++i) {
+		local p = sroute_tile(i)
+		local n = i+1 < sroute_len() ? sroute_tile(i+1) : null
+		if (p != null && n != null && p.x == 2 && p.y == 14) {
+			ASSERT_EQUAL(sroute_way_height2(i, true), 2 * p.z + 2)
+		}
+	}
+
+	sroute_close(0)
+	SROUTE_CLEAR_ROW(pl, 14, 1, 9, wt_rail)
+	ASSERT_EQUAL(setslope(pl, coord3d(2, 14, 0), slope.flat), null)
+	ASSERT_EQUAL(setslope(pl, coord3d(8, 14, 0), slope.flat), null)
+	RESET_ALL_PLAYER_FUNDS()
+}
+
+
+//
+// 27-30: the overlay is a line between corners, and a way changes its grade on the edge
+//        between two tiles. A straight line from one tile centre to the next therefore
+//        misses the way on that edge by a quarter of the change of grade, unless the
+//        line is given a corner there. sroute_edge_is_corner() reports whether the
+//        display puts one on that edge.
+//
+//        The property being checked is not "there is a corner here": it is that the line
+//        the display draws meets the way surface on every edge the route crosses, with
+//        corners only where they are needed. Both halves matter - a display that put a
+//        corner on every edge would pass the first half and fail the second, and would
+//        also move lines on ground that has no slope at all.
+//
+
+// how far the drawn line is from the way surface where it crosses the edge between
+// route[i] and route[i+1], in half height levels
+function SROUTE_EDGE_MISS(i)
+{
+	if (sroute_edge_is_corner(i)) {
+		return 0
+	}
+	return 2 * sroute_way_height2(i, true) - sroute_way_height2(i, false) - sroute_way_height2(i + 1, false)
+}
+
+
+// checks that on every edge of the route the drawn line is on the way, and answers how
+// many corners that took
+function SROUTE_ASSERT_ON_WAY_SURFACE()
+{
+	local corners = 0
+	for (local i = 0; i + 1 < sroute_len(); ++i) {
+		if (sroute_tile(i) == null || sroute_tile(i + 1) == null) {
+			continue
+		}
+		ASSERT_EQUAL(SROUTE_EDGE_MISS(i), 0)
+		if (sroute_edge_is_corner(i)) {
+			corners++
+		}
+	}
+	return corners
+}
+
+
+// whether the edge the route crosses when it leaves the tile at @p pos is a corner
+function SROUTE_CORNER_LEAVING(pos)
+{
+	for (local i = 0; i + 1 < sroute_len(); ++i) {
+		local p = sroute_tile(i)
+		if (p != null && sroute_tile(i + 1) != null && p.x == pos.x && p.y == pos.y && p.z == pos.z) {
+			return sroute_edge_is_corner(i)
+		}
+	}
+	throw "tile " + pos.tostring() + " does not leave anywhere on this route"
+}
+
+
+//
+// 27: ground without a slope needs no corner anywhere, on a straight way or a diagonal
+//     one. This is the half of the rule that keeps the drawing of flat ground unchanged.
+//
+function test_schedule_route_corner_flat()
+{
+	local pl = player_x(0)
+	sroute_make_road(pl, coord3d(2, 2, 0), coord3d(2, 8, 0))
+	sroute_make_road(pl, coord3d(2, 8, 0), coord3d(8, 8, 0))
+
+	local sched = sroute_schedule(wt_road, [coord3d(2, 2, 0), coord3d(8, 8, 0)])
+	sroute_open(0, sched, 0)
+	sroute_mark(0, true)
+	sroute_step()
+	ASSERT_TRUE(sroute_len() > 0)
+	ASSERT_EQUAL(SROUTE_ASSERT_ON_WAY_SURFACE(), 0)
+	sroute_close(0)
+
+	local last = sroute_make_staircase(pl, 3, 2, 8, true)
+	local diag = sroute_schedule(wt_road, [coord3d(3, 2, 0), last])
+	sroute_open(0, diag, 0)
+	sroute_mark(0, true)
+	sroute_step()
+	ASSERT_TRUE(sroute_len() > 0)
+	ASSERT_EQUAL(SROUTE_ASSERT_ON_WAY_SURFACE(), 0)
+	sroute_close(0)
+
+	sroute_make_staircase(pl, 3, 2, 8, false)
+	sroute_remove_way(pl, coord3d(2, 2, 0), coord3d(2, 8, 0))
+	sroute_remove_way(pl, coord3d(2, 8, 0), coord3d(8, 8, 0))
+	RESET_ALL_PLAYER_FUNDS()
+}
+
+
+//
+// 28: a ramp. Its two edges are where the way changes grade, so both are corners, and
+//     nothing else on the route is. The route runs out and back, so each of the two is
+//     counted once per direction.
+//
+function test_schedule_route_corner_slope()
+{
+	local pl = player_x(0)
+	local rail = way_desc_x.get_available_ways(wt_rail, st_flat)[0]
+	local setslope = command_x.set_slope
+
+	ASSERT_EQUAL(setslope(pl, coord3d(4, 10, 0), slope.all_up_slope), null)
+	ASSERT_EQUAL(setslope(pl, coord3d(5, 10, 0), slope.all_up_slope), null)
+	ASSERT_EQUAL(setslope(pl, coord3d(3, 10, 0), slope.west), null)
+	ASSERT_EQUAL(command_x.build_way(pl, coord3d(1, 10, 0), coord3d(5, 10, 1), rail, true), null)
+
+	local sched = sroute_schedule(wt_rail, [coord3d(1, 10, 0), coord3d(5, 10, 1)])
+	sroute_open(0, sched, 0)
+	sroute_mark(0, true)
+	sroute_step()
+	ASSERT_TRUE(sroute_len() > 0)
+
+	// four corners over the whole route: the foot and the top of the ramp, once each way
+	ASSERT_EQUAL(SROUTE_ASSERT_ON_WAY_SURFACE(), 4)
+	ASSERT_TRUE(SROUTE_CORNER_LEAVING(coord3d(2, 10, 0)))  // flat ground onto the ramp
+	ASSERT_TRUE(SROUTE_CORNER_LEAVING(coord3d(3, 10, 0)))  // ramp onto the plateau
+	ASSERT_FALSE(SROUTE_CORNER_LEAVING(coord3d(1, 10, 0))) // flat to flat
+	ASSERT_FALSE(SROUTE_CORNER_LEAVING(coord3d(4, 10, 1))) // plateau to plateau
+
+	sroute_close(0)
+	SROUTE_CLEAR_ROW(pl, 10, 1, 5, wt_rail)
+	ASSERT_EQUAL(setslope(pl, coord3d(5, 10, 1), slope.all_down_slope), null)
+	ASSERT_EQUAL(setslope(pl, coord3d(4, 10, 1), slope.all_down_slope), null)
+	ASSERT_EQUAL(setslope(pl, coord3d(3, 10, 0), slope.flat), null)
+	RESET_ALL_PLAYER_FUNDS()
+}
+
+
+//
+// 29: a bridge on flat ground. The way changes grade where each head meets the ground it
+//     stands on and where it meets the deck; the deck itself is one flat run and takes no
+//     corner at all, however long it is.
+//
+function test_schedule_route_corner_bridge_head()
+{
+	local pl = player_x(0)
+	local bd = bridge_desc_x.get_available_bridges(wt_rail)[0]
+	ASSERT_TRUE(bd != null)
+	ASSERT_EQUAL(command_x.build_bridge(pl, coord3d(2, 12, 0), coord3d(8, 12, 0), bd), null)
+
+	local sched = sroute_schedule(wt_rail, [coord3d(2, 12, 0), coord3d(8, 12, 0)])
+	sroute_open(0, sched, 0)
+	sroute_mark(0, true)
+	sroute_step()
+	ASSERT_TRUE(sroute_len() > 0)
+
+	// the two heads, once per direction; the deck contributes none
+	ASSERT_EQUAL(SROUTE_ASSERT_ON_WAY_SURFACE(), 4)
+	ASSERT_TRUE(SROUTE_CORNER_LEAVING(coord3d(2, 12, 0)))  // head onto the deck
+	ASSERT_FALSE(SROUTE_CORNER_LEAVING(coord3d(4, 12, 1))) // deck to deck
+	ASSERT_FALSE(SROUTE_CORNER_LEAVING(coord3d(5, 12, 1)))
+
+	sroute_close(0)
+	SROUTE_CLEAR_ROW(pl, 12, 1, 9, wt_rail)
+	RESET_ALL_PLAYER_FUNDS()
+}
+
+
+//
+// 30: a leg that ends on the ramp itself. It leaves by the edge it came in through, so
+//     the same edge is crossed twice and takes a corner both times, once on the way in
+//     and once on the way out - with the tile centre between them, which is what keeps
+//     the two from collapsing into one. The centre of that tile must still be half a
+//     level up: sampling one edge twice would put it a whole level up instead.
+//
+function test_schedule_route_corner_terminus()
+{
+	local pl = player_x(0)
+	local rail = way_desc_x.get_available_ways(wt_rail, st_flat)[0]
+	local setslope = command_x.set_slope
+
+	ASSERT_EQUAL(setslope(pl, coord3d(6, 6, 0), slope.all_up_slope), null)
+	ASSERT_EQUAL(setslope(pl, coord3d(7, 6, 0), slope.all_up_slope), null)
+	ASSERT_EQUAL(setslope(pl, coord3d(5, 6, 0), slope.west), null)
+	ASSERT_EQUAL(command_x.build_way(pl, coord3d(3, 6, 0), coord3d(5, 6, 0), rail, true), null)
+
+	local sched = sroute_schedule(wt_rail, [coord3d(3, 6, 0), coord3d(5, 6, 0)])
+	sroute_open(0, sched, 0)
+	sroute_mark(0, true)
+	sroute_step()
+	ASSERT_TRUE(sroute_len() > 0)
+
+	ASSERT_EQUAL(SROUTE_ASSERT_ON_WAY_SURFACE(), 2)
+	ASSERT_TRUE(SROUTE_CORNER_LEAVING(coord3d(4, 6, 0)))  // flat ground onto the ramp
+	ASSERT_TRUE(SROUTE_CORNER_LEAVING(coord3d(5, 6, 0)))  // and back off it by the same edge
+	ASSERT_EQUAL(OVERLAY_RISE_AT(coord3d(5, 6, 0)), 1)    // still half a level, not a whole one
+
+	sroute_close(0)
+	SROUTE_CLEAR_ROW(pl, 6, 3, 5, wt_rail)
+	ASSERT_EQUAL(setslope(pl, coord3d(5, 6, 0), slope.flat), null)
+	ASSERT_EQUAL(setslope(pl, coord3d(7, 6, 1), slope.all_down_slope), null)
+	ASSERT_EQUAL(setslope(pl, coord3d(6, 6, 1), slope.all_down_slope), null)
 	RESET_ALL_PLAYER_FUNDS()
 }

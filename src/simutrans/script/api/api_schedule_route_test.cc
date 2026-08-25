@@ -18,6 +18,7 @@
 #include "../api_function.h"
 
 #include "../../dataobj/schedule.h"
+#include "../../display/simview.h"
 #include "../../ground/grund.h"
 #include "../../gui/components/gui_schedule.h"
 #include "../../obj/simobj.h"
@@ -222,6 +223,47 @@ static SQInteger sroute_convoy_fingerprint(HSQUIRRELVM vm) // convoy_x -> string
 }
 
 
+/**
+ * Height of the way surface at one corner of the route, in half height levels, exactly as
+ * the overlay draws it: schedule_route_way_height2() is the production function the
+ * display calls, so a change of the drawn geometry shows up here.
+ *
+ * @param index tile of the route
+ * @param is_edge the middle of the edge shared with the next tile, instead of the centre
+ */
+static SQInteger sroute_way_height2(HSQUIRRELVM vm) // index, is_edge -> int
+{
+	const uint32 index = param<uint32>::get(vm, 2);
+	const bool is_edge = param<bool>::get(vm, 3);
+	const vector_tpl<koord3d> &route = welt->get_schedule_route();
+	if(  index >= route.get_count()  ||  route[index] == koord3d::invalid  ) {
+		return sq_raise_error(vm, "sroute_way_height2: no such tile on the route");
+	}
+	if(  is_edge  &&  (index+1 >= route.get_count()  ||  route[index+1] == koord3d::invalid)  ) {
+		return sq_raise_error(vm, "sroute_way_height2: no next tile to share an edge with");
+	}
+	return param<sint32>::push( vm, schedule_route_way_height2( welt, route, index, is_edge ) );
+}
+
+
+/**
+ * Whether the overlay bends its line where the route crosses the edge between this tile
+ * and the next, which it does where the way changes its grade there. Same production
+ * function the display uses to decide it.
+ *
+ * @param index tile of the route
+ */
+static SQInteger sroute_edge_is_corner(HSQUIRRELVM vm) // index -> bool
+{
+	const uint32 index = param<uint32>::get(vm, 2);
+	const vector_tpl<koord3d> &route = welt->get_schedule_route();
+	if(  index+1 >= route.get_count()  ||  route[index] == koord3d::invalid  ||  route[index+1] == koord3d::invalid  ) {
+		return sq_raise_error(vm, "sroute_edge_is_corner: no next tile to share an edge with");
+	}
+	return param<bool>::push( vm, schedule_route_edge_is_corner( welt, route, index ) );
+}
+
+
 void export_schedule_route_test(HSQUIRRELVM vm)
 {
 	register_function(vm, sroute_open,        "sroute_open",        4, ".ixi");
@@ -240,4 +282,6 @@ void export_schedule_route_test(HSQUIRRELVM vm)
 	register_function(vm, sroute_player,      "sroute_player",      1, ".");
 	register_function(vm, sroute_stop_marked, "sroute_stop_marked", 2, ".x");
 	register_function(vm, sroute_convoy_fingerprint, "sroute_convoy_fingerprint", 2, ".x");
+	register_function(vm, sroute_way_height2, "sroute_way_height2", 3, ".ib");
+	register_function(vm, sroute_edge_is_corner, "sroute_edge_is_corner", 2, ".i");
 }
