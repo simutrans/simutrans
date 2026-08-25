@@ -243,6 +243,7 @@ endif ()
 # Link dependencies
 #
 target_link_libraries(simutrans PRIVATE ZLIB::ZLIB)
+target_link_libraries(simusquirrel PRIVATE ZLIB::ZLIB)
 target_link_libraries(simutrans PRIVATE BZip2::BZip2)
 
 # Freetype is mandatory for graphical builds
