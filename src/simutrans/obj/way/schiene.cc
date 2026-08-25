@@ -87,8 +87,18 @@ void schiene_t::info(cbuffer_t & buf) const
 bool schiene_t::reserve(convoihandle_t c, uint32 index )
 {
 	if (is_close_diagonal()) {
-		// get entry direction (if index is 0, we have to use next tile to guess)
-		ribi_t::ribi from = (index == 0) ? ribi_type(get_pos(), c->get_route()->at(index+1)) : ribi_type(c->get_route()->at(index - 1), get_pos());
+		// Get the entry direction. After loading, a convoy's route can be shorter
+		// than the route index its vehicles carry - finish_rd() repairs that only
+		// afterwards - so look only at route positions that actually exist.
+		const route_t &rt = *c->get_route();
+		ribi_t::ribi from = ribi_t::none;
+		if(  index > 0  &&  index < rt.get_count()  ) {
+			from = ribi_type(rt.at(index - 1), get_pos());
+		}
+		else if(  rt.get_count() > 1  ) {
+			// no usable previous tile, so guess from the next one
+			from = ribi_type(get_pos(), rt.at(1));
+		}
 		bool use2 = (is_close_diagonal() == 2 && (from & ribi_t::northeast)) || (is_close_diagonal() == 1 && (from & ribi_t::southeast));
 		convoihandle_t& r = use2 ? reserved2 : reserved;
 		convoihandle_t& r_other = use2 ? reserved : reserved2;
