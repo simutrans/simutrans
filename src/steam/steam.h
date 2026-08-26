@@ -48,7 +48,9 @@ public:
 
 	void install_workshop_items();
 
-	void update_ui(uint32 year, uint32 total_convoys);
+	void update_presence(const char *pak_name, uint32 year, uint32 total_convoys);
+
+	void pump_events();
 
 	steam_achievements_t* get_achievements() { return steam_achievements; }
 

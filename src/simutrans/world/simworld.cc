@@ -118,9 +118,7 @@
 
 #include "../pathes.h"
 
-#ifdef STEAM_BUILT
-#include "../../steam/steam.h"
-#endif
+#include "../simsocial.h"
 
 
 // forward declaration - management of rotation for scripting
@@ -6390,9 +6388,9 @@ bool karte_t::interactive(uint32 quit_month)
 
 
 		if(  (sint32)next_misc_time - (sint32)time <=0  ) {
-#ifdef STEAM_BUILT
-			steam_t::get_instance()->update_ui(get_last_year(), convoys().get_count());
-#endif
+			const social_presence_t presence = { env_t::pak_name.c_str(), (uint32)get_last_year(), convoys().get_count() };
+			social_update_presence( presence );
+			social_pump_events();
 			simachievements_t::check_state_ach(this);
 			next_misc_time = time + 5000; // every 5s
 		}

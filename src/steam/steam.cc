@@ -14,6 +14,7 @@
 #include "isteamugc.h"
 #include "isteamutils.h"
 #include "steam_api.h"
+#include "steam_iface.h"
 
 #define MAX_WORKSHOP_ITEMS 1000	// API fetch limit
 #define MAX_TAG_LENGTH 100
@@ -220,16 +221,22 @@ std::vector<workshop_item_t> steam_t::uninstall_old_items(std::vector<workshop_i
 	return current_items;
 }
 
-void steam_t::update_ui(uint32 year, uint32 total_convoys) {
+void steam_t::update_presence(const char *pak_name, uint32 year, uint32 total_convoys) {
 	if (!is_api_initialized)
 		return;
 
-	std::string pakset = env_t::pak_name;
+	std::string pakset = pak_name;
 	pakset.pop_back();	// Remove path separator
 	SteamFriends()->SetRichPresence("pakset", pakset.c_str());
 	SteamFriends()->SetRichPresence("year", std::to_string(year).c_str());
 	SteamFriends()->SetRichPresence("convoys", std::to_string(total_convoys).c_str());
 	SteamFriends()->SetRichPresence("steam_display", "#Playing");
+}
+
+void steam_t::pump_events() {
+	if (!is_api_initialized)
+		return;
+
 	SteamAPI_RunCallbacks();
 }
 
@@ -237,4 +244,29 @@ void steam_t::shutdown() {
 	SteamAPI_Shutdown();
 	if (steam_achievements)
 		delete steam_achievements;
+}
+
+/*
+ * Entry points declared by steam_iface.h. They exist so that the rest of
+ * Simutrans never has to include steam.h, which pulls in the Steam SDK.
+ */
+
+void steam_install_workshop_items() {
+	steam_t::get_instance()->install_workshop_items();
+}
+
+void steam_update_presence(const char *pakset, uint32 year, uint32 convoys) {
+	steam_t::get_instance()->update_presence(pakset, year, convoys);
+}
+
+void steam_pump_events() {
+	steam_t::get_instance()->pump_events();
+}
+
+void steam_set_achievement(int ach_enum) {
+	steam_t::get_instance()->get_achievements()->set_achievement(ach_enum);
+}
+
+void steam_shutdown() {
+	steam_t::get_instance()->shutdown();
 }

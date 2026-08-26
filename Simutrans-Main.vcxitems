@@ -314,6 +314,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)src\simutrans\simmem.cc" />
     <ClCompile Include="$(MSBuildThisFileDirectory)src\simutrans\simmesg.cc" />
     <ClCompile Include="$(MSBuildThisFileDirectory)src\simutrans\simskin.cc" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\simutrans\simsocial.cc" />
     <ClCompile Include="$(MSBuildThisFileDirectory)src\simutrans\simsound.cc" />
     <ClCompile Include="$(MSBuildThisFileDirectory)src\simutrans\simticker.cc" />
     <ClCompile Include="$(MSBuildThisFileDirectory)src\simutrans\simware.cc" />
@@ -680,6 +681,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)src\simutrans\simmem.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)src\simutrans\simmesg.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)src\simutrans\simskin.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\simutrans\simsocial.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)src\simutrans\simsound.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)src\simutrans\simticker.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)src\simutrans\simtypes.h" />

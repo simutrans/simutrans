@@ -299,6 +299,7 @@ target_sources(simutrans PRIVATE
 	src/simutrans/simmem.cc
 	src/simutrans/simmesg.cc
 	src/simutrans/simskin.cc
+	src/simutrans/simsocial.cc
 	src/simutrans/simsound.cc
 	src/simutrans/simticker.cc
 	src/simutrans/simware.cc

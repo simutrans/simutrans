@@ -593,6 +593,7 @@ SOURCES += src/simutrans/simmain.cc
 SOURCES += src/simutrans/simmem.cc
 SOURCES += src/simutrans/simmesg.cc
 SOURCES += src/simutrans/simskin.cc
+SOURCES += src/simutrans/simsocial.cc
 SOURCES += src/simutrans/simsound.cc
 SOURCES += src/simutrans/simticker.cc
 SOURCES += src/simutrans/simware.cc
