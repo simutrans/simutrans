@@ -29,7 +29,9 @@ bool steam_achievements_t::request_stats() {
 	if (!SteamUser()->BLoggedOn()) {
 		return false;
 	}
-	return SteamUserStats()->RequestCurrentStats();
+	// Newer Steamworks SDKs no longer declare RequestCurrentStats(): the Steam
+	// client synchronises stats and achievements before the game process begins.
+	return true;
 }
 
 void steam_achievements_t::on_user_stats_received(UserStatsReceived_t *callback) {
