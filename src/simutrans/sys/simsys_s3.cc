@@ -187,6 +187,31 @@ static sint32 y_scale = SCALE_NEUTRAL_Y;
 #define TEX_TO_SCREEN_X(x) (((x) * x_scale) / SCALE_NEUTRAL_X)
 #define TEX_TO_SCREEN_Y(y) (((y) * y_scale) / SCALE_NEUTRAL_Y)
 
+/* The screen unit above is the back buffer pixel, because that is what the
+ * game area is sized from: the resize handler reads the window size in pixels,
+ * and the texture is presented into the whole render target, which is measured
+ * in pixels as well.
+ *
+ * SDL3 does not report everything in that unit. Mouse positions, the text
+ * input area and SDL_DisplayMode::w/h are window coordinates, and a window
+ * coordinate is a pixel only while the pixel density is 1. It is 1 on Windows
+ * at every desktop scale, and it is not on macOS retina, on Wayland with
+ * fractional scaling, or on Android. Those are converted before SCREEN_TO_TEX
+ * and converted back on the way out, so that only one unit reaches x_scale.
+ *
+ * SDL_GetWindowPixelDensity returns 0 on failure, which would collapse every
+ * coordinate onto the origin. A window that cannot be measured keeps the 1:1
+ * it was assumed to have before. */
+static float pixel_density()
+{
+	const float density = window ? SDL_GetWindowPixelDensity( window ) : 0.0f;
+	return density > 0.0f ? density : 1.0f;
+}
+
+// window coords <-> back buffer pixels
+#define WINDOW_TO_PIXEL(v) ((int)((v) * pixel_density()))
+#define PIXEL_TO_WINDOW(v) ((float)(v) / pixel_density())
+
 
 /* --------------------------------------------------------------- scaling */
 
@@ -456,9 +481,15 @@ resolution dr_query_screen_resolution()
 		return res;
 	}
 
-	DBG_MESSAGE("dr_query_screen_resolution(SDL3)", "screen resolution width=%d, height=%d", mode->w, mode->h);
-	res.w = SCREEN_TO_TEX_X( mode->w );
-	res.h = SCREEN_TO_TEX_Y( mode->h );
+	/* SDL_DisplayMode measures w and h in window coordinates and carries the
+	 * factor to pixels separately, so the mode of a dense display is not the
+	 * pixel count. The window this bounds is sized in pixels. */
+	const int pixel_w = (int)(mode->w * mode->pixel_density);
+	const int pixel_h = (int)(mode->h * mode->pixel_density);
+
+	DBG_MESSAGE("dr_query_screen_resolution(SDL3)", "screen resolution width=%d, height=%d", pixel_w, pixel_h);
+	res.w = SCREEN_TO_TEX_X( pixel_w );
+	res.h = SCREEN_TO_TEX_Y( pixel_h );
 	return res;
 }
 
@@ -918,8 +949,8 @@ bool move_pointer(int x, int y)
 	if(  in_finger_handling  ) {
 		return false;
 	}
-	// SDL2->SDL3: the warp coordinates are floats.
-	SDL_WarpMouseInWindow( window, (float)TEX_TO_SCREEN_X(x), (float)TEX_TO_SCREEN_Y(y) );
+	// SDL2->SDL3: the warp coordinates are floats, and they are window coords.
+	SDL_WarpMouseInWindow( window, PIXEL_TO_WINDOW( TEX_TO_SCREEN_X(x) ), PIXEL_TO_WINDOW( TEX_TO_SCREEN_Y(y) ) );
 	return true;
 }
 
@@ -1127,9 +1158,9 @@ static void internal_GetEvents()
 				// event still refreshes the button state below, as in simsys_s2.
 				default:                sys_event.code = 0;                     break;
 			}
-			// SDL2->SDL3: the event coordinates are floats.
-			sys_event.mx      = SCREEN_TO_TEX_X( (int)event.button.x );
-			sys_event.my      = SCREEN_TO_TEX_Y( (int)event.button.y );
+			// SDL2->SDL3: the event coordinates are floats, in window coords.
+			sys_event.mx      = SCREEN_TO_TEX_X( WINDOW_TO_PIXEL( event.button.x ) );
+			sys_event.my      = SCREEN_TO_TEX_Y( WINDOW_TO_PIXEL( event.button.y ) );
 			sys_event.mb      = conv_mouse_buttons( SDL_GetMouseState( NULL, NULL ) );
 			sys_event.key_mod = ModifierKeys();
 			break;
@@ -1147,8 +1178,8 @@ static void internal_GetEvents()
 				case SDL_BUTTON_RIGHT:  sys_event.code = SIM_MOUSE_RIGHTUP; break;
 				default:                sys_event.code = 0;                break;
 			}
-			sys_event.mx      = SCREEN_TO_TEX_X( (int)event.button.x );
-			sys_event.my      = SCREEN_TO_TEX_Y( (int)event.button.y );
+			sys_event.mx      = SCREEN_TO_TEX_X( WINDOW_TO_PIXEL( event.button.x ) );
+			sys_event.my      = SCREEN_TO_TEX_Y( WINDOW_TO_PIXEL( event.button.y ) );
 			sys_event.mb      = conv_mouse_buttons( SDL_GetMouseState( NULL, NULL ) );
 			sys_event.key_mod = ModifierKeys();
 			break;
@@ -1182,8 +1213,8 @@ static void internal_GetEvents()
 			}
 			sys_event.type    = SIM_MOUSE_MOVE;
 			sys_event.code    = SIM_MOUSE_MOVED;
-			sys_event.mx      = SCREEN_TO_TEX_X( (int)event.motion.x );
-			sys_event.my      = SCREEN_TO_TEX_Y( (int)event.motion.y );
+			sys_event.mx      = SCREEN_TO_TEX_X( WINDOW_TO_PIXEL( event.motion.x ) );
+			sys_event.my      = SCREEN_TO_TEX_Y( WINDOW_TO_PIXEL( event.motion.y ) );
 			sys_event.mb      = conv_mouse_buttons( event.motion.state );
 			sys_event.key_mod = ModifierKeys();
 			break;
@@ -1665,7 +1696,7 @@ void dr_notify_input_pos(scr_coord pos)
 {
 	/* SDL2->SDL3: SDL_SetTextInputRect became SDL_SetTextInputArea, which is
 	 * per window and takes the cursor offset within the area as well. */
-	const SDL_Rect rect = { TEX_TO_SCREEN_X(pos.x), TEX_TO_SCREEN_Y(pos.y + LINESPACE), 1, 1 };
+	const SDL_Rect rect = { (int)PIXEL_TO_WINDOW( TEX_TO_SCREEN_X(pos.x) ), (int)PIXEL_TO_WINDOW( TEX_TO_SCREEN_Y(pos.y + LINESPACE) ), 1, 1 };
 	if(  window  ) {
 		SDL_SetTextInputArea( window, &rect, 0 );
 	}
