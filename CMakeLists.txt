@@ -238,12 +238,11 @@ elseif (SIMUTRANS_BACKEND STREQUAL "sdl3")
 
 	# SDL3 as the platform layer, with the EXISTING software renderer on top:
 	# simgraph16 still draws into a CPU framebuffer, exactly as for sdl2.
-	# Sound and music are deliberately left silent here. An SDL3 sound backend
-	# is a separate piece of work, and wiring up the per-platform fallback
-	# routines instead would make this backend behave differently on each of
-	# the three platforms for no gain.
+	# Sound is sdl3_sound.cc, the SDL3 counterpart of the sdl2_sound.cc the
+	# sdl2 backend uses. Music is not an SDL concern for either backend: it
+	# comes from the same per-platform routines, selected further down.
 	target_sources(simutrans PRIVATE src/simutrans/display/simgraph16.cc src/simutrans/sys/simsys_s3.cc
-		src/simutrans/sound/no_sound.cc src/simutrans/music/no_midi.cc)
+		src/simutrans/sound/sdl3_sound.cc)
 	target_include_directories(simutrans PRIVATE ${SDL3_INCLUDE_DIRS})
 	if (MINGW)
 		# The static libSDL3.a pulls in a long tail of Windows libraries
@@ -336,8 +335,8 @@ if (SIMUTRANS_USE_ZSTD)
 	endif ()
 endif (SIMUTRANS_USE_ZSTD)
 
-# only consider FluidSynth for SDL2 and GDI backends
-if ((SIMUTRANS_BACKEND STREQUAL "sdl2") OR (SIMUTRANS_BACKEND STREQUAL "gdi"))
+# only consider FluidSynth for the backends that play music at all
+if ((SIMUTRANS_BACKEND STREQUAL "sdl2") OR (SIMUTRANS_BACKEND STREQUAL "sdl3") OR (SIMUTRANS_BACKEND STREQUAL "gdi"))
 	if (SIMUTRANS_USE_FLUIDSYNTH_MIDI)
 		target_sources(simutrans PRIVATE src/simutrans/music/fluidsynth.cc src/simutrans/gui/loadsoundfont_frame.cc)
 		target_compile_definitions(simutrans PRIVATE USE_FLUIDSYNTH_MIDI=1)
@@ -354,7 +353,7 @@ if ((SIMUTRANS_BACKEND STREQUAL "sdl2") OR (SIMUTRANS_BACKEND STREQUAL "gdi"))
 	else ()
 		target_sources( simutrans PRIVATE ${BACKUP_MUSIC} )
 	endif (SIMUTRANS_USE_FLUIDSYNTH_MIDI)
-endif ((SIMUTRANS_BACKEND STREQUAL "sdl2") OR (SIMUTRANS_BACKEND STREQUAL "gdi"))
+endif ((SIMUTRANS_BACKEND STREQUAL "sdl2") OR (SIMUTRANS_BACKEND STREQUAL "sdl3") OR (SIMUTRANS_BACKEND STREQUAL "gdi"))
 
 if (SIMUTRANS_STEAM_BUILT AND NOT ANDROID)
 	target_compile_definitions(simutrans PRIVATE STEAM_BUILT=1)

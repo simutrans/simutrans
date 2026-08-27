@@ -718,12 +718,16 @@ endif
 
 ifeq ($(BACKEND),sdl3)
   SOURCES += src/simutrans/sys/simsys_s3.cc
-  # Sound and music are deliberately silent for this backend: there is no SDL3
-  # sound implementation yet, and wiring up the per-platform fallback routines
-  # instead would make it behave differently on each of the three platforms.
-  SOURCES += src/simutrans/sound/no_sound.cc
+  # Sound is the SDL3 counterpart of the sdl2_sound.cc the sdl2 backend uses.
+  # Music is not an SDL concern for either backend, so the per-platform
+  # routine is picked exactly as it is picked there.
+  SOURCES += src/simutrans/sound/sdl3_sound.cc
   ifneq ($(shell expr $(USE_FLUIDSYNTH_MIDI) \>= 1), 1)
-    SOURCES += src/simutrans/music/no_midi.cc
+    ifneq ($(OSTYPE),mingw)
+      SOURCES += src/simutrans/music/no_midi.cc
+    else
+      SOURCES += src/simutrans/music/w32_midi.cc
+    endif
   endif
 
   ifeq ($(SDL3_CONFIG),)

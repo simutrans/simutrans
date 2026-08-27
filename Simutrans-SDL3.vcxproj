@@ -194,8 +194,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\simutrans\display\simgraph16.cc" />
-    <ClCompile Include="src\simutrans\music\no_midi.cc" />
-    <ClCompile Include="src\simutrans\sound\no_sound.cc" />
+    <ClCompile Include="src\simutrans\music\w32_midi.cc" />
+    <ClCompile Include="src\simutrans\sound\sdl3_sound.cc" />
     <ClCompile Include="src\simutrans\sys\clipboard_s3.cc" />
     <ClCompile Include="src\simutrans\sys\simsys_s3.cc" />
   </ItemGroup>

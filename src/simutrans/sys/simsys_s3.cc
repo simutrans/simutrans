@@ -30,7 +30,10 @@
  * Not implemented here, and deliberately so - see the SDL3 integration plan:
  *   - touch and gestures (SDL3 removed gesture recognition entirely)
  *   - IME composition (SDL_EVENT_TEXT_EDITING is received but not forwarded)
- *   - audio (this backend uses the platform's non-SDL sound routines)
+ *
+ * Audio is not here either, but it is not missing: sound is in
+ * sound/sdl3_sound.cc, and music comes from the same per-platform routine the
+ * sdl2 backend uses. simsys_s2.cc leaves both out for the same reason.
  */
 
 #include <SDL3/SDL.h>
