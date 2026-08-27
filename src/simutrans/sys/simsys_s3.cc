@@ -220,6 +220,21 @@ static float pixel_density()
 #define PIXEL_TO_WINDOW(v) ((float)(v) / pixel_density())
 
 
+/* Everything display-dependent has to come from the display the window is
+ * actually on, not from whichever one the system calls primary. The two agree
+ * until someone drags the window onto the second monitor, and from then on
+ * every mode limit is computed for a screen the game is no longer showing on.
+ *
+ * Before the window exists - which is where the startup queries run - the
+ * primary display is the only answer there is. SDL_GetDisplayForWindow returns
+ * 0 when it cannot tell, and 0 is not a display id, so that falls back too. */
+static SDL_DisplayID current_display()
+{
+	const SDL_DisplayID disp = window ? SDL_GetDisplayForWindow( window ) : 0;
+	return disp ? disp : SDL_GetPrimaryDisplay();
+}
+
+
 /* --------------------------------------------------------------- scaling */
 
 bool dr_set_screen_scale(sint16 scale_percent)
@@ -234,7 +249,7 @@ bool dr_set_screen_scale(sint16 scale_percent)
 		 * content scale instead, measured against CONTENT_SCALE_BASE_DPI. The
 		 * arithmetic below therefore reproduces the SDL2 result rather than
 		 * introducing a different scaling policy. */
-		const SDL_DisplayID    disp  = SDL_GetPrimaryDisplay();
+		const SDL_DisplayID    disp  = current_display();
 		const SDL_DisplayMode *mode  = SDL_GetCurrentDisplayMode( disp );
 
 		/* Once there is a window, the scale that describes it is the one to use.
@@ -500,7 +515,7 @@ resolution dr_query_screen_resolution()
 	/* SDL2->SDL3: displays are addressed by SDL_DisplayID rather than by index,
 	 * and the mode is returned as a const pointer instead of being copied into
 	 * a caller-provided struct. */
-	const SDL_DisplayMode *mode = SDL_GetCurrentDisplayMode( SDL_GetPrimaryDisplay() );
+	const SDL_DisplayMode *mode = SDL_GetCurrentDisplayMode( current_display() );
 	if(  !mode  ) {
 		dbg->warning( "dr_query_screen_resolution(SDL3)", "no display mode: %s", SDL_GetError() );
 		res.w = 1024;
@@ -1676,14 +1691,26 @@ static void internal_GetEvents()
 		}
 
 
-		/* The window side of the same story: which display the window is on,
-		 * and what that display says its scale is. Reported only - the texture
-		 * is still sized from SDL_EVENT_WINDOW_PIXEL_SIZE_CHANGED above, and
-		 * nothing here recomputes it. */
+		/* The window side of the same story: which display the window is on, and
+		 * what that display says its scale is. The texture is still sized from
+		 * SDL_EVENT_WINDOW_PIXEL_SIZE_CHANGED above; what these two do is keep an
+		 * automatic scale in step with the display that is showing the game.
+		 *
+		 * Both are needed. A move makes everything the automatic scale reads off a
+		 * display stale, not only its scale but the mode it is bounded by, and the
+		 * scale event alone does not catch it: moving between two displays scaled
+		 * the same emits no scale change at all, so a move from a 2560x1440 screen
+		 * to a 1024x600 one would leave the game area below the minimum height
+		 * that limit exists to guarantee. When both events do arrive the second
+		 * recompute finds the same numbers and asks for no resize. */
 		case SDL_EVENT_WINDOW_DISPLAY_CHANGED:
 			DBG_MESSAGE( "internal_GetEvents(SDL3)",
-				"window %u moved to display %d",
-				(unsigned)event.window.windowID, (int)event.window.data1 );
+				"window %u moved to display %d%s",
+				(unsigned)event.window.windowID, (int)event.window.data1,
+				scale_is_automatic ? "" : " (scale is user set, kept)" );
+			if(  scale_is_automatic  &&  window  ) {
+				dr_set_screen_scale( -1 );
+			}
 			sys_event.type = SIM_IGNORE_EVENT;
 			sys_event.code = 0;
 			break;
