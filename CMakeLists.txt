@@ -290,13 +290,16 @@ elseif (SIMUTRANS_BACKEND STREQUAL "gdi")
 	target_link_libraries(simutrans PRIVATE imm32 xaudio2_8)
 	target_compile_definitions(simutrans PRIVATE COLOUR_DEPTH=16)
 
-else ()
-	if (NOT SIMUTRANS_BACKEND STREQUAL "none")
-		message(WARNING "Unknown backend '${SIMUTRANS_BACKEND}', falling back to headless compilation")
-	endif ()
-
+elseif (SIMUTRANS_BACKEND STREQUAL "none")
 	target_sources(simutrans PRIVATE src/simutrans/display/simgraph0.cc src/simutrans/sys/simsys_posix.cc src/simutrans/sound/no_sound.cc src/simutrans/music/no_midi.cc)
 	target_compile_definitions(simutrans PRIVATE COLOUR_DEPTH=0)
+
+else ()
+	# An unknown name used to fall through to the headless build with a warning, so
+	# a typo or the wrong case configured, compiled and ran as a backend nobody had
+	# asked for. Stop here instead.
+	message(FATAL_ERROR "Unknown backend '${SIMUTRANS_BACKEND}': valid backends are "
+		"sdl2, sdl3, gdi and none, all lowercase. Stopping rather than compiling headless.")
 endif ()
 
 
