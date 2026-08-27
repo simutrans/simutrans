@@ -161,6 +161,18 @@ static sint32 y_scale = SCALE_NEUTRAL_Y;
 #define TARGET_DPI (96)
 #endif
 
+/* What SDL3's content scale is measured against. SDL3 reports no DPI at all,
+ * only a unitless scale, and 1.0 does not mean the same thing everywhere: the
+ * desktop backends define it against 96 dpi, but the Android backend assigns it
+ * straight from DisplayMetrics.density, which Android defines as
+ * densityDpi/160. Treating that as 96 understates the display by exactly
+ * 160/96. */
+#ifdef __ANDROID__
+#define CONTENT_SCALE_BASE_DPI (160.0f)
+#else
+#define CONTENT_SCALE_BASE_DPI (96.0f)
+#endif
+
 // make sure we have at least so much pixel in y-direction
 #define MIN_SCALE_HEIGHT (640)
 
@@ -185,7 +197,7 @@ bool dr_set_screen_scale(sint16 scale_percent)
 
 	if(  scale_percent == -1  ) {
 		/* SDL2->SDL3: SDL_GetDisplayDPI() is gone. SDL3 reports a unitless
-		 * content scale instead, where 1.0 means 96 dpi by definition. The
+		 * content scale instead, measured against CONTENT_SCALE_BASE_DPI. The
 		 * arithmetic below therefore reproduces the SDL2 result rather than
 		 * introducing a different scaling policy. */
 		const SDL_DisplayID    disp  = SDL_GetPrimaryDisplay();
@@ -193,12 +205,14 @@ bool dr_set_screen_scale(sint16 scale_percent)
 		const float            scale = SDL_GetDisplayContentScale( disp );
 
 		if(  mode  &&  scale > 0.0f  &&  mode->h > 1.5 * MIN_SCALE_HEIGHT  ) {
-			/* SDL3's content scale is defined as 1.0 at 96 dpi, so the display's
-			 * dpi is scale*96 and simsys_s2's dpi/TARGET_DPI becomes this. The
-			 * earlier form dropped the division, which is invisible on a desktop
-			 * where TARGET_DPI is 96 and wrong by exactly 2x on Android. */
-			x_scale = (sint32)((scale * 96.0f * SCALE_NEUTRAL_X) / TARGET_DPI + 0.5f);
-			y_scale = (sint32)((scale * 96.0f * SCALE_NEUTRAL_Y) / TARGET_DPI + 0.5f);
+			/* The display's dpi is the content scale times the base it is
+			 * measured against, and simsys_s2's dpi/TARGET_DPI then becomes
+			 * this. Both factors matter: dropping the division is invisible on a
+			 * desktop and wrong by 2x on Android, and taking the base as 96
+			 * everywhere is invisible on a desktop and wrong by 160/96 on
+			 * Android. A 420 dpi phone must arrive here as 420, not as 252. */
+			x_scale = (sint32)((scale * CONTENT_SCALE_BASE_DPI * SCALE_NEUTRAL_X) / TARGET_DPI + 0.5f);
+			y_scale = (sint32)((scale * CONTENT_SCALE_BASE_DPI * SCALE_NEUTRAL_Y) / TARGET_DPI + 0.5f);
 			DBG_MESSAGE("dr_set_screen_scale(SDL3)", "content scale %.2f -> x=%i, y=%i", scale, x_scale, y_scale);
 		}
 
@@ -566,10 +580,12 @@ int dr_os_open(const scr_size window_size, sint16 fs)
 	 * density 2.625 Simutrans is handed 411x914 for a 1080x2400 panel, draws a
 	 * texture that size, and the system stretches it back up - everything ends
 	 * up 2.6 times too large and soft. simsys_s2 asks for the same thing. */
-	SDL_WindowFlags flags = SDL_WINDOW_RESIZABLE | SDL_WINDOW_HIGH_PIXEL_DENSITY;
-	if(  fullscreen  ) {
-		flags |= SDL_WINDOW_FULLSCREEN;
-	}
+	SDL_WindowFlags flags = fullscreen ? SDL_WINDOW_FULLSCREEN : SDL_WINDOW_RESIZABLE;
+	flags |= SDL_WINDOW_HIGH_PIXEL_DENSITY;
+#ifdef __ANDROID__
+	// needed for landscape apparently
+	flags |= SDL_WINDOW_RESIZABLE;
+#endif
 
 	window = SDL_CreateWindow( SIM_TITLE, window_size.w, window_size.h, flags );
 	if(  window == NULL  ) {
@@ -979,6 +995,12 @@ static void internal_GetEvents()
 	static bool   has_queued_finger_release = false;
 	static sint32 last_mx = 0, last_my = 0;
 
+	/* The size last reported as a SYSTEM_RESIZE, so that the two SDL3 events
+	 * that describe one resize do not become two. Zero is not a size the game
+	 * can be asked for, so the first real one always gets through. */
+	static sint32 last_reported_size_w = 0;
+	static sint32 last_reported_size_h = 0;
+
 	if(  has_queued_finger_release  ) {
 		has_queued_finger_release = false;
 		sys_event.type    = SIM_MOUSE_BUTTONS;
@@ -1001,28 +1023,62 @@ static void internal_GetEvents()
 
 	switch(  event.type  ) {
 
+		/* Deliberately NOT also SDL_EVENT_WINDOW_CLOSE_REQUESTED. Closing the
+		 * last window delivers both that event and SDL_EVENT_QUIT - SDL3 posts
+		 * the quit itself, exactly as SDL2 does - so handling both turns one
+		 * close into two SYSTEM_QUIT events where simsys_s2 produces one. */
 		case SDL_EVENT_QUIT:
-		case SDL_EVENT_WINDOW_CLOSE_REQUESTED:
 			sys_event.type = SIM_SYSTEM;
 			sys_event.code = SYSTEM_QUIT;
 			break;
 
 
 		/* SDL2->SDL3: SDL_WINDOWEVENT with a sub-event field became one event
-		 * type per window action. SDL_WINDOWEVENT_SIZE_CHANGED, which is what
-		 * simsys_s2 listens for, no longer exists as a separate event: in SDL3
-		 * SDL_EVENT_WINDOW_RESIZED covers both a user resize and a resize
-		 * caused by an API call, which is exactly what SIZE_CHANGED meant.
+		 * type per window action, and SDL_WINDOWEVENT_SIZE_CHANGED - the one
+		 * simsys_s2 listens for - was split in two: RESIZED reports the window
+		 * size in logical units, PIXEL_SIZE_CHANGED reports the size of the
+		 * actual back buffer.
 		 *
-		 * SDL_EVENT_WINDOW_PIXEL_SIZE_CHANGED is deliberately not handled. It
-		 * has no SDL2 counterpart, so reacting to it would be new behaviour
-		 * rather than parity. */
+		 * BOTH are needed, and the pixel one is the one that matters. The two
+		 * only coincide while the display scale is 1, and on Android they never
+		 * do: the window is created at the full surface size, so its logical
+		 * size never changes and RESIZED is never sent at all - only
+		 * PIXEL_SIZE_CHANGED arrives, carrying 1080x2400. Listening for RESIZED
+		 * alone leaves the game on the tiny start-up texture for the whole
+		 * session, stretched over the panel, which is what SDL2 avoids by
+		 * receiving SIZE_CHANGED here.
+		 *
+		 * The size is taken from the window rather than from data1/data2, so
+		 * that whichever of the two events arrives - or both - the texture is
+		 * sized from the same pixels the renderer draws into, and a duplicate
+		 * event asks for a size the game already has. */
 		case SDL_EVENT_WINDOW_RESIZED:
+		case SDL_EVENT_WINDOW_PIXEL_SIZE_CHANGED: {
+			int pixel_w = 0;
+			int pixel_h = 0;
+			SDL_GetWindowSizeInPixels( window, &pixel_w, &pixel_h );
+
+			const sint32 new_w = max( 1, SCREEN_TO_TEX_X( pixel_w ) );
+			const sint32 new_h = max( 1, SCREEN_TO_TEX_Y( pixel_h ) );
+
+			/* Where the two events coincide - any display whose scale is 1 -
+			 * both arrive for a single resize, and simsys_s2 produces exactly
+			 * one SYSTEM_RESIZE per size change. Report only what actually
+			 * changed, so the second event is not a second resize. */
+			if(  new_w == last_reported_size_w  &&  new_h == last_reported_size_h  ) {
+				sys_event.type = SIM_IGNORE_EVENT;
+				sys_event.code = 0;
+				break;
+			}
+			last_reported_size_w = new_w;
+			last_reported_size_h = new_h;
+
 			sys_event.type              = SIM_SYSTEM;
 			sys_event.code              = SYSTEM_RESIZE;
-			sys_event.new_window_size_w = max( 1, SCREEN_TO_TEX_X( event.window.data1 ) );
-			sys_event.new_window_size_h = max( 1, SCREEN_TO_TEX_Y( event.window.data2 ) );
+			sys_event.new_window_size_w = new_w;
+			sys_event.new_window_size_h = new_h;
 			break;
+		}
 
 		case SDL_EVENT_MOUSE_BUTTON_DOWN:
 			// a real button press is not part of a pinch, so the sum restarts
