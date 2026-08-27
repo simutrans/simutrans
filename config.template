@@ -10,6 +10,7 @@
 
 #BACKEND := gdi
 #BACKEND := sdl2
+#BACKEND := sdl3
 #BACKEND := posix
 
 #OSTYPE := amiga

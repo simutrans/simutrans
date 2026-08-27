@@ -5,8 +5,24 @@
         "miniupnpc",
         "pthread",
         "zstd",
-        "sdl2",
         "zlib"
     ],
+    "default-features": [
+        "sdl2"
+    ],
+    "features": {
+        "sdl2": {
+            "description": "SDL2 platform backend",
+            "dependencies": [
+                "sdl2"
+            ]
+        },
+        "sdl3": {
+            "description": "SDL3 platform backend",
+            "dependencies": [
+                "sdl3"
+            ]
+        }
+    },
 	"builtin-baseline": "c5a15727ee70fddf0296f0d8aafc3f58916fefac"
 }

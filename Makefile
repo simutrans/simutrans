@@ -23,11 +23,12 @@ HOSTCXX ?=$(CXX)
 
 SDL2_CONFIG      ?= pkg-config sdl2
 #SDL2_CONFIG     ?= sdl2-config
+SDL3_CONFIG      ?= pkg-config sdl3
 FREETYPE_CONFIG  ?= pkg-config freetype2
 # FREETYPE_CONFIG ?= freetype-config
 FONTCONFIG_CONFIG  ?= pkg-config fontconfig
 
-BACKENDS  := gdi sdl2 mixer_sdl2 posix
+BACKENDS  := gdi sdl2 sdl3 mixer_sdl2 posix
 OSTYPES   := amiga freebsd haiku linux mac mingw openbsd
 
 
@@ -60,6 +61,9 @@ ifdef MULTI_THREAD
   else
     ifneq ($(OSTYPE),mingw)
       ifeq ($(BACKEND),sdl2)
+        LDFLAGS += -lpthread
+      endif
+      ifeq ($(BACKEND),sdl3)
         LDFLAGS += -lpthread
       endif
       ifeq ($(BACKEND),mixer_sdl2)
@@ -116,6 +120,8 @@ endif
 
 ifeq ($(BACKEND),sdl2)
   SOURCES += src/simutrans/sys/clipboard_s2.cc
+else ifeq ($(BACKEND),sdl3)
+  SOURCES += src/simutrans/sys/clipboard_s3.cc
 else ifeq ($(OSTYPE),mingw)
   SOURCES += src/simutrans/sys/clipboard_w32.cc
 else
@@ -703,6 +709,39 @@ ifeq ($(BACKEND),sdl2)
     ifeq ($(shell expr $(STATIC) \>= 1), 1)
       ifeq ($(OSTYPE),mingw)
         SDL_LDFLAGS = $(shell $(SDL2_CONFIG) --static --libs)
+      endif
+    endif
+  endif
+  CFLAGS += $(SDL_CFLAGS)
+  LIBS   += $(SDL_LDFLAGS)
+endif
+
+ifeq ($(BACKEND),sdl3)
+  SOURCES += src/simutrans/sys/simsys_s3.cc
+  # Sound and music are deliberately silent for this backend: there is no SDL3
+  # sound implementation yet, and wiring up the per-platform fallback routines
+  # instead would make it behave differently on each of the three platforms.
+  SOURCES += src/simutrans/sound/no_sound.cc
+  ifneq ($(shell expr $(USE_FLUIDSYNTH_MIDI) \>= 1), 1)
+    SOURCES += src/simutrans/music/no_midi.cc
+  endif
+
+  ifeq ($(SDL3_CONFIG),)
+    ifeq ($(OSTYPE),mac)
+      SDL_CFLAGS  := -F /Library/Frameworks -I/Library/Frameworks/SDL3.framework/Headers
+      SDL_LDFLAGS := -framework SDL3 -F /Library/Frameworks
+    else
+      # No -Dmain=SDL_main and no -lSDL3main: unlike SDL2, SDL3 does not
+      # redefine main unless SDL_main.h is included, and simsys_s3.cc does not.
+      SDL_CFLAGS  := -I$(MINGDIR)/include
+      SDL_LDFLAGS := -lSDL3
+    endif
+  else
+    SDL_CFLAGS    := $(shell $(SDL3_CONFIG) --cflags)
+    SDL_LDFLAGS   := $(DYNAMICSTART) $(shell $(SDL3_CONFIG) --libs) $(DYNAMICEND)
+    ifeq ($(shell expr $(STATIC) \>= 1), 1)
+      ifeq ($(OSTYPE),mingw)
+        SDL_LDFLAGS = $(shell $(SDL3_CONFIG) --static --libs)
       endif
     endif
   endif

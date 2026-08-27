@@ -33,6 +33,10 @@ AC_CHECK_LIB(pthreadGC2, pthread_mutex_destroy,
 
 # find OS and backend by libs ...
 AC_CHECK_LIB(SDL2, SDL_GetRenderDriverInfo)
+# SDL_GetRenderDriverInfo does not exist in SDL3, so SDL3 needs a probe of its
+# own. SDL_GetDisplayContentScale is SDL3 only, is used by simsys_s3.cc, and is
+# present in every stable SDL3 release.
+AC_CHECK_LIB(SDL3, SDL_GetDisplayContentScale)
 
 AC_CHECK_HEADERS(windows.h)
 AC_CHECK_HEADERS(LocaleRoster.h)
@@ -134,6 +138,13 @@ elif test "$ac_cv_lib_SDL2_SDL_GetRenderDriverInfo" == yes
 then
 	AC_SUBST(backend, sdl2)
 	AC_MSG_WARN([Using SDL2 backend!])
+	AC_SEARCH_LIBS(FT_Init_FreeType, freetype, [], [AC_MSG_ERROR([FreeType Library is needed for graphical interface!])])
+# Deliberately after SDL2: a machine that has both keeps the SDL2 backend, so
+# this cannot change the backend anyone is building today.
+elif test "$ac_cv_lib_SDL3_SDL_GetDisplayContentScale" == yes
+then
+	AC_SUBST(backend, sdl3)
+	AC_MSG_WARN([Using SDL3 backend!])
 	AC_SEARCH_LIBS(FT_Init_FreeType, freetype, [], [AC_MSG_ERROR([FreeType Library is needed for graphical interface!])])
 else
 	AC_SUBST(backend, posix)
