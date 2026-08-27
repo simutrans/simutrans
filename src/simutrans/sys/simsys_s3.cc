@@ -264,6 +264,32 @@ bool dr_set_screen_scale(sint16 scale_percent)
 		const float            scale = window ? SDL_GetWindowDisplayScale( window )
 		                                      : SDL_GetDisplayContentScale( disp );
 
+		/* The mode and the scale describe two different things and come from two
+		 * different places: the mode from whichever display SDL says the window
+		 * is on, the scale from the window itself. That is only sound while both
+		 * are talking about the same screen, and there is one case where they are
+		 * not. Leaving fullscreen on a Wayland output that is not at the desktop
+		 * origin leaves SDL reporting the window at 0,0 for a while, so
+		 * SDL_GetDisplayForWindow answers with the display that owns the origin
+		 * while the window is still being shown, at its own density, on the one
+		 * it never left. Using that pair would clamp - or fail to clamp - this
+		 * display's scale against another display's height.
+		 *
+		 * A window's pixel density is the density of the screen showing it, so a
+		 * mode whose density is not the window's is a mode for a different
+		 * screen. Dropping it leaves the scale exactly as it was, which is what
+		 * the last agreeing pair produced, and the next event where the two agree
+		 * recomputes it. That is also why this is not a Wayland special case: any
+		 * platform that reports the two out of step is wrong in the same way. */
+		const float density_gap = ( mode  &&  window )
+			? mode->pixel_density - SDL_GetWindowPixelDensity( window ) : 0.0f;
+		if(  density_gap > 0.01f  ||  density_gap < -0.01f  ) {
+			DBG_MESSAGE("dr_set_screen_scale(SDL3)",
+				"display %u is %.2fx but the window is drawn at %.2fx - not this window's display, scale kept",
+				(unsigned)disp, mode->pixel_density, SDL_GetWindowPixelDensity( window ));
+			mode = NULL;
+		}
+
 		/* SDL_DisplayMode measures w and h in window coordinates and carries the
 		 * factor to pixels separately, so the tests below convert first: the unit
 		 * SCREEN_TO_TEX works in is the pixel. A 2560x1440 panel presented as
@@ -1838,14 +1864,19 @@ sint16 dr_toggle_borderless()
 {
 	/* SDL2->SDL3: SDL_SetWindowFullscreen takes a bool. Without an explicit
 	 * fullscreen mode set on the window, true means borderless desktop
-	 * fullscreen, which is what SDL_WINDOW_FULLSCREEN_DESKTOP meant in SDL2. */
+	 * fullscreen, which is what SDL_WINDOW_FULLSCREEN_DESKTOP meant in SDL2.
+	 *
+	 * Deliberately no repositioning, where simsys_s2 moves the window to 0,0
+	 * before going fullscreen and to 10,10 on the way back. SDL3 makes the
+	 * window fullscreen on the display that already holds it and restores the
+	 * windowed position itself, so the move to 0,0 only discards which display
+	 * that was - the desktop origin need not be the display the player is on -
+	 * and the move to 10,10 discards the position the player chose. */
 	if(  fullscreen  ) {
 		SDL_SetWindowFullscreen( window, false );
-		SDL_SetWindowPosition( window, 10, 10 );
 		fullscreen = WINDOWED;
 	}
 	else {
-		SDL_SetWindowPosition( window, 0, 0 );
 		SDL_SetWindowFullscreen( window, true );
 		fullscreen = BORDERLESS;
 	}
