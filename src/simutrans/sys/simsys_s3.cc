@@ -28,7 +28,6 @@
  * SDL3, so the surface had to go anyway.
  *
  * Not implemented here, and deliberately so - see the SDL3 integration plan:
- *   - touch and gestures (SDL3 removed gesture recognition entirely)
  *   - IME candidate lists (SDL_EVENT_TEXT_EDITING_CANDIDATES has no SDL2
  *     counterpart, and Simutrans has nothing to display one with)
  *
@@ -308,6 +307,12 @@ bool dr_os_init(const int *parameter)
 	 * does under SDL2. The hint must be set before SDL_Init. */
 	SDL_SetHint( SDL_HINT_IME_IMPLEMENTED_UI, "composition" );
 
+	/* Touch must not also arrive as mouse input: the finger handling below
+	 * produces the clicks itself, and with both a tap would act twice. This is
+	 * simsys_s2's SDL_HINT_TOUCH_MOUSE_EVENTS, set before SDL_Init so no
+	 * subsystem can latch the default first. */
+	SDL_SetHint( SDL_HINT_TOUCH_MOUSE_EVENTS, "0" );
+
 	// SDL2->SDL3: SDL_Init returns true on success, where SDL2 returned 0.
 	if(  !SDL_Init( SDL_INIT_VIDEO )  ) {
 		dbg->error( "dr_os_init(SDL3)", "Could not initialize SDL: %s", SDL_GetError() );
@@ -317,12 +322,13 @@ bool dr_os_init(const int *parameter)
 	dbg->message( "dr_os_init(SDL3)", "SDL %d.%d.%d, video driver: %s",
 		SDL_MAJOR_VERSION, SDL_MINOR_VERSION, SDL_MICRO_VERSION, SDL_GetCurrentVideoDriver() );
 
-	/* Touch is not translated by this backend, so the finger events are left
-	 * disabled rather than queued and discarded every frame. SDL2->SDL3:
-	 * SDL_EventState() became SDL_SetEventEnabled(). */
-	SDL_SetEventEnabled( SDL_EVENT_FINGER_DOWN,   false );
-	SDL_SetEventEnabled( SDL_EVENT_FINGER_UP,     false );
-	SDL_SetEventEnabled( SDL_EVENT_FINGER_MOTION, false );
+	/* SDL2->SDL3: SDL_EventState() became SDL_SetEventEnabled(). SDL3 has no
+	 * dollar gestures to switch off, and no multigesture either - see the
+	 * touch section further down. */
+	SDL_SetEventEnabled( SDL_EVENT_FINGER_DOWN,     true );
+	SDL_SetEventEnabled( SDL_EVENT_FINGER_UP,       true );
+	SDL_SetEventEnabled( SDL_EVENT_FINGER_MOTION,   true );
+	SDL_SetEventEnabled( SDL_EVENT_FINGER_CANCELED, true );
 	SDL_SetEventEnabled( SDL_EVENT_CLIPBOARD_UPDATE, false );
 	SDL_SetEventEnabled( SDL_EVENT_DROP_FILE,     false );
 
@@ -678,11 +684,141 @@ void dr_textur(int xp, int yp, int w, int h)
 }
 
 
+/* ------------------------------------------------------ touch and gestures */
+
+/* SDL3 removed the gesture recogniser, and with it SDL_MULTIGESTURE - the one
+ * event simsys_s2 pinch-zooms and three-finger-scrolls with. There is nothing
+ * to call in its place: SDL_EVENT_PINCH_* does not exist in SDL 3.2.0, it
+ * reports a scale ratio rather than a distance delta, and it carries neither a
+ * position nor a finger count, so it could restore neither the sensitivity nor
+ * the three finger scroll. What SDL3 does still deliver, since 3.2.0, are the
+ * raw finger events, so the information Simutrans consumes is rebuilt here.
+ *
+ * The value to rebuild is mgesture.dDist, and it is not what the name suggests.
+ * SDL2's recogniser (src/events/SDL_gesture.c) emits one gesture per FINGER
+ * MOTION, and dDist is the change of THAT finger's distance to the centroid of
+ * all fingers currently down - not the change of the distance between two
+ * fingers. With two fingers the centroid is the midpoint, so each event carries
+ * half of its step, and the running sum simsys_s2 keeps therefore telescopes to
+ * half the change of the finger separation. The halving is not incidental:
+ * dropping it would double the zoom sensitivity against the same DELTA_PINCH.
+ *
+ * The centroid is folded in and out exactly as SDL2 did. For a balanced down
+ * and up sequence that is the true centroid of the fingers, so this inherits no
+ * drift from the incremental form.
+ *
+ * Coordinates are normalized 0..1 in both SDL versions, and the arithmetic below
+ * stays in that space, as SDL2's did - moving it to pixels would make the
+ * threshold depend on the window aspect ratio. */
+
+// threshold for zooming in/out with multitouch, as in simsys_s2
+#define DELTA_PINCH (0.033)
+
+/* Enough for every hand on the glass. A device that reports more simply has the
+ * extra fingers ignored, which is safer than growing a table from a number the
+ * driver chooses. */
+#define MAX_FINGERS (16)
+
+static bool in_finger_handling = false;
+
+static struct {
+	SDL_FingerID id[MAX_FINGERS];
+	int          count;
+	float        cx, cy; // centroid of the fingers down, normalized
+} fingers;
+
+
+/* SDL2->SDL3: SDL_FingerID is 64 bit now and is a device supplied handle, not
+ * an index - it is never used to index anything here. */
+static int finger_index(SDL_FingerID id)
+{
+	for(  int i = 0;  i < fingers.count;  i++  ) {
+		if(  fingers.id[i] == id  ) {
+			return i;
+		}
+	}
+	return -1;
+}
+
+
+static void finger_down(SDL_FingerID id, float x, float y)
+{
+	// counting one finger twice would corrupt the centroid, and every distance
+	// taken from it, for the rest of the gesture
+	if(  fingers.count >= MAX_FINGERS  ||  finger_index( id ) >= 0  ) {
+		return;
+	}
+	fingers.id[fingers.count] = id;
+	fingers.count++;
+	fingers.cx = (fingers.cx * (fingers.count - 1) + x) / fingers.count;
+	fingers.cy = (fingers.cy * (fingers.count - 1) + y) / fingers.count;
+}
+
+
+static void finger_lifted(SDL_FingerID id, float x, float y)
+{
+	const int i = finger_index( id );
+	if(  i < 0  ) {
+		return;
+	}
+	fingers.count--;
+	for(  int j = i;  j < fingers.count;  j++  ) {
+		fingers.id[j] = fingers.id[j + 1];
+	}
+	if(  fingers.count > 0  ) {
+		fingers.cx = (fingers.cx * (fingers.count + 1) - x) / fingers.count;
+		fingers.cy = (fingers.cy * (fingers.count + 1) - y) / fingers.count;
+	}
+	else {
+		// nothing is touching the screen: leave no residue for the next gesture
+		fingers.cx = 0.0f;
+		fingers.cy = 0.0f;
+	}
+}
+
+
+/* Advances the centroid and returns what SDL2 would have put in dDist for this
+ * motion. Zero below two fingers, because SDL2 emitted no gesture there. */
+static double finger_moved(const SDL_TouchFingerEvent &tf)
+{
+	if(  finger_index( tf.fingerID ) < 0  ) {
+		// a finger that never went down - SDL2 held no state for it either, and
+		// this also keeps the divisor below away from zero
+		return 0.0;
+	}
+	const float last_cx = fingers.cx;
+	const float last_cy = fingers.cy;
+	fingers.cx += tf.dx / fingers.count;
+	fingers.cy += tf.dy / fingers.count;
+
+	if(  fingers.count < 2  ) {
+		return 0.0;
+	}
+	const float lvx   = (tf.x - tf.dx) - last_cx;
+	const float lvy   = (tf.y - tf.dy) - last_cy;
+	const float ldist = (float)SDL_sqrt( lvx * lvx + lvy * lvy );
+	const float vx    = tf.x - fingers.cx;
+	const float vy    = tf.y - fingers.cy;
+	const float dist  = (float)SDL_sqrt( vx * vx + vy * vy );
+
+	/* SDL2's guard, kept for the same reason: a finger sitting exactly on the
+	 * centroid has no direction to grow along, and the step would be noise
+	 * rather than a pinch. It also keeps a zero length vector out of the sum. */
+	return ldist == 0.0f ? 0.0 : (double)(dist - ldist);
+}
+
+
 /* ----------------------------------------------------------------- cursor */
 
 // move cursor to the specified location
 bool move_pointer(int x, int y)
 {
+	/* While a finger is down the finger is the pointer: warping would fight
+	 * it, and the caller has to know the cursor did not move. simsys_s2
+	 * returns false here for the same reason. */
+	if(  in_finger_handling  ) {
+		return false;
+	}
 	// SDL2->SDL3: the warp coordinates are floats.
 	SDL_WarpMouseInWindow( window, (float)TEX_TO_SCREEN_X(x), (float)TEX_TO_SCREEN_Y(y) );
 	return true;
@@ -750,6 +886,34 @@ static void internal_GetEvents()
 	static bool composition_is_underway = false;
 	static bool ignore_previous_number  = false;
 
+	/* Touch state, all of it simsys_s2's and carrying the same meaning.
+	 *
+	 * previous_multifinger_touch: 0, or the number of fingers the current
+	 * multi finger gesture is being read as - 2 pinches, 3 scrolls.
+	 * FirstFingerId: the finger that owns the single finger drag; any other
+	 * finger only ever turns the drag into a multi finger gesture.
+	 * dLastDist: the running pinch sum, and below two fingers it doubles as
+	 * the has-this-finger-moved-yet flag, exactly as in simsys_s2. */
+	static int          previous_multifinger_touch = 0;
+	static SDL_FingerID FirstFingerId = 0;
+	static double       dLastDist = 0.0;
+
+	/* A tap owes the game a press and a release, but only one sys_event fits
+	 * in a poll, so the release waits here for the next one. */
+	static bool   has_queued_finger_release = false;
+	static sint32 last_mx = 0, last_my = 0;
+
+	if(  has_queued_finger_release  ) {
+		has_queued_finger_release = false;
+		sys_event.type    = SIM_MOUSE_BUTTONS;
+		sys_event.code    = SIM_MOUSE_LEFTUP;
+		sys_event.mb      = 0;
+		sys_event.mx      = last_mx;
+		sys_event.my      = last_my;
+		sys_event.key_mod = ModifierKeys();
+		return;
+	}
+
 	SDL_Event event;
 	// SDL2->SDL3: SDL_PollEvent returns bool instead of int. Zero still means
 	// "no event", so the test itself is unchanged in meaning.
@@ -784,6 +948,14 @@ static void internal_GetEvents()
 			break;
 
 		case SDL_EVENT_MOUSE_BUTTON_DOWN:
+			// a real button press is not part of a pinch, so the sum restarts
+			dLastDist = 0.0;
+			/* Belt and braces, as in simsys_s2: the hint set at startup already
+			 * stops SDL turning a finger into a mouse, and a synthetic press must
+			 * not act as a click when the finger handling makes its own. */
+			if(  event.button.which == SDL_TOUCH_MOUSEID  ) {
+				break;
+			}
 			sys_event.type = SIM_MOUSE_BUTTONS;
 			switch(  event.button.button  ) {
 				case SDL_BUTTON_LEFT:   sys_event.code = SIM_MOUSE_LEFTBUTTON;  break;
@@ -803,6 +975,11 @@ static void internal_GetEvents()
 			break;
 
 		case SDL_EVENT_MOUSE_BUTTON_UP:
+			/* Only genuine mouse releases: during or straight after a gesture the
+			 * release belongs to the fingers, which send their own. */
+			if(  previous_multifinger_touch  ||  in_finger_handling  ) {
+				break;
+			}
 			sys_event.type = SIM_MOUSE_BUTTONS;
 			switch(  event.button.button  ) {
 				case SDL_BUTTON_LEFT:   sys_event.code = SIM_MOUSE_LEFTUP;  break;
@@ -839,6 +1016,10 @@ static void internal_GetEvents()
 		}
 
 		case SDL_EVENT_MOUSE_MOTION:
+			// a finger is driving the pointer, so the mouse must not fight it
+			if(  in_finger_handling  ) {
+				break;
+			}
 			sys_event.type    = SIM_MOUSE_MOVE;
 			sys_event.code    = SIM_MOUSE_MOVED;
 			sys_event.mx      = SCREEN_TO_TEX_X( (int)event.motion.x );
@@ -846,6 +1027,159 @@ static void internal_GetEvents()
 			sys_event.mb      = conv_mouse_buttons( event.motion.state );
 			sys_event.key_mod = ModifierKeys();
 			break;
+
+		case SDL_EVENT_FINGER_DOWN:
+			/* Nothing is reported yet: the press comes from the first motion, or
+			 * from the finger up if the finger never moved, so the coordinate is
+			 * the one the player finished on. simsys_s2 does the same. */
+			finger_down( event.tfinger.fingerID, event.tfinger.x, event.tfinger.y );
+			if(  !in_finger_handling  ) {
+				dLastDist = 0.0;
+				FirstFingerId = event.tfinger.fingerID;
+				in_finger_handling = true;
+				previous_multifinger_touch = 0;
+			}
+			else if(  FirstFingerId != event.tfinger.fingerID  ) {
+				// a second finger: this is a gesture, not a drag
+				previous_multifinger_touch = 2;
+			}
+			break;
+
+		case SDL_EVENT_FINGER_MOTION: {
+			/* Every motion feeds the reconstruction, including the ones thrown
+			 * away right after. Under SDL2 the recogniser ran inside
+			 * SDL_PumpEvents, so the multigesture events already existed when
+			 * simsys_s2 swallowed the flood of finger motions, and their dDist
+			 * still reached the sum. Coalescing before accumulating would change
+			 * the zoom sensitivity by whatever share of the motions happens to be
+			 * dropped - which varies with the frame rate. */
+			double dist = finger_moved( event.tfinger );
+
+			// swallow the millions of finger motion events
+			SDL_Event next;
+			while(  SDL_PeepEvents( &next, 1, SDL_GETEVENT, SDL_EVENT_FINGER_MOTION, SDL_EVENT_FINGER_MOTION ) == 1  ) {
+				dist += finger_moved( next.tfinger );
+				event = next;
+			}
+			dLastDist += dist;
+			in_finger_handling = true;
+
+			const scr_size screen_size = gfx->get_screen_size();
+
+			if(  fingers.count == 2  ) {
+				// any multitouch is interpreted as pinch zoom
+				if(  dLastDist < -DELTA_PINCH  ) {
+					sys_event.type    = SIM_MOUSE_BUTTONS;
+					sys_event.code    = SIM_MOUSE_WHEELDOWN;
+					sys_event.key_mod = ModifierKeys();
+					dLastDist = 0;
+				}
+				else if(  dLastDist > DELTA_PINCH  ) {
+					sys_event.type    = SIM_MOUSE_BUTTONS;
+					sys_event.code    = SIM_MOUSE_WHEELUP;
+					sys_event.key_mod = ModifierKeys();
+					dLastDist = 0;
+				}
+				previous_multifinger_touch = 2;
+			}
+			else if(  fingers.count == 3  &&  framebuffer  ) {
+				/* Any three finger touch scrolls the map, from the centroid that
+				 * SDL2 reported in mgesture.x/y.
+				 *
+				 * simsys_s2 scales that by the surface size and then applies
+				 * SCREEN_TO_TEX on top, although the surface is already texture
+				 * sized, so at a screen scale other than 100% the position ends up
+				 * scaled twice. Reproduced rather than corrected: it is the
+				 * behaviour Simutrans has today, and the two agree exactly at the
+				 * default scale. */
+				const sint32 mx = (sint32)SCREEN_TO_TEX_X( fingers.cx * screen_size.w );
+				const sint32 my = (sint32)SCREEN_TO_TEX_Y( fingers.cy * screen_size.h );
+				if(  previous_multifinger_touch != 3  ) {
+					// just started scrolling
+					set_click_xy( mx, my );
+				}
+				sys_event.type    = SIM_MOUSE_MOVE;
+				sys_event.code    = SIM_MOUSE_MOVED;
+				sys_event.mb      = MOUSE_RIGHTBUTTON;
+				sys_event.key_mod = ModifierKeys();
+				sys_event.mx      = mx;
+				sys_event.my      = my;
+				previous_multifinger_touch = 3;
+			}
+			else if(  framebuffer  &&  previous_multifinger_touch == 0  &&  FirstFingerId == event.tfinger.fingerID  ) {
+				// one finger drags, which the game reads as the left button
+				if(  dLastDist == 0.0  ) {
+					// no press was sent yet, so this motion carries it
+					dLastDist = 1e-99;
+					sys_event.type = SIM_MOUSE_BUTTONS;
+					sys_event.code = SIM_MOUSE_LEFTBUTTON;
+					previous_multifinger_touch = 0;
+				}
+				else {
+					sys_event.type = SIM_MOUSE_MOVE;
+					sys_event.code = SIM_MOUSE_MOVED;
+				}
+				sys_event.mx      = (sint32)(event.tfinger.x * screen_size.w);
+				sys_event.my      = (sint32)(event.tfinger.y * screen_size.h);
+				sys_event.mb      = MOUSE_LEFTBUTTON;
+				sys_event.key_mod = ModifierKeys();
+			}
+			break;
+		}
+
+		/* SDL_EVENT_FINGER_CANCELED has no SDL2 counterpart: the system took the
+		 * gesture away - a system edge swipe, the app sent to the background -
+		 * and that finger will never be lifted. It ends the gesture the way an up
+		 * does, but must not leave a click behind, because the player completed
+		 * none. Ignoring it would strand in_finger_handling at true and freeze
+		 * the pointer for the rest of the session. */
+		case SDL_EVENT_FINGER_UP:
+		case SDL_EVENT_FINGER_CANCELED: {
+			const bool cancelled = (event.type == SDL_EVENT_FINGER_CANCELED);
+			finger_lifted( event.tfinger.fingerID, event.tfinger.x, event.tfinger.y );
+
+			if(  framebuffer  &&  in_finger_handling  ) {
+				/* The gesture ends when the finger that owns it goes, or when the
+				 * last finger does. simsys_s2 asks SDL for the live count here; the
+				 * table above already knows it, and asking SDL3 would mean
+				 * SDL_GetTouchFingers, which allocates an array to be freed. */
+				if(  FirstFingerId == event.tfinger.fingerID  ||  fingers.count == 0  ) {
+					const scr_size screen_size = gfx->get_screen_size();
+
+					if(  !previous_multifinger_touch  &&  !cancelled  ) {
+						if(  dLastDist == 0.0  ) {
+							// a tap: the finger never moved, so press and release now
+							dLastDist = 1e-99;
+							sys_event.type    = SIM_MOUSE_BUTTONS;
+							sys_event.code    = SIM_MOUSE_LEFTBUTTON;
+							sys_event.mb      = MOUSE_LEFTBUTTON;
+							sys_event.key_mod = ModifierKeys();
+							last_mx = sys_event.mx = (sint32)(event.tfinger.x * screen_size.w);
+							last_my = sys_event.my = (sint32)(event.tfinger.y * screen_size.h);
+
+							// not moved yet, so set the click origin or the click lands
+							// wherever the pointer happened to be left
+							set_click_xy( sys_event.mx, sys_event.my );
+
+							has_queued_finger_release = true;
+						}
+						else {
+							// end of a drag
+							sys_event.type    = SIM_MOUSE_BUTTONS;
+							sys_event.code    = SIM_MOUSE_LEFTUP;
+							sys_event.mb      = 0;
+							sys_event.mx      = (sint32)((event.tfinger.x + event.tfinger.dx) * screen_size.w);
+							sys_event.my      = (sint32)((event.tfinger.y + event.tfinger.dy) * screen_size.h);
+							sys_event.key_mod = ModifierKeys();
+						}
+					}
+					previous_multifinger_touch = 0;
+					in_finger_handling = false;
+					FirstFingerId = 0;
+				}
+			}
+			break;
+		}
 
 		case SDL_EVENT_KEY_DOWN: {
 			/* While a composition is under way the keys belong to the IME, so
