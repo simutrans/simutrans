@@ -50,7 +50,22 @@
 #	endif
 #	ifdef __ANDROID__
 #       include "../utils/searchfolder.h"
-#		include <SDL.h>
+		/* The Android paths below are the one place outside the backend files where
+		 * common code calls SDL directly, so this file has to know which SDL is
+		 * being built against. SDL3 moved its headers under an SDL3/ directory and
+		 * renamed these three functions; the arguments, the return values and the
+		 * SDL_ANDROID_EXTERNAL_STORAGE_* bits are unchanged, so mapping the names
+		 * back leaves the code below exactly as it was for sdl2. The include path
+		 * only carries SDL3 when the sdl3 backend was selected, which makes the
+		 * question answerable here without a new build flag. */
+#		if defined(__has_include) && __has_include(<SDL3/SDL.h>)
+#			include <SDL3/SDL.h>
+#			define SDL_AndroidGetInternalStoragePath  SDL_GetAndroidInternalStoragePath
+#			define SDL_AndroidGetExternalStorageState SDL_GetAndroidExternalStorageState
+#			define SDL_AndroidGetExternalStoragePath  SDL_GetAndroidExternalStoragePath
+#		else
+#			include <SDL.h>
+#		endif
 #		include <android/font.h>
 #		include <android/font_matcher.h>
 #	endif

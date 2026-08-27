@@ -230,7 +230,11 @@ elseif (SIMUTRANS_BACKEND STREQUAL "sdl3")
 	# Asking for a backend whose library is missing has to say so. Without this
 	# the first thing that fails is "target PkgConfig::SDL3 not found", which
 	# does not tell anyone what to install.
-	if (NOT SDL3_FOUND)
+	#
+	# Android is exempt for the same reason sdl2 is: the whole find_package /
+	# pkg-config block is skipped there, so SDL3_FOUND is never set. SDL comes
+	# from the Android project's own SDL subdirectory instead.
+	if (NOT SDL3_FOUND AND NOT ANDROID)
 		message(FATAL_ERROR "SIMUTRANS_BACKEND=sdl3 was requested, but SDL3 was not found. "
 			"Install the SDL3 development package (libsdl3-dev, brew install sdl3, "
 			"or the sdl3 vcpkg port) and configure again.")
@@ -251,20 +255,27 @@ elseif (SIMUTRANS_BACKEND STREQUAL "sdl3")
 		target_link_libraries(simutrans PRIVATE ${SDL3_STATIC_LIBRARIES})
 	elseif (APPLE)
 		target_link_libraries(simutrans PRIVATE ${SDL3_LIBRARIES})
-	elseif (MSVC)
+	elseif (MSVC OR ANDROID)
+		# SDL3::SDL3 is the alias SDL3's own CMakeLists defines. On Android SDL
+		# comes from the Android project's SDL3 subdirectory, where a bare SDL3
+		# target does not exist - only SDL3-shared and this alias. There is no
+		# SDL3main to go with it either: SDL3 carries its own entry point.
 		target_link_libraries(simutrans PRIVATE SDL3::SDL3)
 	else ()
 		target_link_libraries(simutrans PRIVATE PkgConfig::SDL3)
 	endif ()
 	target_compile_definitions(simutrans PRIVATE COLOUR_DEPTH=16)
 
-	# Freetype is mandatory for graphical builds, exactly as for sdl2 and gdi.
+	# Freetype is mandatory for graphical builds, exactly as for sdl2 and gdi -
+	# including the ANDROID arm, where freetype is an imported target rather than
+	# something pkg-config knows about. The block below the backend selection
+	# has it for sdl2 and gdi; this copy needs the same.
 	target_include_directories(simutrans PRIVATE ${Freetype_INCLUDE_DIRS})
 	if (MINGW)
 		target_link_libraries(simutrans PRIVATE ${Freetype_STATIC_LIBRARIES})
 	elseif (APPLE)
 		target_link_libraries(simutrans PRIVATE ${Freetype_LIBRARIES})
-	elseif (MSVC)
+	elseif (MSVC OR ANDROID)
 		target_link_libraries(simutrans PRIVATE Freetype::Freetype)
 	else ()
 		target_link_libraries(simutrans PRIVATE PkgConfig::Freetype)

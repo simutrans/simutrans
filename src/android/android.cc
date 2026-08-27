@@ -48,12 +48,23 @@ JNIEXPORT jstring JNICALL Java_com_simutrans_Simutrans_getVersion(JNIEnv* env, j
 }
 
 
+/* Both SDL backends can be built for Android, and they disagree on two things
+ * here: the header lives under an SDL3/ directory, and SDL3 renamed the getter
+ * to SDL_GetAndroidJNIEnv. The include path only carries SDL3 when the sdl3
+ * backend was selected, so asking whether the header is there is the same
+ * question as asking which backend this is, without a new build flag. */
+#if defined(__has_include) && __has_include(<SDL3/SDL_system.h>)
+#include <SDL3/SDL_system.h>
+#define SIMUTRANS_ANDROID_JNI_ENV SDL_GetAndroidJNIEnv
+#else
 #include <SDL_system.h>
+#define SIMUTRANS_ANDROID_JNI_ENV SDL_AndroidGetJNIEnv
+#endif
 
 const char *download_file(const char *url, const char *filename)
 {
 	const char * error_msg = NULL;
-	JNIEnv *env = (JNIEnv *)SDL_AndroidGetJNIEnv();
+	JNIEnv *env = (JNIEnv *)SIMUTRANS_ANDROID_JNI_ENV();
 
 	jstring jurl = env->NewStringUTF(url);
 	jstring jfilename = env->NewStringUTF(filename);

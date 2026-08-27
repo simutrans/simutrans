@@ -254,14 +254,18 @@ static void save_settings_silently()
 }
 
 
-/* SDL2->SDL3: an SDL_EventFilter now returns bool, and SDL3 documents that
- * SDL_EVENT_TERMINATING and SDL_EVENT_DID_ENTER_BACKGROUND must be handled
- * from a watch rather than from the poll loop, because the operating system
- * does not return control afterwards. A watch cannot drop events, which is
- * fine here: nothing else consumes these two.
+/* SDL2->SDL3: an SDL_EventFilter now returns bool, and the application lifecycle
+ * events must be handled from a watch rather than from the poll loop. That is not
+ * a style preference: SDL_SendAppEvent hands SDL_EVENT_TERMINATING, LOW_MEMORY and
+ * the four background/foreground events straight to the event watchers and never
+ * queues them, so SDL_PollEvent cannot return one. Under SDL2 the same events were
+ * pushed onto the queue like any other, which is why simsys_s2 can handle the
+ * foreground case in its event loop and this file cannot.
  *
- * On Windows, Linux and macOS these events do not occur. The handler exists so
- * that the contract of simsys_s2.cc is preserved rather than silently dropped. */
+ * A watch cannot drop events, which is fine here: nothing else consumes these.
+ *
+ * On Windows, Linux and macOS these events do not occur. The handlers exist so that
+ * the contract of simsys_s2.cc is preserved rather than silently dropped. */
 static bool SDLCALL app_lifecycle_watch(void * /*userdata*/, SDL_Event *event)
 {
 	switch(  event->type  ) {
@@ -269,6 +273,27 @@ static bool SDLCALL app_lifecycle_watch(void * /*userdata*/, SDL_Event *event)
 			intr_disable();
 			save_settings_silently();
 			dr_stop_midi();
+			break;
+
+		/* Coming back. The partner of the above: that one stops the interrupt,
+		 * and without this one nothing ever starts it again - the game would
+		 * return to the screen frozen. simsys_s2 handles this from its poll loop
+		 * instead, and copying that placement would have produced dead code:
+		 * SDL2 pushes application events onto the queue like any other, but
+		 * SDL_SendAppEvent in SDL3 hands the six lifecycle events to the event
+		 * watchers and deliberately never queues them, so SDL_PollEvent can
+		 * never return one.
+		 *
+		 * The watch runs on the thread that pumps events, which is this game's
+		 * main thread - Android_PumpEvents dispatches the resume - so the text
+		 * input call below is on the thread that owns it.
+		 *
+		 * dr_stop_textinput() first, as simsys_s2 does: the soft keyboard does
+		 * not survive the trip to the background, and a stale one would leave
+		 * the game accepting text nobody can see being typed. */
+		case SDL_EVENT_DID_ENTER_FOREGROUND:
+			dr_stop_textinput();
+			intr_enable();
 			break;
 
 		case SDL_EVENT_TERMINATING:
@@ -318,6 +343,22 @@ bool dr_os_init(const int *parameter)
 		dbg->error( "dr_os_init(SDL3)", "Could not initialize SDL: %s", SDL_GetError() );
 		return false;
 	}
+
+	/* Which screen orientations the game may be rotated to, on the two
+	 * platforms that have a say in it - Android and iOS. Simutrans allows all
+	 * four, and this is simsys_s2's string unchanged: it is a statement about
+	 * the game, not about SDL, so it does not become a different set under a
+	 * different backend.
+	 *
+	 * Placed here, after SDL_Init and before the window exists, because that
+	 * is where simsys_s2 sets it and because SDL3 reads it at exactly the same
+	 * moment SDL2 did: Android_CreateWindow passes SDL_GetHint(
+	 * SDL_HINT_ORIENTATIONS ) straight to Android_JNI_SetOrientation, and
+	 * SDL_uikitwindow.m reads it when the window is made. The hint
+	 * documentation says "before SDL is initialized", which is stricter than
+	 * the code needs; following the documentation instead of the code would
+	 * have moved the call for no reason and diverged from simsys_s2. */
+	SDL_SetHint( SDL_HINT_ORIENTATIONS, "LandscapeLeft LandscapeRight Portrait PortraitUpsideDown" );
 
 	dbg->message( "dr_os_init(SDL3)", "SDL %d.%d.%d, video driver: %s",
 		SDL_MAJOR_VERSION, SDL_MINOR_VERSION, SDL_MICRO_VERSION, SDL_GetCurrentVideoDriver() );
@@ -930,6 +971,7 @@ static void internal_GetEvents()
 			sys_event.type = SIM_SYSTEM;
 			sys_event.code = SYSTEM_QUIT;
 			break;
+
 
 		/* SDL2->SDL3: SDL_WINDOWEVENT with a sub-event field became one event
 		 * type per window action. SDL_WINDOWEVENT_SIZE_CHANGED, which is what
@@ -1548,7 +1590,19 @@ void dr_sleep(uint32 msec)
 
 /* Unlike SDL2, SDL3 does not redefine main: SDL_main.h is deliberately not
  * included by SDL.h, and this file does not include it. So there is no macro to
- * undefine here, and the entry points below are the real ones. */
+ * undefine here, and the entry points below are the real ones.
+ *
+ * Android is the exception, and it is not optional there. The process is started
+ * from Java, so the entry point is outside this binary: SDLActivity looks up a
+ * symbol called SDL_main in the shared library and refuses to start without it -
+ * "Couldn't find function SDL_main", then the activity closes again. SDL2 got
+ * this by accident, because its SDL.h drags in SDL_main.h, which renames main;
+ * SDL3 asks to be told. Restricted to Android on purpose: on Windows SDL3's
+ * SDL_main.h would rename main as well and take over the WinMain arrangement
+ * below, which is working and is not this cut's business. */
+#ifdef __ANDROID__
+#include <SDL3/SDL_main.h>
+#endif
 
 #ifdef _MSC_VER
 // Needed for MS Visual C++ with /SUBSYSTEM:CONSOLE to work.
