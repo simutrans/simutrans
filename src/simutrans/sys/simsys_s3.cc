@@ -151,6 +151,13 @@ static bool has_soft_keyboard = false;
 static sint32 x_scale = SCALE_NEUTRAL_X;
 static sint32 y_scale = SCALE_NEUTRAL_Y;
 
+/* Whether the scale above was derived from the display rather than chosen. Only
+ * an automatic scale may be recomputed behind the user's back when the display
+ * changes; a percentage someone typed has to survive it. -autodpi does not go
+ * through env_t::dpi_scale, so the caller cannot be asked - what the scale was
+ * last set from is recorded here instead. */
+static bool scale_is_automatic = false;
+
 /* When using -autodpi, attempt to scale things on screen to this DPI value.
  * Android asks for twice the desktop figure, which is simsys_s2's value and
  * not a preference: a phone is held at arm's length, so the same nominal DPI
@@ -220,6 +227,8 @@ bool dr_set_screen_scale(sint16 scale_percent)
 	const sint32 old_x_scale = x_scale;
 	const sint32 old_y_scale = y_scale;
 
+	scale_is_automatic = (scale_percent == -1);
+
 	if(  scale_percent == -1  ) {
 		/* SDL2->SDL3: SDL_GetDisplayDPI() is gone. SDL3 reports a unitless
 		 * content scale instead, measured against CONTENT_SCALE_BASE_DPI. The
@@ -227,9 +236,26 @@ bool dr_set_screen_scale(sint16 scale_percent)
 		 * introducing a different scaling policy. */
 		const SDL_DisplayID    disp  = SDL_GetPrimaryDisplay();
 		const SDL_DisplayMode *mode  = SDL_GetCurrentDisplayMode( disp );
-		const float            scale = SDL_GetDisplayContentScale( disp );
 
-		if(  mode  &&  scale > 0.0f  &&  mode->h > 1.5 * MIN_SCALE_HEIGHT  ) {
+		/* Once there is a window, the scale that describes it is the one to use.
+		 * SDL_GetWindowDisplayScale combines the window's pixel density with its
+		 * display's content scale, which is what "how large should content be
+		 * drawn here" actually means; the display's content scale alone is not.
+		 * Under a Wayland compositor moved from scale 1 to scale 2 the display
+		 * still reports 1.00 while the window correctly reports 2.00, so reading
+		 * the display would recompute the very same number and change nothing.
+		 * Before the window exists - which is where -autodpi runs - there is
+		 * nothing to ask but the primary display, exactly as before. */
+		const float            scale = window ? SDL_GetWindowDisplayScale( window )
+		                                      : SDL_GetDisplayContentScale( disp );
+
+		/* SDL_DisplayMode measures w and h in window coordinates and carries the
+		 * factor to pixels separately, so the tests below convert first: the unit
+		 * SCREEN_TO_TEX works in is the pixel. A 2560x1440 panel presented as
+		 * 1280x720 at scale 2 is not a display too short to scale. */
+		const int mode_pixel_h = mode ? (int)(mode->h * mode->pixel_density) : 0;
+
+		if(  mode  &&  scale > 0.0f  &&  mode_pixel_h > 1.5 * MIN_SCALE_HEIGHT  ) {
 			/* The display's dpi is the content scale times the base it is
 			 * measured against, and simsys_s2's dpi/TARGET_DPI then becomes
 			 * this. Both factors matter: dropping the division is invisible on a
@@ -246,9 +272,10 @@ bool dr_set_screen_scale(sint16 scale_percent)
 		 * across, so simsys_s2 caps the auto scale there. Without this a modern
 		 * phone asks the software renderer for its full panel width. */
 		if(  mode  ) {
-			const sint32 current_x = SCREEN_TO_TEX_X( mode->w );
+			const int    mode_pixel_w = (int)(mode->w * mode->pixel_density);
+			const sint32 current_x    = SCREEN_TO_TEX_X( mode_pixel_w );
 			if(  current_x > MAX_AUTOSCALE_WIDTH  ) {
-				const sint32 new_x_scale = (sint32)(((sint64)mode->w * SCALE_NEUTRAL_X + 1) / MAX_AUTOSCALE_WIDTH);
+				const sint32 new_x_scale = (sint32)(((sint64)mode_pixel_w * SCALE_NEUTRAL_X + 1) / MAX_AUTOSCALE_WIDTH);
 				y_scale = (y_scale * new_x_scale) / x_scale;
 				x_scale = new_x_scale;
 				DBG_MESSAGE("dr_set_screen_scale(SDL3)", "capped to %d wide -> x=%i, y=%i", MAX_AUTOSCALE_WIDTH, x_scale, y_scale);
@@ -258,7 +285,7 @@ bool dr_set_screen_scale(sint16 scale_percent)
 
 		// ensure minimum height
 		if(  mode  ) {
-			const sint32 current_y = SCREEN_TO_TEX_Y( mode->h );
+			const sint32 current_y = SCREEN_TO_TEX_Y( mode_pixel_h );
 			if(  current_y < MIN_SCALE_HEIGHT  ) {
 				DBG_MESSAGE("dr_set_screen_scale(SDL3)", "virtual height=%d < %d", current_y, MIN_SCALE_HEIGHT);
 				x_scale = (x_scale * current_y) / MIN_SCALE_HEIGHT;
@@ -1661,11 +1688,25 @@ static void internal_GetEvents()
 			sys_event.code = 0;
 			break;
 
+		/* The window is now being shown at a different size per unit of content -
+		 * a display setting changed, or it was dragged onto a monitor that is
+		 * scaled differently. An automatic scale is derived from exactly that
+		 * number, so it is now stale and the whole UI is drawn at the wrong
+		 * physical size until something recomputes it. dr_set_screen_scale is
+		 * that something: it already knows the arithmetic and already forces the
+		 * resize that applies a new scale.
+		 *
+		 * A scale the user chose is left alone. The point of typing 150% is that
+		 * it stays 150%. */
 		case SDL_EVENT_WINDOW_DISPLAY_SCALE_CHANGED:
 			DBG_MESSAGE( "internal_GetEvents(SDL3)",
-				"window %u display scale now %.2f",
+				"window %u display scale now %.2f%s",
 				(unsigned)event.window.windowID,
-				window ? SDL_GetWindowDisplayScale( window ) : 0.0f );
+				window ? SDL_GetWindowDisplayScale( window ) : 0.0f,
+				scale_is_automatic ? "" : " (scale is user set, kept)" );
+			if(  scale_is_automatic  &&  window  ) {
+				dr_set_screen_scale( -1 );
+			}
 			sys_event.type = SIM_IGNORE_EVENT;
 			sys_event.code = 0;
 			break;
