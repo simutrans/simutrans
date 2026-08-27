@@ -969,6 +969,26 @@ static uint16 conv_mouse_buttons(SDL_MouseButtonFlags state)
 }
 
 
+/* The display events all carry the same payload, so they share one branch
+ * below and this turns the type back into the name SDL gives it. Without it the
+ * log line reads 0x151, which is exactly the part a reader would have to go and
+ * look up. */
+static const char *display_event_name(Uint32 type)
+{
+	switch(  type  ) {
+		case SDL_EVENT_DISPLAY_ORIENTATION:           return "ORIENTATION";
+		case SDL_EVENT_DISPLAY_ADDED:                 return "ADDED";
+		case SDL_EVENT_DISPLAY_REMOVED:               return "REMOVED";
+		case SDL_EVENT_DISPLAY_MOVED:                 return "MOVED";
+		case SDL_EVENT_DISPLAY_DESKTOP_MODE_CHANGED:  return "DESKTOP_MODE_CHANGED";
+		case SDL_EVENT_DISPLAY_CURRENT_MODE_CHANGED:  return "CURRENT_MODE_CHANGED";
+		case SDL_EVENT_DISPLAY_CONTENT_SCALE_CHANGED: return "CONTENT_SCALE_CHANGED";
+		case SDL_EVENT_DISPLAY_USABLE_BOUNDS_CHANGED: return "USABLE_BOUNDS_CHANGED";
+		default:                                      return "UNKNOWN";
+	}
+}
+
+
 static void internal_GetEvents()
 {
 	static char textinput[256];
@@ -1529,6 +1549,77 @@ static void internal_GetEvents()
 			composition_is_underway = (textinput[0] != 0);
 			break;
 		}
+
+		/* Display lifecycle. None of these is a Simutrans event and none of
+		 * them changes anything here: they are reported and then ignored,
+		 * which is what the default branch below already did to them. The
+		 * difference is that they now leave a trace, because the first thing a
+		 * "it broke when I unplugged the second monitor" report needs is proof
+		 * that the event reached the game at all, and simu.log is what arrives
+		 * attached to such a report.
+		 *
+		 * The whole SDL_EVENT_DISPLAY_FIRST..LAST family is listed rather than
+		 * only the four obvious ones, so a display event that a later SDL3
+		 * starts sending cannot quietly rejoin the default branch.
+		 *
+		 * The three queries are plain reads of state SDL already holds. On
+		 * REMOVED the display is gone by the time this runs, so they are
+		 * expected to fail there; the id is what identifies it in that case and
+		 * the rest is reported as unavailable rather than as zero. */
+		case SDL_EVENT_DISPLAY_ORIENTATION:
+		case SDL_EVENT_DISPLAY_ADDED:
+		case SDL_EVENT_DISPLAY_REMOVED:
+		case SDL_EVENT_DISPLAY_MOVED:
+		case SDL_EVENT_DISPLAY_DESKTOP_MODE_CHANGED:
+		case SDL_EVENT_DISPLAY_CURRENT_MODE_CHANGED:
+		case SDL_EVENT_DISPLAY_CONTENT_SCALE_CHANGED:
+		case SDL_EVENT_DISPLAY_USABLE_BOUNDS_CHANGED: {
+			const SDL_DisplayID id     = event.display.displayID;
+			const char *const   name   = SDL_GetDisplayName( id );
+			const float         scale  = SDL_GetDisplayContentScale( id );
+			SDL_Rect            bounds = { 0, 0, 0, 0 };
+
+			if(  SDL_GetDisplayBounds( id, &bounds )  ) {
+				DBG_MESSAGE( "internal_GetEvents(SDL3)",
+					"display %s: id=%u name=\"%s\" bounds=%dx%d+%d+%d scale=%.2f data1=%d data2=%d",
+					display_event_name( event.type ), (unsigned)id, name ? name : "?",
+					bounds.w, bounds.h, bounds.x, bounds.y, scale,
+					(int)event.display.data1, (int)event.display.data2 );
+			}
+			else {
+				DBG_MESSAGE( "internal_GetEvents(SDL3)",
+					"display %s: id=%u name=\"%s\" bounds=unavailable scale=%.2f data1=%d data2=%d",
+					display_event_name( event.type ), (unsigned)id, name ? name : "?",
+					scale, (int)event.display.data1, (int)event.display.data2 );
+			}
+
+			sys_event.type = SIM_IGNORE_EVENT;
+			sys_event.code = 0;
+			break;
+		}
+
+
+		/* The window side of the same story: which display the window is on,
+		 * and what that display says its scale is. Reported only - the texture
+		 * is still sized from SDL_EVENT_WINDOW_PIXEL_SIZE_CHANGED above, and
+		 * nothing here recomputes it. */
+		case SDL_EVENT_WINDOW_DISPLAY_CHANGED:
+			DBG_MESSAGE( "internal_GetEvents(SDL3)",
+				"window %u moved to display %d",
+				(unsigned)event.window.windowID, (int)event.window.data1 );
+			sys_event.type = SIM_IGNORE_EVENT;
+			sys_event.code = 0;
+			break;
+
+		case SDL_EVENT_WINDOW_DISPLAY_SCALE_CHANGED:
+			DBG_MESSAGE( "internal_GetEvents(SDL3)",
+				"window %u display scale now %.2f",
+				(unsigned)event.window.windowID,
+				window ? SDL_GetWindowDisplayScale( window ) : 0.0f );
+			sys_event.type = SIM_IGNORE_EVENT;
+			sys_event.code = 0;
+			break;
+
 
 		default:
 			sys_event.type = SIM_IGNORE_EVENT;
