@@ -151,11 +151,21 @@ static bool has_soft_keyboard = false;
 static sint32 x_scale = SCALE_NEUTRAL_X;
 static sint32 y_scale = SCALE_NEUTRAL_Y;
 
-// When using -autodpi, attempt to scale things on screen to this DPI value
+/* When using -autodpi, attempt to scale things on screen to this DPI value.
+ * Android asks for twice the desktop figure, which is simsys_s2's value and
+ * not a preference: a phone is held at arm's length, so the same nominal DPI
+ * produces something far too large. */
+#ifdef __ANDROID__
+#define TARGET_DPI (192)
+#else
 #define TARGET_DPI (96)
+#endif
 
 // make sure we have at least so much pixel in y-direction
 #define MIN_SCALE_HEIGHT (640)
+
+// Most Android devices are underpowered to handle larger screens
+#define MAX_AUTOSCALE_WIDTH (1280)
 
 // screen -> texture coords
 #define SCREEN_TO_TEX_X(x) (((x) * SCALE_NEUTRAL_X) / x_scale)
@@ -183,10 +193,29 @@ bool dr_set_screen_scale(sint16 scale_percent)
 		const float            scale = SDL_GetDisplayContentScale( disp );
 
 		if(  mode  &&  scale > 0.0f  &&  mode->h > 1.5 * MIN_SCALE_HEIGHT  ) {
-			x_scale = (sint32)(scale * SCALE_NEUTRAL_X + 0.5f);
-			y_scale = (sint32)(scale * SCALE_NEUTRAL_Y + 0.5f);
+			/* SDL3's content scale is defined as 1.0 at 96 dpi, so the display's
+			 * dpi is scale*96 and simsys_s2's dpi/TARGET_DPI becomes this. The
+			 * earlier form dropped the division, which is invisible on a desktop
+			 * where TARGET_DPI is 96 and wrong by exactly 2x on Android. */
+			x_scale = (sint32)((scale * 96.0f * SCALE_NEUTRAL_X) / TARGET_DPI + 0.5f);
+			y_scale = (sint32)((scale * 96.0f * SCALE_NEUTRAL_Y) / TARGET_DPI + 0.5f);
 			DBG_MESSAGE("dr_set_screen_scale(SDL3)", "content scale %.2f -> x=%i, y=%i", scale, x_scale, y_scale);
 		}
+
+#ifdef __ANDROID__
+		/* Most Android devices are underpowered to run more than 1280 pixels
+		 * across, so simsys_s2 caps the auto scale there. Without this a modern
+		 * phone asks the software renderer for its full panel width. */
+		if(  mode  ) {
+			const sint32 current_x = SCREEN_TO_TEX_X( mode->w );
+			if(  current_x > MAX_AUTOSCALE_WIDTH  ) {
+				const sint32 new_x_scale = (sint32)(((sint64)mode->w * SCALE_NEUTRAL_X + 1) / MAX_AUTOSCALE_WIDTH);
+				y_scale = (y_scale * new_x_scale) / x_scale;
+				x_scale = new_x_scale;
+				DBG_MESSAGE("dr_set_screen_scale(SDL3)", "capped to %d wide -> x=%i, y=%i", MAX_AUTOSCALE_WIDTH, x_scale, y_scale);
+			}
+		}
+#endif
 
 		// ensure minimum height
 		if(  mode  ) {
@@ -527,11 +556,17 @@ int dr_os_open(const scr_size window_size, sint16 fs)
 	// especially 64bit want a border of 8bytes
 	const int tex_pitch = max( (tex_w + 15) & 0x7FF0, 16 );
 
-	/* SDL2->SDL3: SDL_CreateWindow lost its position arguments, the flags are
-	 * 64 bit, and SDL_WINDOW_ALLOW_HIGHDPI is gone because high-DPI handling is
-	 * the default. SDL_WINDOW_FULLSCREEN without an explicit fullscreen mode is
-	 * the borderless desktop fullscreen that Simutrans expects. */
-	SDL_WindowFlags flags = SDL_WINDOW_RESIZABLE;
+	/* SDL2->SDL3: SDL_CreateWindow lost its position arguments and the flags
+	 * are 64 bit. SDL_WINDOW_FULLSCREEN without an explicit fullscreen mode is
+	 * the borderless desktop fullscreen that Simutrans expects.
+	 *
+	 * SDL_WINDOW_ALLOW_HIGHDPI did not disappear in SDL3, it was renamed to
+	 * SDL_WINDOW_HIGH_PIXEL_DENSITY, and it is still opt-in. Without it the
+	 * window is measured in logical points rather than pixels, so on a phone at
+	 * density 2.625 Simutrans is handed 411x914 for a 1080x2400 panel, draws a
+	 * texture that size, and the system stretches it back up - everything ends
+	 * up 2.6 times too large and soft. simsys_s2 asks for the same thing. */
+	SDL_WindowFlags flags = SDL_WINDOW_RESIZABLE | SDL_WINDOW_HIGH_PIXEL_DENSITY;
 	if(  fullscreen  ) {
 		flags |= SDL_WINDOW_FULLSCREEN;
 	}
