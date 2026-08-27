@@ -403,7 +403,14 @@ bool dr_os_init(const int *parameter)
 	 * have moved the call for no reason and diverged from simsys_s2. */
 	SDL_SetHint( SDL_HINT_ORIENTATIONS, "LandscapeLeft LandscapeRight Portrait PortraitUpsideDown" );
 
-	dbg->message( "dr_os_init(SDL3)", "SDL %d.%d.%d, video driver: %s",
+	/* This backend ships as a beta while sdl2 stays the default, and the word
+	 * belongs where someone will actually read it: this line is the only place
+	 * either backend names itself, it is already in every simu.log, and a log is
+	 * what arrives attached to a bug report. Deliberately not in the title bar,
+	 * the banner or anywhere else in the interface - Simutrans has no precedent
+	 * for marking a build there, and a beta platform layer is not a different
+	 * game. */
+	dbg->message( "dr_os_init(SDL3)", "SDL %d.%d.%d (BETA backend), video driver: %s",
 		SDL_MAJOR_VERSION, SDL_MINOR_VERSION, SDL_MICRO_VERSION, SDL_GetCurrentVideoDriver() );
 
 	/* SDL2->SDL3: SDL_EventState() became SDL_SetEventEnabled(). SDL3 has no
