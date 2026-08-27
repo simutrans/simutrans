@@ -29,7 +29,8 @@
  *
  * Not implemented here, and deliberately so - see the SDL3 integration plan:
  *   - touch and gestures (SDL3 removed gesture recognition entirely)
- *   - IME composition (SDL_EVENT_TEXT_EDITING is received but not forwarded)
+ *   - IME candidate lists (SDL_EVENT_TEXT_EDITING_CANDIDATES has no SDL2
+ *     counterpart, and Simutrans has nothing to display one with)
  *
  * Audio is not here either, but it is not missing: sound is in
  * sound/sdl3_sound.cc, and music comes from the same per-platform routine the
@@ -57,6 +58,8 @@
 #include "../dataobj/environment.h"
 #include "../dataobj/loadsave.h"
 #include "../gui/simwin.h"
+#include "../gui/components/gui_component.h"
+#include "../gui/components/gui_textinput.h"
 #include "../music/music.h"
 #include "../utils/unicode.h"
 #include "../world/simworld.h"
@@ -293,6 +296,18 @@ static bool SDLCALL app_lifecycle_watch(void * /*userdata*/, SDL_Event *event)
 
 bool dr_os_init(const int *parameter)
 {
+	/* SDL2 always sent SDL_TEXTEDITING. SDL3 only sends SDL_EVENT_TEXT_EDITING
+	 * if the application declares that it draws the composition itself: the
+	 * default for SDL_HINT_IME_IMPLEMENTED_UI is "none", and then the OS draws
+	 * the preedit and no editing event ever arrives. Simutrans does draw it -
+	 * gui_textinput_t underlines the composition and highlights the target
+	 * clause - so without this line the whole IME path below is dead code.
+	 *
+	 * Deliberately NOT "candidates": Simutrans has nothing to draw a candidate
+	 * list with, so the OS has to keep drawing that one, which is also what it
+	 * does under SDL2. The hint must be set before SDL_Init. */
+	SDL_SetHint( SDL_HINT_IME_IMPLEMENTED_UI, "composition" );
+
 	// SDL2->SDL3: SDL_Init returns true on success, where SDL2 returned 0.
 	if(  !SDL_Init( SDL_INIT_VIDEO )  ) {
 		dbg->error( "dr_os_init(SDL3)", "Could not initialize SDL: %s", SDL_GetError() );
@@ -723,6 +738,18 @@ static void internal_GetEvents()
 {
 	static char textinput[256];
 
+	/* Both of these exist in simsys_s2 for the same reasons and carry the same
+	 * meaning here.
+	 *
+	 * composition_is_underway: while an IME is composing, key presses belong to
+	 * the IME and must not reach the game. Without it a Bopomofo or Pinyin
+	 * session drives Simutrans tools with every keystroke.
+	 *
+	 * ignore_previous_number: a numpad digit produces a key event AND a text
+	 * input event, so the digit would be entered twice. */
+	static bool composition_is_underway = false;
+	static bool ignore_previous_number  = false;
+
 	SDL_Event event;
 	// SDL2->SDL3: SDL_PollEvent returns bool instead of int. Zero still means
 	// "no event", so the test itself is unchanged in meaning.
@@ -821,6 +848,23 @@ static void internal_GetEvents()
 			break;
 
 		case SDL_EVENT_KEY_DOWN: {
+			/* While a composition is under way the keys belong to the IME, so
+			 * they are swallowed here - but only while the focused field really
+			 * holds a pending string, or cursor keys and return would stop
+			 * working after any composition has ever happened. Both conditions
+			 * are simsys_s2's, unchanged. */
+			if(  composition_is_underway  ) {
+				if(  gui_component_t *c = win_get_focus()  ) {
+					if(  gui_textinput_t *tinp = dynamic_cast<gui_textinput_t *>( c )  ) {
+						if(  tinp->get_composition()[0]  ) {
+							// pending string, handled by the IME
+							break;
+						}
+					}
+				}
+			}
+
+			bool np = false; // was it a numpad key?
 			unsigned long code;
 #ifdef _WIN32
 			// SDL does not set the numlock state correctly on startup. Revert
@@ -860,16 +904,16 @@ static void internal_GetEvents()
 				case SDLK_F13:        code = SIM_KEYCODE_F13;        break;
 				case SDLK_F14:        code = SIM_KEYCODE_F14;        break;
 				case SDLK_F15:        code = SIM_KEYCODE_F15;        break;
-				case SDLK_KP_0:       code = (numlock ? '0' : (unsigned long)SIM_KEYCODE_NUMPAD_BASE); break;
-				case SDLK_KP_1:       code = (numlock ? '1' : (unsigned long)SIM_KEYCODE_DOWNLEFT);    break;
-				case SDLK_KP_2:       code = (numlock ? '2' : (unsigned long)SIM_KEYCODE_DOWN);        break;
-				case SDLK_KP_3:       code = (numlock ? '3' : (unsigned long)SIM_KEYCODE_DOWNRIGHT);   break;
-				case SDLK_KP_4:       code = (numlock ? '4' : (unsigned long)SIM_KEYCODE_LEFT);        break;
-				case SDLK_KP_5:       code = (numlock ? '5' : (unsigned long)SIM_KEYCODE_CENTER);      break;
-				case SDLK_KP_6:       code = (numlock ? '6' : (unsigned long)SIM_KEYCODE_RIGHT);       break;
-				case SDLK_KP_7:       code = (numlock ? '7' : (unsigned long)SIM_KEYCODE_UPLEFT);      break;
-				case SDLK_KP_8:       code = (numlock ? '8' : (unsigned long)SIM_KEYCODE_UP);          break;
-				case SDLK_KP_9:       code = (numlock ? '9' : (unsigned long)SIM_KEYCODE_UPRIGHT);     break;
+				case SDLK_KP_0:       np = true; code = (numlock ? '0' : (unsigned long)SIM_KEYCODE_NUMPAD_BASE); break;
+				case SDLK_KP_1:       np = true; code = (numlock ? '1' : (unsigned long)SIM_KEYCODE_DOWNLEFT);    break;
+				case SDLK_KP_2:       np = true; code = (numlock ? '2' : (unsigned long)SIM_KEYCODE_DOWN);        break;
+				case SDLK_KP_3:       np = true; code = (numlock ? '3' : (unsigned long)SIM_KEYCODE_DOWNRIGHT);   break;
+				case SDLK_KP_4:       np = true; code = (numlock ? '4' : (unsigned long)SIM_KEYCODE_LEFT);        break;
+				case SDLK_KP_5:       np = true; code = (numlock ? '5' : (unsigned long)SIM_KEYCODE_CENTER);      break;
+				case SDLK_KP_6:       np = true; code = (numlock ? '6' : (unsigned long)SIM_KEYCODE_RIGHT);       break;
+				case SDLK_KP_7:       np = true; code = (numlock ? '7' : (unsigned long)SIM_KEYCODE_UPLEFT);      break;
+				case SDLK_KP_8:       np = true; code = (numlock ? '8' : (unsigned long)SIM_KEYCODE_UP);          break;
+				case SDLK_KP_9:       np = true; code = (numlock ? '9' : (unsigned long)SIM_KEYCODE_UPRIGHT);     break;
 				case SDLK_KP_ENTER:   code = SIM_KEYCODE_ENTER;      break;
 				case SDLK_LEFT:       code = SIM_KEYCODE_LEFT;       break;
 				case SDLK_PAGEDOWN:   code = '<';                    break;
@@ -892,6 +936,7 @@ static void internal_GetEvents()
 					break;
 			}
 
+			ignore_previous_number = (np  &&  key_numlock);
 			sys_event.type = SIM_KEYBOARD;
 			sys_event.code = code;
 			break;
@@ -920,6 +965,11 @@ static void internal_GetEvents()
 
 			if(  in[in_pos] == 0  ) {
 				// single character
+				if(  ignore_previous_number  ) {
+					// the key event already delivered this digit
+					ignore_previous_number = false;
+					break;
+				}
 				sys_event.type = SIM_KEYBOARD;
 				sys_event.code = (unsigned long)uc;
 			}
@@ -937,6 +987,72 @@ static void internal_GetEvents()
 			}
 
 			sys_event.key_mod = ModifierKeys();
+			// committed text ends any composition that led to it
+			composition_is_underway = false;
+			break;
+		}
+
+		case SDL_EVENT_TEXT_EDITING: {
+			/* The preedit string of an IME. It is not a Simutrans event: the
+			 * focused text field is told directly, exactly as simsys_s2 does,
+			 * and sys_event is deliberately left alone so this poll yields
+			 * EVENT_NONE - which is also what simsys_s2 produces here.
+			 *
+			 * SDL2->SDL3: event.edit.text was a fixed char[32] inside the event
+			 * and is now a const char* owned by SDL with no length limit, so the
+			 * copy has to be bounded. */
+			const char *const in = event.edit.text;
+
+			size_t len = 0;
+			if(  in  ) {
+				const size_t room = lengthof( textinput ) - 1;
+				len = strlen( in );
+				if(  len > room  ) {
+					/* Never cut a UTF-8 sequence in half: back up to the last
+					 * boundary at or before the limit. */
+					len = room;
+					while(  len > 0  &&  (((const unsigned char *)in)[len] & 0xC0) == 0x80  ) {
+						len--;
+					}
+				}
+				memcpy( textinput, in, len );
+			}
+			textinput[len] = 0;
+
+			/* SDL reports the highlighted part of the preedit in CHARACTERS,
+			 * gui_textinput_t wants BYTES. simsys_s2 walks the string to convert;
+			 * the walk is over our bounded copy rather than SDL's string, so a
+			 * truncated preedit can never produce an offset past its own end.
+			 *
+			 * SDL2->SDL3: start and length are documented as "-1 if not set",
+			 * which SDL2 never produced. Not set means no highlighted target,
+			 * which is what a zero length says. */
+			const int edit_start  = event.edit.start  < 0 ? 0 : event.edit.start;
+			const int edit_length = event.edit.length < 0 ? 0 : event.edit.length;
+
+			size_t start = 0;
+			int    i     = 0;
+			for(  ; i < edit_start  &&  textinput[start];  ++i  ) {
+				start = utf8_get_next_char( textinput, start );
+			}
+			size_t end = start;
+			for(  ; i < edit_start + edit_length  &&  textinput[end];  ++i  ) {
+				end = utf8_get_next_char( textinput, end );
+			}
+
+			if(  gui_component_t *c = win_get_focus()  ) {
+				if(  gui_textinput_t *tinp = dynamic_cast<gui_textinput_t *>( c )  ) {
+					tinp->set_composition_status( textinput, (int)start, (int)(end - start) );
+				}
+			}
+
+			/* An empty preedit means the composition is over, committed or
+			 * cancelled. simsys_s2 writes false for that case and then true
+			 * unconditionally two lines later, so its false never survives;
+			 * one assignment says the same thing without the dead store.
+			 * Observably identical either way, because the swallow above also
+			 * requires the field to still hold a pending string. */
+			composition_is_underway = (textinput[0] != 0);
 			break;
 		}
 
