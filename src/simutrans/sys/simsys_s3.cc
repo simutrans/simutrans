@@ -1185,20 +1185,39 @@ static void internal_GetEvents()
 			break;
 
 		case SDL_EVENT_MOUSE_WHEEL: {
-			/* SDL2->SDL3: the wheel delta is a float. Simutrans wants a
-			 * direction rather than an amount, so the sign is what is used and
-			 * a fractional wheel produces one step per event.
+			/* SDL2->SDL3: wheel.y changed meaning while keeping its name. In SDL2
+			 * it held whole wheel notches and the high resolution amount was a
+			 * separate preciseY; in SDL3 y IS the high resolution amount and the
+			 * notches moved to integer_y, which SDL accumulates from the same
+			 * residual SDL2 kept in order to produce its integer y. Reading y here
+			 * therefore turned every fraction of a notch into a whole step, and a
+			 * precision touchpad sends fractions: the Windows driver hands SDL
+			 * "wheel delta / WHEEL_DELTA", so a scroll a mouse delivers as one notch
+			 * arrives as four or five events and zoomed four or five times.
+			 * integer_y is what SDL2 used to deliver.
 			 *
-			 * An event with no vertical component is not a scroll and must not
-			 * become one: without this test it would read as WHEELDOWN. */
-			if(  event.wheel.y == 0.0f  ) {
+			 * integer_y exists from SDL 3.2.12. Older SDL3 has only y, so there the
+			 * sign of y stands in and that build keeps the behaviour it already had.
+			 *
+			 * One step per event whatever the notch count, because that is what
+			 * simsys_s2 does - it sends a single SIM_MOUSE_WHEELUP for a wheel.y of
+			 * 2 as well - and sys_event carries one code. */
+#if SDL_VERSION_ATLEAST(3, 2, 12)
+			const sint32 wheel_y = event.wheel.integer_y;
+#else
+			const sint32 wheel_y = (event.wheel.y > 0.0f) - (event.wheel.y < 0.0f);
+#endif
+			/* An event with no whole notch is not a scroll and must not become one:
+			 * without this test it would read as WHEELDOWN. A purely horizontal
+			 * wheel lands here too and stays ignored, exactly as under sdl2. */
+			if(  wheel_y == 0  ) {
 				sys_event.type = SIM_IGNORE_EVENT;
 				break;
 			}
 
 			// The system may report the wheel reversed, in which case SDL sets
 			// the direction to FLIPPED rather than changing the sign.
-			const bool is_up = (event.wheel.y > 0.0f) ^ (event.wheel.direction == SDL_MOUSEWHEEL_FLIPPED);
+			const bool is_up = (wheel_y > 0) ^ (event.wheel.direction == SDL_MOUSEWHEEL_FLIPPED);
 
 			sys_event.type    = SIM_MOUSE_BUTTONS;
 			sys_event.code    = is_up ? SIM_MOUSE_WHEELUP : SIM_MOUSE_WHEELDOWN;
