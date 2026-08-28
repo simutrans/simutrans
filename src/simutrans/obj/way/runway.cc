@@ -90,9 +90,9 @@ void runway_t::display_after(int xpos, int ypos, const sint8 clip_num) const
 {
 	weg_t::display_after(xpos, ypos+64, clip_num);
 #else
-void obj_t::display_after(int xpos, int ypos, bool) const
+void runway_t::display_after(int xpos, int ypos, bool is_global) const
 {
-	::display_after(int xpos, int ypos, const sint8 clip_num);
+	weg_t::display_after(xpos, ypos+64, is_global);
 #endif
 	if (show_reservations && !reservations.empty()) {
 		char str[20];
