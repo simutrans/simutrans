@@ -107,6 +107,11 @@ obj_desc_t *roadsign_reader_t::read_node(FILE *fp, obj_node_info_t &node)
 		dbg->fatal( "roadsign_reader_t::read_node()", "Cannot handle too new node version %i", version );
 	}
 
+	// the optional image lists (diagonal, front, drive-on-left) are additional
+	// nodes behind the cursor, found by their position; the child count says
+	// how many of them are there
+	desc->children = (uint8)node.nchildren;
+
 	if(  version<=3  &&  (  desc->is_choose_sign() ||  desc->is_private_way()  )  &&  desc->get_waytype() == road_wt  ) {
 		// do not shift these signs to the left for compatibility
 		desc->offset_left = 0;

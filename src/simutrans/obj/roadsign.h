@@ -39,6 +39,10 @@ protected:
 	uint8 automatic:1;
 	uint8 preview:1;
 
+	// diagonal image of each direction, ordered as the image list has them: north, south,
+	// west, east. base is where the row of this state and electrification starts
+	static void calc_diagonal_index(uint16 idx[4], ribi_t::ribi way_ribi, uint16 base);
+
 	/*
 	 * Many things go in these...
 	 *   Traffic lights -> intended usage
