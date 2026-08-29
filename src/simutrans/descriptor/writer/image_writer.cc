@@ -350,7 +350,17 @@ bool image_writer_t::load_image_from_file(const char* fname)
  */
 void image_writer_t::write_obj(FILE* outfp, obj_node_t& parent, std::string an_imagekey, uint32 index)
 {
-	image_t image;
+	// Only the values that go into the node are needed here, and the encoded
+	// pixels are held in pixdata: image_t is the runtime image and carries
+	// neither data[] nor these fields when built at COLOUR_DEPTH 0.
+	struct {
+		scr_coord_val x = 0;
+		scr_coord_val y = 0;
+		scr_coord_val w = 0;
+		scr_coord_val h = 0;
+		size_t len = 0;
+		uint8 zoomable = 0;
+	} image;
 	dimension dim;
 	uint16 *pixdata = NULL;
 
