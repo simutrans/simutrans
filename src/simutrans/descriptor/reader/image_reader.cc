@@ -18,17 +18,19 @@
 #include "../../tpl/inthashtable_tpl.h"
 
 
-// if without graphics backend, do not copy any pixel
-#if COLOUR_DEPTH != 0
-#define skip_reading_pixels_if_no_graphics
-#else
-#define skip_reading_pixels_if_no_graphics goto adjust_image
-#endif
-
 obj_desc_t *image_reader_t::read_node(FILE *fp, obj_node_info_t &node)
 {
 	node_body_t p(fp, node.size, get_type_name());
 	if (!p) return NULL;
+
+	if(  node.nchildren != 0  ) {
+		// an image node is a leaf: makeobj only ever counts children on the parent.
+		// A file that claims otherwise would send pakset_manager_t::read_nodes() into
+		// "delete data" on an obj_desc_t*, which does not dispatch to
+		// image_t::operator delete, so a pool node would reach ::operator delete.
+		dbg->warning( "image_reader_t::read_node()", "Ignoring image node that declares %i children", node.nchildren );
+		return NULL;
+	}
 
 	p.seek(6);
 	// always zero in old version, since length was always less than 65535
@@ -36,26 +38,26 @@ obj_desc_t *image_reader_t::read_node(FILE *fp, obj_node_info_t &node)
 	uint8 version = decode_uint8(p);
 	p.seek(0);
 
-#if COLOUR_DEPTH != 0
-	image_t *desc = new image_t();
-#else
-	// reserve space for one single pixel and initialize data
-	image_t *desc = image_t::create_single_pixel();
-#endif
+	image_t* desc = new image_t();
 
+	desc->imageid = IMG_EMPTY;
+#if COLOUR_DEPTH == 0
+	// the pixels are never read here, but the node still has to say whether it
+	// carries an image at all: that is what decides registration below
+	uint32 img_len = 0;
+#endif
 	if(version==0) {
 		desc->x = decode_uint8(p);
 		desc->w = decode_uint8(p);
 		desc->y = decode_uint8(p);
 		desc->h = decode_uint8(p);
+#if COLOUR_DEPTH == 0
+		img_len = decode_uint32(p); // len
+		goto adjust_image;
+#else
 		desc->alloc(decode_uint32(p)); // len
-		desc->imageid = IMG_EMPTY;
 		p += 2; // dummys
 		desc->zoomable = decode_uint8(p) != 0;
-
-		skip_reading_pixels_if_no_graphics;
-		//PAKSET_INFO("image_t::read_node()","x,y=%d,%d  w,h=%d,%d, len=%i",desc->x,desc->y,desc->w,desc->h, desc->len);
-
 		uint16* dest = desc->data;
 		p.seek(12);
 
@@ -69,19 +71,23 @@ obj_desc_t *image_reader_t::read_node(FILE *fp, obj_node_info_t &node)
 				*dest++ = data;
 			}
 		}
+#endif
 	}
 	else if(version<=2) {
 		desc->x = decode_sint16(p);
 		desc->y = decode_sint16(p);
 		desc->w = decode_uint8(p);
 		desc->h = decode_uint8(p);
+#if COLOUR_DEPTH == 0
+		p++; // skip version information
+		img_len = decode_uint16(p); // len
+		goto adjust_image;
+#else
 		p++; // skip version information
 		desc->alloc(decode_uint16(p)); // len
 		desc->zoomable = decode_uint8(p) != 0;
-		desc->imageid = IMG_EMPTY;
-
-		skip_reading_pixels_if_no_graphics;
 		p.read_uint16_block(desc->data, desc->len);
+#endif
 	}
 	else if(version==3) {
 		desc->x = decode_sint16(p);
@@ -89,12 +95,14 @@ obj_desc_t *image_reader_t::read_node(FILE *fp, obj_node_info_t &node)
 		desc->w = decode_sint16(p);
 		p++; // skip version information
 		desc->h = decode_sint16(p);
+#if COLOUR_DEPTH == 0
+		img_len = (node.size-10)/2; // len
+		goto adjust_image;
+#else
 		desc->alloc((node.size-10)/2); // len
 		desc->zoomable = decode_uint8(p) != 0;
-		desc->imageid = IMG_EMPTY;
-
-		skip_reading_pixels_if_no_graphics;
 		p.read_uint16_block(desc->data, desc->len);
+#endif
 	}
 	else {
 		dbg->fatal( "image_reader_t::read_node()", "Cannot handle too new node version %i", version );
@@ -104,17 +112,17 @@ obj_desc_t *image_reader_t::read_node(FILE *fp, obj_node_info_t &node)
 adjust_image:
 	// drop the pixels but keep x/y/w/h: descriptors derive data from them
 	// (building_desc_t::calc_height_clearance), and that must not depend on the backend
-	if(  desc->len > 0  ) {
-		// alloc() releases the buffer read above, setting len alone would keep it
-		desc->alloc(4);
-		memset(desc->data, 0, desc->len*sizeof(PIXVAL));
+	if(  img_len != 0  ) {
+		// an image that has data must stay observable as "there is an image here":
+		// way_builder_t::register_desc(), weg_search() and has_upper_storey() all test
+		// the id, and simgraph0 answers with a valid one for exactly this purpose
+		desc->imageid = gfx->register_image(desc);
 	}
 #else
 	if (!image_has_valid_data(desc)) {
 		delete desc;
 		return NULL;
 	}
-#endif
 
 	// check for left corner
 	if(COLOUR_DEPTH != 0  &&  version<2  &&  desc->h>0) {
@@ -202,6 +210,7 @@ adjust_image:
 			desc = same;
 		}
 	}
+#endif
 
 	return desc;
 }
@@ -211,6 +220,7 @@ adjust_image:
 
 bool image_reader_t::image_has_valid_data(image_t *image_in) const
 {
+#if COLOUR_DEPTH != 0
 	PIXVAL *src = image_in->data;
 	PIXVAL *end = image_in->data + image_in->len;
 
@@ -234,4 +244,7 @@ bool image_reader_t::image_has_valid_data(image_t *image_in) const
 	}
 
 	return src == end;
+#else
+	return true;
+#endif
 }

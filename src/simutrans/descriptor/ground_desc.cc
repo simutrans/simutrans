@@ -239,6 +239,7 @@ static image_t* create_texture_from_tile(const image_t* image, const image_t* re
 		image_t *image_dest = image_t::create_single_pixel();
 		return image_dest;
 	}
+#if COLOUR_DEPTH != 0
 	// assumes ref is texture image with no clear runs, full rows.
 	image_t *image_dest = image_t::copy_image(*ref);
 	PIXVAL *const sp2 = image_dest->get_data();
@@ -299,6 +300,7 @@ static image_t* create_texture_from_tile(const image_t* image, const image_t* re
 	}
 	// image_dest not registered
 	return image_dest;
+#endif
 #undef copypixel
 }
 
@@ -449,11 +451,12 @@ void ground_desc_t::init_ground_textures(karte_t *world)
 	if(image_offset!=IMG_EMPTY) {
 		gfx->free_all_images_above(image_offset);
 	}
-#if COLOUR_DEPTH != 0
+#if COLOUR_DEPTH == 0
+	return;
+#else
 	while (!ground_image_list.empty()) {
 		delete ground_image_list.remove_first();
 	}
-#endif
 
 	// not the wrong tile size?
 	assert(boden_texture->get_image_ptr(0)->get_pic()->w == ground_desc_t::outside->get_image_ptr(0)->get_pic()->w);
@@ -921,6 +924,7 @@ void ground_desc_t::init_ground_textures(karte_t *world)
 #endif
 	//dbg->message("ground_desc_t::calc_water_level()", "Last image nr %u", final_tile->get_pic()->imageid);
 	DBG_DEBUG("ground_desc_t::init_ground_textures()", "Init ground textures successful");
+#endif
 }
 
 
