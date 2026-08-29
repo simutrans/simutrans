@@ -97,9 +97,6 @@ image_t* image_t::create_single_pixel()
 }
 
 
-#if COLOUR_DEPTH != 0
-
-
 /* rotate_image_data - produces a (rotated) image
  * only rotates by 90 degrees or multiples thereof, and assumes a square image
  * Otherwise it will only succeed for angle=0;
@@ -158,6 +155,9 @@ image_t *image_t::copy_rotate(const sint16 angle) const
 
 image_t *image_t::copy_flipvertical() const
 {
+#if COLOUR_DEPTH == 0
+	return create_single_pixel();
+#endif
 	image_t* target_image = copy_image(*this);
 
 	// the format is
@@ -183,6 +183,9 @@ image_t *image_t::copy_flipvertical() const
 
 image_t *image_t::copy_fliphorizontal() const
 {
+#if COLOUR_DEPTH == 0
+	return create_single_pixel();
+#endif
 	image_t* target_image  = copy_image(*this);
 
 	// the format is
@@ -204,5 +207,3 @@ image_t *image_t::copy_fliphorizontal() const
 	}
 	return target_image;
 }
-
-#endif
