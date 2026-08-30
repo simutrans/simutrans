@@ -33,6 +33,9 @@
 
 #ifdef MULTI_THREAD
 #include "../utils/simthread.h"
+#if defined _MSC_VER
+#include <intrin.h>
+#endif
 
 // currently just redrawing/rezooming
 static pthread_mutex_t rezoom_img_mutex[MAX_THREADS];
@@ -972,6 +975,31 @@ inline void get_xrange_and_step_y(int &xmin, int &xmax  CLIP_NUM_DEF)
 // ------------------------------ dirty tile stuff --------------------------------
 
 
+/**
+ * Set bits in one word of the dirty tile bitmap.
+ *
+ * A word covers 32 tiles of one row, i.e. 512 pixels, but a display thread only
+ * owns a vertical band of the screen, so several threads mark tiles in the same
+ * word and the read-modify-write must be indivisible. Nothing beyond that is
+ * needed: the barrier that ends the threaded display already orders these
+ * against the reader in simgraph16_flush_framebuffer().
+ */
+static inline void mark_dirty_word(uint32 *word, uint32 bits)
+{
+#ifdef MULTI_THREAD
+#	if defined _MSC_VER
+	// there is no unsigned counterpart; long is 32 bit on every Windows target
+	static_assert( sizeof(long) == sizeof(uint32), "_InterlockedOr would not cover the whole word" );
+	_InterlockedOr( (volatile long *)word, (long)bits );
+#	else
+	__atomic_fetch_or( word, bits, __ATOMIC_RELAXED );
+#	endif
+#else
+	*word |= bits;
+#endif
+}
+
+
 /*
  * Simutrans keeps a list of dirty areas, i.e. places that received new graphics
  * and must be copied to the screen after an update
@@ -1012,7 +1040,7 @@ static void mark_rect_dirty_nc(scr_coord_val x1, scr_coord_val y1, scr_coord_val
 		int bit = y1 * tile_buffer_per_line + x1;
 		const int end = bit + x2 - x1;
 		do {
-			tile_dirty[bit >> 5] |= 1 << (bit & 31);
+			mark_dirty_word( &tile_dirty[bit >> 5], 1 << (bit & 31) );
 		} while(  ++bit <= end  );
 	}
 }
