@@ -33,7 +33,7 @@
 #define RECONNECTING (1)
 #define REROUTING (2)
 
-#define MAX_HALT_COST   8 // Total number of cost items
+#define MAX_HALT_COST   9 // Total number of cost items
 #define MAX_MONTHS     12 // Max history
 #define MAX_HALT_NON_MONEY_TYPES 7 // number of non money types in HALT's financial statistic
 #define HALT_ARRIVED         0 // the amount of ware that arrived here
@@ -44,6 +44,7 @@
 #define HALT_NOROUTE         5 // number of no-route passengers
 #define HALT_CONVOIS_ARRIVED 6 // number of convois arrived this month
 #define HALT_WALKED          7 // could walk to destination
+#define HALT_ROUTE_TOO_LONG  8 // passengers rejected because every route is too long
 
 class cbuffer_t;
 class grund_t;
@@ -240,6 +241,22 @@ public:
 		static bool compare(const connection_t &a, const connection_t &b) { return a.halt.get_id() < b.halt.get_id(); }
 	};
 
+	/**
+	 * A locally admissible physical variant of a connection.  Several services
+	 * may connect the same pair of halts with different routing weights and
+	 * scheduled distances.
+	 */
+	struct route_connection_t
+	{
+		halthandle_t halt;
+		uint32 distance;
+		uint16 weight:15;
+		bool is_transfer:1;
+
+		route_connection_t() : distance(0), weight(0), is_transfer(false) { }
+		route_connection_t(halthandle_t const _halt, uint16 const _weight, uint32 const _distance) : halt(_halt), distance(_distance), weight(_weight), is_transfer(false) { }
+	};
+
 	bool is_transfer(const uint8 catg) const { return all_links[catg].is_transfer; }
 
 private:
@@ -249,8 +266,14 @@ private:
 	 * Stores information about link to cargo network of a certain category
 	 */
 	struct link_t {
-		/// List of all directly reachable halts with their respective connection weights
+		/// Public, de-duplicated list of locally admissible connections.
 		vector_tpl<connection_t> connections;
+
+		/// Non-dominated locally admissible (weight, distance) variants used by routing.
+		vector_tpl<route_connection_t> route_connections;
+
+		/// Structural connections for which every known service is locally too long.
+		vector_tpl<connection_t> too_long_connections;
 
 		/**
 		 * A transfer/interchange is a halt whereby ware can change line or lineless convoy.
@@ -278,6 +301,8 @@ private:
 		void clear()
 		{
 			connections.clear();
+			route_connections.clear();
+			too_long_connections.clear();
 			is_transfer = false;
 			catg_connected_component = UNDECIDED_CONNECTED_COMPONENT;
 		}
@@ -509,13 +534,19 @@ private:
 	 */
 	static halthandle_t last_search_origin;
 	static uint8        last_search_ware_catg_idx;
+
+	static int search_route_with_detour(const halthandle_t* start_halts, uint16 start_halt_count, bool no_routing_over_overcrowding, ware_t& ware, ware_t* return_ware, const vector_tpl<halthandle_t>& end_halts);
 public:
 	enum routing_result_flags {
 		NO_ROUTE          = 0,
 		ROUTE_OK          = 1,
 		ROUTE_WALK        = 2,
+		ROUTE_TOO_LONG    = 4,
 		ROUTE_OVERCROWDED = 8
 	};
+
+	/** Whether scheduled_distance is within percent of direct_distance. */
+	static bool is_route_distance_within_limit(uint64 scheduled_distance, uint32 direct_distance, uint16 percent);
 
 	/**
 	 * Kann die Ware nicht zum Ziel geroutet werden (keine Route), dann werden
@@ -536,6 +567,13 @@ public:
 	 * It is faster than calling the above version on each packet, and is used for re-routing packets from the same halt.
 	 */
 	void search_route_resumable( ware_t &ware );
+
+	/**
+	 * Recalculate a packet waiting at this halt.  The resumable search cannot
+	 * enforce an origin-dependent detour budget, so use the complete search
+	 * whenever that feature is enabled.
+	 */
+	int search_route_for_waiting_goods( ware_t &ware );
 
 	bool get_pax_enabled()  const { return enables & PAX;  }
 	bool get_mail_enabled() const { return enables & POST; }
@@ -575,6 +613,12 @@ public:
 	void add_pax_no_route(int n);
 
 	/**
+	 * A transport route exists, but every route exceeds the configured detour
+	 * limit.
+	 */
+	void add_pax_route_too_long(int n);
+
+	/**
 	 * Station crowded
 	 */
 	void add_pax_unhappy(int n);
@@ -582,6 +626,7 @@ public:
 	int get_pax_happy()    const { return (int)financial_history[0][HALT_HAPPY]; }
 	int get_pax_no_route() const { return (int)financial_history[0][HALT_NOROUTE]; }
 	int get_pax_unhappy()  const { return (int)financial_history[0][HALT_UNHAPPY]; }
+	int get_pax_route_too_long() const { return (int)financial_history[0][HALT_ROUTE_TOO_LONG]; }
 
 
 	/**

@@ -92,6 +92,13 @@ max_hops = 2000
 #
 max_transfers = 9
 
+# Maximum scheduled passenger, mail, or goods route length as a percentage of
+# the direct distance between its origin and destination stops. The same limit
+# applies to one service and to the complete chain of transfers.
+# On a square loop, opposite-side stops can require 2 times their direct
+# Manhattan distance; 250 leaves 25 percent headroom. 0 disables the limit.
+max_route_detour_percent = 250
+
 # way builder internal weights (defaults)
 # a higher weight make it more unlikely
 # make the curves negative, and the waybuilder will built strange tracks ...

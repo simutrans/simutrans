@@ -62,6 +62,7 @@ const skin_desc_t* skinverwaltung_t::goods              = NULL;
 const skin_desc_t* skinverwaltung_t::happy              = NULL;
 const skin_desc_t* skinverwaltung_t::unhappy            = NULL;
 const skin_desc_t* skinverwaltung_t::no_route           = NULL;
+const skin_desc_t* skinverwaltung_t::route_too_long     = NULL;
 const skin_desc_t* skinverwaltung_t::station_type       = NULL;
 const skin_desc_t* skinverwaltung_t::seasons_icons      = NULL;
 const skin_desc_t* skinverwaltung_t::message_options    = NULL;
@@ -157,6 +158,7 @@ static special_obj_tpl<skin_desc_t> const fakultative_objekte[] = {
 	{ &skinverwaltung_t::happy,              "Happy"          },
 	{ &skinverwaltung_t::unhappy,            "Unhappy"        },
 	{ &skinverwaltung_t::no_route,           "NoRoute"        },
+	{ &skinverwaltung_t::route_too_long,     "RouteTooLong"   },
 	{ NULL, NULL }
 };
 

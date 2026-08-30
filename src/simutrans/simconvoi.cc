@@ -3002,10 +3002,16 @@ void convoi_t::hat_gehalten(halthandle_t halt)
 	if (!no_load) {
 		const uint8 count = schedule->get_count();
 		bool first_entry = true;
+		const koord3d route_origin_pos = schedule->entries[schedule->get_current_stop()].pos;
+		koord3d previous_schedule_pos = route_origin_pos;
+		uint32 scheduled_distance = 0;
 		for (uint8 i = 1; i < count; i++) {
 			const uint8 wrap_i = (i + schedule->get_current_stop()) % count;
+			const koord3d current_schedule_pos = schedule->entries[wrap_i].pos;
+			scheduled_distance += koord_distance(previous_schedule_pos, current_schedule_pos);
+			previous_schedule_pos = current_schedule_pos;
 
-			const halthandle_t plan_halt = haltestelle_t::get_halt(schedule->entries[wrap_i].pos, owner, fahr[0]->get_waytype());
+			const halthandle_t plan_halt = haltestelle_t::get_halt(current_schedule_pos, owner, fahr[0]->get_waytype());
 			if (plan_halt == halt) {
 				// we will come later here again ...
 				// the following halt is the same => there will never be a halt to serve
@@ -3022,6 +3028,16 @@ void convoi_t::hat_gehalten(halthandle_t halt)
 						break;
 					}
 				}
+				continue;
+			}
+
+			const uint16 detour_percent = welt->get_settings().get_max_route_detour_percent();
+			const uint32 direct_distance = koord_distance(route_origin_pos, current_schedule_pos);
+			if (!haltestelle_t::is_route_distance_within_limit(scheduled_distance, direct_distance, detour_percent)) {
+				// This convoy must not pick up cargo for a halt that it reaches only
+				// after an excessive local detour.  A different, shorter service may
+				// still serve the same pair of halts.
+				first_entry = false;
 				continue;
 			}
 			for (uint8 const idx : goods_catg_index) {

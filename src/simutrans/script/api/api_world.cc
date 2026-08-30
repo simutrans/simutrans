@@ -132,6 +132,12 @@ uint32 world_generate_goods(karte_t *welt, koord from, koord to, const goods_des
 		}
 		break;
 
+	case haltestelle_t::ROUTE_TOO_LONG:
+		if (good.get_desc() == goods_manager_t::passengers) {
+			haltlist[0]->add_pax_route_too_long(count);
+		}
+		break;
+
 	case haltestelle_t::NO_ROUTE:
 		if (good.get_desc() == goods_manager_t::passengers) {
 			haltlist[0]->add_pax_no_route(count);

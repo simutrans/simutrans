@@ -1217,8 +1217,8 @@ void haltestelle_t::reroute_goods(sint16 &units_remaining)
 				uint32 last_goods_index = 0;
 				units_remaining -= warray.get_count();
 				while(  last_goods_index<warray.get_count()  ) {
-					search_route_resumable(warray[last_goods_index]);
-					if(  warray[last_goods_index].get_target_halt()==halthandle_t()  ) {
+					const int route_result = search_route_for_waiting_goods(warray[last_goods_index]);
+					if(  route_result==NO_ROUTE  ||  route_result==ROUTE_TOO_LONG  ) {
 						// remove invalid destinations
 						fabrik_t::update_transit( &warray[last_goods_index], false);
 						warray.remove_at(last_goods_index);
@@ -1294,6 +1294,13 @@ void haltestelle_t::remove_fabriken(fabrik_t *fab)
 #define WEIGHT_HALT (1)
 // the minimum weight of a connection from a transfer halt
 #define WEIGHT_MIN (WEIGHT_WAIT+WEIGHT_HALT)
+
+bool haltestelle_t::is_route_distance_within_limit(uint64 const scheduled_distance, uint32 const direct_distance, uint16 const percent)
+{
+	return percent == 0  ||  scheduled_distance * 100u <= (uint64)direct_distance * percent;
+}
+
+
 sint32 haltestelle_t::rebuild_connections()
 {
 	// halts which either immediately precede or succeed self halt in serving schedules
@@ -1323,6 +1330,49 @@ sint32 haltestelle_t::rebuild_connections()
 	const minivec_tpl<uint8> *goods_catg_index;
 
 	minivec_tpl<uint8> supported_catg_index(32);
+
+	auto add_valid_connection = [](link_t& link, halthandle_t const halt, uint16 const weight, uint32 const distance) {
+		// Keep the existing public connection list de-duplicated by halt.
+		connection_t *const existing_connection = link.connections.insert_unique_ordered(connection_t(halt, weight), connection_t::compare);
+		if (existing_connection  &&  weight < existing_connection->weight) {
+			existing_connection->weight = weight;
+		}
+
+		// A valid service supersedes a diagnostic-only connection to this halt.
+		for (uint32 i = link.too_long_connections.get_count(); i-- != 0;) {
+			if (link.too_long_connections[i].halt == halt) {
+				link.too_long_connections.remove_at(i);
+			}
+		}
+
+		// Preserve all non-dominated physical variants.  A service with both a
+		// greater/equal weight and distance can never improve a route.
+		for (uint32 i = link.route_connections.get_count(); i-- != 0;) {
+			route_connection_t const& existing = link.route_connections[i];
+			if (existing.halt != halt) {
+				continue;
+			}
+			if (existing.weight <= weight  &&  existing.distance <= distance) {
+				return;
+			}
+			if (weight <= existing.weight  &&  distance <= existing.distance) {
+				link.route_connections.remove_at(i);
+			}
+		}
+		link.route_connections.append(route_connection_t(halt, weight, distance));
+	};
+
+	auto add_too_long_connection = [](link_t& link, halthandle_t const halt, uint16 const weight) {
+		// If another service makes this pair locally admissible, the structural
+		// diagnostic edge is already represented by the normal connection.
+		if (link.connections.is_contained(connection_t(halt))) {
+			return;
+		}
+		connection_t *const existing_connection = link.too_long_connections.insert_unique_ordered(connection_t(halt, weight), connection_t::compare);
+		if (existing_connection  &&  weight < existing_connection->weight) {
+			existing_connection->weight = weight;
+		}
+	};
 
 	/*
 	 * In the first loops:
@@ -1364,6 +1414,11 @@ sint32 haltestelle_t::rebuild_connections()
 		while(  start_index < schedule->get_count()  &&  get_halt( schedule->entries[start_index].pos, owner, true ) != self  ) {
 			++start_index;
 		}
+		if (start_index >= schedule->get_count()) {
+			continue;
+		}
+		koord3d route_origin_pos = schedule->entries[start_index].pos;
+		koord3d previous_schedule_pos = route_origin_pos;
 		++start_index; // the next index after self halt; it's okay to be out-of-range
 
 		// determine goods category indices supported by this halt
@@ -1385,11 +1440,17 @@ sint32 haltestelle_t::rebuild_connections()
 
 		// now we add the schedule to the connection array
 		uint16 aggregate_weight = WEIGHT_WAIT;
+		uint32 aggregate_distance = 0;
 		for(  uint8 j=0;  j<schedule->get_count();  ++j  ) {
 
-			halthandle_t current_halt = get_halt(schedule->entries[(start_index+j)%schedule->get_count()].pos, owner, schedule->get_waytype()==water_wt );
+			schedule_entry_t const& current_entry = schedule->entries[(start_index+j)%schedule->get_count()];
+			aggregate_distance += koord_distance(previous_schedule_pos, current_entry.pos);
+			previous_schedule_pos = current_entry.pos;
+
+			halthandle_t current_halt = get_halt(current_entry.pos, owner, schedule->get_waytype()==water_wt );
 			if(  !current_halt.is_bound()  ) {
-				// ignore way points
+				// Waypoints do not affect routing weight, but their geometric distance
+				// is deliberately part of the scheduled distance.
 				continue;
 			}
 			if(  current_halt == self  ) {
@@ -1403,6 +1464,8 @@ sint32 haltestelle_t::rebuild_connections()
 				}
 				// reset aggregate weight
 				aggregate_weight = WEIGHT_WAIT;
+				aggregate_distance = 0;
+				route_origin_pos = current_entry.pos;
 				continue;
 			}
 
@@ -1417,10 +1480,13 @@ sint32 haltestelle_t::rebuild_connections()
 					}
 					previous_halt[catg_index] = current_halt;
 
-					// either add a new connection or update the weight of an existing connection where necessary
-					connection_t *const existing_connection = all_links[catg_index].connections.insert_unique_ordered( connection_t( current_halt, aggregate_weight ), connection_t::compare );
-					if(  existing_connection  &&  aggregate_weight<existing_connection->weight  ) {
-						existing_connection->weight = aggregate_weight;
+					const uint16 detour_percent = welt->get_settings().get_max_route_detour_percent();
+					const uint32 direct_distance = koord_distance(route_origin_pos, current_entry.pos);
+					if (is_route_distance_within_limit(aggregate_distance, direct_distance, detour_percent)) {
+						add_valid_connection(all_links[catg_index], current_halt, aggregate_weight, aggregate_distance);
+					}
+					else {
+						add_too_long_connection(all_links[catg_index], current_halt, aggregate_weight);
 					}
 				}
 			}
@@ -1562,9 +1628,10 @@ void haltestelle_t::rebuild_linked_connections()
 {
 	vector_tpl<halthandle_t> all; // all halts connected to this halt
 	for(  uint8 i=0;  i<goods_manager_t::get_max_catg_index();  i++  ){
-		vector_tpl<connection_t>& connections = all_links[i].connections;
-
-		for(connection_t &c : connections) {
+		for(connection_t const& c : all_links[i].connections) {
+			all.append_unique( c.halt );
+		}
+		for(connection_t const& c : all_links[i].too_long_connections) {
 			all.append_unique( c.halt );
 		}
 	}
@@ -1586,6 +1653,17 @@ void haltestelle_t::fill_connected_component(uint8 catg_idx, uint16 comp)
 		if (c.halt.is_bound()) {
 			c.halt->fill_connected_component(catg_idx, comp);
 			// cache the is_transfer value
+			c.is_transfer = c.halt->is_transfer(catg_idx);
+		}
+	}
+	for(route_connection_t &c : all_links[catg_idx].route_connections) {
+		if (c.halt.is_bound()) {
+			c.is_transfer = c.halt->is_transfer(catg_idx);
+		}
+	}
+	for(connection_t &c : all_links[catg_idx].too_long_connections) {
+		if (c.halt.is_bound()) {
+			c.halt->fill_connected_component(catg_idx, comp);
 			c.is_transfer = c.halt->is_transfer(catg_idx);
 		}
 	}
@@ -1615,7 +1693,8 @@ sint8 haltestelle_t::is_connected(halthandle_t halt, uint8 catg_index) const
 	}
 	const link_t& linka =       all_links[catg_index];
 	const link_t& linkb = halt->all_links[catg_index];
-	if (linka.connections.empty()  ||  linkb.connections.empty()) {
+	if ((linka.connections.empty() && linka.too_long_connections.empty())  ||
+		(linkb.connections.empty() && linkb.too_long_connections.empty())) {
 		return 0; // empty connections -> not connected
 	}
 	if (linka.catg_connected_component == UNDECIDED_CONNECTED_COMPONENT  ||  linkb.catg_connected_component == UNDECIDED_CONNECTED_COMPONENT) {
@@ -1732,6 +1811,290 @@ uint8 haltestelle_t::current_marker = 0;
  */
 halthandle_t haltestelle_t::last_search_origin;
 uint8 haltestelle_t::last_search_ware_catg_idx = 255;
+
+namespace {
+
+struct detour_route_label_t
+{
+	halthandle_t halt;
+	halthandle_t origin;
+	uint64 distance;
+	uint32 weight;
+	uint32 predecessor;
+	uint32 next_at_halt;
+	uint16 depth;
+	bool overcrowded;
+	bool active;
+};
+
+
+struct detour_heap_node_t
+{
+	uint32 label_index;
+	uint32 priority;
+
+	detour_heap_node_t() : label_index(0), priority(0) { }
+	detour_heap_node_t(uint32 const index, uint32 const value) : label_index(index), priority(value) { }
+
+	uint32 operator * () const { return priority; }
+};
+
+}
+
+
+int haltestelle_t::search_route_with_detour(const halthandle_t* const start_halts, uint16 const start_halt_count, bool const no_routing_over_overcrowding, ware_t& ware, ware_t* const return_ware, const vector_tpl<halthandle_t>& end_halts)
+{
+	const uint8 ware_catg_idx = ware.get_desc()->get_catg_index();
+	const uint8 ware_idx = ware.get_desc()->get_index();
+	const uint16 detour_percent = welt->get_settings().get_max_route_detour_percent();
+	const uint16 max_transfers = welt->get_settings().get_max_transfers();
+	const uint32 max_hops = welt->get_settings().get_max_hops();
+	const uint32 no_label = 0xFFFFFFFFu;
+
+	static uint16 label_generation[65536];
+	static uint32 first_label[65536];
+	static uint16 current_generation = 0;
+	if (++current_generation == 0) {
+		MEMZERO(label_generation);
+		current_generation = 1;
+	}
+
+	auto is_destination = [&end_halts](halthandle_t const halt) {
+		return end_halts.is_contained(halt);
+	};
+
+	vector_tpl<detour_route_label_t> labels(max(16u, min(max_hops, 4096u)));
+	binary_heap_tpl<detour_heap_node_t> detour_open(256);
+
+	auto append_label = [&](detour_route_label_t const& candidate, bool const destination) -> uint32 {
+		const uint16 halt_id = candidate.halt.get_id();
+		if (label_generation[halt_id] != current_generation) {
+			label_generation[halt_id] = current_generation;
+			first_label[halt_id] = no_label;
+		}
+
+		// Keep only non-dominated labels for the same halt and actual origin.
+		// Depth is a dimension because it controls whether another transfer is
+		// allowed; a clean route dominates an otherwise equal overcrowded one.
+		for (uint32 i = first_label[halt_id]; i != no_label; i = labels[i].next_at_halt) {
+			detour_route_label_t& existing = labels[i];
+			if (!existing.active  ||  existing.origin != candidate.origin) {
+				continue;
+			}
+			if (existing.weight <= candidate.weight  &&
+				existing.distance <= candidate.distance  &&
+				existing.depth <= candidate.depth  &&
+				existing.overcrowded <= candidate.overcrowded) {
+				return no_label;
+			}
+			if (candidate.weight <= existing.weight  &&
+				candidate.distance <= existing.distance  &&
+				candidate.depth <= existing.depth  &&
+				candidate.overcrowded <= existing.overcrowded) {
+				existing.active = false;
+			}
+		}
+
+		if (labels.get_count() >= max_hops  &&  candidate.predecessor != no_label) {
+			return no_label;
+		}
+
+		detour_route_label_t stored = candidate;
+		stored.next_at_halt = first_label[halt_id];
+		stored.active = true;
+		const uint32 index = labels.get_count();
+		labels.append(stored);
+		first_label[halt_id] = index;
+		detour_open.insert(detour_heap_node_t(index, candidate.weight + (destination ? 0u : WEIGHT_MIN)));
+		return index;
+	};
+
+	for (uint16 i = 0; i < start_halt_count; ++i) {
+		if (!start_halts[i].is_bound()) {
+			continue;
+		}
+		detour_route_label_t start;
+		start.halt = start_halts[i];
+		start.origin = start_halts[i];
+		start.distance = 0;
+		start.weight = 0;
+		start.predecessor = no_label;
+		start.next_at_halt = no_label;
+		start.depth = 0;
+		start.overcrowded = false;
+		start.active = true;
+		append_label(start, false);
+	}
+
+	uint32 best_overcrowded_label = no_label;
+	uint32 best_overcrowded_weight = 0xFFFFFFFFu;
+
+	auto install_route = [&](uint32 const destination_label) {
+		detour_route_label_t const& destination = labels[destination_label];
+		ware.set_target_halt(destination.halt);
+
+		uint32 first_leg = destination_label;
+		while (labels[first_leg].predecessor != no_label  &&  labels[labels[first_leg].predecessor].predecessor != no_label) {
+			first_leg = labels[first_leg].predecessor;
+		}
+		ware.set_via_halt(labels[first_leg].halt);
+
+		if (return_ware) {
+			return_ware->set_target_halt(destination.origin);
+			const uint32 previous_label = destination.predecessor;
+			halthandle_t reverse_via = previous_label == no_label ? halthandle_t() : labels[previous_label].halt;
+
+			// Preserve the existing conservative handling for return packets when
+			// the destination has only one possible transfer connection.
+			uint8 transfer_count = destination.halt->is_transfer(ware_catg_idx);
+			for (connection_t const& connection : destination.halt->all_links[ware_catg_idx].connections) {
+				if (transfer_count > 1) {
+					break;
+				}
+				transfer_count += connection.halt.is_bound() && connection.is_transfer;
+			}
+			return_ware->set_via_halt(transfer_count <= 1 ? reverse_via : halthandle_t());
+		}
+	};
+
+	while (!detour_open.empty()) {
+		const detour_heap_node_t heap_node = detour_open.pop();
+		if (heap_node.label_index >= labels.get_count()) {
+			continue;
+		}
+		detour_route_label_t const current = labels[heap_node.label_index];
+		if (!current.active) {
+			continue;
+		}
+
+		const bool current_is_destination = is_destination(current.halt);
+		if (current_is_destination) {
+			const uint32 direct_distance = koord_distance(current.origin->get_basis_pos(), current.halt->get_basis_pos());
+			if (is_route_distance_within_limit(current.distance, direct_distance, detour_percent)) {
+				if (!current.overcrowded) {
+					install_route(heap_node.label_index);
+					return ROUTE_OK;
+				}
+				if (current.weight < best_overcrowded_weight) {
+					best_overcrowded_weight = current.weight;
+					best_overcrowded_label = heap_node.label_index;
+				}
+			}
+			continue;
+		}
+
+		if (current.depth > max_transfers) {
+			continue;
+		}
+
+		for (route_connection_t const& connection : current.halt->all_links[ware_catg_idx].route_connections) {
+			if (!connection.halt.is_bound()) {
+				continue;
+			}
+			const bool destination = is_destination(connection.halt);
+			if (!destination  &&  !connection.is_transfer) {
+				continue;
+			}
+
+			detour_route_label_t candidate;
+			candidate.halt = connection.halt;
+			candidate.origin = current.origin;
+			candidate.distance = current.distance + connection.distance;
+			candidate.weight = current.weight + connection.weight;
+			candidate.predecessor = heap_node.label_index;
+			candidate.next_at_halt = no_label;
+			candidate.depth = current.depth + 1u;
+			candidate.overcrowded = current.overcrowded ||
+				(no_routing_over_overcrowding  &&  !destination  &&  connection.halt->is_overcrowded(ware_idx));
+			candidate.active = true;
+			append_label(candidate, destination);
+		}
+	}
+
+	if (best_overcrowded_label != no_label) {
+		install_route(best_overcrowded_label);
+		return ROUTE_OVERCROWDED;
+	}
+
+	// No admissible route was found.  Traverse the structural graph, including
+	// locally excessive services, solely to distinguish ROUTE_TOO_LONG from a
+	// genuinely disconnected destination.  This search never installs a route.
+	struct diagnostic_node_t {
+		halthandle_t halt;
+		uint16 depth;
+	};
+	vector_tpl<diagnostic_node_t> diagnostic_queue(max(16u, min(max_hops, 4096u)));
+	static uint16 diagnostic_generation[65536];
+	static uint16 diagnostic_depth[65536];
+	static uint16 current_diagnostic_generation = 0;
+	if (++current_diagnostic_generation == 0) {
+		MEMZERO(diagnostic_generation);
+		current_diagnostic_generation = 1;
+	}
+
+	for (uint16 i = 0; i < start_halt_count; ++i) {
+		if (!start_halts[i].is_bound()) {
+			continue;
+		}
+		const uint16 id = start_halts[i].get_id();
+		if (diagnostic_generation[id] != current_diagnostic_generation) {
+			diagnostic_generation[id] = current_diagnostic_generation;
+			diagnostic_depth[id] = 0;
+			diagnostic_node_t node = { start_halts[i], 0 };
+			diagnostic_queue.append(node);
+		}
+	}
+
+	for (uint32 queue_pos = 0; queue_pos < diagnostic_queue.get_count(); ++queue_pos) {
+		diagnostic_node_t const current = diagnostic_queue[queue_pos];
+		if (current.depth > max_transfers) {
+			continue;
+		}
+
+		auto inspect_connections = [&](const vector_tpl<connection_t>& connections) -> bool {
+			for (connection_t const& connection : connections) {
+				if (!connection.halt.is_bound()) {
+					continue;
+				}
+				if (is_destination(connection.halt)) {
+					return true;
+				}
+				if (!connection.is_transfer  ||  diagnostic_queue.get_count() >= max_hops) {
+					continue;
+				}
+				const uint16 id = connection.halt.get_id();
+				const uint16 depth = current.depth + 1u;
+				if (diagnostic_generation[id] != current_diagnostic_generation  ||  depth < diagnostic_depth[id]) {
+					diagnostic_generation[id] = current_diagnostic_generation;
+					diagnostic_depth[id] = depth;
+					diagnostic_node_t node = { connection.halt, depth };
+					diagnostic_queue.append(node);
+				}
+			}
+			return false;
+		};
+
+		if (inspect_connections(current.halt->all_links[ware_catg_idx].connections)  ||
+			inspect_connections(current.halt->all_links[ware_catg_idx].too_long_connections)) {
+			ware.set_target_halt(halthandle_t());
+			ware.set_via_halt(halthandle_t());
+			if (return_ware) {
+				return_ware->set_target_halt(halthandle_t());
+				return_ware->set_via_halt(halthandle_t());
+			}
+			return ROUTE_TOO_LONG;
+		}
+	}
+
+	ware.set_target_halt(halthandle_t());
+	ware.set_via_halt(halthandle_t());
+	if (return_ware) {
+		return_ware->set_target_halt(halthandle_t());
+		return_ware->set_via_halt(halthandle_t());
+	}
+	return NO_ROUTE;
+}
+
 /**
  * This routine tries to find a route for a good packet (ware)
  * it will be called for
@@ -1815,6 +2178,13 @@ int haltestelle_t::search_route( const halthandle_t *const start_halts, const ui
 			return_ware->set_via_halt( halthandle_t() );
 		}
 		return NO_ROUTE;
+	}
+
+	if (welt->get_settings().get_max_route_detour_percent() != 0) {
+		// The resumable search state does not carry an origin-dependent distance
+		// budget and cannot be shared with this initial multi-label search.
+		last_search_origin = halthandle_t();
+		return search_route_with_detour(start_halts, start_halt_count, no_routing_over_overcrowding, ware, return_ware, end_halts);
 	}
 	// invalidate search history
 	last_search_origin = halthandle_t();
@@ -2242,6 +2612,17 @@ void haltestelle_t::search_route_resumable(  ware_t &ware   )
 }
 
 
+int haltestelle_t::search_route_for_waiting_goods(ware_t &ware)
+{
+	if (welt->get_settings().get_max_route_detour_percent() != 0) {
+		return search_route(&self, 1, false, ware);
+	}
+
+	search_route_resumable(ware);
+	return ware.get_target_halt().is_bound() ? ROUTE_OK : NO_ROUTE;
+}
+
+
 /**
  * Found route and station uncrowded
  */
@@ -2277,6 +2658,15 @@ void haltestelle_t::add_pax_unhappy(int n)
 void haltestelle_t::add_pax_no_route(int n)
 {
 	book(n, HALT_NOROUTE);
+}
+
+
+/**
+ * A transport route exists, but every route is excessively long.
+ */
+void haltestelle_t::add_pax_route_too_long(int n)
+{
+	book(n, HALT_ROUTE_TOO_LONG);
 }
 
 
@@ -2358,9 +2748,10 @@ void haltestelle_t::fetch_goods( slist_tpl<ware_t> &load, const goods_desc_t *go
 
 				// goods without route -> returning passengers/mail
 				if(  !tmp.get_via_halt().is_bound()  ) {
-					search_route_resumable(tmp);
-					if (!tmp.get_target_halt().is_bound()) {
+					const int route_result = search_route_for_waiting_goods(tmp);
+					if (route_result == NO_ROUTE  ||  route_result == ROUTE_TOO_LONG) {
 						// no route anymore
+						fabrik_t::update_transit(&tmp, false);
 						tmp.amount = 0;
 						continue;
 					}
@@ -2516,7 +2907,8 @@ uint32 haltestelle_t::starte_mit_route(ware_t ware)
 	// no valid next stops? Or we are the next stop?
 	if(ware.get_via_halt()==self) {
 		dbg->error("haltestelle_t::starte_mit_route()","route cannot contain us as first transfer stop => recalc route!");
-		if(  search_route( &self, 1u, false, ware )==NO_ROUTE  ) {
+		const int route_result = search_route(&self, 1u, false, ware);
+		if (route_result == NO_ROUTE  ||  route_result == ROUTE_TOO_LONG) {
 			// no route found?
 			dbg->error("haltestelle_t::starte_mit_route()","no route found!");
 			return ware.amount;
@@ -2577,8 +2969,8 @@ dbg->warning("haltestelle_t::liefere_an()","%d %s delivered to %s have no longer
 	// not near enough => we need to do a re-routing
 	halthandle_t old_target = ware.get_target_halt();
 
-	search_route_resumable(ware);
-	if (!ware.get_target_halt().is_bound()) {
+	const int route_result = search_route_for_waiting_goods(ware);
+	if (route_result == NO_ROUTE  ||  route_result == ROUTE_TOO_LONG) {
 		// target halt no longer there => delete and remove from fab in transit
 		fabrik_t::update_transit( &ware, false );
 		return ware.amount;
@@ -3154,11 +3546,21 @@ void haltestelle_t::rdwr(loadsave_t *file)
 
 	}
 
-	if(  file->is_version_atleast(111, 1)  ) {
+	if (file->is_version_atleast(124, 6)) {
 		for (int j = 0; j<MAX_HALT_COST; j++) {
 			for (size_t k = MAX_MONTHS; k-- != 0;) {
 				file->rdwr_longlong(financial_history[k][j]);
 			}
+		}
+	}
+	else if(  file->is_version_atleast(111, 1)  ) {
+		for (int j = 0; j<8; j++) {
+			for (size_t k = MAX_MONTHS; k-- != 0;) {
+				file->rdwr_longlong(financial_history[k][j]);
+			}
+		}
+		for (size_t k = MAX_MONTHS; k-- != 0;) {
+			financial_history[k][HALT_ROUTE_TOO_LONG] = 0;
 		}
 	}
 	else {
@@ -3170,6 +3572,7 @@ void haltestelle_t::rdwr(loadsave_t *file)
 		}
 		for (size_t k = MAX_MONTHS; k-- != 0;) {
 			financial_history[k][HALT_WALKED] = 0;
+			financial_history[k][HALT_ROUTE_TOO_LONG] = 0;
 		}
 	}
 

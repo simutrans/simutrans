@@ -204,6 +204,7 @@ BEGIN {
 	export_types_ai["halt_x::get_happy"] = "array<integer>()"
 	export_types_ai["halt_x::get_unhappy"] = "array<integer>()"
 	export_types_ai["halt_x::get_noroute"] = "array<integer>()"
+	export_types_ai["halt_x::get_route_too_long"] = "array<integer>()"
 	export_types_ai["halt_x::get_convoys"] = "array<integer>()"
 	export_types_ai["halt_x::get_walked"] = "array<integer>()"
 	export_types_ai["halt_x::get_tile_list"] = "array<tile_x>()"

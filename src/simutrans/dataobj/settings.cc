@@ -755,6 +755,10 @@ void settings_t::rdwr(loadsave_t *file)
 		else {
 			cst_kw_per_credit = 512;
 		}
+
+		if (file->is_version_atleast(124, 6)) {
+			file->rdwr_short(max_route_detour_percent);
+		}
 	}
 
 	// sometimes broken savegames could have no legal direction for take off ...
@@ -1085,6 +1089,7 @@ void settings_t::parse_simuconf( tabfile_t& simuconf, sint16& disp_width, sint16
 	max_choose_route_steps = contents.get_int_clamped( "max_choose_route_steps", max_choose_route_steps, 1, INT_MAX );
 	max_hops               = contents.get_int_clamped( "max_hops",               max_hops,               0, INT_MAX );
 	max_transfers          = contents.get_int_clamped( "max_transfers",          max_transfers,          0, INT_MAX );
+	max_route_detour_percent = contents.get_int_clamped( "max_route_detour_percent", max_route_detour_percent, 0, 65535 );
 	bonus_basefactor       = contents.get_int_clamped( "bonus_basefactor",       bonus_basefactor,       0, 1000 );
 
 	special_building_distance            = contents.get_int_clamped( "special_building_distance",    special_building_distance,            1, INT_MAX );

@@ -290,6 +290,12 @@ void export_halt(HSQUIRRELVM vm)
 	 */
 	register_method_fv(vm, &get_halt_stat, "get_noroute", freevariable<sint32>(HALT_NOROUTE), true);
 	/**
+	 * Get monthly statistics of passengers rejected because every available
+	 * transport route was excessively long.
+	 * @returns array, index [0] corresponds to current month
+	 */
+	register_method_fv(vm, &get_halt_stat, "get_route_too_long", freevariable<sint32>(HALT_ROUTE_TOO_LONG), true);
+	/**
 	 * Get monthly statistics of number of convoys that stopped at this station.
 	 * @returns array, index [0] corresponds to current month
 	 */

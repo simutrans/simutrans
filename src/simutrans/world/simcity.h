@@ -82,15 +82,17 @@ enum pax_dest_status_t : uint8
 {
 	PAX_DEST_STATUS_REACHABLE         = 1,
 	PAX_DEST_STATUS_ROUTE_OVERCROWDED = 2,
-	PAX_DEST_STATUS_NO_ROUTE          = 3
+	PAX_DEST_STATUS_NO_ROUTE          = 3,
+	PAX_DEST_STATUS_ROUTE_TOO_LONG    = 4
 };
 
 
-static const uint8 pax_dest_status_colors[4] = {
+static const uint8 pax_dest_status_colors[5] = {
 	0,
 	COL_YELLOW,      // OK/reachable
 	COL_ORANGE,      // route overcrowded
 	COL_MAGENTA,     // no route
+	COL_PURPLE,      // route too long
 };
 
 

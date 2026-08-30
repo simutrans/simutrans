@@ -26,6 +26,7 @@ using std::string;
 settings_frame_t::settings_frame_t(settings_t* const s) :
 	gui_frame_t( translator::translate("Setting") ),
 	sets(s),
+	max_route_detour_percent_on_open(s->get_max_route_detour_percent()),
 	scrolly_general(&general, true, true),
 	scrolly_display(&display, true, true),
 	scrolly_economy(&economy, true, true),
@@ -189,6 +190,13 @@ bool settings_frame_t::infowin_event(const event_t *ev)
 		economy.read( sets );
 		costs.read( sets );
 		climates.read( sets );
+
+		if (sets == &welt->get_settings()  &&
+			max_route_detour_percent_on_open != sets->get_max_route_detour_percent()) {
+			// Local connection admissibility is cached by each halt.  Rebuild the
+			// graph and then reroute waiting packets under the new limit.
+			welt->set_schedule_counter();
+		}
 
 		// only the rgb colours have been changed, the colours in system format must be updated
 		gfx->env_t_rgb_to_system_colors();

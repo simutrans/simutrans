@@ -253,6 +253,10 @@ private:
 	/* maximum number of steps for breath search */
 	sint32 max_transfers = 9;
 
+	/* maximum scheduled distance as a percentage of the direct distance;
+	 * zero disables the detour limit */
+	uint16 max_route_detour_percent = 250;
+
 	/* multiplier for steps on diagonal:
 	 * 1024: TT-like, factor 2, vehicle will be too long and too fast
 	 * 724: correct one, factor sqrt(2)
@@ -490,6 +494,7 @@ public:
 	sint32 get_max_choose_route_steps() const { return max_choose_route_steps; }
 	sint32 get_max_hops() const { return max_hops; }
 	sint32 get_max_transfers() const { return max_transfers; }
+	uint16 get_max_route_detour_percent() const { return max_route_detour_percent; }
 
 	sint64 get_starting_money(sint16 year) const;
 

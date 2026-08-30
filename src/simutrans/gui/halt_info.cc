@@ -238,7 +238,8 @@ const char cost_type[MAX_HALT_COST][64] =
 	"Arrived",
 	"Departed",
 	"Convoys",
-	"Walked"
+	"Walked",
+	"Route too long"
 };
 
 const uint8 index_of_haltinfo[MAX_HALT_COST] = {
@@ -249,7 +250,8 @@ const uint8 index_of_haltinfo[MAX_HALT_COST] = {
 	HALT_ARRIVED,
 	HALT_DEPARTED,
 	HALT_CONVOIS_ARRIVED,
-	HALT_WALKED
+	HALT_WALKED,
+	HALT_ROUTE_TOO_LONG
 };
 
 const uint8 cost_type_color[MAX_HALT_COST] =
@@ -261,7 +263,8 @@ const uint8 cost_type_color[MAX_HALT_COST] =
 	COL_ARRIVED,
 	COL_DEPARTED,
 	COL_CONVOI_COUNT,
-	COL_LILAC
+	COL_LILAC,
+	COL_PURPLE
 };
 
 struct type_symbol_t {
@@ -381,8 +384,8 @@ void halt_info_t::init(halthandle_t halt)
 				}
 			}
 			end_table();
-			// happy / unhappy / no route
-			add_table(6,1);
+			// passenger satisfaction and route failures
+			add_table(8,1);
 			{
 				add_component(&lb_happy[0]);
 				if (skinverwaltung_t::happy && skinverwaltung_t::unhappy && skinverwaltung_t::no_route) {
@@ -391,6 +394,10 @@ void halt_info_t::init(halthandle_t halt)
 					new_component<gui_image_t>(skinverwaltung_t::unhappy->get_image_id(0), 0, ALIGN_NONE, true);
 					add_component(&lb_happy[2]);
 					new_component<gui_image_t>(skinverwaltung_t::no_route->get_image_id(0), 0, ALIGN_NONE, true);
+				}
+				add_component(&lb_happy[3]);
+				if (skinverwaltung_t::route_too_long) {
+					new_component<gui_image_t>(skinverwaltung_t::route_too_long->get_image_id(0), 0, ALIGN_NONE, true);
 				}
 			}
 			end_table();
@@ -524,6 +531,13 @@ void halt_info_t::update_components()
 		}
 		lb_happy[0].update();
 	}
+	if (skinverwaltung_t::route_too_long) {
+		lb_happy[3].buf().printf("  %u", halt->get_pax_route_too_long());
+	}
+	else {
+		lb_happy[3].buf().printf("  %s: %u", translator::translate("Route too long"), halt->get_pax_route_too_long());
+	}
+	lb_happy[3].update();
 
 	img_enable[0].set_visible(halt->get_pax_enabled());
 	img_enable[1].set_visible(halt->get_mail_enabled());

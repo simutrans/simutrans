@@ -25,6 +25,7 @@ class settings_frame_t : public gui_frame_t, action_listener_t
 {
 private:
 	settings_t* sets;
+	uint16 max_route_detour_percent_on_open;
 	gui_tab_panel_t tabs;
 
 	settings_general_stats_t  general;

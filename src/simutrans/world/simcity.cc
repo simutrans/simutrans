@@ -1968,6 +1968,17 @@ void stadt_t::step_passagiere()
 				// destination logged
 				merke_passagier_ziel(dest_pos, PAX_DEST_STATUS_ROUTE_OVERCROWDED);
 			}
+			else if (route_result == haltestelle_t::ROUTE_TOO_LONG) {
+				// A service exists, but every complete route violates the detour
+				// limit.  This is distinct from a disconnected transport network.
+				if (ispass  &&  !start_halts.empty()) {
+					start_halts[0]->add_pax_route_too_long(pax_left_to_do);
+				}
+				merke_passagier_ziel(dest_pos, PAX_DEST_STATUS_ROUTE_TOO_LONG);
+#ifdef DESTINATION_CITYCARS
+				generate_private_cars(origin_pos, dest_pos);
+#endif
+			}
 			else if (  route_result == haltestelle_t::NO_ROUTE  ) {
 				// since there is no route from any start halt -> register no route at first halts (closest)
 				if (!start_halts.empty()) {
@@ -2000,10 +2011,76 @@ void stadt_t::step_passagiere()
 					factory_entry->factory->book_stat(pax_return, (ispass ? FAB_PAX_GENERATED : FAB_MAIL_GENERATED));
 				}
 
+				// The route used by the outward packet is not necessarily valid in
+				// the opposite direction.  In particular, a circular service may
+				// provide an acceptable route one way and an excessive detour on the
+				// way back.  The legacy search synthesizes return_pax from the
+				// outward route as an optimisation, so retain that behaviour when
+				// the detour limit is disabled.  With the limit enabled, search the
+				// return direction independently.
+				int return_route_result = route_result;
+				halthandle_t return_halt = pax.get_target_halt();
+				if (welt->get_settings().get_max_route_detour_percent() != 0) {
+					const planquadrat_t *const return_plan = welt->access(dest_pos);
+					const halthandle_t *const return_halt_list = return_plan->get_haltlist();
+					static vector_tpl<halthandle_t> return_start_halts(16);
+					static vector_tpl<halthandle_t> all_return_start_halts(16);
+					return_start_halts.clear();
+					all_return_start_halts.clear();
+					return_halt = halthandle_t();
+
+					for (uint h = 0; h < return_plan->get_haltlist_count(); h++) {
+						halthandle_t halt = return_halt_list[h];
+						if (halt.is_bound()  &&  halt->is_enabled(wtyp)) {
+							all_return_start_halts.append(halt);
+							if (!return_halt.is_bound()) {
+								return_halt = halt;
+							}
+							if (!halt->is_overcrowded(wtyp->get_index())) {
+								return_start_halts.append(halt);
+							}
+						}
+					}
+
+					return_pax = ware_t(wtyp);
+					return_pax.amount = pax_return;
+					return_pax.set_target_pos(origin_pos);
+					if (!return_start_halts.empty()) {
+						ware_t return_route_origin(wtyp);
+						return_route_result = haltestelle_t::search_route(
+							&return_start_halts[0],
+							return_start_halts.get_count(),
+							welt->get_settings().is_no_routing_over_overcrowding(),
+							return_pax,
+							&return_route_origin);
+						return_halt = return_route_origin.get_target_halt();
+					}
+					else if (!all_return_start_halts.empty()) {
+						// All enabled halts at the return origin are overcrowded.
+						// Still search them to distinguish an otherwise usable route
+						// from a disconnected or excessive one.
+						ware_t return_route_origin(wtyp);
+						return_route_result = haltestelle_t::search_route(
+							&all_return_start_halts[0],
+							all_return_start_halts.get_count(),
+							welt->get_settings().is_no_routing_over_overcrowding(),
+							return_pax,
+							&return_route_origin);
+						return_halt = return_route_origin.get_target_halt();
+						if (return_route_result == haltestelle_t::ROUTE_OK  ||
+							return_route_result == haltestelle_t::ROUTE_WALK  ||
+							return_route_result == haltestelle_t::ROUTE_OVERCROWDED) {
+							return_route_result = haltestelle_t::ROUTE_OVERCROWDED;
+						}
+					}
+					else {
+						return_route_result = haltestelle_t::NO_ROUTE;
+					}
+				}
+
 				// route type specific logic
-				if(  route_result == haltestelle_t::ROUTE_OK  ) {
+				if(  return_route_result == haltestelle_t::ROUTE_OK  ) {
 					// send return packet
-					halthandle_t return_halt = pax.get_target_halt();
 					if(  !return_halt->is_overcrowded(wtyp->get_index())  ) {
 						// stop can receive passengers
 
@@ -2030,7 +2107,7 @@ void stadt_t::step_passagiere()
 					}
 
 				}
-				else if(  route_result == haltestelle_t::ROUTE_WALK  ) {
+				else if(  return_route_result == haltestelle_t::ROUTE_WALK  ) {
 					// walking can produce return flow as a result of commuters to industry, monuments or stupidly big stops
 
 					// register departed pax/mail at factory
@@ -2039,17 +2116,17 @@ void stadt_t::step_passagiere()
 					}
 
 					// log walked at stop (source and destination stops are the same)
-					start_halt->add_pax_walked(pax_return);
+					return_halt->add_pax_walked(pax_return);
 
 					// log people who walk or deliver by hand
 					dest_city->city_history_year[0][history_type + HIST_OFFSET_WALKED] += pax_return;
 					dest_city->city_history_month[0][history_type + HIST_OFFSET_WALKED] += pax_return;
 				}
-				else if(  route_result == haltestelle_t::ROUTE_OVERCROWDED  ) {
+				else if(  return_route_result == haltestelle_t::ROUTE_OVERCROWDED  ) {
 					// overcrowded routes cause unhappiness to be logged
 
-					if (pax.get_target_halt().is_bound()) {
-						pax.get_target_halt()->add_pax_unhappy(pax_return);
+					if (return_halt.is_bound()) {
+						return_halt->add_pax_unhappy(pax_return);
 					}
 					else {
 						// the unhappy passengers will be added to the first stops near destination (might be none)
@@ -2064,7 +2141,21 @@ void stadt_t::step_passagiere()
 						}
 					}
 				}
-				else if (route_result == haltestelle_t::NO_ROUTE) {
+				else if (return_route_result == haltestelle_t::ROUTE_TOO_LONG) {
+					// The destination end is the origin of the potential return trip.
+					if (ispass) {
+						const planquadrat_t *const dest_plan = welt->access(dest_pos);
+						const halthandle_t *const dest_halt_list = dest_plan->get_haltlist();
+						for (uint h = 0; h < dest_plan->get_haltlist_count(); h++) {
+							halthandle_t halt = dest_halt_list[h];
+							if (halt->is_enabled(wtyp)) {
+								halt->add_pax_route_too_long(pax_return);
+								break;
+							}
+						}
+					}
+				}
+				else if (return_route_result == haltestelle_t::NO_ROUTE) {
 					// passengers who cannot find a route will be added to the first stops near destination (might be none)
 					const planquadrat_t *const dest_plan = welt->access(dest_pos);
 					const halthandle_t *const dest_halt_list = dest_plan->get_haltlist();
