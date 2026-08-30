@@ -300,6 +300,8 @@ static image_t* create_texture_from_tile(const image_t* image, const image_t* re
 	}
 	// image_dest not registered
 	return image_dest;
+#else
+	(void)ref;
 #endif
 #undef copypixel
 }
