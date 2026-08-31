@@ -1388,3 +1388,87 @@ function test_halt_move_stop_invalid_param()
 	// clean up
 	RESET_ALL_PLAYER_FUNDS()
 }
+
+
+function test_halt_build_explicit_layout_way_orientation()
+{
+	local pl = player_x(0)
+	local stationbuilder = command_x(tool_build_station)
+	local wayremover = command_x(tool_remove_way)
+	local remover = command_x(tool_remover)
+	local road_desc = way_desc_x.get_available_ways(wt_road, st_flat)[0]
+	local rail_desc = way_desc_x.get_available_ways(wt_rail, st_flat)[0]
+	// a tram track is a track_wt way whose system type is tram
+	local tram_desc = way_desc_x.get_available_ways(wt_rail, st_tram)[0]
+	local station_desc = building_desc_x("SandStationMHz") // through station, 2 layouts
+
+	// preconditions
+	ASSERT_TRUE(road_desc != null)
+	ASSERT_TRUE(rail_desc != null)
+	ASSERT_TRUE(tram_desc != null)
+	ASSERT_TRUE(station_desc != null)
+
+	// a level crossing: road and rail together do not run through the tile, so
+	// no through station belongs here -- whatever layout the caller asks for
+	{
+		ASSERT_EQUAL(command_x.build_way(pl, coord3d(4, 2, 0), coord3d(4, 6, 0), road_desc, true), null)
+		ASSERT_EQUAL(command_x.build_way(pl, coord3d(2, 4, 0), coord3d(6, 4, 0), rail_desc, true), null)
+		ASSERT_TRUE(tile_x(4, 4, 0).has_two_ways())
+
+		local old_cash = pl.get_current_cash()
+		ASSERT_EQUAL(stationbuilder.work(pl, coord3d(4, 4, 0), station_desc.get_name()), "No through station here!")
+		ASSERT_EQUAL(command_x.build_station(pl, coord3d(4, 4, 0), station_desc, 0), "No through station here!")
+		ASSERT_EQUAL(command_x.build_station(pl, coord3d(4, 4, 0), station_desc, 1), "No through station here!")
+		ASSERT_EQUAL(pl.get_current_cash(), old_cash)
+		ASSERT_EQUAL(tile_x(4, 4, 0).find_object(mo_building), null)
+
+		ASSERT_EQUAL(wayremover.work(pl, coord3d(2, 4, 0), coord3d(6, 4, 0), "" + wt_rail), null)
+		ASSERT_EQUAL(wayremover.work(pl, coord3d(4, 2, 0), coord3d(4, 6, 0), "" + wt_road), null)
+	}
+
+	// a single way that bends: the same rule, with no road anywhere near it
+	{
+		ASSERT_EQUAL(command_x.build_way(pl, coord3d(4, 2, 0), coord3d(4, 4, 0), rail_desc, true), null)
+		ASSERT_EQUAL(command_x.build_way(pl, coord3d(4, 4, 0), coord3d(6, 4, 0), rail_desc, true), null)
+		ASSERT_FALSE(tile_x(4, 4, 0).has_two_ways())
+
+		local old_cash = pl.get_current_cash()
+		ASSERT_EQUAL(stationbuilder.work(pl, coord3d(4, 4, 0), station_desc.get_name()), "No through station here!")
+		ASSERT_EQUAL(command_x.build_station(pl, coord3d(4, 4, 0), station_desc, 0), "No through station here!")
+		ASSERT_EQUAL(pl.get_current_cash(), old_cash)
+		ASSERT_EQUAL(tile_x(4, 4, 0).find_object(mo_building), null)
+
+		ASSERT_EQUAL(wayremover.work(pl, coord3d(4, 2, 0), coord3d(6, 4, 0), "" + wt_rail), null)
+	}
+
+	// two ways whose orientations agree -- a tram embedded in a road -- are a
+	// legitimate station tile, and must stay one for both call shapes
+	{
+		ASSERT_EQUAL(command_x.build_way(pl, coord3d(2, 4, 0), coord3d(6, 4, 0), road_desc, true), null)
+		ASSERT_EQUAL(command_x.build_way(pl, coord3d(2, 4, 0), coord3d(6, 4, 0), tram_desc, true), null)
+		ASSERT_TRUE(tile_x(4, 4, 0).has_two_ways())
+
+		ASSERT_EQUAL(stationbuilder.work(pl, coord3d(4, 4, 0), station_desc.get_name()), null)
+		ASSERT_EQUAL(remover.work(pl, coord3d(4, 4, 0)), null)
+		ASSERT_EQUAL(command_x.build_station(pl, coord3d(4, 4, 0), station_desc, 0), null)
+		ASSERT_EQUAL(remover.work(pl, coord3d(4, 4, 0)), null)
+
+		ASSERT_EQUAL(wayremover.work(pl, coord3d(2, 4, 0), coord3d(6, 4, 0), "" + wt_rail), null)
+		ASSERT_EQUAL(wayremover.work(pl, coord3d(2, 4, 0), coord3d(6, 4, 0), "" + wt_road), null)
+	}
+
+	// a dead end is straight, and an explicit layout may not change that either
+	{
+		ASSERT_EQUAL(command_x.build_way(pl, coord3d(4, 2, 0), coord3d(4, 4, 0), rail_desc, true), null)
+
+		ASSERT_EQUAL(stationbuilder.work(pl, coord3d(4, 2, 0), station_desc.get_name()), null)
+		ASSERT_EQUAL(remover.work(pl, coord3d(4, 2, 0)), null)
+		ASSERT_EQUAL(command_x.build_station(pl, coord3d(4, 2, 0), station_desc, 0), null)
+		ASSERT_EQUAL(remover.work(pl, coord3d(4, 2, 0)), null)
+
+		ASSERT_EQUAL(wayremover.work(pl, coord3d(4, 2, 0), coord3d(4, 4, 0), "" + wt_rail), null)
+	}
+
+	// clean up
+	RESET_ALL_PLAYER_FUNDS()
+}

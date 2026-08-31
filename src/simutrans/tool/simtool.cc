@@ -4936,6 +4936,30 @@ const char *tool_build_station_t::tool_station_flat_dock_aux(player_t *player, k
 	return NULL;
 }
 
+/**
+ * The way orientation a station tile is judged by.
+ *
+ * A through station may sit on a tile carrying two ways -- a tram track laid
+ * in a road, say -- and then it is the union of both that has to run through
+ * the tile. That is what lets an embedded tram keep its stop while a level
+ * crossing is refused. A terminal station looks at the first way only.
+ *
+ * Both the automatic and the predefined layout path have to ask this the same
+ * way, so it is asked in one place.
+ */
+static ribi_t::ribi tool_station_way_ribi( const grund_t *bd, bool combine_two_ways )
+{
+	if(  combine_two_ways  &&  bd->has_two_ways()  ) {
+		// a crossing or maybe just a tram track on a road ...
+		return bd->get_weg_nr(0)->get_ribi_unmasked()  |  bd->get_weg_nr(1)->get_ribi_unmasked();
+	}
+	if(  bd->hat_wege()  ) {
+		return bd->get_weg_nr(0)->get_ribi_unmasked();
+	}
+	return ribi_t::none;
+}
+
+
 // build all types of stops but sea harbours
 const char *tool_build_station_t::tool_station_aux(player_t *player, koord3d pos, const building_desc_t *desc, sint8 layout, waytype_t wegtype, const char *type_name )
 {
@@ -4972,13 +4996,7 @@ DBG_MESSAGE("tool_station_aux()", "building %s on square %d,%d for waytype %x", 
 		ribi_t::ribi ribi = ribi_t::none;
 		if(  desc->get_all_layouts()==2  ||  desc->get_all_layouts()==8  ||  desc->get_all_layouts()==16  ) {
 			// through station
-			if(  bd->has_two_ways()  ) {
-				// a crossing or maybe just a tram track on a road ...
-				ribi = bd->get_weg_nr(0)->get_ribi_unmasked()  |  bd->get_weg_nr(1)->get_ribi_unmasked();
-			}
-			else if(  bd->hat_wege()  ) {
-				ribi = bd->get_weg_nr(0)->get_ribi_unmasked();
-			}
+			ribi = tool_station_way_ribi( bd, true );
 			// not straight: sorry cannot build here ...
 			if(  !ribi_t::is_straight(ribi)  ) {
 				return p_error;
@@ -4987,9 +5005,7 @@ DBG_MESSAGE("tool_station_aux()", "building %s on square %d,%d for waytype %x", 
 		}
 		else if(  desc->get_all_layouts()==4  ) {
 			// terminal station
-			if(  bd->hat_wege()  ) {
-				ribi = bd->get_weg_nr(0)->get_ribi_unmasked();
-			}
+			ribi = tool_station_way_ribi( bd, false );
 			// sorry cannot build here ... (not a terminal tile)
 			if(  !ribi_t::is_single(ribi)  ) {
 				return p_error;
@@ -5087,9 +5103,19 @@ DBG_MESSAGE("tool_station_aux()", "building %s on square %d,%d for waytype %x", 
 		}
 	}
 	else {
-		// obey predefined layout
-
-		// todo: check way ribis
+		// Obey the predefined layout, but not at the price of the geometry:
+		// choosing a layout selects the graphics, it does not license a tile
+		// the automatic path above would have refused. Same test, same error.
+		if(  desc->get_all_layouts()==2  ||  desc->get_all_layouts()==8  ||  desc->get_all_layouts()==16  ) {
+			if(  !ribi_t::is_straight( tool_station_way_ribi( bd, true ) )  ) {
+				return p_error;
+			}
+		}
+		else if(  desc->get_all_layouts()==4  ) {
+			if(  !ribi_t::is_single( tool_station_way_ribi( bd, false ) )  ) {
+				return p_error;
+			}
+		}
 	}
 
 	halthandle_t old_halt = bd->get_halt();
