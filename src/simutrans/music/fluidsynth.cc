@@ -82,25 +82,75 @@ int dr_load_midi(const char *filename)
 
 
 /**
+ * Suspends audio rendering.
+ * FluidSynth forbids deleting a player while an audio driver bound to its
+ * synth renders, and both new_fluid_player() and delete_fluid_player() edit
+ * the synth's sample timer list, which the rendering thread walks unlocked.
+ * Deleting the audio driver is the only call that joins that thread, so it is
+ * the barrier every player create/destroy has to sit behind.
+ */
+static void suspend_rendering()
+{
+	if(  adriver  ) {
+		delete_fluid_audio_driver( adriver );
+		adriver = NULL;
+	}
+}
+
+
+/**
+ * Resumes audio rendering suspended by suspend_rendering()
+ */
+static void resume_rendering()
+{
+	if(  !adriver  &&  synth  ) {
+		if(  !(adriver = new_fluid_audio_driver( settings, synth ))  ) {
+			dbg->warning("resume_rendering()", "FluidSynth: Audio driver restart failed.");
+		}
+	}
+}
+
+
+/**
+ * Destroys the current player; rendering must already be suspended.
+ * There is deliberately no fluid_player_join() here: it cannot make the delete
+ * safe, and with rendering suspended no thread is left to advance the player.
+ */
+static void retire_player()
+{
+	if(  player  ) {
+		fluid_player_stop( player );
+		fluid_synth_all_notes_off( synth, -1 );
+		delete_fluid_player( player );
+		player = NULL;
+	}
+}
+
+
+/**
  * Plays a MIDI file
  */
 void dr_play_midi(int key)
 {
-	if(  dr_midi_pos() !=  -1  ) {
-		dr_stop_midi();
-	}
+	suspend_rendering();
+	// unconditional: a player that reached the end of its file is no longer
+	// PLAYING, but it is still registered with the synth and must go too
+	retire_player();
+
 	if(  !(player = new_fluid_player( synth ))  ) {
 		dbg->warning("dr_play_midi()", "FluidSynth: MIDI player setup failed.");
+		resume_rendering();
 		return;
 	}
 	if(  fluid_player_add( player, midi_filenames[key] ) != FLUID_OK  ) {
 		dbg->warning("dr_play_midi()", "FluidSynth: %s MIDI file load failed.", midi_filenames[key].c_str() );
+		resume_rendering();
 		return;
 	}
 	if(  fluid_player_play( player ) != FLUID_OK  ) {
 		dbg->warning("dr_play_midi()", "FluidSynth: MIDI player start failed.");
-		return;
 	}
+	resume_rendering();
 }
 
 
@@ -113,13 +163,9 @@ void dr_stop_midi(void)
 		return;
 	}
 
-	fluid_player_stop( player );
-	if(  fluid_player_join( player ) != FLUID_OK  ) {
-		dbg->warning("dr_stop_midi()", "FluidSynth: Player join failed.");
-	}
-	fluid_synth_all_notes_off( synth, -1 );
-	delete_fluid_player( player );
-	player = NULL;
+	suspend_rendering();
+	retire_player();
+	resume_rendering();
 }
 
 
@@ -142,10 +188,17 @@ sint32 dr_midi_pos(void)
  */
 void dr_destroy_midi(void)
 {
-	dr_stop_midi();
-	delete_fluid_audio_driver(adriver);
-	delete_fluid_synth(synth);
-	delete_fluid_settings(settings);
+	// the audio driver goes first: it must not outlive what it renders from
+	suspend_rendering();
+	retire_player();
+	if(  synth  ) {
+		delete_fluid_synth(synth);
+		synth = NULL;
+	}
+	if(  settings  ) {
+		delete_fluid_settings(settings);
+		settings = NULL;
+	}
 	midi_number = -1;
 }
 
