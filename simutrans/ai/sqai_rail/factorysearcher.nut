@@ -14,7 +14,7 @@ class factorysearcher_t extends manager_t
   constructor()
   {
     base.constructor("factorysearcher_t")
-    debug = false
+    //debug = false
     ::factorysearcher = this
   }
 

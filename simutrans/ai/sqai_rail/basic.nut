@@ -39,7 +39,7 @@ class r_t
  */
 class node_t {
   name = null
-  debug = false
+  //debug = false
 
   /**
    * Main method of these nodes. Called from the global ::step() method.
@@ -52,7 +52,7 @@ class node_t {
   }
   function dbgprint(t)
   {
-    if (debug) print(name + ": " + t)
+    if ( ::debug.messages ) print(name + ": " + t)
   }
   function _save()
   {
@@ -182,8 +182,8 @@ class manager_t extends node_seq_t
 
     if ( build_check_month > world.get_time().ticks ) {
       // not plan link
-      //if (debug) gui.add_message_at(our_player, " not plan link : build_check_month = " + build_check_month, world.get_time())
-      //if (debug) gui.add_message_at(our_player, " for " + freight + " from " + fsrc.get_name() + " at " + fsrc.x + "," + fsrc.y + " to "+ fdest.get_name() + " at " + fdest.x + "," + fdest.y, world.get_time())
+      //if ( ::debug.messages ) gui.add_message_at(our_player, " not plan link : build_check_month = " + build_check_month, world.get_time())
+      //if ( ::debug.messages ) gui.add_message_at(our_player, " for " + freight + " from " + fsrc.get_name() + " at " + fsrc.x + "," + fsrc.y + " to "+ fdest.get_name() + " at " + fdest.x + "," + fdest.y, world.get_time())
 
       //return RT_DONE_NOTHING
     }

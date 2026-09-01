@@ -42,15 +42,18 @@ class amphibious_connection_planner_t extends industry_connection_planner_t
     }
     // water - initial
     local rprt_water = plan_simple_connection(wt_water, null, null)
+    // air - initial
+    local rprt_air = plan_simple_connection(wt_air, null, null)
 
-    if (rprt_water == null && ( rprt_road == null || rprt_rail == null )) {
+    if (rprt_water == null && ( rprt_road == null || rprt_rail == null || rprt_air == null )) {
       return failed()
     }
 
     if ( print_message_box_x == 1 ) {
-      gui.add_message_at(our_player, " **** rprt_water - gain_per_m : " + rprt_water.gain_per_m + " # distance : " + rprt_water.distance, world.get_time())
-      gui.add_message_at(our_player, " **** rprt_rail - gain_per_m : " + rprt_rail.gain_per_m + " # distance : " + rprt_rail.distance, world.get_time())
-      gui.add_message_at(our_player, " **** rprt_road - gain_per_m : " + rprt_road.gain_per_m + " # distance : " + rprt_road.distance, world.get_time())
+      if ( rprt_water != null ) gui.add_message_at(our_player, " combined **** rprt_water - gain_per_m : " + rprt_water.gain_per_m + " # distance : " + rprt_water.distance, world.get_time())
+      if ( rprt_rail != null ) gui.add_message_at(our_player, " combined **** rprt_rail - gain_per_m : " + rprt_rail.gain_per_m + " # distance : " + rprt_rail.distance, world.get_time())
+      if ( rprt_road != null ) gui.add_message_at(our_player, " combined **** rprt_road - gain_per_m : " + rprt_road.gain_per_m + " # distance : " + rprt_road.distance, world.get_time())
+      if ( rprt_air != null ) gui.add_message_at(our_player, " combined **** rprt_air - gain_per_m : " + rprt_road.gain_per_m + " # distance : " + rprt_air.distance, world.get_time())
     }
 
     if (rprt_water == null ) {
@@ -64,7 +67,7 @@ class amphibious_connection_planner_t extends industry_connection_planner_t
     local build_cost_lines = industry_manager.get_link_build_cost(fsrc, fdest, freight, 0)
     // find amphibious path
     local marine = null
-    if ( rprt_rail != null && ( rprt_road==null || rprt_rail.gain_per_m > rprt_road.gain_per_m ) ) {
+    if ( rprt_rail != null && ( rprt_road == null || rprt_rail.gain_per_m > rprt_road.gain_per_m ) ) {
       marine = amphibious_pathfinder_t(rprt_rail.action.planned_way, rprt_water.action.planned_station, rprt_water.action.planned_harbour_flat)
 
       build_cost_lines += rprt_rail.cost_fix

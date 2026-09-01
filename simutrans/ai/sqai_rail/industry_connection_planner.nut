@@ -81,9 +81,9 @@ class industry_connection_planner_t extends manager_t
     local fs = fsrc.get_tile_list()
     local fs_halt = fs[0].get_halt()
     if ( (fs_halt != null ) && exists_links == 1 ) { //|| fs_halt != false
-      if (debug) gui.add_message_at(our_player, "fs_halt - " + fs_halt, fs[0])
+      if ( ::debug.messages ) gui.add_message_at(our_player, "fs_halt - " + fs_halt, fs[0])
       // water factory - no more links than one
-      if (debug) gui.add_message_at(our_player, " water factory - no more links than one ", fs[0])
+      if ( ::debug.messages ) gui.add_message_at(our_player, " water factory - no more links than one ", fs[0])
       return r_t(RT_TOTAL_FAIL)
     }
 
@@ -106,8 +106,8 @@ class industry_connection_planner_t extends manager_t
 
     if ( build_check_month > world.get_time().ticks ) {
       // not plan link
-      if (debug) gui.add_message_at(our_player, " not plan link : build_check_month = " + build_check_month, world.get_time())
-      if (debug) gui.add_message_at(our_player, " for " + freight + " from " + fsrc.get_name() + " at " + fsrc.x + "," + fsrc.y + " to "+ fdest.get_name() + " at " + fdest.x + "," + fdest.y, world.get_time())
+      if ( ::debug.messages ) gui.add_message_at(our_player, " not plan link : build_check_month = " + build_check_month, world.get_time())
+      if ( ::debug.messages ) gui.add_message_at(our_player, " for " + freight + " from " + fsrc.get_name() + " at " + fsrc.x + "," + fsrc.y + " to "+ fdest.get_name() + " at " + fdest.x + "," + fdest.y, world.get_time())
 
       return r_t(RT_TOTAL_FAIL)
     }
@@ -500,10 +500,10 @@ class industry_connection_planner_t extends manager_t
         rail_station = check_station(our_player, calc_route.routes[calc_route.routes.len()-1], calc_route.routes, count, wt_rail, planned_station, 0, true)
         if (rail_station) {
           rail_station = check_station(our_player, calc_route.routes[0], calc_route.routes, count, wt_rail, planned_station, 0, true)
-          //if (debug) gui.add_message_at(our_player, "-check build station rail- rail_station " + rail_station, calc_route.routes[0])
+          //if ( ::debug.messages ) gui.add_message_at(our_player, "-check build station rail- rail_station " + rail_station, calc_route.routes[0])
         }
         //if (debug && !rail_station) gui.add_message_at(our_player, "-check build station rail- rail_station " + rail_station, calc_route.routes[0])
-        //if (debug) gui.add_message_at(our_player, "-check build station rail- calc_route " + calc_route, world.get_time())
+        //if ( ::debug.messages ) gui.add_message_at(our_player, "-check build station rail- calc_route " + calc_route, world.get_time())
       }
 
     }
@@ -1001,7 +1001,7 @@ class industry_connection_planner_t extends manager_t
     dbgprint("Report: gain_per_m  = " + r.gain_per_m + ", nr_convoys  = " + planned_convoy.nr_convoys + ", cost_fix  = " + r.cost_fix + ", cost_monthly  = " + r.cost_monthly)
     dbgprint("Report: dist = " + cnv_valuator.distance + " way_cost = " + planned_way.get_cost())
     dbgprint("Report: station = " + planned_station.get_cost()+ " depot = " + planned_depot.get_cost())
-    if ( print_message_box == 4 || debug) {
+    if ( print_message_box == 4 || debug.messages ) {
       gui.add_message_at(our_player, "----- ", world.get_time())
       gui.add_message_at(our_player, "Plan: way = " + planned_way.get_name() + ", station = " + planned_station.get_name() + ", depot = " + planned_depot.get_name(), world.get_time())
       gui.add_message_at(our_player, "Report: gain_per_m  = " + r.gain_per_m + ", nr_convoys = " + planned_convoy.nr_convoys + ", cost_build = " + r.cost_fix + ", cost_monthly = " + r.cost_monthly, world.get_time())
@@ -1144,8 +1144,10 @@ class industry_connection_planner_t extends manager_t
   *
   */
 function check_factory_links(f_src, f_dest, good, show_msg = 0) {
-    local print_message_box = 0
-    local print_status = 0
+
+  local print_message_box = 0
+  local print_status = 0
+
   if ( show_msg == 1 ) {
     print_status = 1
   }
@@ -1197,7 +1199,7 @@ function check_factory_links(f_src, f_dest, good, show_msg = 0) {
           }
 
           if ( print_message_box == 1 || print_status == 1 ) {
-            gui.add_message_at(our_player, station.get_name() + " *--> to station " + s[i].get_name(), world.get_time())
+            gui.add_message_at(our_player, " station " + station.get_name() + " * --> to station " + s[i].get_name(), world.get_time())
           }
 
           local f = s[i].get_factory_list()

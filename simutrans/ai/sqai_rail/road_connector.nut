@@ -77,6 +77,7 @@ class road_connector_t extends manager_t
       if ( (build_check_month > world.get_time().ticks || build_cost > build_cash) && industry_manager.get_combined_link(fsrc, fdest, freight) == 0 ) {
         // not build link
         if ( ::debug.messages ) gui.add_message_at(our_player, "#road_conn# not build line : build_check_month = " + build_check_month + " or build cost link > cash : build cost line " + industry_manager.get_link_build_cost(fsrc, fdest, freight, 2) + " | build cost link " + industry_manager.get_link_build_cost(fsrc, fdest, freight, 0), world.get_time())
+        //::debug.pause()
         if ( ::debug.messages ) gui.add_message_at(our_player, " ---> link " + fsrc + "  " + fsrc.get_name() + " - " + fdest.get_name(), world.get_time())
 
         industry_manager.set_link_state(fsrc, fdest, freight, industry_link_t.st_missing)
@@ -95,7 +96,7 @@ class road_connector_t extends manager_t
         // count trials, and fail if necessary
         if (c_trial_route > 3) {
           print("Route building failed " + c_trial_route + " times.")
-          if (debug) gui.add_message_at(pl, "Failed to complete route from  " + coord_to_string(fsrc) + " to " + coord_to_string(fdest) + " after " + c_trial_route + " attempts", fsrc)
+          if ( ::debug.messages ) gui.add_message_at(pl, "Failed to complete route from  " + coord_to_string(fsrc) + " to " + coord_to_string(fdest) + " after " + c_trial_route + " attempts", fsrc)
           return error_handler()
         }
         c_trial_route++
@@ -208,7 +209,7 @@ class road_connector_t extends manager_t
           local err = null
           local obj_building = tile_x(c_start.x, c_start.y, c_start.z).find_object(mo_building)
           if ( obj_building != null && obj_building.get_owner() != our_player ) {
-            if (debug) gui.add_message_at(pl, " --- tile to build station not free", c_start)
+            if ( ::debug.messages ) gui.add_message_at(pl, " --- tile to build station not free", c_start)
 
             build_check_month = world.get_time().ticks + world.get_time().ticks_per_month
 
@@ -219,7 +220,7 @@ class road_connector_t extends manager_t
             //err = command_x.build_station(pl, c_start, planned_station )
           }
           if (err) {
-            if (debug) gui.add_message_at(pl, "Failed to build road station at  " + coord_to_string(c_start) + " [" + err + "]", c_start)// try again
+            if ( ::debug.messages ) gui.add_message_at(pl, "Failed to build road station at  " + coord_to_string(c_start) + " [" + err + "]", c_start)// try again
             if ( print_message_box == 2 ) { gui.add_message_at(pl, "Failed to build road station at  " + coord_to_string(c_start) + " error " + err, world.get_time()) }
             return restart_with_phase0()
           }
@@ -229,7 +230,7 @@ class road_connector_t extends manager_t
           err = build_road_station(c_end, planned_station)
           //err = command_x.build_station(pl, c_end, planned_station )
           if (err) {
-            if (debug) gui.add_message_at(pl, "Failed to build road station at  " + coord_to_string(c_end) + " [" + err + "]", c_end)
+            if ( ::debug.messages ) gui.add_message_at(pl, "Failed to build road station at  " + coord_to_string(c_end) + " [" + err + "]", c_end)
             // try again
             return restart_with_phase0()
           }

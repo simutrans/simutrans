@@ -237,9 +237,9 @@ class prototyper_t extends node_t
       }
       else if ( wt == wt_rail ) {
         a = CARUNITS_PER_TILE * 3
-        if ( volume > 1200 && volume < 2200 ) {
+        if ( volume > 550 && volume < 1800 ) {
           a = CARUNITS_PER_TILE * 4
-        } else if ( volume > 2200 ) {
+        } else if ( volume >= 1800 ) {
           a = CARUNITS_PER_TILE * 5
         }
         if ( show_message ) {
@@ -249,7 +249,7 @@ class prototyper_t extends node_t
 
         if ( get_set_name() == "pak64.german" ) {
 
-        } else if ( a < max_length ) {
+        } else if ( a < max_length && volume > 550 ) {
           a = max_length
         }
 
@@ -471,6 +471,13 @@ class valuator_simple_t {
       cnv.nr_convoys = 2
     }
 
+    // ship and air no way -> no way speed
+    // set way max speed to min speed cnv
+    if (way_max_speed == -1) {
+      way_max_speed = cnv.min_top_speed
+      //gui.add_message_at(our_player, " - valuate_monthly_transport() way_max_speed "  + way_max_speed, world.get_time())
+    }
+
     if (way_max_speed > 0) {
       // correction factor to prefer faster ways:
       // factor = 0 .. if 2*distance < ncnv
@@ -480,6 +487,8 @@ class valuator_simple_t {
       local factor = max(0, min(10*distance, 6*(2*distance - ncnv) ) );
       // rescale tiles per month
       tpm = (tpm*factor) / (10*distance);
+    } else {
+
     }
 
     // monthly costs and revenue

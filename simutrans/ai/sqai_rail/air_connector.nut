@@ -100,7 +100,7 @@ class air_connector_t extends manager_t
         // count trials, and fail if necessary
         if (c_trial_route > 3) {
           print("Route building failed " + c_trial_route + " times.")
-          if (debug) gui.add_message_at(pl, "Failed to complete route from  " + coord_to_string(fsrc) + " to " + coord_to_string(fdest) + " after " + c_trial_route + " attempts", fsrc)
+          if ( ::debug.messages ) gui.add_message_at(pl, "Failed to complete route from  " + coord_to_string(fsrc) + " to " + coord_to_string(fdest) + " after " + c_trial_route + " attempts", fsrc)
           return error_handler()
         }
         c_trial_route++
@@ -155,20 +155,28 @@ class air_connector_t extends manager_t
           local runway  = find_object("way", wt_air, 100, st_runway)
           // build airport c_start
           local err = command_x.build_way(our_player, start_airport[0], start_airport[5], taxiway, true)
+          if ( err != null ) { return error_handler() }
           err = command_x.build_way(our_player, start_airport[1], start_airport[3], taxiway, true)
+          if ( err != null ) { return error_handler() }
           err = command_x.build_way(our_player, start_airport[4], start_airport[6], runway, true)
+          if ( err != null ) { return error_handler() }
+
           if ( print_message_box > 0 && print_message_box != 4 ) {
             gui.add_message_at(our_player, "build f_src", start_airport[0])
-            gui.add_message_at(our_player, "err " + err, world.get_time())
+            //gui.add_message_at(our_player, "err " + err, world.get_time())
           }
 
           // build airport c_end
           err = command_x.build_way(our_player, end_airport[0], end_airport[5], taxiway, true)
+          if ( err != null ) { return error_handler() }
           err = command_x.build_way(our_player, end_airport[2], end_airport[3], taxiway, true)
+          if ( err != null ) { return error_handler() }
           err = command_x.build_way(our_player, end_airport[4], end_airport[6], runway, true)
+          if ( err != null ) { return error_handler() }
+
           if ( print_message_box > 0 && print_message_box != 4 ) {
             gui.add_message_at(our_player, "build airport f_desc ", end_airport[0])
-            gui.add_message_at(our_player, "err " + err, world.get_time())
+            //gui.add_message_at(our_player, "err " + err, world.get_time())
           }
 
 
@@ -179,7 +187,7 @@ class air_connector_t extends manager_t
           local err = null
           local obj_building = tile_x(start_airport[0].x, start_airport[0].y, start_airport[0].z).find_object(mo_building)
           if ( obj_building != null && obj_building.get_owner() != our_player ) {
-            if (debug) gui.add_message_at(pl, " --- tile to build station not free", c_start)
+            if ( ::debug.messages ) gui.add_message_at(pl, " --- tile to build station not free", c_start)
 
             build_check_month = world.get_time().ticks + world.get_time().ticks_per_month
 
@@ -191,7 +199,7 @@ class air_connector_t extends manager_t
             //err = command_x.build_station(pl, c_start, planned_station )
           }
           if (err) {
-            if (debug) gui.add_message_at(pl, "Failed to build air station at  " + coord_to_string(start_airport[0]) + " [" + err + "]", start_airport[0])// try again
+            if ( ::debug.messages ) gui.add_message_at(pl, "Failed to build air station at  " + coord_to_string(start_airport[0]) + " [" + err + "]", start_airport[0])// try again
             if ( print_message_box == 2 ) { gui.add_message_at(pl, "Failed to build air station at  " + coord_to_string(start_airport[0]) + " error " + err, world.get_time()) }
             return restart_with_phase0()
           }
@@ -202,7 +210,7 @@ class air_connector_t extends manager_t
           err = build_air_station(end_airport[3], planned_station)
           //err = command_x.build_station(pl, c_end, planned_station )
           if (err) {
-            if (debug) gui.add_message_at(pl, "Failed to build air station at  " + coord_to_string(end_airport[0]) + " [" + err + "]", end_airport[0])
+            if ( ::debug.messages ) gui.add_message_at(pl, "Failed to build air station at  " + coord_to_string(end_airport[0]) + " [" + err + "]", end_airport[0])
             // try again
             return restart_with_phase0()
           }

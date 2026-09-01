@@ -331,6 +331,9 @@ class rail_connector_t extends manager_t
           }
 
           // check combined station or connect factory src
+          local combined_halt = industry_manager.check_fac_connect_halt(fsrc, c_start)
+
+          /*
           local tiles_y = abs(fs[0].y - c_start.y)
           local tiles_x = abs(fs[0].x - c_start.x)
           //
@@ -357,7 +360,7 @@ class rail_connector_t extends manager_t
           if (tiles_x > tiles_c || tiles_y > tiles_c) {
             //gui.add_message_at(pl, "tiles_x = " + tiles_x + " - tiles_y = " + tiles_y + " - tiles_c = " + tiles_c, world.get_time())
             combined_halt = true
-          }
+          }*/
 
           //
           // check place and build station to c_start
@@ -382,6 +385,9 @@ class rail_connector_t extends manager_t
           }
 
           // check combined station or connect factory dest
+          combined_halt = industry_manager.check_fac_connect_halt(fdest, c_end)
+
+          /*
           tiles_y = abs(fd[0].y - c_end.y)
           tiles_x = abs(fd[0].x - c_end.x)
           //
@@ -408,7 +414,7 @@ class rail_connector_t extends manager_t
           if (tiles_x > tiles_c || tiles_y > tiles_c) {
             //gui.add_message_at(pl, "tiles_x = " + tiles_x + " - tiles_y = " + tiles_y + " - tiles_c = " + tiles_c, world.get_time())
             combined_halt = true
-          }
+          }*/
 
 
           // check place and build station to c_end

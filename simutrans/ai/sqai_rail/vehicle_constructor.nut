@@ -16,7 +16,7 @@ class vehicle_constructor_t extends node_t
   constructor()
   {
     base.constructor("vehicle_constructor_t")
-    debug = false
+    //debug = false
   }
 
   function step()
