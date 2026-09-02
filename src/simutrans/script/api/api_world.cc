@@ -515,6 +515,7 @@ void export_world(HSQUIRRELVM vm, bool scenario)
 	register_function(vm, world_attraction_list_next,  "_nexti",  2, ". o|i");
 	/**
 	 * Meta-method to be used in foreach loops to loop over all attractions on the map. Do not call it directly.
+	 * @param index of the attraction in the list
 	 */
 	register_method(vm,   world_attraction_list_get,   "_get", true);
 	/**
@@ -544,6 +545,7 @@ void export_world(HSQUIRRELVM vm, bool scenario)
 	register_function(vm, world_label_list_next,  "_nexti",  2, ". o|i");
 	/**
 	 * Meta-method to be used in foreach loops to loop over all labels on the map. Do not call it directly.
+	 * @param index of the label in the list
 	 */
 	register_method(vm, world_label_list_get,   "_get", true);
 	/**

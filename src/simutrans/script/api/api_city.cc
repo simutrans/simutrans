@@ -98,6 +98,7 @@ void export_city(HSQUIRRELVM vm)
 	register_function(vm, world_get_next_city,     "_nexti",  2, "x o|i");
 	/**
 	 * Meta-method to be used in foreach loops. Do not call them directly.
+	 * @param index of the city in the list
 	 */
 	register_method(vm, &world_get_city_by_index, "_get", true);
 	end_class(vm);
@@ -128,6 +129,7 @@ void export_city(HSQUIRRELVM vm)
 	/**
 	 * Change city name.
 	 * @ingroup rename_func
+	 * @param name the new name
 	 */
 	register_method(vm, &city_set_name, "set_name", true);
 	/**
@@ -253,6 +255,7 @@ void export_city(HSQUIRRELVM vm)
 	/**
 	 * Enable or disable city growth.
 	 * @ingroup game_cmd
+	 * @param allow true to enable city growth
 	 */
 	register_method(vm, &set_citygrowth, "set_citygrowth_enabled", true);
 

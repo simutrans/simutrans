@@ -199,6 +199,7 @@ void export_halt(HSQUIRRELVM vm)
 	/**
 	 * Sets station name.
 	 * @ingroup rename_func
+	 * @param name the new name
 	 */
 	register_method(vm, &halt_set_name, "set_name", true);
 
@@ -216,7 +217,7 @@ void export_halt(HSQUIRRELVM vm)
 
 	/**
 	 * Can marge or exchange goods at this stop
-	 * @ param player to be tested
+	 * @param player to be tested
 	 * @returns true
 	 */
 	register_method(vm, &haltestelle_t::can_use_halt, "can_use_halt");

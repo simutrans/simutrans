@@ -750,6 +750,7 @@ void export_commands(HSQUIRRELVM vm)
 	/**
 	 * Costs of using @ref set_slope.
 	 * @returns cost
+	 * @param slope the slope that would be built
 	 */
 	STATIC register_method(vm, set_slope_get_price, "slope_get_price", false, true);
 	/**

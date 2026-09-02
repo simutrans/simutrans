@@ -382,6 +382,7 @@ void export_scenario(HSQUIRRELVM vm)
 	 * Only effects tools forbidden by rules::forbid_tool, rules::forbid_way_tool, rules::forbid_way_tool_cube, rules::forbid_way_tool_rect.
 	 * The result of ::is_tool_allowed and ::is_work_allowed_here is not influenced.
 	 * @note Only available in scenario mode.
+	 * @param player_nr number of the player whose rules are cleared
 	 * @ingroup scen_only
 	 */
 	STATIC register_method(vm, &scenario_t::clear_player_rules, "clear_player");

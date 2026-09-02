@@ -283,6 +283,7 @@ void export_factory(HSQUIRRELVM vm)
 	/**
 	 * Change name.
 	 * @ingroup rename_func
+	 * @param name the new name
 	 */
 	register_method(vm, &factory_set_name, "set_name", true);
 

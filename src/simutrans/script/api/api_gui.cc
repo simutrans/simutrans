@@ -122,6 +122,7 @@ void export_gui(HSQUIRRELVM vm, bool scenario)
 		* Adds message to the players mailboxes.
 		* Will be shown in ticker or as pop-up window depending on players preferences.
 		*
+		* @param player sending this message, null for the active player
 		* @param text Text to be shown. Has to be a translated string or a translatable string.
 		* @note Only available in scenario mode.
 		* @ingroup scen_only

@@ -169,6 +169,7 @@ void export_tiles(HSQUIRRELVM vm)
 	/**
 	 * Search for a given object type on the tile.
 	 * @return some instance or null if not found
+	 * @param type of the map object
 	 */
 	register_method(vm, &grund_t::suche_obj, "find_object");
 	/**
@@ -405,7 +406,7 @@ void export_tiles(HSQUIRRELVM vm)
 
 	/**
 	 * Returns list of stations that cover this tile.
-	 * @typemask array<halt_x>
+	 * @typemask array<halt_x>()
 	 */
 	register_method(vm, &square_get_halt_list, "get_halt_list", true);
 

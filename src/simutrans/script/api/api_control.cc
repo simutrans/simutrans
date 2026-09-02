@@ -75,6 +75,10 @@ void export_control(HSQUIRRELVM vm)
 	register_function<int(*)()>(vm, sq_get_ops_remaing, "get_ops_remaining");
 
 
+	/**
+	 * Table with methods to pause the game from a script.
+	 * @note None of these work in network games.
+	 */
 	begin_class(vm, "debug");
 	/**
 	 * Pauses game. Does not work in network games. Use with care.

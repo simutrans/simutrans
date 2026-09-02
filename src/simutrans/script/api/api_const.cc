@@ -141,7 +141,9 @@ void export_global_constants(HSQUIRRELVM vm)
 	 * Flags for scripted tools.
 	 */
 	begin_enum("tool_flags");
+	/// shift-key was pressed when mouse-click happened
 	enum_slot(vm, "shift_pressed", tool_t::WFL_SHIFT);
+	/// ctrl-key was pressed when mouse-click happened
 	enum_slot(vm, "ctrl_pressed",  tool_t::WFL_CTRL);
 	end_enum();
 
@@ -289,13 +291,21 @@ void export_global_constants(HSQUIRRELVM vm)
 	 * translation in some paksets.
 	 */
 	begin_enum("climates");
+	/// Below the groundwater level. Internally named "sea"; not listed in the climate settings dialogue.
 	enum_slot(vm, "cl_water", water_climate);
+	/// Listed as "Desert" in the climate settings dialogue.
 	enum_slot(vm, "cl_desert", desert_climate);
+	/// Listed as "Tropical" in the climate settings dialogue.
 	enum_slot(vm, "cl_tropic", tropic_climate);
+	/// Listed as "Mediterranean" in the climate settings dialogue.
 	enum_slot(vm, "cl_mediterran", mediterran_climate);
+	/// Listed as "Temperate" in the climate settings dialogue.
 	enum_slot(vm, "cl_temperate", temperate_climate);
+	/// Listed as "Tundra" in the climate settings dialogue.
 	enum_slot(vm, "cl_tundra", tundra_climate);
+	/// Listed as "Alpine (rocky)" in the climate settings dialogue.
 	enum_slot(vm, "cl_rocky", rocky_climate);
+	/// Every height above the last configured climate border. @see world::get_climate
 	enum_slot(vm, "cl_arctic", arctic_climate);
 	end_enum();
 
@@ -303,14 +313,23 @@ void export_global_constants(HSQUIRRELVM vm)
 	 * Gadgets ides. They are used to obtain the image id of the gadgets.
 	 */
 	begin_enum("gadgets");
+	/// close button; drawn as "X" when the theme supplies no gadget images
 	enum_slot(vm, "ga_close", SKIN_GADGET_CLOSE);
+	/// help button; drawn as "?" when the theme supplies no gadget images
 	enum_slot(vm, "ga_help", SKIN_GADGET_HELP);
+	/// roll-up button; drawn as "=" when the theme supplies no gadget images
 	enum_slot(vm, "ga_minimize", SKIN_GADGET_MINIMIZE);
+	/// previous button; drawn as "<" when the theme supplies no gadget images
 	enum_slot(vm, "ga_previous", SKIN_BUTTON_PREVIOUS);
+	/// next button; drawn as ">" when the theme supplies no gadget images
 	enum_slot(vm, "ga_next", SKIN_BUTTON_NEXT);
+	/// sticky button in its unpinned state; drawn as "s"
 	enum_slot(vm, "ga_notpinned", SKIN_GADGET_NOTPINNED);
+	/// sticky button in its pinned state; drawn as "S"
 	enum_slot(vm, "ga_pinned", SKIN_GADGET_PINNED);
+	/// the resize dragger in the bottom right corner of a window
 	enum_slot(vm, "ga_resize", SKIN_WINDOW_RESIZE);
+	/// jump-to-position button; drawn as "*" when the theme supplies no gadget images
 	enum_slot(vm, "ga_gotopos", SKIN_GADGET_GOTOPOS);
 	end_enum();
 }

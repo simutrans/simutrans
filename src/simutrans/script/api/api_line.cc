@@ -198,6 +198,7 @@ void export_line(HSQUIRRELVM vm)
 	 * Sets line name.
 	 * @ingroup rename_func
 	 * @typemask void(string)
+	 * @param name the new name
 	 */
 	register_method(vm, &line_set_name, "set_name", true);
 	/**
@@ -269,12 +270,15 @@ void export_line(HSQUIRRELVM vm)
 	 * Change schedule of line.
 	 * Schedule should not contain doubled entries and more than two entries.
 	 * @ingroup game_cmd
+	 * @param player owner of the line
+	 * @param sched the new schedule
 	 */
 	register_method(vm, line_change_schedule, "change_schedule", true);
 
 	/**
 	 * Delete line
 	 * @ingroup game_cmd
+	 * @param player owner of the line
 	 */
 	register_method(vm, line_delete, "destroy", true);
 

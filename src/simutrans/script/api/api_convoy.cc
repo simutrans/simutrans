@@ -279,6 +279,7 @@ void export_convoy(HSQUIRRELVM vm)
 	/**
 	 * Sets convoy name.
 	 * @ingroup rename_func
+	 * @param name the new name
 	 */
 	register_method(vm, &convoy_set_name, "set_name", true);
 	/**
@@ -383,6 +384,7 @@ void export_convoy(HSQUIRRELVM vm)
 	/**
 	 * Toggle the flag 'withdraw convoy'
 	 * @ingroup game_cmd
+	 * @param player owner of the convoy
 	 */
 	register_method_fv(vm, convoy_generic_tool, "toggle_withdraw", freevariable<uint8>('w'), true );
 	/**
@@ -435,6 +437,7 @@ void export_convoy(HSQUIRRELVM vm)
 	 * The convoy will be marked for destroying, it will be destroyed when the simulation continues.
 	 * Call @ref sleep to be sure that the convoy is destroyed before script continues.
 	 * @ingroup game_cmd
+	 * @param player owner of the convoy
 	 */
 	register_method_fv(vm, convoy_generic_tool, "destroy", freevariable<uint8>('x'), true);
 	/**
@@ -455,6 +458,8 @@ void export_convoy(HSQUIRRELVM vm)
 	 * Schedule should not contain doubled entries and more than two entries.
 	 * This might make the convoy lose its line.
 	 * @ingroup game_cmd
+	 * @param player owner of the convoy
+	 * @param sched the new schedule
 	 */
 	register_method(vm, convoy_change_schedule, "change_schedule", true);
 
