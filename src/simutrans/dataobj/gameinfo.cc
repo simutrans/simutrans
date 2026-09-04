@@ -175,10 +175,10 @@ void gameinfo_t::rdwr(loadsave_t *file)
 		// cannot use the temp buffer above because PATH_MAX is 260 on Windows
 		// which is too small (need at least MAX_MOTD_LEN+1
 		char motd_buf[MAX_MOTD_LEN+1];
-		tstrncpy(temp, motd.c_str(), lengthof(motd_buf));
-		file->rdwr_str(temp, lengthof(temp)); // motd for server
+		tstrncpy(motd_buf, motd.c_str(), lengthof(motd_buf));
+		file->rdwr_str(motd_buf, lengthof(motd_buf)); // motd for server
 		if (file->is_loading()) {
-			motd = temp;
+			motd = motd_buf;
 		}
 	}
 	file->rdwr_long(game_engine_revision);
