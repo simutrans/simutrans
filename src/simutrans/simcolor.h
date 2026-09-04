@@ -29,6 +29,33 @@ typedef unsigned short PIXVAL;
 typedef unsigned int FLAGGED_PIXVAL;
 
 /**
+ * Bits of a FLAGGED_PIXVAL that carry the screen colour rather than a draw flag.
+ *
+ * A flagged value is built by its callers as "colour | FLAG", which says nothing
+ * about where either half lives. The accessors below are the only place that
+ * knows the layout, so it can be changed here without touching those callers.
+ */
+#define FLAGGED_PIXVAL_COLOUR_MASK (0xFFFFu)
+
+/// The screen colour carried by a flagged value.
+inline PIXVAL get_flagged_colour(FLAGGED_PIXVAL c)
+{
+	return (PIXVAL)(c & FLAGGED_PIXVAL_COLOUR_MASK);
+}
+
+/// Whether the value asks for outline drawing rather than blending.
+inline bool has_outline_flag(FLAGGED_PIXVAL c)
+{
+	return (c & OUTLINE_FLAG) != 0;
+}
+
+/// Transparency step of the value: 0 for none, else 1, 2 or 3 for 25/50/75 %.
+inline uint8 get_transparency_level(FLAGGED_PIXVAL c)
+{
+	return (uint8)((c & TRANSPARENT_FLAGS) / TRANSPARENT25_FLAG);
+}
+
+/**
  * Colour word as stored in an image (image_t::data and the renderer's copies
  * of it).
  *

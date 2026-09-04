@@ -18,11 +18,21 @@
 static char tooltip[64];
 
 /**
- * Set background color. -1 means no background
+ * Set the background colour and switch the background on.
  */
-void gui_chart_t::set_background(FLAGGED_PIXVAL color)
+void gui_chart_t::set_background(PIXVAL color)
 {
 	background = color;
+	background_visible = true;
+}
+
+
+/**
+ * Draw no background at all, which is the default.
+ */
+void gui_chart_t::clear_background()
+{
+	background_visible = false;
 }
 
 
@@ -38,7 +48,8 @@ gui_chart_t::gui_chart_t() : gui_component_t()
 	min_size = scr_size(0,0);
 
 	// transparent by default
-	background = TRANSPARENT_FLAGS;
+	background = 0;
+	background_visible = false;
 }
 
 void gui_chart_t::set_min_size(scr_size s)
@@ -123,7 +134,7 @@ void gui_chart_t::draw(scr_coord offset)
 	calc_gui_chart_values(pbaseline, pscale, cmin, cmax, 18);
 
 	// draw background if desired
-	if(background != TRANSPARENT_FLAGS) {
+	if(background_visible) {
 		gfx->draw_rect_clipped(offset.x, offset.y, chart_size.w, chart_size.h, background, false CLIP_NUM_DEFAULT);
 	}
 	int tmpx, factor;

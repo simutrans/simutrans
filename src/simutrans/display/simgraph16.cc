@@ -3321,9 +3321,10 @@ static void simgraph16_draw_rezoomed_img_blend(const image_id n, scr_coord_val x
 			// needed now ...
 			const scr_coord_val w = images[n].w;
 			// get the real color
-			const PIXVAL color = color_index & 0xFFFF;
+			const PIXVAL color = get_flagged_colour( color_index );
 			// we use function pointer for the blend runs for the moment ...
-			blend_proc pix_blend = (color_index&OUTLINE_FLAG) ? outline[ (color_index&TRANSPARENT_FLAGS)/TRANSPARENT25_FLAG - 1 ] : blend[ (color_index&TRANSPARENT_FLAGS)/TRANSPARENT25_FLAG - 1 ];
+			const uint8 level = get_transparency_level( color_index );
+			blend_proc pix_blend = has_outline_flag( color_index ) ? outline[ level - 1 ] : blend[ level - 1 ];
 
 			// marking change?
 			if(  dirty  ) {
@@ -3402,7 +3403,7 @@ static void simgraph16_draw_rezoomed_img_alpha(const image_id n, const image_id 
 			// needed now ...
 			const scr_coord_val w = images[n].w;
 			// get the real color
-			const PIXVAL color = color_index & 0xFFFF;
+			const PIXVAL color = get_flagged_colour( color_index );
 
 			// marking change?
 			if(  dirty  ) {
@@ -3461,11 +3462,12 @@ static void simgraph16_draw_base_img_blend(const image_id n, scr_coord_val xp, s
 
 		// new block for new variables
 		{
-			const PIXVAL color = color_index & 0xFFFF;
-			blend_proc pix_blend = (color_index&OUTLINE_FLAG) ? outline[ (color_index&TRANSPARENT_FLAGS)/TRANSPARENT25_FLAG - 1 ] : blend_recode[ (color_index&TRANSPARENT_FLAGS)/TRANSPARENT25_FLAG - 1 ];
+			const PIXVAL color = get_flagged_colour( color_index );
+			const uint8 level = get_transparency_level( color_index );
+			blend_proc pix_blend = has_outline_flag( color_index ) ? outline[ level - 1 ] : blend_recode[ level - 1 ];
 
 			// recode is needed only for blending
-			if(  !(color_index&OUTLINE_FLAG)  ) {
+			if(  !has_outline_flag( color_index )  ) {
 				// colors for 2nd company color
 				if(player_nr>=0) {
 					activate_player_color( player_nr, daynight );
@@ -3539,10 +3541,10 @@ static void simgraph16_draw_base_img_alpha(const image_id n, const image_id alph
 
 		// new block for new variables
 		{
-			const PIXVAL color = color_index & 0xFFFF;
+			const PIXVAL color = get_flagged_colour( color_index );
 
 			// recode is needed only for blending
-			if(  !(color_index & OUTLINE_FLAG)  ) {
+			if(  !has_outline_flag( color_index )  ) {
 				// colors for 2nd company color
 				if(  player_nr >= 0  ) {
 					activate_player_color( player_nr, daynight );

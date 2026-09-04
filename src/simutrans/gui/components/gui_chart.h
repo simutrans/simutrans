@@ -22,9 +22,14 @@ public:
 	enum { STANDARD, MONEY, PERCENT };
 
 	/**
-	 * Set background color. -1 means no background
+	 * Set the background colour and switch the background on.
 	 */
-	void set_background(FLAGGED_PIXVAL color);
+	void set_background(PIXVAL color);
+
+	/**
+	 * Draw no background at all, which is the default.
+	 */
+	void clear_background();
 
 	gui_chart_t();
 
@@ -125,9 +130,12 @@ private:
 	bool show_x_axis, show_y_axis;
 
 	/**
-	 * Background color, -1 for transparent background
+	 * Background colour, only drawn when background_visible is set. The two
+	 * are kept apart so that "no background" is a state of its own rather
+	 * than a colour value reserved to mean it.
 	 */
-	FLAGGED_PIXVAL background;
+	PIXVAL background;
+	bool   background_visible;
 
 	// TODO do something smarter here
 	scr_size min_size;
