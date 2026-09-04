@@ -4556,6 +4556,11 @@ obj=program_text
 name=stay on this level
 note=contextual construction information
 --
+obj=program_text
+name=show_construction_info
+note=display setting option
+-
+
 
 #obj=help_text
 #name=Lower values mean more local sounds
