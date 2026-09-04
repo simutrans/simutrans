@@ -28,6 +28,21 @@ typedef unsigned short PIXVAL;
 // PIXVAL with above flags (eg. transparent) (uint32)
 typedef unsigned int FLAGGED_PIXVAL;
 
+/**
+ * Colour word as stored in an image (image_t::data and the renderer's copies
+ * of it).
+ *
+ * This is NOT a screen colour: it is the historical stored encoding, where
+ * 0x0000-0x7FFF is RGB555, 0x8000-0x800F are player colours, 0x8010-0x801F are
+ * day/night lights and everything above is a class+alpha code. Code reading
+ * this space may legitimately classify a pixel by its numeric value.
+ *
+ * It is a distinct contract from a screen pixel, and always 16 bit.
+ */
+typedef uint16 STORED_PIXVAL;
+
+static_assert(sizeof(STORED_PIXVAL) == 2, "stored image data must stay 16 bit");
+
 // Menu colours (they don't change between day and night)
 #define MN_GREY0            229
 #define MN_GREY1            230

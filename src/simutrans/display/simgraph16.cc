@@ -330,9 +330,9 @@ struct imd {
 	uint8 recode_flags;
 	uint16 player_flags; // bit # is player number, ==1 cache image needs recoding
 
-	PIXVAL* data[MAX_PLAYER_COUNT]; // current data - zoomed and recolored (player + daynight)
+	PIXVAL* data[MAX_PLAYER_COUNT]; // recoded screen space - zoomed and recolored (player + daynight)
 
-	PIXVAL* zoom_data; // zoomed original data
+	STORED_PIXVAL* zoom_data; // zoomed original data, stored space
 	uint32 len;    // current zoom image data size (or base if not zoomed) (used for allocation purposes only)
 
 	sint16 base_x; // min x offset
@@ -340,7 +340,7 @@ struct imd {
 	sint16 base_w; // width
 	sint16 base_h; // height
 
-	PIXVAL* base_data; // original image data
+	STORED_PIXVAL* base_data; // original image data, stored space
 };
 
 // Flags for recoding
@@ -2153,9 +2153,33 @@ static inline void pixcopy(PIXVAL *dest, const PIXVAL *src, const PIXVAL * const
 
 
 /**
- * Copy pixel, replace player color
+ * Composite semi-transparent pixels that are already in SCREEN space.
+ *
+ * The source is a recoded cache, and the caller has already established from
+ * the run header (TRANSPARENT_RUN) that this run is semi-transparent, so no
+ * classification by pixel value is needed or done here.
  */
-static inline void colorpixcopy(PIXVAL* dest, const PIXVAL* src, const PIXVAL* const end)
+static inline void colorpixcopy_screen(PIXVAL* dest, const PIXVAL* src, const PIXVAL* const end)
+{
+	while (src < end) {
+		// a semi-transparent pixel
+		uint16 aux   = *src++ - 0x8020;
+		uint16 alpha = (aux % 31) + 1;
+
+		*dest = colors_blend_alpha32(*dest, rgbmap_day_night[0x8000 + aux / 31], alpha);
+		dest++;
+	}
+}
+
+
+/**
+ * Copy pixel from STORED space, replace player color.
+ *
+ * The source is original image data, so the historical stored encoding applies
+ * and classifying a pixel by its value is part of that encoding, not an
+ * assumption about screen colours.
+ */
+static inline void colorpixcopy_stored(PIXVAL* dest, const STORED_PIXVAL* src, const STORED_PIXVAL* const end)
 {
 	if (*src < 0x8020) {
 		while (src < end) {
@@ -2176,9 +2200,10 @@ static inline void colorpixcopy(PIXVAL* dest, const PIXVAL* src, const PIXVAL* c
 
 
 /**
- * Copy pixel, replace player color
+ * As colorpixcopy_stored(), but resolving semi-transparent pixels against the
+ * all-day table. Also STORED space.
  */
-static inline void colorpixcopydaytime(PIXVAL* dest, const PIXVAL* src, const PIXVAL* const end)
+static inline void colorpixcopydaytime_stored(PIXVAL* dest, const STORED_PIXVAL* src, const STORED_PIXVAL* const end)
 {
 	if (*src < 0x8020) {
 		while (src < end) {
@@ -2209,7 +2234,24 @@ enum pixcopy_routines {
 };
 
 
-template<pixcopy_routines copyroutine> void templated_pixcopy(PIXVAL *dest, const PIXVAL *src, const PIXVAL * const end);
+/**
+ * Which source space each routine reads.
+ *
+ * plain draws from a recoded screen cache; colored and daytime draw from the
+ * original stored image data. Keeping that in the type is what stops the two
+ * being confused once a screen pixel is no longer the same width as a stored
+ * one.
+ */
+template<pixcopy_routines copyroutine> struct pixcopy_source_t;
+template<> struct pixcopy_source_t<plain>   { typedef PIXVAL        type; };
+template<> struct pixcopy_source_t<colored> { typedef STORED_PIXVAL type; };
+template<> struct pixcopy_source_t<daytime> { typedef STORED_PIXVAL type; };
+
+template<pixcopy_routines copyroutine>
+using pixcopy_src = typename pixcopy_source_t<copyroutine>::type;
+
+
+template<pixcopy_routines copyroutine> void templated_pixcopy(PIXVAL *dest, const pixcopy_src<copyroutine> *src, const pixcopy_src<copyroutine> * const end);
 
 
 template<> void templated_pixcopy<plain>(PIXVAL *dest, const PIXVAL *src, const PIXVAL * const end)
@@ -2218,15 +2260,43 @@ template<> void templated_pixcopy<plain>(PIXVAL *dest, const PIXVAL *src, const 
 }
 
 
-template<> void templated_pixcopy<colored>(PIXVAL* dest, const PIXVAL* src, const PIXVAL* const end)
+template<> void templated_pixcopy<colored>(PIXVAL* dest, const STORED_PIXVAL* src, const STORED_PIXVAL* const end)
 {
-	colorpixcopy(dest, src, end);
+	colorpixcopy_stored(dest, src, end);
 }
 
 
-template<> void templated_pixcopy<daytime>(PIXVAL* dest, const PIXVAL* src, const PIXVAL* const end)
+template<> void templated_pixcopy<daytime>(PIXVAL* dest, const STORED_PIXVAL* src, const STORED_PIXVAL* const end)
 {
-	colorpixcopydaytime(dest, src, end);
+	colorpixcopydaytime_stored(dest, src, end);
+}
+
+
+/**
+ * The semi-transparent run of the same routine.
+ *
+ * daytime deliberately maps to the day/night stored variant rather than the
+ * all-day one: that is what the historical code did for alpha runs, and this
+ * cut preserves it rather than correcting it.
+ */
+template<pixcopy_routines copyroutine> void templated_alphacopy(PIXVAL *dest, const pixcopy_src<copyroutine> *src, const pixcopy_src<copyroutine> * const end);
+
+
+template<> void templated_alphacopy<plain>(PIXVAL *dest, const PIXVAL *src, const PIXVAL * const end)
+{
+	colorpixcopy_screen(dest, src, end);
+}
+
+
+template<> void templated_alphacopy<colored>(PIXVAL* dest, const STORED_PIXVAL* src, const STORED_PIXVAL* const end)
+{
+	colorpixcopy_stored(dest, src, end);
+}
+
+
+template<> void templated_alphacopy<daytime>(PIXVAL* dest, const STORED_PIXVAL* src, const STORED_PIXVAL* const end)
+{
+	colorpixcopy_stored(dest, src, end);
 }
 
 
@@ -2234,7 +2304,7 @@ template<> void templated_pixcopy<daytime>(PIXVAL* dest, const PIXVAL* src, cons
  * draws image with clipping along arbitrary lines
  */
 template<pixcopy_routines copyroutine>
-static void display_img_pc(scr_coord_val h, const scr_coord_val xp, const scr_coord_val yp, const PIXVAL *sp  CLIP_NUM_DEF)
+static void display_img_pc(scr_coord_val h, const scr_coord_val xp, const scr_coord_val yp, const pixcopy_src<copyroutine> *sp  CLIP_NUM_DEF)
 {
 	if(  h > 0  ) {
 		PIXVAL *tp = textur + yp * disp_width;
@@ -2267,7 +2337,7 @@ static void display_img_pc(scr_coord_val h, const scr_coord_val xp, const scr_co
 						templated_pixcopy<copyroutine>(tp + xpos + left, sp + left, sp + len);
 					}
 					else {
-						colorpixcopy(tp + xpos + left, sp + left, sp + len);
+						templated_alphacopy<copyroutine>(tp + xpos + left, sp + left, sp + len);
 					}
 				}
 
@@ -2313,7 +2383,7 @@ static void display_img_wc(scr_coord_val h, const scr_coord_val xp, const scr_co
 						pixcopy(tp + xpos + left, sp + left, sp + len);
 					}
 					else {
-						colorpixcopy(tp + xpos + left, sp + left, sp + len);
+						colorpixcopy_screen(tp + xpos + left, sp + left, sp + len);
 					}
 				}
 
@@ -2348,7 +2418,7 @@ static void display_img_nc(scr_coord_val h, const scr_coord_val xp, const scr_co
 				runlen = *sp++;
 				if(  runlen & TRANSPARENT_RUN  ) {
 					runlen &= ~TRANSPARENT_RUN;
-					colorpixcopy( p, sp, sp+runlen );
+					colorpixcopy_screen( p, sp, sp+runlen );
 					p += runlen;
 					sp += runlen;
 				}
@@ -2694,7 +2764,7 @@ static void simgraph16_draw_stretch_map_blend(const stretch_map_t &imag, scr_rec
  * assumes height is ok and valid data are calculated.
  * color replacement needs the original data => sp points to non-cached data
  */
-static void display_color_img_wc(const PIXVAL* sp, scr_coord_val x, scr_coord_val y, scr_coord_val h  CLIP_NUM_DEF)
+static void display_color_img_wc(const STORED_PIXVAL* sp, scr_coord_val x, scr_coord_val y, scr_coord_val h  CLIP_NUM_DEF)
 {
 	PIXVAL* tp = textur + y * disp_width;
 
@@ -2717,7 +2787,7 @@ static void display_color_img_wc(const PIXVAL* sp, scr_coord_val x, scr_coord_va
 				const int left = (xpos >= CR.clip_rect.x ? 0 : CR.clip_rect.x - xpos);
 				const int len = (CR.clip_rect.xx - xpos > runlen ? runlen : CR.clip_rect.xx - xpos);
 
-				colorpixcopy(tp + xpos + left, sp + left, sp + len);
+				colorpixcopy_stored(tp + xpos + left, sp + left, sp + len);
 			}
 
 			sp += runlen;
@@ -2732,7 +2802,7 @@ static void display_color_img_wc(const PIXVAL* sp, scr_coord_val x, scr_coord_va
 /**
  * Draw Image, replace player color, as above, but uses daytime colors for transparent pixels
  */
-static void display_color_img_wc_daytime(const PIXVAL* sp, scr_coord_val x, scr_coord_val y, scr_coord_val h  CLIP_NUM_DEF)
+static void display_color_img_wc_daytime(const STORED_PIXVAL* sp, scr_coord_val x, scr_coord_val y, scr_coord_val h  CLIP_NUM_DEF)
 {
 	PIXVAL* tp = textur + y * disp_width;
 
@@ -2755,7 +2825,7 @@ static void display_color_img_wc_daytime(const PIXVAL* sp, scr_coord_val x, scr_
 				const int left = (xpos >= CR.clip_rect.x ? 0 : CR.clip_rect.x - xpos);
 				const int len = (CR.clip_rect.xx - xpos > runlen ? runlen : CR.clip_rect.xx - xpos);
 
-				colorpixcopydaytime(tp + xpos + left, sp + left, sp + len);
+				colorpixcopydaytime_stored(tp + xpos + left, sp + left, sp + len);
 			}
 
 			sp += runlen;
@@ -2808,7 +2878,7 @@ void simgraph16_draw_color_img(const image_id n, scr_coord_val xp, scr_coord_val
 			activate_player_color( player_nr, daynight );
 
 			// color replacement needs the original data => sp points to non-cached data
-			const PIXVAL *sp = images[n].zoom_data != NULL ? images[n].zoom_data : images[n].base_data;
+			const STORED_PIXVAL *sp = images[n].zoom_data != NULL ? images[n].zoom_data : images[n].base_data;
 
 			// clip top/bottom
 			scr_coord_val yoff = clip_wh( &y, &h, CR.clip_rect.y, CR.clip_rect.yy );
@@ -2874,7 +2944,7 @@ static void simgraph16_draw_base_img(const image_id n, scr_coord_val xp, scr_coo
 		}
 
 		// color replacement needs the original data => sp points to non-cached data
-		const PIXVAL *sp = images[n].base_data;
+		const STORED_PIXVAL *sp = images[n].base_data;
 
 		// clip top/bottom
 		scr_coord_val yoff = clip_wh( &y, &h, CR.clip_rect.y, CR.clip_rect.yy );

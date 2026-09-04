@@ -72,7 +72,7 @@ image_t* image_t::copy_image(const image_t& other)
 	img->h   = other.h;
 	img->imageid  = IMG_EMPTY;
 	img->zoomable = other.zoomable;
-	memcpy(img->data, other.data, other.len * sizeof(PIXVAL));
+	memcpy(img->data, other.data, other.len * sizeof(STORED_PIXVAL));
 #endif
 	return img;
 }
@@ -120,8 +120,8 @@ image_t *image_t::copy_rotate(const sint16 angle) const
 	// now you should understand below arithmetics ...
 
 	sint16        const x_y    = w;
-	PIXVAL const* const src    = get_data();
-	PIXVAL*       const target = target_image->get_data();
+	STORED_PIXVAL const* const src    = get_data();
+	STORED_PIXVAL*       const target = target_image->get_data();
 
 	switch(angle) {
 		case 90:
@@ -169,8 +169,8 @@ image_t *image_t::copy_flipvertical() const
 	// now you should understand below arithmetics ...
 
 	sint16        const x_y    = w;
-	PIXVAL const* const src    = get_data();
-	PIXVAL*       const target = target_image->get_data();
+	STORED_PIXVAL const* const src    = get_data();
+	STORED_PIXVAL*       const target = target_image->get_data();
 
 	for(  int j = 0;  j < x_y;  j++  ) {
 		for(  int i = 0;  i < x_y;  i++  ) {
@@ -197,8 +197,8 @@ image_t *image_t::copy_fliphorizontal() const
 	// now you should understand below arithmetics ...
 
 	sint16        const x_y    = w;
-	PIXVAL const* const src    = get_data();
-	PIXVAL*       const target = target_image->get_data();
+	STORED_PIXVAL const* const src    = get_data();
+	STORED_PIXVAL*       const target = target_image->get_data();
 
 	for(  int i = 0;  i < x_y;  i++  ) {
 		for(  int j = 0;  j < x_y;  j++  ) {

@@ -52,8 +52,8 @@ public:
 
 	const image_t* get_pic() const { return this; }
 
-	uint16 const* get_data() const { return NULL; }
-	uint16* get_data() { return NULL; }
+	STORED_PIXVAL const* get_data() const { return NULL; }
+	STORED_PIXVAL* get_data() { return NULL; }
 
 	image_id get_id() const { return imageid; }
 
@@ -91,14 +91,14 @@ private:
 public:
 	static const uint32 rgbtab[SPECIAL];
 
-	size_t len = 0;       ///< length of data[] in PIXVAL units
+	size_t len = 0;       ///< length of data[] in STORED_PIXVAL units
 	scr_coord_val x = 0;  ///< x offset of data[] image
 	scr_coord_val y = 0;  ///< y offset of data[] image
 	scr_coord_val w = 0;  ///< width of data[] image
 	scr_coord_val h = 0;  ///< height of data[] image
 	image_id imageid = 0; ///< Graphics renderer image id
 	uint8 zoomable = 0;   ///< some images may not be zoomed i.e. icons
-	PIXVAL *data = NULL;  ///< RLE encoded image data
+	STORED_PIXVAL *data = NULL;  ///< RLE encoded image data, stored space
 
 	void* operator new(size_t) { return ifl.gimme_node(); }
 	void operator delete(void* p) { return ifl.putback_node(p); }
@@ -118,7 +118,7 @@ public:
 	void alloc(size_t len_)
 	{
 		delete [] data;
-		data = new PIXVAL[len_];
+		data = new STORED_PIXVAL[len_];
 		len = len_;
 	}
 
@@ -126,8 +126,8 @@ public:
 
 	const image_t* get_pic() const { return this; }
 
-	uint16 const* get_data() const { return data; }
-	uint16*       get_data()       { return data; }
+	STORED_PIXVAL const* get_data() const { return data; }
+	STORED_PIXVAL*       get_data()       { return data; }
 
 	image_id get_id() const { return imageid; }
 
