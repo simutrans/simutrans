@@ -13,6 +13,9 @@
 #include <stdlib.h>
 #include "../utils/cbuffer.h"
 
+/// how often we follow a Location: header before giving up
+#define MAX_HTTP_REDIRECTS (5)
+
 #ifndef NETTOOL
 #include "../dataobj/translator.h"
 #else
@@ -511,8 +514,15 @@ const char* network_http_get(const char* address, const char* name, cbuffer_t& l
 	return err;
 }
 
-const char *network_http_get_file( const char* address, const char* name, const char *filename )
+/**
+ * Worker for network_http_get_file(). depth bounds the redirect chain, since a
+ * server can otherwise point us at ourselves forever.
+ */
+static const char *network_http_get_file_internal( const char* address, const char* name, const char *filename, cbuffer_t *redirect_to, int depth )
 {
+	if(  depth > MAX_HTTP_REDIRECTS  ) {
+		return "Too many redirects.";
+	}
 	const int REQ_HEADER_LEN = 1024;
 	// open from network
 	const char *err = NULL;
@@ -577,10 +587,20 @@ const char *network_http_get_file( const char* address, const char* name, const 
 					strcpy( c, ":80");
 
 					*strchr(new_path, 10) = 0;
-					return network_http_get_file(new_ip, new_path, filename);
+					return network_http_get_file_internal(new_ip, new_path, filename, redirect_to, depth+1);
 				}
 			}
-			if (tstrcasestr(line, "\nLocation: https://")) {
+			if(  char *c = tstrcasestr(line, "\nLocation: https://")  ) {
+				// we cannot speak https, but our caller may be able to: say where to go
+				if(  redirect_to  ) {
+					char new_url[1024];
+					tstrncpy(new_url, c + 11, lengthof(new_url)); // skip "\nLocation: "
+					if(  char *end = strchr(new_url, 10)  ) {
+						*end = 0;
+					}
+					redirect_to->clear();
+					redirect_to->append(new_url);
+				}
 				return "Cannot handle https.";
 			}
 			return "Unknown redirect.";
@@ -602,6 +622,15 @@ const char *network_http_get_file( const char* address, const char* name, const 
 		network_close_socket( my_client_socket );
 	}
 	return err;
+}
+
+
+const char *network_http_get_file( const char* address, const char* name, const char *filename, cbuffer_t *redirect_to )
+{
+	if(  redirect_to  ) {
+		redirect_to->clear();
+	}
+	return network_http_get_file_internal( address, name, filename, redirect_to, 0 );
 }
 
 #endif

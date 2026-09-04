@@ -44,8 +44,11 @@ const char *network_http_get ( const char *address, const char *name, cbuffer_t&
 
 /**
  * Use HTTP to retrieve a file into the FILE
+ * Redirects are followed as long as they stay on http. If the server redirects to
+ * https, which this client cannot speak, the target is reported in redirect_to (if
+ * given) so that the caller can hand the download to an https capable downloader.
  */
-const char* network_http_get_file( const char* address, const char* name, const char *filename );
+const char* network_http_get_file( const char* address, const char* name, const char *filename, cbuffer_t *redirect_to = NULL );
 
 
 #endif

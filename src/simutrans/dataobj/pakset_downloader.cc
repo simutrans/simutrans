@@ -187,6 +187,57 @@ static void extract_pak_from_zip(const char* zipfile)
 	zip_close(zip);
 }
 
+/**
+ * A redirect target arrives over the network, and the https downloaders below hand
+ * the url to a shell. Accept only the characters a pakset url actually needs, so
+ * that nothing can close the quoting and append a command of its own.
+ * '%' is deliberately NOT accepted: cmd.exe expands %NAME% inside the command
+ * line, and a variable whose value happens to contain a quote would end the
+ * quoting and turn the rest of the url into commands.
+ */
+static bool is_safe_https_url(const char *url)
+{
+	if(  strncmp(url, "https://", 8) != 0  ) {
+		return false;
+	}
+	for(  const char *c = url + 8;  *c;  c++  ) {
+		const bool allowed = (*c >= 'a'  &&  *c <= 'z')  ||  (*c >= 'A'  &&  *c <= 'Z')  ||
+		                     (*c >= '0'  &&  *c <= '9')  ||  strchr("-._~:/?#@&=+,", *c) != NULL;
+		if(  !allowed  ) {
+			return false;
+		}
+	}
+	return true;
+}
+
+
+/// download an https url with whatever https capable downloader this platform has
+static bool download_https(const char *url, const char *target)
+{
+	if(  !is_safe_https_url(url)  ) {
+		dbg->warning("download_https()", "refusing url with unexpected characters: %s", url);
+		return false;
+	}
+#ifdef _WIN32
+#ifndef USE_URLMON
+	char command[2048];
+	sprintf(command, "powershell \"(New-Object System.Net.WebClient).DownloadFile('%s', '%s')\"", url, target);
+	return system(command) == 0;
+#else
+	return URLDownloadToFile(NULL, url, target, 0, NULL) == 0;
+#endif
+#else
+#ifndef __ANDROID__
+	char command[2048];
+	sprintf(command, "curl --progress-bar -L '%s' > '%s'", url, target);
+	return system(command) == 0;
+#else
+	return download_file(url, target) == NULL;
+#endif
+#endif
+}
+
+
 // download and install pak into install path: using own zip/http routines
 bool pak_download(vector_tpl<paksetinfo_t*>paks)
 {
@@ -199,36 +250,13 @@ bool pak_download(vector_tpl<paksetinfo_t*>paks)
 	int j = 0;
 	for (paksetinfo_t* pi : paks) {
 		ls.set_info(pi->name);
-		if (strncmp(pi->url, "https://", 6) == 0) {
-#ifdef _WIN32
-#ifndef USE_URLMON
-			sprintf(outfilename, "powershell \"(New-Object System.Net.WebClient).DownloadFile('%s', 'temp.zip')\"", pi->url);
-			system(outfilename);
-#else
-			// use
-			if (URLDownloadToFile(NULL, pi->url, "temp.zip", 0, NULL) != 0) {
-				dbg->warning("pak_download()", "Pakset download failed");
-				j += 2;
-				ls.set_progress(j);
-				all_good = false;
-				continue;
+		bool downloaded;
+		if (strncmp(pi->url, "https://", 8) == 0) {
+			strcpy(outfilename, "temp.zip");
+			downloaded = download_https(pi->url, outfilename);
+			if(  !downloaded  ) {
+				dbg->warning("pak_download()", "Failed to download %s", pi->url);
 			}
-			strcpy(outfilename, "temp.zip");
-#endif
-#else
-#ifndef __ANDROID__
-			sprintf(outfilename, "curl --progress-bar -L '%s' > 'temp.zip'", pi->url);
-			system(outfilename);
-			strcpy(outfilename, "temp.zip");
-#else
-			// using system to download
-			strcpy(outfilename, "temp.zip");
-			if (const char* err = download_file(pi->url, "temp.zip")) {
-				outfilename[0] = 0;
-				dbg->warning("pak_download()","Failed to download %s",pi->url);
-			}
-#endif
-#endif
 		}
 		else {
 			// download using our simutrans code
@@ -242,16 +270,25 @@ bool pak_download(vector_tpl<paksetinfo_t*>paks)
 			site_ip[site_path - url] = 0;
 			strcat(site_ip, ":80");
 
-			const char* err = NULL;
-
-			err = network_http_get_file(site_ip, site_path, outfilename);
-			if (err) {
-				dbg->warning("Pakset download failed with", "%s", err);
-				j += 2;
-				ls.set_progress(j);
-				all_good = false;
-				continue;
+			cbuffer_t https_url;
+			const char* err = network_http_get_file(site_ip, site_path, outfilename, &https_url);
+			downloaded = (err == NULL);
+			if(  err  &&  https_url.len() > 0  ) {
+				// the server moved us to https, which only the downloader above speaks
+				DBG_DEBUG("pak_download()", "%s redirected to %s", pi->url, https_url.get_str());
+				dr_remove(outfilename);
+				strcpy(outfilename, "temp.zip");
+				downloaded = download_https(https_url.get_str(), outfilename);
 			}
+			if(  !downloaded  ) {
+				dbg->warning("Pakset download failed with", "%s", err);
+			}
+		}
+		if(  !downloaded  ) {
+			j += 2;
+			ls.set_progress(j);
+			all_good = false;
+			continue;
 		}
 
 		ls.set_progress(++j);
