@@ -70,6 +70,33 @@ typedef uint16 STORED_PIXVAL;
 
 static_assert(sizeof(STORED_PIXVAL) == 2, "stored image data must stay 16 bit");
 
+/**
+ * Colour word as written to a savegame.
+ *
+ * Its width is fixed by the savegame contract, not by the width of a screen
+ * pixel: files written since version 120.5 carry a 32 bit word holding either
+ * PLAYER_FLAG plus a player number, or a plain screen colour. Older files
+ * carry 16 bit and are converted on load.
+ *
+ * A wider screen colour must not widen this.
+ */
+typedef uint32 SAVED_PIXVAL;
+
+static_assert(sizeof(SAVED_PIXVAL) == 4, "saved message colour must stay 32 bit");
+
+/**
+ * Colour word as put on the network wire.
+ *
+ * Its width is fixed by the protocol: the gameinfo minimap has always been
+ * sent as one 16 bit word per pixel, and every client in the wild reads it
+ * that way.
+ *
+ * A wider screen colour must not widen this either.
+ */
+typedef uint16 NETWORK_PIXVAL;
+
+static_assert(sizeof(NETWORK_PIXVAL) == 2, "gameinfo map colour must stay 16 bit");
+
 // Menu colours (they don't change between day and night)
 #define MN_GREY0            229
 #define MN_GREY1            230

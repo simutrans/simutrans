@@ -69,7 +69,11 @@ void message_node_t::rdwr(loadsave_t *file)
 		color = c & 0x8000 ? PLAYER_FLAG + (c&(~0x8000)) : gfx->palette_lookup(c);
 	}
 	else {
-		file->rdwr_long( color );
+		// the saved word is 32 bit because the savegame says so, not because a
+		// screen colour happens to fit in one
+		SAVED_PIXVAL saved = (SAVED_PIXVAL)color;
+		file->rdwr_long( saved );
+		color = (FLAGGED_PIXVAL)saved;
 	}
 	file->rdwr_long( time );
 	if(  file->is_loading()  ) {

@@ -128,7 +128,10 @@ void gameinfo_t::rdwr(loadsave_t *file)
 	file->rdwr_long( size_y );
 	for( int y=0;  y<MINIMAP_SIZE;  y++  ) {
 		for( int x=0;  x<MINIMAP_SIZE;  x++  ) {
-			file->rdwr_short( map_pixval.at(x,y) );
+			// one 16 bit word per pixel is the protocol, whatever a screen pixel is
+			NETWORK_PIXVAL c = (NETWORK_PIXVAL)map_pixval.at(x,y);
+			file->rdwr_short( c );
+			map_pixval.at(x,y) = (PIXVAL)c;
 		}
 	}
 

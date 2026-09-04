@@ -342,9 +342,9 @@ static sint8 decode_gadget_boxes(simwin_gadget_flags_t const * const flags, int 
 
 
 static void win_draw_window_title(const scr_coord pos, const scr_size size,
-		const FLAGGED_PIXVAL title_color,
+		const PIXVAL title_color,
 		const char * const text,
-		const FLAGGED_PIXVAL text_color,
+		const PIXVAL text_color,
 		const koord3d welt_pos,
 		const uint16 gadget_state,
 		const bool sticky,
@@ -1225,8 +1225,10 @@ void display_win(int win)
 	// minimising flag if resize allowed
 	wins[win].flags.size = (comp->get_resizemode() != 0);
 	scr_coord pos = wins[win].pos;
-	FLAGGED_PIXVAL title_color = (comp->get_titlecolor()&0xFFFF);
-	FLAGGED_PIXVAL text_color = env_t::front_window_text_color;
+	// get_titlecolor() may carry PLAYER_FLAG; past this point it is a plain
+	// screen colour and nothing below needs to know the flag layout
+	PIXVAL title_color = get_flagged_colour( comp->get_titlecolor() );
+	PIXVAL text_color = env_t::front_window_text_color;
 	if(  (unsigned)win!=wins.get_count()-1  ) {
 		// not top => darker
 		title_color = gfx->blend_colors(title_color, gfx->palette_lookup(COL_BLACK), env_t::bottom_window_darkness);
