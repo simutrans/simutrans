@@ -4540,6 +4540,22 @@ obj=program_text
 name=No transformer connected.
 note=in factory info electricity tab
 --
+obj=program_text
+name=straight route
+note=contextual construction information
+--
+obj=program_text
+name=replace existing ways
+note=contextual construction information
+--
+obj=program_text
+name=keep city roads
+note=contextual construction information
+--
+obj=program_text
+name=stay on this level
+note=contextual construction information
+--
 
 #obj=help_text
 #name=Lower values mean more local sounds

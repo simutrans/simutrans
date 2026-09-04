@@ -124,8 +124,8 @@
  */
 
  /**
-  * Message returned when a player cannot modify the field due to wrong ownership
-  */
+	* Message returned when a player cannot modify the field due to wrong ownership
+	*/
 static const char* const NOTICE_WRONG_OWNER = "Das Feld gehoert\neinem anderen Spieler\n";
 
 /**
@@ -549,7 +549,7 @@ DBG_MESSAGE("tool_remover_intern()","at (%s)", pos.get_str());
 	leitung_t* lt = gr->get_leitung();
 	// check whether powerline related stuff should be removed, and if there is any to remove
 	if (  (type == obj_t::leitung  ||  type == obj_t::pumpe  ||  type == obj_t::senke  ||  type == obj_t::undefined)
-	       &&  lt != NULL  &&  lt->get_removal_error(player) == NULL) {
+			 &&  lt != NULL  &&  lt->get_removal_error(player) == NULL) {
 		if (  gr->get_typ() == grund_t::monorailboden  &&  !gr->get_weg_nr(0)  ) {
 			// totally remove elevated powerline with ground
 			lt->cleanup(player);
@@ -1111,7 +1111,7 @@ const char *tool_raise_t::work(player_t* player, koord3d pos )
 				player_t::book_construction_costs(player, welt->get_settings().cst_alter_land * n, k, ignore_wt);
 			}
 			return err == NULL ? (n ? NULL : "")
-			                   : (*err == 0 ? NOTICE_TILE_FULL : err);
+								: (*err == 0 ? NOTICE_TILE_FULL : err);
 		}
 		else {
 			// no mountains higher than welt->get_maximumheight() ...
@@ -1175,7 +1175,7 @@ const char *tool_lower_t::work( player_t *player, koord3d pos )
 				player_t::book_construction_costs(player, welt->get_settings().cst_alter_land * n, k, ignore_wt);
 			}
 			return err == NULL ? (n ? NULL : "")
-			                   : (*err == 0 ? NOTICE_TILE_FULL : err);
+								: (*err == 0 ? NOTICE_TILE_FULL : err);
 		}
 		else {
 			// below water level
@@ -1289,7 +1289,7 @@ const char *tool_setslope_t::tool_set_slope_work( player_t *player, koord3d pos,
 
 		// finally: empty enough
 		if(  gr1->get_grund_hang()!=gr1->get_weg_hang()  ||  gr1->get_halt().is_bound()  ||  gr1->kann_alle_obj_entfernen(player)  ||
-				   gr1->find<gebaeude_t>()  ||  gr1->get_depot()  ||  (gr1->get_leitung() && gr1->hat_wege())  ||  gr1->get_weg(air_wt)  ||  gr1->find<label_t>()  ||  gr1->get_typ()==grund_t::brueckenboden) {
+					gr1->find<gebaeude_t>()  ||  gr1->get_depot()  ||  (gr1->get_leitung() && gr1->hat_wege())  ||  gr1->get_weg(air_wt)  ||  gr1->find<label_t>()  ||  gr1->get_typ()==grund_t::brueckenboden) {
 			return NOTICE_TILE_FULL;
 		}
 
@@ -1331,8 +1331,8 @@ const char *tool_setslope_t::tool_set_slope_work( player_t *player, koord3d pos,
 				else if(  gr1->get_weg_hang() == slope_type(ribis)  ) {
 					// check that way_desc supports such steep slopes
 					if(  (gr1->get_weg_nr(0)  &&  !gr1->get_weg_nr(0)->get_desc()->has_double_slopes())
-					  ||  (gr1->get_weg_nr(1)  &&  !gr1->get_weg_nr(1)->get_desc()->has_double_slopes())
-					  ||  (gr1->get_leitung()  &&  !gr1->get_leitung()->get_desc()->has_double_slopes())  ) {
+						||  (gr1->get_weg_nr(1)  &&  !gr1->get_weg_nr(1)->get_desc()->has_double_slopes())
+						||  (gr1->get_leitung()  &&  !gr1->get_leitung()->get_desc()->has_double_slopes())  ) {
 						return NOTICE_TILE_FULL;
 					}
 					new_slope = slope_type(ribis) * 2;
@@ -1371,8 +1371,8 @@ const char *tool_setslope_t::tool_set_slope_work( player_t *player, koord3d pos,
 				else if(  gr1->get_grund_hang() == slope_type( ribi_t::backward(ribis) )  ) {
 					// check that way_desc supports such steep slopes
 					if(  (gr1->get_weg_nr(0)  &&  !gr1->get_weg_nr(0)->get_desc()->has_double_slopes())
-					  ||  (gr1->get_weg_nr(1)  &&  !gr1->get_weg_nr(1)->get_desc()->has_double_slopes())
-					  ||  (gr1->get_leitung()  &&  !gr1->get_leitung()->get_desc()->has_double_slopes())  ) {
+						||  (gr1->get_weg_nr(1)  &&  !gr1->get_weg_nr(1)->get_desc()->has_double_slopes())
+						||  (gr1->get_leitung()  &&  !gr1->get_leitung()->get_desc()->has_double_slopes())  ) {
 						return NOTICE_TILE_FULL;
 					}
 					new_slope = slope_type( ribi_t::backward(ribis) ) * 2;
@@ -2678,25 +2678,25 @@ uint8 tool_build_way_t::get_modifier_hints(tool_hint_t *hints, uint8 mod_flags) 
 #endif
 	if(  !straight_is_forced  ) {
 		hints[n].key    = "[CTRL]";
-		hints[n].text   = "straight route";
+		hints[n].text   = translator::translate( "straight route" );
 		hints[n].active = ctrl;
 		n++;
 	}
 
 	hints[n].key    = "[CTRL]";
-	hints[n].text   = "replace existing ways";
+	hints[n].text   = translator::translate( "replace existing ways" );
 	hints[n].active = ctrl  &&  !shift;
 	n++;
 
 	if(  desc  &&  desc->get_styp() == type_flat  &&  desc->get_wtyp() == road_wt  ) {
 		hints[n].key    = "[SHIFT]";
-		hints[n].text   = "keep city roads";
+		hints[n].text   = translator::translate( "keep city roads" );
 		hints[n].active = shift;
 		n++;
 	}
 	else if(  desc  &&  desc->get_styp() == type_elevated  &&  desc->get_wtyp() != air_wt  ) {
 		hints[n].key    = "[SHIFT]";
-		hints[n].text   = "stay on this level";
+		hints[n].text   = translator::translate( "stay on this level" );
 		hints[n].active = shift;
 		n++;
 	}
@@ -3037,8 +3037,8 @@ void tool_build_way_t::mark_tiles(player_t* player, const koord3d& start, const 
 				way->set_image(desc->get_slope_image_id(gr->get_weg_hang(), 0));
 			}
 			else if (desc->get_wtyp() != powerline_wt && (ribi_t::is_bend(zeige)
-				        || (ribi_t::all == zeige && ribi_t::is_bend(bauigel.get_route().get_ribi(j))))
-				     && desc->has_diagonal_image()
+						|| (ribi_t::all == zeige && ribi_t::is_bend(bauigel.get_route().get_ribi(j))))
+						&& desc->has_diagonal_image()
 				) {
 				if (ribi_t::all == zeige) {
 
@@ -3512,7 +3512,7 @@ void tool_build_tunnel_t::calc_route( way_builder_t &bauigel, const koord3d &sta
 		local_end.z = start.z;
 		if (grund_t* gr = welt->lookup(start)) {
 			if (slope_t::type sl=gr->get_weg_hang()) {
-				
+
 				// need to handle slope here! (must be automatically a valid way slope)
 				if (end.y > start.y) {
 					// going south
