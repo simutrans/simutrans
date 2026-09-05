@@ -188,12 +188,9 @@ static void extract_pak_from_zip(const char* zipfile)
 }
 
 /**
- * A redirect target arrives over the network, and the https downloaders below hand
- * the url to a shell. Accept only the characters a pakset url actually needs, so
- * that nothing can close the quoting and append a command of its own.
- * '%' is deliberately NOT accepted: cmd.exe expands %NAME% inside the command
- * line, and a variable whose value happens to contain a quote would end the
- * quoting and turn the rest of the url into commands.
+ * A redirect target arrives over the network. The downloaders below never let it
+ * reach a command interpreter, but this still keeps the url to the characters a
+ * pakset url actually needs, as a second line of defence.
  */
 static bool is_safe_https_url(const char *url)
 {
@@ -202,7 +199,7 @@ static bool is_safe_https_url(const char *url)
 	}
 	for(  const char *c = url + 8;  *c;  c++  ) {
 		const bool allowed = (*c >= 'a'  &&  *c <= 'z')  ||  (*c >= 'A'  &&  *c <= 'Z')  ||
-		                     (*c >= '0'  &&  *c <= '9')  ||  strchr("-._~:/?#@&=+,", *c) != NULL;
+		                     (*c >= '0'  &&  *c <= '9')  ||  strchr("-._~:/?#@&=+,%", *c) != NULL;
 		if(  !allowed  ) {
 			return false;
 		}
@@ -220,9 +217,37 @@ static bool download_https(const char *url, const char *target)
 	}
 #ifdef _WIN32
 #ifndef USE_URLMON
-	char command[2048];
-	sprintf(command, "powershell \"(New-Object System.Net.WebClient).DownloadFile('%s', '%s')\"", url, target);
-	return system(command) == 0;
+	// Start powershell itself, not a shell that would parse a command line first,
+	// and hand the url over as an environment value. The command line below is a
+	// constant, so no part of the url is ever interpreted as syntax.
+	SetEnvironmentVariableA("SIMUTRANS_PAK_URL", url);
+	SetEnvironmentVariableA("SIMUTRANS_PAK_TARGET", target);
+
+	wchar_t commandline[] = L"powershell.exe -NoProfile -NonInteractive -Command "
+		L"\"(New-Object System.Net.WebClient).DownloadFile($env:SIMUTRANS_PAK_URL, $env:SIMUTRANS_PAK_TARGET)\"";
+
+	STARTUPINFOW si;
+	PROCESS_INFORMATION pi;
+	MEMZERO(si);
+	MEMZERO(pi);
+	si.cb = sizeof(si);
+
+	DWORD exitcode = 1;
+	const BOOL started = CreateProcessW(NULL, commandline, NULL, NULL, FALSE, 0, NULL, NULL, &si, &pi);
+	if(  started  ) {
+		WaitForSingleObject(pi.hProcess, INFINITE);
+		GetExitCodeProcess(pi.hProcess, &exitcode);
+		CloseHandle(pi.hProcess);
+		CloseHandle(pi.hThread);
+	}
+	else {
+		dbg->warning("download_https()", "could not start powershell");
+	}
+
+	// do not leave the url behind for the next download or for any other child
+	SetEnvironmentVariableA("SIMUTRANS_PAK_URL", NULL);
+	SetEnvironmentVariableA("SIMUTRANS_PAK_TARGET", NULL);
+	return started  &&  exitcode == 0;
 #else
 	return URLDownloadToFile(NULL, url, target, 0, NULL) == 0;
 #endif
