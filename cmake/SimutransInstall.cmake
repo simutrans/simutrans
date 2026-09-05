@@ -102,11 +102,14 @@ if (OPTION_BUNDLE_LIBRARIES AND UNIX AND NOT APPLE)
 					POST_EXCLUDE_REGEXES "ld-linux|libc.so|libdl.so|libm.so|libgcc_s.so|libpthread.so|libstdc...so|libgomp.so")
 		]])
 	else ()
+		# GLib (and its pcre2) must come from the host: a bundled copy is pinned
+		# process-wide by the $ORIGIN/lib RPATH and breaks libdecor's GTK plugin,
+		# so the window has no decorations on Wayland compositors without SSD
 		install(CODE [[
 			file(GET_RUNTIME_DEPENDENCIES
 					RESOLVED_DEPENDENCIES_VAR DEPENDENCIES
 					EXECUTABLES "${CMAKE_BINARY_DIR}/simutrans/simutrans"
-					PRE_EXCLUDE_REGEXES "libSDL2*|libz.so*|libfontconfig*|libpulse*"
+					PRE_EXCLUDE_REGEXES "libSDL2*|libglib-2.0*|libpcre2-8*|libz.so*|libfontconfig*|libpulse*"
 					POST_EXCLUDE_REGEXES "ld-linux|libc.so|libdl.so|libm.so|libgcc_s.so|libpthread.so|libstdc...so|libgomp.so")
 		]])
 	endif ()
