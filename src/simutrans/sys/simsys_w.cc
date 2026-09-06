@@ -495,6 +495,17 @@ static inline unsigned int ModifierKeys()
 }
 
 
+// The client size is state, not history. sys_event holds a single pending
+// event and one message retrieval can dispatch several messages (the sent
+// ones, WM_SIZE among them, before the posted one is returned), so a resize
+// written into the slot is lost when a later message of the same retrieval
+// overwrites it. Keep only the newest client size here and let GetEvents()
+// hand it to the slot as soon as the slot is free.
+static bool   resize_pending = false;
+static uint16 resize_pending_w = 0;
+static uint16 resize_pending_h = 0;
+
+
 /* Windows eventhandler: does most of the work */
 LRESULT WINAPI WindowProc(HWND this_hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
@@ -621,18 +632,20 @@ LRESULT WINAPI WindowProc(HWND this_hwnd, UINT msg, WPARAM wParam, LPARAM lParam
 
 		case WM_SIZE: // resize client area
 			if(lParam!=0) {
-				sys_event.type = SIM_SYSTEM;
-				sys_event.code = SYSTEM_RESIZE;
-
-				sys_event.new_window_size_w = (LOWORD(lParam)*32)/x_scale;
-				if (sys_event.new_window_size_w <= 0) {
-					sys_event.new_window_size_w = 4;
+				// only the newest size matters; GetEvents() delivers it
+				int w = (LOWORD(lParam)*32)/x_scale;
+				if (w <= 0) {
+					w = 4;
 				}
 
-				sys_event.new_window_size_h = (HIWORD(lParam)*32)/y_scale;
-				if (sys_event.new_window_size_h <= 1) {
-					sys_event.new_window_size_h = 64;
+				int h = (HIWORD(lParam)*32)/y_scale;
+				if (h <= 1) {
+					h = 64;
 				}
+
+				resize_pending_w = (uint16)w;
+				resize_pending_h = (uint16)h;
+				resize_pending   = true;
 			}
 			break;
 
@@ -950,6 +963,15 @@ static void internal_GetEvents(bool const wait)
 
 void GetEvents()
 {
+	if (sys_event.type==SIM_NOEVENT  &&  resize_pending) {
+		// the newest client size goes out before anything else is fetched
+		sys_event.type = SIM_SYSTEM;
+		sys_event.code = SYSTEM_RESIZE;
+		sys_event.new_window_size_w = resize_pending_w;
+		sys_event.new_window_size_h = resize_pending_h;
+		resize_pending = false;
+		return;
+	}
 	if (sys_event.type==SIM_NOEVENT  &&  PeekMessageW(&msg, NULL, 0, 0, PM_NOREMOVE)) {
 		internal_GetEvents(false);
 	}
