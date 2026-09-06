@@ -304,8 +304,14 @@ int dr_textur_resize(unsigned short** const textur, int w, int const h)
 
 	AllDib->bmiHeader.biWidth  = img_w;
 	AllDib->bmiHeader.biHeight = img_h;
-	WindowSize.right           = w;
-	WindowSize.bottom          = h;
+	// WindowSize is in physical client pixels: dr_os_open fills it that way and
+	// WM_PAINT consumes it that way, both as the blit destination and to derive
+	// the framebuffer height. w and h arrive here in logical pixels, so they have
+	// to be scaled back up. Storing them unscaled only matches at 100% scaling;
+	// above it every repaint after a resize paints into a too small rectangle and
+	// overwrites biHeight with a framebuffer height that is too small.
+	WindowSize.right           = (w * x_scale) / 32;
+	WindowSize.bottom          = (h * y_scale) / 32;
 
 #ifdef MULTI_THREAD
 	LeaveCriticalSection( &redraw_underway );
