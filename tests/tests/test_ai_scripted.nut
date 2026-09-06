@@ -12,113 +12,209 @@
 // public init() through the test support in api_ai_test.cc, so they exercise the
 // production path and not a copy of it.
 //
-// The oracle is deliberately stronger than "a player exists". sqai renames its own
-// player from inside its start(pl) callback (ai/sqai/ai.nut), through the public
-// script api. Neither name the engine assigns can survive that, so a name that is
-// neither of them proves the script was loaded and its callback dispatched.
-//
-// Slot 3 is used because the rest of the suite only ever touches slots 0, 1 and 2,
-// which keeps these tests independent of the order the suite runs in.
+// The load-bearing oracle is the fixture ai in tests/ai/stlab_probe, whose start()
+// calls aitest_note(). It is owned by the tests, needs no gameplay tool and does not
+// depend on what any shipped ai happens to do. A cheap smoke test keeps real
+// coverage of the shipped sqai as well.
 //
 
-const AI_SLOT = 3
+// a scripted ai player may live in slots 2 .. MAX-1; the suite itself uses 0, 1 and 2
+const AI_SLOT_FIRST = 2
+const AI_SLOT_LAST  = 7
 
-// the name ai_scripted_t's constructor gives the player
-const AI_NAME_BEFORE_INIT = "The unknown AI player"
-// the name ai_scripted_t::init() gives it, "player <nr-1>"
-const AI_NAME_AFTER_INIT = "player 2"
-
-// a directory that must not exist under simutrans/ai/
+const AI_FIXTURE = "stlab_probe"
 const AI_MISSING = "no_such_ai_for_tests"
 
-// the error ai_scripted_t::init() returns when the script file cannot be loaded
-const AI_ERR_LOAD = "Loading ai script failed"
-// the error the test support returns when the GUI network policy forbids attaching
+const AI_NAME_BEFORE_INIT = "The unknown AI player"
+
+const AI_ERR_LOAD   = "Loading ai script failed"
 const AI_ERR_POLICY = "Scripted AI can only be attached on the server"
 
 
-function make_scripted_ai_slot()
+// Picks a free player slot instead of assuming one. Never touches an occupied slot.
+function find_free_ai_slot()
 {
-	ASSERT_FALSE(player_x(AI_SLOT).is_valid())
-	ASSERT_TRUE(world.create_player(AI_SLOT, 4)) // 4 == player_t::AI_SCRIPTED
-	ASSERT_TRUE(player_x(AI_SLOT).is_valid())
-	ASSERT_FALSE(aitest_has_script(AI_SLOT))
-	ASSERT_EQUAL(player_x(AI_SLOT).get_name(), AI_NAME_BEFORE_INIT)
+	for (local i = AI_SLOT_FIRST; i <= AI_SLOT_LAST; i++) {
+		if (!player_x(i).is_valid()) {
+			return i
+		}
+	}
+	return -1
 }
 
 
-function drop_scripted_ai_slot()
+function make_scripted_ai()
 {
-	ASSERT_TRUE(world.remove_player(player_x(AI_SLOT)))
-	ASSERT_FALSE(player_x(AI_SLOT).is_valid())
+	local slot = find_free_ai_slot()
+	ASSERT_TRUE(slot >= AI_SLOT_FIRST)
+	ASSERT_FALSE(player_x(slot).is_valid())
+
+	ASSERT_TRUE(world.create_player(slot, 4)) // 4 == player_t::AI_SCRIPTED
+	ASSERT_TRUE(player_x(slot).is_valid())
+	ASSERT_FALSE(aitest_has_script(slot))
+	ASSERT_EQUAL(player_x(slot).get_name(), AI_NAME_BEFORE_INIT)
+
+	aitest_reset_notes()
+	return slot
 }
 
 
-// A real shipped AI attaches and its start() callback runs.
-function test_ai_scripted_attach_starts_shipped_ai()
+function drop_scripted_ai(slot)
 {
-	make_scripted_ai_slot()
-
-	ASSERT_EQUAL(aitest_attach(AI_SLOT, "sqai"), null)
-	ASSERT_TRUE(aitest_has_script(AI_SLOT))
-
-	// sqai's start(pl) renamed the player. Only the script can have done this.
-	local name = player_x(AI_SLOT).get_name()
-	ASSERT_TRUE(name != AI_NAME_BEFORE_INIT)
-	ASSERT_TRUE(name != AI_NAME_AFTER_INIT)
-
-	drop_scripted_ai_slot()
+	ASSERT_TRUE(world.remove_player(player_x(slot)))
+	ASSERT_FALSE(player_x(slot).is_valid())
 }
 
 
-// Negative control. Attachment must fail for the intended reason, leave no script
-// behind, and leave the player name untouched - the same observable the positive
-// test relies on, so a seam that silently attached would fail here.
+// The load-bearing oracle: a fixture ai loads and its start() runs.
+function test_ai_scripted_fixture_start_dispatched()
+{
+	local slot = make_scripted_ai()
+
+	ASSERT_EQUAL(aitest_note_count(), 0)
+	ASSERT_EQUAL(aitest_attach_fixture(slot, AI_FIXTURE), null)
+	ASSERT_TRUE(aitest_has_script(slot))
+
+	// start(pl) ran inside the ai vm and reported through the test support
+	ASSERT_EQUAL(aitest_note_count(), 1)
+	ASSERT_EQUAL(aitest_get_note(), "start:" + slot)
+
+	drop_scripted_ai(slot)
+}
+
+
+// Cheap end-to-end smoke test that the real shipped ai still loads and runs.
+function test_ai_scripted_shipped_sqai_smoke()
+{
+	local slot = make_scripted_ai()
+
+	ASSERT_EQUAL(aitest_attach(slot, "sqai"), null)
+	ASSERT_TRUE(aitest_has_script(slot))
+	// sqai renames its own player from inside start(); the engine never sets this
+	ASSERT_TRUE(player_x(slot).get_name() != AI_NAME_BEFORE_INIT)
+
+	drop_scripted_ai(slot)
+}
+
+
+// Negative control: attachment fails for the intended reason and nothing runs.
 function test_ai_scripted_attach_missing_ai_fails()
 {
-	make_scripted_ai_slot()
+	local slot = make_scripted_ai()
 
-	ASSERT_EQUAL(aitest_attach(AI_SLOT, AI_MISSING), AI_ERR_LOAD)
-	ASSERT_FALSE(aitest_has_script(AI_SLOT))
-	ASSERT_EQUAL(player_x(AI_SLOT).get_name(), AI_NAME_BEFORE_INIT)
+	ASSERT_EQUAL(aitest_attach(slot, AI_MISSING), AI_ERR_LOAD)
+	ASSERT_FALSE(aitest_has_script(slot))
+	ASSERT_EQUAL(aitest_note_count(), 0)
+	ASSERT_EQUAL(player_x(slot).get_name(), AI_NAME_BEFORE_INIT)
 
-	drop_scripted_ai_slot()
+	drop_scripted_ai(slot)
 }
 
 
-// An empty name is refused before anything is loaded.
 function test_ai_scripted_attach_empty_name_fails()
 {
-	make_scripted_ai_slot()
+	local slot = make_scripted_ai()
 
-	ASSERT_EQUAL(aitest_attach(AI_SLOT, ""), "No AI name given")
-	ASSERT_FALSE(aitest_has_script(AI_SLOT))
-	ASSERT_EQUAL(player_x(AI_SLOT).get_name(), AI_NAME_BEFORE_INIT)
+	ASSERT_EQUAL(aitest_attach(slot, ""), "No AI name given")
+	ASSERT_FALSE(aitest_has_script(slot))
+	ASSERT_EQUAL(aitest_note_count(), 0)
 
-	drop_scripted_ai_slot()
+	drop_scripted_ai(slot)
 }
 
 
-// The test support mirrors the GUI policy (!networkmode || server): the AI selector
-// is offered on a local game and on the server, never on a network client.
+// The test support mirrors the GUI policy (!networkmode || server) and reads the
+// same two globals the dialog reads.
 function test_ai_scripted_attach_network_policy()
 {
-	make_scripted_ai_slot()
+	local slot = make_scripted_ai()
 
-	// network client: refused by the policy, before anything is loaded
-	ASSERT_EQUAL(aitest_attach_as(true, false, AI_SLOT, "sqai"), AI_ERR_POLICY)
-	ASSERT_FALSE(aitest_has_script(AI_SLOT))
-	ASSERT_EQUAL(player_x(AI_SLOT).get_name(), AI_NAME_BEFORE_INIT)
+	// network client: refused before anything is loaded
+	ASSERT_EQUAL(aitest_attach_fixture_as(true, false, slot, AI_FIXTURE), AI_ERR_POLICY)
+	ASSERT_FALSE(aitest_has_script(slot))
+	ASSERT_EQUAL(aitest_note_count(), 0)
 
-	// server: the policy lets the call through, so the refusal comes from the
-	// loader instead. A missing AI is used on purpose - a real attachment here
-	// would run the AI's first tool call under networkmode and suspend its vm.
-	ASSERT_EQUAL(aitest_attach_as(true, true, AI_SLOT, AI_MISSING), AI_ERR_LOAD)
-	ASSERT_FALSE(aitest_has_script(AI_SLOT))
+	// local game: allowed
+	ASSERT_EQUAL(aitest_attach_fixture_as(false, false, slot, AI_FIXTURE), null)
+	ASSERT_TRUE(aitest_has_script(slot))
 
-	// local game: allowed, and it really attaches
-	ASSERT_EQUAL(aitest_attach_as(false, false, AI_SLOT, "sqai"), null)
-	ASSERT_TRUE(aitest_has_script(AI_SLOT))
+	drop_scripted_ai(slot)
+}
 
-	drop_scripted_ai_slot()
+
+// Real server state: env_t::server is a reference onto the network server port, and
+// the test support sets that port rather than passing a substitute flag.
+function test_ai_scripted_attach_server_succeeds()
+{
+	local slot = make_scripted_ai()
+
+	ASSERT_EQUAL(aitest_attach_fixture_as(true, true, slot, AI_FIXTURE), null)
+	ASSERT_TRUE(aitest_has_script(slot))
+
+	// the vm really ran under server state, and did not suspend on a tool call
+	ASSERT_EQUAL(aitest_note_count(), 1)
+	ASSERT_EQUAL(aitest_get_note(), "start:" + slot)
+
+	drop_scripted_ai(slot)
+}
+
+
+// The globals the policy reads are restored on every path out of the test support.
+function test_ai_scripted_network_state_restored()
+{
+	local before = aitest_net_state()
+	ASSERT_EQUAL(before, "0,0")
+
+	local slot = make_scripted_ai()
+
+	// success path
+	ASSERT_EQUAL(aitest_attach_fixture_as(true, true, slot, AI_FIXTURE), null)
+	ASSERT_EQUAL(aitest_net_state(), before)
+
+	// policy refusal path, on a slot that already has a script
+	ASSERT_EQUAL(aitest_attach_fixture_as(true, false, slot, AI_FIXTURE), AI_ERR_POLICY)
+	ASSERT_EQUAL(aitest_net_state(), before)
+
+	drop_scripted_ai(slot)
+
+	// ordinary failure path, deep inside the attach
+	slot = make_scripted_ai()
+	ASSERT_EQUAL(aitest_attach_fixture_as(true, true, slot, AI_MISSING), AI_ERR_LOAD)
+	ASSERT_EQUAL(aitest_net_state(), before)
+	drop_scripted_ai(slot)
+
+	// and a plain local attach still behaves as if nothing had ever been changed
+	slot = make_scripted_ai()
+	ASSERT_EQUAL(aitest_attach_fixture(slot, AI_FIXTURE), null)
+	ASSERT_TRUE(aitest_has_script(slot))
+	drop_scripted_ai(slot)
+}
+
+
+// Slot allocation must step over an occupied slot instead of colliding with it.
+function test_ai_scripted_slot_allocation_skips_occupied()
+{
+	local first = find_free_ai_slot()
+	ASSERT_TRUE(first >= AI_SLOT_FIRST)
+
+	// occupy it with an ordinary player, as another test would
+	ASSERT_TRUE(world.create_player(first, 1))
+	ASSERT_TRUE(player_x(first).is_valid())
+
+	// the allocator must now choose a different, genuinely free slot
+	local second = find_free_ai_slot()
+	ASSERT_TRUE(second >= AI_SLOT_FIRST)
+	ASSERT_TRUE(second != first)
+	ASSERT_FALSE(player_x(second).is_valid())
+
+	// and the seam works on it without disturbing the occupied one
+	ASSERT_TRUE(world.create_player(second, 4))
+	aitest_reset_notes()
+	ASSERT_EQUAL(aitest_attach_fixture(second, AI_FIXTURE), null)
+	ASSERT_EQUAL(aitest_get_note(), "start:" + second)
+	ASSERT_TRUE(player_x(first).is_valid())
+
+	drop_scripted_ai(second)
+	ASSERT_TRUE(world.remove_player(player_x(first)))
+	ASSERT_FALSE(player_x(first).is_valid())
 }

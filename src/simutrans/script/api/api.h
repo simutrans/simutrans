@@ -32,7 +32,7 @@ void export_world(HSQUIRRELVM vm, bool scenario);
 
 void export_pathfinding(HSQUIRRELVM vm);
 
-void export_ai_test(HSQUIRRELVM vm); // TEST SUPPORT ONLY
+void export_ai_test(HSQUIRRELVM vm, bool scenario); // TEST SUPPORT ONLY
 void export_schedule_route_test(HSQUIRRELVM vm); // TEST SUPPORT ONLY
 
 void export_global_constants(HSQUIRRELVM vm);

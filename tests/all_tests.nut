@@ -348,8 +348,12 @@ all_tests <- [
 	test_schedule_route_corner_slope,
 	test_schedule_route_corner_bridge_head,
 	test_schedule_route_corner_terminus,
-	test_ai_scripted_attach_starts_shipped_ai,
+	test_ai_scripted_fixture_start_dispatched,
+	test_ai_scripted_shipped_sqai_smoke,
 	test_ai_scripted_attach_missing_ai_fails,
 	test_ai_scripted_attach_empty_name_fails,
-	test_ai_scripted_attach_network_policy
+	test_ai_scripted_attach_network_policy,
+	test_ai_scripted_attach_server_succeeds,
+	test_ai_scripted_network_state_restored,
+	test_ai_scripted_slot_allocation_skips_occupied
 ]
