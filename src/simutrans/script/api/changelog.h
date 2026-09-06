@@ -15,7 +15,7 @@
  * - Added @ref halt_x::get_permissions
  * - Added @ref halt_x::set_permissions
  * - Added @ref halt_x::can_use_halt
- * - Added @ref world_x::create_player
+ * - Added @ref world::create_player
  * - Added @ref convoy_x::has_no_route, @ref convoy_x::is_stuck
  * - Changed @ref convoy_x::is_schedule_editor_open which reports the schedule dialog of a convoy inside a depot now
  *
@@ -30,7 +30,7 @@
  * - Added @ref command_x::grid_lower, @ref command_x::grid_raise
  * - Added @ref settings::has_double_slopes, @ref settings::get_way_height_clearance
  * - Added @ref tile_x::is_crossing
- * - Added @ref world_x::generate_goods to generate passengers, mail or freight (scenario only)
+ * - Added @ref world::generate_goods to generate passengers, mail or freight (scenario only)
  * - Added @ref change_climate_at
  * - Added @ref convoy_x::change_schedule
  * - Added tool_ids::tool_build_groundobj

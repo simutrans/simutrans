@@ -756,7 +756,7 @@ void export_map_objects(HSQUIRRELVM vm)
 
 	/**
 	 * Powerlines.
-	 * (Including transformers. Can be differentiated by @ref obj_x::get_type.
+	 * (Including transformers. Can be differentiated by @ref map_object_x::get_type.
 	 */
 	begin_obj_class<leitung_t>(vm, "powerline_x", "map_object_x");
 
@@ -769,7 +769,7 @@ void export_map_objects(HSQUIRRELVM vm)
 
 	/**
 	 * Transformers.
-	 * Sink and source can be differentiated by @ref obj_x::get_type.
+	 * Sink and source can be differentiated by @ref map_object_x::get_type.
 	 */
 	begin_obj_class<pumpe_t>(vm, "transformer_x", "powerline_x");
 
