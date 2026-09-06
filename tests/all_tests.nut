@@ -8,6 +8,7 @@
 // list  containing all tests
 //
 
+include("tests/test_ai_scripted")
 include("tests/test_building")
 include("tests/test_city")
 include("tests/test_climate")
@@ -346,5 +347,9 @@ all_tests <- [
 	test_schedule_route_corner_flat,
 	test_schedule_route_corner_slope,
 	test_schedule_route_corner_bridge_head,
-	test_schedule_route_corner_terminus
+	test_schedule_route_corner_terminus,
+	test_ai_scripted_attach_starts_shipped_ai,
+	test_ai_scripted_attach_missing_ai_fails,
+	test_ai_scripted_attach_empty_name_fails,
+	test_ai_scripted_attach_network_policy
 ]
