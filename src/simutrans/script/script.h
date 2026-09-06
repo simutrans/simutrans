@@ -70,6 +70,12 @@ public:
 	static bool is_call_suspended(const char* err);
 
 	/**
+	 * @param err error string returned by call_script
+	 * @return whether the script does not define the called function
+	 */
+	static bool is_function_missing(const char* err);
+
+	/**
 	 * calls scripted function
 	 * @param function function name of squirrel function
 	 * @returns error msg (or NULL if succeeded)

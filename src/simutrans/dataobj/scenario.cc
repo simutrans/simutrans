@@ -160,6 +160,8 @@ const char* scenario_t::init( const char *scenario_base, const char *scenario_na
 bool scenario_t::load_script(const char* filename)
 {
 	delete script;
+	// a new scenario may report its own broken callbacks
+	failed_callbacks.clear();
 	// start vm
 	script = script_loader_t::start_vm("scenario_base.nut", "script-scenario.log", scenario_path.c_str(), true);
 	if (script == NULL) {
@@ -565,6 +567,31 @@ void scenario_t::clear_player_rules(uint8 player_nr)
 }
 
 
+/// returned by the permission callbacks that expect a message, @see scenario_t::callback_failed
+static const char* const CALLBACK_FAILED_DENIAL = "Scenario check failed, action denied";
+
+
+bool scenario_t::callback_failed(const char* function, const char* err)
+{
+	if (err == NULL  ||  script_vm_t::is_function_missing(err)) {
+		// no error at all, or the script does not define this callback:
+		// scenario_base.nut provides the defaults, nothing is denied here
+		return false;
+	}
+	// the callback exists but did not decide: tell the player once, then deny
+	if (!failed_callbacks.is_contained(function)) {
+		failed_callbacks.append(function);
+		dbg->warning("scenario_t::callback_failed", "scenario callback %s failed [%s], the requested action is denied", function, err);
+		if (welt) {
+			cbuffer_t buf;
+			buf.printf(translator::translate("Scenario callback '%s' failed, action denied"), function);
+			welt->get_message()->add_message((const char*)buf, koord3d::invalid, message_t::general | message_t::DO_NOT_SAVE_MSG);
+		}
+	}
+	return true;
+}
+
+
 bool scenario_t::is_tool_allowed(const player_t* player, uint16 tool_id, sint16 wt, const char* param)
 {
 	if (what_scenario != SCRIPTED  &&  what_scenario != SCRIPTED_NETWORK) {
@@ -593,7 +620,11 @@ bool scenario_t::is_tool_allowed(const player_t* player, uint16 tool_id, sint16 
 	if (what_scenario == SCRIPTED) {
 		bool ok = true;
 		const char* err = script->call_function(script_vm_t::FORCE, "is_tool_allowed", ok, (uint8)(player  ?  player->get_player_nr() : PLAYER_UNOWNED), tool_id, wt, param);
-		return err != NULL  ||  ok;
+		if (err != NULL) {
+			// ok was not assigned
+			return !callback_failed("is_tool_allowed", err);
+		}
+		return ok;
 	}
 
 	return true;
@@ -678,7 +709,11 @@ const char* scenario_t::is_work_allowed_here(const player_t* player, uint16 tool
 		}
 		static plainstring msg;
 		const char *err = script->call_function(script_vm_t::FORCE, "is_work_allowed_here", msg, player_nr, tool_id, param, pos, script_api::mytool_data_t(start_pos, is_drag_tool, is_ctrl, is_shift));
-		return err == NULL ? msg.c_str() : NULL;
+		if (err != NULL) {
+			// msg was not assigned and still holds the message of an earlier call
+			return callback_failed("is_work_allowed_here", err) ? CALLBACK_FAILED_DENIAL : NULL;
+		}
+		return msg.c_str();
 	}
 	return NULL;
 }
@@ -698,8 +733,11 @@ const char* scenario_t::is_schedule_allowed(const player_t* player, const schedu
 	if (what_scenario == SCRIPTED) {
 		static plainstring msg;
 		const char *err = script->call_function(script_vm_t::FORCE, "is_schedule_allowed", msg, (uint8)(player  ?  player->get_player_nr() : PLAYER_UNOWNED), schedule);
-
-		return err == NULL ? msg.c_str() : NULL;
+		if (err != NULL) {
+			// msg was not assigned and still holds the message of an earlier call
+			return callback_failed("is_schedule_allowed", err) ? CALLBACK_FAILED_DENIAL : NULL;
+		}
+		return msg.c_str();
 	}
 	return NULL;
 }
@@ -719,8 +757,11 @@ const char* scenario_t::is_convoy_allowed(const player_t* player, convoihandle_t
 	if (what_scenario == SCRIPTED) {
 		static plainstring msg;
 		const char *err = script->call_function(script_vm_t::FORCE, "is_convoy_allowed", msg, (uint8)(player  ?  player->get_player_nr() : PLAYER_UNOWNED), cnv, (obj_t*)depot);
-
-		return err == NULL ? msg.c_str() : NULL;
+		if (err != NULL) {
+			// msg was not assigned and still holds the message of an earlier call
+			return callback_failed("is_convoy_allowed", err) ? CALLBACK_FAILED_DENIAL : NULL;
+		}
+		return msg.c_str();
 	}
 	return NULL;
 
@@ -736,7 +777,11 @@ bool scenario_t::is_tool_enabled(const player_t * player, uint16 tool_id, sint16
 	if (what_scenario == SCRIPTED) {
 		bool ok = true;
 		const char* err = script->call_function(script_vm_t::FORCE, "is_tool_active", ok, (uint8)(player ? player->get_player_nr() : PLAYER_UNOWNED), tool_id, wt, param);
-		return err != NULL || ok;
+		if (err != NULL) {
+			// ok was not assigned
+			return !callback_failed("is_tool_active", err);
+		}
+		return ok;
 	}
 	return true;
 }
