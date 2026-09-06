@@ -216,7 +216,7 @@ register_function("is_scenario_completed");
  * @param wt waytype of tool
  * @param name is parameter (string) i.e. description for way tools
  * @returns true if tool is allowed.
- * @typemask bool(integer,integer,way_types)
+ * @typemask bool(integer,integer,way_types,string)
  * @ingroup scen_skel
  * @ingroup quick_return_func
  */
