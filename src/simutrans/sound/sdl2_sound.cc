@@ -85,8 +85,11 @@ void sdl_sound_callback(void *, Uint8 * stream, int len)
 		sample *smp = &samples[channels[c].sample];
 
 		// add sample
-		if (len + channels[c].sample_pos >= smp->audio_len ) {
-			// SDL_MixAudio(stream, smp->audio_data + channels[c].sample_pos, smp->audio_len - channels[c].sample_pos, channels[c].volume);
+		const Uint32 remaining = smp->audio_len - channels[c].sample_pos;
+
+		if(  remaining <= (Uint32)len  ) {
+			// last piece of this sample: mix what is left instead of dropping it
+			SDL_MixAudioFormat(stream, smp->audio_data + channels[c].sample_pos, output_audio_format.format, remaining, channels[c].volume);
 			channels[c].sample = NO_SAMPLE;
 		}
 		else {
