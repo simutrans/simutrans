@@ -24,11 +24,14 @@ jobs:
         cd build
         zip -r simumac-nightly.zip simutrans
 
-    - name: Update binaries of Nightly Release
-      uses: svenstaro/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: build/simumac-nightly.zip
-        asset_name: simumac-arm-nightly.zip
-        tag: Nightly
-        overwrite: true
+    # The upload used to be here.  simumac-arm-nightly.zip is now produced by
+    # macos-sign-notarize.yml, which builds the same thing, signs it with a
+    # Developer ID and notarizes it before attaching it.  Two workflows writing
+    # the same asset name on the same push would race, and the unsigned one
+    # would sometimes win.
+    #
+    # This job is kept because it still compiles macOS on macos-latest, which
+    # the signing workflow does not: that one pins macos-15 so the minimum
+    # macOS version of the product cannot drift when GitHub moves the label.
+    # If that coverage is not wanted, delete this workflow rather than leaving
+    # it to build something nobody collects.

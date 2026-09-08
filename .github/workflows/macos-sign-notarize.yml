@@ -2,17 +2,44 @@
 # Build, sign with Developer ID and notarize the macOS application for direct
 # distribution (that is, outside the Mac App Store).
 #
-# This workflow deliberately publishes nothing.  It ends with a verified,
-# signed, notarized and stapled archive and stops there.  Attaching anything
-# to a release stays with the existing nightly workflows and is a separate
-# decision.
+# It runs in two modes, and they are not the same thing:
+#
+#   push to master     builds both architectures, signs, notarizes, and
+#                      REPLACES the macOS archives on the Nightly release.
+#                      This is the nightly path, and it publishes.
+#   workflow_dispatch  builds whatever was asked for and stops at a verified
+#                      archive.  It publishes nothing, whatever the inputs say.
+#
+# What automatic signing costs
+# ----------------------------
+# Every commit that reaches master is signed with a real Developer ID without
+# anyone looking at it first.  That is the feature, and it is also the whole of
+# the risk: the identity is applied to whatever the trunk happens to contain,
+# and the developer whose certificate it is answers for it.  Apple can revoke a
+# Developer ID, and the account with it.
+#
+# What is left once the human gate is gone:
+#   * only this repository, checked explicitly;
+#   * only master, enforced twice - by the trigger, and by the deployment
+#     branch policy on the macos-signing environment;
+#   * only a commit reachable on master's history, resolved to a full SHA;
+#   * only a tree whose Subversion base can be established, so nothing is ever
+#     labelled with a fabricated revision;
+#   * the payload check, which still runs before the identity is loaded.
+# None of those inspect what the code does.  They establish where it came from,
+# which is a different and much weaker question.  A wait timer on the
+# environment is what buys a window to cancel; that is a setting, not code.
+#
+# A second consequence, and it is not hypothetical: when the notary service
+# rejects or stalls, there is no macOS nightly that day.  Publishing only what
+# is signed means publishing nothing when signing does not finish.
 #
 # Trust boundaries
 # ----------------
-# * It runs only on workflow_dispatch, so it never fires on a push, and never
-#   on a pull request.  pull_request_target is not used anywhere: running a
-#   contributor's code with the signing identity is exactly the accident this
-#   layout is meant to make impossible.
+# * It never runs on a pull request.  pull_request_target is not used anywhere:
+#   running a contributor's code with the signing identity is exactly the
+#   accident this layout is meant to make impossible.  A push to master is a
+#   different case - that code is already in the trunk.
 # * The revision to sign is resolved to a full commit SHA, which must be on
 #   master's history.  Carrying a tag grants nothing: the Nightly tag is moved
 #   to whatever was pushed last and has already pointed at a work branch, and
@@ -43,6 +70,11 @@
 name: macOS signed build (Developer ID)
 
 on:
+  # The nightly path.  No inputs exist on a push, so every parameter is
+  # decided in the resolve job; see the "nightly defaults" block there.
+  push:
+    branches:
+      - master
   workflow_dispatch:
     inputs:
       ref:
@@ -124,6 +156,10 @@ jobs:
       svn_rev: ${{ steps.resolve.outputs.svn_rev }}
       commits_on_top: ${{ steps.resolve.outputs.commits_on_top }}
       revision_id: ${{ steps.resolve.outputs.revision_id }}
+      # Whether the result is attached to the Nightly release.  Only ever true
+      # for the push path, and only when the revision is genuinely
+      # distributable.  A workflow_dispatch cannot set it, by any input.
+      publish: ${{ steps.resolve.outputs.publish }}
       matrix: ${{ steps.matrix.outputs.matrix }}
     steps:
       - name: Checkout
@@ -138,11 +174,29 @@ jobs:
         env:
           # Never interpolated into the script body: the values arrive as
           # environment variables and are only ever used quoted.
+          EVENT: ${{ github.event_name }}
           INPUT_REF: ${{ inputs.ref }}
           ALLOW_UNMERGED: ${{ inputs.allow_unmerged }}
           REHEARSAL: ${{ inputs.rehearsal }}
         run: |
           set -euo pipefail
+
+          # ---------------------------------------------------------------
+          # Nightly defaults.
+          #
+          # A push carries no inputs at all, so `inputs.*` arrives empty and
+          # must not be read as "the operator chose this".  The two paths are
+          # separated here, once, rather than with an expression at every use.
+          #
+          # allow_unmerged is forced off on the push path and not merely
+          # defaulted: a pushed commit is on master by construction, so the
+          # exception has nothing to grant and should not be reachable.
+          # ---------------------------------------------------------------
+          if [ "$EVENT" = "push" ]; then
+            INPUT_REF=""
+            ALLOW_UNMERGED=false
+            REHEARSAL=false
+          fi
 
           sha=$(git rev-parse HEAD)
           subject=$(git log -1 --format=%s "$sha")
@@ -234,6 +288,25 @@ jobs:
             revision_note="$commits_on_top commit(s) on top of Subversion r$svn_rev - the tree is NOT r$svn_rev"
           fi
 
+          # ---------------------------------------------------------------
+          # Publication is decided here and nowhere else, and it is decided
+          # from the event, not from an input.  There is deliberately no way
+          # for a manual run to publish: an operator who wants to attach
+          # something to a release does it themselves, having looked at it.
+          #
+          # All three conditions have to hold.  The last two are implied by
+          # the first today, and are still written out, because the day one of
+          # them stops being implied is the day this would quietly start
+          # publishing something it should not.
+          # ---------------------------------------------------------------
+          if [ "$EVENT" = "push" ] \
+            && [ "$distribution_ok" = "true" ] \
+            && [ "$not_for_distribution" = "false" ]; then
+            publish=true
+          else
+            publish=false
+          fi
+
           {
             echo "sha=$sha"
             echo "subject=$subject"
@@ -243,6 +316,7 @@ jobs:
             echo "svn_rev=$svn_rev"
             echo "commits_on_top=$commits_on_top"
             echo "revision_id=$revision_id"
+            echo "publish=$publish"
           } >> "$GITHUB_OUTPUT"
 
           {
@@ -258,14 +332,21 @@ jobs:
             echo "| version identity | \`$revision_id\` - $revision_note |"
             echo "| on master history | $distribution_ok |"
             echo "| marked NOT FOR DISTRIBUTION | $not_for_distribution |"
+            echo "| started by | $EVENT |"
+            echo "| attaches to the Nightly release | $publish |"
           } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Build the architecture matrix
         id: matrix
         env:
+          EVENT: ${{ github.event_name }}
           ARCHITECTURE: ${{ inputs.architecture }}
         run: |
           set -euo pipefail
+          # The nightly path always produces both, because both are published.
+          if [ "$EVENT" = "push" ]; then
+            ARCHITECTURE=both
+          fi
           # macos-15 and macos-15-intel are standard GitHub-hosted runners,
           # which are free and unlimited on public repositories.  No larger
           # runner label is used anywhere in this workflow, so it cannot incur
@@ -474,10 +555,16 @@ jobs:
       # Read-only, and only so this job can confirm that the preserved archive
       # really was stored before anything is sent to Apple.
       actions: read
-    # Protection rules on this environment are what actually authorises a
-    # signing run: configure it with required reviewers so a human approves
-    # before the identity is used.  A job that references an environment must
-    # satisfy its rules before it can read the environment's secrets.
+    # The environment is what gates access to the identity: a job that
+    # references one must satisfy its rules before it can read its secrets.
+    #
+    # For the nightly path to run unattended, that environment must NOT have
+    # required reviewers - otherwise every push waits for a human and nothing
+    # is ever published.  Removing them is the deliberate cost of automatic
+    # signing, and what is left is the deployment branch policy (master only)
+    # plus, if configured, a wait timer that gives a window to cancel a run
+    # before the identity is used.  Set that timer; it is the only thing
+    # standing between a bad commit and a signature.
     environment: macos-signing
     strategy:
       fail-fast: false
@@ -609,7 +696,9 @@ jobs:
       - name: Check the archive can be preserved
         env:
           MACOS_ARTIFACT_KEY: ${{ secrets.MACOS_ARTIFACT_KEY }}
-          RETENTION: ${{ inputs.retention }}
+          # A push carries no inputs, and retention must never silently
+          # become "none" just because nobody was there to choose it.
+          RETENTION: ${{ github.event_name == 'push' && 'required' || inputs.retention }}
         run: |
           set -euo pipefail
           chmod +x .github/macos/*.sh
@@ -680,7 +769,9 @@ jobs:
           SIMU_REVISION_ID: ${{ needs.resolve.outputs.revision_id }}
           SIMU_ARCH: ${{ matrix.arch }}
           SIMU_NOT_FOR_DISTRIBUTION: ${{ needs.resolve.outputs.not_for_distribution }}
-          RETENTION: ${{ inputs.retention }}
+          # A push carries no inputs, and retention must never silently
+          # become "none" just because nobody was there to choose it.
+          RETENTION: ${{ github.event_name == 'push' && 'required' || inputs.retention }}
         run: |
           set -euo pipefail
           if [ "$RETENTION" != "required" ]; then
@@ -787,12 +878,40 @@ jobs:
             "${{ matrix.arch }}" \
             "${{ steps.provenance.outputs.symlinks }}"
 
+      # The publish job runs on Linux and cannot read a Mach-O load command, so
+      # the measured floor has to travel with the archive rather than be
+      # recomputed.  It is measured in the build job, arrives in
+      # incoming/bundle-facts.txt, and is carried forward here beside the
+      # archive it describes.
+      - name: Record what this archive is
+        if: success()
+        env:
+          ARCHIVE: ${{ steps.archive.outputs.name }}
+          ARCH: ${{ matrix.arch }}
+          REVISION_ID: ${{ needs.resolve.outputs.revision_id }}
+        run: |
+          set -euo pipefail
+          min=$(sed -n 's/^effective_min_macos=//p' incoming/bundle-facts.txt | head -1)
+          [ -n "$min" ] || { echo "::error::no effective_min_macos in bundle-facts.txt"; exit 1; }
+          [ "$min" != "unknown" ] || { echo "::error::the minimum macOS was not measured."; exit 1; }
+          {
+            echo "arch=$ARCH"
+            echo "min_macos=$min"
+            echo "revision_id=$REVISION_ID"
+            echo "sha256=$(shasum -a 256 "dist/$ARCHIVE" | awk '{print $1}')"
+          } > "dist/$ARCHIVE.meta"
+          cat "dist/$ARCHIVE.meta"
+
       - name: Summarise
         if: always()
         env:
           # Passed as an environment variable rather than interpolated into the
           # script, so that its content cannot end up being parsed as shell.
           SIGNING_IDENTITY: ${{ vars.MACOS_SIGNING_IDENTITY }}
+          # Same reason, and it is the one value here that is compared rather
+          # than printed: a comparison against an interpolated literal is not
+          # the same thing as a comparison against a variable.
+          PUBLISH: ${{ needs.resolve.outputs.publish }}
         run: |
           set -euo pipefail
           {
@@ -813,19 +932,29 @@ jobs:
               echo "| archive | \`${{ steps.archive.outputs.name }}\` |"
               echo "| sha256 | \`$(shasum -a 256 "$archive" | awk '{print $1}')\` |"
             fi
-            echo "| published | no - this workflow never attaches anything to a release |"
+            if [ "$PUBLISH" = "true" ]; then
+              echo "| published | yes - the publish job attaches this to Nightly |"
+            else
+              echo "| published | no - a manual run never attaches anything |"
+            fi
           } >> "$GITHUB_STEP_SUMMARY"
 
-      # Only reached when every gate above passed, and only when the operator
-      # asked for it.  The archive is a real, signed, notarized build, and in
-      # a public repository a workflow artifact is not private.
+      # Only reached when every gate above passed.  The archive is a real,
+      # signed, notarized build, and in a public repository a workflow
+      # artifact is not private.
       - name: Upload the signed archive
-        if: success() && inputs.upload_artifact
+        # The publish job takes the archive from here, so the nightly path has
+        # to upload it whether or not anyone asked for an artifact.
+        if: success() && (inputs.upload_artifact || needs.resolve.outputs.publish == 'true')
         # actions/upload-artifact v7.0.1
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         with:
           name: ${{ steps.archive.outputs.name }}
-          path: dist/${{ steps.archive.outputs.name }}
+          # The archive and the facts about it travel together, so the publish
+          # job never has to guess either.
+          path: |
+            dist/${{ steps.archive.outputs.name }}
+            dist/${{ steps.archive.outputs.name }}.meta
           retention-days: 5
           if-no-files-found: error
 
@@ -843,3 +972,217 @@ jobs:
           else
             echo "signing scripts were never checked out; nothing to clean up"
           fi
+
+  # ---------------------------------------------------------------------------
+  # Attach the finished archives to the Nightly release.
+  #
+  # A separate job on purpose.  Publishing needs `contents: write`, and the job
+  # that holds the Developer ID must not have it: the whole point of splitting
+  # build from sign was to keep each job's powers to what it actually needs,
+  # and widening the signing job to write releases would undo that.  This job
+  # has the opposite shape - it can write a release and has no access to any
+  # signing secret, because it does not reference the environment.
+  #
+  # It runs only when BOTH architectures signed successfully.  Publishing one
+  # of the two would leave the release advertising a signed build for one kind
+  # of Mac and yesterday's unsigned build for the other, with nothing saying
+  # so.  If the notary service refuses or stalls, nothing is published, and the
+  # previous night's archives stay where they are.
+  # ---------------------------------------------------------------------------
+  publish:
+    name: Attach to the Nightly release
+    needs: [resolve, sign]
+    if: needs.resolve.outputs.publish == 'true'
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      # ---------------------------------------------------------------------
+      # Refuse to publish a build of a commit that master has already moved
+      # past.
+      #
+      # The concurrency group serialises runs, so two pushes in a row publish
+      # in order.  It does not cover re-running an old run by hand, and it
+      # does not cover a run that sat waiting on the notary service while
+      # master advanced: either would attach an older build over a newer
+      # nightly, and nothing in the asset name would show it.
+      #
+      # The check is deliberately here, at the last possible moment, rather
+      # than earlier: the question is not "was this the tip when we started"
+      # but "is it still the tip now that we are about to publish".
+      # ---------------------------------------------------------------------
+      - name: Refuse to publish over a newer nightly
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BUILT: ${{ needs.resolve.outputs.sha }}
+        run: |
+          set -euo pipefail
+          tip=$(gh api "repos/${{ github.repository }}/commits/master" --jq .sha)
+          echo "built from : $BUILT"
+          echo "master tip : $tip"
+          if [ "$BUILT" != "$tip" ]; then
+            echo "::error::master has moved on since this build started."
+            echo "::error::Publishing now would replace the nightly built from $tip"
+            echo "::error::with an older one built from $BUILT."
+            echo "::error::The run that built $tip publishes; this one stops here."
+            echo "::error::Nothing is wrong with the archives - they are signed,"
+            echo "::error::notarized and stapled, and remain as artifacts of this run."
+            exit 1
+          fi
+          echo "still the tip; safe to publish"
+
+      - name: Download the signed archives
+        # actions/download-artifact v6.0.0
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
+        with:
+          path: incoming
+          pattern: simumac-*-signed.zip
+          merge-multiple: true
+
+      - name: Check both architectures arrived, and that they are what they claim
+        id: check
+        env:
+          REVISION_ID: ${{ needs.resolve.outputs.revision_id }}
+        run: |
+          set -euo pipefail
+
+          arm="incoming/simumac-arm64-${REVISION_ID}-signed.zip"
+          x86="incoming/simumac-x86_64-${REVISION_ID}-signed.zip"
+
+          missing=0
+          for f in "$arm" "$x86"; do
+            if [ ! -f "$f" ]; then
+              echo "::error::expected archive not present: $f"
+              missing=1
+            fi
+          done
+          [ "$missing" -eq 0 ] || {
+            echo "::error::refusing to publish half a nightly."
+            exit 1
+          }
+
+          # The name says which architecture it is.  Check the contents agree,
+          # so a mix-up in the matrix cannot ship an arm64 build to Intel
+          # users - which is exactly the defect the previous
+          # nightly-macos-intel.yml had, undetected, for as long as anyone
+          # looked.
+          for pair in "arm64:$arm" "x86_64:$x86"; do
+            want=${pair%%:*}
+            file=${pair#*:}
+            rm -rf probe && mkdir probe
+            unzip -q "$file" -d probe
+            app=$(find probe -name '*.app' -maxdepth 3 -print -quit)
+            [ -n "$app" ] || { echo "::error::no .app inside $file"; exit 1; }
+            exe="$app/Contents/MacOS/simutrans"
+            [ -f "$exe" ] || { echo "::error::no executable inside $file"; exit 1; }
+            # `file` names the architecture of a Mach-O without needing a Mac.
+            got=$(file -b "$exe")
+            case "$want:$got" in
+              arm64:*arm64*)   ;;
+              x86_64:*x86_64*) ;;
+              *)
+                echo "::error::$file is named $want but its executable is: $got"
+                exit 1
+                ;;
+            esac
+            echo "$file -> $want confirmed ($got)"
+          done
+
+          # The measured floor, carried from the job that could measure it.
+          # Refusing without it is deliberate: a published archive that does
+          # not say which macOS it needs is worse than no archive.
+          for pair in "arm:$arm" "x86:$x86"; do
+            k=${pair%%:*}
+            f=${pair#*:}
+            [ -f "$f.meta" ] || { echo "::error::no facts beside $f"; exit 1; }
+            m=$(sed -n 's/^min_macos=//p' "$f.meta" | head -1)
+            printf '%s' "$m" | grep -qE '^[0-9]+\.[0-9]+$' \
+              || { echo "::error::$f.meta has no usable min_macos ('$m')"; exit 1; }
+            echo "${k}_min=$m" >> "$GITHUB_OUTPUT"
+            echo "$f needs macOS $m or later"
+          done
+
+          {
+            echo "arm_file=$arm"
+            echo "x86_file=$x86"
+            echo "arm_sha=$(sha256sum "$arm" | cut -d' ' -f1)"
+            echo "x86_sha=$(sha256sum "$x86" | cut -d' ' -f1)"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Attach them to Nightly
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ARM: ${{ steps.check.outputs.arm_file }}
+          X86: ${{ steps.check.outputs.x86_file }}
+          ARM_SHA: ${{ steps.check.outputs.arm_sha }}
+          X86_SHA: ${{ steps.check.outputs.x86_sha }}
+          ARM_MIN: ${{ steps.check.outputs.arm_min }}
+          X86_MIN: ${{ steps.check.outputs.x86_min }}
+          REVISION_ID: ${{ needs.resolve.outputs.revision_id }}
+          COMMIT: ${{ needs.resolve.outputs.sha }}
+          IDENTITY: ${{ vars.MACOS_SIGNING_IDENTITY }}
+        run: |
+          set -euo pipefail
+
+          # The names macOS users already download.  Taking them over is the
+          # point: a signed build nobody finds helps nobody.  --clobber is
+          # correct here and only here - a nightly asset is meant to be
+          # replaced every night, and these two names belong to this workflow
+          # now that the old macOS nightly jobs no longer upload.
+          cp "$ARM" simumac-arm-nightly.zip
+          cp "$X86" simumac-intel-nightly.zip
+
+          # Neither name carries a revision, so on its own a downloaded archive
+          # cannot be traced back to what it was built from.  This says it, and
+          # is replaced together with them, so it can never describe a build
+          # that is no longer there.
+          cat > simumac-nightly-macos.txt <<TRACE
+          Simutrans macOS nightly - signed, notarized and stapled
+          =======================================================
+
+          Revision   $REVISION_ID
+          Commit     $COMMIT
+          Built      $(date -u '+%Y-%m-%d %H:%M:%SZ')
+          Run        ${{ github.repository }} run ${{ github.run_id }}
+          Signed by  $IDENTITY
+
+          simumac-arm-nightly.zip      arm64    requires macOS $ARM_MIN or later
+            sha256 $ARM_SHA
+          simumac-intel-nightly.zip    x86_64   requires macOS $X86_MIN or later
+            sha256 $X86_SHA
+
+          Neither archive is Universal. Each holds one architecture, checked
+          against its name before it was published.
+
+          The minimum macOS version is the highest declared by any Mach-O file
+          in the bundle, which is usually set by a bundled library rather than
+          by Simutrans itself.
+
+          To check a download:
+            shasum -a 256 simumac-arm-nightly.zip
+            spctl --assess --type execute -vv simutrans.app
+            stapler validate simutrans.app
+          TRACE
+
+          gh release upload Nightly \
+            simumac-arm-nightly.zip \
+            simumac-intel-nightly.zip \
+            simumac-nightly-macos.txt \
+            --repo "${{ github.repository }}" --clobber
+
+      - name: Say what was published
+        env:
+          REVISION_ID: ${{ needs.resolve.outputs.revision_id }}
+        run: |
+          set -euo pipefail
+          {
+            echo "### Published to Nightly"
+            echo
+            echo "| asset | architecture | sha256 |"
+            echo "|---|---|---|"
+            echo "| \`simumac-arm-nightly.zip\` | arm64 | \`${{ steps.check.outputs.arm_sha }}\` |"
+            echo "| \`simumac-intel-nightly.zip\` | x86_64 | \`${{ steps.check.outputs.x86_sha }}\` |"
+            echo
+            echo "Both signed with a Developer ID, notarized, and stapled."
+            echo "Version identity \`$REVISION_ID\`, commit \`${{ needs.resolve.outputs.sha }}\`."
+          } >> "$GITHUB_STEP_SUMMARY"
