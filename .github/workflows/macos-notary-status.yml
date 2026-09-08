@@ -1,0 +1,110 @@
+#
+# Ask Apple what happened to notarization submissions that were already made.
+#
+# Query only.  This workflow cannot submit anything, cannot sign anything, and
+# never touches the Developer ID certificate: it is given the three notary
+# credentials and nothing else, and the script it runs has no submit path.
+#
+# It exists because a `notarytool submit --wait` that reaches its timeout has
+# not been told the submission failed - it has been told nothing, while the
+# submission continues under an id the tool returned on stderr.  Asking about
+# that id is the correct next step.  Submitting the archive again is not.
+#
+# The product is never downloaded, never unpacked and never executed here.
+#
+name: macOS notary submission status
+
+on:
+  workflow_dispatch:
+    inputs:
+      submissions:
+        description: 'Submission UUIDs to ask about, space separated. Only UUIDs are accepted.'
+        required: true
+        type: string
+        default: '54975800-79ad-44c9-b81d-f56022379415 44199d3a-016b-4886-91c8-0791c5190665 1e012e38-8a35-4db4-9906-fc715aaad6ff'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: macos-notary-status
+  cancel-in-progress: false
+
+jobs:
+  status:
+    name: Query the notary service
+    runs-on: macos-15
+    permissions:
+      contents: read
+    # Same gate as signing: the notary credentials live in this environment,
+    # so reaching them still needs the reviewer's approval.
+    environment: macos-signing
+    # A query is quick.  This stops a stuck request from holding a runner.
+    timeout-minutes: 15
+    steps:
+      - name: Checkout the query scripts
+        # Only the scripts, and only from the ref this run was dispatched
+        # from.  No product source is checked out at all.
+        # actions/checkout v6.0.0
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          sparse-checkout: .github/macos
+          sparse-checkout-cone-mode: false
+
+      - name: Validate the requested submissions
+        id: check
+        env:
+          # Arrives as an environment variable and is only ever used quoted;
+          # the script then refuses anything that is not literally a UUID.
+          SUBMISSIONS: ${{ inputs.submissions }}
+        run: |
+          set -euo pipefail
+          n=0
+          for s in $SUBMISSIONS; do
+            if ! printf '%s' "$s" | grep -qE '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'; then
+              echo "::error::'$s' is not a submission UUID; refusing to run."
+              exit 1
+            fi
+            n=$((n + 1))
+          done
+          if [ "$n" -eq 0 ] || [ "$n" -gt 8 ]; then
+            echo "::error::expected between 1 and 8 UUIDs, got $n."
+            exit 1
+          fi
+          echo "count=$n" >> "$GITHUB_OUTPUT"
+          echo "$n submission(s) to query"
+
+      - name: Ask the notary service
+        env:
+          # Only the notarization credentials.  The Developer ID certificate
+          # and its password are deliberately not referenced anywhere in this
+          # workflow: nothing here needs them.
+          MACOS_NOTARY_API_KEY_P8: ${{ secrets.MACOS_NOTARY_API_KEY_P8 }}
+          MACOS_NOTARY_API_KEY_ID: ${{ secrets.MACOS_NOTARY_API_KEY_ID }}
+          MACOS_NOTARY_API_ISSUER_ID: ${{ secrets.MACOS_NOTARY_API_ISSUER_ID }}
+          SUBMISSIONS: ${{ inputs.submissions }}
+        run: |
+          set -euo pipefail
+          chmod +x .github/macos/*.sh
+          # shellcheck disable=SC2086  # deliberate: already validated as UUIDs
+          .github/macos/notary-status.sh $SUBMISSIONS | tee notary-status.txt
+
+      - name: Summarise
+        if: always()
+        run: |
+          set -euo pipefail
+          {
+            echo "### Notary submission status"
+            echo
+            echo "Queried at $(date -u '+%Y-%m-%dT%H:%M:%SZ'), result: ${{ job.status }}"
+            echo
+            if [ -f notary-status.txt ]; then
+              echo '```text'
+              # Only the per-submission verdict lines, so the summary stays
+              # readable; the full output is in the job log.
+              grep -E '^(submission|queried at|status|result) ' notary-status.txt || true
+              echo '```'
+            fi
+            echo
+            echo "This workflow submits nothing and signs nothing."
+          } >> "$GITHUB_STEP_SUMMARY"
