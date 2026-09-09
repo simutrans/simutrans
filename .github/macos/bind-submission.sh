@@ -60,7 +60,7 @@ mkdir -p "$work/in"
 tar -C "$work/in" -xf "$work/container.tar" manifest.json
 zip_sha=$(json_field "$work/in/manifest.json" zip_sha256 || true)
 run_id=$(json_field "$work/in/manifest.json" run_id || true)
-printf '%s' "$zip_sha" | grep -qE '^[0-9a-f]{64}$' \
+grep -qE '^[0-9a-f]{64}$' <<<"$zip_sha" \
 	|| { echo "::error::the container manifest has no usable zip_sha256."; exit 1; }
 
 mkdir -p "$OUT"

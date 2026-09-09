@@ -105,10 +105,10 @@ echo
 echo "== Gatekeeper assessment ==================================="
 assessment=$(spctl --assess --type exec -vvv "$app" 2>&1 || true)
 echo "$assessment"
-if ! printf '%s' "$assessment" | grep -q 'accepted'; then
+if ! grep -q 'accepted' <<<"$assessment"; then
 	note_failure "Gatekeeper did not accept the application"
 fi
-if ! printf '%s' "$assessment" | grep -q 'source=Notarized Developer ID'; then
+if ! grep -q 'source=Notarized Developer ID' <<<"$assessment"; then
 	note_failure "Gatekeeper does not see this as a notarized Developer ID application"
 fi
 echo

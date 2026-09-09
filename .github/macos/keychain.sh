@@ -183,7 +183,7 @@ setup() {
 	echo "== codesigning identities in the temporary keychain =="
 	echo "$identities"
 
-	if ! printf '%s' "$identities" | grep -qF "$MACOS_SIGNING_IDENTITY"; then
+	if ! grep -qF "$MACOS_SIGNING_IDENTITY" <<<"$identities"; then
 		echo "::error::the imported certificate does not provide the expected identity."
 		echo "::error::MACOS_SIGNING_IDENTITY is set to: $MACOS_SIGNING_IDENTITY"
 		echo "::error::but the keychain offers the identities listed above."

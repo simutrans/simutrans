@@ -103,7 +103,7 @@ artifact_key_present() {
 artifact_assert_aead() {
 	local f=$1 packets
 	packets=$(gpg --list-packets --list-only "$f" 2>/dev/null || true)
-	if ! printf '%s' "$packets" | grep -q ':aead encrypted packet:'; then
+	if ! grep -q ':aead encrypted packet:' <<<"$packets"; then
 		echo "::error::the encrypted container is not an AEAD message."
 		echo "::error::gpg produced this instead:"
 		printf '%s\n' "$packets" | sed 's/^/::error::  /'
@@ -112,7 +112,7 @@ artifact_assert_aead() {
 		echo "::error::this container is specified to use, so it is refused."
 		return 1
 	fi
-	if ! printf '%s' "$packets" | grep -qE ":aead encrypted packet: cipher=$_ARTIFACT_CIPHER_AES256 aead=$_ARTIFACT_AEAD_OCB "; then
+	if ! grep -qE ":aead encrypted packet: cipher=$_ARTIFACT_CIPHER_AES256 aead=$_ARTIFACT_AEAD_OCB " <<<"$packets"; then
 		echo "::error::unexpected cipher or AEAD mode:"
 		printf '%s\n' "$packets" | grep ':aead encrypted packet:' | sed 's/^/::error::  /'
 		echo "::error::Expected cipher=$_ARTIFACT_CIPHER_AES256 (AES-256) aead=$_ARTIFACT_AEAD_OCB (OCB)."

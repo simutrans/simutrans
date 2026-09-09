@@ -98,7 +98,7 @@ printf '  %-18s %s\n' "arch" "${arch:-<none>}"
 printf '  %-18s %s\n' "identity" "${identity:-<none>}"
 printf '  %-18s %s\n' "source run" "${run_id:-<none>}"
 
-printf '%s' "$zip_sha" | grep -qE '^[0-9a-f]{64}$' || fail "the manifest has no usable zip_sha256."
+grep -qE '^[0-9a-f]{64}$' <<<"$zip_sha" || fail "the manifest has no usable zip_sha256."
 
 actual_sha=$(shasum -a 256 "$payload" | awk '{ print $1 }')
 [ "$actual_sha" = "$zip_sha" ] \

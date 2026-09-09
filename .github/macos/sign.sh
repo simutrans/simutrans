@@ -140,23 +140,37 @@ note_failure() {
 	failures=$((failures + 1))
 }
 
+# Every check below reads its subject with a here-string, not through
+# `printf ... | grep`.  That is not a style preference.
+#
+# `grep -q` exits as soon as it matches.  When the text is larger than the pipe
+# buffer the writer is still writing at that moment, so it dies of SIGPIPE with
+# status 141 - and under `set -o pipefail` that 141 becomes the status of the
+# whole pipeline.  `if ! ...` then reads a SUCCESSFUL match as a failure.
+# Whether it happens depends on how much the writer got out first, so it is a
+# race: on 2026-09-09 it reported "nested code without Hardened Runtime" for a
+# library that was correctly signed, and that had passed every run before.
+#
+# A here-string has no second process to kill, so the match decides the status
+# and nothing else does.
+#
 # Hardened Runtime shows up as the "runtime" flag on the code signature.
-if ! printf '%s' "$details" | grep -qE '^CodeDirectory .*flags=.*runtime'; then
+if ! grep -qE '^CodeDirectory .*flags=.*runtime' <<<"$details"; then
 	note_failure "the signature does not have the Hardened Runtime flag set; the notary service rejects such submissions"
 fi
 
 # A secure timestamp appears as "Timestamp=".  A signature without one shows
 # "Signed Time=" instead, which is not good enough for notarization.
-if ! printf '%s' "$details" | grep -q '^Timestamp='; then
+if ! grep -q '^Timestamp=' <<<"$details"; then
 	note_failure "the signature carries no secure timestamp (only 'Signed Time'); check that timestamp.apple.com was reachable"
 fi
 
-if ! printf '%s' "$details" | grep -q 'Authority=Developer ID Application:'; then
+if ! grep -q 'Authority=Developer ID Application:' <<<"$details"; then
 	note_failure "the signing authority is not a Developer ID Application certificate"
 fi
 
 if [ -n "${MACOS_TEAM_ID:-}" ]; then
-	if ! printf '%s' "$details" | grep -q "^TeamIdentifier=$MACOS_TEAM_ID\$"; then
+	if ! grep -q "^TeamIdentifier=$MACOS_TEAM_ID\$" <<<"$details"; then
 		note_failure "TeamIdentifier does not match the declared MACOS_TEAM_ID"
 	fi
 fi
@@ -164,7 +178,7 @@ fi
 # get-task-allow is the entitlement that turns a distribution build into a
 # debuggable one; Apple rejects notarization when it is present.
 entitlements=$(codesign --display --entitlements :- "$APP" 2>/dev/null || true)
-if printf '%s' "$entitlements" | grep -q 'get-task-allow'; then
+if grep -q 'get-task-allow' <<<"$entitlements"; then
 	note_failure "the signed bundle requests com.apple.security.get-task-allow, which the notary service refuses"
 fi
 echo "--- entitlements"
@@ -177,10 +191,10 @@ fi
 # Every nested Mach-O must have come out with the same treatment.
 while IFS= read -r f; do
 	nested=$(codesign --display --verbose=2 "$f" 2>&1)
-	if ! printf '%s' "$nested" | grep -qE 'flags=.*runtime'; then
+	if ! grep -qE 'flags=.*runtime' <<<"$nested"; then
 		note_failure "nested code without Hardened Runtime: ${f#"$APP"/}"
 	fi
-	if ! printf '%s' "$nested" | grep -q '^Timestamp='; then
+	if ! grep -q '^Timestamp=' <<<"$nested"; then
 		note_failure "nested code without a secure timestamp: ${f#"$APP"/}"
 	fi
 done < "$inventory"
