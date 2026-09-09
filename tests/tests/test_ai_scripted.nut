@@ -102,6 +102,10 @@ function test_ai_scripted_attach_missing_ai_fails()
 {
 	local slot = make_scripted_ai()
 
+	// The engine logs a script error for this, which the runner would
+	// otherwise read as a test having broken without saying so. Announce it,
+	// so that this one line is excused and an unexpected one still fails.
+	EXPECT_SCRIPT_ERROR(AI_MISSING)
 	ASSERT_EQUAL(aitest_attach(slot, AI_MISSING), AI_ERR_LOAD)
 	ASSERT_FALSE(aitest_has_script(slot))
 	ASSERT_EQUAL(aitest_note_count(), 0)
@@ -179,6 +183,7 @@ function test_ai_scripted_network_state_restored()
 
 	// ordinary failure path, deep inside the attach
 	slot = make_scripted_ai()
+	EXPECT_SCRIPT_ERROR(AI_MISSING)
 	ASSERT_EQUAL(aitest_attach_fixture_as(true, true, slot, AI_MISSING), AI_ERR_LOAD)
 	ASSERT_EQUAL(aitest_net_state(), before)
 	drop_scripted_ai(slot)

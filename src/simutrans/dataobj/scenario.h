@@ -280,6 +280,18 @@ public:
 	 */
 	plainstring load_language_file(const char* filename);
 
+	/**
+	 * Where this scenario was actually loaded from, with a trailing separator.
+	 *
+	 * A scenario can come from the addon directory or from the pakset, and only
+	 * init() knows which one won. Anything that has to reach a file shipped
+	 * beside the scenario has to ask, rather than rebuild the path from
+	 * env_t::pak_dir and be wrong for addon scenarios.
+	 *
+	 * Relative to env_t::user_dir, like the paths used to load the scenario.
+	 */
+	const char* get_scenario_path() const { return scenario_path; }
+
 	/// Load/save support
 	void rdwr(loadsave_t *file);
 

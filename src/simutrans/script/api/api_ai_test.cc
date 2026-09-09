@@ -30,6 +30,7 @@
 #include "../api_function.h"
 
 #include "../../dataobj/environment.h"
+#include "../../dataobj/scenario.h"
 #include "../../player/ai_scripted.h"
 #include "../../player/simplay.h"
 #include "../../simconst.h"
@@ -132,10 +133,21 @@ static plainstring aitest_shipped_base()
 
 
 /// the ai folder inside the automated-tests scenario, holding test fixtures only
+///
+/// The path comes from the running scenario, not from env_t::pak_dir. A scenario
+/// is looked for in the addon directory first and only then in the pakset, and
+/// the automated tests run from the addon directory: the workflow links tests/
+/// to addons/<pak>/scenario/automated-tests. Rebuilding the path from the pakset
+/// instead sent every fixture lookup to a directory that does not exist.
 static plainstring aitest_fixture_base()
 {
+	scenario_t* scen = welt->get_scenario();
+	if (scen == NULL) {
+		return plainstring("");
+	}
+
 	cbuffer_t buf;
-	buf.printf("%sscenario/automated-tests/ai/", env_t::pak_dir.c_str());
+	buf.printf("%sai/", scen->get_scenario_path());
 	return plainstring((const char*)buf);
 }
 
