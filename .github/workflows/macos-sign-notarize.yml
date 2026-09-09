@@ -616,14 +616,67 @@ jobs:
           sparse-checkout: .github/macos
           sparse-checkout-cone-mode: false
 
+      # Resolve the build to ONE artifact id, using what GitHub itself records
+      # about where that artifact came from, before anything is downloaded.
+      #
+      # Asking by name works, but it would also accept whichever artifact
+      # happened to carry the name if there were ever more than one. The id is
+      # what identifies an artifact; the name is a label. Two candidates mean
+      # the run is not what this job assumes, so it stops rather than choosing.
+      - name: Resolve the unsigned build to one artifact
+        id: artifact
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WANT: unsigned-${{ matrix.arch }}
+        run: |
+          set -euo pipefail
+          all=$(gh api --paginate \
+            "repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts" \
+            --jq ".artifacts[] | select(.name == \"$WANT\" and .expired == false) | \"\(.id) \(.workflow_run.id) \(.workflow_run.repository_id) \(.created_at)\"")
+
+          count=$(printf '%s\n' "$all" | grep -c . || true)
+          if [ "$count" -eq 0 ]; then
+            echo "::error::no live artifact named '$WANT' in run ${{ github.run_id }}."
+            echo "::error::It was never uploaded, or it has expired; there is nothing to sign."
+            exit 1
+          fi
+          if [ "$count" -gt 1 ]; then
+            echo "::error::$count live artifacts are named '$WANT' in this run:"
+            printf '%s\n' "$all" | sed 's/^/::error::  /'
+            echo "::error::Refusing to guess which one the build produced."
+            exit 1
+          fi
+
+          id=$(printf '%s' "$all" | awk '{ print $1 }')
+          run=$(printf '%s' "$all" | awk '{ print $2 }')
+          repo=$(printf '%s' "$all" | awk '{ print $3 }')
+
+          # GitHub's own record of the producer, not the manifest's account of
+          # itself.  The run has to be this one, in this repository.
+          if [ "$run" != "${{ github.run_id }}" ]; then
+            echo "::error::artifact $id belongs to run $run, not ${{ github.run_id }}."
+            exit 1
+          fi
+          want_repo=$(gh api "repos/${{ github.repository }}" --jq .id)
+          if [ "$repo" != "$want_repo" ]; then
+            echo "::error::artifact $id belongs to repository $repo, not $want_repo."
+            exit 1
+          fi
+
+          echo "artifact id : $id"
+          echo "produced by : run $run in repository $repo"
+          echo "created     : $(printf '%s' "$all" | awk '{ print $4 }')"
+          echo "id=$id" >> "$GITHUB_OUTPUT"
+
       - name: Download the unsigned build from this run
-        # No run-id is given, so this can only resolve to an artifact of the
-        # current run.  It is never "the latest artifact with that name".
+        # By id, resolved and checked above, so this cannot pick up a different
+        # artifact that happens to share the name.
         # actions/download-artifact v8.0.1
         uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
         with:
-          name: unsigned-${{ matrix.arch }}
+          artifact-ids: ${{ steps.artifact.outputs.id }}
           path: incoming
+          merge-multiple: true
 
       - name: Verify the provenance of what was downloaded
         id: provenance
@@ -652,12 +705,40 @@ jobs:
           echo "provenance accepted:"
           expect repository "${{ github.repository }}"
           expect run_id     "${{ github.run_id }}"
-          expect run_attempt "${{ github.run_attempt }}"
           expect sha        "${{ needs.resolve.outputs.sha }}"
           expect arch       "${{ matrix.arch }}"
           expect revision_id "${{ needs.resolve.outputs.revision_id }}"
           expect distribution_ok "${{ needs.resolve.outputs.distribution_ok }}"
           expect not_for_distribution "${{ needs.resolve.outputs.not_for_distribution }}"
+
+          # ---------------------------------------------------------------
+          # The attempt is recorded, and bounded, but not required to match.
+          #
+          # Re-running only the failed jobs of a run deliberately reuses the
+          # artifacts the successful jobs already produced, so a build from an
+          # earlier attempt of THIS run is exactly what recovery looks like.
+          # Demanding equality made that impossible: on 2026-09-09 a transient
+          # upload failure on one architecture could not be recovered, because
+          # the other architecture's good build was refused for having been
+          # made in attempt 1.
+          #
+          # What the attempt must not be is nonsense or from the future: an
+          # attempt this run has not reached cannot have produced anything.
+          # ---------------------------------------------------------------
+          attempt=$(get run_attempt)
+          if ! printf '%s' "$attempt" | grep -qE '^[0-9]{1,9}$'; then
+            echo "::error::provenance has no usable run_attempt ('$attempt'); refusing to sign."
+            exit 1
+          fi
+          if [ "$attempt" -lt 1 ] || [ "$attempt" -gt "${{ github.run_attempt }}" ]; then
+            echo "::error::provenance says run_attempt '$attempt', but this run has only"
+            echo "::error::reached attempt ${{ github.run_attempt }}; refusing to sign."
+            exit 1
+          fi
+          printf '  %-12s %s\n' run_attempt "$attempt"
+          if [ "$attempt" -ne "${{ github.run_attempt }}" ]; then
+            echo "::notice::this build was made in attempt $attempt and is being signed in attempt ${{ github.run_attempt }}; that is what re-running failed jobs does."
+          fi
 
           echo "symlinks=$(get symlinks)" >> "$GITHUB_OUTPUT"
 
