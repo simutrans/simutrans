@@ -39,8 +39,6 @@ private:
 
 	/* Methods related to loading a language file into memory */
 	static void load_language_file(FILE* file);
-	static void load_language_iso(const std::string &iso);
-
 	static vector_tpl<char*> city_name_list;
 	static vector_tpl<char*> street_name_list;
 
@@ -49,11 +47,10 @@ private:
 public:
 	struct lang_info {
 		const char* translate(const char* text) const;
-
 		stringhashtable_tpl<const char*> texts;
 		const char *name;
-		const char *iso;
-		const char *iso_base;
+		char iso[8];
+		char iso_base[4];
 		bool is_latin2_based;
 		uint32 highest_character;
 		uint8 ellipsis_width;
@@ -138,6 +135,9 @@ public:
 	static const char* get_short_date(uint16 year, uint16 month);
 	static const char* get_month_date(uint16 month, uint16 day);
 	static const char* get_day_date( uint16 day );
+
+	// compare using the current language setting
+	static int utf8compare(const char* s1, const char* s2);
 };
 
 #endif

@@ -6,7 +6,6 @@
 #ifndef SYS_SIMSYS_H
 #define SYS_SIMSYS_H
 
-
 #include "../simtypes.h"
 #include "../display/scr_coord.h"
 #include "../simcolor.h"
@@ -261,6 +260,9 @@ void dr_notify_input_pos(scr_coord pos);
 
 ///  returns current two byte languange ID
 const char* dr_get_locale();
+
+/// compre two utf8 strings
+int dr_compare_uft8_string(const utf8* s1, const utf8* s2, const utf8* locale);
 
 /// true, if there is a hardware fullcreen mode
 bool dr_has_fullscreen();

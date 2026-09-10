@@ -178,7 +178,7 @@ sprachengui_t::sprachengui_t() :
 		b->add_listener(this);
 
 		// press button
-		int id = translator::get_language(lang->iso);
+		int id = translator::get_language(lang->iso_base);
 		if(  translator::get_language() == id  ) {
 			b->pressed = true;
 		}
@@ -255,7 +255,7 @@ bool sprachengui_t::action_triggered( gui_action_creator_t *comp, value_t p)
 					world()->get_settings().set_name_language_iso(NULL);
 				}
 				else {
-					world()->get_settings().set_name_language_iso((translator::get_langs())[buttons[i].id].iso);
+					world()->get_settings().set_name_language_iso((translator::get_langs())[buttons[i].id].iso_base);
 					// maybe we should warn that there might no be a matching font in not unicode ...
 					translator::init_custom_names(world()->get_settings().get_name_language_id());
 				}

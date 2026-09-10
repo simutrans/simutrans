@@ -987,7 +987,7 @@ plainstring scenario_t::load_language_file(const char* filename)
 	}
 	std::string path = scenario_path.c_str();
 	// try user language
-	std::string wanted_file = path + translator::get_lang()->iso + PATH_SEPARATOR + filename;
+	std::string wanted_file = path + translator::get_lang()->iso_base + PATH_SEPARATOR + filename;
 
 	const plainstring& cached = cached_text_files.get(wanted_file.c_str());
 	if (cached != NULL) {

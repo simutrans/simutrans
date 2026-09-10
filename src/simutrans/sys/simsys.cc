@@ -26,6 +26,7 @@
 #include "../pathes.h"
 #include "../simevent.h"
 #include "../utils/simstring.h"
+#include "../utils/unicode.h"
 #include "../simdebug.h"
 #include "../simevent.h"
 #include "../simversion.h"
@@ -1385,6 +1386,69 @@ const char *dr_get_locale_string()
 	}
 	setlocale( LC_ALL, "C" ); // or the number output may be broken
 	return code[0] ? code : NULL;
+}
+#endif
+
+
+// compare two utf8 strings
+int dr_compare_uft8_string(const utf8* s1, const utf8* s2, const utf8* locale)
+#ifdef _WIN32
+{
+	static utf8* last_used_locale = 0, *last_used_s1 = 0, *last_used_s2 = 0;
+	static WCHAR wcLocale[32], wcS1[256], wcS2[256];
+	static sint8 s1unicode = 0, s2unicode = 0;
+	static int l1 = 0, l2 = 0;
+
+	if (last_used_locale != locale) {
+		last_used_locale = (utf8 *)locale;
+		WCHAR* wcL = wcLocale;
+		while (*locale) {
+			*wcL++ = *locale++;
+		}
+		*wcL = 0;
+		locale = last_used_locale;
+//		if(locale[2]!='_')
+	}
+
+	if (last_used_s1 != s1) {
+		l1 = 0;
+		s1unicode = 0;
+		last_used_s1 = (utf8*)s1;
+		utf32 wc = utf8_decoder_t::decode(s1);
+		while (wc && l1 < 254) {
+			s1unicode |= *s1;
+			wcS1[l1++] = wc;
+			wc = utf8_decoder_t::decode(s1);
+		}
+		wcS1[l1] = 0;
+	}
+
+	if (last_used_s2 != s2) {
+		l2 = 0;
+		s2unicode = 0;
+		last_used_s2 = (utf8*)s2;
+		utf32 wc = utf8_decoder_t::decode(s2);
+		while (wc && l2 < 254) {
+			s2unicode |= *s2;
+			wcS2[l2++] = wc;
+			wc = utf8_decoder_t::decode(s2);
+		}
+		wcS2[l2] = 0;
+	}
+
+	if (s1unicode || s2unicode) {
+		int result = CompareStringEx(wcLocale, NORM_IGNORECASE | NORM_IGNOREKANATYPE, wcS1, l1, wcS2, l2, NULL, NULL, 0);
+		return result - 2;
+	}
+	else {
+		// contains no unicode
+		return STRICMP((const char *)last_used_s1, (const char *)last_used_s2);
+	}
+}
+#else
+{
+	// for now
+	return STRICMP(s1, s2 );
 }
 #endif
 

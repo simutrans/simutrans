@@ -425,15 +425,20 @@ static uint32 get_highest_character( const utf8 *str )
 
 uint32 translator::guess_highest_unicode(int n)
 {
-	const char* T1 = langs[n].texts.get( "Bruecke muss an\neinfachem\nHang beginnen!\n" );
+	const char* T1 = langs[n].texts.get("Bruecke muss an\neinfachem\nHang beginnen!\n");
 	uint32 max_char = 0xDF;
-	if( T1 ) {
-		max_char = get_highest_character( (const utf8 *)T1 );
+	if (T1) {
+		max_char = get_highest_character((const utf8*)T1);
 	}
-	const char* T2 = langs[n].texts.get( "Start" );
-	if( T2 ) {
-		uint32 max_char2 = get_highest_character( (const utf8 *)T2 );
-		max_char = max( max_char, max_char2 );
+	const char* T2 = langs[n].texts.get("Add Stop");
+	if (T2) {
+		uint32 max_char2 = get_highest_character((const utf8*)T2);
+		max_char = max(max_char, max_char2);
+	}
+	const char* T3 = langs[n].texts.get("Start");
+	if (T2) {
+		uint32 max_char3 = get_highest_character((const utf8*)T2);
+		max_char = max(max_char, max_char3);
 	}
 	return max_char;
 }
@@ -512,7 +517,19 @@ bool translator::load()
 
 		if (FILE* const file = dr_fopen(fileName.c_str(), "rb")) {
 			DBG_MESSAGE("translator::load()", "base file \"%s\" - iso: \"%s\"", fileName.c_str(), iso.c_str());
-			load_language_iso(iso);
+			// iso_base is the file name (max 2 characters for now)
+			langs[single_instance.lang_count].iso_base[0] = tolower(iso[0]);
+			langs[single_instance.lang_count].iso_base[1] = tolower(iso[1]);
+			langs[single_instance.lang_count].iso_base[2] = 0;
+			if (strcmp(langs[single_instance.lang_count].iso_base, "cn") == 0) {
+				strcpy(langs[single_instance.lang_count].iso, "zh-CN");
+			}
+			else if (strcmp(langs[single_instance.lang_count].iso_base, "zh") == 0) {
+				strcpy(langs[single_instance.lang_count].iso, "zh-TW");
+			}
+			else {
+				strcpy(langs[single_instance.lang_count].iso, langs[single_instance.lang_count].iso_base);
+			}
 			load_language_file(file);
 			fclose(file);
 			langs[single_instance.lang_count].highest_character = guess_highest_unicode( single_instance.lang_count );
@@ -577,24 +594,12 @@ bool translator::load()
 }
 
 
-void translator::load_language_iso(const string &iso)
-{
-	string base(iso);
-	langs[single_instance.lang_count].iso = strdup(iso.c_str());
-	int loc = iso.find('_');
-	if (loc != -1) {
-		base = iso.substr(0, loc);
-	}
-	langs[single_instance.lang_count].iso_base = strdup(base.c_str());
-}
-
-
 void translator::set_language(int lang)
 {
 	if(  0 <= lang  &&  lang < single_instance.lang_count  ) {
 		single_instance.current_lang = lang;
 		current_langinfo = langs+lang;
-		env_t::language_iso = langs[lang].iso;
+		env_t::language_iso = langs[lang].iso_base;
 		current_langinfo->ellipsis_width = gfx->calc_text_width( translate("...") );
 		DBG_MESSAGE("translator::set_language()", "%s, unicode %d", langs[lang].name, true);
 	}
@@ -604,7 +609,7 @@ void translator::set_language(int lang)
 }
 
 
-// returns the id for this language or -1 if not there
+// returns the id for this language or -1 if not there (only 2 byte codes)
 int translator::get_language(const char *iso)
 {
 	for(  int i = 0;  i < single_instance.lang_count;  i++  ) {
@@ -858,4 +863,15 @@ const char *translator::compatibility_name(const char *str)
 	}
 	const char *trans = compatibility.get(str);
 	return trans != NULL ? trans : str;
+}
+
+
+// compares two utf strings ignoring case, kana etc.
+int translator::utf8compare(const char* s1, const char* s2)
+{
+	if (current_langinfo->highest_character < 128) {
+		// not a unicode language
+		return STRICMP(s1, s2);
+	}
+	return dr_compare_uft8_string((const utf8*)s1, (const utf8*)s2, (const utf8*)current_langinfo->iso);
 }
