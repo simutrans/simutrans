@@ -59,11 +59,12 @@ private:
 
 	void fill_list();
 	void update_label();
-/*
- * All filter settings are static, so they are not reset each
- * time the window closes.
- */
-static bool sortreverse;
+
+	/*
+	 * All filter settings are static, so they are not reset each
+	 * time the window closes.
+	 */
+	static bool sortreverse;
 
 public:
 	citylist_frame_t();

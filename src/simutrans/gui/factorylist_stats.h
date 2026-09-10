@@ -46,6 +46,7 @@ private:
 
 	void update_label();
 public:
+	static int halt_lang_id;
 	static sint16 sort_mode;
 	static bool reverse;
 

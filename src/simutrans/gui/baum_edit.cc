@@ -39,7 +39,7 @@ static bool compare_tree_desc(const tree_desc_t* a, const tree_desc_t* b)
 }
 static bool compare_tree_desc_name(const tree_desc_t* a, const tree_desc_t* b)
 {
-	int diff = strcmp( translator::translate(a->get_name()), translator::translate(b->get_name()) );
+	int diff = translator::translate_compare( a->get_name(), b->get_name() );
 	if(diff ==0) {
 		diff = strcmp( a->get_name(), b->get_name() );
 	}

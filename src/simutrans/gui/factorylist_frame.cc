@@ -4,6 +4,7 @@
  */
 
 #include "factorylist_frame.h"
+#include "factorylist_stats.h"
 #include "gui_theme.h"
 #include "../dataobj/translator.h"
 #include "../player/simplay.h"
@@ -36,6 +37,7 @@ factorylist_frame_t::factorylist_frame_t() :
 	gui_frame_t( translator::translate("fl_title") ),
 	scrolly(gui_scrolled_list_t::windowskin, factorylist_stats_t::compare)
 {
+	factorylist_stats_t::halt_lang_id = welt->get_settings().get_name_language_id();
 	scrolly.set_checkered(true);
 
 	set_table_layout(3,4);

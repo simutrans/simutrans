@@ -96,6 +96,8 @@ citylist_frame_t::citylist_frame_t() :
 	gui_frame_t(translator::translate("City list")),
 	scrolly(gui_scrolled_list_t::windowskin, citylist_stats_t::compare)
 {
+	citylist_stats_t::halt_lang_id = welt->get_settings().get_name_language_id();
+
 	old_city_count = 0;
 	old_halt_count = 0;
 

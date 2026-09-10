@@ -27,6 +27,8 @@ private:
 	gui_label_buf_t label;
 	void update_label();
 public:
+	static int halt_lang_id; // language of stops
+
 	enum sort_mode_t {
 		SORT_BY_NAME = 0,
 		SORT_BY_SIZE,

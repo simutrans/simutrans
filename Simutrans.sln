@@ -64,8 +64,8 @@ Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Simutrans-Main.vcxitems*{0621b295-beb7-4767-82f1-f27995610323}*SharedItemsImports = 4
 		Simutrans-Main.vcxitems*{0ee7eb1c-43c6-4548-9c60-b79f4d781b4c}*SharedItemsImports = 4
-		Simutrans-Main.vcxitems*{5a9777dd-ce40-45ae-8cb4-0ff2db4abd27}*SharedItemsImports = 9
 		Simutrans-Main.vcxitems*{3f44593e-6fed-4f86-8c94-58b859302798}*SharedItemsImports = 4
+		Simutrans-Main.vcxitems*{5a9777dd-ce40-45ae-8cb4-0ff2db4abd27}*SharedItemsImports = 9
 		Simutrans-Main.vcxitems*{e74757e8-c2fd-44ad-87bd-3d55f4709484}*SharedItemsImports = 4
 	EndGlobalSection
 EndGlobal

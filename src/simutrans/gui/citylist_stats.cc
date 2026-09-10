@@ -4,6 +4,7 @@
  */
 
 #include "citylist_stats.h"
+#include "citylist_frame.h"
 #include "city_info.h"
 
 #include "../world/simcity.h"
@@ -89,6 +90,7 @@ bool citylist_stats_t::infowin_event(const event_t *ev)
 
 
 citylist_stats_t::sort_mode_t citylist_stats_t::sort_mode = citylist_stats_t::SORT_BY_NAME;
+int citylist_stats_t::halt_lang_id = -1;
 uint8 citylist_stats_t::player_nr = -1;
 
 bool citylist_stats_t::compare(const gui_component_t *aa, const gui_component_t *bb)
@@ -140,5 +142,5 @@ bool citylist_stats_t::compare(const gui_component_t *aa, const gui_component_t 
 		return (aint-bint)<0;
 	}
 	// otherwise: sort by name
-	return strcmp(atxt, btxt)<0;
+	return translator::utf8compare(atxt, btxt, halt_lang_id)<0;
 }

@@ -60,6 +60,9 @@ public:
  */
 halt_list_frame_t::sort_mode_t halt_list_frame_t::sortby = nach_name;
 
+// locale for the halt names
+int halt_list_frame_t::halt_lang_id = -1;
+
 /**
  * This variable defines the sort order (ascending or descending)
  * Values: 1 = ascending, 2 = descending)
@@ -111,7 +114,7 @@ bool halt_list_frame_t::compare_halts(halthandle_t const halt1, halthandle_t con
 	 * use name as an additional sort, to make sort more stable.
 	 */
 	if(order == 0) {
-		order = strcmp(halt1->get_name(), halt2->get_name());
+		order = translator::utf8compare(halt1->get_name(), halt2->get_name(), halt_lang_id);
 	}
 	/***********************************
 	 * Consider sorting order
@@ -125,6 +128,7 @@ halt_list_frame_t::halt_list_frame_t() :
 {
 	m_player = welt->get_active_player();
 	filter_frame = NULL;
+	halt_lang_id = welt->get_settings().get_name_language_id();
 
 	set_table_layout(1, 0);
 

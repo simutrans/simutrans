@@ -138,6 +138,12 @@ public:
 
 	// compare using the current language setting
 	static int utf8compare(const char* s1, const char* s2);
+
+	// compare using the current language setting
+	static int utf8compare(const char* s1, const char* s2, int id);
+
+	// compares two utf strings ignoring case, kana etc. after first translating them
+	static int translate_compare(const char* s1, const char* s2);
 };
 
 #endif

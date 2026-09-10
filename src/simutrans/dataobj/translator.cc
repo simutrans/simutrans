@@ -41,7 +41,7 @@ static char *fgets_line(char *buffer, int max_len, FILE *file)
 
 const char *translator::lang_info::translate(const char *text) const
 {
-	if(  text    == NULL  ) {
+	if(  text == NULL  ) {
 		return "(null)";
 	}
 	if(  text[0] == '\0'  ) {
@@ -56,7 +56,6 @@ const char *translator::lang_info::translate(const char *text) const
 static translator::lang_info langs[40];
 static translator::lang_info *current_langinfo = langs;
 static stringhashtable_tpl<const char*> compatibility;
-
 
 translator translator::single_instance;
 
@@ -436,8 +435,8 @@ uint32 translator::guess_highest_unicode(int n)
 		max_char = max(max_char, max_char2);
 	}
 	const char* T3 = langs[n].texts.get("Start");
-	if (T2) {
-		uint32 max_char3 = get_highest_character((const utf8*)T2);
+	if (T3) {
+		uint32 max_char3 = get_highest_character((const utf8*)T3);
 		max_char = max(max_char, max_char3);
 	}
 	return max_char;
@@ -867,8 +866,28 @@ const char *translator::compatibility_name(const char *str)
 
 
 // compares two utf strings ignoring case, kana etc.
+int translator::utf8compare(const char* s1, const char* s2, int id)
+{
+	if (langs[id].highest_character < 128) {
+		// not a unicode language
+		return STRICMP(s1, s2);
+	}
+	return dr_compare_uft8_string((const utf8*)s1, (const utf8*)s2, (const utf8*)langs[id].iso);
+}
+
+
+// compares two utf strings ignoring case, kana etc.
 int translator::utf8compare(const char* s1, const char* s2)
 {
+	return dr_compare_uft8_string((const utf8*)s1, (const utf8*)s2, (const utf8*)current_langinfo->iso);
+}
+
+
+// compares two utf strings ignoring case, kana etc.
+int translator::translate_compare(const char* s1, const char* s2)
+{
+	s1 = translate(s1);
+	s2 = translate(s2);
 	if (current_langinfo->highest_character < 128) {
 		// not a unicode language
 		return STRICMP(s1, s2);

@@ -39,7 +39,7 @@ static bool compare_factory_desc(const factory_desc_t* a, const factory_desc_t* 
 }
 static bool compare_factory_desc_name(const factory_desc_t* a, const factory_desc_t* b)
 {
-	int diff = translator::utf8compare( translator::translate(a->get_name()), translator::translate(b->get_name()) );
+	int diff = translator::translate_compare( a->get_name(), b->get_name() );
 	if(  diff==0  ) {
 		diff = strcmp(a->get_name(), b->get_name());
 	}

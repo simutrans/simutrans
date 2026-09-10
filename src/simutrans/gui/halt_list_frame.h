@@ -48,6 +48,8 @@ public:
 private:
 	player_t *m_player;
 
+	static int halt_lang_id; // language of stops
+
 	static const char *sort_text[SORT_MODES];
 
 	uint32 last_world_stops;

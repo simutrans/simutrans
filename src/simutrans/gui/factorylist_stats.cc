@@ -13,13 +13,14 @@
 
 #include "../builder/goods_manager.h"
 #include "../descriptor/skin_desc.h"
+#include "../dataobj/translator.h"
 #include "../utils/cbuffer.h"
 #include "../utils/simstring.h"
 
 
 sint16 factorylist_stats_t::sort_mode = factorylist::by_name;
 bool factorylist_stats_t::reverse = false;
-
+int factorylist_stats_t::halt_lang_id = -1;
 
 factorylist_stats_t::factorylist_stats_t(fabrik_t *fab)
 {
@@ -183,7 +184,8 @@ bool factorylist_stats_t::compare(const gui_component_t *aa, const gui_component
 			break;
 	}
 	if (cmp == 0) {
-		cmp = STRICMP(a->get_name(), b->get_name());
+		cmp = translator::utf8compare(a->get_name(), b->get_name(), factorylist_stats_t::halt_lang_id);
 	}
+
 	return reverse ? cmp > 0 : cmp < 0;
 }
