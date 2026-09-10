@@ -12,13 +12,15 @@ Prop-Latin1.bdf
 #                             Language: es Espanol                             #
 #                                Encoding: UTF-8                               #
 #                             Font: Prop-Latin1.bdf                            #
-#                           Date Created: 11.03 2026                           #
+#                           Date Created: 10.09 2026                           #
 #                                                                              #
 ################################################################################
 #__________________________________button_text__________________________________
 #__________________________________button_text__________________________________
 Absolute times
 Muestra fechas como día:hh:mm del mes
+allow reverse passage
+Permitir el paso en sentido contrario
 AMBIENT_SOUND
 Sonidos ambientales
 CASH_SOUND
@@ -109,6 +111,8 @@ Num pad keys always move map
 El teclado numérico siempre mueve el mapa
 Open Sea
 Mar Abierto
+Owner only
+Solo el propietario
 Queueing
 Cola de espera
 rainfall
@@ -123,6 +127,8 @@ Scenario
 Información de Escenario
 sea
 Marino
+Shared only
+Solo compartidas
 Single GUI
 Interfaz Única
 Sound range:
@@ -161,6 +167,10 @@ Tundra
 ¡No se ha podido cargar\nel script del escenario!\n
 A building blocks the construction
 Un edificio bloquea la construcción.
+A powerline blocks the construction
+Un tendido eléctrico bloquea la construcción
+Another way blocks the construction
+Otra vía bloquea la construcción
 Bridge blocked by way below or above.
 Puente obstruído por otra vía debajo o encima.
 Can't buy obsolete vehicles!
@@ -179,6 +189,8 @@ Cannot create generic line!\nSelect line type by\nusing filter tabs.
 ¡No se puede crear una línea genérica!\nSeleccione el tipo de línea\nutilizando las pestañas de filtro.
 Cannot create socket
 No se pudo crear el socket
+Cannot cross the end of a runway
+No se puede cruzar el final de una pista de aterrizaje
 Cannot rotate this building!
 ¡No se puede rotar este edificio!
 Client closed connection during transfer
@@ -187,6 +199,8 @@ Convoi handles exhausted!
 Se ha alcanzado el máximo número de convoys.
 Convoy already deleted!
 ¡El convoy ya ha sido eliminado!
+Corrupt file
+El archivo está dañado o incompleto.
 Could not open file
 No se pudo abrir el archivo
 Das Feld gehoert\neinem anderen Spieler\n
@@ -199,8 +213,14 @@ Der Besitzer erlaubt das Entfernen nicht
 El propietario no da\npermiso para\neliminarlo.\n
 Diese Zusammenstellung kann nicht fahren!\n
 ¡Esta combinación\nno puede arrancar!\n
+Elevated way can only be joined in line
+Una vía elevada sólo puede enlazarse en línea recta
+Failed to write file
+No se ha podido escribir el archivo. (¿Permisos?)
 Flugzeughalt muss auf\nRunway liegen!\n
 ¡La parada del avión debe\ncolocarse sobre una pista de\naterrizaje!
+Forbidden by scenario
+Prohibido en este escenario
 Hier kann dieses\nFlughafengebaeude nicht\ngebaut werden!\n
 No puedes construir\nun aeropuerto aquí.\n
 Hier kann kein\nSignal aufge-\nstellt werden!\n
@@ -233,12 +253,18 @@ No suitable way on the ground!
 ¡Las estaciones deben construirse sobre una superfície plana!
 No through station here!
 ¡Sin estación intermedia aquí!
+Not allowed to copy object.
+¡No puedes construir ese objeto!\n(Motivo: jugador incorrecto u obsoleto)
 Not enough bytes transferred
 No se transmitieron bytes suficientes.
 Not enough clearance.
 Entre dos vías, se necesita una diferencia de altura mínima de dos.
+Not enough empty space
+No queda suficiente espacio libre para guardar.
 Not enough money!
 ¡No tienes suficiente dinero\npara construir esto!
+Not initialized
+No se ha podido inicializar la biblioteca.
 On narrowgauge track only!\n
 ¡Sólo permitido en vía estrecha!\n
 Only public player can lock games!
@@ -265,16 +291,28 @@ Show no revenue messages
 No mostrar mensajes de ingresos.
 Show only player's revenue
 Mostrar sólo ingresos del jugador.
+Slope is too steep
+La pendiente es demasiado pronunciada
 Terraforming not possible\nhere in underground view
 No es posible modificar el\nterreno en modo subterráneo.\n
 This tunnel branches. You can try Control+Click to remove.
 Este túnel tiene más de 2 entradas. Puede probar Ctrl+clic para eliminar este túnel.
 Too far away to merge stations!
 ¡Demasiado lejos para fusionar las paradas!
+Tunnel can only be entered at its portal
+A un túnel sólo se puede entrar por su portal
+Unknown error
+Error desconocido
 Upgrade must have\na higher level
 La actualización debe tener\nun nivel superior.
 Vehicle %s cannot choose because stop too short!
 El vehículo %s no puede escoger porque la estación es demasiado corta!
+Watertable reached
+¡No se puede bajar más el terreno!\nSe ha alcanzado el nivel freático.
+Way does not match the slope here
+La vía no encaja con la pendiente aquí
+Wrong direction to enter the bridge
+Dirección incorrecta para entrar en el puente
 Zughalt muss auf\nSchiene liegen!\n
 ¡Sólo puedes colocar\nparadas de\nferrocarril en\nlas vias!\n
 #___________________________________help_text___________________________________
@@ -499,6 +537,8 @@ Filtro de Línea
 %d Convoyes
 %d Einzelfahrzeuge im Depot
 %d Vehículos almacenados aquí.
+%d more convois
+%d convoyes más
 %i car(s),
 %i Coches,
 %i km/h (max. %ikm/h)
@@ -563,6 +603,10 @@ hace %u años
 1 convoy
 1 Einzelfahrzeug im Depot
 1 vehículo almacenado aquí
+1 minute ago
+hace un minuto
+1 year ago
+hace un año
 100 km/h = %i tiles/month
 100 km/h = %i casillas/mes
 1LIGHT_CHOOSE
@@ -769,6 +813,8 @@ Build monorail depot
 Construir depósito de monorriel
 Build narrowgauge depot
 Construir depósito de vía estrecha
+build portal only
+construir sólo el portal
 Build powerline
 Construir tendido eléctrico
 Build presignals
@@ -801,6 +847,8 @@ Can only move from halt to halt or waypoint to waypoint.
 Desplazamiento solo entre paradas o puntos de paso.
 Cancel
 Cancelar
+Cannot build here
+Aquí no se puede construir
 Cannot connect to offline server!
 ¡No se puede conectar a un servidor desconectado!
 Capacity
@@ -903,6 +951,8 @@ clf_chk_waren
 Filtrar bienes:
 clf_title
 Filtro de la Lista de Vehículos:
+Click to open the finance dialog.
+Pulsar para abrir las finanzas del jugador.
 Climate
 Clima
 Climate Control
@@ -917,6 +967,8 @@ COLOR_CHOOSE\n
 Por favor elige\ndos colores de la\nimagen de la derecha:\n
 Company bankrupt
 Compañía en bancarrota
+company_chat
+Chat de la empresa
 Company_msg
 Competencia
 Comparing pak files ...
@@ -929,10 +981,14 @@ Configure AI setttings
 Propiedades Configuración IA
 Congratulation\nScenario was complete in\n%i months %i years.
 ¡Felicidades!\nCompletaste el escenario en\n%i meses y %i años.
+Connect factory
+Conectar fábricas
 Connected stops
 Paradas conectadas:
 Connected with server
 Conectado al servidor
+connection
+Conexión
 Connections
 Conexiones
 Constructed by
@@ -993,6 +1049,8 @@ curlist_title
 Lista de Atracciones Turísticas
 CURRENCY
 €
+Current game
+Partida actual
 Currently playing:
 Reproduciendo actualmente:
 Customers live in:
@@ -1057,6 +1115,8 @@ Die Bruecke ist nicht frei!\n
 ¡El puente no está libre!\n
 diesel
 Diésel
+direct_chat_to:
+Mensaje directo a
 directmail
 Correo Directo
 Direkt erreichbare Haltestellen
@@ -1209,6 +1269,8 @@ Gear:
 Marcha:
 Gebaeude
 Edificio
+generate script
+Generar un script de macro de infraestructura
 Generated
 Generado
 Generation: %.0f MW
@@ -1277,6 +1339,8 @@ Hier warten/lagern:
 Bienes y pasajeros esperando:
 Higher transport fees, crossconnect all factories
 Tarifas de transporte mayores, desactivar Justo-a-tiempo
+highlight single ways
+Indica el final o la interrupción de las vías de transporte.
 Highlite schedule
 Destacar paradas en el itinerario
 hl_title
@@ -1323,8 +1387,12 @@ Home depot not found!\nYou need to send the\nconvoi to the depot\nmanually.
 No se encuentra el depósito.\nDebes enviar manualmente\nel convoy al depósito.
 Homeless
 Sin techo
+Horizontal stripe ownership
+Franja horizontal con el color del propietario
 hydrogene
 Hidrógeno
+Icon size:
+Tamaño de los iconos:
 Idle:
 Inactivo:
 ignore climates
@@ -1385,10 +1453,14 @@ Jump to
 Saltar a
 June
 Junio
+just now
+ahora mismo
 Kann Spielstand\nnicht laden.\n
 ¡Imposible leer/abrir\nla partida guardada!\n
 Kann Spielstand\nnicht speichern.\n
 ¡Imposible abrir\nel achivo para\nguardar!\n
+keep city roads
+conservar carreteras urbanas
 Kein Besitzer\n
 Sin propietario\n
 keine
@@ -1427,6 +1499,8 @@ Leaving depot!
 ¡Saliendo del Depósito!
 leer
 Vacío
+Left button drags minimap too
+El botón izquierdo también arrastra el minimapa
 legacy (large heights)
 Legado (Doble altura)
 legacy (small heights)
@@ -1471,6 +1545,8 @@ Load script tool
 Cargar herramienta desde script
 Load Scripted AI
 Cargar IA desde script
+Load settings from
+Aplicar la configuración de
 loaded
 cargado
 loaded passenger/freight
@@ -1669,6 +1745,8 @@ No terminal station here!
 ¡No se puede construir una estación\n terminal aquí! Se necesita un tramo\n final de carretera/vía.
 no timeline
 Todas las épocas
+No transformer connected.
+No hay ningún transformador conectado.\nToda la energía se desperdiciará.
 no tree
 Sin árboles
 No vehicles are available for purchase.
@@ -1691,6 +1769,8 @@ Not allowed!\nThe convoi's schedule can\nnot be changed currently.\nTry again la
 ¡No está permitido!\nLa línea ferroviaria no puede\ncambiarse ahora.\nPruebe más tarde.
 Not enough fields would remain.
 No habrá suficientes\ncampos alrededor de esta\ngranja.
+Not online
+Sin conexión
 November
 Noviembre
 now
@@ -1791,6 +1871,10 @@ PaxDest
 Destinos
 Percent Electricity
 Producción de electricidad (%% demandada):
+personal_chat
+Mensajes privados
+Pipette
+Volver a construir el objeto seleccionado
 Planes are not available yet!
 ¡Todavía no están disponibles los aviones!
 Plant tree
@@ -1827,6 +1911,8 @@ player 8
 Viajes Justo a Tiempo
 player 9
 Jugador 9
+Player ranking
+Clasificación de jugadores
 Please choose vehicles first\n
 ¡Jugador, selecciona primero los vehículos!\n
 Post
@@ -1861,6 +1947,8 @@ Profit
 Beneficio
 promote to line
 Convertir en línea
+public_chat
+Chat general
 q1
 Primavera
 q2
@@ -1913,6 +2001,10 @@ remove tracks
 Eliminar vías
 Remove wayobj %s
 Eliminar objeto %s
+replace existing ways
+sustituir vías existentes
+replace faster wayobjs
+sustituir objetos de vía más rápidos
 replace other signals
 Sustituir otras señales
 replace stop
@@ -1961,6 +2053,8 @@ sail
 Viento
 Save
 Guardar
+Save generated script
+Guardar el script generado
 Saving map ...
 Guardando mapa...
 Scenario complete: %i%%
@@ -2059,6 +2153,8 @@ Show always
 Mostrar siempre
 Show climates
 Mostrar climas
+Show construction info
+Mostrar información de construcción
 Show contour
 Mostrar alturas
 Show even servers with wrong version or pakset
@@ -2197,16 +2293,22 @@ Station_msg
 Estaciones
 Status
 Estado de las paradas
+stay on this level
+mantener este nivel
 steam
 Vapor
 Step timeline one year
 Avanzar un año en la cronología.
+Stopping permissions
+Otros jugadores que pueden usar esta parada
 Stops
 Paradas
 Storage
 Almacén
 Storage capacity
 Capacidad de almacenamiento
+straight route
+ruta recta
 Strassendepot
 Depósito de carretera
 Strassentunnel
@@ -2229,8 +2331,12 @@ Tage alt
 días de antigüedad.
 The following graphics are unmaintained:
 Los siguientes paksets están abandonados:
+The generated script was saved!\n
+¡El script generado se ha guardado!\n
 The gradient does not fit a tunnel
 ¡La pendiente no tiene la altura adecuada para un túnel!
+The script cannot be saved!\n
+¡No se ha podido guardar el script!\n
 Theme selector
 Selector de temas
 There are still vehicles\nstored in this depot!\n
@@ -2249,6 +2355,8 @@ To attract more tourists\n%s built\na %s\nwith the aid of\n%i tax payers.
 El tráfico en %1$s está aumentando:\n%3$i contribuyentes hicieron posible\nla construcción de %2$s.
 To heavy traffic\nresults in traffic jam.\n
 El exceso de tráfico pesado\nprovoca un atasco.\n
+To: %s
+Para: %s
 Toggle day/night view
 Alternar vista día/noche
 Toggle vehicle tooltips
@@ -2381,6 +2489,8 @@ via %s\n
  por %s\n
 via Menge
 por (cantidad)
+via owner
+vía (propietario)
 voranstellen
 Poner al frente
 Waggon_tab
@@ -2497,6 +2607,8 @@ vehículos de la línea %s fueron retirados
 #_________________________________tooltip_text__________________________________
 Add convois with similar schedule to this line.
 Añade convoyes con itinerarios similares a esta línea.
+Attach current coordinate to the comment
+Adjuntar la posición actual al mensaje
 Enter intervall in days, hours, minutes
 Introduce el intervalo en días, horas, y minutos.
 Mirrors order of stops

@@ -1,0 +1,15 @@
+<title>Información de la partida / Servidor</title>
+
+<h1><strong>Información de la partida / Servidor</strong></h1>
+
+<p>
+<strong>Información de la partida / Servidor</strong> muestra el estado actual de la partida en curso: la fecha, el tamaño del mapa, el número de empresas, ciudades, habitantes, fábricas, vehículos en circulación, etcétera.</p>
+
+<p>
+Si tu partida actual no es ya una partida en red, verás una lista desplegable con otros servidores a los que conectarte. Si esa lista está vacía, es que no hay servidores para tu versión del pakset o del programa. En ese caso puedes usar el botón <em>Mostrar también servidores con versiones o paksets incompatibles</em> para ver todos los servidores existentes.</p>
+
+<p>
+Al seleccionar un servidor verás un resumen del estado de esa partida. (Si el servidor está caído, puede tardar un rato en confirmarse.) También se muestran el pakset y la versión del programa del servidor. Si los dos aparecen en negro, tu pakset y tu versión coinciden con los suyos y puedes entrar pulsando <em>Partida Online</em>.</p>
+
+<p>
+Si el pakset no coincide, la entrada aparecerá en rojo. Entonces puedes usar el botón <em>Comparar paks</em> para obtener un informe de los paks que faltan, los que son distintos y los que sobran. (Esto puede tardar un rato.)</p>

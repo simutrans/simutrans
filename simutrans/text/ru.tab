@@ -12,13 +12,15 @@ cyr.bdf
 #                             Language: ru Russian                             #
 #                                Encoding: UTF-8                               #
 #                                 Font: cyr.bdf                                #
-#                           Date Created: 11.03 2026                           #
+#                           Date Created: 10.09 2026                           #
 #                                                                              #
 ################################################################################
 #__________________________________button_text__________________________________
 #__________________________________button_text__________________________________
 Absolute times
 Отобразить время как "день чч:мм месяц"
+allow reverse passage
+разрешить обратный проезд
 AMBIENT_SOUND
 Окружающие звуки
 CASH_SOUND
@@ -48,7 +50,7 @@ clf_btn_invers
 clf_btn_keine
 Нет
 climate area percentage
-Площадь климата
+Размер климатической зоны
 Continue Game
 Продолжить игру
 CROSSING_SOUND
@@ -92,7 +94,7 @@ hlf_btn_keine
 humidities
 Граница влажности
 Install
-Наборы пакетов
+Установить наборы
 Lake
 Озёра
 Lake height
@@ -104,11 +106,13 @@ moisture land
 moisture water
 Увеличение по воде
 Networks
-Сеть
+Транспортная сеть
 Num pad keys always move map
 Клавиши цифровой клавиатуры всегда перемещают карту
 Open Sea
 Открытое море
+Owner only
+Только владелец
 Queueing
 Тенденция ожидания
 rainfall
@@ -123,6 +127,8 @@ Scenario
 Информация о сценарии
 sea
 Морской климат
+Shared only
+Только общий доступ
 Single GUI
 Единый GUI
 Sound range:
@@ -138,7 +144,7 @@ TOOL_SOUND
 TRAFFIC_SOUND
 Транспортные шумы
 Transfers
-Трансфер
+Пропускная способность
 Tutorial
 Обучение
 #_________________________________climates_text_________________________________
@@ -148,7 +154,7 @@ arctic
 desert
 Пустынный
 mediterran
-Средиземный
+Средиземноморский
 rocky
 Альпийский (скалистый)
 temperate
@@ -161,6 +167,12 @@ tundra
 #__________________________________error_text___________________________________
  Loading scenario script failed
 Ошибка загрузки скрипта сценария
+A building blocks the construction
+Строительству мешает здание
+A powerline blocks the construction
+ЛЭП мешает строительству
+Another way blocks the construction
+Другая дорога мешает строительству
 Bridge blocked by way below or above.
 Высота моста не достаточна для прокладки путей под ним.
 Can't buy obsolete vehicles!
@@ -173,34 +185,50 @@ Cannot built depot here!
 Здесь нельзя построить депо!
 Cannot built this station/building\nin underground mode here.
 Невозможно построить эту станцию/здание\nв подземном режиме.
+Cannot connect to the\ncenter of a double slope!
+Мост не может примыкать к середине двойного склона!\nИспользуйте инструменты изменения рельефа.
 Cannot create generic line!\nSelect line type by\nusing filter tabs.
 Нельзя создать общую линию!\nВыберите тип линии,\nиспользуя фильтр.
 Cannot create socket
 Невозможно создать соединение
+Cannot cross the end of a runway
+Нельзя пересечь конец взлётно-посадочной полосы
 Cannot rotate this building!
 Невозможно вращать это строение!
 Client closed connection during transfer
-Клиент закрыл соединение при загрузке.
+Клиент закрыл соединение во время передачи данных.
 Convoi handles exhausted!
 Достигнут максимум т/с.
 Convoy already deleted!
 Т/с уже удалено!
+Corrupt file
+Файл повреждён или обрезан.
 Could not open file
 Невозможно открыть файл.
 Das Feld gehoert\neinem anderen Spieler\n
 Этим участком\nземли владеет\nдругой игрок!\n
+Depots cannot be built on runways!
+Депо нельзя строить на взлётно-посадочных полосах!
+Depots must be built on flat dead-end way tiles!
+Депо можно строить только на ровных тупиковых клетках пути!
 Der Besitzer erlaubt das Entfernen nicht
 Права владельца\nзапрещают удаление!\n
 Diese Zusammenstellung kann nicht fahren!\n
 Эта комбинация\nне может двигаться!\n
+Elevated way can only be joined in line
+Эстакаду можно присоединить только по прямой
+Failed to write file
+Не удалось записать файл. (Права доступа?)
 Flugzeughalt muss auf\nRunway liegen!\n
-Посадочный терминал\nдолжен быть на дороге!\n
+Остановка самолётов\nдолжна находиться\nна взлётно-посадочной полосе!\n
+Forbidden by scenario
+Запрещено сценарием
 Hier kann dieses\nFlughafengebaeude nicht\ngebaut werden!\n
 Это здание аэропорта\nне может быть\nпостроено здесь!\n
 Hier kann kein\nSignal aufge-\nstellt werden!\n
 Семафор не может\nбыть установлен здесь!\n
 In order to lock the game, you have to protect the public player by password!
-Для блокировки игры, необходимо защитить текущего игрока паролем!
+Чтобы заблокировать игру, установите пароль для государственного игрока!
 Loading a new game will end the current server session!
 Загрузка новой игры закроет текущую сессию сервера!
 Lost connection\nto server!
@@ -216,29 +244,37 @@ Monorails are not available yet!
 More than one possibility to build this dock found.
 Обнаружено несколько возможностей построить этот док.
 Narrowgaugehalt muss auf\nNarrowgauge liegen!\n
-Остановка узкоколеных т/с\nдолжна находиться\nна узкоколейке!
+Остановка узкоколейных т/с\nдолжна находиться\nна узкоколейке!
 No bridges over runways!
-Мосты над шоссе запрещены!
+Мосты над взлётно-посадочными полосами запрещены!
 No curves on runways
-Взлётно-посадочная полоса не имеет повороты!
+На взлётно-посадочных полосах нельзя строить повороты!
 No suitable crossing
 Нет подходящего пересечения! (максимальная скорость слишком быстрая?)
 No suitable way on the ground!
 Остановку можно построить только на\nпрямом участке трассы.
 No through station here!
 Станции должны располагаться на тупиковых путях или прямых участках, не имеющих пересечений.
+Not allowed to copy object.
+Вы не можете построить этот объект!\n(Причина: чужой игрок или объект устарел)
 Not enough bytes transferred
 Передано недостаточно байтов
 Not enough clearance.
-Между двумя клеткам для постройки пути разница высот должна составлять минимум 2 уровня.
+Между двумя путями должно быть не менее двух уровней высоты.
+Not enough empty space
+Недостаточно свободного места.
 Not enough money!
 У вас недостаточно денег!
+Not initialized
+Не удалось инициализировать библиотеку.
 On narrowgauge track only!\n
 Только на узкоколейном пути!\n
 Only public player can lock games!
 Только публичный игрок может блокировать игру!
+Only up and down movement in the underground!
+Подземную клетку можно только поднимать и опускать с помощью инструментов изменения рельефа!
 Out of funds
-Не достаточно средств!
+Недостаточно средств!
 Post muss neben\nHaltestelle\nliegen!\n
 Станционные строения\n должны размещаться\nна свободной клетке\nрядом с существующей\nстанцией или остановкой!\n
 Protocoll error (expecting game)
@@ -249,22 +285,36 @@ Server busy
 Сервер занят
 Server version too new
 Сервер использует более новую версию программы.
+Ship depots must be built on water!
+Корабельные депо должны строиться на воде!
 Show all revenue messages
 Показать все сообщения о доходах
 Show no revenue messages
 Не показывать сообщения о доходах
 Show only player's revenue
 Показывать только доход игрока
+Slope is too steep
+Слишком крутой уклон
 Terraforming not possible\nhere in underground view
 Изменение ландшафта в подземном режиме не возможно!
 This tunnel branches. You can try Control+Click to remove.
 Этот тоннель разветвляется. Вы можете нажать Ctrl+клик для удаления.
 Too far away to merge stations!
 Слишком далеко для объединения станций!
+Tunnel can only be entered at its portal
+В туннель можно въехать только через портал
+Unknown error
+Неизвестная ошибка
 Upgrade must have\na higher level
 Усовершенствование должно иметь\nболее высокий уровень
 Vehicle %s cannot choose because stop too short!
 Транспортное средство %s не может выбрать путь, т.к. остановка слишком коротка!
+Watertable reached
+Невозможно опустить клетку ниже!\nДостигнут уровень грунтовых вод.
+Way does not match the slope here
+Дорога не соответствует уклону здесь
+Wrong direction to enter the bridge
+Неверное направление въезда на мост
 Zughalt muss auf\nSchiene liegen!\n
 Ж/д станции\nдолжны строиться\nтолько на ж/д путях!\n
 #___________________________________help_text___________________________________
@@ -272,7 +322,7 @@ Zughalt muss auf\nSchiene liegen!\n
 <h1>Index</h1><p>*: only english</p><p>General</p>%s<p>Usage</p>%s<p>Tools</p>%s<p>Start</p>%s<p>How to play</p>%s<p>Others:</p>%s
 <title>Справка</title><h1>Содержание</h1><p><it>Про Simutrans</it></p>%1$s<p><it>Общие данные</it></p>%2$s<p><it>Начало игры</it></p>%4$s<p><it>Игровой процесс</it></p>%5$s<p><it>Инструменты</it></p>%3$s<p><it>Разное</it></p>%6$s
 <title>Keyboard Help</title>\n<h1><strong>Keyboard Help</strong></h1><p>\n
-<title>Горячие клавиши</title>\n<h1><strong>Справка по клавишам управления</strong></h1>\n<p>\n<strong>Справка по клавишам управления</strong> показывает функции основных клавиш на клавиатуре..\n</p>\n<p>\nСтраница <strong>справки по клавишам управления</strong> открывается, когда была нажата неверная клавиша или из страницы <a href="general.txt">Главной справки</a>.\n</p>\n<p>\nKey presses are case sensitive (use [<em>Shift</em>] for upper-case letters).\n</p>\n<p>\nKeys with assigned functions include:\n</p>\n<p>\n[<em>Arrow Keys</em>]: scroll game-view in direction of arrow.<br>\n[<em>Backspace</em>]: close all windows, toolbars and help-texts in game-view.<br>\n[<em>Delete</em>], or [<em>Escape</em>]: close top window, toolbar or help-text in game-view.<br>\n[<em>Enter</em>], or [<em>Return</em>]: used to confirm actions.<br>\n[<em>Page-Up</em>], or [<em>></em>]: zoom-in game-view.<br>\n[<em>Page-Down</em>], or [<em> less than symbol</em>]: zoom-out game-view.\n[<em>F1</em>]: open <a href="general.txt">Simutrans Help</a>.<br></p>\n<p>\n[<em>1</em>]: scroll game-view south-wards.<br>\n[<em>2</em>]: scroll game-view south-east-wards.<br>\n[<em>3</em>]: scroll game-view east-wards.<br>\n[<em>4</em>]: scroll game-view south-west-wards.<br>\n[<em>6</em>]: scroll game-view north-east-wards.<br>\n[<em>7</em>]: scroll game-view west-wards.<br>\n[<em>8</em>]: scroll game-view north-west-wards.<br>\n[<em>9</em>]: scroll game-view north-wards.\n</p>\n<p>\n[<em>Shift</em>] + <a href="mouse.txt">mouse</a>: used on <a href="map.txt">Map</a> to see links in <a href="industry_info.txt">Industry Supply Chain</a>.<br>\n[<em>CTRL</em>] + tool: build slower roads and tracks over faster ones; or build straighter (more direct) roads and tracks.<br>\n</p>
+<title>Горячие клавиши</title>\n<h1><strong>Справка по клавишам управления</strong></h1>\n<p>\n<strong>Справка по клавишам управления</strong> показывает функции основных клавиш на клавиатуре.\n</p>\n<p>\nСтраница <strong>справки по клавишам управления</strong> открывается при нажатии неназначенной клавиши или из <a href="general.txt">главной справки</a>.\n</p>\n<p>\nНажатия клавиш зависят от регистра (для заглавных букв используйте [<em>Shift</em>]).\n</p>\n<p>\nКлавиши с назначенными функциями:\n</p>\n<p>\n[<em>Клавиши со стрелками</em>]: перемещают карту в направлении стрелки.<br>\n[<em>Backspace</em>]: закрывает все окна, панели инструментов и тексты справки.<br>\n[<em>Delete</em>] или [<em>Escape</em>]: закрывает верхнее окно, панель инструментов или текст справки.<br>\n[<em>Enter</em>] или [<em>Return</em>]: подтверждает действие.<br>\n[<em>Page-Up</em>] или [<em>></em>]: приближает карту.<br>\n[<em>Page-Down</em>] или [<em>знак «меньше»</em>]: отдаляет карту.\n[<em>F1</em>]: открывает <a href="general.txt">справку Simutrans</a>.<br></p>\n<p>\n[<em>1</em>]: перемещает карту на юг.<br>\n[<em>2</em>]: перемещает карту на юго-восток.<br>\n[<em>3</em>]: перемещает карту на восток.<br>\n[<em>4</em>]: перемещает карту на юго-запад.<br>\n[<em>6</em>]: перемещает карту на северо-восток.<br>\n[<em>7</em>]: перемещает карту на запад.<br>\n[<em>8</em>]: перемещает карту на северо-запад.<br>\n[<em>9</em>]: перемещает карту на север.\n</p>\n<p>\n[<em>Shift</em>] + <a href="mouse.txt">мышь</a>: на <a href="map.txt">карте</a> показывает связи в <a href="industry_info.txt">цепочке поставок предприятия</a>.<br>\n[<em>CTRL</em>] + инструмент: строит более медленные дороги и пути поверх более быстрых либо прокладывает более прямые дороги и пути.<br>\n</p>
 At least one stop is connected to the town.
 Как минимум одна остановка соединена с городом.
 At least one tile is connected to one stop.
@@ -280,7 +330,7 @@ At least one tile is connected to one stop.
 Color according to transport capacity left
 Цвет соответствует свободному месту транспорта
 Color-coded terrain according to altitude.
-Показать/скрыть затенение контура рельефа.
+Окрашивать рельеф в зависимости от высоты.
 Decrease water height
 Уменьшить уровень воды
 Highlight railroad tracks
@@ -314,13 +364,13 @@ Remove double stops from schedule
 Set tile climate %s
 Преобразовать плитку в зону %s
 Show capacity and if halt is overcrowded
-Отображать емкость складов станции и их переполнение грузами.
+Показывать вместимость остановок и их переполнение.
 Show how many convoi reach a station
-Отображать сколько т/с обслуживается на станциях.
+Показывать количество т/с, прибывающих на станцию.
 Show how many people/much is waiting at halts
-Отображать сколько пассажиров на станциях и как долго они ожидают свой т/с.
+Показывать количество пассажиров и грузов, ожидающих на остановках.
 Show initial passenger departure
-Отобразать начальные точки отправления пассажиров.
+Показывать начальные пункты отправления пассажиров.
 Show level of city buildings
 Отображать уровни городских зданий.
 Show mail service coverage/mail network
@@ -340,7 +390,7 @@ Show usage of network
 Shows a listing with all industries on the map.
 Отобразить список фабрик, расположенных на карте.
 Sum of departure/arrivals at halts
-Отображать сколько происходит отправлений/прибытий из/на станциях.
+Показывать сумму отправлений и прибытий на остановках.
 #____________________________________ki_text____________________________________
 #____________________________________ki_text____________________________________
 %s now\noffers bus services\nbetween %s\nand attraction\n%s\nat (%i,%i).\n
@@ -378,7 +428,7 @@ SHIPTOOLS
 SLOPETOOLS
 Редактор ландшафта
 SPECIALTOOLS
-Особые постройки
+Специальные инструменты
 TRAMTOOLS
 Трамваи/легкорельсовые дороги
 #_________________________________message_text__________________________________
@@ -406,7 +456,7 @@ Screenshot\ngespeichert.\n
 Sends the convoi to the last depot it departed from!
 Послать т/с в последнее посещённое депо.
 Server preparing game ...
-Сервер сохраняет игру...
+Сервер подготавливает передачу карты...
 Trees
 Деревья
 With a big festival\n%s built\na new monument.\n%i citicens rejoiced.
@@ -441,6 +491,8 @@ Line Filter
 [6] на северо-запад
 [7] southwest corner
 [7] на юго-запад
+/month
+/месяц
 \nBauzeit bis
  до 
 \nBauzeit von
@@ -454,7 +506,7 @@ Line Filter
 \nHeightfield has wrong image type.\n
 \nКарта высот имеет\nнекорректный формат\nизображения.\n
 \nis reserved by:
-\nзанято поездом
+\nзарезервировано:
 \nminimum speed:
 \nминимальная скорость:
 \nnot elektrified
@@ -468,7 +520,7 @@ Line Filter
 \nsingle way
 \nодностороннее движение
 \nway1 reserved by
-\nПуть 1 заразервирован 
+\nПуть 1 зарезервирован 
 \nway2 reserved by
 \nПуть 2 зарезервирован 
 \nwith sign/signal\n
@@ -479,6 +531,8 @@ Line Filter
 %d т/с
 %d Einzelfahrzeuge im Depot
 %d т/с хранится здесь
+%d more convois
+Ещё %d конвоев
 %i car(s),
 %i машин, 
 %i km/h (max. %ikm/h)
@@ -495,20 +549,32 @@ Line Filter
 Предприятие %s %s %s
 %s has entered a depot.
 %s прибыл в депо.
+%s has left.
+%s покинул игру.
 %s land %d %s
 %s область %d %s
+%s now known as %s.
+%s теперь называется %s.
 %s wasted\nyour money with a\nnew townhall\nwhen it reached\n%i inhabitants.
 В %s была построена новая мэрия, когда население достигло %i.
 %s\nis crowded.
 %s переполнена.
 %s\nspeed %i\nmax_speed %i\ndx:%i dy:%i
-%1$s\n\n\nмакс. скор.: %3$i км/ч\n\nтек. скор.: %2$i км/ч.\n\n
+%1$s\n\nмакс. скор.: %3$i км/ч\nтек. скор.: %2$i км/ч\ndx:%4$i dy:%5$i
 %s\nwas liquidated.
 Компания %s обанкротилась и ликвидирована.\nВсе операции остановлены,\nвсе активы проданы.
 %u Client(s)\n
 %u клиент(-ов)\n
+%u days ago
+%u дн. назад
+%u hours ago
+%u ч. назад
+%u minutes ago
+%u мин. назад
 %u Player (%u locked)\n
 %u игроков (%u заблокировано)\n
+%u years ago
+%u г. назад
 <clear schedule>
 <очистить расписание>
 <create new line>
@@ -526,23 +592,41 @@ Line Filter
 <no schedule set>
 <нет расписания>
 <promote to line>
-<новая линия>
+<преобразовать в линию>
 1 convoi
 1 т/с
 1 Einzelfahrzeug im Depot
 1 т/с хранится здесь
+1 minute ago
+1 минуту назад
+1 year ago
+1 год назад
 100 km/h = %i tiles/month
 100 км/ч = %i клеток/месяц
 1LIGHT_CHOOSE
 Яркость:
+1th
+1-е
 1WORLD_CHOOSE
-Установки новой игры:
+Настройки новой игры:
+21th
+21-е
+22th
+22-е
+23th
+23-е
 2LIGHT_CHOOSE
 Цвета:
+2th
+2-е
 2WORLD_CHOOSE
 Номер карты:
+31th
+31-е
 3LIGHT_CHOOSE
 Скорость прокрутки:
+3th
+3-е
 4LIGHT_CHOOSE
 Обратная прокрутка
 5LIGHT_CHOOSE
@@ -564,9 +648,9 @@ Abfrage
 Abnehmer
 Потребитель
 About
-Про
+О программе
 About scenario
-Описание
+О сценарии
 Abriss
 Разрушить/Удалить
 Absenken
@@ -634,11 +718,11 @@ April
 Arbeiter aus:
 Рабочие живут в:
 Arrivals from\n
-Отправился из:\n
+Прибытия из:\n
 Arrived
-Доставлено
+Прибыло
 Assets
-Фонды
+Активы
 Aufloesen
 Разобрать
 Aufspanntransformator
@@ -659,6 +743,8 @@ Bahndepot
 Железнодорожное депо
 Bankrott:\n\nDu bist bankrott.\n
 Банкротство:\n\nВы банкрот.\n
+based on Simutrans 84.22.1
+на основе Simutrans 84.22.1
 battery
 Батарея
 Baum
@@ -668,11 +754,11 @@ baum builder
 Baustelle
 Место строительства
 Bauzeit
-время строительства
+Время строительства
 Beenden
 Выйти
 Beginner mode
-Режим обучения
+Режим новичка
 Besonderes Gebaeude
 Достопримечательность
 BF
@@ -690,7 +776,7 @@ Bonus Speed: %i km/h
 Bonusspeed: %i km/h
 Макс. возможная скорость: %i км/ч
 Boost (%%)
-Ускорение (%%)
+Бонус (%%)
 Borderless (disabled on fullscreen)
 Без рамки (отключено в полноэкранном режиме)
 bridge is too high for its type!
@@ -706,7 +792,7 @@ Brueckenboden
 Build air depot
 Самолётный ангар
 build choosesignals
-Построить семафор выбора платформы(choosesignal)
+Построить сигнал выбора платформы
 Build city market
 Построить новый торговый центр в ближайшем городе
 Build drain
@@ -714,17 +800,19 @@ Build drain
 build HQ
 Построить штаб
 Build land consumer
-Построить новую электростанцию
+Построить новую промышленную цепочку за городом
 Build maglev depot
 Построить депо для маглева
 Build monorail depot
 Построить депо монорельса
 Build narrowgauge depot
-Пстроить депо для узкоколейки
+Построить депо для узкоколейки
+build portal only
+строить только портал
 Build powerline
 Строить ЛЭП
 Build presignals
-Построить двусторонний семафор
+Построить двухблочный сигнал
 Build road depot
 Построить гараж
 Build ship depot
@@ -750,13 +838,15 @@ Bus_tab
 Can be overgrown
 Может быть заросшим
 Can only move from halt to halt or waypoint to waypoint.
-Может перемещаться от\n остановки к остановке, или\n или точки до точки.
+Можно перемещать только от остановки к остановке\nили от путевой точки к путевой точке.
 Cancel
 Отмена
+Cannot build here
+Здесь нельзя строить
 Cannot connect to offline server!
-Не возможно соединиться с отключенным сервером!
+Невозможно соединиться с отключённым сервером!
 Capacity
-Ёмкость
+Вместимость
 Capacity:
 Вместимость:
 Capacity: %.0f MW
@@ -771,6 +861,8 @@ cars.\nstate
 машин\n
 Cash
 На счету
+Category
+Категория
 Change label style
 Изменить стиль надписи
 Change player
@@ -787,6 +879,8 @@ chooses a random map
 Выбрать случайную карту
 citicens
 Население
+Cities can only be built on flat empty ground!
+Города можно строить только на ровной пустой земле!
 City attraction
 Достопр. в городах
 City industries
@@ -806,9 +900,11 @@ cl_title
 cl_txt_sort
 Сортировка:
 clamp
-хомут
+Ограничить диапазон
+Cleanup schedule
+Очистить расписание
 Clear block reservation
-Отобразить/скрыть зарезервированные пути
+Показать/снять резервирование путей
 clf_chk_aircrafts
 Самолёты
 clf_chk_cars
@@ -849,6 +945,8 @@ clf_chk_waren
 Фильтр по товару:
 clf_title
 Фильтр списка т/с
+Click to open the finance dialog.
+Нажмите, чтобы открыть окно финансов.
 Climate
 Климат
 Climate Control
@@ -857,10 +955,14 @@ Climates
 Климат
 closed
 закрыто.
+Closes topmost line window when new line selected.
+Закрывать верхнее окно линии при выборе новой линии.
 COLOR_CHOOSE\n
 Пожалуйста,\nвыберите цвет\nиз таблицы:\n
 Company bankrupt
 Банкротство компании
+company_chat
+Чат компании
 Company_msg
 Конкуренты
 Comparing pak files ...
@@ -873,10 +975,14 @@ Configure AI setttings
 Настроить ИИ
 Congratulation\nScenario was complete in\n%i months %i years.
 Поздравляем!\nВы прошли сценарий за\n%i месяцев и %i лет!
+Connect factory
+Подключить фабрику
 Connected stops
 Соединённые остановки
 Connected with server
 Соединение с сервером
+connection
+соединение
 Connections
 Соединения
 Constructed by
@@ -895,6 +1001,8 @@ convoi %d of %d
 т/с %d из %d
 convoi error tooltips
 Значки ошибок над т/с
+Convoi following mode
+Режим слежения за т/с
 Convoi has been sent\nto the nearest depot\nof appropriate type.\n
 Т/с было послано\nв ближайшее депо\nподходящего типа.
 Convoi is sold when all wagons are empty.
@@ -922,7 +1030,7 @@ cost for removal
 Cost per unit
 Стоимость за единицу
 Cost: %8s (%.2f$/km %.2f$/m)\n
-Стоимость: %s (%.2f$/км %.2f$/месяц)\n
+Стоимость: %8s (%.2f$/км %.2f$/месяц)\n
 Cost: %8s (%.2f$/km)\n
 Стоимость: %8s (%.2f$/км)\n
 Costs
@@ -937,14 +1045,18 @@ CURRENCY
 ₽
 CURRENCY_LEFT
 Символ валюты
+Current game
+Текущая игра
 Currently playing:
 Сейчас звучит:
 Customers live in:
 Посетители живут в:
 Date format
 Формат даты
+DAY_SYMBOL
+д
 deactivated in online mode
-Не активен в сети
+Недоступно в сетевой игре
 Dec.
 Дек.
 Deccelerate time
@@ -964,43 +1076,53 @@ Delete the selected line (if without associated convois).
 Delete this file.
 Удалить этот файл.
 Delivered
-Отправлено
+Доставлено
 Demand
 Потребность
 Demand: %.0f MW
-Нужно: %.0f МВт\n
+Потребность: %.0f МВт\n
 Denkmal
 Монумент
 Departed
 Отправлено
 Departs at
 Отправляется в (dd:hh:mm)
+Departure after
+%% загрузки или ожидание (дд-чч-мм)
 Departure board
-Время отправления
+Табло отправлений
 Departures per month
 Отправления за месяц
 Departures to\n
 Отправление в\n
+Depot
+Депо
 Depots
 Депо
 Der Tunnel ist nicht frei!\n
 Тоннель не пуст!\n\n\n
 Destination
-Прибытие
+Пункт назначения
 Destroying map ...
 Очистка карты...
 Details
 Детали
+Developed by the Simutrans Team
+Разработано командой Simutrans
 Die Bruecke ist nicht frei!\n
 Мост несвободен!\n
 diesel
 дизельный привод
+direct_chat_to:
+Личное сообщение для
 directmail
 Почтовая рассылка
 Direkt erreichbare Haltestellen
 Прямые маршруты отсюда:
 disable midi
 Выключить музыку
+Display bars above factory to show the status
+Показывать индикаторы состояния над фабрикой
 Display settings
 Настройка графики
 Distance
@@ -1022,11 +1144,11 @@ dp_title
 Du hast %d Monate Zeit, deine Schulden zurueckzuzahlen
 Для выплаты долга у Вас осталось %d месяцев.
 Durchsatz
-Макс. 
+Пропускная способность
 Economy
 Экономика и города
 Eigenbesitz\n
-Муниципальная\nсобственность\n
+Собственность игрока\n
 Ein %s\npasst hier nicht.\n
 "%s"\nне поместится здесь!\n
 Einstellungen
@@ -1057,10 +1179,12 @@ Erzeuge neue Karte.\n
 Пожалуйста, подождите,\nсоздаётся новая карта.\n\n  (Это может занять\n  несколько минут\n  для больших карт)\n
 Es wird bereits\nein Fahrplan\neingegeben\n
 Создается\nрасписание.\nЗакончите его\nперед упорядочиванием!\n
+Extract files
+Извлечь файлы pak из zip.
 Fabrikanschluss
 Соединенные предприятия
 Fabrikname
-назв. фабрики
+Название предприятия
 Factories
 Фабрики
 factory details
@@ -1070,7 +1194,7 @@ factorybuilder
 Fahrplan
 Расписание
 Fahrtziel
-Прибытие: 
+Пункт назначения:
 Fahrzeuge koennen so nicht entfernt werden
 Транспортное средство\nне может быть убрано\nтаким образом!\n
 Fahrzeuge:
@@ -1088,7 +1212,7 @@ Ferry_tab
 Fertig
 Готово
 Filename
-Игра:
+Имя файла:
 Files from:
 Файлы из:
 Filter:
@@ -1109,6 +1233,8 @@ Follow the convoi on the map.
 Следовать за т/с на карте.
 font size
 размер шрифта
+For questions and support please visit:
+По вопросам и для поддержки посетите:
 Forest
 Лес
 Found new city
@@ -1120,7 +1246,7 @@ Fracht
 Frame time:
 Время кадра:
 Free Capacity
-Простой
+Свободная вместимость
 freeplay mode
 Играть без банкротства
 Freight
@@ -1128,9 +1254,9 @@ Freight
 Friction:
 Текущий фактор трения:
 fuel_cell
-элемент питания
+топливный элемент
 Full load
-Ожидание минимальной загрузки
+Полная загрузка
 Fullscreen (changed after restart)
 Полноэкранный (изменяется после перезапуска)
 Fundament
@@ -1138,25 +1264,27 @@ Fundament
 Fussgaenger
 Пешеход
 Game info
-Информация о игре
+Информация об игре
 GAME PAUSED
 ИГРА ПРИОСТАНОВЛЕНА
 Game_msg
 Общее
 Gear:
-Оснастка:
+Передаточное число:
 Gebaeude
 Строение
 General
 Общие
+generate script
+Создать макрос инфраструктуры
 Generated
 Сгенерировано
 Generation: %.0f MW
-Производство: %.0f МВ\n
+Производство: %.0f МВт\n
 Gewicht
 Вес
 Gewinn
-Доход: 
+Прибыль
 Give the selected vehicle(s) an individual schedule
 Назначить выбранным т/с индивидуальное расписание
 gl_btn_sort_catg
@@ -1175,22 +1303,28 @@ Gross Profit
 Валовая прибыль
 Groundobj
 Наземный объект
+groundobj builder
+Разместить объекты ландшафта
 Grow city
 Увеличить город
 Growth
 Рост города
 GUI settings
-Графика
+Настройки интерфейса
 H
 остановка
 Hangar
 Ангар
 Happy
 Счастливы
+Has slope graphics
+Есть графика склонов
+Has Snow
+Есть снег
 Haus kaufen
 Купить здание
 Helligk.
-Графика
+Яркость
 Help
 Справка по игре
 Help text not found
@@ -1212,7 +1346,9 @@ hide trees
 Hier warten/lagern:
 Ожидание грузов и пассажиров
 Higher transport fees, crossconnect all factories
-Высшие транспортные сборы, выключенные вовремя.
+Повышенные транспортные сборы, все предприятия взаимосвязаны
+highlight single ways
+Показывает окончание или разрыв путей сообщения.
 Highlite schedule
 Подсвечивать маршрут
 hl_title
@@ -1224,7 +1360,7 @@ hl_txt_sort
 hlf_chk_airport
 Аэропорты
 hlf_chk_anleger
-Док
+Причал
 hlf_chk_bahnhof
 Ж/д станция
 hlf_chk_bushalt
@@ -1259,6 +1395,8 @@ Home depot not found!\nYou need to send the\nconvoi to the depot\nmanually.
 Исходное депо не найдено!\nВы должны послать т/с\nв депо вручную.
 Homeless
 Бездомные
+Horizontal stripe ownership
+Горизонтальные полосы владения
 hydrogene
 водородный привод
 Icon size:
@@ -1281,6 +1419,8 @@ Industry overlay
 Названия предприятий
 Infinite mouse scrolling
 Бесконечная прокрутка мышью
+Infinite scrolling using mouse
+Может не работать на сенсорных экранах!
 Init map ...
 Подготовка карты ...
 Input
@@ -1289,6 +1429,10 @@ Ins Stop
 Вставить
 Insert stop before the current stop
 Вставить остановку перед текущей
+Install graphics
+Установить графику
+Install paks
+Наборы pak загружаются и устанавливаются.
 Insufficient funds!
 Недостаточно средств!
 Intercity road len:
@@ -1301,22 +1445,30 @@ invalid
 неопределенный.
 Invalid coordinate
 Неверные координаты
+Invert stops
+Инвертировать остановки
 isometric map
 Изометрический вид карты
+Jan.
+Янв.
 January
 Январь
 join game
-Интернет
+Подключиться к игре
 July
 Июль
 Jump to
 Перейти к
 June
 Июнь
+just now
+только что
 Kann Spielstand\nnicht laden.\n
 Не могу загрузить\nсохранённую игру!\n
 Kann Spielstand\nnicht speichern.\n
 Не могу открыть для записи\nфайл с сохранением игры!\n
+keep city roads
+сохранять городские дороги
 Kein Besitzer\n
 Нет владельца\n
 keine
@@ -1357,8 +1509,12 @@ leer
 пустой
 Left button drags minimap too
 Левая кнопка мыши перетаскивает мини-карту
+legacy (large heights)
+устаревший (большие высоты)
+legacy (small heights)
+устаревший (малые высоты)
 Legend
-обознач.\n\n
+Обозначения\n\n
 Leistung
 Мощность
 Leistung: %d kW
@@ -1373,6 +1529,10 @@ Line
 Линия
 Line Management
 Управление линиями
+line name mouseover tooltips
+подсказки с названием линии при наведении мыши
+linear
+линейный
 Lineless convoys serving this stop
 Т/с без линий, обслуживающие эту остановку:
 Lines serving this stop
@@ -1385,14 +1545,26 @@ Load game
 Загрузить
 load height data from file
 Загрузить данные рельефа из файла
+Load mode:
+Режим загрузки:
 Load scenario
 Сценарий
+Load script tool
+Загрузить скриптовый инструмент
+Load Scripted AI
+Загрузить скриптовый ИИ
+Load settings from
+Применить настройки из
 loaded
 загружено
 loaded passenger/freight
 Сортировка пассажиров/грузов:
 Loading (%i->%i%%)!
 Погрузка (%i->%i%%)
+Loading (%i%%) departure %s!
+Загрузка (%i%%), отправление %s!
+Loading (%i%%)!
+Загрузка (%i%%)!
 Loading addon paks ...
 Загрузка дополнений паков ...
 Loading map ...
@@ -1401,6 +1573,10 @@ Loading paks ...
 Загрузка графических пакетов ...
 Loading skins ...
 Загрузка скинов ...
+Loading time:
+полная загрузка через: 
+Lock Control key
+Зафиксировать клавишу Control
 Lock game
 Запретить изменение игрока (нужно подтверждение)
 Lokomotive_tab
@@ -1417,6 +1593,8 @@ Maglevdepot
 Депо для маглева
 Mail Demand %d\n
 Спрос почты %d\n
+Mail level
+Уровень почты
 Mailbox
 Центр сообщений
 Mailbox Options
@@ -1424,9 +1602,9 @@ Mailbox Options
 Maintenance
 Содержание
 make stop public (or join with public stop next) costs %i per tile and level
-создать публичную остановку (или присоединить к соседней публичной остановке), стоимостью %i$ за клетку и уровень
+Сделать остановку государственной (или объединить с соседней государственной), стоимость %i за клетку и уровень
 Make way or stop public (will join with neighbours), %i times maintainance
-Сделать путь или остановку публичной (объединяет с соседними) %i обслуживание
+Сделать путь или остановку государственными (объединяет с соседними); обслуживание в %i раз дороже
 Manual (Human)
 Ручной (Человек)
 Manufactured:
@@ -1437,6 +1615,8 @@ map view
 Карта
 map zoom
 Масштаб
+Mar.
+Мар.
 March
 Март
 Margin (%%)
@@ -1453,6 +1633,8 @@ Max. speed
 Макс. скор.
 Max. speed:
 Макс. скорость:
+Max. waiting time
+Макс. время ожидания (дд:чч:мм)
 Maximum 254 stops\nin a schedule!\n
 Максимум 254 остановки\nв расписании!\n
 maximum length of rivers
@@ -1469,8 +1651,10 @@ Meldung
 Сообщение
 Menge
 количество
+merge stop
+объединить остановку
 MessageOptionsText
-\nНовый год\n\nНовости ИИ\n\nГородские новости\n\nБез маршрута\n\nНовые производства\n\nболтать\n\nНовые т/с\n\nЗаполение станций\n\nПроблемы\n\nTraffic jam\n\nScenario
+\nНовый год\n\nНовости ИИ\n\nНовости городов\n\nНет маршрута\n\nНовые предприятия\n\nЧат\n\nНовые т/с\n\nПереполнение остановок\n\nПроблемы\n\nПробки\n\nСценарий
 min
 мин.
 minimum length of rivers
@@ -1493,8 +1677,12 @@ Monorailboden
 Основание монорельса
 Monoraildepot
 Депо монорельса
+Month
+Месяц
 month wait time
 Ждать, времени:
+Monthly departures
+Фиксированное время отправления
 Months
 Месяцы
 Monument
@@ -1503,6 +1691,8 @@ Monuments
 Монументы
 Mountain height
 Высота гор:
+Move the map
+Переместить карту
 Movingobj
 перемещение объекта
 Music playing disabled/not available
@@ -1524,7 +1714,7 @@ narrowgauge_track
 Narrowgaugedepot
 Депо для узкоколейки
 Net ID: %p
-ID сети: %p\n
+ID сети: %p
 Net Wealth
 Чистые активы
 Net wealth near zero
@@ -1536,7 +1726,7 @@ Neue Welt
 new convoi
 Новое т/с
 New Line
-Добавить
+Новая линия
 New line created!\nYou can assign the line now\nby selecting it from the\nline selector above.
 Создана новая линия!\nТеперь Вы можете назначить линию,\nвыбирая её из представленного\nниже списка.
 New Vehicles
@@ -1548,23 +1738,31 @@ no buildings hidden
 no convois
 Нет т/с
 No goods are loaded onto this convoi.
-Грузы не будут грузиться на это т/с
+На это т/с не загружены грузы.
 no goods waiting
 Нет ожидающих грузов
 no load
 Не грузить
+No player
+Нет игрока
 No Route
 Нет пути
 No stop here!
 Инструмент используется только на остановках.
 No suitable ground!
 Нет подходящей земли!
+No suitable townhall available for this climate!
+Для этого климата нет подходящей ратуши!
 No terminal station here!
 Здесь нет терминала!
 no timeline
-без линии времени
+без хронологии
+No transformer connected.
+Трансформатор не подключён: вся энергия будет потеряна.
 no tree
 Без деревьев
+No vehicles are available for purchase.
+Нет доступных для покупки т/с.
 No. of Factories
 Кол-во фабрик и магазинов
 Noch kein Fahrzeug\nmit Fahrplan\nvorhanden\n
@@ -1583,6 +1781,10 @@ Not allowed!\nThe convoi's schedule can\nnot be changed currently.\nTry again la
 Расписание нельзя \nпоменять во время \nпоиска пути
 Not enough fields would remain.
 Вокруг фермы осталось слишком мало полей
+Not online
+Не в сети
+Nov.
+Нояб.
 November
 Ноябрь
 now
@@ -1595,6 +1797,8 @@ Number of rivers
 Количество рек
 Object
 Объект
+Oct.
+Окт.
 Odometer: %s km
 Одометр: %s км
 Ok
@@ -1602,23 +1806,25 @@ OK
 Oktober
 Октябрь
 On loan since %i month(s)
-Кредит в течении %i месяца(-ев)
+В кредите уже %i мес.
 On mouseover
 При наведении мыши
+on the
+отправлений в месяц, первое в (дд-чч-мм)
 On this map, you are not\nallowed to change player!\n
 Эта игра заблокирована!\nСмена игрока невозможна!\n\n\n
 Only city chains
-Только городские цепочки
+Только городские производственные цепочки
 Only first %d differing paks reported. There are probably more.
 Указаны только первые %d различающиеся наборы. Вероятно, их несколько больше.
 Only full Unicode fonts
-Шрифты только с полным Юникодом
+Только шрифты с полной поддержкой Unicode
 Only land chains
-Только загородные цепочки
+Только загородные производственные цепочки
 Only one transformer per factory!
-Только один трансформатор на фабрику!
+Для каждого предприятия допускается только один трансформатор!
 Only show goods which are currently handled by factories
-Отобразить грузы, обработанные фабриками
+Показывать только грузы, которые сейчас обрабатываются предприятиями
 open
 открыть.
 Operation
@@ -1629,6 +1835,8 @@ Optionen
 Настройки
 Or enter a server manually:
 Или введите сервер вручную:
+ORDINAL_DAY_SYMBOL
+-е
 Origin
 Исходно
 ost
@@ -1644,9 +1852,9 @@ Pak which may cause visual errors:
 Pak(s) different:
 Различия пакета(-ов):
 Pak(s) missing on client:
-Набор(-ы), отсутствующий в клиенте:
+Набор(ы), отсутствующие у клиента:
 Pak(s) not on server:
-Набор(-ы), отсутствующий на сервере:
+Набор(ы), отсутствующие на сервере:
 Pakset differences
 Различия между наборами
 paletten
@@ -1673,10 +1881,16 @@ Pause
 Поставить игру на паузу
 Pax <%i>  Mail <%i>
 Пассажиры <%i> Почта <%i>
+Pax level
+Уровень пассажиров
 PaxDest
 Направления
 Percent Electricity
 Произв. электричества (%% от спроса):
+personal_chat
+Личные чаты
+Pipette
+Пипетка
 Planes are not available yet!
 Авиация ещё недоступна!
 Plant tree
@@ -1713,6 +1927,8 @@ player 8
 Игрок 8
 player 9
 Игрок 9
+Player ranking
+Рейтинг игроков
 Please choose vehicles first\n
 Сначала выберите т/с\n
 Post
@@ -1722,11 +1938,11 @@ Postrate
 Power
 Мощность
 Power (MW)
-Энергия (МВт)
+Мощность (МВт)
 Power:
 Мощность:
 Power: %4d kW\n
-Энергия: %4d КВт\n
+Мощность: %4d кВт\n
 Powerlines
 ЛЭП
 Price
@@ -1740,13 +1956,15 @@ Produces: %.1f units/minute
 Production of %s has been stopped:\n%s\n
 Производство %s было прекращено:\n%s\n
 Production/Boost
-Производство/Рост
+Производство/Бонус
 Produktion
 Производство
 Profit
 Прибыль
 promote to line
-Новая линия
+Преобразовать в линию
+public_chat
+Общий чат
 q1
 Весна
 q2
@@ -1793,10 +2011,16 @@ remove powerlines
 Удалить ЛЭП
 remove roads
 Удалить дорогу
+remove signal
+удалить сигнал
 remove tracks
 Удалить ж/д пути
 Remove wayobj %s
 Удалить объект %s
+replace existing ways
+заменять существующие дороги
+replace faster wayobjs
+заменять более быстрые путевые объекты
 replace other signals
 заменить другие семафоры
 replace stop
@@ -1817,6 +2041,10 @@ return ticket
 Путь назад
 Revenue
 Выручка
+Revenue/unit/100 tiles
+Доход/ед./100 клеток
+Revert schedule
+Отменить изменения
 Revision:
 Версия:
 road
@@ -1825,22 +2053,28 @@ road vehicle
 Автомобиль
 Roadsign
 Дорожный знак
+Rotate Building
+Повернуть здание
 Rotate map
 Повернуть карту
 Rotation
 Вращение
 Routing
 Прокладка маршрута
+Running cost
+Эксплуатационные расходы
 sack
  мешков
 sail
-ветер
+парусная тяга
 Save
 Сохранить игру
+Save generated script
+Сохранить сгенерированный скрипт
 Saving map ...
 Сохранение карты ...
 Scenario complete: %i%%
-Сценарий завершен на %i%%
+Сценарий завершён на %i%%
 Scenario Debug
 Ошибки
 Scenario Error Log
@@ -1855,6 +2089,8 @@ Scenario Result
 Результаты
 Scenario Rules
 Правила
+Scenario_
+Сценарий 
 Schedule changing!
 Изменение расписания!
 Schienentunnel
@@ -1883,8 +2119,14 @@ Select a theme for display
 Выберите тему игрового экрана
 Select display font
 Выбор шрифта
+Select one or more graphics to install (Ctrl+click):
+Выберите один или несколько наборов графики для установки (Ctrl+клик):
+Select soundfont
+Выбрать soundfont
 Sell the selected vehicle(s)
 Продать выбранные т/с
+Selling of the program is forbidden.
+Продажа программы запрещена.
 sended
 Отправлено
 SEP_FRACTION
@@ -1893,8 +2135,12 @@ SEP_THOUSAND
  ,
 SEP_THOUSAND_EXPONENT
 3
+Sept.
+Сент.
 September
 Сентябрь
+Served by
+Обслуживается
 Served by me
 Обслуживаются мной
 Server did not respond!
@@ -1918,11 +2164,21 @@ show all building
 Show also vehicles no longer in production.
 Показать также т/с, которые больше не производятся.
 Show also vehicles that do not match for current action.
-Показывать также т/с, которые не могут быть использованы для выбранного действия
+Показывать также т/с, которые не подходят для выбранного действия.
 Show always
 Показывать всегда
+Show climates
+Показать климаты
+Show construction info
+Показывать информацию о строительстве
+Show contour
+Показать высоты
 Show even servers with wrong version or pakset
 Также отображать сервера с иной версией или наборами.
+Show finances for transport type
+Показать финансы по типам транспорта
+Show future
+Показывать будущее
 show grid
 Отобразить сетку
 Show industry
@@ -1930,7 +2186,7 @@ Show industry
 Show legend
 Легенда
 Show map scale
-Шкала высот
+Показать масштаб карты
 Show mismatched
 Показать отличия
 Show networks
@@ -1938,15 +2194,17 @@ Show networks
 Show obsolete
 Показать устаревшие\n\n
 Show offline
-Показать отключенные
+Показывать отключённые
 Show only used
 Показать текущие предприятия
+Show outline
+Только инфраструктура
 Show schedules
 Показать расписания
 Show servers that are offline
-Показать сервера, отключенные от сети, в данный момент.
+Показывать серверы, которые сейчас отключены от сети.
 Show servers where game version or pakset does not match your client
-Показать сервера, версия которых или состав наборов отличатся от вашего клиента.
+Показать серверы, версия игры или набор пакетов которых отличаются от вашего клиента.
 show station coverage
 Показать покрытие станций
 show station names
@@ -1962,13 +2220,15 @@ show/hide object owner
 Show/hide statistics
 Показать/скрыть статистику
 Shows buttons about networks overlay.
-Отображает кнопки о наложении сетей
+Показывает кнопки наложения транспортных сетей.
+Shows buttons on network overlay.
+Показывать кнопки наложения сети.
 Shows buttons on special topics.
-Отобразить кнопки условных обозаначений.
+Показывает кнопки специальных режимов.
 Shows consumer/suppliers for factories
 Показать потребителей/поставщиков для предприятий
 Shows the color code for several selections.
-Отобразить цветовую шкалу высот.
+Показывает цветовую шкалу для различных режимов.
 Shows the currently selected schedule
 Показать текущее расписание
 Shrink city
@@ -1982,11 +2242,13 @@ signal spacing
 Sim:
 Сим-циклы:
 Similar view as the main window
-Отображать карту так же, как отображается игровое окно.
+Отображать карту так же, как в основном игровом окне.
 Single toolbar only
 Одна панель инструментов
 Size (%d MB):
 Размер (%d Мб):
+Size (area)
+Размер (площадь)
 sliced underground mode
 Z-уровень
 slot empty
@@ -2005,10 +2267,14 @@ Sound settings
 Настройка звука
 Sound volume:
 Громкость звука:
+Soundfonts are located in the music directory.
+Файлы soundfont находятся в папке music.
 special freight
 особый груз
+Speed Bonus
+Бонус скорости
 Speedbonus\nroad %i km/h, rail %i km/h\nships %i km/h, planes %i km/h.
-Ускорение:\nдорога %i км/ч, ж/д %i км/ч\nкорабли %i км/ч, самолёты %i км/ч.
+Скоростной бонус:\nдорога %i км/ч, ж/д %i км/ч\nкорабли %i км/ч, самолёты %i км/ч.
 Speedlimit
 Огр. скорости
 Speichern
@@ -2036,23 +2302,29 @@ Start the selected vehicle(s)
 Starte Spiel
 Начать игру
 station labels
-Станции
+Названия станций
 Station tiles:
-Секции cтанции:
+Секции станции:
 Station_msg
 Станции
 Status
 Статус
+stay on this level
+оставаться на этом уровне
 steam
 паровая тяга
 Step timeline one year
 Перевести время на год вперёд
+Stopping permissions
+Другой игрок, который может использовать эту остановку
 Stops
 Остановки
 Storage
 Склад
 Storage capacity
 Вместимость склада
+straight route
+прямой маршрут
 Strassendepot
 Гараж
 Strassentunnel
@@ -2073,6 +2345,14 @@ Suppliers
 Поставщики
 Tage alt
 дней
+The following graphics are unmaintained:
+Следующая графика не поддерживается:
+The generated script was saved!\n
+Макрос успешно сохранён.\nМожно воспроизвести с помощью инструмента скриптов.
+The gradient does not fit a tunnel
+Уклон не подходит для туннеля
+The script cannot be saved!\n
+Не удалось сохранить скрипт!\n
 Theme selector
 Выбор темы
 There are still vehicles\nstored in this depot!\n
@@ -2091,6 +2371,8 @@ To attract more tourists\n%s built\na %s\nwith the aid of\n%i tax payers.
 Чтобы привлечь больше\nтуристов в %s, \nбыл построен %s \nпо достижении %i налогоплательщиков.
 To heavy traffic\nresults in traffic jam.\n
 Слишком плотное движение\nвызвало пробку на дороге.\n
+To: %s
+Кому: %s
 Toggle day/night view
 Вкл/выкл цикл дня и ночи
 Toggle vehicle tooltips
@@ -2104,9 +2386,9 @@ Total inhabitants:
 Tourist attractions
 Достопримечательности
 Tourists
-Достоприм.
+Туристы
 Town_msg
-Новые назначения
+Новости городов
 Town: %s\n
 Город %s\n
 Towns
@@ -2141,6 +2423,8 @@ Translation
 Перевод
 transparencies
 Прозрачность
+transparent background
+прозрачный фон
 transparent station coverage
 Прозрачная зона покрытия
 Transported
@@ -2159,6 +2443,8 @@ Tunnel must start on single way!
 Туннели должны начинаться на одиночном пути!
 Tunnelboden
 Туннель
+under the Artistic License
+по лицензии Artistic License
 underground mode
 Подземный режим
 UNDO failed!
@@ -2170,7 +2456,9 @@ Unemployed
 Unhappy
 Несчастны
 units/day
-/месяц, 
+ед./день
+Unloading (%i%%)!
+Разгрузка (%i%%)!
 Update Line
 Изменить
 upgrade HQ
@@ -2180,31 +2468,35 @@ Usage: %.0f %%
 Usage/Output
 Потребление/производство
 Use beginner mode
-Режим "новичок"
+Использовать режим "Новичок"
 Use timeline start year
-Режим течения времени
+Использовать начальный год хронологии
 Vehicle %s can't find a route!
 %s\nне может найти путь!
 Vehicle %s is stucked!
-%s в пробке!
+%s застряло!
+Vehicle count:
+Количество т/с:
 Vehicle details
 Подробнее
 Vehicle Name
 Название
 Vehicle Power
 Мощность
+vehicles stored
+т/с на хранении
 Verbrauch
 Потребление
 Vergroessere die Karte\n
 Расширить карту.\n
 Verkauf
-Уничтожить
-verkaufen
 Продажа
+verkaufen
+Продать
 Verkehrsteilnehmer
 Гор. трансп.
 Verschuldet:\n\nDu hast %d Monate Zeit,\ndie Schulden zurueckzuzahlen.\n
-У Вас образовалась задолженность!\n\nОсталось %d месяц(а,ев)\nчтобы выплататить долг!\n
+У вас образовалась задолженность!\n\nОсталось %d мес.,\nчтобы погасить долг.\n
 vh_title
 Список всех транспортных средств
 via
@@ -2213,6 +2505,8 @@ via %s\n
  через %s\n
 via Menge
 через (кол-во)
+via owner
+через (владелец)
 voranstellen
 Вывести
 Waggon_tab
@@ -2226,7 +2520,7 @@ Walked
 walking
 Пешеходы
 Warnings_msg
-Трафик
+Предупреждения
 Wasser
 Вода
 Water
@@ -2236,21 +2530,29 @@ Water level
 water vehicle
 Водное т/с
 way %s cannot longer used:\n
-Дороги типа %s не могут больше использоваться.\n
+Пути типа %s больше нельзя использовать.\n
 way %s cannot longer used:\n%s\n
-Дороги типа %s не могут больше использоваться.\n%s\n
+Пути типа %s больше нельзя использовать:\n%s\n
 way %s now available:\n
-Теперь доступны дороги типа %s.\n
+Теперь доступны пути типа %s.\n
 Way toll
-Дорожный налог
+Сбор за использование пути
 Ways not connected
-Дороги не соединены
+Пути не соединены
+waytype
+тип пути
 Wegpunkt
-Точка пути
+Путевая точка
 Weight
 Вес
 Weight:
 Масса:
+Weight/unit
+Вес/ед.
+Welcome to Simutrans
+Добро пожаловать в Simutrans
+Welcome, %s!
+Добро пожаловать, %s!
 Wert
 Стоимость
 west
@@ -2260,11 +2562,13 @@ Wind direction
 Winter snowline
 Зимняя линия снега
 withdraw
-Продать
+Снять с эксплуатации
 Withdraw All
-Продать все
+Снять все с эксплуатации
 WRONGSAVE
 \nНесовместимая версия\nсохранения. Не могу загрузить\nэтот файл.\n
+Year
+Год
 Year %i has started.
 Начался %i год.
 Years
@@ -2297,6 +2601,38 @@ New world record for railways: %.1f km/h by %s.
 Установлен новый мировой \nрекорд скорости на железных\nдорогах %.1f км/ч -\n%s
 New world record for ship: %.1f km/h by %s.
 Установлен новый мировой \nрекорд скорости для водного\nтранспорта %.1f км/ч -\n%s
+#________________________________script_ai_text_________________________________
+#________________________________script_ai_text_________________________________
+%s build additional convoy to line: %s
+%s строит дополнительный конвой на линию: %s
+%s build rail line from %s (%s) to %s (%s)
+%s строит ж/д линию от %s (%s) до %s (%s)
+%s build road line from %s (%s) to %s (%s)
+%s строит автодорогу от %s (%s) до %s (%s)
+%s build ship line from %s (%s) to %s (%s)
+%s строит судоходную линию от %s (%s) до %s (%s)
+%s extends the route from %s (%s) to %s (%s)
+%s продлевает маршрут от %s (%s) до %s (%s)
+%s optimize way line from %s (%s) to %s (%s)
+%s оптимизирует путь от %s (%s) до %s (%s)
+%s removes convoys from line: %s
+%s удаляет конвои с линии: %s
+vehicles of the line %s were retired
+транспортные средства линии %s были списаны
+#_________________________________tooltip_text__________________________________
+#_________________________________tooltip_text__________________________________
+Add convois with similar schedule to this line.
+Добавить конвои с похожим расписанием на эту линию.
+Attach current coordinate to the comment
+Прикрепить текущие координаты к комментарию
+Enter intervall in days, hours, minutes
+Введите интервал в днях, часах, минутах
+Mirrors order of stops
+Обратный порядок остановок
+Revert to original schedule
+Отменить все изменения расписания.
+Tutorial not available for this pakset. Please try loading Pak128.
+Обучение недоступно для этого паксета. Пожалуйста, попробуйте загрузить Pak128.
 #_______________________________unnecessary_text________________________________
 #_______________________________unnecessary_text________________________________
 &0_CITY_SYLL

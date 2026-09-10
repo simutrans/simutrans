@@ -1,0 +1,12 @@
+<title>Guardar como herramienta de script</title>
+<h1>Guardar como herramienta de script</h1>
+<p>
+Aquí se guardan como un script todas las construcciones, edificios y objetos que hayas seleccionado antes arrastrando un área. Cuando ejecutes el script más adelante, intentará construir todo eso otra vez. Antes de poder guardarlo tienes que ponerle un nombre. También puedes pulsar sobre uno de los scripts que ya existen, listados debajo, y sobrescribirlo.<br>
+Los scripts que ya no necesites se borran poniendo una <em>X</em> delante.<br>
+<br>
+Pulsa <em>OK</em> para guardar la nueva herramienta de script.<br>
+<br>
+La herramienta guardada está en tu directorio personal de <em>simutrans</em>, el mismo que contiene las partidas guardadas en el subdirectorio <em>save</em>. En Windows está en «Mis documentos»; en Linux se encuentra (puede que oculto) en «/home/[usuario]/.simutrans».<br>
+Dentro de ese directorio personal se guarda en <em>simutrans/addons/</em>[pakset]<em>/tool/</em>.<br>
+El script se puede ver y editar con cualquier editor de texto. Su estructura es bastante fácil de entender.<br>
+</p>

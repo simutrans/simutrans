@@ -34,7 +34,7 @@
 游戏选项</a><br>
 - <a href="map.txt">地图</a>
 <br>
-- <a href="inspection_tool.txt">检查工具</a><br>
+- <a href="inspection_tool.txt">检视工具</a><br>
 - <a href="slopetools.txt">地形设计工具</a><br>
 - <a href="railtools.txt">铁路/火车工具</a>
 <br>
@@ -84,7 +84,7 @@
 
 <p>
 <a href="inspection_tool.txt"><strong>其他对话框</strong></a><br>
--<a href="depot.txt">仓库控件</a>
+-<a href="depot.txt">整备库控件</a>
 <br>
 -<a href="schedule.txt">行程控件</a>
 <br>

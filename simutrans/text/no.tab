@@ -12,11 +12,19 @@ Prop-Latin1.bdf
 #                              Language: no Norsk                              #
 #                             Encoding: ISO-8859-1                             #
 #                             Font: Prop-Latin1.bdf                            #
-#                           Date Created: 11.03 2026                           #
+#                           Date Created: 10.09 2026                           #
 #                                                                              #
 ################################################################################
 #__________________________________button_text__________________________________
 #__________________________________button_text__________________________________
+Absolute times
+Vis tid som dag:tt:mm i måneden
+allow reverse passage
+tillat passering i motsatt retning
+AMBIENT_SOUND
+omgivelseslyder
+CASH_SOUND
+kassalyder
 cl_btn_filter_disable
 av
 cl_btn_filter_enable
@@ -41,14 +49,104 @@ clf_btn_invers
 bytt
 clf_btn_keine
 ingen
+climate area percentage
+Størrelse enkeltklima 
+Continue Game
+Fortsett spill
+CROSSING_SOUND
+plankryssvarsler
+FACTORY_SOUND
+fabrikklyder
+Find matching convois
+Finn matchende konvoier
 gl_btn_sort_bonus
 bonus
+gl_btn_sort_name
+Navn
+gl_btn_sort_revenue
+Inntekt
+gl_btn_unsort
+Usortert
+height based
+Klima etter høyde
+hl_btn_filter_disable
+Deaktivert
+hl_btn_filter_enable
+Aktivert
+hl_btn_filter_settings
+Innstillinger
+hl_btn_sort_asc
+Stigende
+hl_btn_sort_desc
+Synkende
+hl_btn_sort_name
+Navn
+hl_btn_sort_type
+Type
+hl_btn_sort_waiting
+Venter
+hlf_btn_alle
+alle
 hlf_btn_invers
 bytt
 hlf_btn_keine
 ingen
+humidities
+fuktighetsgrenser
+Install
+Installer
+Lake
+Innsjø
+Lake height
+Maks. innsjøhøyde
+Maximize height levels
+Maksimer høydenivåer
+moisture land
+økning over land
+moisture water
+økning over vann
 Networks
 Nettverk
+Num pad keys always move map
+Talltastaturet flytter alltid kartet
+Open Sea
+Åpent hav
+Owner only
+Kun eier
+Queueing
+Ventetrend
+rainfall
+fuktighet
+Reselect closes tools
+Gjenvalg av verktøy opphever valget
+Return to menu
+Tilbake til menyen
+Road toll
+Bompenger
+Scenario
+Scenarioinfo
+sea
+maritimt klima
+Shared only
+Kun delte
+Single GUI
+Enkelt GUI
+Sound range:
+Lydrekkevidde:
+Start this as a server
+Start en server med dette spillet.
+temperature borders
+temperaturgrenser
+temperature-humidity based
+Klima basert på vær
+TOOL_SOUND
+verktøyhandlingslyder
+TRAFFIC_SOUND
+trafikkstøy
+Transfers
+Gjennomreisende
+Tutorial
+Opplæring
 #_________________________________climates_text_________________________________
 #_________________________________climates_text_________________________________
 arctic
@@ -67,34 +165,334 @@ tundra
 tundraklima
 #__________________________________error_text___________________________________
 #__________________________________error_text___________________________________
+ Loading scenario script failed
+ Innlasting av scenariomanus feilet
+A building blocks the construction
+En bygning blokkerer byggingen
+A powerline blocks the construction
+En kraftlinje blokkerer byggingen
+Another way blocks the construction
+En annen vei blokkerer byggingen
+Bridge blocked by way below or above.
+Broen er blokkert av vei under eller over.
+Can't buy obsolete vehicles!
+Kan ikke kjøpe foreldede kjøretøy!
+Cannot alter water
+Dette bassenget kan ikke dreneres eller fylles ytterligere.
+Cannot build on a double slope!
+Kan bare bygges på enkel skråning eller flat bakke!
+Cannot built depot here!
+Kan ikke bygge depot her.
+Cannot built this station/building\nin underground mode here.
+Denne stasjonen/bygningen kan ikke bygges under jorden.
+Cannot connect to the\ncenter of a double slope!
+En bro kan ikke kobles til midten av en dobbel skråning!\nBruk landskapsverktøyet til å fikse dette.
+Cannot create generic line!\nSelect line type by\nusing filter tabs.
+Kan ikke opprette generell linje!\nVelg linjetype ved\nå bruke filterfanene.
+Cannot create socket
+Kan ikke opprette socket
+Cannot cross the end of a runway
+Kan ikke krysse enden av en rullebane
+Cannot rotate this building!
+Kan ikke rotere denne bygningen!
+Client closed connection during transfer
+Klienten lukket tilkoblingen under overføringen
+Convoi handles exhausted!
+Maksimalt antall konvoier er nådd.
+Convoy already deleted!
+Konvoien er allerede slettet!
+Corrupt file
+Filen er skadet eller ufullstendig.
+Could not open file
+Kunne ikke åpne filen.
+Das Feld gehoert\neinem anderen Spieler\n
+Dette området tilhører\nen annen spiller!\n
+Depots cannot be built on runways!
+Depoter kan ikke bygges på rullebaner!
+Depots must be built on flat dead-end way tiles!
+Depoter må bygges på flate blindveispor!
+Der Besitzer erlaubt das Entfernen nicht
+Eieren tillater ikke\nat dette fjernes!\n
+Diese Zusammenstellung kann nicht fahren!\n
+Denne sammensetningen\nkan ikke starte!\n
+Elevated way can only be joined in line
+En opphøyd vei kan bare kobles til i rett linje
+Failed to write file
+Kunne ikke skrive til fil.
+Flugzeughalt muss auf\nRunway liegen!\n
+Flyoppstillingsplass må\nvære på en taksebane!\n
+Forbidden by scenario
+Forbudt av scenario
+Hier kann dieses\nFlughafengebaeude nicht\ngebaut werden!\n
+Du kan ikke bygge\nflyplassbygning her!\n
+Hier kann kein\nSignal aufge-\nstellt werden!\n
+Du kan ikke plassere\nsignaler her!\n
+In order to lock the game, you have to protect the public player by password!
+For å låse spillet må du passordbeskytte den offentlige spilleren!
+Loading a new game will end the current server session!
+Å laste et nytt spill vil avslutte den gjeldende serverøkten!
+Lost connection\nto server!
+Mistet tilkoblingen\ntil serveren!
+Lost synchronisation\nwith server.
+Mistet synkroniseringen\nmed serveren.
+Maglevhalt muss auf\nMaglevschiene liegen!\n
+Et maglev-stopp må plasseres på maglev-spor!\n
+Monorailhalt muss auf\nMonorail liegen!\n
+Monorailstopp må\nvære på monorailspor!\n
 Monorails are not available yet!
 Monorailer er ikke tilgjengelig enda!
+More than one possibility to build this dock found.
+Fant mer enn én mulighet til å bygge denne havnen.
+Narrowgaugehalt muss auf\nNarrowgauge liegen!\n
+Smalsporstopp må plasseres\npå et smalspor!\n
+No bridges over runways!
+Ingen broer over rullebaner!
+No curves on runways
+Rullebaner kan ikke ha svinger!
+No suitable crossing
+Ingen passende overgang! (for høy maksfart?)
+No suitable way on the ground!
+Stoppesteder kan bare bygges på\nrett, flatt og passende spor/vei!
+No through station here!
+Stasjoner må plasseres på blindveier/blindspor eller rette strekninger uten veikryss.
+Not allowed to copy object.
+Du kan ikke bygge det objektet!\n(Årsak: Feil spiller eller foreldet)
+Not enough bytes transferred
+Ikke nok byte overført
+Not enough clearance.
+Mellom to veier/spor kreves en høydeforskjell på minst to.
+Not enough empty space
+Ikke nok ledig plass.
 Not enough money!
 Ikke nok penger!
+Not initialized
+Kunne ikke initialisere biblioteket.
+On narrowgauge track only!\n
+Må kun plasseres på smalspor!\n
+Only public player can lock games!
+Bare offentlig spiller kan låse spill!
+Only up and down movement in the underground!
+En undergrunnsrute kan kun heves og senkes med hev/senk-verktøyene!
+Out of funds
+Du har ikke nok penger igjen til dette!
+Post muss neben\nHaltestelle\nliegen!\n
+En stasjonsutvidelse\n(f.eks. postkontor, lager)\nmå plasseres på en ledig rute\nved siden av en eksisterende stasjon.\n
+Protocoll error (expecting game)
+Protokollfeil (forventet spill)
+Schiffhalt muss im\nWasser liegen!\n
+Et skipsstopp kan bare\nplasseres på vann\nnær en kai!\n
+Server busy
+Tjener er opptatt
+Server version too new
+Tjeneren bruker en nyere programversjon.
+Ship depots must be built on water!
+Skipsdepoter må bygges på vann!
+Show all revenue messages
+Vis alle inntektsmeldinger
+Show no revenue messages
+Vis ingen inntektsmeldinger
+Show only player's revenue
+Vis kun spillerens inntekter
+Slope is too steep
+Skråningen er for bratt
+Terraforming not possible\nhere in underground view
+Terrengforming er ikke mulig\ni undergrunnsvisning.
+This tunnel branches. You can try Control+Click to remove.
+Denne tunnelen har forgreninger. Du kan prøve Ctrl+klikk for å fjerne den.
+Too far away to merge stations!
+For langt unna til å slå sammen stasjoner!
+Tunnel can only be entered at its portal
+En tunnel kan bare nås gjennom portalen
+Unknown error
+Ukjent feil
+Upgrade must have\na higher level
+Oppgraderingen må ha\net høyere nivå
+Vehicle %s cannot choose because stop too short!
+Kjøretøy %s kan ikke velge fordi stoppet er for kort!
+Watertable reached
+Kan ikke senke ruten mer!\nNådde grunnvannsnivået.
+Way does not match the slope here
+Veien passer ikke til skråningen her
+Wrong direction to enter the bridge
+Feil retning for å komme inn på broen
 Zughalt muss auf\nSchiene liegen!\n
 Togstasjoner maa\nplasseres paa togskinner.\n
 #___________________________________help_text___________________________________
 #___________________________________help_text___________________________________
+<h1>Index</h1><p>*: only english</p><p>General</p>%s<p>Usage</p>%s<p>Tools</p>%s<p>Start</p>%s<p>How to play</p>%s<p>Others:</p>%s
+<title>Hjelp</title><h1>Hjelpeindeks</h1><p><it>Om Simutrans</it></p>%1$s<p><it>Hvordan bruke</it></p>%2$s<p><it>Hvordan starte et spill</it></p>%4$s<p><it>Hvordan spille</it></p>%5$s<p><it>Verktøy</it></p>%3$s<p><it>Andre vinduer</it></p>%6$s
 <title>Keyboard Help</title>\n<h1><strong>Keyboard Help</strong></h1><p>\n
 <title>Tastatur hjelp</title>\n<h1><strong>Tastatur hjelp</strong></h1>\n<p>\n<strong>Tastatur hjelp</strong> viser funksjonene til de forskjellige tastene på tastaturet.\n</p>\n<p>\n<strong>Tastatur hjelp</strong> aapnes ved aa taste en ugyldig hurtigtast eller via <a href="general.txt">Generell hjelp</a>.\n</p>\n<p>\nStore og smaa bokstaver er forskjellige hurtigtaster (bruk [<em>Shift</em>] for store bokstaver).\n</p>\n<p>\nHurtigtaster inkluderer:\n</p>\n<p>\n[<em>Piltaster</em>]: flytter spillervindu i pilens retning.<br>\n[<em>Backspace</em>]: lukker alle vinduer, verktøylinjer og hjelpetekster.<br>\n[<em>Del</em>], eller [<em>Esc</em>]: lukker oeverste windu, verktøylinje eller hjelpetekst.<br>\n[<em>Enter</em>], eller [<em>Return</em>]: brukes for å bekrefte handlinger.<br>\n[<em>Pg-Up</em>], eller [<em>></em>]: zoom-inn spillervindu.<br>\n[<em>Pg-Dn</em>], eller [<em><</em>]: zoom-ut spillervindu.\n[<em>F1</em>]: aapner <a href="general.txt">Simutrans hjelp</a>.<br></p>\n<p>\n[<em>1</em>]: flytter spillervindu mot soer.<br>\n[<em>2</em>]: flytter spillervindu mot soeroest.<br>\n[<em>3</em>]: flytter spillervindu mot oest.<br>\n[<em>4</em>]: flytter spillervindu mot soervest.<br>\n[<em>6</em>]: flytter spillervindu mot nordoest.<br>\n[<em>7</em>]: flytter spillervindu mot vest.<br>\n[<em>8</em>]: flytter spillervindu mot nordvest.<br>\n[<em>9</em>]: flytter spillervindu mot nord.\n</p>\n<p>\n[<em>Shift</em>] + <a href="mouse.txt">mus</a>: brukt paa <a href="map.txt">Kart</a> for aa se informasjon om <a href="industry_info.txt">Industriers leveranse-kjeder</a>.<br>\n[<em>CTRL</em>] + verktoey: lager (signaler og <a href="station.txt">Stasjoner</a>) paa et hoere nivaa; eller bygger veier eller spor med lav hastighet over veier og spor med høy hastinghet; eller bygger rettere (mer direkte) veier og spor.<br>\n[<em>CTRL</em>] + ([<em>F2</em>] til [<em>F12</em>]): for aa legge til markert verktoey som hurtigtast på tastene [<em>F2</em>] til [<em>F12</em>].\n</p>\n<p>
+At least one stop is connected to the town.
+Minst ett stopp er koblet til byen.
+At least one tile is connected to one stop.
+Minst én rute er koblet til et stopp.
+Color according to transport capacity left
+Fargelegg etter gjenværende transportkapasitet
+Color-coded terrain according to altitude.
+Vis/skjul terrengskyggelegging.
+Decrease water height
+Senk vannstanden ett nivå
+Highlight railroad tracks
+Fremhev jernbanespor
+Highlite depots
+Fremhev depoter
+Highlite electrical transmission lines
+Fremhev kraftlinjer
+Highlite factories
+Fremhev fabrikker
+Highlite forests
+Fremhev skoger
+Highlite tourist attraction
+Fremhev turistattraksjon
+Increase water height
+Hev vannet med ett nivå
+Open station/stop details
+Vis stasjonsopplysninger
+Overlay city limits
+Vis bygrenser
+Overlay passenger destinations when a town window is open
+Vis passasjerdestinasjoner når et byvindu er åpent
+Overlay schedules/network
+Vis ruteplaner/nettverk
+Overlay town names
+Vis bynavn
+Please click on the map to add\nwaypoints or stops to this\nschedule.
+Klikk på kartet for å legge til\nveipunkter eller stopp i denne\nruteplanen.
+Remove double stops from schedule
+Fjern doble stopp fra ruteplan
+Set tile climate %s
+Gjør om denne grunnen til %s-sone
+Show capacity and if halt is overcrowded
+Vis kapasitet og om holdeplassen er overfylt
+Show how many convoi reach a station
+Vis hvor mange konvoier som når en stasjon
+Show how many people/much is waiting at halts
+Vis hvor mange/mye som venter
+Show initial passenger departure
+Vis opprinnelsessted for passasjerer og post.
+Show level of city buildings
+Vis nivå for bybygninger
+Show mail service coverage/mail network
+Vis posttjenestedekning
+Show passenger coverage/passenger network
+Vis passasjernettverksdekning
+Show speedlimit of ways
+Vis fartsgrense for veier
+Show the change of waiting at halts
+Vis hvordan ventetiden endret seg siden forrige måned
+Show the owenership of infrastructure
+Vis eierskap til infrastruktur
+Show transported freight/freight network
+Vis fraktet gods/godsnettverk
+Show usage of network
+Vis kjøretøy per rute og måned
+Shows a listing with all industries on the map.
+Viser en liste over alle industrier på kartet.
+Sum of departure/arrivals at halts
+Vis antall ankomne og avgåtte kjøretøy
 #____________________________________ki_text____________________________________
 #____________________________________ki_text____________________________________
 %s now\noffers bus services\nbetween %s\nand attraction\n%s\nat (%i,%i).\n
 %s har naa\nbussforbindelse mellom\n%s og\nattraksjon\n%s\n(%i,%i).\n
 %s now\noffers bus services\nbetween %s\nand factory\n%s\nat (%i,%i).\n
 %s har naa\nbussforbindelse mellom\n%s og\nfabrikk\n%s\n(%i,%i).\n
+%s\nnow operates\n%i trucks between\n%s at (%i,%i)\nand %s at (%i,%i).
+%s\ndriver nå\n%i lastebiler mellom\n%s ved (%i,%i)\nog %s\nved (%i,%i).
+%s\nopened a new railway\nbetween %s\nat (%i,%i) and\n%s at (%i,%i).
+%s\nåpnet en ny jernbane\nmellom %s\nved (%i,%i) og\n%s\nved (%i,%i).
 Airline service by\n%s\nnow between\n%s \nand %s.\n
 Nå flyr %s mellom\n%s og %s!\n
+Ferry service by\n%s\nnow between\n%s \nand %s.\n
+Fergetilbud av\n%s\nnå mellom\n%s \nog %s.\n
+Travellers now\nuse %s's\nbusses between\n%s \nand %s.\n
+%s\nåpner en ny bussforbindelse\nmellom %s\nog %s.\n
+#___________________________________menu_text___________________________________
+#___________________________________menu_text___________________________________
+EDITTOOLS
+Kartredigeringsverktøy
+LISTTOOLS
+Lister
+MAGLEVTOOLS
+Maglev-verktøy
+MONORAILTOOLS
+Monorail-verktøy
+NARROWGAUGETOOLS
+Smalsporsverktøy
+RAILTOOLS
+Jernbaneverktøy
+ROADTOOLS
+Veiverktøy
+SHIPTOOLS
+Skipsverktøy
+SLOPETOOLS
+Terrengverktøy
+SPECIALTOOLS
+Spesialbyggeverktøy
+TRAMTOOLS
+Trikkeverktøy
 #_________________________________message_text__________________________________
 #_________________________________message_text__________________________________
 %s s\nheadquarter now\nat (%i,%i).
 %ss har bygget nytt hovedkontor.
+Factory chain extended\nfor %s near\n%s built with\n%i factories.
+Fabrikkjede utvidet\nfor %s nær\n%s bygget med\n%i fabrikker.
+Net wealth less than 10%% of starting capital!
+Nettoformue er under 10%% av startkapitalen!
+New %s now available:\n%s\n
+Ny %s er nå tilgjengelig:\n%s\n
+New factory chain\nfor %s near\n%s built with\n%i factories.
+Ny fabrikkjede\nfor %s nær\n%s bygget med\n%i fabrikker.
+New vehicle now available:\n%s\n
+\nEt nytt kjøretøy er\nnå tilgjengelig:\n\n\n-- %s --\n\n
+Now %u clients connected.
+Akkurat nå er %u klient(er) tilkoblet.
+overtaking
+forbikjøring
+Remove vehicle from map. Use with care!
+Fjern kjøretøy fra kartet. (Bruk med forsiktighet!)
+Screenshot\ngespeichert.\n
+Skjermbilde\nlagret.\n
+Sends the convoi to the last depot it departed from!
+Sender konvoien til det siste depotet den reiste fra.
+Server preparing game ...
+Tjener forbereder spill ...
+Trees
+Trær
+With a big festival\n%s built\na new monument.\n%i citicens rejoiced.
+Med en stor festival\nbygget %s\net nytt monument.\n%i innbyggere jublet.
+#___________________________________obsolete____________________________________
+#___________________________________obsolete____________________________________
+Line Filter
+Linjefilter
 #_________________________________program_text__________________________________
 #_________________________________program_text__________________________________
+(%.2f$/km %.2f$/m)
+ (%.2f$/km %.2f$/mnd)
+(%.2f$/km)
+ (%.2f$/km)
 (%i)-
 (%i) 
 (in depot)
 (i depot)
+[0] south-facing
+[0] sørvendt
+[1] east-facing
+[1] østvendt
+[2] north-facing
+[2] nordvendt
+[3] west-facing
+[3] vestvendt
+[4] southeast corner
+[4] sørøstre hjørne
+[5] northeast corner
+[5] nordøstre hjørne
+[6] northwest corner
+[6] nordvestre hjørne
+[7] southwest corner
+[7] sørvestlig hjørne
+/month
+/måned
 \nBauzeit bis
 til
 \nBauzeit von
@@ -127,34 +525,130 @@ til
 \nvei 2 er reservert av 
 \nwith sign/signal\n
 \n med skilt/signal\n
+%d buildings\n
+%d bygninger\n
 %d convois
 %d kjøretøy
 %d Einzelfahrzeuge im Depot
 %d kjoeretoey parkert her.
+%d more convois
+%d flere konvoier
+%i car(s),
+%i vogner, 
 %i km/h (max. %ikm/h)
 %i km/t (maks. %ikm/t)
 %i years %i months old.
  %i år %i måned(er) gammel.
+%s at (%i,%i) now public stop.
+%s har blitt en offentlig holdeplass.
+%s building %s %s
+%s %s %s
+%s city %d %s
+%s %d %s
+%s factory %s %s
+%s %s godsområde
+%s has entered a depot.
+%s har kjørt inn i et depot.
+%s has left.
+%s har forlatt.
+%s land %d %s
+%s %d ytre %s
+%s now known as %s.
+%s er nå kjent som %s.
 %s wasted\nyour money with a\nnew townhall\nwhen it reached\n%i inhabitants.
 %s\noppfoerte et nytt\nraadhus naar\ninnbyggertallet steg\n til over %i.
 %s\nis crowded.
 er overfyldt.
+%s\nspeed %i\nmax_speed %i\ndx:%i dy:%i
+%1$s\n\n\nmaksimal hastighet %3$i km/h\n\nnåværende hastighet %2$i km/h.\n\n
+%s\nwas liquidated.
+%s gikk konkurs og\nhar blitt avviklet.\nAll drift ble stanset,\nog alle aktiva har blitt solgt.
+%u Client(s)\n
+%u klient(er)\n
+%u days ago
+%u dager siden
+%u hours ago
+%u timer siden
+%u minutes ago
+%u minutter siden
+%u Player (%u locked)\n
+%u spillere (%u låst)\n
+%u years ago
+%u år siden
+<clear schedule>
+<tøm ruteplan>
+<create new line>
+<opprett ny linje>
+<em>%s</em> - %s<br>\n
+[<em>%s</em>]: %s<br>\n
+<h1>Error</h1><p><strong>
+<H1>Feil: Dupliserte objekter i hoved-pak-mappen</H1><p><strong>I 
+<h1>Warning</h1><p><strong>addons for
+<h1>Advarsel: Dupliserte objekter i tilleggsmappen</h1><p><strong>Tillegg for 
+<individual schedule>
+<individuell ruteplan>
+<no line>
+<ikke tilordnet en linje>
+<no schedule set>
+<ingen ruteplan satt>
+<promote to line>
+<oppgrader til linje>
+1 convoi
+1 konvoi
+1 Einzelfahrzeug im Depot
+1 kjøretøy lagret her.
+1 minute ago
+ett minutt siden
+1 year ago
+1 år siden
+100 km/h = %i tiles/month
+100 km/h = %i ruter/måned
+1LIGHT_CHOOSE
+Lysstyrke:
+1th
+.
 1WORLD_CHOOSE
 Innstillinger for Nytt spill:
+21th
+.
+22th
+.
+23th
+.
 2LIGHT_CHOOSE
 Farger:
+2th
+.
 2WORLD_CHOOSE
 Kart nummer:
+31th
+.
+3LIGHT_CHOOSE
+Rullehastighet:
+3th
+.
+4LIGHT_CHOOSE
+Inverter rulling
 5LIGHT_CHOOSE
 Fotgjengere på holdeplasser
 5WORLD_CHOOSE
 Ant. byer:
 6LIGHT_CHOOSE
 Fotgjengere i byer
+6WORLD_CHOOSE
+Trafikktetthet:
+8WORLD_CHOOSE
+Dag- og nattsyklus
+A bridge must end on a way!
+En bro må slutte på en vei!
+A bridge must start on a way!
+Du eier ikke endene av denne broens trasé, eller traséen er blokkert.\n
 Abfrage
 Inspeksjonsverktøy
 Abnehmer
 Forbruker
+About
+Om
 About scenario
 Opphavsrett
 Abriss
@@ -165,14 +659,24 @@ Abspanntransformator
 Transformatorstasjon
 Accelerate time
 Øk spillhastighet
+Act. load: %u MW\n
+Aktuell last: %u MW\n
+Active player only
+Kun aktiv spiller
 Add forest
 Legg til skog
+Add random citycar
+Legg til en vilkårlig bybil
 add server
 Legg til server
 Add Stop
 Legg til
 Add stops for backward travel
 Legg til stopp på veien tilbake.
+air
+rullebane/taksebane
+Aircraft
+Flyselskap
 aircraft_tab
 Frakt
 airplane
@@ -183,6 +687,8 @@ AIRTOOLS
 Flyplassverktøy
 All
 Alle
+all convoi tooltips
+alle verktøytips for konvoier
 Allow city growth
 Tillat ekspansjon av byer
 Allow player change
@@ -191,6 +697,8 @@ allowed climates:\n
 Klimasoner:
 Alters a schedule.
 Endrer rute
+and arranged by
+og arrangert av
 Angenommene Waren
 -- Varer som kan leveres
 anhaengen
@@ -211,16 +719,22 @@ Arrived
 Ankommet
 Assets
 Øvrige aktiva
+Aufloesen
+Oppløs
 Aufspanntransformator
 Transformatorstasjon
 Autohalt muss auf\nStrasse liegen!\n
 Buss- og lastebilholdeplasser må ligge på en vei.\n
 Available
 Tilgjengelig
+Available at custom date
+Tilgjengelig på egendefinert dato
 Bahndepot
 Lokstall/Vognhall
 Bankrott:\n\nDu bist bankrott.\n
 Konkurs:\n\nDu er konkurs!\n
+based on Simutrans 84.22.1
+basert på Simutrans 84.22.1
 battery
 Batteri
 Baum
@@ -229,6 +743,8 @@ baum builder
 Plant trær
 Baustelle
 Byggeplass
+Bauzeit
+byggetid
 Beenden
 Avslutte
 Beginner mode
@@ -243,8 +759,14 @@ Blockstrecke ist\nbelegt\n
 Linjeblokk er\nopptatt\nav et annet tog\n
 Boden
 Land
+Bonus Multiplier: %i%%
+Bonusmultiplikator: %i%%
+Bonus Speed: %i km/h
+Bonushastighet: %i km/h
 Bonusspeed: %i km/h
 Maks. mulige hastighet: %i km/t
+Borderless (disabled on fullscreen)
+Kantløs (deaktivert i fullskjerm)
 bridge is too high for its type!
 Dalen er for dyp for \ndenne type bro!\n
 Bridge is too long for this type!\n
@@ -273,8 +795,12 @@ Build monorail depot
 Monorailvognhall
 Build narrowgauge depot
 Vognhall for smalsporet jernbane
+build portal only
+bygg bare portal
 Build powerline
 Bygg Kraftlinje
+Build presignals
+Bygg toblokksignaler
 Build road depot
 Verkstedhall
 Build ship depot
@@ -297,140 +823,1032 @@ Built random attraction
 Bygg en vilkårlig turistattraksjon
 Bus_tab
 Busser
+Can be overgrown
+Kan gro igjen
 Can only move from halt to halt or waypoint to waypoint.
 Kan bare flytte \nfra holdeplass til holdeplass eller \nfra veipunkt til veipunkt.
 Cancel
 Avbryt
+Cannot build here
+Kan ikke bygge her
+Cannot connect to offline server!
+Kan ikke koble til frakoblet server!
+Capacity
+Kapasitet
 Capacity:
 Kapasitet:
+Capacity: %.0f MW
+Kapasitet: %.0f MW\n
+Capacity: %d%s %s\n
+Kapasitet: %3d%s %s\n
 Capacity: %s\nLoad: %d (%d%%)
 Kapasitet: %s\n? %d (%d%%)
+Cars are not available yet!
+Biler er ikke tilgjengelige ennå.
+cars.\nstate
+ biler\n
 Cash
 Penger
+Category
+Kategori
+Change label style
+Endre etikettstil
 Change player
 Bytt spiller
+Chart
+Diagram
+Chat_msg
+Chat
+Choose direction
+Velg retning
+Choose operation executed on clicking stored/new vehicles
+Velg handling ved klikk på lagrede/nye kjøretøy
 chooses a random map
 Velg et tilfeldig kart.
+citicens
+Innbyggere
+Cities can only be built on flat empty ground!
+Byer kan bare bygges på flat, tom mark!
+City attraction
+Byattraksjon
+City industries
+Byindustrier
+City list
+Byliste
+City size
+Bystørrelse
+city_road
+Byvei
+citybuilding builder
+Bygg bybygninger
+CityLimit
+Bygrenser
+cl_title
+Kjøretøyliste
 cl_txt_sort
 Sorter etter:
+clamp
+klem
+Cleanup schedule
+Rydd opp i ruteplan
+Clear block reservation
+Nullstill blokkreservasjon
 clf_chk_aircrafts
 Fly
+clf_chk_cars
+Busser/lastebiler
+clf_chk_indepot
+i en vognhall
+clf_chk_maglev
+Maglev
+clf_chk_monorail
+Monorail
+clf_chk_name_filter
+Filtrer navn:
+clf_chk_narrowgauge
+Smalsportog
 clf_chk_noincome
 mangler inntekt
+clf_chk_noline
+Ingen linje
+clf_chk_noroute
+Ingen rute
+clf_chk_noschedule
+Ingen ruteplan
+clf_chk_obsolete
+Foreldet
 clf_chk_ships
 Skip
+clf_chk_spezial_filter
+Spesialfilter:
+clf_chk_stucked
+Sitter fast
 clf_chk_trains
 Tog
+clf_chk_trams
+Trikker
+clf_chk_type_filter
+Filtrer typer:
+clf_chk_waren
+Filtrer varer:
+clf_title
+Filter for kjøretøyliste
+Click to open the finance dialog.
+Klikk for å åpne finansvinduet.
+Climate
+Klima
+Climate Control
+Landskapsinnstillinger
+Climates
+Klimasoner
 closed
 Stengt
+Closes topmost line window when new line selected.
+Lukker øverste linjevindu når ny linje velges.
+COLOR_CHOOSE\n
+Vennligst velg to\nfarger fra bildet\ntil høyre:
+Company bankrupt
+Selskap konkurs
+company_chat
+Selskapsprat
+Company_msg
+Konkurrenter
+Comparing pak files ...
+Sammenligner pak-filer ...
+Composed by
+Komponert av
 Configure AI
 Konfigurer KI
+Configure AI setttings
+Konfigurer AI-innstillinger
+Congratulation\nScenario was complete in\n%i months %i years.
+Gratulerer!\nScenariet ble fullført på\n%i måneder og %i år.
+Connect factory
+Koble til fabrikk
+Connected stops
+Tilknyttede stopp:
+Connected with server
+Koblet til server
+connection
+forbindelse
+Connections
+Forbindelser
 Constructed by
 Tegnet av
 Constructed by %s
 Tegnet av %s
+construction speed
+byggehastighet
 Construction_Btn
 Byggekostnader
+Consumed
+Forbrukt
+contains the following doubled objects:</strong><p>
+ inneholder følgende objekter mer enn én gang:</strong><p/>
+convoi %d of %d
+Konvoi %d av %d
+convoi error tooltips
+verktøytips for konvoifeil
+Convoi following mode
+Konvoifølgemodus
+Convoi has been sent\nto the nearest depot\nof appropriate type.\n
+Konvoien er sendt\ntil nærmeste depot\nav passende type.\n
+Convoi is sold when all wagons are empty.
+Kjøretøyet selges så snart det er helt tomt.
+convoi mouseover tooltips
+verktøytips ved peking på konvoi
+convoi passed last\nmonth %i\n
+\nkonvoier passert forrige\nmåned: %i\n
+Convois
+Konvoier
+Convois: %d\nProfit: %s
+Konvoier: %d\nFortjeneste: %s
+Convoys
+Konvoier
+Copy Convoi
+Kopier konvoi
+Copy the selected convoi and its schedule or line
+Kopier den valgte konvoien og dens ruteplan eller linje
+Copy to clipboard
+Kopier til utklippstavle
+Cost
+Kostnad
+cost for removal
+Kostnad for fjerning 
+Cost per unit
+Kostnad per enhet
+Cost: %8s (%.2f$/km %.2f$/m)\n
+Koster: %8s (%.2f$/km %.2f$/m)\n
+Cost: %8s (%.2f$/km)\n
+Kostnad: %8s (%.2f$/km)\n
 Costs
 Koster
+Create a new line based on this schedule
+Opprett en ny linje basert på denne ruteplanen
+curiosity builder
+Turistattraksjonsbygger
+curlist_title
+Liste over turistmål
+CURRENCY
+$
+Current game
+Gjeldende spill
+Currently playing:
+Spiller nå:
+Customers live in:
+Kunder bor i:
+Date format
+Datoformat
+deactivated in online mode
+Ikke aktiv i nettverksmodus
+Dec.
+Des.
+Deccelerate time
+Senk hastighet
 December
 Desember
+decrease underground view level
+senk undergrunnsvisningsnivå
+Del Stop
+Fjern
+Delete Line
+Slett linje
+Delete the current stop
+Fjern gjeldende stopp
+Delete the selected line (if without associated convois).
+Slett den valgte linjen (hvis den ikke har tilknyttede konvoier).
+Delete this file.
+Slett denne filen.
+Delivered
+Levert
+Demand
+Etterspørsel
+Demand: %.0f MW
+Etterspørsel: %.0f MW
+Denkmal
+Monument
+Departed
+Avgått
+Departs at
+Avgår kl. (dd:tt:mm)
+Departure after
+%% last eller venter i (dd-tt-mm)
+Departure board
+Avgangstavle
+Departures per month
+Avganger per måned
+Departures to\n
+Avganger til\n
+Depots
+Depoter
+Der Tunnel ist nicht frei!\n
+Tunnelen er ikke fri!\n
+Destination
+Destinasjon
 Destroying map ...
 Ødelegger kart...
 Details
 Detaljer
+Developed by the Simutrans Team
+Utviklet av Simutrans-teamet
+Die Bruecke ist nicht frei!\n
+Broen er ikke fri!\n
+direct_chat_to:
+Direktemelding til
+directmail
+Brosjyrer
+Direkt erreichbare Haltestellen
+Direkteruter herfra
+disable midi
+Demp MIDI-musikk
+Display bars above factory to show the status
+Vis stolper over fabrikker for å vise status
+Display settings
+Skjerminnstillinger
+Distance
+Avstand
+distributing cities
+fordeler byer
+distributing factories
+fordeler fabrikker
+Do not show
+Ikke vis
 Dock
 Havn
 Dock must be built on single slope!
 Havnen må bli bygget på skrå-bakke
+Downloading
+Laster ned
+dp_title
+Depotliste
+Du hast %d Monate Zeit, deine Schulden zurueckzuzahlen
+Du har %d måneder på å betale tilbake gjelden din.
+Durchsatz
+Maks. 
+Economy
+Økonomi og byer
+Eigenbesitz\n
+Offentlig eiendom\n
+Ein %s\npasst hier nicht.\n
+En '%s'\npasser ikke her!\n
+Einstellungen
+Innstillinger
+Einstellungen aendern
+Innstillinger
+electric
+elektrisk
 Electricity
 Elektrisitet
+Electricity producer\n\n
+Strømprodusent\n\n
+Electrics_tab
+Elektrisitet
+Electrify track
+Elektrifiser spor
+enlarge map
+Forstørr kart
+enter a value between %i and %i
+angi en verdi mellom %i og %i
+Enter address
+Angi adresse
 Enter Password
 Skriv inn passord
 Error
 Feil
+Erzeuge neue Karte.\n
+Vennligst vent mens et nytt\nkart opprettes.\n\n(Dette kan ta noen\nminutter for store kart.)\n
+Es wird bereits\nein Fahrplan\neingegeben\n
+En ruteplan er allerede\nunder planlegging.\nFullfør den først\nfør ny planlegging!\n
+Extract files
+Pakk ut pak-filer fra zip.
+Fabrikanschluss
+Tilknyttede fabrikker
 Fabrikname
 Fabrikknavn
+Factories
+Fabrikker
+factory details
+Fabrikkforbindelser
+factorybuilder
+Fabrikkbygger
+Fahrplan
+Ruteplan
+Fahrtziel
+Reisemål: 
+Fahrzeuge koennen so nicht entfernt werden
+Kjøretøy kan ikke\nfjernes på denne måten!\n
+Fahrzeuge:
+Kjøretøy:
+Farbe
+Spillerfarge
+Fast forward
+Spol fremover
+February
+Februar
+Ferry_tab
+Ferger
+Fertig
+Ferdig
+Filename
+Filnavn:
+Files from:
+Filer fra:
+Finances of %s
+Finansene til %s
+Finanzen
+Finanser
+find mismatch
+Sammenlign din pak
+fl_title
+Fabrikkliste
+Flug_tab
+Passasjerfly
 follow me
 Følg meg.
+Follow the convoi on the map.
+Følg konvoien på kartet.
+font size
+Skriftstørrelse (bare .ttf- og .otf-skrifter)
+For questions and support please visit:
+For spørsmål og brukerstøtte, vennligst besøk:
+Forest
+Skog
 Found new city
 Lag en ny by
+Fracht
+Gods
+Frame time:
+Rammetid:
+Free Capacity
+Ledig kapasitet
+freeplay mode
+frispillmodus
+Freight
+Gods
+Friction:
+Friksjon:
+fuel_cell
+brenselcelle
+Full load
+Full last
+Fullscreen (changed after restart)
+Fullskjerm (endres etter omstart)
+Fussgaenger
+Fotgjenger
+Game info
+Spillinformasjon
+GAME PAUSED
+Spillet er pauset
+Game_msg
+Generelt
+Gear:
+Gir:
+Gebaeude
+Bygning
+General
+Generelt
+generate script
+Generer et infrastruktur-makroskript
+Generated
+Generert
+Generation: %.0f MW
+Produksjon: %.0f MW\n
+Gewicht
+Vekt
+Gewinn
+Inntekt: 
+Give the selected vehicle(s) an individual schedule
+Rediger valgt(e) kjøretøys individuelle rute eller tildelte linje
+gl_btn_sort_catg
+Kategori
+gl_title
+Vareliste
 go home
 Kjør til depot
+Goods
+Varer
+Goods AI
+Vare-AI
+Goods list
+Vareliste
+Gross Profit
+Kontantstrøm
+Groundobj
+Objekt
+groundobj builder
+Plasser landskapsobjekter
+Grow city
+Få byen til å vokse
+Growth
+Byvekst
+GUI settings
+Brukergrensesnitt
+H
+stopp
+Happy
+Fornøyd
+Has slope graphics
+Har skråningsgrafikk
+Has Snow
+Har snø
+Haus kaufen
+Kjøp hus
+Helligk.
+Skjerm
 Help
 Hjelp
+Help text not found
+Hjelpeteksten mangler.
+hide all building
+skjul alle bygninger
+hide city building
+skjul bybygninger
+Hide labels
+Skjul etiketter
+hide objects under cursor
+skjul objekter under markøren
+hide station names
+skjul navn på stasjoner
+hide transparent
+Gjennomsiktig i stedet for skjult
+hide trees
+Skjul trær
+Hier warten/lagern:
+Varer og passasjerer som venter:
+Higher transport fees, crossconnect all factories
+Høyere transportgebyrer, deaktiver just-in-time.
+highlight single ways
+Viser ende/avbrudd på trafikkveier.
+Highlite schedule
+Fremhev stoppesteder i ruteplan
+hl_title
+Stasjonsliste
+hl_txt_filter
+Filter:
+hl_txt_sort
+Sortert etter:
+hlf_chk_airport
+Flyplasser
+hlf_chk_anleger
+Havn
+hlf_chk_bahnhof
+Jernbanestasjon
+hlf_chk_bushalt
+Bussholdeplass
+hlf_chk_frachthof
+Lasteplass
+hlf_chk_keine_verb
+Ingen forbindelse
+hlf_chk_maglevstop
+Maglevstasjon
+hlf_chk_monorailstop
+Monorailstopp
+hlf_chk_name_filter
+Filtrer navn:
+hlf_chk_narrowgaugestop
+Smalsporstasjon
+hlf_chk_overflow
+Overfylt
+hlf_chk_spezial_filter
+Spesialfilter:
+hlf_chk_tramstop
+Trikkeholdeplass
+hlf_chk_type_filter
+Filtrer typer:
+hlf_chk_waren_abgabe
+Varer ut:
+hlf_chk_waren_annahme
+Varer inn:
+hlf_title
+Filter for stasjonsliste
+Home depot not found!\nYou need to send the\nconvoi to the depot\nmanually.
+Finner ikke depotet.\nDu må sende kjøretøyet\ndit manuelt.
+Homeless
+Hjemløse
+Horizontal stripe ownership
+Eierskap med vannrette striper
+hydrogene
+Hydrogen
+Icon size:
+Ikonstørrelse:
+Idle:
+Inaktiv:
+ignore climates
+Ignorer klimasoner
+In the industry legend show only currently existing factories
+Vis bare eksisterende fabrikker i industriforklaringen
+In Transit
+I transitt
+Increase Industry density
+Øk industritetthet
+increase underground view level
+øk undergrunnsvisningsnivå
+industrial building
+Industribygninger
+Industry overlay
+Industrioverlegg
+Infinite mouse scrolling
+Uendelig kartrulling
+Infinite scrolling using mouse
+Fungerer kanskje ikke med berøringsskjermer!
+Init map ...
+Initialiserer kart ...
+Input
+Inndata
+Ins Stop
+Sett inn stopp
+Insert stop before the current stop
+Sett inn stopp før gjeldende stopp
+Install graphics
+Installer grafikk
+Install paks
+Pakkesett lastes ned og installeres.
+Insufficient funds!
+Ikke nok penger!
+Intercity road len:
+Lengde på mellombyvei:
+Intro. date
+Introdato
+Intro. date:
+Introdato:
+invalid
+udefinert.
+Invalid coordinate
+Ugyldig ordre
+Invert stops
+Inverter stopp
+isometric map
+Isometrisk visning
 January
 Januar
 join game
 Bli med i spill
 July
 Juli
+Jump to
+Hopp til
 June
 Juni
+just now
+akkurat nå
 Kann Spielstand\nnicht laden.\n
 Kan ikke laste lagret spill!
+Kann Spielstand\nnicht speichern.\n
+Kan ikke åpne\nmålfilen\nfor skriving!\n
+keep city roads
+behold byveier
 Kein Besitzer\n
 Eksisterer ikke!
 keine
 ingen
+Keine Einzelfahrzeuge im Depot
+Ingen kjøretøy lagret her.
 Keyboard_Help\n
 Tastaturhjelp\n
 koord
 koordinater
+Kreuzung
+Kryss
+labellist_title
+Liste over markører
 Lade Relief
 Last høydekart
+Laden
+Last inn et spill
+Land attraction
+Landattraksjon
+Land industries
+Industrikjeder:
+LANG_CHOOSE\n
+Vennligst velg\nforetrukket språk:\n
+LARGE_NUMBER_STRING
+M
+LARGE_NUMBER_VALUE
+1e6
+Last Month
+Forrige måned:
+Last used tools
+Sist brukte verktøy
 Last Year
 Siste år
+Leaving depot!
+Forlater depotet!
+leer
+tom
+Left button drags minimap too
+Venstre knapp drar også minikartet
+legacy (large heights)
+foreldet (store høyder)
+legacy (small heights)
+foreldet (små høyder)
 Legend
 Legende
+Leistung
+Kraft
+Leistung: %d kW
+Kraft: %d kW
+Leitung
+Kraftlinje
+length: %d
+lengde: %d
+letzen Monat: diesen Monat:
+forrige måned:   denne måneden:
 Line
 Linje
+Line Management
+Linjeadministrasjon
+line name mouseover tooltips
+verktøytips ved peking på linjenavn
+linear
+lineær
+Lineless convoys serving this stop
+Linjeløse konvoier som betjener dette stoppet
+Lines serving this stop
+Linjer som betjener dette stoppet
+List of industries on the map
+Liste over industrier på kartet
+LKW_tab
+Lastebiler
 Load game
 Last inn lagret spill
+load height data from file
+Last inn høydedata fra fil.
+Load mode:
+Lastemodus:
 Load scenario
 Last inn Scenario 
+Load script tool
+Last inn skriptverktøy
+Load Scripted AI
+Last inn skriptet AI
+Load settings from
+Bruk innstillinger fra
 loaded
 lastet inn
 loaded passenger/freight
 Sorter pass./gods etter:
+Loading (%i->%i%%)!
+Laster (%i->%i%%)!
+Loading (%i%%) departure %s!
+Laster (%i%%) avgang %s!
+Loading (%i%%)!
+Laster (%i%%)!
 Loading addon paks ...
 Laster tilleggspakke (add-on)...
 Loading map ...
 Kartet lastes...
 Loading paks ...
 Leser inn pak...
+Loading skins ...
+Laster drakter ...
+Loading time:
+fullastet om: 
+Lock Control key
+Lås Control-tasten
+Lock game
+Forby spillerendringer (krever bekreftelse).
+Lokomotive_tab
+Lokomotiver
+m3
+m³
+maglev vehicle
+maglev-kjøretøy
+maglev_track
+Maglev-spor
+Maglevdepot
+Maglevvognhall
+Mail Demand %d\n
+Postetterspørsel %d\n
+Mail level
+Postnivå
 Mailbox
 Mailboks
+Mailbox Options
+Meldingsvalg
+Maintenance
+Vedlikehold
+make stop public (or join with public stop next) costs %i per tile and level
+Gjør stopp offentlig (eller slå sammen med offentlig stopp ved siden av), koster %i$ per rute og nivå
+Make way or stop public (will join with neighbours), %i times maintainance
+Gjør vei eller stopp offentlig (slås sammen med naboer), %i ganger vedlikehold
+Manual (Human)
+Manuell (Menneske)
+Manufactured:
+Produsert:
+Map roughness
+Kartruhet:
+map view
+Kart
+map zoom
+zoom
+March
+Mars
+Marker
+Plasser markør
 max
 Max
+Max Boost (%%)
+Maks bonus (%%)
+Max income:
+Maks. inntekt:
+Max. speed
+Maks. hastighet
+Max. speed:
+Maks. hastighet:
+Max. waiting time
+Maks. ventetid (dd:tt:mm)
+Maximum 254 stops\nin a schedule!\n
+Maksimalt 254 stopp\ni en ruteplan!\n
+maximum length of rivers
+Maks. lengde på elver
+Maximum tile height difference reached.
+Maksimal høydeforskjell\nmellom to ruter\ner nådd.
+Maxspeed
+Maks. hastighet
+May
+Mai
+Median Citizen per town
+Median innbyggere per by:
+Meldung
+Melding
+Menge
+Mengde
+merge stop
+slå sammen stopp
+MessageOptionsText
+\nNyttår\n\nSpillernyheter\n\nBynyheter\n\nIngen rute\n\nNye reisemål\n\nVarsler\n\nNye kjøretøy\n\nStasjon full\n\nProblemer\n\nTrafikkork\n\nScenario\n\nGenerell chat\n\nSelskapschat\n\nPrivat chat\n\n
+min
+min.
+minimum length of rivers
+Min. lengde på elver
+Minimum load
+Minimumslast (%%)
+Missing pakfiles
+Objekter mangler!
+Modify the selected line
+Endre valgt linje
+Monate alt
+måneder gammel.
+monorail vehicle
+monorail-kjøretøy
+monorail_track
+Monorail-spor
+Monorailboden
+Opphøyd bane
+Monoraildepot
+Monorailvognhall
+Month
+Måned
+month wait time
+ventetid per måned
+Monthly departures
+Faste avgangstider
 Months
 Måneder
+Monuments
+Monumenter
 Mountain height
 Høyde på fjell:
+Move the map
+Flytt kartet
+Movingobj
+bevegelig objekt
+Music playing disabled/not available
+Musikk er deaktivert/utilgjengelig.
+Music volume:
+Musikkvolum:
+mute sound
+Demp lyd
 Name
 Navn
+Narrowgauge
+Smalspor
+Narrowgauge are not available yet!
+Smalspor er ikke tilgjengelig ennå!
+narrowgauge vehicle
+smalsporkjøretøy
+narrowgauge_track
+Smalspor
+Narrowgaugedepot
+Smalspordepot
+Net ID: %p
+Nett-ID: %p\n
+Net Wealth
+Nettoformue
+Net wealth near zero
+Nettoformue nær null
 Neue Karte
 Nytt kart
 Neue Welt
 Generer Nytt spill
+new convoi
+Ny konvoi
+New Line
+Ny linje
+New line created!\nYou can assign the line now\nby selecting it from the\nline selector above.
+Ny linje opprettet!\nDu kan tildele linjen nå\nved å velge den fra\nlinjevelgeren ovenfor.
 New Vehicles
 Nytt kjøretøy
+Nickname:
+Kallenavn:
+no buildings hidden
+ingen bygninger skjult
+no convois
+Ingen konvoier
+No goods are loaded onto this convoi.
+Ingen varer lastes på denne konvoien.
+no goods waiting
+ingen varer venter
 no load
 ingen last
+No player
+Ingen spiller
+No Route
+Ingen rute
+No stop here!
+Verktøyet må brukes på stoppesteder.
+No suitable ground!
+Ikke egnet terreng!
+No suitable townhall available for this climate!
+Ingen passende rådhus tilgjengelig for dette klimaet!
+No terminal station here!
+Kan ikke bygge endestasjon her!\nTrenger en ende på en\nflat vei/flatt spor.
+no timeline
+alle tidsepoker
+No transformer connected.
+Ingen transformator tilkoblet: All kraft går tapt.
+no tree
+Ingen trær
+No vehicles are available for purchase.
+Ingen kjøretøy er tilgjengelige for kjøp.
+No. of Factories
+Fabrikker og butikker:
+Noch kein Fahrzeug\nmit Fahrplan\nvorhanden\n
+"Hvor skal jeg dra?"\nDu må gi denne konvoien en ruteplan eller tildele den en linje før du starter den.
+none
+ingen
+nord
+Nord
+nordost
+Nordøst
+nordwest
+Nordvest
+Not allowed to make publicly owned ways!
+Ikke tillatt å bygge offentlig eide veier/spor!
+Not allowed!\nThe convoi's schedule can\nnot be changed currently.\nTry again later!
+Kjøretøyets ruteplan\nmå ikke endres\nunder rutesøk.
+Not enough fields would remain.
+Ikke nok åkrer ville\ngjenstå rundt denne gården.
+Not online
+Ikke tilkoblet
+now
+nå
+Now active as %s.\n
+Nå aktiv som %s.\n
+nowhere
+ingensteds
 Number of rivers
 Antall elver
 Object
 Objekt
+Oct.
+Okt.
+Odometer: %s km
+Kilometerteller: %s km
+Ok
+OK
+On loan since %i month(s)
+Lånt i %i måned(er)
+On mouseover
+Ved musepeker over
+on the
+avgang/måned først kl. (dd-tt-mm)
+On this map, you are not\nallowed to change player!\n
+Dette spillet er låst.\nSpillerbytte er ikke mulig.\n
+Only city chains
+Bygg byindustrikjede
+Only first %d differing paks reported. There are probably more.
+Kun de første %d ulike pakkene er rapportert. Det finnes sannsynligvis flere.
+Only full Unicode fonts
+Kun fullstendige Unicode-skrifttyper
+Only land chains
+Bygg landindustrikjede
+Only one transformer per factory!
+Kun én transformator per fabrikk!
+Only show goods which are currently handled by factories
+Vis kun varer som for øyeblikket håndteres av fabrikker
 open
 Åpen
+Operation
+Driftskostnader
+Ops Profit
+Driftsresultat
 Optionen
 Innstillinger
+Or enter a server manually:
+Eller angi en tjener manuelt:
+ORDINAL_DAY_SYMBOL
+.
+Origin
+Opprinnelse
+ost
+Øst
+Output
+Produksjon
 Ownership
 Eierskap
+Pak which may cause severe errors:
+Følgende objekter (pak) mangler, noe som kan føre til brudd i transportkjeder:
+Pak which may cause visual errors:
+Følgende objekter (pak) ble erstattet med lignende objekter:
+Pak(s) different:
+Ulike pak-filer:
+Pak(s) missing on client:
+Pak-filer som mangler på klient:
+Pak(s) not on server:
+Pak-filer som ikke finnes på tjener:
+Pakset differences
+Pakkesett-forskjeller
+paletten
+ kasser
+Pas_tab
+Passasjertog
+Passagiere
+Passasjerer
+Passagierrate
+Passasjernivå
+Passagierziele
+Passasjer-/postdestinasjoner
+Passenger AI
+Passasjer-AI
+Passenger Demand %d\n
+Passasjeretterspørsel %d\n
+Passengers %d %c, %d %c, %d no route
+Passasjerer %d %c, %d %c, %d ingen rute
+Passengers %d %s, %d %s, %d no route
+Passasjerer %d %s, %d %s, %d ingen rute
 Password
 Passord
+Pax <%i>  Mail <%i>
+Passasjerer <%i>  Post <%i>
+Pax level
+Passasjernivå
+PaxDest
+Destinasjoner
+Percent Electricity
+Elektrisitetsproduksjon (%% etterspørsel):
+personal_chat
+Private samtaler
+Pipette
+Kopier valgt objekt
+Planes are not available yet!
+Fly er ikke tilgjengelige ennå!
+Plant tree
+Plant trær
 player
 spiller
+player -1
+Menneskelig spiller
 player 0
 Spiller 0
 player 1
@@ -447,14 +1865,66 @@ player 2
 Trikky Transport
 player 3
 Meyer Moving Co.
+player 4
+Freight Forwarder VM
+player 5
+H-Trans Ltd
+player 6
+Spiller 6
 player 7
 Spiller 7
 player 8
 Spiller 8
 player 9
 Spiller 9
+Player ranking
+Spillerrangering
+Please choose vehicles first\n
+Vennligst velg kjøretøy først!\n
+Postrate
+Postnivå
 Power
 Kraft
+Power (MW)
+Kraft (MW)
+Power:
+Kraft:
+Power: %4d kW\n
+Kraft: %4d kW\n
+Powerlines
+Kraftlinjer
+Price
+Pris
+Problems_msg
+Problemer
+Produced
+Produsert
+Produces: %.1f units/minute
+for tiden %.1f/minutt
+Production of %s has been stopped:\n%s\n
+Produksjon av %s er innstilt:\n%s\n
+Production/Boost
+Produksjon/økning
+Produktion
+Produksjon:
+Profit
+Fortjeneste
+promote to line
+Gjør om til linje
+public_chat
+Generell chat
+q1
+Vår
+q2
+Sommer
+q3
+Høst
+q4
+Vinter
+Query server
+Forespør tjener
+rail car
+jernbanekjøretøy
 random
 tilfeldig
 Random age
@@ -463,56 +1933,292 @@ Random map
 Tilfeldig kart
 Rathaus
 Raadhus
+Rating
+Vurdering
+ratio_pax
+Passasjerandel
 Reliefkarte
 Kart
 Remove
 Fjern
+remove airstrips
+Fjern rullebane eller taksebane
+remove channels
+Fjern kanaler
+remove interm. signals
+Fjern mellomsignaler
+remove maglev tracks
+Fjern maglevspor
+remove monorails
+Fjern monorail
+remove narrowgauge tracks
+Fjern smalspor
 remove powerlines
 Fjerne kraftlinje
 remove roads
 fjerne veier
+remove signal
+fjern signal
+remove tracks
+Fjern spor
+Remove wayobj %s
+Fjern veiobjekt %s
+replace existing ways
+erstatt eksisterende veier
+replace faster wayobjs
+erstatt raskere veiobjekter
+replace other signals
+Erstatt andre signaler
+replace stop
+Erstatt stopp
+request closing
+be om stenging
+residential house
+Bolighus
+Restore natural slope
+Gjenopprett naturlig skråning
+Restwert:
+Gjensalgsverdi:
+Retire date
+Utrangeringsdato
+Retire. date:
+Utrangeringsdato:
+return ticket
+kopier retur
+Revenue
+Kjøretøyinntekter
+Revenue/unit/100 tiles
+Inntekt/enhet/100 ruter
+Revert schedule
+Tilbakestill endringer
+Revision:
+Revisjon:
 road
 vei
+road vehicle
+veikjøretøy
+Roadsign
+Veiskilt
+Rotate Building
+Roter bygning
 Rotate map
 Roter kart
+Rotation
+Rotasjon
+Routing
+Ruting
+Running cost
+Driftskostnader
+sack
+ sekker
 sail
 Seil
+Save
+Lagre spill
+Save generated script
+Lagre generert skript
 Saving map ...
 Lagrer kart ...
+Scenario complete: %i%%
+Scenario fullført: %i%%
+Scenario Debug
+Feilsøking
+Scenario Error Log
+Skriptfeil
+Scenario Goal
+Scenariomål
+Scenario Info
+Kort info
+Scenario information
+Gjeldende scenariodetaljer
+Scenario Result
+Fremgang
+Scenario Rules
+Regler
+Scenario_
+Scenario 
+Schedule changing!
+Ruteplan endres!
 Schienentunnel
 Bygg togtunnel
 Schiff_tab
 Skip
 Schiffdepot
 Skipsverft
+Schleppkahn_tab
+Lektere
+Screen scale:
+Skjermskala:
+Screenshot
+Skjermbilde
+Scroll threshold
+Rullegrense
+Search:
+Søk:
+Seasons
+Årstider
 Sehenswuerdigkeit
 Turistattraksjon
+Select a server to join:
+Velg en tjener å bli med på:
+Select a theme for display
+Velg et tema for visning
+Select display font
+Velg visningsskrifttype
+Select one or more graphics to install (Ctrl+click):
+Velg en eller flere grafikker som skal installeres (Ctrl+klikk):
+Select soundfont
+Velg soundfont
+Sell the selected vehicle(s)
+Selg valgte kjøretøy.
+Selling of the program is forbidden.
+Salg av programmet er forbudt.
+sended
+Sendt post
 SEP_FRACTION
 .
 SEP_THOUSAND
  
+SEP_THOUSAND_EXPONENT
+3
+Sept.
+Sep.
+Served by
+Betjenes av
+Served by me
+Betjenes av meg
+Server did not respond!
+Tjeneren svarte ikke!
+Serves Line:
+Betjener linje:
+Service
+Tjeneste
+set signal spacing
+Sett signalavstand
 Setting
 Innstillinger
 Ship
 Skip
+shops and stores
+Butikker og kontorer
 Show all
 Vis alle
 show all building
 Vis alle bygninger
+Show also vehicles no longer in production.
+Vis også kjøretøy som ikke lenger er i produksjon.
+Show also vehicles that do not match for current action.
+Vis også kjøretøy som ikke kan brukes til valgt handling.
+Show always
+Vis alltid
+Show climates
+Vis klimaer
+Show construction info
+Vis bygginformasjon
+Show contour
+Vis høyder
+Show even servers with wrong version or pakset
+Vis også tjenere med feil versjon eller pakset.
+Show finances for transport type
+Vis økonomi for transporttype
+Show future
+Vis fremtid
+show grid
+Vis rutenett
 Show industry
 Vis industri
+Show legend
+Utvalg
+Show map scale
+Fargekoder
+Show mismatched
+Vis uoverensstemmende
+Show networks
+Vis nettverk
+Show obsolete
+Vis foreldede
+Show offline
+Vis frakoblede
+Show only used
+Vis kun brukte
+Show outline
+kun infrastruktur
+Show schedules
+Vis ruteplaner
+Show servers that are offline
+Vis tjenere som er frakoblet
+Show servers where game version or pakset does not match your client
+Vis tjenere der spillversjon eller pakset ikke stemmer med klienten din
 show station coverage
 Vis dekningsomraade for stasjon
 show station names
 vis navn paa stasjoner
+show waiting bars
+Vis ventestolper
+show/hide block reservations
+vis/skjul blokkreservasjoner
+Show/hide estimated arrival times
+Vis/skjul beregnede ankomsttider
+show/hide object owner
+vis/skjul objekteier
 Show/hide statistics
 Vis/skjul statistikk
+Shows buttons about networks overlay.
+Viser knapper for nettverksoverlegg.
+Shows buttons on network overlay.
+Vis mulighet for å legge et forbindelsesnettverk over.
+Shows buttons on special topics.
+Viser knapper for spesielle temaer.
+Shows consumer/suppliers for factories
+Vis forbrukere/leverandører for fabrikker
+Shows the color code for several selections.
+Viser fargekoden for flere utvalg.
+Shows the currently selected schedule
+Vis gjeldende valgt ruteplan
+Shrink city
+Krymp by
+shuffle midis
+Bland spor
+signal spacing
+Signalavstand
+Sim:
+Simloops:
+Similar view as the main window
+Lignende visning som hovedvinduet
+Single toolbar only
+Kun én verktøylinje
 Size (%d MB):
 Stoerrelse (%d MB):
+Size (area)
+Størrelse (areal)
+sliced underground mode
+Skivet kartvisning
+slot empty
+tom plass
+Smart hide objects
+Skjul objekter smart
+Sort by
+sorter etter
+Sort by:
+Sorter etter:
+Sort waiting list by
+Sorter venteliste etter
 Sound
 Lyd
 Sound settings
 Innstillinger for lyd
+Sound volume:
+Lydstyrke:
+Soundfonts are located in the music directory.
+Soundfonter ligger i musikkmappen.
+special freight
+Spesialgods
+Speed Bonus
+Fartsbonus
+Speedbonus\nroad %i km/h, rail %i km/h\nships %i km/h, planes %i km/h.
+Fartsbonus i prosent\nkrever minimumshastighet for vei %i km/t,\njernbane %i km/t, skip %i km/t, fly %i km/t,
+Speedlimit
+Fartsgrense
 Speichern
 Lagre
 Spieler
@@ -529,58 +2235,340 @@ Sprache
 Språk
 Sprachen
 Språk
+Stadtinformation
+Bystatistikk
+Start the selected vehicle(s)
+Start de valgte kjøretøyene
 Starte Spiel
 Start spill
+station labels
+Stasjoner
+Station tiles:
+Stasjonsruter:
+Station_msg
+Stasjoner
+stay on this level
+bli på dette nivået
 steam
 damp
+Step timeline one year
+Gå ett år frem i tidslinjen.
+Stopping permissions
+Stoppetillatelser
+Stops
+Holdeplasser
+Storage
+Lager
 Storage capacity
 Lagringskapasitet
+straight route
+rett trasé
+Strassendepot
+Garasje
+Strassentunnel
+Bygg veitunnel
+street car
+trikk
 sued
 Soer
 suedost
 Soeroest
 suedwest
 Soervest
+Summer snowline
+Sommersnøgrense
+Supplied: %.0f %%
+Levert: %.0f %%
 Suppliers
 Leverandører
 Tage alt
 dager gammel.
+The following graphics are unmaintained:
+Følgende grafikk vedlikeholdes ikke:
+The generated script was saved!\n
+Makroen ble lagret.\nKan spilles av med skriptverktøyet.
+The gradient does not fit a tunnel
+Helningen passer ikke for en tunnel
+The script cannot be saved!\n
+Skriptet kan ikke lagres!\n
+Theme selector
+Temavelger
+There are still vehicles\nstored in this depot!\n
+Det er fremdeles kjøretøy\ni denne vognhallen!\n
 This Month
 Denne mnd
 This Year
 I år:
+Tile not empty.
+Tøm ruten før\ndu bruker helningsverktøyet.
+timeline
+Følg tidslinje
 tl_title
 Byoversikt
+To attract more tourists\n%s built\na %s\nwith the aid of\n%i tax payers.
+Trafikken i %1$s øker:\n%3$i skattebetalere gjorde byggingen\nav %2$s til virkelighet.
+To heavy traffic\nresults in traffic jam.\n
+Tett trafikk\nfører til trafikkork.\n
+To: %s
+Til: %s
+Toggle day/night view
+Veksle dag-/nattvisning
+Toggle vehicle tooltips
+Veksle verktøytips for kjøretøy
+tonnen
+t
+Toolbar position:
+Verktøylinjens plassering:
+Total inhabitants:
+Totalt antall innbyggere: 
+Tourist attractions
+Turistattraksjoner:
+Tourists
+Attraksjoner
+Town_msg
+Nye destinasjoner
+Town: %s\n
+Byen %s.\n
 Towns
 Byer
+track
+spor
+Tracks
+Spor
 Traffic
+Trafikk
+traffic settings
 Trafikk
 Train
 Tog
+Trains are not available yet!
+Tog er ikke tilgjengelige ennå.
+Tram
+Trikk
+tram %i km/h, monorail %i km/h\nmaglev %i km/h, narrowgauge %i km/h.
+trikk %i km/h, monorail %i km/h\nmaglev %i km/h, smalspor %i km/h.
+tram_track
+trikkespor
+Tramdepot
+Trikkevognhall
+Trams are not available yet!
+Trikker er ikke tilgjengelige ennå.
+Transferring game ...
+Overfører spill ...
+Transformer only next to factory!
+Transformatorer må stå på\ntom, flat mark\nved siden av en fabrikk!
 Translation
 Oversettelse
+transparencies
+Gjennomsiktighet
+transparent background
+gjennomsiktig bakgrunn
 transparent station coverage
 gjennomsiktig dekningsomraade
+Transported
+Transportert
+Trees disabled!
+Trær er deaktivert!
+TrolleyBus_tab
+Trolleybusser
+tt_Other
+Annet
+Tunnel muss an\neinfachem\nHang beginnen!\n
+Tunneler må\nbegynne på en rett\nskråning!\n
+Tunnel must start on single way!
+Tunneler må starte på én enkelt vei.
+Tunnelboden
+Tunnel
+under the Artistic License
+under Artistic License
+underground mode
+Undergrunnsvisning
+UNDO failed!
+Angring er ikke lenger mulig.\nDu kan bare angre bygging\nav en rute så lenge\ningen signaler/stasjoner/stopp eller\nannet er bygget på\nveien.
+Undo last ways construction
+Angre siste veibygging
 Unemployed
 Arbeidsloes
+Unhappy
+Misfornøyd
 units/day
 /mnd, 
+Unloading (%i%%)!
+Losser (%i%%)!
+Update Line
+Rediger linje
 upgrade HQ
 Oppgradere HK
+Usage: %.0f %%
+Bruk: %.0f %%
+Usage/Output
+Forbruk/produksjon
+Use beginner mode
+Bruk nybegynnermodus
+Use timeline start year
+Bruk tidslinje fra år:
+Vehicle %s can't find a route!
+Kjøretøy %s\nfinner ikke rute!
+Vehicle %s is stucked!
+Kjøretøy %s sitter fast!
+Vehicle count:
+Antall kjøretøy:
+Vehicle details
+Kjøretøydetaljer
+Vehicle Name
+Kjøretøynavn
+Vehicle Power
+Kjøretøykraft
+vehicles stored
+lagrede kjøretøy
+Verbrauch
+Forbruk:
+Vergroessere die Karte\n
+Forstørr kartet.\n
+Verkauf
+Fjern nå!
+verkaufen
+Selg
+Verkehrsteilnehmer
+Bybiler
 Verschuldet:\n\nDu hast %d Monate Zeit,\ndie Schulden zurueckzuzahlen.\n
 Gjeld maa tilbakebetales\n innen %d mnd.\n
+vh_title
+Liste over alle kjøretøy
+via
+via (detaljert)
+via %s\n
+ via %s\n
+via Menge
+via (mengde)
+via owner
+via (eier)
+voranstellen
+Sett foran
 Waggon_tab
 Biler
 waiting
 venter
+Waiting for clearance!
+Venter på klarsignal!
+Walked
+Gått
+walking
+Gående
+Warnings_msg
+Trafikk
+Wasser
+Vann
+Water
+Kanal
+Water level
+Havnivå:
+water vehicle
+vannkjøretøy
+way %s cannot longer used:\n
+Veitype %s kan ikke lenger brukes.\n
+way %s cannot longer used:\n%s\n
+veitype %s kan ikke lenger brukes:\n
+way %s now available:\n
+Veitype %s er nå tilgjengelig.\n
+Way toll
+Veiavgift
+Ways not connected
+Veiene er ikke tilkoblet
+waytype
+veitype
+Wegpunkt
+Veipunkt
+Weight
+Vekt
+Weight:
+Vekt:
+Weight/unit
+Vekt/enhet
+Welcome to Simutrans
+Velkommen til Simutrans
+Welcome, %s!
+Velkommen, %s!
 Wert
 Verdi
 west
 Vest
+Wind direction
+Vindretning
+Winter snowline
+Vintersnøgrense
+withdraw
+Fas ut
+Withdraw All
+Trekk tilbake alle
+WRONGSAVE
+\nInkompatibelt lagret spill.\nKan ikke laste filen.\n
+Year
+År
 Year %i has started.
 Aar %i har startet.
 Years
 Aar
+Your primary color:
+Din primærfarge:
+Your secondary color:
+Din sekundærfarge:
+Zielort
+destinasjon
+zooming in
+Zoom inn
+zooming out
+Zoom ut
+Zu nah am Kartenrand
+Du kan ikke bygge\nså nær kanten\nav kartet.
+#__________________________________record_text__________________________________
+#__________________________________record_text__________________________________
+New world record for maglevs: %.1f km/h by %s.
+Ny verdensrekord for maglev:\n%.1f km/t av %s!
+New world record for monorails: %.1f km/h by %s.
+Ny verdensrekord for monorail:\n%.1f km/t oppnådd av %s!
+New world record for motorcars: %.1f km/h by %s.
+Ny verdensrekord for biler:\n%.1f km/t av %s!
+New world record for narrowgauges: %.1f km/h by %s.
+Ny verdensrekord for smalspor: %.1f km/t av %s.
+New world record for planes: %.1f km/h by %s.
+Krymper avstandene igjen:\n%2$s fløy i %1$.1f km/t.\nNy verdensrekord!
+New world record for railways: %.1f km/h by %s.
+Tordner over sporene\ni %.1f km/t.\n%s setter ny verdensrekord for tog.
+New world record for ship: %.1f km/h by %s.
+Blå bånd for seiling\ni %.1f km/t ble vunnet av\n%s.
+#________________________________script_ai_text_________________________________
+#________________________________script_ai_text_________________________________
+%s build additional convoy to line: %s
+%s bygger ekstra konvoi til linje: %s
+%s build rail line from %s (%s) to %s (%s)
+%s bygger jernbanelinje fra %s (%s) til %s (%s)
+%s build road line from %s (%s) to %s (%s)
+%s bygger veilinje fra %s (%s) til %s (%s)
+%s build ship line from %s (%s) to %s (%s)
+%s bygger skipsrute fra %s (%s) til %s (%s)
+%s extends the route from %s (%s) to %s (%s)
+%s forlenger ruten fra %s (%s) til %s (%s)
+%s optimize way line from %s (%s) to %s (%s)
+%s optimaliserer linje fra %s (%s) til %s (%s)
+%s removes convoys from line: %s
+%s fjerner konvoier fra linje: %s
+vehicles of the line %s were retired
+kjøretøyene på linje %s ble faset ut
+#_________________________________tooltip_text__________________________________
+#_________________________________tooltip_text__________________________________
+Add convois with similar schedule to this line.
+Legg til konvoier med lignende ruteplan til denne linjen.
+Attach current coordinate to the comment
+Legg gjeldende koordinater til kommentaren
+Enter intervall in days, hours, minutes
+Angi intervall i dager, timer, minutter
+Mirrors order of stops
+Omvendt stopperekkefølge
+Revert to original schedule
+Tilbakestill alle ruteplanendringer.
+Tutorial not available for this pakset. Please try loading Pak128.
+Opplæring er ikke tilgjengelig for dette pakkesettet. Prøv å laste inn Pak128.
 #_______________________________unnecessary_text________________________________
 #_______________________________unnecessary_text________________________________
 &0_CITY_SYLL
@@ -637,3 +2625,57 @@ Fjell
 Tran
 %F_CITY_SYLL
 Gran
+1center
+%s %s
+1extern
+%s sidespor %s
+1suburb
+%s %s %s
+2center
+%s sentral %s
+2extern
+%s ytre %s
+2suburb
+%s Greenfields %s %s
+3center
+%s hoved %s
+3extern
+%s land %s
+3suburb
+%s landsby %s %s
+4center
+%s indre %s
+4extern
+%s ytre %s
+4suburb
+%s landlige %s
+5center
+%s sentrum %s
+5extern
+%s overgang %s
+5suburb
+%s by %s
+6center
+%s knutepunkt %s
+6extern
+%s omstigning %s
+6suburb
+%s utkant %s %s
+7center
+%s by %s
+7extern
+%s slette %s
+7suburb
+%s park %s
+8center
+%s forretning %s
+8extern
+%s %s rand %s
+8suburb
+%s satellitt %s
+9center
+%s akse %s
+9extern
+%s omkjøring %s
+9suburb
+%s mezzo %s

@@ -1,0 +1,20 @@
+<title>Distancia entre señales</title>
+
+<h1>Uso general:</h1><br>
+<p>
+-- Ctrl + pulsar sobre el icono de la señal abre esta ventana.<br>
+
+-- Pulsar y arrastrar sobre la vía muestra una vista previa de las señales que se van a construir; suelta el botón del ratón para construirlas. Las señales se construyen de forma que los trenes solo puedan pasar en la dirección hacia la que arrastraste el ratón.<br>
+
+-- En partidas en red: primero haz Ctrl + pulsar sobre la vía y suelta el botón. Mientras mantengas pulsado el botón y muevas el ratón verás la vista previa. Suelta el botón otra vez para construir.<br>
+</p>
+<h1>Parámetros de esta ventana:</h1>
+<p>
+-- <em>Distancia entre señales:</em> cuántas casillas de separación debe haber entre dos señales consecutivas (las diagonales cuentan como media casilla). Este valor se muestra sobre el icono cuando la señal está seleccionada.<br>
+
+-- <em>Eliminar señales intermedias:</em> si está activado, se borrarán las demás señales que haya por el camino.<br>
+
+-- <em>Sustituir otras señales:</em> si está activado, se borrarán las señales que haya en las casillas donde queremos poner las nuestras.<br>
+<br>
+Estos parámetros se pueden ajustar de forma independiente para cada tipo de señal.
+</p>

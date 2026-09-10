@@ -12,10 +12,2728 @@ cyr.bdf
 #                             Language: tr Turkish                             #
 #                                Encoding: UTF-8                               #
 #                                 Font: cyr.bdf                                #
-#                            Date Created: 3.06 2024                           #
+#                           Date Created: 10.09 2026                           #
 #                                                                              #
 ################################################################################
+#__________________________________button_text__________________________________
+#__________________________________button_text__________________________________
+Absolute times
+Zamanları ayın günü:ss:dd biçiminde göster
+allow reverse passage
+Ters yönde serbest geçişe izin ver
+AMBIENT_SOUND
+ortam sesleri
+CASH_SOUND
+kasa sesi
+cl_btn_filter_disable
+Kapalı
+cl_btn_filter_enable
+Açık
+cl_btn_filter_settings
+Ayarlar
+cl_btn_sort_asc
+Artan
+cl_btn_sort_desc
+Azalan
+cl_btn_sort_id
+Dahili kimlik
+cl_btn_sort_income
+Gelir
+cl_btn_sort_name
+Ad
+cl_btn_sort_type
+Tür
+clf_btn_alle
+tümü
+clf_btn_invers
+ters
+clf_btn_keine
+hiçbiri
+climate area percentage
+Tek iklim bölgesinin boyutu
+Continue Game
+Oyuna Devam Et
+CROSSING_SOUND
+hemzemin geçit uyarıları
+FACTORY_SOUND
+fabrika sesleri
+Find matching convois
+Eşleşen konvoyları bul
+gl_btn_sort_bonus
+Bonus
+gl_btn_sort_name
+Ad
+gl_btn_sort_revenue
+Hasılat
+gl_btn_unsort
+Sıralanmamış
+height based
+İklim yüksekliğe göre
+hl_btn_filter_disable
+Kapalı
+hl_btn_filter_enable
+Açık
+hl_btn_filter_settings
+Ayarlar
+hl_btn_sort_asc
+Artan
+hl_btn_sort_desc
+Azalan
+hl_btn_sort_name
+Ad
+hl_btn_sort_type
+Tür
+hl_btn_sort_waiting
+Bekleyen
+hlf_btn_alle
+tümü
+hlf_btn_invers
+ters
+hlf_btn_keine
+hiçbiri
+humidities
+nem sınırları
+Install
+Paket kur
+Lake
+Göl
+Lake height
+azami göl yüksekliği
+Maximize height levels
+Yükseklik kademelerini artır
+moisture land
+karada artış
+moisture water
+suda artış
+Networks
+Ağlar
+Num pad keys always move map
+Sayı tuşları haritayı her zaman kaydırsın
+Open Sea
+Açık Deniz
+Owner only
+Yalnızca sahibi
+Queueing
+Bekleme eğilimi
+rainfall
+nem
+Reselect closes tools
+Aleti yeniden seçmek seçimi kaldırır
+Return to menu
+Menüye dön
+Road toll
+Yol ücreti
+Scenario
+Senaryo Bilgisi
+sea
+deniz iklimi
+Shared only
+Yalnızca paylaşılanlar
+Single GUI
+Tek pencere arayüzü
+Sound range:
+Ses menzili:
+Start this as a server
+Bu oyunla bir sunucu başlat.
+temperature borders
+sıcaklık sınırları
+temperature-humidity based
+İklimler hava durumuna göre
+TOOL_SOUND
+alet sesleri
+TRAFFIC_SOUND
+trafik sesleri
+Transfers
+Aktarma
+Tutorial
+Öğretici
+#_________________________________climates_text_________________________________
+#_________________________________climates_text_________________________________
+arctic
+Kutup
+desert
+Çöl
+mediterran
+Akdeniz
+rocky
+Alpin (kayalık)
+temperate
+Ilıman
+tropic
+Tropikal
+tundra
+Tundra
+#__________________________________error_text___________________________________
+#__________________________________error_text___________________________________
+ Loading scenario script failed
+Senaryo betiği yüklenemedi
+A building blocks the construction
+Bir bina inşaatı engelliyor
+A powerline blocks the construction
+Enerji nakil hattı yapımı engelliyor
+Another way blocks the construction
+Başka bir yol yapımı engelliyor
+Bridge blocked by way below or above.
+Köprü, altındaki veya üstündeki yol tarafından engelleniyor.
+Can't buy obsolete vehicles!
+Eskimiş araçlar satın alınamaz!
+Cannot alter water
+Bu havza daha fazla boşaltılamaz veya doldurulamaz.
+Cannot build on a double slope!
+Yalnızca tek eğimli veya düz zemine inşa edilebilir!
+Cannot built depot here!
+Buraya depo inşa edilemez.
+Cannot built this station/building\nin underground mode here.
+Bu istasyon/bina yer altına inşa edilemez.
+Cannot connect to the\ncenter of a double slope!
+Bir köprü çift eğimli bir karonun ortasına bağlanamaz!\nDüzeltmek için arazi düzenleme aletini kullanın.
+Cannot create generic line!\nSelect line type by\nusing filter tabs.
+Genel türde hat oluşturulamaz!\nFiltre sekmelerini kullanarak\nbir hat türü seçin.
+Cannot create socket
+Ağ bağlantısı oluşturulamadı
+Cannot cross the end of a runway
+Pist sonu kesilemez
+Cannot rotate this building!
+Bu bina döndürülemez!
+Client closed connection during transfer
+İstemci aktarım sırasında bağlantıyı kapattı
+Convoi handles exhausted!
+Azami konvoy sayısına ulaşıldı.
+Convoy already deleted!
+Konvoy zaten silinmiş!
+Corrupt file
+Dosya bozuk veya eksik.
+Could not open file
+Dosyaya erişilemedi. İzinleri kontrol edin.
+Das Feld gehoert\neinem anderen Spieler\n
+Bu arazi\nbaşka bir oyuncuya\naittir!\n
+Depots cannot be built on runways!
+Depolar pistlerin üzerine inşa edilemez!
+Depots must be built on flat dead-end way tiles!
+Depolar yalnızca düz ve çıkmaz yol karolarına inşa edilebilir!
+Der Besitzer erlaubt das Entfernen nicht
+Sahibi bunun\nkaldırılmasına\nizin vermiyor!\n
+Diese Zusammenstellung kann nicht fahren!\n
+Bu araç dizilimi\nhareket edemez!\n
+Elevated way can only be joined in line
+Yükseltilmiş yol yalnızca düz hatta bağlanabilir
+Failed to write file
+Dosya yazılamadı. (İzinler?)
+Flugzeughalt muss auf\nRunway liegen!\n
+Uçak durağı\ntaksi yolu üzerinde olmalıdır.
+Forbidden by scenario
+Bu senaryoda yasak
+Hier kann dieses\nFlughafengebaeude nicht\ngebaut werden!\n
+Bu havaalanı binası\nburaya inşa\nedilemez.\n
+Hier kann kein\nSignal aufge-\nstellt werden!\n
+Buraya demiryolu\nsinyali\nkonulamaz.\n
+In order to lock the game, you have to protect the public player by password!
+Oyunu kilitlemek için kamu oyuncusunu bir parola ile korumalısınız!
+Loading a new game will end the current server session!
+Yeni bir oyun yüklemek mevcut sunucu oturumunu sonlandırır!
+Lost connection\nto server!
+Sunucuyla bağlantı\nkoptu!
+Lost synchronisation\nwith server.
+Sunucuyla eşitleme\nkayboldu.
+Maglevhalt muss auf\nMaglevschiene liegen!\n
+Maglev durağı maglev rayı üzerine yapılmalıdır!
+Monorailhalt muss auf\nMonorail liegen!\n
+Monoray durakları\nmonoray hattı üzerinde olmalıdır.
+Monorails are not available yet!
+Monoray henüz mevcut değil.
+More than one possibility to build this dock found.
+Bu iskele için birden fazla yerleşim yönü bulundu.
+Narrowgaugehalt muss auf\nNarrowgauge liegen!\n
+Dar hat durağı dar hat rayı üzerine yapılmalıdır
+No bridges over runways!
+Pistlerin üzerine köprü yapılamaz!
+No curves on runways
+Pistler viraj yapamaz!
+No suitable crossing
+Uygun kavşak yok! (azami hız çok mu yüksek?)
+No suitable way on the ground!
+Duraklar yalnızca düz, eşit seviyede ve\nuygun yollar üzerine inşa edilebilir!
+No through station here!
+İstasyonlar yalnızca çıkmaz yollara veya kavşak içermeyen düz kesimlere yerleştirilebilir.
+Not allowed to copy object.
+Bu nesne inşa edilemez!\n(Sebep: yanlış oyuncu veya eskimiş)
+Not enough bytes transferred
+Aktarılan veri eksik
+Not enough clearance.
+İki yol arasında en az iki kademelik yükseklik farkı gerekir.
+Not enough empty space
+Yeterli boş alan kalmadı.
+Not enough money!
+Bunu satın almak için\nyeterli paranız yok!
+Not initialized
+Kitaplık başlatılamadı.
+On narrowgauge track only!\n
+Yalnızca dar hat rayı üzerine yerleştirilmelidir!
+Only public player can lock games!
+Oyunları yalnızca kamu oyuncusu kilitleyebilir!
+Only up and down movement in the underground!
+Yer altındaki bir karo yalnızca yükselt/alçalt aletleriyle değiştirilebilir!
+Out of funds
+Bunun için yeterli paranız kalmadı!
+Post muss neben\nHaltestelle\nliegen!\n
+Bir istasyon eklentisi\n(örn. postane, depo)\nmevcut bir durağın yanındaki\nboş bir karoya\nyerleştirilmelidir.\n
+Protocoll error (expecting game)
+Protokol hatası (oyun bekleniyor)
+Schiffhalt muss im\nWasser liegen!\n
+Gemi durağı yalnızca\nbir iskelenin yanındaki\nsuya yerleştirilebilir!\n
+Server busy
+Sunucu meşgul
+Server version too new
+Sunucu daha yeni bir program sürümü kullanıyor.
+Ship depots must be built on water!
+Gemi depoları su üzerine inşa edilmelidir!
+Show all revenue messages
+Tüm hasılat mesajlarını göster
+Show no revenue messages
+Hiçbir hasılat mesajını gösterme
+Show only player's revenue
+Yalnızca oyuncunun hasılatını göster
+Slope is too steep
+Eğim çok dik
+Terraforming not possible\nhere in underground view
+Yer altında arazi düzenlemesi yapılamaz.
+This tunnel branches. You can try Control+Click to remove.
+Bu tünelin ikiden fazla girişi var. Kaldırmak için Ctrl+tıklama deneyebilirsiniz.
+Too far away to merge stations!
+İstasyonları birleştirmek için çok uzak!
+Tunnel can only be entered at its portal
+Tünele yalnızca portalından girilebilir
+Unknown error
+Bilinmeyen hata
+Upgrade must have\na higher level
+Yükseltmenin daha\nyüksek bir seviyesi olmalı
+Vehicle %s cannot choose because stop too short!
+%s duraklar çok kısa olduğu için seçim yapamıyor!
+Watertable reached
+Karo daha fazla alçaltılamaz!\nTaban suyu seviyesine ulaşıldı.
+Way does not match the slope here
+Yol buradaki eğimle uyuşmuyor
+Wrong direction to enter the bridge
+Köprüye girmek için yanlış yön
+Zughalt muss auf\nSchiene liegen!\n
+Tren istasyonları\ndemiryolu rayı\nüzerine yapılmalıdır.\n
+#___________________________________help_text___________________________________
+#___________________________________help_text___________________________________
+<h1>Index</h1><p>*: only english</p><p>General</p>%s<p>Usage</p>%s<p>Tools</p>%s<p>Start</p>%s<p>How to play</p>%s<p>Others:</p>%s
+<title>Yardım</title><h1>Yardım Dizini</h1><p><it>Simutrans hakkında</it></p>%1$s<p><it>Nasıl kullanılır</it></p>%2$s<p><it>Oyuna nasıl başlanır</it></p>%4$s<p><it>Nasıl oynanır</it></p>%5$s<p><it>Aletler</it></p>%3$s<p><it>Diğer pencereler</it></p>%6$s
+<title>Keyboard Help</title>\n<h1><strong>Keyboard Help</strong></h1><p>\n
+<title>Klavye Kısayolları</title>\n<h1><strong>Klavye Yardımı</strong></h1>\n<p>\n<p><strong>Klavye Yardımı</strong>, atanmamış bir tuşa basıldığında veya <a href="general.txt">Genel Yardım</a> üzerinden açılır.\n</p>\n<p>\nTuşlar büyük/küçük harfe duyarlıdır (büyük harfler için [<em>Shift</em>] kullanın).\n</p>\n<p>\nAtanmış işlevleri olan tuşlar:\n</p>\n<p>\n[<em>Yön tuşları</em>]: oyun görünümünü ok yönünde kaydırır.<br>\n[<em>Backspace</em>]: tüm pencereleri, alet çubuklarını ve yardım metinlerini kapatır.<br>\n[<em>Delete</em>] veya [<em>Escape</em>]: en üstteki pencereyi, alet çubuğunu veya yardım metnini kapatır.<br>\n[<em>Page-Up</em>] veya [<em>&gt;</em>]: oyun görünümünü yakınlaştırır.<br>\n[<em>Page-Down</em>] veya [<em>&lt;</em>]: oyun görünümünü uzaklaştırır.\n[<em>CTRL</em>] + alet: daha düz yollar inşa eder (daha hızlı yolların üzerinden bile) veya sorgulama ya da silme sırasında seçim sırasını tersine çevirir.<br>\n</p>
+At least one stop is connected to the town.
+Şehre en az bir durak bağlı.
+At least one tile is connected to one stop.
+En az bir karo bir durağa bağlı.
+Color according to transport capacity left
+Kalan taşıma kapasitesine göre renklendir
+Color-coded terrain according to altitude.
+Arazi yükseklik gölgelemesini göster/gizle.
+Decrease water height
+Suyu bir kademe boşalt
+Highlight railroad tracks
+Demiryolu raylarını vurgula
+Highlite depots
+Depoları vurgula
+Highlite electrical transmission lines
+Elektrik iletim hatlarını vurgula
+Highlite factories
+Fabrikaları vurgula
+Highlite forests
+Ormanları vurgula
+Highlite tourist attraction
+Turistik yerleri vurgula
+Increase water height
+Su seviyesini bir kademe yükselt
+Open station/stop details
+İstasyon ayrıntılarını göster
+Overlay city limits
+Şehir sınırlarını göster
+Overlay passenger destinations when a town window is open
+Şehir penceresi açıkken yolcu hedeflerini göster
+Overlay schedules/network
+Sefer planlarını/ağı harita üzerinde göster
+Overlay town names
+Şehir adlarını göster
+Please click on the map to add\nwaypoints or stops to this\nschedule.
+Bu sefer planına yol noktası veya durak\neklemek için lütfen haritaya\ntıklayın.
+Remove double stops from schedule
+Sefer planındaki ardışık tekrar durakları kaldır
+Set tile climate %s
+Bu zemini %s bölgesine dönüştür
+Show capacity and if halt is overcrowded
+Kapasiteyi ve durağın dolu olup olmadığını göster
+Show how many convoi reach a station
+Bir istasyona kaç konvoyun ulaştığını göster
+Show how many people/much is waiting at halts
+Ne kadar beklediğini göster
+Show initial passenger departure
+Yolcu ve posta çıkış noktalarını göster.
+Show level of city buildings
+Şehir binalarının seviyesini göster
+Show mail service coverage/mail network
+Posta hizmeti kapsama alanını göster
+Show passenger coverage/passenger network
+Yolcu ağı kapsama alanını göster
+Show speedlimit of ways
+Yolların hız sınırını göster
+Show the change of waiting at halts
+Bekleyenlerin geçen aya göre değişimini göster
+Show the owenership of infrastructure
+Altyapının sahipliğini göster
+Show transported freight/freight network
+Taşınan yükü/yük ağını göster
+Show usage of network
+Karo ve ay başına araç sayısını göster
+Shows a listing with all industries on the map.
+Haritadaki tüm sanayi kollarının listesini gösterir.
+Sum of departure/arrivals at halts
+Gelen ve giden araç sayısını göster
+#____________________________________ki_text____________________________________
+#____________________________________ki_text____________________________________
+%s now\noffers bus services\nbetween %s\nand attraction\n%s\nat (%i,%i).\n
+%s artık\n%s ile\n%s turistik yeri arasında\n(%i,%i) konumunda\notobüs seferi sunuyor.\n
+%s now\noffers bus services\nbetween %s\nand factory\n%s\nat (%i,%i).\n
+%s artık\n%s ile\n%s fabrikası arasında\n(%i,%i) konumunda\notobüs seferi sunuyor.\n
+%s\nnow operates\n%i trucks between\n%s at (%i,%i)\nand %s at (%i,%i).
+%s\nartık %i kamyonla\n%s (%i,%i)\nile %s\n(%i,%i) arasında sefer yapıyor.
+%s\nopened a new railway\nbetween %s\nat (%i,%i) and\n%s at (%i,%i).
+%s\nyeni bir demiryolu açtı:\n%s\n(%i,%i) ile\n%s\n(%i,%i) arasında.
+Airline service by\n%s\nnow between\n%s \nand %s.\n
+%s\nartık\n%s \nile %s arasında\nhavayolu seferi düzenliyor.\n
+Ferry service by\n%s\nnow between\n%s \nand %s.\n
+%s\nartık\n%s \nile %s arasında\nferibot seferi düzenliyor.\n
+Travellers now\nuse %s's\nbusses between\n%s \nand %s.\n
+%s\n%s ile\n%s arasında\nyeni bir şehirlerarası\notobüs hattı açtı.\n
+#___________________________________menu_text___________________________________
+#___________________________________menu_text___________________________________
+EDITTOOLS
+Harita Düzenleme Aletleri
+LISTTOOLS
+Listeler
+MAGLEVTOOLS
+Maglev Aletleri
+MONORAILTOOLS
+Monoray Aletleri
+NARROWGAUGETOOLS
+Dar Hat Demiryolu Aletleri
+RAILTOOLS
+Demiryolu Aletleri
+ROADTOOLS
+Karayolu Aletleri
+SHIPTOOLS
+Deniz Yolu Aletleri
+SLOPETOOLS
+Arazi Düzenleme Aletleri
+SPECIALTOOLS
+Özel Yapı Aletleri
+TRAMTOOLS
+Tramvay / Hafif Raylı Sistem Aletleri
+#_________________________________message_text__________________________________
+#_________________________________message_text__________________________________
+%s s\nheadquarter now\nat (%i,%i).
+%s\nyeni bir genel merkez inşa etti.
+Factory chain extended\nfor %s near\n%s built with\n%i factories.
+Ekonomi güçleniyor:\n%s, %s yakınında zinciri genişletiyor.\n%i yeni fabrika kuruldu.
+Net wealth less than 10%% of starting capital!
+Net varlık, başlangıç sermayesinin %%10'undan az!
+New %s now available:\n%s\n
+Yeni %s artık mevcut:\n%s\n
+New factory chain\nfor %s near\n%s built with\n%i factories.
+Sanayi büyüyor: %s için\n%s yakınında\n%i fabrikadan oluşan\nyeni bir üretim zinciri kuruldu.
+New vehicle now available:\n%s\n
+\n Yeni bir araç\n artık mevcut:\n\n\n -- %s --\n\n
+Now %u clients connected.
+Şu anda %u istemci bağlı.
+overtaking
+sollama
+Remove vehicle from map. Use with care!
+Aracı haritadan kaldır. (Dikkatli kullanın!)
+Screenshot\ngespeichert.\n
+Ekran görüntüsü\nkaydedildi.\n
+Sends the convoi to the last depot it departed from!
+Konvoyu en son ayrıldığı depoya gönderir.
+Server preparing game ...
+Sunucu oyunu hazırlıyor ...
+Trees
+Ağaçlar
+With a big festival\n%s built\na new monument.\n%i citicens rejoiced.
+Büyük bir şenlikle\n%s\nyeni bir anıt yaptırdı.\n%i vatandaş sevinç içinde.
+#___________________________________obsolete____________________________________
+#___________________________________obsolete____________________________________
+Line Filter
+Hat Filtresi
 #_________________________________program_text__________________________________
 #_________________________________program_text__________________________________
+(%.2f$/km %.2f$/m)
+(%.2f$/km %.2f$/ay)
+(%i)-
+(%i)
+(in depot)
+(depoda)
+[0] south-facing
+[0] güneye bakan
+[1] east-facing
+[1] doğuya bakan
+[2] north-facing
+[2] kuzeye bakan
+[3] west-facing
+[3] batıya bakan
+[4] southeast corner
+[4] güneydoğu köşesi
+[5] northeast corner
+[5] kuzeydoğu köşesi
+[6] northwest corner
+[6] kuzeybatı köşesi
+[7] southwest corner
+[7] güneybatı köşesi
+/month
+/ay
+\nBauzeit bis
+kadar
+\nBauzeit von
+\nŞu tarihten itibaren
+\nCan't open heightfield file.\n
+\nYükseklik haritası açılamıyor.\n
+\ndirection:
+\nyönler:
+\nelektrified
+\nelektrikli\n
+\nHeightfield has wrong image type.\n
+\nYükseklik dosyasının\ngörüntü türü hatalı.\n
+\nis reserved by:
+\nrezerve eden
+\nminimum speed:
+\nasgari hız:
+\nnot elektrified
+\nelektriksiz\n
+\nRibi (masked)
+\nyönler (maskeli):
+\nRibi (unmasked)
+\nyönler (maskesiz):
+\nSet phases:
+\nFaz süreleri:\n / sonra \\ sonra ofset
+\nsingle way
+\nTek yön
+\nway1 reserved by
+\n1. yolu rezerve eden
+\nway2 reserved by
+\n2. yolu rezerve eden
+\nwith sign/signal\n
+\nlevha/sinyal ile\n
+%d buildings\n
+%d bina\n
+%d convois
+%d konvoy
+%d Einzelfahrzeuge im Depot
+Burada %d araç bulunuyor.
+%d more convois
+%d konvoy daha
+%i car(s),
+%i vagon,
+%i km/h (max. %ikm/h)
+%i km/h (azami %ikm/h)
+%i years %i months old.
+Yaş: %i yıl %i ay
+%s at (%i,%i) now public stop.
+%s artık kamuya açık aktarma noktası.
+%s building %s %s
+%s %s %s
+%s city %d %s
+%s %d %s
+%s factory %s %s
+%s %s Tesisi
+%s has entered a depot.
+%s\ndepoya girdi.
+%s has left.
+%s ayrıldı.
+%s land %d %s
+%s %d dış %s
+%s now known as %s.
+%s artık %s olarak biliniyor.
+%s wasted\nyour money with a\nnew townhall\nwhen it reached\n%i inhabitants.
+%s\nnüfusu %i kişiye ulaşınca\nyeni bir belediye binası\ninşa etti.
+%s\nis crowded.
+%s\naşırı kalabalık.
+%s\nspeed %i\nmax_speed %i\ndx:%i dy:%i
+%1$s\n\n\nazami hız %3$i km/h\n\nşu anki hız %2$i km/h.\n\n
+%s\nwas liquidated.
+%s iflas etti ve\ntasfiye edildi.\nTüm faaliyetler durduruldu\nve tüm varlıklar satıldı.
+%u Client(s)\n
+%u istemci\n
+%u days ago
+%u gün önce
+%u hours ago
+%u saat önce
+%u minutes ago
+%u dakika önce
+%u Player (%u locked)\n
+%u oyuncu (%u kilitli)\n
+%u years ago
+%u yıl önce
+<clear schedule>
+<sefer planını temizle>
+<create new line>
+<yeni hat oluştur>
+<em>%s</em> - %s<br>\n
+[<em>%s</em>]: %s<br>\n
+<h1>Error</h1><p><strong>
+<H1>Hata: Ana pak dizininde çift nesneler</H1><p><strong>
+<h1>Warning</h1><p><strong>addons for
+<h1>Uyarı: Eklenti dizininde çift nesneler</h1><p><strong>Şunun eklentileri:
+<individual schedule>
+<kendi sefer planı>
+<no line>
+<bir hatta atanmamış>
+<no schedule set>
+<sefer planı yok>
+<promote to line>
+<hatta dönüştür>
+1 convoi
+1 konvoy
+1 Einzelfahrzeug im Depot
+Burada 1 araç bulunuyor.
+1 minute ago
+bir dakika önce
+1 year ago
+1 yıl önce
+100 km/h = %i tiles/month
+100 km/h = %i karo/ay
+1LIGHT_CHOOSE
+Parlaklık:
+1th
+1.
+1WORLD_CHOOSE
+Yeni Oyun Ayarları:
+21th
+21.
+22th
+22.
+23th
+23.
+2LIGHT_CHOOSE
+Renkler:
+2th
+2.
+2WORLD_CHOOSE
+Harita numarası:
+31th
+31.
+3LIGHT_CHOOSE
+Kaydırma hızı:
+3th
+3.
+4LIGHT_CHOOSE
+Ters kaydırma
+5LIGHT_CHOOSE
+Duraklarda yayalar
+5WORLD_CHOOSE
+Şehir sayısı:
+6LIGHT_CHOOSE
+Şehirlerde yayalar
+6WORLD_CHOOSE
+Trafik yoğunluğu:
+8WORLD_CHOOSE
+Gece ve gündüz döngüsü
+A bridge must end on a way!
+Bir köprü bir yolun üzerinde bitmelidir!
+A bridge must start on a way!
+Bu köprü güzergâhının uçları size ait değil veya güzergâh engelli.\n
+Abfrage
+İnceleme Aleti
+Abnehmer
+Alıcı:
+About
+Hakkında
+About scenario
+Telif hakkı
+Abriss
+Yık / Kaldır
+Absenken
+Araziyi alçalt
+Abspanntransformator
+Trafo
+Accelerate time
+Zamanı hızlandır
+Act. load: %u MW\n
+Anlık yük: %u MW\n
+Active player only
+Yalnızca etkin oyuncu
+Add forest
+Orman ekle
+Add random citycar
+Rastgele şehir aracı ekle
+add server
+Sunucu ekle
+Add Stop
+Durak Ekle
+Add stops for backward travel
+Dönüş yolculuğu için duraklar ekle.
+air
+pist / taksi yolu
+Aircraft
+Havayolu
+aircraft_tab
+Kargo uçakları
+airplane
+uçak
+Airport
+Havaalanı
+AIRTOOLS
+Havaalanı Aletleri
+All
+Tümü
+all convoi tooltips
+tüm konvoy ipuçları
+Allow city growth
+Şehrin büyümesine izin ver
+Allow player change
+Oyuncu değişimine izin ver
+allowed climates:\n
+İzin verilen iklimler:\n
+Alters a schedule.
+Sefer planına durak ekler/çıkarır
+and arranged by
+ve düzenleyen
+Angenommene Waren
+Yakındaki sanayilerin ihtiyaç duyduğu mallar
+anhaengen
+Sona ekle
+Anhaenger_tab
+Römorklar
+Anheben
+Araziyi yükselt
+Appends stops at the end of the schedule
+Sefer planının sonuna durak ekle
+Apply Line
+Hat ata
+Apr.
+Nis.
+April
+Nisan
+Arbeiter aus:
+İşçilerin yaşadığı yer:
+Arrivals from\n
+Şuradan gelenler\n
+Arrived
+Ulaşan
+Assets
+Varlıklar
+Aufloesen
+Ayır
+Aufspanntransformator
+Trafo
+Aug.
+Ağu.
+August
+Ağustos
+auto
+otomatik
+Autohalt muss auf\nStrasse liegen!\n
+Otobüs ve kamyon durakları\nkarayolu üzerine\nyapılmalıdır.
+Available
+Mevcut
+Available at custom date
+Belirli bir tarihte mevcut
+Bahndepot
+Tren deposu
+Bankrott:\n\nDu bist bankrott.\n
+İflas:\n\nİflas ettiniz!\n
+based on Simutrans 84.22.1
+Simutrans 84.22.1 temel alınmıştır
+battery
+Akü
+Baum
+Ağaç
+baum builder
+Ağaç dik
+Baustelle
+Şantiye
+Bauzeit
+inşa süresi
+Beenden
+Çıkış
+Beginner mode
+Acemi Modu
+Besonderes Gebaeude
+Turistik yer
+BF
+istasyon
+bio
+biyolojik
+Blockstrecke ist\nbelegt\n
+\nBlok hattı başka bir\ntren tarafından kullanılıyor!\n
+Boden
+Zemin
+Bonus Multiplier: %i%%
+Bonus çarpanı: %i%%
+Bonus Speed: %i km/h
+Bonus hızı: %i km/h
+Bonusspeed: %i km/h
+Azami olası hız: %i km/h
+Boost (%%)
+Artış (%%)
+Borderless (disabled on fullscreen)
+Kenarlıksız (tam ekranda devre dışı)
+bridge is too high for its type!
+Köprü bu tür için çok yüksek!
+Bridge is too long for this type!\n
+Köprü açıklığı bu\nköprü türü için\nçok uzun.\n
+Bruecke
+Köprü
+Bruecke muss an\neinfachem\nHang beginnen!\n
+Köprüler düz bir\neğimde\nbaşlamalıdır!\n
+Brueckenboden
+köprü
+Build air depot
+Uçak hangarı inşa et
+build choosesignals
+Peron seçim sinyali inşa et
+Build city market
+En yakın şehirde yeni bir çarşı inşa et.
+Build drain
+Trafo merkezi
+build HQ
+Genel merkez inşa et
+Build land consumer
+Yeni bir enerji santrali inşa et.
+Build maglev depot
+Maglev deposu inşa et
+Build monorail depot
+Monoray deposu inşa et
+Build narrowgauge depot
+Dar hat deposu inşa et
+build portal only
+yalnızca portal inşa et
+Build powerline
+Enerji nakil hattı inşa et
+Build presignals
+Çift bloklu sinyal inşa et
+Build road depot
+Garaj inşa et
+Build ship depot
+Tersane inşa et
+Build signals
+Sinyal inşa et
+Build train depot
+Tren deposu inşa et
+Build tram depot
+Tramvay deposu inşa et
+Build truck depot
+Garaj inşa et
+Building costs estimates
+Tahmini inşaat maliyeti
+Buildings
+Şehir binaları
+Built artifical slopes
+Yapay eğim oluştur
+Built random attraction
+Rastgele bir turistik yer inşa et.
+Bus_tab
+Otobüsler
+Can be overgrown
+Bitki örtüsüyle kaplanabilir
+Can only move from halt to halt or waypoint to waypoint.
+Yalnızca duraktan durağa veya\nyol noktasından yol noktasına\ntaşınabilir.
+Cancel
+İptal
+Cannot build here
+Buraya inşa edilemez
+Cannot connect to offline server!
+Çevrimdışı sunucuya bağlanılamıyor!
+Capacity
+Kapasite
+Capacity:
+Kapasite:
+Capacity: %.0f MW
+Kapasite: %.0f MW\n
+Capacity: %d%s %s\n
+Kapasite: %3d%s %s\n
+Capacity: %s\nLoad: %d (%d%%)
+Kapasite: %s\n\nOran: %d (%d%%)
+Cars are not available yet!
+Otomobiller henüz mevcut değil.
+cars.\nstate
+araç\n
+Cash
+Hesap bakiyesi
+Category
+Kategori
+Change label style
+Etiket biçimini değiştir
+Change player
+Oyuncu değiştir
+Chart
+Grafik
+Chat_msg
+Sohbet
+Choose direction
+Yön seç
+Choose operation executed on clicking stored/new vehicles
+Depodaki/yeni araçlara tıklandığında yapılacak işlemi seç
+chooses a random map
+Rastgele bir harita seçer.
+citicens
+Nüfus
+Cities can only be built on flat empty ground!
+Şehirler yalnızca düz ve boş zemine kurulabilir!
+City attraction
+Şehir turistik yeri
+City industries
+Şehirlerdeki çarşılar
+City list
+Şehir Listesi
+City size
+Şehir büyüklüğü
+city_road
+Şehir yolu
+citybuilding builder
+Şehir binaları inşa et
+CityLimit
+Şehir sınırları
+cl_title
+Araç Listesi
+cl_txt_sort
+Sıralama ölçütü:
+clamp
+sınırla
+Cleanup schedule
+Tekrar eden kayıtları kaldır
+Clear block reservation
+Rezerve yolları göster/sıfırla
+clf_chk_aircrafts
+Uçaklar
+clf_chk_cars
+Otobüs / kamyon
+clf_chk_indepot
+depoda
+clf_chk_maglev
+Maglevler
+clf_chk_monorail
+Monoraylar
+clf_chk_name_filter
+Adları filtrele:
+clf_chk_narrowgauge
+Dar hat trenleri
+clf_chk_noincome
+Zarar eden
+clf_chk_noline
+Hattı yok
+clf_chk_noroute
+Rotası yok
+clf_chk_noschedule
+Sefer planı yok
+clf_chk_obsolete
+Eskimiş
+clf_chk_ships
+Gemiler
+clf_chk_spezial_filter
+Özel filtre:
+clf_chk_stucked
+Sıkışmış
+clf_chk_trains
+Trenler
+clf_chk_trams
+Tramvaylar
+clf_chk_type_filter
+Türleri filtrele:
+clf_chk_waren
+Malları filtrele:
+clf_title
+Araç Listesi Filtresi
+Click to open the finance dialog.
+Finans penceresini açmak için tıklayın.
+Climate
+İklim
+Climate Control
+Arazi Ayarları
+Climates
+İklimler
+closed
+kapalı.
+Closes topmost line window when new line selected.
+Yeni bir hat seçildiğinde en üstteki hat penceresini kapatır.
+COLOR_CHOOSE\n
+Lütfen sağdaki resimden\niki renk\nseçin:
+Company bankrupt
+Şirket iflas etti
+company_chat
+Şirket sohbeti
+Company_msg
+Rakipler
+Comparing pak files ...
+Pak dosyaları karşılaştırılıyor ...
+Composed by
+Besteleyen
+Configure AI
+Yapay zekâyı ayarla
+Configure AI setttings
+Yapay zekâ ayarlarını düzenle
+Congratulation\nScenario was complete in\n%i months %i years.
+Tebrikler!\nSenaryo \n%i ay %i yıl içinde \ntamamlandı!
+Connect factory
+Fabrika bağla
+Connected stops
+Bağlı Duraklar:
+Connected with server
+Sunucuya bağlanıldı
+connection
+bağlantı
+Connections
+Bağlantılar
+Constructed by
+Çizen
+Constructed by %s
+Çizen: %s
+construction speed
+inşa hızı
+Construction_Btn
+İnşaat Maliyetleri
+Consumed
+Tüketilen
+contains the following doubled objects:</strong><p>
+şu nesneleri birden fazla kez içeriyor:</strong><p/>
+convoi %d of %d
+Konvoy %d / %d
+convoi error tooltips
+konvoy hata ipuçları
+Convoi following mode
+Konvoy takip modu
+Convoi has been sent\nto the nearest depot\nof appropriate type.\n
+Konvoy uygun türdeki\nen yakın depoya\ngönderildi.\n
+Convoi is sold when all wagons are empty.
+Araç tamamen boşalır boşalmaz satılacak.
+convoi mouseover tooltips
+konvoy fare ipuçları
+convoi passed last\nmonth %i\n
+\ngeçen ay geçen\nkonvoy sayısı: %i\n
+Convois
+Konvoylar
+Convois: %d\nProfit: %s
+Araçlar: %d\nKâr: %s
+Convoys
+Konvoylar
+Copy Convoi
+Konvoyu kopyala
+Copy the selected convoi and its schedule or line
+Seçili konvoyu ve sefer planını veya hattını kopyala
+Copy to clipboard
+Panoya kopyala
+Cost
+Maliyet
+cost for removal
+Kaldırma maliyeti
+Cost per unit
+Birim maliyeti
+Cost: %8s (%.2f$/km %.2f$/m)\n
+Maliyet: %s (%.2f$/km %.2f$/ay)\n
+Cost: %8s (%.2f$/km)\n
+Maliyet: %8s (%.2f$/km)\n
+Costs
+Maliyetler
+Create a new line based on this schedule
+Bu sefer planına dayalı yeni bir hat oluştur
+curiosity builder
+Turistik yer inşa aleti
+curlist_title
+Turistik Yerler Listesi
+CURRENCY
+$
+Current game
+Geçerli oyun
+Currently playing:
+Şu anda çalan:
+Customers live in:
+Müşterilerin yaşadığı yer:
+Date format
+Tarih biçimi
+deactivated in online mode
+Çevrimiçi modda etkin değil
+Dec.
+Ara.
+Deccelerate time
+Zamanı yavaşlat
+December
+Aralık
+decrease underground view level
+yer altı görünüm seviyesini azalt
+Del Stop
+Kaldır
+Delete Line
+Hattı sil
+Delete the current stop
+Geçerli durağı sil
+Delete the selected line (if without associated convois).
+Seçili hattı sil (bağlı konvoy yoksa)
+Delete this file.
+Bu dosyayı sil.
+Delivered
+Teslim edilen
+Demand
+Talep
+Demand: %.0f MW
+Talep: %.0f MW\n
+Denkmal
+Anıt
+Departed
+Ayrılan
+Departs at
+Kalkış (gg:ss:dd)
+Departure after
+%% doluluk veya bekleme (gg-ss-dd)
+Departure board
+Kalkış saati
+Departures per month
+Aylık kalkış sayısı
+Departures to\n
+Şuraya kalkışlar\n
+Depot
+Depo
+Depots
+Depolar
+Der Tunnel ist nicht frei!\n
+Tünel boş değil.\n
+Destination
+Varışlar
+Destroying map ...
+Eski harita siliniyor ...
+Details
+Ayrıntılar
+Developed by the Simutrans Team
+Simutrans Ekibi tarafından geliştirildi
+Die Bruecke ist nicht frei!\n
+Köprü boş değil!\n
+diesel
+dizel
+direct_chat_to:
+Doğrudan mesaj:
+directmail
+El ilanı
+Direkt erreichbare Haltestellen
+Buradan doğrudan ulaşılan yerler
+disable midi
+MIDI müziğini kapat
+Display bars above factory to show the status
+Fabrikaların üzerinde durum çubuklarını göster
+Display settings
+Görüntü ayarları
+Distance
+Mesafe
+distributing cities
+şehirler dağıtılıyor
+distributing factories
+fabrikalar dağıtılıyor
+Do not show
+Gösterme
+Dock
+iskele
+Dock must be built on single slope!
+İskeleler tek eğimli bir karoya inşa edilmelidir.
+Downloading
+İndiriliyor
+dp_title
+Depo listesi
+Du hast %d Monate Zeit, deine Schulden zurueckzuzahlen
+Borcunuzu ödemek için %d ayınız var.
+Durchsatz
+Azami
+Economy
+Ekonomi ve şehirler
+Eigenbesitz\n
+Kamu malı\n
+Ein %s\npasst hier nicht.\n
+Buraya bir '%s'\nsığmıyor!\n
+Einstellungen
+Ayarlar
+Einstellungen aendern
+Seçenekler
+electric
+elektrikli
+Electricity
+Elektrik
+Electricity producer\n\n
+Elektrik üreticisi\n\n
+Electrics_tab
+Elektrikli çekiş
+Electrify track
+Rayı elektriklendir
+enlarge map
+Haritayı büyüt
+enter a value between %i and %i
+%i ile %i arasında bir değer girin
+Enter address
+Adres girin
+Enter Password
+Oyuncu adını ve parolasını değiştir
+Error
+Hata
+Erzeuge neue Karte.\n
+Yeni bir harita oluşturulurken\nlütfen bekleyin.\n\n(Büyük haritalarda birkaç \ndakika sürebilir.)\n
+Es wird bereits\nein Fahrplan\neingegeben\n
+Halihazırda bir sefer planı\nhazırlanıyor.\nYenisini yapmadan önce\nonu tamamlayın!\n
+Extract files
+Pak dosyalarını zip arşivinden çıkar.
+Fabrikanschluss
+Bağlı fabrikalar
+Fabrikname
+Fabrika adı
+Factories
+Fabrikalar
+factory details
+Fabrika bağlantıları
+factorybuilder
+Fabrika inşa aleti
+Fahrplan
+Sefer planı
+Fahrtziel
+Hedef:
+Fahrzeuge koennen so nicht entfernt werden
+Araçlar bu şekilde\nkaldırılamaz!\n
+Fahrzeuge:
+Araçlar:
+Farbe
+Oyuncu rengi
+Fast forward
+Hızlı ileri
+Feb.
+Şub.
+February
+Şubat
+Ferry_tab
+Feribotlar
+Fertig
+Tamam
+Filename
+Dosya adı:
+Files from:
+Dosyaların yeri:
+Filter:
+Filtre:
+Finances of %s
+%s finansmanı
+Finanzen
+Finans
+find mismatch
+Pak dosyalarını karşılaştır
+fl_title
+Fabrika Listesi
+Flug_tab
+Yolcu uçakları
+follow me
+Takip et
+Follow the convoi on the map.
+Aracı harita üzerinde takip et.
+font size
+Yazı tipi boyutu (yalnızca .ttf ve .otf)
+For questions and support please visit:
+Sorularınız ve destek için:
+Forest
+Ormanlar
+Found new city
+Yeni şehir kur
+Fracht
+Yük
+Frame time:
+Kare süresi:
+Free Capacity
+Boş kapasite
+freeplay mode
+iflassız mod
+Freight
+Yük
+Friction:
+güncel sürtünme katsayısı:
+fuel_cell
+yakıt hücresi
+Full load
+Asgari doluluğu bekle
+Fullscreen (changed after restart)
+Tam ekran (yeniden başlatınca etkin olur)
+Fundament
+Temel
+Fussgaenger
+Yaya
+Game info
+Oyun bilgisi
+GAME PAUSED
+Oyun duraklatıldı
+Game_msg
+Genel
+Gear:
+Vites:
+Gebaeude
+Bina
+General
+Genel
+generate script
+Altyapı makro betiği oluştur
+Generated
+Üretilen
+Generation: %.0f MW
+Üretim: %.0f MW\n
+Gewicht
+Ağırlık
+Gewinn
+Gelir:
+Give the selected vehicle(s) an individual schedule
+Seçili araçların kendi sefer planını veya atanmış hattını düzenle
+gl_btn_sort_catg
+Kategori
+gl_title
+Mal Listesi
+go home
+Depoya git
+Goods
+Mallar
+Goods AI
+Yük yapay zekâsı
+Goods list
+Mal listesi
+Gross Profit
+Nakit akışı
+Groundobj
+Nesne
+groundobj builder
+Arazi nesnesi yerleştir
+Grow city
+Şehri büyüt
+Growth
+Şehir büyümesi
+GUI settings
+Arayüz
+H
+durak
+Happy
+Memnun
+Has slope graphics
+Eğim grafiği var
+Has Snow
+Kar grafiği var
+Haus kaufen
+Ev satın al
+Helligk.
+Görüntü
+Help
+Yardım
+Help text not found
+Yardım metni bulunamadı.
+hide all building
+tüm binaları gizle
+hide city building
+şehir binalarını gizle
+Hide labels
+Etiketleri gizle
+hide objects under cursor
+imlecin altındaki nesneleri gizle
+hide station names
+istasyon adlarını gizle
+hide transparent
+Gizlemek yerine saydam yap
+hide trees
+Ağaçları gizle
+Hier warten/lagern:
+Bekleyen mal ve yolcular:
+Higher transport fees, crossconnect all factories
+Daha yüksek taşıma ücreti, tam zamanında üretimi kapat.
+highlight single ways
+Yolların bitişini/kesintisini gösterir.
+Highlite schedule
+Sefer planındaki durakları vurgula
+hl_title
+İstasyon Listesi
+hl_txt_filter
+Filtre:
+hl_txt_sort
+Sıralama:
+hlf_chk_airport
+Havaalanları
+hlf_chk_anleger
+İskele
+hlf_chk_bahnhof
+Tren istasyonu
+hlf_chk_bushalt
+Otobüs durağı
+hlf_chk_frachthof
+Yükleme rampası
+hlf_chk_keine_verb
+Bağlantı yok
+hlf_chk_maglevstop
+Maglev istasyonu
+hlf_chk_monorailstop
+Monoray durağı
+hlf_chk_name_filter
+Adları filtrele:
+hlf_chk_narrowgaugestop
+Dar hat istasyonu
+hlf_chk_overflow
+Aşırı kalabalık
+hlf_chk_spezial_filter
+Özel filtre:
+hlf_chk_tramstop
+Tramvay durağı
+hlf_chk_type_filter
+Türleri filtrele:
+hlf_chk_waren_abgabe
+Çıkan mallar:
+hlf_chk_waren_annahme
+Giren mallar:
+hlf_title
+İstasyon Listesi Filtresi
+Home depot not found!\nYou need to send the\nconvoi to the depot\nmanually.
+Depo bulunamadı.\nAracı oraya elle\ngöndermelisiniz.
+Homeless
+Evsiz
+Horizontal stripe ownership
+Sahiplik şeridi yatay
+hydrogene
+Hidrojen
+Icon size:
+Simge boyutu:
+Idle:
+Boşta:
+ignore climates
+İklimleri yok say
+In the industry legend show only currently existing factories
+Sanayi göstergesinde yalnızca mevcut fabrikaları göster
+In Transit
+Yolda
+Increase Industry density
+Sanayi yoğunluğunu artır
+increase underground view level
+yer altı görünüm seviyesini artır
+industrial building
+Sanayi binaları
+Industry overlay
+Sanayi durum göstergesi
+Infinite mouse scrolling
+Sınırsız harita kaydırma
+Infinite scrolling using mouse
+Dokunmatik ekranlarda çalışmayabilir!
+Init map ...
+Harita hazırlanıyor ...
+Input
+Girdi
+Ins Stop
+Durak Araya Ekle
+Insert stop before the current stop
+Geçerli duraktan önce durak ekle
+Install graphics
+Grafik seti kur
+Install paks
+Paksetler indirilip kurulur.
+Insufficient funds!
+Yetersiz bakiye!
+Intercity road len:
+Şehirlerarası yol uzunluğu:
+Intro. date
+Hizmete giriş
+Intro. date:
+Hizmete giriş:
+invalid
+tanımsız.
+Invalid coordinate
+Geçersiz komut
+Invert stops
+Durakları ters çevir
+isometric map
+İzometrik görünüm
+Jan.
+Oca.
+January
+Ocak
+join game
+Çevrimiçi oyna
+July
+Temmuz
+Jump to
+Şuraya git
+June
+Haziran
+just now
+az önce
+Kann Spielstand\nnicht laden.\n
+Kayıtlı oyun yüklenemiyor!
+Kann Spielstand\nnicht speichern.\n
+Hedef dosya\nyazmak için\naçılamıyor!
+keep city roads
+şehir yollarını koru
+Kein Besitzer\n
+Sahipsiz\n
+keine
+hiçbiri
+Keine Einzelfahrzeuge im Depot
+Burada araç yok.
+Keyboard_Help\n
+Klavye Yardımı\n
+koord
+Koordinatlar
+Kreuzung
+Hemzemin geçit
+labellist_title
+İşaret Listesi
+Lade Relief
+Yükseklik haritası yükle
+Laden
+Yeni bir oyun yükle
+Land attraction
+Kırsal turistik yer
+Land industries
+Sanayi zincirleri:
+LANG_CHOOSE\n
+Lütfen tercih ettiğiniz\ndili seçin:\n
+LARGE_NUMBER_STRING
+Mn
+LARGE_NUMBER_VALUE
+1e6
+Last Month
+Geçen ay:
+Last used tools
+Son kullanılan aletler
+Last Year
+Geçen yıl:
+Leaving depot!
+Depodan ayrılıyor!
+leer
+boş
+Left button drags minimap too
+Sol tuş mini haritayı da sürükler
+legacy (large heights)
+eski yöntem (büyük yükseklikler)
+legacy (small heights)
+eski yöntem (küçük yükseklikler)
+Legend
+Harita göstergesi
+Leistung
+Güç
+Leistung: %d kW
+Güç: %d kW
+Leitung
+Enerji hattı
+length: %d
+uzunluk: %d
+letzen Monat: diesen Monat:
+geçen ay: bu ay:
+Line
+Hat
+Line Management
+Hat Yönetimi
+line name mouseover tooltips
+hat ve araç adı fare ipuçları
+linear
+doğrusal
+Lineless convoys serving this stop
+Bu durağa uğrayan hatsız konvoylar
+Lines serving this stop
+Bu durağa uğrayan hatlar
+List of industries on the map
+Haritadaki sanayilerin listesi
+LKW_tab
+Kamyonlar
+Load game
+Oyun Yükle
+load height data from file
+Yükseklik verisini dosyadan yükle.
+Load mode:
+Yükleme modu:
+Load scenario
+Senaryo Yükle
+Load script tool
+Betik aleti yükle
+Load Scripted AI
+Betik tabanlı yapay zekâ yükle
+Load settings from
+Ayarları şuradan al
+loaded
+yüklendi
+loaded passenger/freight
+Yolcu/yük sıralama ölçütü
+Loading (%i->%i%%)!
+Yükleniyor (%i->%i%%)
+Loading (%i%%) departure %s!
+Yükleniyor (%i%%), kalkış %s!
+Loading (%i%%)!
+Yükleniyor (%i%%)!
+Loading addon paks ...
+Eklenti pakleri yükleniyor ...
+Loading map ...
+Harita yükleniyor ...
+Loading paks ...
+Pakler yükleniyor ...
+Loading skins ...
+Kaplamalar yükleniyor ...
+Loading time:
+tam dolum süresi:
+Lock Control key
+Ctrl tuşunu kilitle
+Lock game
+Oyuncu değişimini engelle (onay gerektirir).
+Lokomotive_tab
+Lokomotifler
+m3
+m³
+maglev vehicle
+maglev aracı
+maglev_track
+Maglev hattı
+Maglevdepot
+Maglev deposu
+Mail Demand %d\n
+Posta talebi %d\n
+Mail level
+Posta düzeyi
+Mailbox
+Mesajlar
+Mailbox Options
+Mesaj Seçenekleri
+Maintenance
+Bakım
+make stop public (or join with public stop next) costs %i per tile and level
+Durağı kamuya aç (veya komşu kamu durağıyla birleştir), karo ve seviye başına %i$
+Make way or stop public (will join with neighbours), %i times maintainance
+Yolu veya durağı kamuya aç (komşularla birleşir), %i katı bakım maliyeti
+Manual (Human)
+Elle (İnsan)
+Manufactured:
+Üretilen:
+Map roughness
+Arazi engebeliliği:
+map view
+Harita
+map zoom
+yakınlaştırma
+March
+Mart
+Margin (%%)
+Kâr marjı
+Marker
+İşaret koy
+max
+azami
+Max Boost (%%)
+Azami artış (%%)
+Max income:
+Azami gelir:
+Max. speed
+Azami hız
+Max. speed:
+Azami hız:
+Max. waiting time
+Azami bekleme süresi (gg:ss:dd)
+Maximum 254 stops\nin a schedule!\n
+Bir sefer planında en fazla\n254 durak olabilir!\n
+maximum length of rivers
+Nehirlerin azami uzunluğu
+Maximum tile height difference reached.
+İki karo arasındaki\nazami yükseklik farkına\nulaşıldı.
+Maxspeed
+Azami hız
+May
+Mayıs
+Median Citizen per town
+Şehir başına ortanca nüfus:
+Meldung
+Mesaj
+Menge
+miktar
+merge stop
+durağı birleştir
+MessageOptionsText
+\nYeni Yıl\n\nOyuncu Haberleri\n\nŞehir Haberleri\n\nRota Yok\n\nYeni Hedefler\n\nBildirim\n\nYeni Araçlar\n\nİstasyon Dolu\n\nSorunlar\n\nTrafik Sıkışıklığı\n\nSenaryo\n\nGenel Sohbet\n\nŞirket Sohbeti\n\nÖzel Sohbet\n\n
+min
+dk.
+minimum length of rivers
+Nehirlerin asgari uzunluğu
+Minimum load
+Asgari doluluk (%%)
+Missing pakfiles
+Nesneler eksik!
+Modify the selected line
+Seçili hattı düzenle
+Monate alt
+aylık.
+Monorail
+Monoray
+monorail vehicle
+monoray aracı
+monorail_track
+Monoray hattı
+Monorailboden
+Yükseltilmiş yol
+Monoraildepot
+Monoray deposu
+Month
+Ay
+month wait time
+aylık bekleme süresi
+Monthly departures
+Sabit kalkış saatleri
+Months
+Ay
+Monument
+Anıt
+Monuments
+Anıtlar
+Mountain height
+Dağ yüksekliği:
+Move the map
+Haritayı hareket ettir
+Movingobj
+hareketli nesne
+Music playing disabled/not available
+Müzik kapalı/kullanılamıyor.
+Music volume:
+Müzik sesi:
+mute sound
+Sesi kapat
+Name
+Ad
+Narrowgauge
+Dar hat
+Narrowgauge are not available yet!
+Dar hat rayları henüz mevcut değil.
+narrowgauge vehicle
+dar hat aracı
+narrowgauge_track
+Dar hat rayı
+Narrowgaugedepot
+Dar hat deposu
+Net ID: %p
+Ağ kimliği: %p\n
+Net Wealth
+Net varlık
+Net wealth near zero
+Net varlık sıfıra yakın
 Neue Karte
 Yeni kart
+Neue Welt
+Yeni Bir Oyun Oluştur
+new convoi
+Yeni konvoy
+New Line
+Yeni hat
+New line created!\nYou can assign the line now\nby selecting it from the\nline selector above.
+Yeni hat oluşturuldu!\nHattı şimdi yukarıdaki\nhat seçicisinden seçerek\natayabilirsiniz.
+New Vehicles
+Yeni Araçlar
+Nickname:
+Takma ad:
+no buildings hidden
+hiçbir bina gizlenmedi
+no convois
+Konvoy yok
+No goods are loaded onto this convoi.
+Bu konvoya hiçbir mal yüklenmeyecek
+no goods waiting
+bekleyen mal yok
+no load
+Yalnızca boşalt
+No player
+Oyuncu yok
+No Route
+Rota Yok
+No stop here!
+Bu alet yalnızca durak karolarında kullanılabilir.
+No suitable ground!
+Uygun zemin yok!
+No suitable townhall available for this climate!
+Bu iklim için uygun belediye binası yok!
+No terminal station here!
+Buraya son durak \nistasyonu yapılamaz! Düz bir yolun \nuç parçası gereklidir.
+no timeline
+tüm dönemler
+No transformer connected.
+Hiçbir trafo bağlı değil: tüm enerji boşa gidecek.
+no tree
+Ağaç yok
+No vehicles are available for purchase.
+Satın alınabilecek araç yok.
+No. of Factories
+Fabrikalar ve dükkânlar:
+Noch kein Fahrzeug\nmit Fahrplan\nvorhanden\n
+"Nereye gideyim?"\nHareket emri vermeden önce bu konvoya bir sefer planı vermeli veya onu bir hatta atamalısınız.
+none
+hiçbiri
+nord
+Kuzey
+nordost
+Kuzeydoğu
+nordwest
+Kuzeybatı
+Not allowed to make publicly owned ways!
+Kamuya ait yol yapmaya izin verilmiyor!
+Not allowed!\nThe convoi's schedule can\nnot be changed currently.\nTry again later!
+Aracın sefer planı\nrota aranırken\ndeğiştirilemez.
+Not enough fields would remain.
+Bu çiftliğin çevresinde\nyeterli tarla kalmaz.
+Not online
+Çevrimdışı
+Nov.
+Kas.
+November
+Kasım
+now
+şimdi
+Now active as %s.\n
+Şimdi %s olarak oynuyorsunuz.\n
+nowhere
+hiçbir yerde
+Number of rivers
+Nehir sayısı
+Object
+Nesne
+Oct.
+Eki.
+Odometer: %s km
+Kilometre sayacı: %s km
+Ok
+Tamam
+Oktober
+Ekim
+On loan since %i month(s)
+%i aydır borçlu
+On mouseover
+Fare üzerine gelince
+on the
+kalkış/ay, ilki (gg-ss-dd)
+On this map, you are not\nallowed to change player!\n
+Bu oyun kilitli.\nOyuncu değişimi mümkün değil.\n
+Only city chains
+Şehir sanayi zinciri inşa et
+Only first %d differing paks reported. There are probably more.
+Yalnızca farklı olan ilk %d pak listelendi. Muhtemelen daha fazlası var.
+Only full Unicode fonts
+Yalnızca tam Unicode yazı tipleri
+Only land chains
+Kırsal sanayi zinciri inşa et
+Only one transformer per factory!
+Fabrika başına yalnızca bir trafo!
+Only show goods which are currently handled by factories
+Yalnızca fabrikalarca şu anda işlenen malları göster
+open
+açık.
+Operation
+İşletme maliyetleri
+Ops Profit
+İşletme kârı
+Optionen
+Seçenekler
+Or enter a server manually:
+Veya bir sunucu adresi girin:
+ORDINAL_DAY_SYMBOL
+.
+Origin
+Çıkış noktası
+ost
+Doğu
+Output
+Çıktı
+Ownership
+Sahiplik
+Pak which may cause severe errors:
+Aşağıdaki nesneler (pak) eksik; bu, taşıma zincirlerinin bozulmasına yol açabilir:
+Pak which may cause visual errors:
+Aşağıdaki nesneler (pak) benzerleriyle değiştirildi:
+Pak(s) different:
+Farklı pak dosyaları:
+Pak(s) missing on client:
+İstemcide eksik pak dosyaları:
+Pak(s) not on server:
+Sunucuda bulunmayan pak dosyaları:
+Pakset differences
+Pakset farkları
+paletten
+kasa
+Pas_tab
+Yolcu trenleri
+Passagiere
+Yolcular
+Passagierrate
+Yolcu düzeyi
+Passagierziele
+Yolcu/posta hedefleri
+Passenger AI
+Yolcu yapay zekâsı
+Passenger Demand %d\n
+Yolcu talebi %d\n
+Passengers %d %c, %d %c, %d no route
+Yolcular %d %c, %d %c, %d rotasız
+Passengers %d %s, %d %s, %d no route
+Yolcular %d %s, %d %s, %d rotasız
+Password
+Parola:
+Pause
+Duraklat / Devam et
+Pax <%i>  Mail <%i>
+Yolcu <%i> Posta <%i>
+Pax level
+Yolcu düzeyi
+PaxDest
+Hedefler
+Percent Electricity
+Elektrik üretimi (talebin %%'si):
+personal_chat
+Özel sohbetler
+Pipette
+Seçili nesneyi yeniden inşa et
+Planes are not available yet!
+Uçaklar henüz mevcut değil.
+Plant tree
+Ağaç dik
+player
+Oyuncu
+player -1
+İnsan oyuncu
+player 0
+kamu hizmeti
+player 1
+Napik 128 AS
+player 10
+Oyuncu 10
+player 11
+Oyuncu 11
+player 12
+Oyuncu 12
+player 13
+Oyuncu 13
+player 2
+Trikky Transport
+player 3
+Meyer Moving Co.
+player 4
+Freight Forwarder VM
+player 5
+H-Trans Ltd
+player 6
+PSK & Co KG
+player 7
+Oyuncu 7
+player 8
+Oyuncu 8
+player 9
+Oyuncu 9
+Player ranking
+Oyuncu sıralaması
+Please choose vehicles first\n
+Lütfen önce araçları seçin!\n
+Post
+Posta
+Postrate
+Posta düzeyi
+Power
+Güç
+Power (MW)
+Güç (MW)
+Power:
+Güç:
+Power: %4d kW\n
+Güç: %4d kW\n
+Powerlines
+Enerji hatları
+Price
+Fiyat
+Problems_msg
+Sorunlar
+Produced
+Üretilen
+Produces: %.1f units/minute
+şu anda %.1f/dakika
+Production of %s has been stopped:\n%s\n
+%s üretimi durduruldu:\n%s\n
+Production/Boost
+Üretim / artış
+Produktion
+Üretim:
+Profit
+Kâr
+promote to line
+Hatta dönüştür
+public_chat
+Genel sohbet
+q1
+İlkbahar
+q2
+Yaz
+q3
+Sonbahar
+q4
+Kış
+Query server
+Sunucuyu sorgula
+rail car
+demiryolu aracı
+random
+rastgele
+Random age
+Rastgele yaş
+Random map
+Rastgele harita
+Rathaus
+Belediye binası
+Rating
+Durum
+ratio_pax
+Yolcu oranı
+Relevant
+Yalnızca gerekli
+Reliefkarte
+Harita
+Remove
+Etiketi kaldır
+remove airstrips
+Pisti veya taksi yolunu kaldır
+remove channels
+Kanalları kaldır
+remove interm. signals
+Ara sinyalleri kaldır
+remove maglev tracks
+Maglev hatlarını kaldır
+remove monorails
+Monorayları kaldır
+remove narrowgauge tracks
+Dar hat raylarını kaldır
+remove powerlines
+Enerji hatlarını kaldır
+remove roads
+Karayollarını kaldır
+remove signal
+sinyali kaldır
+remove tracks
+Rayları kaldır
+Remove wayobj %s
+%s yol nesnesini kaldır
+replace existing ways
+mevcut yolları değiştir
+replace faster wayobjs
+daha hızlı yol nesnelerini değiştir
+replace other signals
+Diğer sinyalleri değiştir
+replace stop
+Durağı taşı
+request closing
+kapanış hazırlığı
+residential house
+Konutlar
+Restore natural slope
+Doğal eğimi geri getir
+Restwert:
+Satış değeri:
+Retire date
+Hizmetten çıkış
+Retire. date:
+Hizmetten çıkış:
+return ticket
+geri kopyala
+Revenue
+Araç kazancı
+Revenue/unit/100 tiles
+Hasılat/birim/100 karo
+Revert schedule
+Değişiklikleri geri al
+Revision:
+Sürüm:
+road
+karayolu
+road vehicle
+karayolu aracı
+Roadsign
+Trafik levhası
+Rotate Building
+Binayı döndür
+Rotate map
+Haritayı döndür
+Rotation
+Döndürme
+Routing
+Rota bulma
+Running cost
+İşletme maliyeti
+sack
+çuval
+sail
+rüzgâr
+Save
+Oyunu kaydet
+Save generated script
+Oluşturulan betiği kaydet
+Saving map ...
+Harita kaydediliyor ...
+Scenario complete: %i%%
+Senaryo tamamlanma: %i%%
+Scenario Debug
+Hata ayıklama
+Scenario Error Log
+Betik hataları
+Scenario Goal
+Senaryo hedefi
+Scenario Info
+Kısa bilgi
+Scenario information
+Geçerli senaryonun ayrıntıları
+Scenario Result
+İlerleme
+Scenario Rules
+Kurallar
+Scenario_
+Senaryo
+Schedule changing!
+Sefer planı değişiyor!
+Schienentunnel
+Demiryolu tüneli inşa et
+Schiff_tab
+Gemiler
+Schiffdepot
+Tersane
+Schleppkahn_tab
+Mavnalar
+Screen scale:
+Ekran ölçeği:
+Screenshot
+Ekran görüntüsü
+Scroll threshold
+Kaydırma eşiği
+Search:
+Ara:
+Seasons
+Mevsimler
+Sehenswuerdigkeit
+Turistik yer
+Select a server to join:
+Katılmak için bir sunucu seçin:
+Select a theme for display
+Görüntü için bir tema seçin
+Select display font
+Ekran yazı tipini seçin
+Select one or more graphics to install (Ctrl+click):
+Kurmak için bir veya daha fazla grafik seçin (Ctrl+tıklama):
+Select soundfont
+Ses bankası seçin
+Sell the selected vehicle(s)
+Seçili araçları sat.
+Selling of the program is forbidden.
+Bu programın satılması yasaktır.
+sended
+Gönderilen posta
+SEP_FRACTION
+,
+SEP_THOUSAND
+.
+SEP_THOUSAND_EXPONENT
+3
+Sept.
+Eyl.
+September
+Eylül
+Served by
+Hizmet veren
+Served by me
+Benim hizmet verdiklerim
+Server did not respond!
+Sunucu yanıt vermedi!
+Serves Line:
+Hizmet verdiği hat:
+Service
+Servis
+set signal spacing
+Sinyal aralığını ayarla
+Setting
+Ayarlar
+Ship
+Gemi
+shops and stores
+Dükkânlar ve ofisler
+Show all
+Tümünü göster
+show all building
+Tüm binaları göster
+Show also vehicles no longer in production.
+Artık üretilmeyen araçları da göster.
+Show also vehicles that do not match for current action.
+Seçili işlemde kullanılamayan araçları da göster.
+Show always
+Her zaman göster
+Show climates
+İklimleri göster
+Show construction info
+Yapım bilgilerini göster
+Show contour
+Yükseklikleri göster
+Show even servers with wrong version or pakset
+Sürümü veya paketi uyuşmayan sunucuları da göster.
+Show finances for transport type
+Taşıma türüne göre finansmanı göster
+Show future
+Gelecektekileri göster
+show grid
+Izgarayı göster
+Show industry
+Sanayi listesi
+Show legend
+Seçimler
+Show map scale
+Renk kodları
+Show mismatched
+Uyuşmayanları göster
+Show networks
+Ağları göster
+Show obsolete
+Eskimişleri göster
+Show offline
+Çevrimdışı olanları göster
+Show only used
+Yalnızca kullanılanları göster
+Show outline
+yalnızca altyapı
+Show schedules
+Sefer planlarını göster
+Show servers that are offline
+Çevrimdışı sunucuları göster
+Show servers where game version or pakset does not match your client
+Oyun sürümü veya paketi istemcinizle uyuşmayan sunucuları göster
+show station coverage
+İstasyon kapsama alanını göster
+show station names
+istasyon adlarını göster
+show waiting bars
+Bekleme çubuklarını göster
+show/hide block reservations
+blok rezervasyonlarını göster/gizle
+Show/hide estimated arrival times
+Tahmini varış saatlerini göster/gizle
+show/hide object owner
+nesne sahibini göster/gizle
+Show/hide statistics
+İstatistikleri göster/gizle
+Shows buttons about networks overlay.
+Ağ kaplaması düğmelerini gösterir.
+Shows buttons on network overlay.
+Bağlantı ağını harita üzerine yansıtma seçeneğini göster.
+Shows buttons on special topics.
+Özel konularla ilgili düğmeleri gösterir.
+Shows consumer/suppliers for factories
+Fabrikaların alıcılarını/tedarikçilerini göster
+Shows the color code for several selections.
+Çeşitli seçimlerin renk kodunu gösterir.
+Shows the currently selected schedule
+Seçili sefer planını göster
+Shrink city
+Şehri küçült
+shuffle midis
+Parçaları karıştır
+Signal
+Sinyal
+signal spacing
+Sinyal aralığı
+Sim:
+Simülasyon döngüsü:
+Similar view as the main window
+Ana pencereyle aynı görünüm
+Single toolbar only
+Yalnızca tek alet çubuğu
+Size (%d MB):
+Boyut (%d MB):
+Size (area)
+Boyut (alan)
+sliced underground mode
+Dilimlenmiş harita görünümü
+slot empty
+yuva boş
+Smart hide objects
+Nesneleri akıllı gizle
+Sort by
+sıralama ölçütü
+Sort by:
+Sıralama ölçütü:
+Sort waiting list by
+Bekleme listesi sıralaması
+Sound
+Ses
+Sound settings
+Ses ayarları
+Sound volume:
+Ses düzeyi:
+Soundfonts are located in the music directory.
+Ses bankaları müzik dizininde bulunur.
+special freight
+Özel yük
+Speed Bonus
+Hız bonusu
+Speedbonus\nroad %i km/h, rail %i km/h\nships %i km/h, planes %i km/h.
+Yüzde olarak hız bonusu\nasgari hız gerektirir: karayolu %i km/h,\ndemiryolu %i km/h, gemi %i km/h, uçak %i km/h,
+Speedlimit
+Hız sınırı
+Speichern
+Kaydet
+Spieler
+Oyuncu
+Spieler(mz)
+Oyuncular
+Spielerliste
+Oyuncu Listesi
+Spielstand wurde\ngeladen!\n
+\nOyun başarıyla yüklendi.\n
+Spielstand wurde\ngespeichert!\n
+\nOyun başarıyla kaydedildi.\n
+Sprache
+Dil
+Sprachen
+Diller
+Stadtinformation
+Şehir İstatistikleri
+Start
+Başlat
+Start the selected vehicle(s)
+Seçili araçları sefere gönderir.
+Starte Spiel
+Oyunu Başlat
+station labels
+İstasyonlar
+Station tiles:
+İstasyon karoları:
+Station_msg
+İstasyonlar
+Status
+Durak durumu
+stay on this level
+bu seviyede kal
+steam
+buharlı
+Step timeline one year
+Zaman çizelgesini bir yıl ilerlet.
+Stopping permissions
+Bu durağı kullanabilecek diğer oyuncu
+Stops
+Duraklar
+Storage
+Depolama
+Storage capacity
+Depolama kapasitesi
+straight route
+düz güzergâh
+Strassendepot
+Garaj
+Strassentunnel
+Karayolu tüneli inşa et
+street car
+tramvay
+sued
+Güney
+suedost
+Güneydoğu
+suedwest
+Güneybatı
+Summer snowline
+Yaz kar sınırı
+Supplied: %.0f %%
+Tedarik: %.0f %%
+Suppliers
+Tedarikçiler:
+Tage alt
+günlük.
+The following graphics are unmaintained:
+Aşağıdaki grafikler bakımsız durumda:
+The generated script was saved!\n
+Makro başarıyla kaydedildi.\nBetik aletiyle yeniden çalıştırılabilir.
+The gradient does not fit a tunnel
+Eğim bir tünele uygun değil
+The script cannot be saved!\n
+Betik kaydedilemiyor!\n
+Theme selector
+Tema seçici
+There are still vehicles\nstored in this depot!\n
+Bu depoda\naraçlar var!\n
+This Month
+Bu ay:
+This Year
+Bu yıl:
+Tile not empty.
+Eğim aletini kullanmadan\nönce karoyu boşaltın.
+timeline
+Döneme uy
+tl_title
+Şehir Listesi
+To attract more tourists\n%s built\na %s\nwith the aid of\n%i tax payers.
+%1$s şehrinde trafik artıyor:\n%3$i vergi mükellefi\n%2$s yapısını gerçeğe dönüştürdü.
+To heavy traffic\nresults in traffic jam.\n
+Yoğun trafik\ntıkanmaya yol açıyor.\n
+To: %s
+Hedef: %s
+Toggle day/night view
+Gece/gündüz görünümünü değiştir
+Toggle vehicle tooltips
+Araç ipuçlarını aç/kapat
+tonnen
+t
+Toolbar position:
+Alet çubuğu konumu:
+Total inhabitants:
+Toplam nüfus:
+Tourist attractions
+Turistik yerler:
+Tourists
+Turistik yerler
+Town_msg
+Yeni Hedefler
+Town: %s\n
+%s şehri.\n
+Towns
+Şehirler
+track
+ray
+Tracks
+Raylar
+Traffic
+Trafik
+traffic settings
+Trafik
+Train
+Tren
+Trains are not available yet!
+Trenler henüz mevcut değil.
+Tram
+Tramvay
+tram %i km/h, monorail %i km/h\nmaglev %i km/h, narrowgauge %i km/h.
+tramvay %i km/h, monoray %i km/h\nmaglev %i km/h, dar hat %i km/h.
+tram_track
+tramvay rayı
+Tramdepot
+Tramvay deposu
+Trams are not available yet!
+Tramvaylar henüz mevcut değil.
+Transferring game ...
+Oyun aktarılıyor ...
+Transformer only next to factory!
+Trafolar bir fabrikanın\nbitişiğindeki boş ve düz\nzemine kurulmalıdır!
+Translation
+Çeviri
+transparencies
+Saydamlık
+transparent background
+saydam arka plan
+transparent station coverage
+Saydam istasyon kapsama alanı
+Transported
+Sefer
+Trees disabled!
+Ağaçlar kapalı!
+TrolleyBus_tab
+Troleybüsler
+Truck
+Kamyon
+tt_Other
+Diğer
+Tunnel muss an\neinfachem\nHang beginnen!\n
+Tüneller düz bir\neğimde\nbaşlamalıdır!\n
+Tunnel must start on single way!
+Tüneller tek bir yolda başlamalıdır.
+Tunnelboden
+Tünel
+under the Artistic License
+Artistic License kapsamında
+underground mode
+Yer altı görünümü
+UNDO failed!
+Geri alma artık mümkün değil.\nBir yol inşaatını yalnızca \nüzerine sinyal, istasyon, durak \nveya başka bir şey \ninşa edilmediği sürece \ngeri alabilirsiniz.
+Undo last ways construction
+Son yol inşaatını geri al
+Unemployed
+İşsiz
+Unhappy
+Memnuniyetsiz
+units/day
+/ay,
+Unloading (%i%%)!
+Boşaltılıyor (%i%%)!
+Update Line
+Hattı düzenle
+upgrade HQ
+Genel merkezi geliştir
+Usage: %.0f %%
+Kullanım: %.0f %%
+Usage/Output
+Kullanım / çıktı
+Use beginner mode
+Acemi modunu kullan
+Use timeline start year
+Şu yıldan itibaren zaman çizelgesi:
+Vehicle %s can't find a route!
+%s aracı\nrota bulamıyor!
+Vehicle %s is stucked!
+%s aracı sıkıştı!
+Vehicle count:
+Araç sayısı:
+Vehicle details
+Araç ayrıntıları
+Vehicle Name
+Araç adı
+Vehicle Power
+Araç gücü
+vehicles stored
+depodaki araçlar
+Verbrauch
+Tüketim:
+Vergroessere die Karte\n
+Haritayı büyüt.\n
+Verkauf
+Hemen kaldır!
+verkaufen
+Sat
+Verkehrsteilnehmer
+Şehir araçları
+Verschuldet:\n\nDu hast %d Monate Zeit,\ndie Schulden zurueckzuzahlen.\n
+Borcunuzu ödemek için\n%d ayınız var.\n
+vh_title
+Tüm araçların listesi
+via
+üzerinden (ayrıntı)
+via %s\n
+%s üzerinden\n
+via Menge
+üzerinden (miktar)
+via owner
+üzerinden (sahip)
+voranstellen
+Öne ekle
+Waggon_tab
+Vagonlar
+waiting
+bekliyor
+Waiting for clearance!
+Yol açılması bekleniyor!
+Walked
+Yürüyen
+walking
+Yürüyüş
+Warnings_msg
+Trafik
+Wasser
+Su
+Water
+Kanal
+Water level
+Deniz seviyesi:
+water vehicle
+su aracı
+way %s cannot longer used:\n
+%s yol türü artık kullanılamıyor.\n
+way %s cannot longer used:\n%s\n
+%s yol türü artık kullanılamıyor:\n
+way %s now available:\n
+%s yol türü artık mevcut.\n
+Way toll
+Yol ücreti
+Ways not connected
+Yollar bağlı değil
+waytype
+yol türü
+Wegpunkt
+Yol noktası
+Weight
+Ağırlık
+Weight:
+Ağırlık:
+Weight/unit
+Birim ağırlık
+Welcome to Simutrans
+Simutrans'a hoş geldiniz
+Welcome, %s!
+Hoş geldiniz, %s!
+Wert
+Değer
+west
+Batı
+Wind direction
+Rüzgâr yönü
+Winter snowline
+Kış kar sınırı
+withdraw
+Hizmetten çıkar
+Withdraw All
+Tümünü hizmetten çıkar
+WRONGSAVE
+\nUyumsuz kayıtlı oyun.\nDosya yüklenemiyor.\n
+Year
+Yıl
+Year %i has started.
+%i yılı başladı.
+Years
+Yıl
+Your primary color:
+Birincil renginiz:
+Your secondary color:
+İkincil renginiz:
+Zielort
+hedef
+zooming in
+Yakınlaştır
+zooming out
+Uzaklaştır
+Zu nah am Kartenrand
+Haritanın kenarına\nbu kadar yakın\ninşaat yapamazsınız.
+#__________________________________record_text__________________________________
+#__________________________________record_text__________________________________
+New world record for maglevs: %.1f km/h by %s.
+Mıknatısların üzerinde süzülerek\n%.1f km/h hıza ulaşan %s:\nYeni dünya rekoru!
+New world record for monorails: %.1f km/h by %s.
+Hız için yapılmış tek ray:\nTam %.1f km/h hıza ulaşan\n%s\nyeni bir dünya rekoru kırdı!
+New world record for motorcars: %.1f km/h by %s.
+Geriye yalnızca fren izleri kaldı:\n%.1f km/h hızla giden\n%s\nyeni bir dünya rekoru kırdı!
+New world record for narrowgauges: %.1f km/h by %s.
+Dar hat trenlerinde yeni dünya rekoru: %.1f km/h, %s tarafından.
+New world record for planes: %.1f km/h by %s.
+Mesafeler yine kısalıyor:\n%2$s, %1$.1f km/h hızla uçtu.\nYeni dünya rekoru!
+New world record for railways: %.1f km/h by %s.
+Rayların üzerinde gök gürültüsü gibi\n%.1f km/h hızla.\n%s trenler için yeni bir dünya rekoru kırdı.\n
+New world record for ship: %.1f km/h by %s.
+Mavi Kurdele,\n%.1f km/h hızla seyreden\n%s tarafından kazanıldı.
+#________________________________script_ai_text_________________________________
+#________________________________script_ai_text_________________________________
+%s build additional convoy to line: %s
+%s, %s hattına ek konvoy ekliyor
+%s build rail line from %s (%s) to %s (%s)
+%s, %s (%s) noktasından %s (%s) noktasına demiryolu hattı inşa ediyor
+%s build road line from %s (%s) to %s (%s)
+%s, %s (%s) noktasından %s (%s) noktasına karayolu hattı inşa ediyor
+%s build ship line from %s (%s) to %s (%s)
+%s, %s (%s) noktasından %s (%s) noktasına gemi hattı inşa ediyor
+%s extends the route from %s (%s) to %s (%s)
+%s, rotayı %s (%s) noktasından %s (%s) noktasına uzatıyor
+%s optimize way line from %s (%s) to %s (%s)
+%s, %s (%s) ile %s (%s) arasındaki yolu iyileştiriyor
+%s removes convoys from line: %s
+%s, %s hattından konvoyları kaldırıyor
+vehicles of the line %s were retired
+%s hattının araçları hizmetten çıkarıldı
+#_________________________________tooltip_text__________________________________
+#_________________________________tooltip_text__________________________________
+Add convois with similar schedule to this line.
+Benzer sefer planına sahip konvoyları bu hatta ekle.
+Attach current coordinate to the comment
+Geçerli koordinatı yoruma ekle
+Enter intervall in days, hours, minutes
+Aralığı gün, saat ve dakika olarak girin
+Mirrors order of stops
+Durak sırasını tersine çevir
+Revert to original schedule
+Sefer planındaki tüm değişiklikleri geri al.
+Tutorial not available for this pakset. Please try loading Pak128.
+Bu pakset için öğretici mevcut değil. Lütfen Pak128'i yüklemeyi deneyin.
+#_______________________________unnecessary_text________________________________
+#_______________________________unnecessary_text________________________________
+&0_CITY_SYLL
+kent
+&1_CITY_SYLL
+hisar
+&2_CITY_SYLL
+köy
+&3_CITY_SYLL
+kale
+&4_CITY_SYLL
+pınar
+&5_CITY_SYLL
+tepe
+&6_CITY_SYLL
+yaka
+&7_CITY_SYLL
+ova
+&8_CITY_SYLL
+burun
+&9_CITY_SYLL
+bağ
+&A_CITY_SYLL
+yurt
+&B_CITY_SYLL
+eli
+&C_CITY_SYLL
+dere
+&D_CITY_SYLL
+çay
+&E_CITY_SYLL
+oba
+%0_CITY_SYLL
+Çam
+%1_CITY_SYLL
+Ak
+%2_CITY_SYLL
+Kara
+%3_CITY_SYLL
+Gül
+%4_CITY_SYLL
+Yeşil
+%5_CITY_SYLL
+Söğüt
+%6_CITY_SYLL
+Sarı
+%7_CITY_SYLL
+Gök
+%8_CITY_SYLL
+Kum
+%9_CITY_SYLL
+Taş
+%A_CITY_SYLL
+Eski
+%B_CITY_SYLL
+Yeni
+%C_CITY_SYLL
+Kızıl
+%D_CITY_SYLL
+Bey
+%E_CITY_SYLL
+Dere
+%F_CITY_SYLL
+Ova
+1center
+%s %s
+1extern
+%s %s Şubesi
+1suburb
+%s %s %s
+2center
+%s Merkez %s
+2extern
+%s Dış %s
+2suburb
+%s Yeşilalan %s %s
+3center
+%s Ana %s
+3extern
+%s Kır %s
+3suburb
+%s Köy %s %s
+4center
+%s İç %s
+4extern
+%s Dış Bölge %s
+4suburb
+%s Kırsal %s
+5center
+%s Şehir Merkezi %s
+5extern
+%s Aktarma %s
+5suburb
+%s Kasaba %s
+6center
+%s Ana Aktarma %s
+6extern
+%s Değişim %s
+6suburb
+%s Varoş %s %s
+7center
+%s Kent %s
+7extern
+%s Ova %s
+7suburb
+%s Park %s
+8center
+%s İş Merkezi %s
+8extern
+%s %s Kenar %s
+8suburb
+%s Uydu %s
+9center
+%s Aks %s
+9extern
+%s Çevre Yolu %s
+9suburb
+%s Ara %s

@@ -1,0 +1,7 @@
+<title>Escenario</title>
+
+<h1><strong>Escenarios</strong></h1>
+
+<p>
+En Simutrans puedes jugar escenarios. En ellos tienes que cumplir determinados objetivos: conectar una fábrica, hacerte rico lo antes posible o levantar una sede monumental.
+</p>

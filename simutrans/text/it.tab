@@ -12,11 +12,19 @@ Prop-Latin1.bdf
 #                             Language: it Italiano                            #
 #                                Encoding: UTF-8                               #
 #                             Font: Prop-Latin1.bdf                            #
-#                           Date Created: 11.03 2026                           #
+#                           Date Created: 10.09 2026                           #
 #                                                                              #
 ################################################################################
 #__________________________________button_text__________________________________
 #__________________________________button_text__________________________________
+Absolute times
+Orari assoluti
+allow reverse passage
+consenti passaggio inverso
+AMBIENT_SOUND
+Suoni ambientali
+CASH_SOUND
+Suono incasso
 cl_btn_filter_disable
 Inattivo
 cl_btn_filter_enable
@@ -41,6 +49,14 @@ clf_btn_invers
 inv.
 clf_btn_keine
 ness.
+climate area percentage
+Dimensione singolo clima 
+Continue Game
+Continua partita
+CROSSING_SOUND
+Suono passaggi a livello
+FACTORY_SOUND
+Suoni delle fabbriche
 Find matching convois
 Trova convogli corrispondenti
 gl_btn_sort_bonus
@@ -51,6 +67,8 @@ gl_btn_sort_revenue
 per incassi
 gl_btn_unsort
 non ordinato
+height based
+Clima in base all'altezza
 hl_btn_filter_disable
 Inattivo
 hl_btn_filter_enable
@@ -75,26 +93,54 @@ hlf_btn_keine
 ness.
 humidities
 umidità
+Install
+Installa
 Lake
 Lago
+Lake height
+Altezza laghi
 Maximize height levels
 Massimizza livelli altezza
+moisture land
+aumento sulla terra
+moisture water
+aumento sull'acqua
 Networks
 Reti
+Num pad keys always move map
+I tasti del tastierino numerico spostano sempre la mappa
 Open Sea
 Mare Aperto
+Owner only
+Solo proprietario
 Queueing
 Accodamento
 rainfall
 pioggia
+Reselect closes tools
+Riselezionare uno strumento lo deseleziona
 Return to menu
 Torna al menù
 Road toll
 Casello stradale
 sea
 mare
+Shared only
+Solo condiviso
+Single GUI
+GUI singola
+Sound range:
+Raggio del suono:
 Start this as a server
 Avvia come server
+temperature borders
+confini di temperatura
+temperature-humidity based
+Climi dal meteo
+TOOL_SOUND
+suoni delle azioni degli strumenti
+TRAFFIC_SOUND
+rumori del traffico
 Transfers
 Trasferimenti
 #_________________________________climates_text_________________________________
@@ -115,6 +161,12 @@ clima tropicale
 #__________________________________error_text___________________________________
  Loading scenario script failed
 Caricamento dello scenario fallito
+A building blocks the construction
+Un edificio blocca la costruzione
+A powerline blocks the construction
+Un elettrodotto blocca la costruzione
+Another way blocks the construction
+Un'altra via blocca la costruzione
 Bridge blocked by way below or above.
 Ponte bloccato da strada sopra o sotto.
 Can't buy obsolete vehicles!
@@ -133,6 +185,8 @@ Cannot create generic line!\nSelect line type by\nusing filter tabs.
 Impossibile creare linea generia!\nSelezionare tipo linea\nusando i filtri.
 Cannot create socket
 Non si può creare il raccordo
+Cannot cross the end of a runway
+Non è possibile attraversare l'estremità di una pista di decollo
 Cannot rotate this building!
 Impossibile ruotare questo edificio!
 Client closed connection during transfer
@@ -141,16 +195,28 @@ Convoi handles exhausted!
 Massimo numero di convogli raggiunto
 Convoy already deleted!
 Convoglio già cancellato!
+Corrupt file
+File danneggiato
 Could not open file
 Impossibile aprire il file
 Das Feld gehoert\neinem anderen Spieler\n
 Questo terreno\nè di proprietà\ndi un altro giocatore!\n
+Depots cannot be built on runways!
+I depositi non possono essere costruiti sulle piste di atterraggio!
+Depots must be built on flat dead-end way tiles!
+I depositi devono essere costruiti su caselle pianeggianti senza uscita!
 Der Besitzer erlaubt das Entfernen nicht
 Il proprietario non\nconcede il permesso\ndi rimozione.\n
 Diese Zusammenstellung kann nicht fahren!\n
 Questa combinazione\nnon può viaggiare!\n
+Elevated way can only be joined in line
+Una via sopraelevata può essere collegata solo in linea retta
+Failed to write file
+Impossibile scrivere il file
 Flugzeughalt muss auf\nRunway liegen!\n
 I velivoli devono\nstare su taxiway.
+Forbidden by scenario
+Vietato dallo scenario
 Hier kann dieses\nFlughafengebaeude nicht\ngebaut werden!\n
 Non puoi costruire\n\nun terminal qui.\n
 Hier kann kein\nSignal aufge-\nstellt werden!\n
@@ -169,6 +235,8 @@ Monorailhalt muss auf\nMonorail liegen!\n
 Le fermate devono\nstare su una rotaia.
 Monorails are not available yet!
 Morotaie non ancora disponibili.
+More than one possibility to build this dock found.
+Trovata più di una possibilità per costruire questo molo.
 Narrowgaugehalt muss auf\nNarrowgauge liegen!\n
 una fermata per scartamento ridotto deve stare su una linea a scartamento ridotto
 No bridges over runways!
@@ -181,14 +249,24 @@ No suitable way on the ground!
 Serve un percorso
 No through station here!
 Non c'è nessuna stazione passante qui!
+Not allowed to copy object.
+Non è consentito copiare l'oggetto.
+Not enough bytes transferred
+Byte trasferiti insufficienti
 Not enough clearance.
 Spazio insufficiente.
+Not enough empty space
+Spazio libero insufficiente
 Not enough money!
 Non hai abbastanza soldi per costruirlo!
+Not initialized
+Non inizializzato
 On narrowgauge track only!\n
 Solo su linee a scartamento ridotto!\n
 Only public player can lock games!
 Solo il giocatore pubblico può bloccare i giochi!
+Only up and down movement in the underground!
+Una casella sotterranea può essere solo alzata e abbassata usando gli strumenti alza/abbassa tutto!
 Out of funds
 Denaro esaurito
 Post muss neben\nHaltestelle\nliegen!\n
@@ -201,24 +279,52 @@ Server busy
 Server sovraccarico
 Server version too new
 Aggiorna la versione del gioco, quella del server è avanzata.
+Ship depots must be built on water!
+I depositi navali devono essere costruiti sull'acqua!
+Show all revenue messages
+Mostra tutti i messaggi di entrate
+Show no revenue messages
+Non mostrare messaggi di entrate
+Show only player's revenue
+Mostra solo le entrate del giocatore
+Slope is too steep
+La pendenza è troppo ripida
 Terraforming not possible\nhere in underground view
 Il terraforming è impossibile sottoterra.
 This tunnel branches. You can try Control+Click to remove.
 Questo tunnel si ramifica. Puoi provare Control+click per rimuovere.
 Too far away to merge stations!
 Stazioni troppo lontane per unirle!
+Tunnel can only be entered at its portal
+Una galleria può essere imboccata solo dal suo portale
+Unknown error
+Errore sconosciuto
 Upgrade must have\na higher level
 L'aggiornamento deve essere a un livello superiore
 Vehicle %s cannot choose because stop too short!
 Il veicolo %s non può scegliere, fermata troppo corta!
+Watertable reached
+Impossibile abbassare ulteriormente la casella!\nRaggiunta la falda freatica.
+Way does not match the slope here
+La via non si adatta alla pendenza qui
+Wrong direction to enter the bridge
+Direzione errata per entrare nel ponte
 Zughalt muss auf\nSchiene liegen!\n
 Le fermate ferroviarie\npossono essere piazzate\nsolo sui binari!\n
 #___________________________________help_text___________________________________
 #___________________________________help_text___________________________________
+<h1>Index</h1><p>*: only english</p><p>General</p>%s<p>Usage</p>%s<p>Tools</p>%s<p>Start</p>%s<p>How to play</p>%s<p>Others:</p>%s
+<title>Aiuto</title><h1>Indice aiuto</h1><p><it>Informazioni su Simutrans</it></p>%1$s<p><it>Come usare</it></p>%2$s<p><it>Come iniziare una partita</it></p>%4$s<p><it>Come giocare</it></p>%5$s<p><it>Strumenti</it></p>%3$s<p><it>Altre finestre</it></p>%6$s
 <title>Keyboard Help</title>\n<h1><strong>Keyboard Help</strong></h1><p>\n
 <title>Aiuto tastiera</title>\n<h1><strong>Aiuto tastiera</strong></h1>\n<p>\n<strong>Aiuto tastiera</strong> Mostra le funzioni per vari tasti premuti sulla tastiera\n</p>\n<p>\n<strong>Aiuto tastiera</strong> si apre quando viene premuto un tasto non assegnato o da <a href="general.txt">Aiuto generale</a>.\n</p>\n<p>\nLe maiuscole sono diverse dalle minuscole (usare [<em>Shift</em>] per lettere maiuscole).\n</p>\n<p>\nTasti con le funzioni assegnate includono: \n</p>\n<p>\n[<em>Tasti freccia</em>]: muovi la vista nel senso della freccia.<br>\n[<em>Backspace</em>]: chiude tutte le finestre,barre e testi d'aiuto nella vista.<br>\n[<em>Cancella</em>], o [<em>Esc</em>]: chiude la finestra,barra o aiuto in primo piano sulla vista.<br>\n[<em>Enter</em>], or [<em>Return</em>]: usato per confermare azioni.<br>\n[<em>Pagina su</em>], o [<em>></em>]: aumenta zoom.<br>\n[<em>Pagina giù</em>], o [<em>simbolo "minore di"</em>]: diminuisce zoom.\n[<em>F1</em>]: apre <a href="general.txt">Aiuto Simutrans</a>.<br></p>\n<p>\n[<em>1</em>]: muove la vista verso sud.<br>\n[<em>2</em>]: muove la vista verso sud-est.<br>\n[<em>3</em>]: muove la vista verso est.<br>\n[<em>4</em>]: muove la vista verso sud-ovest.<br>\n[<em>6</em>]: muove la vista verso nord-est.<br>\n[<em>7</em>]: muove la vista verso ovest.<br>\n[<em>8</em>]: muove la vista verso nord-ovest.<br>\n[<em>9</em>]: muove la vista verso nord.\n</p>\n<p>\n[<em>Shift</em>] + <a href="mouse.txt">mouse</a>: usato in <a href="map.txt">Map</a> per vedere collegamenti in <a href="industry_info.txt">Catena approvvigionamenti industrie</a>.<br>\n[<em>CTRL</em>] + strumento: costruisce (segnali & <a href="station.txt">fermate</a>) al livello più alto; o costruisce strade più veloci sulle più lente; o più dritte (più dirette) strade e ferrovie.<br>\n[<em>CTRL</em>] + ([<em>F2</em>] fino a [<em>F12</em>]): seleziona lo strumento richiamato da [<em>F2</em>] a [<em>F12</em>].\n</p>\n<p>
 At least one stop is connected to the town.
 Almeno una fermata è collegata alla città.
+At least one tile is connected to one stop.
+Almeno una casella è collegata a una fermata.
+Color according to transport capacity left
+Colora in base alla capacità di trasporto rimanente
+Color-coded terrain according to altitude.
+Colora il terreno in base all'altitudine.
 Decrease water height
 Diminuisci altezza acqua
 Highlight railroad tracks
@@ -247,6 +353,8 @@ Overlay town names
 Sovrapponi i nomi delle città
 Please click on the map to add\nwaypoints or stops to this\nschedule.
 Click sulla mappa per aggiungere\npassaggi o fermate a questo\npercorso.
+Remove double stops from schedule
+Rimuovi fermate doppie dall'orario
 Set tile climate %s
 Imposta il clima della casella %s
 Show capacity and if halt is overcrowded
@@ -341,6 +449,8 @@ Screenshot\ngespeichert.\n
 Schermata\nsalvata.\n
 Sends the convoi to the last depot it departed from!
 Manda convoglio all'ultimo deposito da cui è partito
+Server preparing game ...
+Il server sta preparando la partita...
 Trees
 Alberi
 With a big festival\n%s built\na new monument.\n%i citicens rejoiced.
@@ -351,10 +461,28 @@ Line Filter
 Filtro Linee
 #_________________________________program_text__________________________________
 #_________________________________program_text__________________________________
+(%.2f$/km %.2f$/m)
+(%.2f$/km %.2f$/mese)
 (%i)-
 (%i)
 (in depot)
 (in deposito)
+[0] south-facing
+[0] rivolto a sud
+[1] east-facing
+[1] rivolto a est
+[2] north-facing
+[2] rivolto a nord
+[3] west-facing
+[3] rivolto a ovest
+[4] southeast corner
+[4] angolo sud-est
+[5] northeast corner
+[5] angolo nord-est
+[6] northwest corner
+[6] angolo nord-ovest
+[7] southwest corner
+[7] angolo sud-ovest
 /month
 /mese
 \nBauzeit bis
@@ -395,6 +523,8 @@ via 2 riservata da\n
 %d convogli
 %d Einzelfahrzeuge im Depot
 %d veicoli in deposito
+%d more convois
+Altri %d convogli
 %i car(s),
 %i auto,
 %i km/h (max. %ikm/h)
@@ -411,8 +541,12 @@ ha %i anni e %i mesi.
 %s fabbrica %s %s
 %s has entered a depot.
 %s è in deposito.
+%s has left.
+%s è uscito.
 %s land %d %s
 %s terreno %d %s
+%s now known as %s.
+%s è ora noto come %s.
 %s wasted\nyour money with a\nnew townhall\nwhen it reached\n%i inhabitants.
 %s ha speso\nsoldi per costruire un\nnuovo municipio\nquando ha raggiunto\n%i abitanti.
 %s\nis crowded.
@@ -423,12 +557,22 @@ ha %i anni e %i mesi.
 %s\nè stato liquidato.
 %u Client(s)\n
 %i Connesso(i)\n
+%u days ago
+%u giorni fa
+%u hours ago
+%u ore fa
+%u minutes ago
+%u minuti fa
 %u Player (%u locked)\n
 %u Giocatore (%u bloccato)\n
+%u years ago
+%u anni fa
 <clear schedule>
 <pulisci percorso>
 <create new line>
 <crea nuova linea>
+<h1>Error</h1><p><strong>
+<h1>Errore</h1><p><strong>
 <h1>Warning</h1><p><strong>addons for
 <h1>Attenzione</h1><p><strong>addons per
 <individual schedule>
@@ -443,18 +587,36 @@ ha %i anni e %i mesi.
 1 convoglio
 1 Einzelfahrzeug im Depot
 1 veicolo in deposito
+1 minute ago
+1 minuto fa
+1 year ago
+1 anno fa
 100 km/h = %i tiles/month
 100 km/h = %i caselle/mese
 1LIGHT_CHOOSE
 Luminosità:
+1th
+1°
 1WORLD_CHOOSE
 Opzioni della nuova mappa:
+21th
+21°
+22th
+22°
+23th
+23°
 2LIGHT_CHOOSE
 Colori:
+2th
+2°
 2WORLD_CHOOSE
 Numero mappa:
+31th
+31°
 3LIGHT_CHOOSE
 Vel. scrolling:
+3th
+3°
 4LIGHT_CHOOSE
 Inverti scrolling
 5LIGHT_CHOOSE
@@ -525,6 +687,8 @@ allowed climates:\n
 climi permessi
 Alters a schedule.
 Aggiungi/rimuovi fermate da percorso
+and arranged by
+e arrangiato da
 Angenommene Waren
 Prodotti necessari da impianti vicini
 anhaengen
@@ -549,16 +713,22 @@ Aufloesen
 Disassembla
 Aufspanntransformator
 Trasformatore
+Aug.
+Ago.
 August
 Agosto
 Autohalt muss auf\nStrasse liegen!\n
 Le fermate dei veicoli\ndevono stare\nsu una strada.
 Available
 Disponibili
+Available at custom date
+Disponibile a data personalizzata
 Bahndepot
 Deposito treni
 Bankrott:\n\nDu bist bankrott.\n
 Bancarotta:\n\nSei fallito!\n
+based on Simutrans 84.22.1
+basato su Simutrans 84.22.1
 battery
 Non esiste!
 Baum
@@ -583,12 +753,16 @@ Blockstrecke ist\nbelegt\n
 Questo tratto di\nlinea è usato\nda un altro treno\n
 Boden
 Terreno
+Bonus Multiplier: %i%%
+Moltiplicatore bonus: %i%%
 Bonus Speed: %i km/h
 Bonus Velocità: %i km/h
 Bonusspeed: %i km/h
 Bonus velocità: %i km/h
 Boost (%%)
 Incremento (%%)
+Borderless (disabled on fullscreen)
+Senza bordi (disabilitato a schermo intero)
 bridge is too high for its type!
 Ponte troppo alto per il suo tipo
 Bridge is too long for this type!\n
@@ -617,6 +791,8 @@ Build monorail depot
 Costruisci deposito monorotaia
 Build narrowgauge depot
 Costruisci deposito per ferrovia scartamento ridotto
+build portal only
+costruisci solo il portale
 Build powerline
 Costruisci linea elettrica
 Build presignals
@@ -643,10 +819,14 @@ Built random attraction
 Costruisci attrazione casuale
 Bus_tab
 Bus
+Can be overgrown
+Può essere invaso dalla vegetazione
 Can only move from halt to halt or waypoint to waypoint.
 Si può solo muovere\nda fermata a fermata o\n da punto a punto.
 Cancel
 Annulla
+Cannot build here
+Impossibile costruire qui
 Cannot connect to offline server!
 Impossibile connettersi, server offline!
 Capacity
@@ -665,6 +845,10 @@ cars.\nstate
 auto\n
 Cash
 Cassa
+Category
+Categoria
+Change label style
+Cambia stile etichette
 Change player
 Cambia giocatore
 Chart
@@ -679,6 +863,8 @@ chooses a random map
 Sceglie mappa casuale.
 citicens
 Cittadini
+Cities can only be built on flat empty ground!
+Le città possono essere costruite solo su terreno pianeggiante e vuoto!
 City attraction
 Attrazione cittadina
 City industries
@@ -697,6 +883,8 @@ cl_title
 Lista veicoli
 cl_txt_sort
 Ordina per:
+Cleanup schedule
+Pulisci orario
 Clear block reservation
 Mostra/nascondi vie riservate
 clf_chk_aircrafts
@@ -739,6 +927,8 @@ clf_chk_waren
 Filtro per merci:
 clf_title
 Filtro Lista Veicoli
+Click to open the finance dialog.
+Fai clic per aprire la finestra delle finanze.
 Climate
 Clima
 Climate Control
@@ -747,24 +937,34 @@ Climates
 Climi
 closed
 chiuso
+Closes topmost line window when new line selected.
+Chiude la finestra della linea in primo piano quando si seleziona una nuova linea.
 COLOR_CHOOSE\n
 Per favore scegli\nun colore dalla\ntabella:\n
 Company bankrupt
 Compagnia in bancarotta
+company_chat
+Chat aziendale
 Company_msg
 Concorrenti
 Comparing pak files ...
 Comparazione pak files...
+Composed by
+Composto da
 Configure AI
 Configura AI
 Configure AI setttings
 Configura impostazioni AI
 Congratulation\nScenario was complete in\n%i months %i years.
 Congratulazioni!\nLo scenario è stato\ncompletato in\n%imesi e %i anni!
+Connect factory
+Collega fabbrica
 Connected stops
 Fermate collegate
 Connected with server
 Connesso al server
+connection
+collegamento
 Connections
 Connessioni
 Constructed by
@@ -777,6 +977,8 @@ Construction_Btn
 Costi costruzione
 Consumed
 Consumato
+contains the following doubled objects:</strong><p>
+ contiene i seguenti oggetti più di una volta:</strong><p/>
 convoi %d of %d
 Convoglio %d di %d
 convoi error tooltips
@@ -801,6 +1003,8 @@ Copy Convoi
 Copia Convoglio
 Copy the selected convoi and its schedule or line
 Copia convoglio selezionato con percorso o linea
+Copy to clipboard
+Copia negli appunti
 Cost
 Costo
 cost for removal
@@ -821,12 +1025,20 @@ curlist_title
 Lista attrazioni
 CURRENCY
 €
+Current game
+Partita corrente
 Currently playing:
 Brano in esecuzione:
 Customers live in:
 Clienti abitano a:
+Date format
+Formato data
+DAY_SYMBOL
+g
 deactivated in online mode
 Non attivo online.
+Dec.
+Dic.
 Deccelerate time
 Rallenta tempo
 December
@@ -875,12 +1087,20 @@ Destroying map ...
 Distruzione della mappa...
 Details
 Dettagli
+Developed by the Simutrans Team
+Sviluppato dal team di Simutrans
 Die Bruecke ist nicht frei!\n
 Il ponte non è libero!\n
+direct_chat_to:
+Messaggio diretto a
+directmail
+Volantini
 Direkt erreichbare Haltestellen
 Collegamenti diretti da qui
 disable midi
 Disabilita MIDI
+Display bars above factory to show the status
+Mostra barre sopra le fabbriche per indicare lo stato
 Display settings
 Modifica colori
 Distance
@@ -889,10 +1109,16 @@ distributing cities
 distribuzione città
 distributing factories
 distribuzione industrie
+Do not show
+Non mostrare
 Dock
 porto
 Dock must be built on single slope!
 I porti si costruiscono su unica livelletta.
+Downloading
+Download in corso
+dp_title
+Lista depositi
 Du hast %d Monate Zeit, deine Schulden zurueckzuzahlen
 Hai %d mesi per ripagare i debiti.
 Durchsatz
@@ -931,6 +1157,8 @@ Erzeuge neue Karte.\n
 Attendere prego,\nsto creando una\nnuova mappa...\n\n(Per grandi mappe,\nquesta operazione\npuò richiedere anche\nalcuni minuti)\n
 Es wird bereits\nein Fahrplan\neingegeben\n
 Hai già iniziato\nad inserire un percorso!\n
+Extract files
+Estrai file
 Fabrikanschluss
 Fabbriche connesse
 Fabrikname
@@ -979,6 +1207,8 @@ follow me
 Seguimi
 Follow the convoi on the map.
 Segui convoglio sulla mappa
+font size
+Dimensione font (solo font .ttf e .otf)
 For questions and support please visit:
 Per domande e supporto visitare:
 Forest
@@ -993,12 +1223,16 @@ Free Capacity
 Capacità disp.
 freeplay mode
 Modalità gioco libero
+Freight
+Merci
 Friction:
 fattore frizione attuale:
 fuel_cell
 celle combustibile
 Full load
 Carico:      
+Fullscreen (changed after restart)
+Schermo intero (attivo dopo il riavvio)
 Fundament
 Fondazione
 Fussgaenger
@@ -1015,6 +1249,8 @@ Gebaeude
 Edificio
 General
 Generale
+generate script
+Genera uno script macro per le infrastrutture
 Generated
 Generati
 Generation: %.0f MW
@@ -1041,14 +1277,22 @@ Gross Profit
 Utile lordo
 Groundobj
 Oggetto
+groundobj builder
+Posiziona oggetti del paesaggio
 Grow city
 Ingrandisci
 Growth
 Crescita città
+GUI settings
+Impostazioni interfaccia
 H
 fermata
 Happy
 Felice
+Has slope graphics
+Ha grafica per pendenze
+Has Snow
+Con neve
 Haus kaufen
 Compra casa
 Helligk.
@@ -1061,6 +1305,8 @@ hide all building
 Nascondi edifici
 hide city building
 Nascondi edifici città
+Hide labels
+Nascondi etichette
 hide objects under cursor
 nascondi gli oggetti sotto il cursore
 hide station names
@@ -1073,6 +1319,8 @@ Hier warten/lagern:
 Passeggeri/merci in attesa:
 Higher transport fees, crossconnect all factories
 Tasse di trasporto più alte, disabilita Just-in-time.
+highlight single ways
+Indica la fine/interruzione delle vie di trasporto.
 Highlite schedule
 Evidenzia percorso
 hl_title
@@ -1119,8 +1367,12 @@ Home depot not found!\nYou need to send the\nconvoi to the depot\nmanually.
 Impossibile trovare deposito.\nManda il veicolo\nmanualmente.
 Homeless
 Senzatetto
+Horizontal stripe ownership
+Proprietà a strisce orizzontali
 hydrogene
 Idrogeno
+Icon size:
+Dimensione icone:
 Idle:
 Inattivi:
 ignore climates
@@ -1135,12 +1387,22 @@ increase underground view level
 Aumenta livello di visione sotterranea
 industrial building
 Edificio industriale
+Industry overlay
+Sovrimpressione industrie
+Infinite mouse scrolling
+Scorrimento infinito con il mouse
+Infinite scrolling using mouse
+Scorrimento infinito tramite mouse
 Init map ...
 Costruzione mappa ...
 Ins Stop
 Inserisci
 Insert stop before the current stop
 Inserisci fermata prima della corrente
+Install graphics
+Installa grafica
+Install paks
+Installa pak
 Insufficient funds!
 Fondi insufficenti!
 Intercity road len:
@@ -1157,6 +1419,8 @@ Invert stops
 Inverti le fermate
 isometric map
 Mappa isometrica
+Jan.
+Gen.
 January
 Gennaio
 join game
@@ -1167,10 +1431,14 @@ Jump to
 Salta a
 June
 Giugno
+just now
+proprio ora
 Kann Spielstand\nnicht laden.\n
 Impossibile leggere/aprire\nil file!\n
 Kann Spielstand\nnicht speichern.\n
 Impossibile aprire\nil file in\nscrittura!\n
+keep city roads
+mantieni le strade urbane
 Kein Besitzer\n
 Nessun proprietario
 keine
@@ -1209,6 +1477,12 @@ Leaving depot!
 Sto uscendo dal deposito!
 leer
 vuoto
+Left button drags minimap too
+Anche il pulsante sinistro trascina la minimappa
+legacy (large heights)
+legacy (altezze grandi)
+legacy (small heights)
+legacy (altezze piccole)
 Legend
 Legenda
 Leistung
@@ -1225,6 +1499,10 @@ Line
 Linea
 Line Management
 Gestione Linee
+line name mouseover tooltips
+suggerimenti con il nome della linea al passaggio del mouse
+linear
+lineare
 Lineless convoys serving this stop
 Convogli senza linea che si fermano qui
 Lines serving this stop
@@ -1237,8 +1515,16 @@ Load game
 Apri file
 load height data from file
 Apri rilievo da file.
+Load mode:
+Modalità di carico:
 Load scenario
 Carica scenario
+Load script tool
+Carica strumento script
+Load Scripted AI
+Carica IA con script
+Load settings from
+Carica impostazioni da
 loaded
 caricato
 loaded passenger/freight
@@ -1259,6 +1545,8 @@ Loading skins ...
 Caricamento maschere...
 Loading time:
 Tempo di caricamento:
+Lock Control key
+Blocca tasto Ctrl
 Lock game
 Vieta cambio giocatore (richiede conferma).
 Lokomotive_tab
@@ -1273,6 +1561,8 @@ Maglevdepot
 Deposito maglev
 Mail Demand %d\n
 Richiesta di posta %d\n
+Mail level
+Livello posta
 Mailbox
 Centro Messaggi
 Mailbox Options
@@ -1289,6 +1579,8 @@ Manufactured:
 Prodotti:
 Map roughness
 Asprezza terreno:
+map view
+Mappa
 map zoom
 Zoom
 March
@@ -1305,6 +1597,8 @@ Max. speed
 Velocità max.
 Max. speed:
 Velocità max.:
+Max. waiting time
+Tempo d'attesa max.
 Maximum 254 stops\nin a schedule!\n
 Al massimo 254 fermate\nin un percorso!\n
 maximum length of rivers
@@ -1329,6 +1623,8 @@ min
 min.
 minimum length of rivers
 Lunghezza min. fiumi
+Minimum load
+Carico minimo (%%)
 Missing pakfiles
 Nessun pak trovato
 Modify the selected line
@@ -1359,6 +1655,8 @@ Monuments
 Monumenti
 Mountain height
 Altezza montagne:
+Move the map
+Sposta la mappa
 Movingobj
 Oggetto in movimento
 Music playing disabled/not available
@@ -1407,16 +1705,22 @@ no goods waiting
 nessuna merce in attesa
 no load
 No carico
+No player
+Nessun giocatore
 No Route
 Senza percorso
 No stop here!
 Lo strumento deve essere usato nelle aree di fermata
 No suitable ground!
 Terreno non disponibile
+No suitable townhall available for this climate!
+Nessun municipio adatto disponibile per questo clima!
 No terminal station here!
 Non c'è nessuna stazione terminale!
 no timeline
 no linea del tempo
+No transformer connected.
+Nessun trasformatore collegato.\nTutta l'energia andrà sprecata.
 no tree
 Nessun albero
 No vehicles are available for purchase.
@@ -1433,32 +1737,46 @@ nordost
 Nord-Est
 nordwest
 Nord-Ovest
+Not allowed to make publicly owned ways!
+Non è consentito creare vie pubbliche!
 Not allowed!\nThe convoi's schedule can\nnot be changed currently.\nTry again later!
 Il percorso del veicolo\nnon può esser cambiato\ndurante la ricerca del percorso.
 Not enough fields would remain.
 Non rimarranno abbastanza\nterreni intorno a questa fattoria
+Not online
+Non in linea
 November
 Novembre
 now
 adesso
 Now active as %s.\n
 Ora attivo come %s.\n
+nowhere
+da nessuna parte
 Number of rivers
 Numero di fiumi
 Object
 Oggetto
+Oct.
+Ott.
 Odometer: %s km
 Tachimetro: %skm
 Oktober
 Ottobre
 On loan since %i month(s)
 In debito da %i mese/i
+On mouseover
+Al passaggio del mouse
+on the
+partenze/mese prima alle (dd-hh-mm)
 On this map, you are not\nallowed to change player!\n
 Le impostazioni della partita\nnon permettono il cambio di giocatore.\n
 Only city chains
 Solo catene di città
 Only first %d differing paks reported. There are probably more.
 Solo i primi %d paks differenti sono segnalati. Probabilmente le differenze sono di più.
+Only full Unicode fonts
+Solo font Unicode completi
 Only land chains
 Solo catene di campagna
 Only one transformer per factory!
@@ -1517,10 +1835,16 @@ Pause
 Pausa
 Pax <%i>  Mail <%i>
 Passeggeri <%i> Posta <%i>
+Pax level
+Livello passeggeri
 PaxDest
 Destinazioni
 Percent Electricity
 Produzione elettricità(%% domanda)
+personal_chat
+Chat private
+Pipette
+Ricostruisci l'oggetto selezionato
 Planes are not available yet!
 Aerei non ancora disponibili.
 Plant tree
@@ -1557,6 +1881,8 @@ player 8
 giocatore 8
 player 9
 giocatore 9
+Player ranking
+Classifica giocatori
 Please choose vehicles first\n
 Scegli prima i veicoli!\n
 Post
@@ -1591,6 +1917,8 @@ Profit
 Profitti
 promote to line
 Promuovi a linea
+public_chat
+Chat generale
 q1
 Primav.
 q2
@@ -1643,6 +1971,10 @@ remove tracks
 rimuovi binari
 Remove wayobj %s
 Rimuovi oggetto %s
+replace existing ways
+sostituisci le vie esistenti
+replace faster wayobjs
+sostituisci gli oggetti di via più veloci
 replace other signals
 Sostituisci altri segnali
 replace stop
@@ -1665,6 +1997,8 @@ Revenue
 Entrate
 Revenue/unit/100 tiles
 Entrate/unità/100 caselle
+Revert schedule
+Annulla modifiche
 Revision:
 Revisione:
 road
@@ -1679,14 +2013,36 @@ Rotate map
 Ruota mappa
 Rotation
 Rotazione
+Running cost
+Costi di esercizio
 sack
 sacchi
 sail
 vela
+Save
+Salva partita
+Save generated script
+Salva lo script generato
 Saving map ...
 Salvataggio mappa ...
 Scenario complete: %i%%
 Scenario completo: %i%%
+Scenario Debug
+Debug
+Scenario Error Log
+Errori dello script
+Scenario Goal
+Obiettivo dello scenario
+Scenario Info
+Info brevi
+Scenario information
+Dettagli dello scenario attuale
+Scenario Result
+Progresso
+Scenario Rules
+Regole
+Scenario_
+Scenario 
 Schedule changing!
 Cambio programma!
 Schienentunnel
@@ -1697,8 +2053,12 @@ Schiffdepot
 Deposito imbarcazioni
 Schleppkahn_tab
 Chiatte
+Screen scale:
+Scala dello schermo:
 Screenshot
 Cattura schermata
+Scroll threshold
+Soglia di scorrimento
 Search:
 Cerca:
 Seasons
@@ -1709,6 +2069,12 @@ Select a server to join:
 Scegli un server al quale aderire:
 Select a theme for display
 Scegli un tema
+Select display font
+Seleziona font del display
+Select one or more graphics to install (Ctrl+click):
+Seleziona una o più grafiche da installare (Ctrl+clic):
+Select soundfont
+Seleziona soundfont
 Sell the selected vehicle(s)
 Vendi veicolo(i) selezionato.
 Selling of the program is forbidden.
@@ -1721,6 +2087,8 @@ SEP_THOUSAND
 .
 SEP_THOUSAND_EXPONENT
 3
+Sept.
+Sett.
 September
 Settembre
 Served by
@@ -1749,8 +2117,20 @@ Show also vehicles no longer in production.
 Mostra anche veicoli non più prodotti.
 Show also vehicles that do not match for current action.
 Mostra anche veicoli non adatti.
+Show always
+Mostra sempre
+Show climates
+Mostra climi
+Show construction info
+Mostra informazioni di costruzione
+Show contour
+Mostra altezze
 Show even servers with wrong version or pakset
 Visualizza i server che forniscono una versione sbagliata del pakset.
+Show finances for transport type
+Mostra finanze per tipo di trasporto
+Show future
+Mostra futuri
 show grid
 Mostra griglia
 Show industry
@@ -1761,12 +2141,16 @@ Show map scale
 Scala valori
 Show mismatched
 Mostra le mancate corrispondenze
+Show networks
+Mostra reti
 Show obsolete
 Mostra Veicoli Vecchi
 Show offline
 Mostra offline
 Show only used
 Mostra solo quelli utilizzati
+Show outline
+Solo infrastrutture
 Show schedules
 Mostra programmi
 Show servers that are offline
@@ -1787,6 +2171,10 @@ show/hide object owner
 mostra/nascondi possessore dell'oggetto
 Show/hide statistics
 Mostra/Nascondi Statistiche
+Shows buttons about networks overlay.
+Mostra i pulsanti per la sovrapposizione delle reti.
+Shows buttons on network overlay.
+Mostra l'opzione per sovrapporre una rete di collegamento.
 Shows buttons on special topics.
 Mostra i pulsanti relativi a particolari temi.
 Shows consumer/suppliers for factories
@@ -1807,8 +2195,12 @@ Sim:
 CicliSim:
 Similar view as the main window
 Visualizza viste simili come finestra principale
+Single toolbar only
+Solo barra degli strumenti singola
 Size (%d MB):
 Dimens. (%d MB):
+Size (area)
+Dimensione (area)
 sliced underground mode
 Vista per livelli
 slot empty
@@ -1827,8 +2219,12 @@ Sound settings
 Proprietà Audio
 Sound volume:
 Volume suono:
+Soundfonts are located in the music directory.
+I soundfont si trovano nella cartella della musica.
 special freight
 Carico Speciale
+Speed Bonus
+Bonus velocità
 Speedbonus\nroad %i km/h, rail %i km/h\nships %i km/h, planes %i km/h.
 Bonus velocità\nstrada %i km/h, ferrovia %i km/h\nnavi %i km/h, aerei %i km/h.
 Speedlimit
@@ -1857,22 +2253,30 @@ Start the selected vehicle(s)
 Fai partire veicolo(i) selezionato.
 Starte Spiel
 Inizia Gioco
+station labels
+Stazioni
 Station tiles:
 Area stazioni:
 Station_msg
 Stazioni
 Status
 Stato fermata
+stay on this level
+resta su questo livello
 steam
 vapore
 Step timeline one year
 Salta un anno.
+Stopping permissions
+Altri giocatori che possono usare questa fermata
 Stops
 Fermate
 Storage
 Accoglienza
 Storage capacity
 Capacità di accoglienza
+straight route
+tracciato rettilineo
 Strassendepot
 Deposito camion/bus
 Strassentunnel
@@ -1893,6 +2297,16 @@ Suppliers
 Fornitori
 Tage alt
 giorni di età
+The following graphics are unmaintained:
+Le seguenti grafiche non sono mantenute:
+The generated script was saved!\n
+Macro salvata con successo.\nPuò essere riprodotta con lo strumento script.
+The gradient does not fit a tunnel
+La pendenza non è adatta a una galleria
+The script cannot be saved!\n
+Impossibile salvare lo script!\n
+Theme selector
+Selettore tema
 There are still vehicles\nstored in this depot!\n
 Ci sono ancora\ndei veicoli\nin questo deposito!\n
 This Month
@@ -1909,12 +2323,16 @@ To attract more tourists\n%s built\na %s\nwith the aid of\n%i tax payers.
 Per attrarre più turisti,\n%s ha costruito\nun %s\ncon l'aiuto di\n%i contribuenti.
 To heavy traffic\nresults in traffic jam.\n
 Il troppo traffico\nha causato code.\n
+To: %s
+A: %s
 Toggle day/night view
 Cambia visione giorno/notte
 Toggle vehicle tooltips
 Cambia richiami veicoli
 tonnen
 t
+Toolbar position:
+Posizione barra degli strumenti:
 Total inhabitants:
 Abitanti totali: 
 Tourist attractions
@@ -1932,6 +2350,8 @@ linea
 Tracks
 Binari
 Traffic
+Traffico
+traffic settings
 Traffico
 Train
 Treno
@@ -1965,6 +2385,8 @@ TrolleyBus_tab
 filobus
 Truck
 Camion
+tt_Other
+Altro
 Tunnel muss an\neinfachem\nHang beginnen!\n
 Un tunnel deve\niniziare su\nlivelletta uniforme!\n
 Tunnel must start on single way!
@@ -2025,12 +2447,16 @@ Verkehrsteilnehmer
 Utente stradale
 Verschuldet:\n\nDu hast %d Monate Zeit,\ndie Schulden zurueckzuzahlen.\n
 Sei in rosso!\n\nHai %d mese/i\nper rientrare.\n
+vh_title
+Lista di tutti i veicoli
 via
 via (dettaglio)
 via %s\n
  via %s\n
 via Menge
 via (ammontare)
+via owner
+via (proprietario)
 voranstellen
 Agg.in testa
 Waggon_tab
@@ -2063,6 +2489,8 @@ Way toll
 Casello pedaggio
 Ways not connected
 Vie non connesse
+waytype
+tipo di via
 Wegpunkt
 Waypoint
 Weight
@@ -2073,6 +2501,8 @@ Weight/unit
 Peso/unità
 Welcome to Simutrans
 Benvenuti in Simutrans
+Welcome, %s!
+Benvenuto, %s!
 Wert
 Valore
 west
@@ -2143,8 +2573,16 @@ i veicoli della linea %s sono stati ritirati
 #_________________________________tooltip_text__________________________________
 Add convois with similar schedule to this line.
 Aggiungi convogli con orari simili a questa linea.
+Attach current coordinate to the comment
+Allega le coordinate correnti al commento
 Enter intervall in days, hours, minutes
 Immettere l'intervallo in giorni, ore, minuti
+Mirrors order of stops
+Inverte l'ordine delle fermate
+Revert to original schedule
+Annulla tutte le modifiche all'orario.
+Tutorial not available for this pakset. Please try loading Pak128.
+Tutorial non disponibile per questo pakset. Prova a caricare Pak128.
 #_______________________________unnecessary_text________________________________
 #_______________________________unnecessary_text________________________________
 &0_CITY_SYLL

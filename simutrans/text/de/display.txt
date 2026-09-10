@@ -23,7 +23,7 @@ Im unteren Teil des Dialogs werden einige Information zur Auslastung des Compute
 · <em>Simloops</em>: Anzahl der Simulationsschleifen pro Spielsekunde. Wenn der Wert dauerhaft unter 5 fällt, ist der Computer voll ausgelastet. Einige Funktionen in Simutrans können aussetzen, zum Beispiel fahren Züge nicht mehr ab. In dem Fall sollte eine kleinere Karte mit weniger Städten gespielt werden.
 </p>
 
-<h1><it>Kartendarstellung</it></h1>
+<h1><it>Ansicht (Kartendarstellung)</it></h1>
 <p>
 · <em>Gitternetz einblenden</em>: Blendet in der Welt ein Gitternetz ein und aus.<br>
 · <em>Untergrundansicht</em>: In diesem Modus kann man Tunnelstrecken bauen, sofern schon eine Strecke unter der Erde besteht. Die Tunnelstrecken aller Ebenen werden zusammen angezeigt.<br>
@@ -37,7 +37,7 @@ Im unteren Teil des Dialogs werden einige Information zur Auslastung des Compute
 · <em>Datums- und Uhrzeitformat</em> ändert die Darstellung der Spielzeit unten links in der Statuszeile.
 </p>
 
-<h1><it>Bäume & Gebäude</it></h1>
+<h1><it>Sichtbarkeit</it></h1>
 <p>
 · <em>Transparent statt minimieren</em>: Wählt den Modus aus, der benutzt werden soll, um Häuser oder Bäume zur besseren Übersicht zu verstecken. Diese Einstellung hat Auswirkungen auf die beiden nächsten Einstellungen.<br>
 · <em>Bäume minimieren</em>: Zeigt nur ganz kleine bzw. transparent Bäume an.<br>
@@ -46,12 +46,13 @@ Im unteren Teil des Dialogs werden einige Information zur Auslastung des Compute
 · <em>Industriestatusanzeige</em>: Blendet den Industrienamen sowie Wareneingang (blau) und Warenausgang (orange) auf der Hauptkarte ein.
 </p>
 
-<h1><it>Stationen</it></h1>
+<h1><it>Halte</it></h1>
 <p>
 · <em>transparente Stationsabdeckung</em>: Wählt den Modus aus, der benutzt werden soll, um die Reichweite von Halten anzuzeigen. Ist transparent gewählt färbt sich der Boden entsprechend der ersten Spielerfarbe des Besitzers, während ausgeschaltet je Fliese nur ein Kästchen in Spielerfarbe zu sehen ist.<br>
 · <em>Stationsabdeckung anzeigen</em>: Zeigt die Stationsabdeckung an oder blendet sie aus.<br>
 · <em>Markierungen auf der Hauptkarte</em>: Legt den Modus fest, wie Markierungen bzw. Schilder im Spiel angezeigt werden. Diese können mit der ersten Spielerfarbe im Hintergrund, mit transparentem Grund und als Schriftfarbe die Spielerfarbe, in Standardschriftfarbe mit einem spielerfarbenen Feld davor oder überhaupt nicht angezeigt werden.<br>
 · <em>Güterwarenbalken anzeigen</em>: Blendet die Anzeige für wartende Waren an den Halten ein oder aus.<br>
+· <em>Spielerfarben des Halt horizontal</em>: Wenn mehrere Spieler einen Halt benutzen dürfen, wird ein Streifen mit den Farben aller hier erlaubten Spieler über dem Stationsnamen angezeigt. Aktiviert: Der Streifen wird horizontal aufgeteilt. Nicht aktiviert: vertikal aufgeteilt. (funktioniert aber nicht ;-) ) 
 </p>
 
 <h1><it>Verkehr</it></h1>

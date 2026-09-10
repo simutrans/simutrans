@@ -12,7 +12,7 @@ Prop-Latin1.bdf
 #                             Language: en English                             #
 #                             Encoding: ISO-8859-1                             #
 #                             Font: Prop-Latin1.bdf                            #
-#                           Date Created: 31.05 2026                           #
+#                           Date Created: 10.09 2026                           #
 #                                                                              #
 ################################################################################
 #__________________________________button_text__________________________________
@@ -353,8 +353,6 @@ With a big festival,\n%s built\na new monument.\n%i citizens rejoiced.
 %d vehicles stored here.
 %i car(s),
 %i cars, 
-%i km/h (max. %ikm/h)
-%i km/h (max. %i km/h)
 %i years %i months old.
 Age: %i years and %i months
 %s at (%i,%i) now public stop.
@@ -1087,6 +1085,8 @@ No terminal station here!
 Can't build a terminal \nstation here! An end piece \nof flat road/track is needed.
 no timeline
 all eras
+No transformer connected.
+No transformed connected:All power will be wasted.
 no tree
 No trees
 No. of Factories

@@ -12,7 +12,7 @@ Prop-Latin1.bdf
 #                             Language: de Deutsch                             #
 #                                Encoding: UTF-8                               #
 #                             Font: Prop-Latin1.bdf                            #
-#                           Date Created: 31.05 2026                           #
+#                           Date Created: 10.09 2026                           #
 #                                                                              #
 ################################################################################
 #__________________________________button_text__________________________________
@@ -111,6 +111,8 @@ Num pad keys always move map
 Numlock ignorieren
 Open Sea
 Meer
+Owner only
+Nur Besitzer
 Queueing
 Tendenz Wartend
 rainfall
@@ -125,6 +127,8 @@ Scenario
 Missionsstatus
 sea
 maritim
+Shared only
+nur Austauschstationen
 Single GUI
 Einfenstermodus
 Sound range:
@@ -163,6 +167,10 @@ Tundra
  Das Laden des Szenarioskripts ist fehlgeschlagen
 A building blocks the construction
 Ein Gebäude ist im Weg!
+A powerline blocks the construction
+Eine Freileitung blockiert den Bau
+Another way blocks the construction
+Ein anderer Weg blockiert den Bau
 Bridge blocked by way below or above.
 Die Höhe der Brücke über dem Weg darunter reicht nicht aus.
 Can't buy obsolete vehicles!
@@ -181,6 +189,8 @@ Cannot create generic line!\nSelect line type by\nusing filter tabs.
 Kann keine Linie vom Typ\n'Alle' erzeugen.\n\nWählen Sie einen\nanderen Linientyp aus
 Cannot create socket
 Kann Netzwerk nicht initialisieren!
+Cannot cross the end of a runway
+Das Ende einer Landebahn kann nicht gekreuzt werden
 Cannot rotate this building!
 Dieses Gebäude kann nicht gedreht werden!
 Client closed connection during transfer
@@ -203,6 +213,8 @@ Der Besitzer erlaubt das Entfernen nicht
 Der Besitzer\nerlaubt das\nEntfernen nicht.\n
 Diese Zusammenstellung kann nicht fahren!\n
 Diese Zusammenstellung\nkann nicht fahren!\n
+Elevated way can only be joined in line
+Eine Hochbahn kann nur geradlinig angeschlossen werden
 Failed to write file
 Konnte die Datei nicht schreiben.
 Flugzeughalt muss auf\nRunway liegen!\n
@@ -275,12 +287,16 @@ Show no revenue messages
 Keine Buchungen an Halten
 Show only player's revenue
 Nur eigene Buchungen anzeigen
+Slope is too steep
+Die Steigung ist zu steil
 Terraforming not possible\nhere in underground view
 Diese Landschaftsveränderung ist\nnur auf dem Kartenboden möglich.\n
 This tunnel branches. You can try Control+Click to remove.
 Dies ist ein Tunnelsystem. Evt. kann es mittels Strg+Klick gelöscht werden!
 Too far away to merge stations!
 Halt zu weit entfernt zum Verbinden.
+Tunnel can only be entered at its portal
+Ein Tunnel kann nur an seinem Portal betreten werden
 Unknown error
 Allgemeiner Fehler
 Upgrade must have\na higher level
@@ -289,6 +305,10 @@ Vehicle %s cannot choose because stop too short!
 Die Haltsuche von %s scheitert an zu kurzen Halten!
 Watertable reached
 Kann das Land nicht unter das\nGrundwasserniveau absenken.
+Way does not match the slope here
+Der Weg passt hier nicht zum Hang
+Wrong direction to enter the bridge
+Falsche Richtung für die Brückenauffahrt
 #___________________________________help_text___________________________________
 #___________________________________help_text___________________________________
 <h1>Index</h1><p>*: only english</p><p>General</p>%s<p>Usage</p>%s<p>Tools</p>%s<p>Start</p>%s<p>How to play</p>%s<p>Others:</p>%s
@@ -463,6 +483,8 @@ Linienfilter
 (7) Südwestecke
 [CTRL]
 Strg
+[DELETE]
+[ENTF]
 [END]
 Ende
 [HOME]
@@ -757,6 +779,8 @@ Build monorail depot
 Baue Depot für Monorail
 Build narrowgauge depot
 Schmalspurbahndepot bauen
+build portal only
+nur Portal bauen
 Build powerline
 Überlandleitung wird gebaut - Kosten pro Feld:
 Build presignals
@@ -789,6 +813,8 @@ Can only move from halt to halt or waypoint to waypoint.
 Kann nur von Halt zu Halt\noder von Wegpunkt zu\nWegpunkt verschieben
 Cancel
 Abbrechen
+Cannot build here
+Hier kann nicht gebaut werden
 Cannot connect to offline server!
 Server ist offline und nicht erreichbar.
 Capacity
@@ -1223,6 +1249,8 @@ Growth
 Wachstum
 GUI settings
 Oberfläche
+H
+Halt
 Happy
 Zufrieden
 Has slope graphics
@@ -1301,6 +1329,8 @@ Home depot not found!\nYou need to send the\nconvoi to the depot\nmanually.
 Kein Heimdepot gefunden!\nÄndern Sie den\nFahrplan entsprechend\nmanuell.
 Homeless
 Obdachlos
+Horizontal stripe ownership
+Spielerfarben des Halt horizontal
 hydrogene
 Wasserstoff
 Icon size:
@@ -1369,6 +1399,8 @@ Kann Spielstand\nnicht laden.\n
 Kann Spielstand\nnicht laden!\n
 Kann Spielstand\nnicht speichern.\n
 Kann Spielstand\nnicht speichern!\n
+keep city roads
+Stadtstraßen erhalten
 Kein Besitzer\n
 kein Besitzer\n\n
 Keine Einzelfahrzeuge im Depot
@@ -1539,6 +1571,8 @@ merge stop
 Haltestelle zusammenlegen
 MessageOptionsText
 \nNeues Jahr\n\nKI baut\n\nStadtnachrichten\n\nKeine Route\n\nNeue Industrie\n\nMitteilungen\n\nNeue Fahrzeuge\n\nBahnhof voll\n\nProbleme\n\nStaus\n\nSzenario\n\nÖffentlicher Chat\n\nFirmeninterner Chat\n\nPrivate Nachrichten\n\n
+min
+min.
 minimum length of rivers
 min. Länge
 Minimum load
@@ -1633,6 +1667,8 @@ No terminal station here!
 Ein Endhalt kann nur\nauf einem Endstück\ngebaut werden!\n
 no timeline
 alle Epochen
+No transformer connected.
+Kein Umspannwerk angeschlossen!\nAlle Leistung wird verschwendet.
 no tree
 ohne Wälder
 No vehicles are available for purchase.
@@ -1813,6 +1849,8 @@ Production of %s has been stopped:\n%s\n
 %s '%s'\nwird nicht mehr hergestellt.
 Production/Boost
 Produktionskennzahlen
+Profit
+Gewinn
 promote to line
 Neue Linie
 public_chat
@@ -1850,21 +1888,25 @@ Kanal zuschütten
 remove interm. signals
 Sign. an Zwischenstellen entf.
 remove maglev tracks
-Magnetbahnstrecke löschen
+Magnetbahnstrecke entfernen
 remove monorails
-Monorailbahnstrecken löschen
+Monorailbahnstrecken entfernen
 remove narrowgauge tracks
 Schmalspurbahnstrecke entfernen
 remove powerlines
 Übertragungsleitung entfernen
 remove roads
-Straßenzug löschen
+Straßenzug entfernen
 remove signal
 Signal entfernen
 remove tracks
 Eisenbahnstrecken entfernen
 Remove wayobj %s
 Wegzusatz von %s entfernen.
+replace existing ways
+vorhandene Wege ersetzen
+replace faster wayobjs
+schnellere Wegzusätze ersetzen
 replace other signals
 Andere Signale entfernen
 replace stop
@@ -2005,6 +2047,8 @@ Show always
 Immer anzeigen
 Show climates
 Klimazonen
+Show construction info
+Bauinformationen anzeigen
 Show contour
 Geländreflief
 Show even servers with wrong version or pakset
@@ -2127,6 +2171,8 @@ Station_msg
 Überfüllungen
 Status
 Haltstatus
+stay on this level
+auf dieser Ebene bleiben
 steam
 Dampf
 Step timeline one year
@@ -2139,6 +2185,8 @@ Storage
 Auf Lager
 Storage capacity
 Lagerkapazität
+straight route
+gerade Strecke
 Strassendepot
 Bus und LKW Depot
 Strassentunnel
@@ -2230,7 +2278,7 @@ Noch keine Straßenbahnen verfügbar!
 Transferring game ...
 Karte wird übertragen ...
 Transformer only next to factory!
-Umspannwerke können nur auf\neinem freien geraden Feld\ndirekt neben einer Fabrik\ngebaut werden!
+Umspannwerke können nur auf\neinem freien flachen Feld\ndirekt neben einer Fabrik\ngebaut werden!
 Translation
 Übersetzung
 transparencies
@@ -2627,6 +2675,8 @@ Entwicklungsgebiet %s %s %s
 %s %spark %s
 8center
 %s Knoten %s
+8extern
+%s %s Marge %s
 8suburb
 Neu-%s %s %s
 9center

@@ -12,11 +12,19 @@ cyr.bdf
 #                            Language: eo Esperanto                            #
 #                                Encoding: UTF-8                               #
 #                                 Font: cyr.bdf                                #
-#                           Date Created: 11.03 2026                           #
+#                           Date Created: 10.09 2026                           #
 #                                                                              #
 ################################################################################
 #__________________________________button_text__________________________________
 #__________________________________button_text__________________________________
+Absolute times
+Montri tempojn kiel tago:hh:mm de la monato
+allow reverse passage
+permesi kontraŭdirektan pason
+AMBIENT_SOUND
+Ĉirkaŭaj sonoj
+CASH_SOUND
+Kasa sono
 cl_btn_filter_disable
 Nevalidigita
 cl_btn_filter_enable
@@ -41,6 +49,16 @@ clf_btn_invers
 Inverse
 clf_btn_keine
 Nenio
+climate area percentage
+Grandeco de unuopa klimato 
+Continue Game
+Daŭrigi ludon
+CROSSING_SOUND
+Nivelpasejaj avertoj
+FACTORY_SOUND
+Fabrikaj bruoj
+Find matching convois
+Trovi kongruajn konvojojn
 gl_btn_sort_bonus
 Kromenspezo
 gl_btn_sort_name
@@ -49,6 +67,8 @@ gl_btn_sort_revenue
 Enspezo
 gl_btn_unsort
 Neordigite
+height based
+Klimato laŭ alteco
 hl_btn_filter_disable
 Neebligite
 hl_btn_filter_enable
@@ -71,20 +91,62 @@ hlf_btn_invers
 Inverse
 hlf_btn_keine
 Neniu
+humidities
+humideclimoj
+Install
+Instali
+Lake
+Lago
+Lake height
+Maks. alteco de lago
 Maximize height levels
 Maksimumigi altecon
+moisture land
+pliiĝo super tero
+moisture water
+pliiĝo super akvo
 Networks
 Transportretoj
+Num pad keys always move map
+Ciferklavoj ĉiam movas la mapon
+Open Sea
+Malferma maro
+Owner only
+Nur posedanto
 Queueing
 Atendantoj
+rainfall
+humideco
+Reselect closes tools
+Reelekto de ilo malelektas ĝin
+Return to menu
+Reiri al menuo
 Road toll
 Vojimposmo
 Scenario
 Scenaro
+sea
+mara klimato
+Shared only
+Nur komunaj
+Single GUI
+Unuopa GUI
+Sound range:
+Sondistanco:
 Start this as a server
 Komenci servilon per ĉi tiu ludo.
+temperature borders
+temperaturlimoj
+temperature-humidity based
+Klimatoj laŭ vetero
+TOOL_SOUND
+sonoj de ilagoj
+TRAFFIC_SOUND
+trafikbruo
 Transfers
 Transvagoniĝantoj
+Tutorial
+Lernilo
 #_________________________________climates_text_________________________________
 #_________________________________climates_text_________________________________
 arctic
@@ -105,6 +167,12 @@ Tundra klimato
 #__________________________________error_text___________________________________
  Loading scenario script failed
 Malsukcesis legi scenaron
+A building blocks the construction
+Konstruaĵo blokas la konstruon
+A powerline blocks the construction
+Elektrolinio malhelpas la konstruadon
+Another way blocks the construction
+Alia vojo malhelpas la konstruadon
 Bridge blocked by way below or above.
 Ponto estas malhelpata de vojo supre aŭ sube.\n
 Can't buy obsolete vehicles!
@@ -117,10 +185,14 @@ Cannot built depot here!
 Ne povas konstrui veturilejo ĉi tie.
 Cannot built this station/building\nin underground mode here.
 Ne povas konstrui ĉi tiun stacidomon en subtero.\n
+Cannot connect to the\ncenter of a double slope!
+Ponto ne povas konektiĝi al mezo de duobla deklivo!\nUzu terformilon por ripari tion.
 Cannot create generic line!\nSelect line type by\nusing filter tabs.
 Ne povas krei universalan linion. Elektu linian tipon uzante tabon.
 Cannot create socket
 Ne povas krei ingon.
+Cannot cross the end of a runway
+Ne eblas transiri la finon de kurejo
 Cannot rotate this building!
 Ne povas turni ĉi tiun konstruaĵon.
 Client closed connection during transfer
@@ -129,16 +201,28 @@ Convoi handles exhausted!
 Atingis maksimumajn nombrojn de veturilo.
 Convoy already deleted!
 Veturilo jam estas eliminita!
+Corrupt file
+Dosiero estas difektita aŭ trunkita.
 Could not open file
 Ne povas malfermi la dosieron
 Das Feld gehoert\neinem anderen Spieler\n
 Ĉi tiu loko estas okupita\nde alia ludanto!\n
+Depots cannot be built on runways!
+Deponejoj ne povas esti konstruitaj sur startvojoj!
+Depots must be built on flat dead-end way tiles!
+Deponejoj devas esti konstruitaj sur plataaj sakvojaj kaheloj!
 Der Besitzer erlaubt das Entfernen nicht
 La proprulo malpermesas malkonstrui ĉi tion!\n
 Diese Zusammenstellung kann nicht fahren!\n
 Ĉi tiu kombinado ne povas ekveturi!\n
+Elevated way can only be joined in line
+Altigita vojo konekteblas nur rektlinie
+Failed to write file
+Ne eblis skribi dosieron. (Ĉu permesoj?)
 Flugzeughalt muss auf\nRunway liegen!\n
 Aviadila haltejo devas esti sur kurejo.\n
+Forbidden by scenario
+Malpermesita de scenaro
 Hier kann dieses\nFlughafengebaeude nicht\ngebaut werden!\n
 Vi ne povas konstrui hangaron ĉi tie.\n
 Hier kann kein\nSignal aufge-\nstellt werden!\n
@@ -163,20 +247,32 @@ Narrowgaugehalt muss auf\nNarrowgauge liegen!\n
 Etŝpura fervoja stacio devas esti sur etŝpura fervojo!
 No bridges over runways!
 Ne povas konstrui ponton super kurejo!
+No curves on runways
+Alteriĝejoj ne povas kurbiĝi!
+No suitable crossing
+Neniu taŭga nivelpasejo! (ĉu maksimuma rapideco tro granda?)
 No suitable way on the ground!
 Oni ne povas konstrui ion ĉi tie.
 No through station here!
 Oni ne povas konstrui haltejon ĉi tie!
+Not allowed to copy object.
+Vi ne povas konstrui tiun objekton!\n(Kialo: Malĝusta ludanto aŭ malaktuala)
 Not enough bytes transferred
 Malsukcesis sendi datumon.
 Not enough clearance.
 Minimuma alteca diferenco necesas inter du vojoj.
+Not enough empty space
+Ne sufiĉe da libera spaco restas.
 Not enough money!
 Mankas mono al vi.
+Not initialized
+Ne eblis pravalorizi bibliotekon.
 On narrowgauge track only!\n
 Nur sur Etŝpura vojo!
 Only public player can lock games!
 Nur publika ludanto rajtas ŝlosi ludon.
+Only up and down movement in the underground!
+Subtera kahelo povas esti nur altigita kaj malaltigita per la iloj por ĉio supren/malsupren!
 Out of funds
 Mankas mono al vi!
 Post muss neben\nHaltestelle\nliegen!\n
@@ -189,20 +285,36 @@ Server busy
 Servilo okupita
 Server version too new
 La servilo uzas pli novan version.
+Ship depots must be built on water!
+Ŝipdeponejoj devas esti konstruitaj sur akvo!
 Show all revenue messages
 Montri enspezoj de ĉiuj ludantoj
 Show no revenue messages
 Malmontri enspezoj de ĉiuj ludantoj
 Show only player's revenue
 Montri nur enspezo de tiu ĉi ludanto
+Slope is too steep
+La deklivo estas tro kruta
 Terraforming not possible\nhere in underground view
 Oni ne povas terformi subteron.
 This tunnel branches. You can try Control+Click to remove.
 Ĉi tiu tunelo havas pli ol du enirejon. Vi povas forigi ĉi tiu tunelon per Ctrl+alklaki.
+Too far away to merge stations!
+Tro malproksima por kunfandi staciojn!
+Tunnel can only be entered at its portal
+Tunelo eniriĝas nur tra sia portalo
+Unknown error
+Nekonata eraro
 Upgrade must have\na higher level
 Promocio devas havi pli altan nivelon.
 Vehicle %s cannot choose because stop too short!
 Veturilo %s ne povas trovi por halti pro tro mallongeca haltejo.
+Watertable reached
+Ne eblas mallevi la kahelon plu!\nAtingis la subteran akvonivelon.
+Way does not match the slope here
+La vojo ne kongruas kun la deklivo ĉi tie
+Wrong direction to enter the bridge
+Malĝusta direkto por eniri la ponton
 Zughalt muss auf\nSchiene liegen!\n
 Fervoja stacio devas esti sur fervojo.
 #___________________________________help_text___________________________________
@@ -211,8 +323,14 @@ Fervoja stacio devas esti sur fervojo.
 <h1>Enhavo</h1><p>*: nur la angla</p><p>Ĝeneralo</p>%s<p>Uzado</p>%s<p>Iloj</p>%s<p>Komenci</p>%s<p>Kiel ludi</p>%s<p>aliaj:</p>%s
 <title>Keyboard Help</title>\n<h1><strong>Keyboard Help</strong></h1><p>\n
 <title>Klavara helpo</title>\n<h1><strong>Klavara helpo</strong></h1><p>\n
+At least one stop is connected to the town.
+Almenaŭ unu haltejo estas konektita al la urbo.
+At least one tile is connected to one stop.
+Almenaŭ unu kahelo estas konektita al unu haltejo.
 Color according to transport capacity left
 Koloro laŭ resto de transporta enhaveco
+Color-coded terrain according to altitude.
+Montri/kaŝi reliefan ombradon de tereno.
 Decrease water height
 Malaltigi akvan nivelon
 Highlight railroad tracks
@@ -241,6 +359,8 @@ Overlay town names
 Montri urbnamojn
 Please click on the map to add\nwaypoints or stops to this\nschedule.
 Bonvolu klaki sur la mapo por aldoni vojpunktojn aŭ haltejojn al la liniplano.
+Remove double stops from schedule
+Forigi duoblajn haltejojn el horaro
 Set tile climate %s
 Ŝanĝi ĉi tiean klimaton je %s
 Show capacity and if halt is overcrowded
@@ -277,6 +397,8 @@ Montri kiom da veturiloj alvenitaj kaj eliritaj
 %s nun\nofertas busan servon\ninter %s\nkaj altiraĵo\n%s\nĉe (%i,%i).\n
 %s now\noffers bus services\nbetween %s\nand factory\n%s\nat (%i,%i).\n
 %s nun\nofertas busan servon\ninter %s\nkaj fabriko\n%s\nĉe (%i,%i).\n
+%s\nnow operates\n%i trucks between\n%s at (%i,%i)\nand %s at (%i,%i).
+%s\nnun funkciigas\n%i kamionojn inter\n%s ĉe (%i,%i)\nkaj %s ĉe (%i,%i).
 %s\nopened a new railway\nbetween %s\nat (%i,%i) and\n%s at (%i,%i).
 %s\nmalfermis novan fervojon\ninter %s\nĉe (%i,%i) kaj\n%s\nĉe (%i,%i).
 Airline service by\n%s\nnow between\n%s \nand %s.\n
@@ -335,6 +457,8 @@ Sends the convoi to the last depot it departed from!
 Sendas la veturilon al la plej proksima veturilejo.
 Server preparing game ...
 Servilo preparas ludon ...
+Trees
+Arboj
 With a big festival\n%s built\na new monument.\n%i citicens rejoiced.
 Kun granda festo, %s konstruis novan monumenton, kaj %i loĝantoj ĝojis.
 #___________________________________obsolete____________________________________
@@ -347,6 +471,24 @@ Linia filtrilo
 (%i)
 (in depot)
 (En veturilejo)
+[0] south-facing
+[0] alsuda
+[1] east-facing
+[1] alorienta
+[2] north-facing
+[2] alnorda
+[3] west-facing
+[3] alokcidenta
+[4] southeast corner
+[4] sudorienta angulo
+[5] northeast corner
+[5] nordorienta angulo
+[6] northwest corner
+[6] nordokcidenta angulo
+[7] southwest corner
+[7] sudokcidenta angulo
+/month
+/monato
 \nBauzeit bis
  ĝis 
 \nBauzeit von
@@ -385,10 +527,12 @@ Linia filtrilo
 %d vagonaroj
 %d Einzelfahrzeuge im Depot
 %d veturiloj enmetiĝas ĉi tie.
+%d more convois
+%d pliaj konvojoj
 %i car(s),
 %i aŭtoj, 
 %i km/h (max. %ikm/h)
-%i km/h (maks. %i km/h)
+%i km/h (maks. %ikm/h)
 %i years %i months old.
 Aĝo: %i jaroj kaj %i monatoj
 %s at (%i,%i) now public stop.
@@ -401,8 +545,12 @@ Aĝo: %i jaroj kaj %i monatoj
 %s %s %s
 %s has entered a depot.
 %s ĵus revenis veturilejen.\n
+%s has left.
+%s foriris.
 %s land %d %s
 %s %d-a ekstera %s
+%s now known as %s.
+%s nun estas konata kiel %s.
 %s wasted\nyour money with a\nnew townhall\nwhen it reached\n%i inhabitants.
 %s \nkonstruis \nnovan urbdomon\nkiam ĝi atingis \n%i loĝantojn.
 %s\nis crowded.
@@ -413,8 +561,16 @@ Aĝo: %i jaroj kaj %i monatoj
 %s bankrotis kaj estis likvidita .Tiu operacio estis haltita, kaj ĉiuj aktivaĵoj estis venditaj.
 %u Client(s)\n
 %u Kliento(j)\n
+%u days ago
+antaŭ %u tagoj
+%u hours ago
+antaŭ %u horoj
+%u minutes ago
+antaŭ %u minutoj
 %u Player (%u locked)\n
 %u Ludanto (%u ŝlosita)\n
+%u years ago
+antaŭ %u jaroj
 <clear schedule>
 <purigi liniplanon>
 <create new line>
@@ -435,18 +591,36 @@ Aĝo: %i jaroj kaj %i monatoj
 1 veturilo
 1 Einzelfahrzeug im Depot
 1 veturilo enmetiĝas ĉi tie.
+1 minute ago
+antaŭ 1 minuto
+1 year ago
+antaŭ 1 jaro
 100 km/h = %i tiles/month
 100 km/h = %i ĉeloj/monato
 1LIGHT_CHOOSE
 Heleco:
+1th
+-a
 1WORLD_CHOOSE
 Agordoj por nova mapo:
+21th
+-a
+22th
+-a
+23th
+-a
 2LIGHT_CHOOSE
 Koloroj:
+2th
+-a
 2WORLD_CHOOSE
 Mapa nombro:
+31th
+-a
 3LIGHT_CHOOSE
 Ruluma rapideco:
+3th
+-a
 4LIGHT_CHOOSE
 Inversigi rulumi
 5LIGHT_CHOOSE
@@ -495,6 +669,8 @@ Add stops for backward travel
 Aldoni reveturajn haltejojn
 air
 Aviadilo
+Aircraft
+Flugkompanio
 aircraft_tab
 Aviadilo
 airplane
@@ -515,6 +691,8 @@ allowed climates:\n
 Permesitaj klimatoj:\n
 Alters a schedule.
 Administri liniplanon
+and arranged by
+kaj aranĝita de
 Angenommene Waren
 Fabrikaĵoj bezonataj de apudaj fabrikoj
 anhaengen
@@ -545,14 +723,20 @@ Aug.
 Aŭg.
 August
 Aŭgusto
+auto
+aŭtomata
 Autohalt muss auf\nStrasse liegen!\n
 Busoj kaj veturiloj devas esti konstruitaj sur la strato\n
 Available
 Uzebleco
+Available at custom date
+Havebla je propra dato
 Bahndepot
 Trajna veturilejo
 Bankrott:\n\nDu bist bankrott.\n
 Bankroto:\n\nVi Bankrotis!\n
+based on Simutrans 84.22.1
+bazita sur Simutrans 84.22.1
 battery
 Baterio
 Baum
@@ -577,10 +761,16 @@ Blockstrecke ist\nbelegt\n
 \nBloksekcio estas uzata de alia veturilo!\n
 Boden
 Tero
+Bonus Multiplier: %i%%
+Bonusa multiplikilo: %i%%
+Bonus Speed: %i km/h
+Bonusa rapideco: %i km/h
 Bonusspeed: %i km/h
 Maks. ebla rapideco: %i km/h
 Boost (%%)
 Pliigite (%%)
+Borderless (disabled on fullscreen)
+Senkadra (malŝaltita en plenekrano)
 bridge is too high for its type!
 Ne povas konstrui tian ponton je tiel alta nivelo.
 Bridge is too long for this type!\n
@@ -609,6 +799,8 @@ Build monorail depot
 Konstrui unurelan veturilejon
 Build narrowgauge depot
 Konstrui etŝpuran veturilejon
+build portal only
+konstrui nur portalon
 Build powerline
 Konstrui elektran draton
 Build presignals
@@ -635,10 +827,14 @@ Built random attraction
 Konstrui hazardan altiraĵon
 Bus_tab
 Buso
+Can be overgrown
+Povas surkreskiĝi
 Can only move from halt to halt or waypoint to waypoint.
 Oni povas nur movgi linplanon \nde haltejo al haltejo aŭ \nde vojpunkto al vojpunkto.
 Cancel
 Nuligi
+Cannot build here
+Ne eblas konstrui ĉi tie
 Cannot connect to offline server!
 Oni ne povas aliri al nekonektita servilo!
 Capacity
@@ -657,6 +853,10 @@ cars.\nstate
  aŭtoj\n
 Cash
 Kotantaĵo
+Category
+Kategorio
+Change label style
+Ŝanĝi stilon de etikedoj
 Change player
 Ŝanĝi ludanton
 Chart
@@ -671,6 +871,8 @@ chooses a random map
 Elekti hazardan mapon
 citicens
 Loĝantoj
+Cities can only be built on flat empty ground!
+Urboj povas esti konstruitaj nur sur plata malplena tero!
 City attraction
 Urba altiraĵo
 City industries
@@ -689,6 +891,10 @@ cl_title
 Veturilolisto
 cl_txt_sort
 Klasi de:
+clamp
+limigita
+Cleanup schedule
+Forigi duoblajn erojn
 Clear block reservation
 Refari rezervitajn vojojn
 clf_chk_aircrafts
@@ -731,28 +937,46 @@ clf_chk_waren
 Ŝarĝaĵa Filtrilo:
 clf_title
 Veturilolista Filtrilo
+Click to open the finance dialog.
+Alklaku por malfermi la financan dialogon.
+Climate
+Klimato
 Climate Control
 Klimetaj agordoj
+Climates
+Klimatoj
 closed
 fermita
+Closes topmost line window when new line selected.
+Fermas la plej supran linifenestron kiam nova linio estas elektita.
 COLOR_CHOOSE\n
 Elektu du kolorojn./n
 Company bankrupt
 Kompanio bankrotis
+company_chat
+Kompania babilado
 Company_msg
 Konkuruloj
 Comparing pak files ...
 Komparas pakseton ...
+Composed by
+Komponita de
 Configure AI
 Agordi AI
 Configure AI setttings
 Agordi AI
 Congratulation\nScenario was complete in\n%i months %i years.
 Graturon!\nScenaro finiĝis komplete dum %i monatoj kaj %i jaroj.
+Connect factory
+Konekti fabrikon
 Connected stops
 Korespondaj haltejoj:
 Connected with server
 Eniris al selvilo.
+connection
+konekto
+Connections
+Konektoj
 Constructed by
 Kreita de 
 Constructed by %s
@@ -769,6 +993,8 @@ convoi %d of %d
 Veturilo %d de %d
 convoi error tooltips
 Montri nur veturilo kun problemo 
+Convoi following mode
+Konvoj-sekva reĝimo
 Convoi has been sent\nto the nearest depot\nof appropriate type.\n
 Tiu ĉi Veturilo estas sendita al la plej proksima veturilejo.\n
 Convoi is sold when all wagons are empty.
@@ -787,6 +1013,8 @@ Copy Convoi
 Kopii vagonaron
 Copy the selected convoi and its schedule or line
 Kopii elektitan veturilon kaj liniplanon
+Copy to clipboard
+Kopii al tondejo
 Cost
 Kosto
 cost for removal
@@ -805,10 +1033,16 @@ curiosity builder
 Altiraĵa konstruilo
 curlist_title
 Altiraĵolisto
+CURRENCY
+$
+Current game
+Nuna ludo
 Currently playing:
 Nuna muziko:
 Customers live in:
 Klientoj loĝas en:
+Date format
+Datformato
 deactivated in online mode
 Oni ne rajtas uzi en interreta ludo
 Deccelerate time
@@ -837,10 +1071,18 @@ Denkmal
 Monumento
 Departed
 Elirintoj
+Departs at
+Ekveturas je (tt:hh:mm)
+Departure after
+%% ŝarĝo aŭ atendo je (tt-hh-mm)
 Departure board
 Horaro
+Departures per month
+Ekveturoj po monato
 Departures to\n
 Eliroj al\n
+Depot
+Deponejo
 Depots
 Veturilejoj
 Der Tunnel ist nicht frei!\n
@@ -851,16 +1093,22 @@ Destroying map ...
 Finas malnovan mapon ...
 Details
 Detaloj
+Developed by the Simutrans Team
+Evoluigita de la Simutrans-teamo
 Die Bruecke ist nicht frei!\n
 La ponto estas ne libera!\n
 diesel
 Dizelo
+direct_chat_to:
+Rekta mesaĝo al
 directmail
 Rektaj poŝtaĵoj
 Direkt erreichbare Haltestellen
 Haltejoj ireblaj de tie ĉi
 disable midi
 Malsoni MIDI-muzikon
+Display bars above factory to show the status
+Montri striojn super fabrikoj por indiki la staton
 Display settings
 Vidigaĵaj agordoj
 Distance
@@ -869,10 +1117,16 @@ distributing cities
 Dismetas urbojn
 distributing factories
 Dismetas fabrikojn
+Do not show
+Ne montri
 Dock
 doko
 Dock must be built on single slope!
 Oni devas fari dokojn sur unuobla deklivo.
+Downloading
+Elŝutado
+dp_title
+Deponejlisto
 Du hast %d Monate Zeit, deine Schulden zurueckzuzahlen
 Vi devas repagi vian ŝuldon %d monatojn.
 Durchsatz
@@ -911,6 +1165,8 @@ Erzeuge neue Karte.\n
 Bonvolu atendi ĝis novan mapon kreis.\n\n Eble bezonas kelkajn minutojn por vastaj mapoj.\n
 Es wird bereits\nein Fahrplan\neingegeben\n
 Linplano nun estas planata. \nFinu ĝin unue antaŭ re-linplani.\n
+Extract files
+Eltiri pak-dosierojn el zip.
 Fabrikanschluss
 Konektitaj fabrikoj
 Fabrikname
@@ -961,6 +1217,8 @@ Follow the convoi on the map.
 Sekvi la veturilon sur la mapo.
 font size
 Grando de tiparo
+For questions and support please visit:
+Por demandoj kaj subteno bonvolu viziti:
 Forest
 Arbaro
 Found new city
@@ -973,12 +1231,16 @@ Free Capacity
 Libera enhaveco
 freeplay mode
 Liberludo
+Freight
+Frajto
 Friction:
 faktoro:
 fuel_cell
 Hidrogeno
 Full load
 Minimuma ŝarĝo:  
+Fullscreen (changed after restart)
+Plenekrano (ŝanĝiĝos post restarto)
 Fundament
 Tero
 Fussgaenger
@@ -995,6 +1257,8 @@ Gebaeude
 Konstruaĵo
 General
 Generalo
+generate script
+Generi infrastruktur-makroskripton
 Generated
 Faritaj
 Generation: %.0f MW
@@ -1021,16 +1285,24 @@ Gross Profit
 Malneta profito
 Groundobj
 Terobjekto
+groundobj builder
+Meti pejzaĝajn objektojn
 Grow city
 Kreski urbon
 Growth
 Kreskado
+GUI settings
+Grafika interfaco
 H
 haltejo
 Hangar
 Hangaro
 Happy
 Feliĉuloj
+Has slope graphics
+Havas deklivajn grafikojn
+Has Snow
+Havas neĝon
 Haus kaufen
 Aĉeti domon
 Helligk.
@@ -1043,6 +1315,8 @@ hide all building
 Malaperigi ĉiujn domojn
 hide city building
 Malaperigi urbajn domojn
+Hide labels
+Kaŝi etikedojn
 hide objects under cursor
 Malaperigi objektojn sub montrilo
 hide station names
@@ -1055,6 +1329,8 @@ Hier warten/lagern:
 Atendanta fabrikaĵoj kaj pasaĝeroj:
 Higher transport fees, crossconnect all factories
 Plimultigi enspezojn, kaj nevalidigi ĵus-en-tempo.
+highlight single ways
+Indikas la finon/interrompon de trafikvojoj.
 Highlite schedule
 Montri liniplanajn haltejojn
 hl_title
@@ -1101,8 +1377,12 @@ Home depot not found!\nYou need to send the\nconvoi to the depot\nmanually.
 Ne povas trovi veturejon.\nVi devas sendi mane la veturilon tien.
 Homeless
 Senhejmuloj
+Horizontal stripe ownership
+Horizontala stria posedo
 hydrogene
 Hidrogeno
+Icon size:
+Piktograma grandeco:
 Idle:
 Senfari:
 ignore climates
@@ -1117,6 +1397,12 @@ increase underground view level
 Altigi subteran nivelon
 industrial building
 Fabrikoj
+Industry overlay
+Industria tavolo
+Infinite mouse scrolling
+Senfina mapa rulumado
+Infinite scrolling using mouse
+Eble ne funkcias kun tuŝekranoj!
 Init map ...
 Preparas mapon ...
 Input
@@ -1125,6 +1411,10 @@ Ins Stop
 Enŝovi
 Insert stop before the current stop
 Enŝovi haltejon antaŭ elektita haltejo
+Install graphics
+Instali grafikojn
+Install paks
+Pakaroj estas elŝutataj kaj instalataj.
 Insufficient funds!
 Mankas mono al vi!
 Intercity road len:
@@ -1137,6 +1427,8 @@ invalid
 Nedifinita
 Invalid coordinate
 ★Malĝusta alteco★
+Invert stops
+Inversigi haltejojn
 isometric map
 Turnita mapo
 January
@@ -1149,10 +1441,14 @@ Jump to
 Moviĝi al aldifinita koordinato
 June
 Junio
+just now
+ĵus
 Kann Spielstand\nnicht laden.\n
 Ne povas malfermi la ludon!
 Kann Spielstand\nnicht speichern.\n
 Ne povas sekurigi la ludon.
+keep city roads
+konservi urbajn vojojn
 Kein Besitzer\n
 Sen proprulo\n
 keine
@@ -1191,6 +1487,12 @@ Leaving depot!
 Eliras el veturilejo!
 leer
 malplena
+Left button drags minimap too
+Maldekstra butono ankaŭ trenas etmapon
+legacy (large heights)
+malnova (grandaj altecoj)
+legacy (small heights)
+malnova (malgrandaj altecoj)
 Legend
 Enhavo
 Leistung
@@ -1207,6 +1509,10 @@ Line
 Linio
 Line Management
 Linia administrado
+line name mouseover tooltips
+ŝvebkonsiletoj pri lininomo
+linear
+lineara
 Lineless convoys serving this stop
 Senliniaj veturiloj servantaj tiun ĉi haltejon
 Lines serving this stop
@@ -1219,14 +1525,26 @@ Load game
 Malfermi mapon
 load height data from file
 Uzi mapan dosieron.
+Load mode:
+Ŝarĝreĝimo:
 Load scenario
 Malfermi scenaron
+Load script tool
+Ŝargi skriptilon
+Load Scripted AI
+Ŝargi skriptitan AI
+Load settings from
+Apliki agordojn el
 loaded
 Ŝarĝitaj
 loaded passenger/freight
 Ordigi pasaĝeroj/frajtoj de
 Loading (%i->%i%%)!
 Ŝarĝas (%i->%i%%)
+Loading (%i%%) departure %s!
+Ŝarĝado (%i%%) forveturo %s!
+Loading (%i%%)!
+Ŝarĝado (%i%%)!
 Loading addon paks ...
 Legas aldonitaj pakoj ...
 Loading map ...
@@ -1235,6 +1553,10 @@ Loading paks ...
 Legas pakojn ...
 Loading skins ...
 Legas haŭtojn ...
+Loading time:
+plene ŝarĝita post: 
+Lock Control key
+Ŝlosi stirklavon
 Lock game
 Ŝlosi ludanto
 Lokomotive_tab
@@ -1251,6 +1573,8 @@ Maglevdepot
 Magnetvoja veturilejo
 Mail Demand %d\n
 Poŝtaĵa mendado %d\n
+Mail level
+Poŝtnivelo
 Mailbox
 Mesaĝoj
 Mailbox Options
@@ -1267,6 +1591,8 @@ Manufactured:
 Fablikita en:
 Map roughness
 Mapa malebeneco:
+map view
+Mapo
 map zoom
 Zomi
 March
@@ -1285,6 +1611,8 @@ Max. speed
 Maks. rapideco
 Max. speed:
 Maks. rapideco: 
+Max. waiting time
+Maks. atendotempo (dd:hh:mm)
 Maximum 254 stops\nin a schedule!\n
 Maksimume 254 haltejojn oni povas aldoni!\n
 maximum length of rivers
@@ -1301,12 +1629,16 @@ Meldung
 Mesaĝo
 Menge
 Kiomo
+merge stop
+kunfandi haltejon
 MessageOptionsText
 \nNovjaro\n\nLudantaj novaĵoj\n\nUrbaj novaĵoj\n\nSenvojo\n\nNovaj celoj\n\nBabilado\n\nNovaj veturiloj\n\nPlenaj haltejoj\n\nProblemoj\n\ntrafikŝtopiĝoj\n\nScenaro
 min
 min.
 minimum length of rivers
 Min. longeco de riveroj
+Minimum load
+Minimuma ŝarĝo (%%)
 Missing pakfiles
 Mankas objektoj!
 Modify the selected line
@@ -1323,8 +1655,12 @@ Monorailboden
 Altigita vojo
 Monoraildepot
 Unurela veturilejo
+Month
+Monato
 month wait time
 monata atenda tempo
+Monthly departures
+Fiksaj forveturtempoj
 Months
 Monatoj
 Monument
@@ -1333,6 +1669,8 @@ Monuments
 Monumentoj
 Mountain height
 Monta alteco:
+Move the map
+Movi la mapon
 Movingobj
 Vivaĵo
 Music playing disabled/not available
@@ -1383,18 +1721,26 @@ no goods waiting
 Neniu fabrikaĵo atendas
 no load
 Nur malŝarĝi
+No player
+Neniu ludanto
 No Route
 Senvojo
 No stop here!
 Ĉi tie ne estas haltejo.
 No suitable ground!
 Ĉi tie ne estas uzebla kahelo!
+No suitable townhall available for this climate!
+Neniu taŭga urbodomo disponeblas por ĉi tiu klimato!
 No terminal station here!
 Oni ne povas konstrui finhaltejon ĉi tie! Vojfinejo necesas.
 no timeline
 Nelaŭjare
+No transformer connected.
+Neniu transformilo konektita: Ĉiu elektro perdiĝos.
 no tree
 Ne fari arbojn
+No vehicles are available for purchase.
+Neniuj veturiloj aĉeteblas.
 No. of Factories
 Fabrikoj kaj butikoj:
 Noch kein Fahrzeug\nmit Fahrplan\nvorhanden\n
@@ -1413,6 +1759,8 @@ Not allowed!\nThe convoi's schedule can\nnot be changed currently.\nTry again la
 Ne povas ŝanĝi la veturilan liniplanon dum vojtrovado. 
 Not enough fields would remain.
 Nesufiĉaj kampoj restos ĉirkaŭ tiu ĉi farmo.
+Not online
+Ne konektita
 November
 Novembro
 now
@@ -1435,6 +1783,10 @@ Oktober
 Oktobro
 On loan since %i month(s)
 Ŝuldas %i monatojn
+On mouseover
+Ĉe muspaso
+on the
+foriro/monato unue je (tt-hh-mm)
 On this map, you are not\nallowed to change player!\n
 Ĉi tiu ludo estas ŝlosita.\nNeniu ludanto povas interŝanĝi viajn rolojn.
 Only city chains
@@ -1503,10 +1855,16 @@ Pause
 Paŭzi
 Pax <%i>  Mail <%i>
 Pasaĝeroj <%i> Poŝtaĵoj <%i>
+Pax level
+Pasaĝernivelo
 PaxDest
 Celoj
 Percent Electricity
 Elektra eligo (%%):
+personal_chat
+Privataj babiladoj
+Pipette
+Rekonstrui la elektitan objekton
 Planes are not available yet!
 Aviadilo ankoraŭ ne estas farita.
 Plant tree
@@ -1543,6 +1901,8 @@ player 8
 Ludanto 8
 player 9
 Ludanto 9
+Player ranking
+Rango de ludantoj
 Please choose vehicles first\n
 Bonvolu elekti veturilojn unue!\n
 Post
@@ -1577,6 +1937,8 @@ Profit
 Profito
 promote to line
 Promocii al linio
+public_chat
+Ĝenerala babilado
 q1
 Printempo
 q2
@@ -1623,10 +1985,16 @@ remove powerlines
 Malkonstrui elektroliniojn
 remove roads
 Malkonstrui vojojn
+remove signal
+forigi signalilon
 remove tracks
 Malkonstrui fervojojn
 Remove wayobj %s
 Malkonstrui vojobjektojn %s
+replace existing ways
+anstataŭigi ekzistantajn vojojn
+replace faster wayobjs
+anstataŭigi pli rapidajn vojobjektojn
 replace other signals
 Anstataŭigi aliajn signalilojn
 replace stop
@@ -1639,12 +2007,18 @@ Restore natural slope
 Reigi deklivon
 Restwert:
 Vendprezo:
+Retire date
+Dato de malfunkciigo
 Retire. date:
 Retiriĝa dato:
 return ticket
 Kopii malantaŭen
 Revenue
 Veturilaj enspezoj
+Revenue/unit/100 tiles
+Enspezo/unuo/100 kaheloj
+Revert schedule
+Malfari ŝanĝojn
 Revision:
 Revizio:
 road
@@ -1653,16 +2027,24 @@ road vehicle
 Voja veturilo
 Roadsign
 Trafiksigno
+Rotate Building
+Turni konstruaĵon
 Rotate map
 Turni mapon
 Rotation
 Direkto
 Routing
 Vojplano
+Running cost
+Funkciaj kostoj
 sack
  sakoj
 sail
 vento
+Save
+Konservi ludon
+Save generated script
+Konservi generitan skripton
 Saving map ...
 Sekurigas mapon ...
 Scenario complete: %i%%
@@ -1681,6 +2063,8 @@ Scenario Result
 Rezulto
 Scenario Rules
 Reguloj
+Scenario_
+Scenaro 
 Schedule changing!
 Ŝanĝas liniplanon!
 Schienentunnel
@@ -1691,8 +2075,12 @@ Schiffdepot
 Ŝipfarejo
 Schleppkahn_tab
 Barĝoj
+Screen scale:
+Ekrana skalo:
 Screenshot
 Foti ekranon
+Scroll threshold
+Rulumsojlo
 Search:
 Serĉi: 
 Seasons
@@ -1705,8 +2093,14 @@ Select a theme for display
 Elekti haŭton
 Select display font
 Elekti tiparon
+Select one or more graphics to install (Ctrl+click):
+Elektu unu aŭ plurajn grafikojn por instali (Ctrl+klako):
+Select soundfont
+Elekti sonfonton
 Sell the selected vehicle(s)
 Vendi elektota(j)n veturilo(j)n
+Selling of the program is forbidden.
+Vendo de la programo estas malpermesata.
 sended
 Liveritaj poŝtaĵoj
 SEP_FRACTION
@@ -1717,6 +2111,10 @@ SEP_THOUSAND_EXPONENT
 3
 September
 Septembro.
+Served by
+Servata de
+Served by me
+Servata de mi
 Server did not respond!
 Servilo ne respondis!
 Serves Line:
@@ -1739,8 +2137,20 @@ Show also vehicles no longer in production.
 Montri ankaŭ veturilojn, kiuj ne plu estas produktitaj.
 Show also vehicles that do not match for current action.
 Montri ankaŭ veturilojn, kiuj ne povas esti uzataj al sekvanta pozicio.
+Show always
+Ĉiam montri
+Show climates
+Montri klimatojn
+Show construction info
+Montri konstruinformojn
+Show contour
+Montri altecojn
 Show even servers with wrong version or pakset
 Montri ankaŭ servilojn, kiuj ne adaptiĝas kun via versio aŭ pakseto.
+Show finances for transport type
+Montri financojn por transporttipo
+Show future
+Montri estontecon
 show grid
 Montri kradon
 Show industry
@@ -1751,12 +2161,16 @@ Show map scale
 Kolorskalo
 Show mismatched
 Montri neuzeblajn servilojn
+Show networks
+Montri retojn
 Show obsolete
 Montri malaktualaĵojn
 Show offline
 Montri senkonektajn servilojn
 Show only used
 Montri ekzistantajn aĵojn
+Show outline
+nur infrastrukturo
 Show schedules
 Montri liniplanojn
 Show servers that are offline
@@ -1777,6 +2191,10 @@ show/hide object owner
 Montri/malmontri proprulon
 Show/hide statistics
 Montri/malmontri statistikojn
+Shows buttons about networks overlay.
+Montras butonojn pri reta kovraĵo.
+Shows buttons on network overlay.
+Montri opcion por kovri per konekta reto.
 Shows buttons on special topics.
 Montri butonojn pri specialaj temoj.
 Shows consumer/suppliers for factories
@@ -1797,8 +2215,12 @@ Sim:
 Kalkulfojo:
 Similar view as the main window
 Turni mapeton kiel ĉefmapo
+Single toolbar only
+Nur unuopa ilobreto
 Size (%d MB):
 Grandeco (%d MB):
+Size (area)
+Grandeco (areo)
 sliced underground mode
 Tranĉi nivelon de la mapo
 slot empty
@@ -1817,8 +2239,12 @@ Sound settings
 Agordoj de sono
 Sound volume:
 Laŭteco de sono:
+Soundfonts are located in the music directory.
+Sonfontoj troviĝas en la muzika dosierujo.
 special freight
 Speciala frajtaĵo
+Speed Bonus
+Rapideca gratifiko
 Speedbonus\nroad %i km/h, rail %i km/h\nships %i km/h, planes %i km/h.
 Kromenspezo laŭ rapideco procente\npostulas almenaŭa rapideco por vojo %i km/h,\nfervojo %i km/h, ŝipoj %i km/h, aviadiloj %i km/h,
 Speedlimit
@@ -1847,22 +2273,30 @@ Start the selected vehicle(s)
 Ekveturigi la elektitan veturilon.
 Starte Spiel
 Komenci ludon
+station labels
+Stacioj
 Station tiles:
 Longo de haltejo:
 Station_msg
 Stacidomoj
 Status
 Halteja stato
+stay on this level
+resti je ĉi tiu nivelo
 steam
 vaporo
 Step timeline one year
 Flugi al venonta jaro
+Stopping permissions
+Aliaj ludantoj, kiuj povas uzi ĉi tiun haltejon
 Stops
 Haltejoj
 Storage
 Enhavaĵo
 Storage capacity
 Enhaveco
+straight route
+rekta itinero
 Strassendepot
 Veturilejo
 Strassentunnel
@@ -1883,6 +2317,14 @@ Suppliers
 Ofertantoj:
 Tage alt
 tage aĝas.
+The following graphics are unmaintained:
+La jenaj grafikoj ne estas prizorgataj:
+The generated script was saved!\n
+Makroo sukcese konserviĝis.\nĜi povas esti reludata per la skriptilo.
+The gradient does not fit a tunnel
+La deklivo ne taŭgas por tunelo
+The script cannot be saved!\n
+La skripto ne povas esti konservita!\n
 Theme selector
 Elekti temon
 There are still vehicles\nstored in this depot!\n
@@ -1901,12 +2343,16 @@ To attract more tourists\n%s built\na %s\nwith the aid of\n%i tax payers.
 Por altiri pli turistojn al %s, %s estis konstruita je helpo de loĝantoj.
 To heavy traffic\nresults in traffic jam.\n
 Multe da trfariko kaŭzas trafikan ŝtopiĝon.\n
+To: %s
+Al: %s
 Toggle day/night view
 Ŝanĝi inter tago kaj nokto
 Toggle vehicle tooltips
 Ŝanĝi montri staton de veturiloj
 tonnen
 t
+Toolbar position:
+Pozicio de ilobreto:
 Total inhabitants:
 Tutaj loĝantoj: 
 Tourist attractions
@@ -1924,6 +2370,8 @@ fervojo
 Tracks
 Fervojo
 Traffic
+Trafiko
+traffic settings
 Trafiko
 Train
 Vagonaro
@@ -1945,6 +2393,10 @@ Transformer only next to factory!
 Transforma stacio devas esti apud fabriko!
 Translation
 Traduko
+transparencies
+Travidebleco
+transparent background
+travidebla fono
 transparent station coverage
 Surmontri efektareon de haltejoj 
 Transported
@@ -1963,6 +2415,8 @@ Tunnel must start on single way!
 Tuneloj devas esti sur rekta vojo.
 Tunnelboden
 Tunelo
+under the Artistic License
+sub la Artistic License
 underground mode
 Subtera vido
 UNDO failed!
@@ -1975,6 +2429,8 @@ Unhappy
 Malfeliĉuloj
 units/day
  unuopoj/monato\n
+Unloading (%i%%)!
+Malŝarĝado (%i%%)!
 Update Line
 Modifii linion
 upgrade HQ
@@ -1991,12 +2447,16 @@ Vehicle %s can't find a route!
 Veturilo %s ne povas trovi vojon!
 Vehicle %s is stucked!
 Veturilo %s haltadas!
+Vehicle count:
+Nombro de veturiloj:
 Vehicle details
 Veturilaj dataloj
 Vehicle Name
 Veturila nomo
 Vehicle Power
 Povumo
+vehicles stored
+enmetitaj veturiloj
 Verbrauch
 konsumo:
 Vergroessere die Karte\n
@@ -2009,12 +2469,16 @@ Verkehrsteilnehmer
 Privataŭtoj
 Verschuldet:\n\nDu hast %d Monate Zeit,\ndie Schulden zurueckzuzahlen.\n
 Vi havas ŝuldon. Bonvolu pagi tion ĝis post %d monatoj.
+vh_title
+Listo de ĉiuj veturiloj
 via
 tra
 via %s\n
   tra %s\n
 via Menge
 Tra (kiomo)
+via owner
+tra (posedanto)
 voranstellen
 Meti antaŭen
 Waggon_tab
@@ -2047,16 +2511,26 @@ Way toll
 Paspago
 Ways not connected
 Vojo ne estas konektita.
+waytype
+vojtipo
 Wegpunkt
 Vojpunkto
 Weight
 Pezeco
 Weight:
 Pezeco:
+Weight/unit
+Pezo/unuo
+Welcome to Simutrans
+Bonvenon al Simutrans
+Welcome, %s!
+Bonvenon, %s!
 Wert
 Valoro
 west
 Okcidento
+Wind direction
+Ventodirekto
 Winter snowline
 Vintra neĝnivelo
 withdraw
@@ -2065,6 +2539,8 @@ Withdraw All
 Retiri ĉion
 WRONGSAVE
 Malĝusta dosiero.
+Year
+Jaro
 Year %i has started.
 La jaro %i ĵus komencis.
 Years
@@ -2097,6 +2573,38 @@ New world record for railways: %.1f km/h by %s.
 Nova monda rekordo de fervojo: ĉe %.1f km/h de %s! Gratulon!
 New world record for ship: %.1f km/h by %s.
 Nova monda rekordo de ŝipo: ĉe %.1f km/h de %s! Gratulon!
+#________________________________script_ai_text_________________________________
+#________________________________script_ai_text_________________________________
+%s build additional convoy to line: %s
+%s konstruas plian konvojon al linio: %s
+%s build rail line from %s (%s) to %s (%s)
+%s konstruas fervojan linion de %s (%s) al %s (%s)
+%s build road line from %s (%s) to %s (%s)
+%s konstruas vojan linion de %s (%s) al %s (%s)
+%s build ship line from %s (%s) to %s (%s)
+%s konstruas ŝipan linion de %s (%s) al %s (%s)
+%s extends the route from %s (%s) to %s (%s)
+%s plilongigas la itineron de %s (%s) al %s (%s)
+%s optimize way line from %s (%s) to %s (%s)
+%s optimumigas vojlinion de %s (%s) al %s (%s)
+%s removes convoys from line: %s
+%s forigas konvojojn de linio: %s
+vehicles of the line %s were retired
+veturiloj de la linio %s estis emeritigitaj
+#_________________________________tooltip_text__________________________________
+#_________________________________tooltip_text__________________________________
+Add convois with similar schedule to this line.
+Aldoni konvojojn kun simila horaro al ĉi tiu linio.
+Attach current coordinate to the comment
+Aligi nunan koordinaton al la komento
+Enter intervall in days, hours, minutes
+Enigu intervalon en tagoj, horoj, minutoj
+Mirrors order of stops
+Inversigi ordon de haltejoj
+Revert to original schedule
+Malfari ĉiujn horarŝanĝojn.
+Tutorial not available for this pakset. Please try loading Pak128.
+Lernilo ne disponeblas por ĉi tiu pakaro. Bonvolu provi ŝargi Pak128.
 #_______________________________unnecessary_text________________________________
 #_______________________________unnecessary_text________________________________
 &0_CITY_SYLL
@@ -2243,3 +2751,141 @@ Mil
 Antaŭ %s %s
 2suburb
 %s %s
+3center
+%s ĉefa %s
+3extern
+%s kampara %s
+3suburb
+%s vilaĝo %s %s
+4center
+%s interna %s
+4extern
+%s ekstera %s
+4suburb
+%s kampara %s
+5center
+%s urbocentra %s
+5extern
+%s transiga %s
+5suburb
+%s urbeta %s
+6center
+%s noda %s
+6extern
+%s interŝanĝa %s
+6suburb
+%s antaŭurba %s %s
+7center
+%s urba %s
+7extern
+%s ebenaĵa %s
+7suburb
+%s parka %s
+8center
+%s komerca %s
+8extern
+%s %s randa %s
+8suburb
+%s satelita %s
+9center
+%s akso %s
+9extern
+%s pretervojo %s
+9suburb
+%s meza %s
+Isuburb
+I-antaŭurbo
+Jcenter
+J-centro
+Jextern
+J-eksterurbo
+Jsuburb
+J-antaŭurbo
+Kcenter
+K-centro
+Kextern
+K-eksterurbo
+Ksuburb
+K-antaŭurbo
+Lcenter
+L-centro
+Lextern
+L-eksterurbo
+Lsuburb
+L-antaŭurbo
+Mcenter
+M-centro
+Mextern
+M-eksterurbo
+Msuburb
+M-antaŭurbo
+Ncenter
+N-centro
+Nextern
+N-eksterurbo
+Nsuburb
+N-antaŭurbo
+Ocenter
+O-centro
+Oextern
+O-eksterurbo
+Osuburb
+O-antaŭurbo
+Pcenter
+P-centro
+Pextern
+P-eksterurbo
+Psuburb
+P-antaŭurbo
+Qcenter
+Q-centro
+Qextern
+Q-eksterurbo
+Qsuburb
+Q-antaŭurbo
+Rcenter
+R-centro
+Rextern
+R-eksterurbo
+Rsuburb
+R-antaŭurbo
+Scenter
+S-centro
+Sextern
+S-eksterurbo
+Ssuburb
+S-antaŭurbo
+Tcenter
+T-centro
+Textern
+T-eksterurbo
+Tsuburb
+T-antaŭurbo
+Ucenter
+U-centro
+Uextern
+U-eksterurbo
+Usuburb
+U-antaŭurbo
+Vcenter
+V-centro
+Vextern
+V-eksterurbo
+Vsuburb
+V-antaŭurbo
+Wcenter
+W-centro
+Wextern
+W-eksterurbo
+Wsuburb
+W-antaŭurbo
+Xcenter
+X-centro
+Xextern
+X-eksterurbo
+Xsuburb
+X-antaŭurbo
+Ycenter
+Y-centro
+Yextern
+Y-eksterurbo

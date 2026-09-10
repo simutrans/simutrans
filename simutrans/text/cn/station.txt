@@ -13,7 +13,7 @@
 {提示: 水上运输载具可使用码头集散区内的任何一块水域进行货物和乘客的接送。可在相邻的水域上建造更大的码头。码头可容纳多种类型的运输工具。}
 </p>
 <p>
-在游戏视图中通过<a href="inspection_tool.txt">检查工具</a>点击站点，也可点击<a href="haltlist.txt">站点列表</a>或<a href="linemanagement.txt">线路管理</a>中列出的站点，即可打开<strong>站点信息</strong>，其标题栏中会显示站点的名称。<br>
+在游戏视图中通过<a href="inspection_tool.txt">检视工具</a>点击站点，也可点击<a href="haltlist.txt">站点列表</a>或<a href="linemanagement.txt">线路管理</a>中列出的站点，即可打开<strong>站点信息</strong>，其标题栏中会显示站点的名称。<br>
 <strong>站点信息</strong>包含一个名称框；站点的迷你视图；站点信息；选项按钮；以及站点上所有待运输对象的列表（若所有物品都不可见，<a href="mouse.txt">调整</a><strong>站点信息</strong>选项的尺寸或使用滑块以滚动对象）:
 </p>
 <p>

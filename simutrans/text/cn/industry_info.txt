@@ -16,7 +16,7 @@
 {提示: 使用游戏编辑工具中的<a href="edittools.txt">在最近的城市建造新市场</a>工具，即可在城市区域添加新产业。在 cityrules.tab 文件中更改新产业出现的时机（industry_increase_every = 0 表示不生成新产业）。}
 </p>
 <p>
-在游戏视图中使用<a href="inspection_tool.txt">检查工具</a>点击产业，或点击在<a href="factorylist_filter.txt">产业列表</a>中列出的产业，即可打开<strong>产业信息</strong>。<br>
+在游戏视图中使用<a href="inspection_tool.txt">检视工具</a>点击产业，或点击在<a href="factorylist_filter.txt">产业列表</a>中列出的产业，即可打开<strong>产业信息</strong>。<br>
 如所有项目都不可见，请使用<a href="mouse.txt">滑动条</a>滚动项目。
 </p>
 <p>

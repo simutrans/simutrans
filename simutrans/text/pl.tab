@@ -12,13 +12,15 @@ prop-latin2.fnt
 #                              Language: pl Polski                             #
 #                                Encoding: UTF-8                               #
 #                             Font: prop-latin2.fnt                            #
-#                           Date Created: 11.03 2026                           #
+#                           Date Created: 10.09 2026                           #
 #                                                                              #
 ################################################################################
 #__________________________________button_text__________________________________
 #__________________________________button_text__________________________________
 Absolute times
 Czas bezwzględny
+allow reverse passage
+zezwól na przejazd w przeciwnym kierunku
 AMBIENT_SOUND
 Dźwięk otoczenia
 CASH_SOUND
@@ -49,6 +51,8 @@ clf_btn_keine
 Brak
 climate area percentage
 Procent obszaru klimatu
+Continue Game
+Kontynuuj grę
 CROSSING_SOUND
 Dźwięk przejścia
 FACTORY_SOUND
@@ -107,18 +111,24 @@ Num pad keys always move map
 Klawisze numeryczne zawsze przesuwają mapę
 Open Sea
 Otwarte morze
+Owner only
+Tylko właściciel
 Queueing
 Czas oczekiwania
 rainfall
 Opady deszczu
 Reselect closes tools
 Ponowny wybór narzędzia powoduje jego zamknięcie
+Return to menu
+Powrót do menu
 Road toll
 Opłata drogowa
 Scenario
 Sceneria
 sea
 Morze
+Shared only
+Tylko współdzielone
 Single GUI
 Pojedynczy interf. graf.
 Sound range:
@@ -135,6 +145,8 @@ TRAFFIC_SOUND
 Dźwięk ruchu
 Transfers
 Przepustowość
+Tutorial
+Samouczek
 #_________________________________climates_text_________________________________
 #_________________________________climates_text_________________________________
 arctic
@@ -155,6 +167,12 @@ Tundra
 #__________________________________error_text___________________________________
  Loading scenario script failed
 Wczytanie scenariusza nie powiodło się!
+A building blocks the construction
+Budynek blokuje budowę
+A powerline blocks the construction
+Linia elektryczna blokuje budowę
+Another way blocks the construction
+Inna droga blokuje budowę
 Bridge blocked by way below or above.
 Most zablokowany poniżej lub powyżej.
 Can't buy obsolete vehicles!
@@ -173,6 +191,8 @@ Cannot create generic line!\nSelect line type by\nusing filter tabs.
 Nie mogę utworzyć linii \nnie znając jej typu! \n\n\nWybierz typ linii za pomocą zakładek.
 Cannot create socket
 Nie można zainicjować połączenia!
+Cannot cross the end of a runway
+Nie można przeciąć końca pasa startowego
 Cannot rotate this building!
 Nie można obrócić tego budynku.
 Client closed connection during transfer
@@ -181,16 +201,28 @@ Convoi handles exhausted!
 Maksymalna ilość pojazdów (konwojów) osiągnięta.
 Convoy already deleted!
 Skład już usunięto!
+Corrupt file
+Plik uszkodzony lub niekompletny.
 Could not open file
 Nie można otworzyć pliku.
 Das Feld gehoert\neinem anderen Spieler\n
 Te tereny\nsą własnoscią\ninnego gracza!\n
+Depots cannot be built on runways!
+Nie można budować zajezdni na pasach startowych!
+Depots must be built on flat dead-end way tiles!
+Zajezdnie muszą być budowane na płaskich, ślepych odcinkach dróg!
 Der Besitzer erlaubt das Entfernen nicht
 \nWłaściciel nie wyraża\nzgody na likwidację\nobiektu!\n
 Diese Zusammenstellung kann nicht fahren!\n
 Taki zestaw\nnie pojedzie!
+Elevated way can only be joined in line
+Droga na estakadzie może być połączona tylko w linii prostej
+Failed to write file
+Nie udało się zapisać pliku. (Brak uprawnień?)
 Flugzeughalt muss auf\nRunway liegen!\n
 Przystanek musi\nleżeć na pasie\nstartowym!
+Forbidden by scenario
+Zabronione przez scenariusz
 Hier kann dieses\nFlughafengebaeude nicht\ngebaut werden!\n
 Tego budynku lotniska nie można tutaj zbudować.
 Hier kann kein\nSignal aufge-\nstellt werden!\n
@@ -223,12 +255,18 @@ No suitable way on the ground!
 Peron można wybudować tylko na płaskiej powierzchni!
 No through station here!
 Nie możesz tu wybudować \nprzystanku!
+Not allowed to copy object.
+Nie możesz zbudować tego obiektu!\n(Powód: zły gracz lub obiekt przestarzały)
 Not enough bytes transferred
 Serwer nie wysłał wystarczającej liczby bajtów podczas transmisji gry.
 Not enough clearance.
 Za mało miejsca nad lub pod.
+Not enough empty space
+Za mało wolnego miejsca.
 Not enough money!
 Masz za mało pieniędzy aby to zbudować!
+Not initialized
+Nie udało się zainicjować biblioteki.
 On narrowgauge track only!\n
 Tylko na torach!
 Only public player can lock games!
@@ -247,22 +285,36 @@ Server busy
 Serwer zajęty!
 Server version too new
 Wersja serwera jest nowsza od twojej.
+Ship depots must be built on water!
+Stocznie muszą być budowane na wodzie!
 Show all revenue messages
 Pokaż zarobki wszystkich graczy
 Show no revenue messages
 Ukryj zarobki wszystkich graczy
 Show only player's revenue
 Pokaż tylko przychody graczy
+Slope is too steep
+Zbocze jest zbyt strome
 Terraforming not possible\nhere in underground view
 Terraformowanie jest pod ziemią niemożliwe.
 This tunnel branches. You can try Control+Click to remove.
 Ten tunel rozgałęzia się. Możesz spróbować ctrl+klik, aby usunąć.
 Too far away to merge stations!
 Zbyt daleko, aby połączyć stacje!
+Tunnel can only be entered at its portal
+Do tunelu można wjechać tylko przez jego portal
+Unknown error
+Nieznany błąd
 Upgrade must have\na higher level
 Unowocześnić można tylko\nna wyższy poziom!
 Vehicle %s cannot choose because stop too short!
 Pojazd %s nie mógł wybrać drogi. Przystanek za krótki!
+Watertable reached
+Nie można bardziej obniżyć terenu!\nOsiągnięto poziom wód gruntowych.
+Way does not match the slope here
+Droga nie pasuje tu do zbocza
+Wrong direction to enter the bridge
+Zły kierunek wjazdu na most
 Zughalt muss auf\nSchiene liegen!\n
 Stacje kolejowe\nmożna budować\ntylko na\ntorach kolejowych!\n
 #___________________________________help_text___________________________________
@@ -441,6 +493,8 @@ Filtr liniowy
 End
 [HOME]
 Home
+/month
+/mies.
 \nBauzeit bis
 do
 \nBauzeit von
@@ -479,10 +533,10 @@ Budynków: %d
 Składów: %d
 %d Einzelfahrzeuge im Depot
 Pojazdów w zajezdni: %d
+%d more convois
+%d więcej konwojów
 %i car(s),
 %i pojazd(ów),
-%i km/h (max. %ikm/h)
-%i km/h (max. %i km/h)
 %i years %i months old.
 Wiek: %i lat i %i miesięcy
 %s at (%i,%i) now public stop.
@@ -495,8 +549,12 @@ Wiek: %i lat i %i miesięcy
 %s fabryka %s %s
 %s has entered a depot.
 %s\nPojazd czeka w bazie
+%s has left.
+%s opuścił grę.
 %s land %d %s
 %s teren %d %s
+%s now known as %s.
+%s jest teraz znany jako %s.
 %s wasted\nyour money with a\nnew townhall\nwhen it reached\n%i inhabitants.
 %s zbudowało nowy ratusz gdy ilość\n\nmieszkańców wyniosła\n\n%i.
 %s\nis crowded.
@@ -507,8 +565,16 @@ Wiek: %i lat i %i miesięcy
 %s zbankrutował\n. Firma została zamknięta, a wszystkie aktywa sprzedane.
 %u Client(s)\n
 %u Klient(ci)\n
+%u days ago
+%u dni temu
+%u hours ago
+%u godzin temu
+%u minutes ago
+%u minut temu
 %u Player (%u locked)\n
 %u Gracz (%u zablokowany)\n
+%u years ago
+%u lat temu
 <clear schedule>
 <Wyczyść rozkład jazdy>
 <create new line>
@@ -531,18 +597,36 @@ Wiek: %i lat i %i miesięcy
 1 skład
 1 Einzelfahrzeug im Depot
 1 pojazd w zajezdni
+1 minute ago
+minutę temu
+1 year ago
+rok temu
 100 km/h = %i tiles/month
 100 km/h = %i pól/miesiąc
 1LIGHT_CHOOSE
 Jasność:
+1th
+1.
 1WORLD_CHOOSE
 Opcje nowej mapy:
+21th
+21.
+22th
+22.
+23th
+23.
 2LIGHT_CHOOSE
 Kolor:
+2th
+2.
 2WORLD_CHOOSE
 Numer mapy:
+31th
+31.
 3LIGHT_CHOOSE
 Prędk. przewijania:
+3th
+3.
 4LIGHT_CHOOSE
 Odwróć przewijanie
 5LIGHT_CHOOSE
@@ -659,6 +743,8 @@ Bahndepot
 Lokomotywownia
 Bankrott:\n\nDu bist bankrott.\n
 Bankructwo:\n\nStraciłeś cały majątek.\n
+based on Simutrans 84.22.1
+oparty na Simutrans 84.22.1
 battery
 akumulatorowy
 Baum
@@ -721,6 +807,8 @@ Build monorail depot
 Lokomotywownia
 Build narrowgauge depot
 Baza kolejowa
+build portal only
+zbuduj tylko portal
 Build powerline
 Linia wysokiego napięcia
 Build presignals
@@ -753,6 +841,8 @@ Can only move from halt to halt or waypoint to waypoint.
 Może się przemieszczać jedynie\nod przystanku do przystanku lub\nod punktu do punktu.
 Cancel
 Anuluj
+Cannot build here
+Nie można tu budować
 Cannot connect to offline server!
 Nie można połączyć się z serwerem offline!
 Capacity
@@ -771,6 +861,10 @@ cars.\nstate
 pojazdów\n
 Cash
 Gotówka
+Category
+Kategoria
+Change label style
+Zmień styl etykiet
 Change player
 Zmień gracza
 Chart
@@ -785,6 +879,8 @@ chooses a random map
 Wybiera losową mapę
 citicens
 Obywateli
+Cities can only be built on flat empty ground!
+Miasta można budować tylko na płaskim, pustym terenie!
 City attraction
 Atrakcja turystyczna
 City industries
@@ -849,6 +945,8 @@ clf_chk_waren
 Filtruj towary:
 clf_title
 Filtruj listę pojazdów
+Click to open the finance dialog.
+Kliknij, aby otworzyć okno finansów.
 Climate
 Klimat
 Climate Control
@@ -863,6 +961,8 @@ COLOR_CHOOSE\n
 Wybierz kolor\n z tabeli:\n
 Company bankrupt
 Firma zbankrutowała!
+company_chat
+Czat firmy
 Company_msg
 Konkurencja
 Comparing pak files ...
@@ -875,10 +975,14 @@ Configure AI setttings
 Skonfiguruj ustawienia AI
 Congratulation\nScenario was complete in\n%i months %i years.
 Gratulacje!\nScenariusz został ukończony \nw %i mięsiecy i %i lat!
+Connect factory
+Połącz fabrykę
 Connected stops
 Połączony z:
 Connected with server
 Połącz z serwerem
+connection
+połączenie
 Connections
 Połączenia
 Constructed by
@@ -937,6 +1041,10 @@ curiosity builder
 Budowanie atrakcji
 curlist_title
 Lista atrakcji
+CURRENCY
+$
+Current game
+Bieżąca gra
 Currently playing:
 Teraz odtwarzane:
 Customers live in:
@@ -995,10 +1103,14 @@ Destroying map ...
 Niszczenie mapy
 Details
 Szczegóły
+Developed by the Simutrans Team
+Stworzone przez Zespół Simutrans
 Die Bruecke ist nicht frei!\n
 Most nie jest pusty.\n
 diesel
 spalinowy
+direct_chat_to:
+Wiadomość bezpośrednia do
 directmail
 Poczta bezpośrednia
 Direkt erreichbare Haltestellen
@@ -1117,6 +1229,8 @@ Follow the convoi on the map.
 Podążaj za pojazdem na mapie
 font size
 Rozmiar czcionki
+For questions and support please visit:
+W razie pytań i po pomoc odwiedź stronę:
 Forest
 Lasy
 Found new city
@@ -1153,6 +1267,8 @@ Gebaeude
 Budynek
 General
 Ogólne
+generate script
+Wygeneruj skrypt makra infrastruktury
 Generated
 Wytworzono
 Generation: %.0f MW
@@ -1207,6 +1323,8 @@ hide all building
 Schowaj wszystkie budynki
 hide city building
 Schowaj budynki miejskie
+Hide labels
+Schowaj etykiety
 hide objects under cursor
 Ukryj obiekty pod kursorem
 hide station names
@@ -1219,6 +1337,8 @@ Hier warten/lagern:
 Lista czekajacych ludzi/towarów:
 Higher transport fees, crossconnect all factories
 Aby uzyskać więcej zysków z transportu, dezaktywuj Just-in-time.
+highlight single ways
+Wskazuje koniec/przerwanie szlaków komunikacyjnych.
 Highlite schedule
 Harmonogram najważniejszych wydarzeń
 hl_title
@@ -1265,8 +1385,12 @@ Home depot not found!\nYou need to send the\nconvoi to the depot\nmanually.
 Baza nie może zostać\nodnaleziona. Musisz\nwysłać ręcznie.
 Homeless
 Bezdomni
+Horizontal stripe ownership
+Poziome paski własności
 hydrogene
 Wodór
+Icon size:
+Rozmiar ikon:
 Idle:
 Bezczynni:
 ignore climates
@@ -1327,10 +1451,14 @@ Jump to
 Skocz do
 June
 Czerwiec
+just now
+przed chwilą
 Kann Spielstand\nnicht laden.\n
 Nie mogę odczytać\nzapisanej gry!\n
 Kann Spielstand\nnicht speichern.\n
 Nie mogę otworzyć\n gry do zapisu!\n
+keep city roads
+zachowaj drogi miejskie
 Kein Besitzer\n
 Brak właściciela
 keine
@@ -1369,6 +1497,8 @@ Leaving depot!
 Opuszczam zajezdnię!
 leer
 pusty
+Left button drags minimap too
+Lewy przycisk przesuwa również minimapę
 legacy (large heights)
 Dziedzictwo (duży wzrost)
 legacy (small heights)
@@ -1413,6 +1543,8 @@ Load script tool
 Załaduj narzędzie skryptu
 Load Scripted AI
 Załaduj AI ze skryptu
+Load settings from
+Zastosuj ustawienia z
 loaded
 załadowane
 loaded passenger/freight
@@ -1433,10 +1565,14 @@ Loading skins ...
 Ładowanie skórek ...
 Loading time:
 Czas ładowania:
+Lock Control key
+Zablokuj klawisz Ctrl
 Lock game
 Zablokuj zmianę gracza (wymaga potwierdzenia)
 Lokomotive_tab
 Lokomotywy
+m3
+m³
 maglev vehicle
 Pojazd kolei magnetycznej
 maglev_track
@@ -1601,10 +1737,14 @@ No stop here!
 Tu nie ma przystanku
 No suitable ground!
 Złe podłoże!
+No suitable townhall available for this climate!
+Brak odpowiedniego ratusza dla tego klimatu!
 No terminal station here!
 Nie ma tutaj stacji!
 no timeline
 Bez osi czasu
+No transformer connected.
+Brak podłączonego transformatora: Cała energia zostanie zmarnowana.
 no tree
 bez drzew
 No vehicles are available for purchase.
@@ -1627,6 +1767,8 @@ Not allowed!\nThe convoi's schedule can\nnot be changed currently.\nTry again la
 Rozkład jazdy tego\npojazdu nie może być zmieniany\n w czasie znajdywania trasy.
 Not enough fields would remain.
 To pole obsiane zbożem jest\nwłasnością prywatną, \na właściciel nie wyraża zgody \nna jego sprzedaż. Nie możesz \nwięc zrównać go z ziemią.
+Not online
+Offline
 Nov.
 Listopad
 November
@@ -1729,6 +1871,10 @@ PaxDest
 Cel podróży
 Percent Electricity
 Procent zelektryfikowania
+personal_chat
+Czaty prywatne
+Pipette
+Odbuduj wybrany obiekt
 Planes are not available yet!
 Samoloty jeszcze nie są dostępne.
 Plant tree
@@ -1765,6 +1911,8 @@ player 8
 Gracz 8
 player 9
 Gracz 9
+Player ranking
+Ranking graczy
 Please choose vehicles first\n
 Najpierw wybierz pojazd.\n
 Post
@@ -1799,6 +1947,8 @@ Profit
 Zysk
 promote to line
 Utwórz linię
+public_chat
+Czat ogólny
 q1
 Wiosna
 q2
@@ -1851,6 +2001,10 @@ remove tracks
 Usuń tory
 Remove wayobj %s
 Usuń %s
+replace existing ways
+zamień istniejące drogi
+replace faster wayobjs
+zamień szybsze obiekty drogowe
 replace other signals
 Zamień inne sygnały
 replace stop
@@ -1871,6 +2025,8 @@ return ticket
 Trasa powrotna
 Revenue
 Przychody
+Revenue/unit/100 tiles
+Przychód/jedn./100 pól
 Revert schedule
 Przywróć rozkład jazdy
 Revision:
@@ -1897,6 +2053,8 @@ sail
 Siła wiatru
 Save
 Zapisz
+Save generated script
+Zapisz wygenerowany skrypt
 Saving map ...
 Zapisuję mapę...
 Scenario complete: %i%%
@@ -1951,6 +2109,8 @@ Select soundfont
 Wybierz ścieżkę dźwiękową
 Sell the selected vehicle(s)
 Sprzedaj wybrany pojazd
+Selling of the program is forbidden.
+Sprzedaż tego programu jest zabroniona.
 sended
 Wysłanych
 SEP_FRACTION
@@ -1993,6 +2153,8 @@ Show always
 Zawsze pokazuj
 Show climates
 Pokaż klimaty
+Show construction info
+Pokaż informacje o budowie
 Show contour
 Pokaż kontury
 Show even servers with wrong version or pakset
@@ -2093,6 +2255,8 @@ Soundfonts are located in the music directory.
 Ścieżki dźwiękowe znajdują się w katalogu muzycznym.
 special freight
 Towar specjalny
+Speed Bonus
+Premia za prędkość
 Speedbonus\nroad %i km/h, rail %i km/h\nships %i km/h, planes %i km/h.
 Bonus za szybkość\ndroga %i km/h, kolej %i km/h\nstatki %i km/h, samoloty %i km/h
 Speedlimit
@@ -2127,16 +2291,22 @@ Station_msg
 Przepełnienia
 Status
 Stan
+stay on this level
+pozostań na tym poziomie
 steam
 parowy
 Step timeline one year
 Przesuń czas o rok do przodu
+Stopping permissions
+Inny gracz, który może korzystać z tego przystanku
 Stops
 Stacje
 Storage
 Magazyn
 Storage capacity
 Pojemność magazynowa
+straight route
+prosta trasa
 Strassendepot
 Zajezdnia
 Strassentunnel
@@ -2159,8 +2329,12 @@ Tage alt
 dniowe
 The following graphics are unmaintained:
 Poniższe grafiki są nie obsługiwane:
+The generated script was saved!\n
+Makro zostało pomyślnie zapisane.\nMożna je odtworzyć za pomocą narzędzia skryptów.
 The gradient does not fit a tunnel
 Nachylenie nie pasuje do tunelu
+The script cannot be saved!\n
+Nie można zapisać skryptu!\n
 Theme selector
 Wybór motywu
 There are still vehicles\nstored in this depot!\n
@@ -2179,6 +2353,8 @@ To attract more tourists\n%s built\na %s\nwith the aid of\n%i tax payers.
 Aby zachęcić turystów\n\nw %s wybudowano\n\n%s\n\nz pomocą %i\n\npodatników.
 To heavy traffic\nresults in traffic jam.\n
 Duży ruch\n\nspowodował korki.
+To: %s
+Do: %s
 Toggle day/night view
 Przełącz widok dzień/noc
 Toggle vehicle tooltips
@@ -2249,6 +2425,8 @@ Tunnel must start on single way!
 Tunel musi zaczynać się na pojedynczej drodze.
 Tunnelboden
 Tunel
+under the Artistic License
+na licencji Artistic License
 underground mode
 Tryb podziemi
 UNDO failed!
@@ -2309,6 +2487,8 @@ via %s\n
  przez %s\n
 via Menge
 przez (ilość)
+via owner
+przez (właściciela)
 voranstellen
 Dostaw z przodu
 Waggon_tab
@@ -2349,6 +2529,12 @@ Weight
 Waga
 Weight:
 Waga:
+Weight/unit
+Waga/jednostka
+Welcome to Simutrans
+Witamy w Simutrans
+Welcome, %s!
+Witaj, %s!
 Wert
 Wartość
 west
@@ -2421,12 +2607,16 @@ Pojazdy linii %s zostały wycofane
 #_________________________________tooltip_text__________________________________
 Add convois with similar schedule to this line.
 Dodaj do tej linii pojazdy o podobnym harmonogramie.
+Attach current coordinate to the comment
+Dołącz bieżące współrzędne do komentarza
 Enter intervall in days, hours, minutes
 Wprowadź odstęp w dniach, godzinach, minutach
 Mirrors order of stops
 Odzwierciedla kolejność przystanków
 Revert to original schedule
 Przywróć oryginalny harmonogram
+Tutorial not available for this pakset. Please try loading Pak128.
+Samouczek niedostępny dla tego pakietu. Spróbuj załadować Pak128.
 #_______________________________unnecessary_text________________________________
 #_______________________________unnecessary_text________________________________
 &0_CITY_SYLL
@@ -2479,21 +2669,53 @@ Zim
 %s %s
 1extern
 %s %s Zamieście
+1suburb
+%s %s %s
 2center
 %s %s Centralny
 2extern
 %s %s Kopalnia
+2suburb
+%s Zielone Pola %s %s
 3center
 %s %s Główny
 3extern
 %s %s Fabryczny
+3suburb
+%s Wieś %s %s
 4center
 %s Śródmieście
 4extern
 %s %s Zewnętrzny
+4suburb
+%s Teren wiejski %s
 5center
 %s %s Robotniczy
+5extern
+%s Przesiadka %s
+5suburb
+%s Miasto %s
 6center
 %s Centrum %s
+6extern
+%s Węzeł %s
+6suburb
+%s Przedmieście %s %s
 7center
 %s miasto %s
+7extern
+%s Równina %s
+7suburb
+%s Park %s
+8center
+%s Biznes %s
+8extern
+%s %s Granica %s
+8suburb
+%s Satelita %s
+9center
+%s Oś %s
+9extern
+%s Obwodnica %s
+9suburb
+%s Środek %s

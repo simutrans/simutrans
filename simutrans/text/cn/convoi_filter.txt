@@ -25,7 +25,7 @@
 - <em>无路径</em> - 找不到通往下一目的地的路径。<br>
 - <em>无日程安排</em> - 未分配<a href="schedule.txt">行程</a>。<br>
 - <em>无收入</em> - 不产生利润。<br>
-- <em>在仓库里</em> - 在<a href="depot.txt">仓库</a>中。<br>
+- <em>在整备库里</em> - 在<a href="depot.txt">整备库</a>中。<br>
 - <em>无线路</em> - 未分配<a href="linemanagement.txt">线路</a>。
 </p>
 <p>

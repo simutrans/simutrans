@@ -12,27 +12,693 @@ cyr.bdf
 #                               Language: th Thai                              #
 #                                Encoding: UTF-8                               #
 #                                 Font: cyr.bdf                                #
-#                            Date Created: 2.06 2024                           #
+#                           Date Created: 10.09 2026                           #
 #                                                                              #
 ################################################################################
 #__________________________________button_text__________________________________
 #__________________________________button_text__________________________________
+Absolute times
+แสดงเวลาเป็น วัน:ชม.:น. ของเดือน
+allow reverse passage
+อนุญาตให้แล่นย้อนกลับได้
+AMBIENT_SOUND
+เสียงบรรยากาศ
+CASH_SOUND
+เสียงรับเงิน
+cl_btn_filter_disable
+ปิดใช้งาน
+cl_btn_filter_enable
+เปิดใช้งาน
+cl_btn_filter_settings
+ตั้งค่า
+cl_btn_sort_asc
+จากน้อยไปมาก
+cl_btn_sort_desc
+จากมากไปน้อย
+cl_btn_sort_id
+รหัสภายใน
 cl_btn_sort_income
 รายรับ
 cl_btn_sort_name
 รายการ
 cl_btn_sort_type
 ลักษณะ
+clf_btn_alle
+ทั้งหมด
+clf_btn_invers
+สลับ
+clf_btn_keine
+ไม่มี
+climate area percentage
+ขนาดเขตภูมิอากาศเดี่ยว 
+Continue Game
+เล่นเกมต่อ
+CROSSING_SOUND
+เสียงเตือนทางข้าม
+FACTORY_SOUND
+เสียงโรงงาน
+Find matching convois
+ค้นหาขบวนที่ตรงกัน
+gl_btn_sort_bonus
+โบนัส
+gl_btn_sort_name
+ชื่อ
+gl_btn_sort_revenue
+รายได้
+gl_btn_unsort
+ไม่เรียงลำดับ
+height based
+ภูมิอากาศตามความสูง
+hl_btn_filter_disable
+ปิดใช้งาน
+hl_btn_filter_enable
+เปิดใช้งาน
+hl_btn_filter_settings
+ตั้งค่า
+hl_btn_sort_asc
+จากน้อยไปมาก
+hl_btn_sort_desc
+จากมากไปน้อย
+hl_btn_sort_name
+ชื่อ
+hl_btn_sort_type
+ลักษณะ
+hl_btn_sort_waiting
+รอ
+hlf_btn_alle
+ทั้งหมด
+hlf_btn_invers
+สลับ
+hlf_btn_keine
+ไม่มี
+humidities
+ขอบเขตความชื้น
+Install
+ติดตั้ง
+Lake
+ทะเลสาบ
+Lake height
+ความสูงทะเลสาบสูงสุด
+Maximize height levels
+เพิ่มระดับความสูงสูงสุด
+moisture land
+เพิ่มขึ้นบนแผ่นดิน
+moisture water
+เพิ่มขึ้นเหนือน้ำ
+Networks
+เครือข่าย
+Num pad keys always move map
+ปุ่มแป้นตัวเลขเลื่อนแผนที่เสมอ
+Open Sea
+ทะเลเปิด
+Owner only
+เฉพาะเจ้าของเท่านั้น
+Queueing
+แนวโน้มการรอคอย
+rainfall
+ความชื้น
+Reselect closes tools
+เลือกเครื่องมือซ้ำเพื่อปิด
+Return to menu
+กลับสู่เมนู
+Road toll
+ค่าผ่านทางถนน
+Scenario
+สถานการณ์จำลอง
+sea
+ภูมิอากาศทางทะเล
+Shared only
+ที่แชร์เท่านั้น
+Single GUI
+GUI เดี่ยว
+Sound range:
+ระยะเสียง:
+Start this as a server
+เริ่มเกมนี้เป็นเซิร์ฟเวอร์
+temperature borders
+ขอบเขตอุณหภูมิ
+temperature-humidity based
+ภูมิอากาศตามสภาพอากาศ
+TOOL_SOUND
+เสียงการใช้เครื่องมือ
+TRAFFIC_SOUND
+เสียงการจราจร
+Transfers
+ผ่านทาง
+Tutorial
+บทเรียนฝึกสอน
 #_________________________________climates_text_________________________________
 #_________________________________climates_text_________________________________
 arctic
 ภูมิอากาศหนาว
+desert
+ทะเลทราย
+mediterran
+เมดิเตอร์เรเนียน
+rocky
+เทือกเขาสูง (หิน)
+temperate
+ภูมิอากาศอบอุ่น
+tropic
+เขตร้อน
+tundra
+ทุนดรา
+#__________________________________error_text___________________________________
+#__________________________________error_text___________________________________
+ Loading scenario script failed
+ โหลดสคริปต์สถานการณ์จำลองล้มเหลว
+A building blocks the construction
+มีอาคารขวางการก่อสร้าง
+A powerline blocks the construction
+สายไฟฟ้าขวางการก่อสร้าง
+Another way blocks the construction
+มีเส้นทางอื่นขวางการก่อสร้าง
+Bridge blocked by way below or above.
+สะพานถูกขวางโดยเส้นทางด้านล่างหรือด้านบน
+Can't buy obsolete vehicles!
+ไม่สามารถซื้อยานพาหนะที่ล้าสมัยแล้วได้!
+Cannot alter water
+แอ่งน้ำนี้ไม่สามารถระบายน้ำออกหรือเติมน้ำได้อีก
+Cannot build on a double slope!
+สามารถสร้างได้เฉพาะบนทางลาดเดี่ยวหรือพื้นราบเท่านั้น!
+Cannot built depot here!
+ไม่สามารถสร้างอู่ที่นี่ได้
+Cannot built this station/building\nin underground mode here.
+สถานี/อาคารนี้ไม่สามารถสร้างใต้ดินได้
+Cannot connect to the\ncenter of a double slope!
+สะพานไม่สามารถเชื่อมต่อกับจุดกึ่งกลางของทางลาดคู่ได้!\nใช้เครื่องมือปรับภูมิทัศน์เพื่อแก้ไขปัญหานี้
+Cannot create generic line!\nSelect line type by\nusing filter tabs.
+ไม่สามารถสร้างสายทั่วไปได้!\nโปรดเลือกประเภทของสายโดย\nใช้แท็บตัวกรอง
+Cannot create socket
+ไม่สามารถสร้างซ็อกเก็ตได้
+Cannot cross the end of a runway
+ไม่สามารถตัดผ่านปลายรันเวย์ได้
+Cannot rotate this building!
+ไม่สามารถหมุนอาคารนี้ได้!
+Client closed connection during transfer
+ไคลเอนต์ปิดการเชื่อมต่อระหว่างการถ่ายโอนข้อมูล
+Convoi handles exhausted!
+จำนวนขบวนยานพาหนะถึงขีดจำกัดสูงสุดแล้ว
+Convoy already deleted!
+ขบวนยานพาหนะถูกลบไปแล้ว!
+Corrupt file
+ไฟล์เสียหายหรือไม่สมบูรณ์
+Could not open file
+ไม่สามารถเข้าถึงไฟล์ได้ โปรดตรวจสอบสิทธิ์การเข้าถึง
+Das Feld gehoert\neinem anderen Spieler\n
+ที่ดินผืนนี้\nเป็นของผู้เล่นอื่น!\n
+Depots cannot be built on runways!
+ไม่สามารถสร้างอู่บนรันเวย์ได้!
+Depots must be built on flat dead-end way tiles!
+อู่ต้องสร้างบนช่องทางที่เป็นพื้นราบและเป็นทางตันเท่านั้น!
+Der Besitzer erlaubt das Entfernen nicht
+เจ้าของไม่อนุญาต\nให้รื้อถอน\nสิ่งนี้!\n
+Diese Zusammenstellung kann nicht fahren!\n
+ขบวนที่จัดนี้\nไม่สามารถวิ่งได้!\n
+Elevated way can only be joined in line
+ทางยกระดับเชื่อมต่อได้เฉพาะแนวเส้นตรง
+Failed to write file
+ไม่สามารถเขียนไฟล์ได้ (สิทธิ์การเข้าถึง?)
+Flugzeughalt muss auf\nRunway liegen!\n
+หลุมจอดเครื่องบินต้อง\nอยู่บนทางขับ
+Forbidden by scenario
+ถูกห้ามโดยสถานการณ์
+Hier kann dieses\nFlughafengebaeude nicht\ngebaut werden!\n
+คุณไม่สามารถสร้าง\n\nอาคารสนามบินที่นี่ได้\n
+Hier kann kein\nSignal aufge-\nstellt werden!\n
+คุณไม่สามารถติดตั้ง\nสัญญาณไฟรถไฟที่นี่ได้\n
+In order to lock the game, you have to protect the public player by password!
+ในการล็อกเกม คุณต้องตั้งรหัสผ่านป้องกันผู้เล่นสาธารณะ!
+Loading a new game will end the current server session!
+การโหลดเกมใหม่จะเป็นการสิ้นสุดเซสชันเซิร์ฟเวอร์ปัจจุบัน!
+Lost connection\nto server!
+ขาดการเชื่อมต่อ\nกับเซิร์ฟเวอร์!
+Lost synchronisation\nwith server.
+สูญเสียการซิงโครไนซ์\nกับเซิร์ฟเวอร์
+Maglevhalt muss auf\nMaglevschiene liegen!\n
+จุดรับส่งแมกเลฟต้องอยู่บนรางแมกเลฟ!
+Monorailhalt muss auf\nMonorail liegen!\n
+จุดรับส่งโมโนเรลต้องอยู่\nบนรางโมโนเรล
+Monorails are not available yet!
+ยังไม่มีโมโนเรลให้ใช้งาน
+More than one possibility to build this dock found.
+พบความเป็นไปได้มากกว่าหนึ่งแห่งในการสร้างท่าเรือนี้
+Narrowgaugehalt muss auf\nNarrowgauge liegen!\n
+จุดรับส่งรถรางขนาดเล็กต้องอยู่บนรางรถรางขนาดเล็ก
+No bridges over runways!
+ห้ามสร้างสะพานข้ามรันเวย์!
+No curves on runways
+รันเวย์ไม่สามารถเลี้ยวโค้งได้!
+No suitable crossing
+ไม่มีทางตัดผ่านที่เหมาะสม! (ความเร็วสูงสุดเร็วเกินไป?)
+No suitable way on the ground!
+สร้างจุดรับส่งได้เฉพาะบน\nเส้นทางตรงที่ราบเรียบและตรงกันเท่านั้น!
+No through station here!
+สถานีต้องวางอยู่บนเส้นทางตันหรือส่วนที่เป็นทางตรงที่ไม่มีทางแยก
+Not allowed to copy object.
+คุณไม่สามารถสร้างวัตถุนั้นได้!\n(เหตุผล: ผู้เล่นไม่ถูกต้องหรือล้าสมัยแล้ว)
+Not enough bytes transferred
+ถ่ายโอนข้อมูลไม่ครบถ้วน
+Not enough clearance.
+ระยะห่างความสูงไม่เพียงพอ
+Not enough empty space
+พื้นที่ว่างไม่เพียงพอ
+Not enough money!
+เงินไม่เพียงพอ!
+Not initialized
+ไม่สามารถเริ่มระบบได้
+On narrowgauge track only!\n
+สร้างได้เฉพาะบนรางขนาดเล็กเท่านั้น!\n
+Only public player can lock games!
+มีเพียงผู้เล่นสาธารณะเท่านั้นที่สามารถล็อกเกมได้!
+Only up and down movement in the underground!
+ในชั้นใต้ดินสามารถปรับระดับขึ้นและลงได้เท่านั้น!
+Out of funds
+เงินทุนหมด
+Post muss neben\nHaltestelle\nliegen!\n
+ที่ทำการไปรษณีย์\nต้องอยู่ติดกับ\nจุดรับส่ง!\n
+Protocoll error (expecting game)
+ข้อผิดพลาดของโพรโทคอล (กำลังรอเกม)
+Schiffhalt muss im\nWasser liegen!\n
+จุดจอดเรือต้องอยู่\nในน้ำใกล้ท่าเรือ!\n
+Server busy
+เซิร์ฟเวอร์ไม่ว่าง
+Server version too new
+เวอร์ชันของเซิร์ฟเวอร์ใหม่เกินไป
+Ship depots must be built on water!
+อู่เรือต้องสร้างบนน้ำ!
+Show all revenue messages
+แสดงข้อความรายได้ทั้งหมด
+Show no revenue messages
+ไม่แสดงข้อความรายได้
+Show only player's revenue
+แสดงเฉพาะรายได้ของผู้เล่น
+Slope is too steep
+ความลาดชันสูงเกินไป
+Terraforming not possible\nhere in underground view
+ไม่สามารถปรับระดับพื้นดินได้\nในมุมมองใต้ดิน
+This tunnel branches. You can try Control+Click to remove.
+อุโมงค์นี้มีทางแยก คุณสามารถลองกด Control+คลิก เพื่อรื้อถอน
+Too far away to merge stations!
+อยู่ไกลเกินไปที่จะรวมสถานี!
+Tunnel can only be entered at its portal
+เข้าอุโมงค์ได้เฉพาะทางปากอุโมงค์
+Unknown error
+ข้อผิดพลาดที่ไม่รู้จัก
+Upgrade must have\na higher level
+การอัปเกรดจะต้องมี\nระดับที่สูงกว่า
+Vehicle %s cannot choose because stop too short!
+ยานพาหนะ %s ไม่สามารถเลือกได้เพราะจุดรับส่งสั้นเกินไป!
+Watertable reached
+ไม่สามารถลดระดับพื้นดินได้อีก!\nถึงระดับน้ำใต้ดินแล้ว
+Way does not match the slope here
+เส้นทางไม่เข้ากับความลาดชันที่นี่
+Wrong direction to enter the bridge
+ทิศทางเข้าสะพานไม่ถูกต้อง
+Zughalt muss auf\nSchiene liegen!\n
+สถานีรถไฟต้อง\nวางอยู่บนรางรถไฟ!\n
+#___________________________________help_text___________________________________
+#___________________________________help_text___________________________________
+<h1>Index</h1><p>*: only english</p><p>General</p>%s<p>Usage</p>%s<p>Tools</p>%s<p>Start</p>%s<p>How to play</p>%s<p>Others:</p>%s
+<title>ความช่วยเหลือ</title><h1>ดัชนีความช่วยเหลือ</h1><p><it>เกี่ยวกับ Simutrans</it></p>%1$s<p><it>วิธีใช้งาน</it></p>%2$s<p><it>วิธีเริ่มเล่นเกม</it></p>%4$s<p><it>วิธีเล่น</it></p>%5$s<p><it>เครื่องมือ</it></p>%3$s<p><it>หน้าต่างอื่นๆ</it></p>%6$s
+<title>Keyboard Help</title>\n<h1><strong>Keyboard Help</strong></h1><p>\n
+<title>การกำหนดแป้นพิมพ์</title>\n<h1><strong>ความช่วยเหลือเกี่ยวกับแป้นพิมพ์</strong></h1>\n<p>\n<p><strong>ความช่วยเหลือเกี่ยวกับแป้นพิมพ์</strong> จะเปิดขึ้นเมื่อกดแป้นที่ไม่ได้กำหนดหน้าที่ หรือเปิดจาก <a href="general.txt">ความช่วยเหลือทั่วไป</a>\n</p>\n<p>\nการกดแป้นจะแยกแยะตัวพิมพ์เล็ก-ใหญ่ (ใช้ [<em>Shift</em>] สำหรับตัวพิมพ์ใหญ่)\n</p>\n<p>\nแป้นที่มีหน้าที่กำหนดไว้ ได้แก่:\n</p>\n<p>\n[<em>แป้นลูกศร</em>]: เลื่อนมุมมองเกมตามทิศทางลูกศร<br>\n[<em>Backspace</em>]: ปิดหน้าต่าง แถบเครื่องมือ และข้อความช่วยเหลือทั้งหมด<br>\n[<em>Delete</em>] หรือ [<em>Escape</em>]: ปิดหน้าต่าง แถบเครื่องมือ หรือข้อความช่วยเหลือบนสุด<br>\n[<em>Page-Up</em>] หรือ [<em>&gt;</em>]: ซูมเข้ามุมมองเกม<br>\n[<em>Page-Down</em>] หรือ  [<em>&lt;</em>]: ซูมออกมุมมองเกม\n[<em>CTRL</em>] + เครื่องมือ: สร้างเส้นทางที่ตรงขึ้น (แม้จะทับเส้นทางที่เร็วกว่า) หรือกลับลำดับการเลือกขณะตรวจสอบหรือลบ<br>\n</p>
+At least one stop is connected to the town.
+มีจุดรับส่งอย่างน้อยหนึ่งแห่งเชื่อมต่อกับเมือง
+At least one tile is connected to one stop.
+มีช่องอย่างน้อยหนึ่งช่องเชื่อมต่อกับจุดรับส่งหนึ่งแห่ง
+Color according to transport capacity left
+แสดงสีตามความจุขนส่งที่เหลืออยู่
+Color-coded terrain according to altitude.
+แสดง/ซ่อนการแรเงาเส้นชั้นความสูงของภูมิประเทศ
+Decrease water height
+ลดระดับน้ำลงหนึ่งระดับ
+Highlight railroad tracks
+เน้นทางรถไฟ
+Highlite depots
+เน้นอู่ซ่อมบำรุง
+Highlite electrical transmission lines
+เน้นสายส่งไฟฟ้า
+Highlite factories
+เน้นโรงงาน
+Highlite forests
+เน้นป่าไม้
+Highlite tourist attraction
+เน้นสถานที่ท่องเที่ยว
+Increase water height
+เพิ่มระดับน้ำขึ้นหนึ่งระดับ
+Open station/stop details
+เปิดรายละเอียดสถานี/จุดรับส่ง
+Overlay city limits
+แสดงขอบเขตเมือง
+Overlay passenger destinations when a town window is open
+แสดงจุดหมายปลายทางของผู้โดยสารเมื่อเปิดหน้าต่างเมือง
+Overlay schedules/network
+แสดงตารางการเดินรถ/โครงข่าย
+Overlay town names
+แสดงชื่อเมือง
+Please click on the map to add\nwaypoints or stops to this\nschedule.
+กรุณาคลิกบนแผนที่เพื่อเพิ่ม\nจุดทางผ่านหรือจุดรับส่งลงใน\nตารางนี้
+Remove double stops from schedule
+ลบจุดรับส่งที่ซ้ำกันออกจากตาราง
+Set tile climate %s
+แปลงพื้นที่นี้เป็นเขต %s
+Show capacity and if halt is overcrowded
+แสดงความจุและสถานะจุดจอดแออัด
+Show how many convoi reach a station
+แสดงจำนวนขบวนรถที่มาถึงสถานี
+Show how many people/much is waiting at halts
+แสดงจำนวนคน/สินค้าที่รออยู่ที่จุดรับส่ง
+Show initial passenger departure
+แสดงจุดเริ่มต้นของผู้โดยสารและไปรษณีย์
+Show level of city buildings
+แสดงระดับของอาคารในเมือง
+Show mail service coverage/mail network
+แสดงพื้นที่ให้บริการไปรษณีย์/เครือข่ายไปรษณีย์
+Show passenger coverage/passenger network
+แสดงพื้นที่ให้บริการผู้โดยสาร/เครือข่ายผู้โดยสาร
+Show speedlimit of ways
+แสดงขีดจำกัดความเร็วของเส้นทาง
+Show the change of waiting at halts
+แสดงการเปลี่ยนแปลงของจำนวนที่รออยู่ที่จุดรับส่ง
+Show the owenership of infrastructure
+แสดงความเป็นเจ้าของโครงสร้างพื้นฐาน
+Show transported freight/freight network
+แสดงสินค้าที่ขนส่ง/เครือข่ายสินค้า
+Show usage of network
+แสดงการใช้งานเครือข่าย
+Shows a listing with all industries on the map.
+แสดงรายการอุตสาหกรรมทั้งหมดบนแผนที่
+Sum of departure/arrivals at halts
+ผลรวมการออก/มาถึงที่จุดรับส่ง
+#____________________________________ki_text____________________________________
+#____________________________________ki_text____________________________________
+%s now\noffers bus services\nbetween %s\nand attraction\n%s\nat (%i,%i).\n
+%s ตอนนี้\nเปิดให้บริการรถประจำทาง\nระหว่าง %s\nและสถานที่ท่องเที่ยว\n%s\nที่ (%i,%i)\n
+%s now\noffers bus services\nbetween %s\nand factory\n%s\nat (%i,%i).\n
+%s ตอนนี้\nเปิดให้บริการรถประจำทาง\nระหว่าง %s\nและโรงงาน\n%s\nที่ (%i,%i)\n
+%s\nnow operates\n%i trucks between\n%s at (%i,%i)\nand %s at (%i,%i).
+%s\nตอนนี้ให้บริการ\nรถบรรทุก %i คัน ระหว่าง\n%s ที่ (%i,%i)\nและ %s\nที่ (%i,%i)
+%s\nopened a new railway\nbetween %s\nat (%i,%i) and\n%s at (%i,%i).
+%s\nเปิดเส้นทางรถไฟสายใหม่\nระหว่าง %s\nที่ (%i,%i) และ\n%s\nที่ (%i,%i)
+Airline service by\n%s\nnow between\n%s \nand %s.\n
+บริการสายการบินโดย\n%s\nตอนนี้ระหว่าง\n%s \nและ %s\n
+Ferry service by\n%s\nnow between\n%s \nand %s.\n
+บริการเรือข้ามฟากโดย\n%s\nเปิดให้บริการแล้วระหว่าง\n%s \nและ %s\n
+Travellers now\nuse %s's\nbusses between\n%s \nand %s.\n
+ขณะนี้ผู้โดยสารใช้บริการ\nรถประจำทางของ %s\nระหว่าง %s\nและ %s\n
+#___________________________________menu_text___________________________________
+#___________________________________menu_text___________________________________
+EDITTOOLS
+เครื่องมือแก้ไขแผนที่
+LISTTOOLS
+รายการ
+MAGLEVTOOLS
+เครื่องมือรถไฟแมกเลฟ
+MONORAILTOOLS
+เครื่องมือโมโนเรล
+NARROWGAUGETOOLS
+เครื่องมือรถรางขนาดเล็ก
+RAILTOOLS
+เครื่องมือทางรถไฟ
+ROADTOOLS
+เครื่องมือถนน
+SHIPTOOLS
+เครื่องมือทางน้ำ
+SLOPETOOLS
+เครื่องมือปรับภูมิทัศน์
+SPECIALTOOLS
+เครื่องมือก่อสร้างพิเศษ
+TRAMTOOLS
+เครื่องมือรถราง
+#_________________________________message_text__________________________________
+#_________________________________message_text__________________________________
+%s s\nheadquarter now\nat (%i,%i).
+%s ได้สร้างสำนักงานใหญ่แห่งใหม่แล้ว
+Factory chain extended\nfor %s near\n%s built with\n%i factories.
+เศรษฐกิจกำลังเติบโต:\n%s ใกล้กับ %s ได้ขยายสายการผลิต\nสร้างโรงงานใหม่ %i แห่ง
+Net wealth less than 10%% of starting capital!
+มูลค่าสุทธิต่ำกว่า 10%% ของทุนเริ่มต้น!
+New %s now available:\n%s\n
+มี %s ใหม่พร้อมใช้งานแล้ว:\n%s\n
+New factory chain\nfor %s near\n%s built with\n%i factories.
+การเติบโตของอุตสาหกรรม: ห่วงโซ่โรงงานใหม่\nสำหรับ %s ใกล้กับ\n%s สร้างขึ้นพร้อมกับ\n%i โรงงาน
+New vehicle now available:\n%s\n
+\n มียานพาหนะใหม่\n พร้อมใช้งานแล้ว:\n\n\n -- %s --\n\n
+Now %u clients connected.
+ขณะนี้มีผู้เชื่อมต่อ %u ราย
+overtaking
+การแซง
+Remove vehicle from map. Use with care!
+ลบยานพาหนะออกจากแผนที่ (โปรดใช้ด้วยความระมัดระวัง!)
+Screenshot\ngespeichert.\n
+บันทึกภาพหน้าจอ\nแล้ว\n
+Sends the convoi to the last depot it departed from!
+ส่งขบวนรถกลับไปยังอู่ล่าสุดที่ออกมา!
+Server preparing game ...
+เซิร์ฟเวอร์กำลังเตรียมเกม...
+Trees
+ต้นไม้
+With a big festival\n%s built\na new monument.\n%i citicens rejoiced.
+พร้อมด้วยเทศกาลเฉลิมฉลองครั้งใหญ่\n%s ได้สร้าง\nอนุสาวรีย์แห่งใหม่\nประชาชน %i คนต่างยินดีปรีดา
+#___________________________________obsolete____________________________________
+#___________________________________obsolete____________________________________
+Line Filter
+ตัวกรองสาย
 #_________________________________program_text__________________________________
 #_________________________________program_text__________________________________
+(%.2f$/km %.2f$/m)
+ (%.2f$/km %.2f$/เดือน)
+(%.2f$/km)
+ (%.2f$/km)
+(%i)-
+(%i) 
+(in depot)
+(ในอู่)
+[0] south-facing
+[0] หันไปทางทิศใต้
+[1] east-facing
+[1] หันไปทางทิศตะวันออก
+[2] north-facing
+[2] หันไปทางทิศเหนือ
+[3] west-facing
+[3] หันไปทางทิศตะวันตก
+[4] southeast corner
+[4] หัวมุมทิศตะวันออกเฉียงใต้
+[5] northeast corner
+[5] หัวมุมทิศตะวันออกเฉียงเหนือ
+[6] northwest corner
+[6] หัวมุมทิศตะวันตกเฉียงเหนือ
+[7] southwest corner
+[7] หัวมุมทิศตะวันตกเฉียงใต้
+/month
+/เดือน
+\nBauzeit bis
+\nจนถึง 
+\nBauzeit von
+\nปรากฏตั้งแต่ 
+\nCan't open heightfield file.\n
+\nไม่สามารถเปิดไฟล์แผนที่ความสูงได้\n
+\ndirection:
+\nทิศทาง: 
+\nelektrified
+\nติดตั้งระบบไฟฟ้าแล้ว\n
+\nHeightfield has wrong image type.\n
+\nแผนที่ความสูงเป็นชนิดรูปภาพที่ไม่ถูกต้อง\n
+\nis reserved by:
+\nถูกจองโดย: 
+\nminimum speed:
+\nความเร็วขั้นต่ำ: 
+\nnot elektrified
+\nยังไม่ได้ติดตั้งระบบไฟฟ้า\n
+\nRibi (masked)
+\nทิศทาง (มาสก์): 
+\nRibi (unmasked)
+\nทิศทาง (ไม่มาสก์): 
+\nSet phases:
+\nตั้งเวลาของเฟส\n  / จากนั้น \\  แล้วตามด้วยออฟเซ็ต
+\nsingle way
+\nเส้นทางเดี่ยว
+\nway1 reserved by
+\nเส้นทาง 1 ถูกจองโดย 
+\nway2 reserved by
+\nเส้นทาง 2 ถูกจองโดย 
+\nwith sign/signal\n
+\nมีป้าย/สัญญาณไฟ\n
+%d buildings\n
+อาคาร %d หลัง\n
+%d convois
+%d ขบวน
+%d Einzelfahrzeuge im Depot
+มียานพาหนะ %d คันในอู่
+%d more convois
+อีก %d ขบวน
+%i car(s),
+รถยนต์ %i คัน, 
+%i km/h (max. %ikm/h)
+%i km/h (สูงสุด %ikm/h)
+%i years %i months old.
+อายุ: %i ปี %i เดือน
+%s at (%i,%i) now public stop.
+%s กลายเป็นจุดรับส่งสาธารณะแล้ว
+%s building %s %s
+%s %s %s
+%s city %d %s
+%s %d %s
+%s factory %s %s
+%s ลาน %s
+%s has entered a depot.
+%s เข้าสู่อู่แล้ว
+%s has left.
+%s ออกเดินทางแล้ว
+%s land %d %s
+%s รอบนอก %d %s
+%s now known as %s.
+%s เปลี่ยนชื่อเป็น %s แล้ว
+%s wasted\nyour money with a\nnew townhall\nwhen it reached\n%i inhabitants.
+%s \nสร้าง\nศาลาว่าการแห่งใหม่\nเมื่อมีประชากรถึง\n%i คน
+%s\nis crowded.
+%s\nแออัดแล้ว
+%s\nspeed %i\nmax_speed %i\ndx:%i dy:%i
+%1$s\n\n\nความเร็วสูงสุด %3$i km/h\n\nความเร็วปัจจุบัน %2$i km/h.\n\n
+%s\nwas liquidated.
+%s ล้มละลายและ\nถูกชำระบัญชีแล้ว\nการดำเนินงานทั้งหมดถูกระงับ\nและทรัพย์สินทั้งหมดถูกขายทอดตลาดแล้ว
+%u Client(s)\n
+ไคลเอนต์ %u ราย\n
+%u days ago
+%u วันที่แล้ว
+%u hours ago
+%u ชั่วโมงที่แล้ว
+%u minutes ago
+%u นาทีที่แล้ว
+%u Player (%u locked)\n
+ผู้เล่น %u คน (ล็อกอยู่ %u คน)\n
+%u years ago
+%u ปีที่แล้ว
+<clear schedule>
+<ล้างตาราง>
+<create new line>
+<สร้างสายใหม่>
+<em>%s</em> - %s<br>\n
+[<em>%s</em>]: %s<br>\n
+<h1>Error</h1><p><strong>
+<H1>ข้อผิดพลาด: วัตถุซ้ำกันในไดเรกทอรี pak หลัก</H1><p><strong>ใน 
+<h1>Warning</h1><p><strong>addons for
+<h1>คำเตือน: วัตถุซ้ำกันในไดเรกทอรีส่วนเสริม</h1><p><strong>ส่วนเสริมสำหรับ 
+<individual schedule>
+<ตารางเฉพาะขบวน>
+<no line>
+<ไม่ได้กำหนดสาย>
+<no schedule set>
+<ยังไม่ได้กำหนดตาราง>
+<promote to line>
+<เลื่อนเป็นสาย>
+1 convoi
+1 ขบวน
+1 Einzelfahrzeug im Depot
+มียานพาหนะ 1 คันในอู่
+1 minute ago
+1 นาทีที่แล้ว
+1 year ago
+1 ปีที่แล้ว
+100 km/h = %i tiles/month
+100 km/h = %i ช่อง/เดือน
+1LIGHT_CHOOSE
+ความสว่าง:
+1th
+ที่ 1
+1WORLD_CHOOSE
+การตั้งค่าสำหรับเกมใหม่:
+21th
+ที่ 21
+22th
+ที่ 22
+23th
+ที่ 23
+2LIGHT_CHOOSE
+สี:
+2th
+ที่ 2
+2WORLD_CHOOSE
+หมายเลขแผนที่:
+31th
+ที่ 31
+3LIGHT_CHOOSE
+ความเร็วในการเลื่อน:
+3th
+ที่ 3
+4LIGHT_CHOOSE
+เลื่อนแบบกลับด้าน
+5LIGHT_CHOOSE
+คนเดินเท้าที่จุดรับส่ง
+5WORLD_CHOOSE
+จำนวนเมือง:
+6LIGHT_CHOOSE
+คนเดินเท้าในเมือง
+6WORLD_CHOOSE
+ความหนาแน่นของการจราจร:
+8WORLD_CHOOSE
+รอบกลางวันและกลางคืน
+A bridge must end on a way!
+สะพานต้องสิ้นสุดบนเส้นทาง!
+A bridge must start on a way!
+คุณไม่ได้เป็นเจ้าของปลายทางของสะพานนี้ หรือเส้นทางถูกกีดขวาง\n
+Abfrage
+เครื่องมือตรวจสอบ
+Abnehmer
+ผู้บริโภค:
+About
+เกี่ยวกับ
+About scenario
+ลิขสิทธิ์
+Abriss
+ทำลาย/รื้อถอน
+Absenken
+ลดระดับพื้นดิน
+Abspanntransformator
+สถานีจ่ายไฟฟ้าย่อย
+Accelerate time
+เร่งเวลา
+Act. load: %u MW\n
+โหลดปัจจุบัน: %u MW\n
+Active player only
+เฉพาะผู้เล่นปัจจุบันเท่านั้น
+Add forest
+เพิ่มป่าไม้
+Add random citycar
+สุ่มเพิ่มรถยนต์ในเมือง
+add server
+เพิ่มเซิร์ฟเวอร์
+Add Stop
+เพิ่มจุดรับส่ง
+Add stops for backward travel
+เพิ่มจุดรับส่งสำหรับการเดินทางขากลับ
+air
+รันเวย์/แท็กซี่เวย์
+Aircraft
+สายการบิน
+aircraft_tab
+เครื่องบินขนส่งสินค้า
+airplane
+เครื่องบิน
+Airport
+สนามบิน
+AIRTOOLS
+เครื่องมือสนามบิน
+All
+ทั้งหมด
+all convoi tooltips
+ทูลทิปขบวนรถทั้งหมด
+Allow city growth
+อนุญาตให้เมืองเติบโต
+Allow player change
+อนุญาตให้เปลี่ยนผู้เล่น
 allowed climates:\n
 ภูมิอากาศที่อนุญาต:\n
 Alters a schedule.
 ปรับปรุงตารางเวลา
+and arranged by
+และจัดเรียงโดย
 Angenommene Waren
 สินค้าที่จำเป็นสำหรับอุตสาหกรรมในบริเวณใกล้เคียง
 anhaengen
@@ -45,26 +711,40 @@ Appends stops at the end of the schedule
 เพิ่มจุดรับส่งในส่วนท้ายของตาราง
 Apply Line
 ใช้งานสายนี้
+Apr.
+เม.ย.
 April
 เมษายน
 Arbeiter aus:
 แรงงานอาศัยอยู่ใน:
+Arrivals from\n
+ขาเข้าจาก\n
 Arrived
 ถึงจุดหมายแล้ว
 Assets
 สินทรัพย์
+Aufloesen
+แยกชิ้นส่วน
 Aufspanntransformator
 สถานีจ่ายไฟฟ้าย่อย
+Aug.
+ส.ค.
 August
 สิงหาคม
+auto
+อัตโนมัติ
 Autohalt muss auf\nStrasse liegen!\n
 จุดรับส่งผู้โดยสารนี้\nต้องสร้างบนถนนเท่านั้น
 Available
 หาได้
+Available at custom date
+พร้อมใช้งานในวันที่กำหนดเอง
 Bahndepot
 โรงซ่อมรถไฟ
 Bankrott:\n\nDu bist bankrott.\n
 ล้มละลาย:\n\nคุณล้มละลายแล้ว!\n\n
+based on Simutrans 84.22.1
+อิงจาก Simutrans 84.22.1
 battery
 แบตเตอร์รี่
 Baum
@@ -89,8 +769,16 @@ Blockstrecke ist\nbelegt\n
 \nทางวิ่งนี้ถูกใช้งาน\nจากขบวนรถคันอื่น!\n
 Boden
 พื้นที่
+Bonus Multiplier: %i%%
+ตัวคูณโบนัส: %i%%
+Bonus Speed: %i km/h
+ความเร็วโบนัส: %i km/h
 Bonusspeed: %i km/h
 ใช้ความเร็วสูงสุด: %i km/h
+Boost (%%)
+บูสต์ (%%)
+Borderless (disabled on fullscreen)
+ไร้ขอบ (ปิดใช้งานในโหมดเต็มหน้าจอ)
 bridge is too high for its type!
 สะพานสูงเกินไป
 Bridge is too long for this type!\n
@@ -119,6 +807,8 @@ Build monorail depot
 สร้างโรงซ่อมบำรุงรถไฟโมโนเรล
 Build narrowgauge depot
 สร้างโรงซ่อมบำรุงรถรางขนาดเล็ก
+build portal only
+สร้างเฉพาะปากอุโมงค์
 Build powerline
 ไฟฟ้าความเร็วสูง
 Build presignals
@@ -139,11 +829,1885 @@ Building costs estimates
 ค่าก่อสร้างโดยประมาณ
 Buildings
 จำนวนสิ่งก่อสร้าง
+Built artifical slopes
+สร้างทางลาดเทียม
+Built random attraction
+สร้างสถานที่ท่องเที่ยวแบบสุ่ม
+Bus_tab
+รถโดยสาร
+Can be overgrown
+มีพืชพรรณขึ้นปกคลุมได้
+Can only move from halt to halt or waypoint to waypoint.
+สามารถย้ายได้เฉพาะ\nจากจุดรับส่งไปยังจุดรับส่ง หรือ\nจากจุดทางผ่านไปยังจุดทางผ่านเท่านั้น
+Cancel
+ยกเลิก
+Cannot build here
+ไม่สามารถก่อสร้างที่นี่
+Cannot connect to offline server!
+ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ออฟไลน์ได้!
+Capacity
+ความจุ
+Capacity:
+ความจุ:
+Capacity: %.0f MW
+ความจุ: %.0f MW\n
+Capacity: %d%s %s\n
+ความจุ: %3d%s %s\n
+Capacity: %s\nLoad: %d (%d%%)
+ความจุ: %s\n\nสัดส่วน: %d (%d%%)
+Cars are not available yet!
+ยังไม่มีรถยนต์ให้บริการในขณะนี้
+cars.\nstate
+ คัน\n
+Cash
+ยอดคงเหลือในบัญชี
+Category
+หมวดหมู่
+Change label style
+เปลี่ยนรูปแบบป้ายชื่อ
+Change player
+เปลี่ยนผู้เล่น
+Chart
+แผนภูมิ
+Chat_msg
+แชท
+Choose direction
+เลือกทิศทาง
+Choose operation executed on clicking stored/new vehicles
+เลือกการทำงานเมื่อคลิกยานพาหนะในคลัง/ยานพาหนะใหม่
+chooses a random map
+สุ่มเลือกแผนที่
+citicens
+ประชาชน
+Cities can only be built on flat empty ground!
+เมืองสามารถสร้างได้เฉพาะบนที่ดินว่างเปล่าที่เป็นพื้นราบเท่านั้น!
+City attraction
+สถานที่ท่องเที่ยวในเมือง
+City industries
+ตลาดในเมือง
+City list
+รายชื่อเมือง
+City size
+ขนาดของเมือง
+city_road
+ถนนในเมือง
+citybuilding builder
+สร้างอาคารในเมือง
+CityLimit
+ขอบเขตเมือง
+cl_title
+รายการยานพาหนะ
+cl_txt_sort
+เรียงตาม:
+clamp
+จำกัดค่า
+Cleanup schedule
+ลบรายการที่ซ้ำกัน
+Clear block reservation
+แสดง/รีเซ็ตเส้นทางที่ถูกจอง
+clf_chk_aircrafts
+เครื่องบิน
+clf_chk_cars
+รถบัส/รถบรรทุก
+clf_chk_indepot
+ในอู่
+clf_chk_maglev
+รถไฟแมกเลฟ
+clf_chk_monorail
+โมโนเรล
+clf_chk_name_filter
+กรองชื่อ:
+clf_chk_narrowgauge
+รถไฟรางแคบ
+clf_chk_noincome
+ขาดทุน
+clf_chk_noline
+ไม่มีสาย
+clf_chk_noroute
+ไม่มีเส้นทาง
+clf_chk_noschedule
+ไม่มีตารางเวลา
+clf_chk_obsolete
+ล้าสมัย
+clf_chk_ships
+เรือ
+clf_chk_spezial_filter
+ตัวกรองพิเศษ:
+clf_chk_stucked
+ติดขัด
+clf_chk_trains
+รถไฟ
+clf_chk_trams
+รถราง
+clf_chk_type_filter
+กรองประเภท:
+clf_chk_waren
+กรองสินค้า:
+clf_title
+ตัวกรองรายการยานพาหนะ
+Click to open the finance dialog.
+คลิกเพื่อเปิดหน้าต่างการเงิน
+Climate
+ภูมิอากาศ
+Climate Control
+การตั้งค่าภูมิทัศน์
+Climates
+เขตภูมิอากาศ
+closed
+ปิด.
+Closes topmost line window when new line selected.
+ปิดหน้าต่างสายที่อยู่บนสุดเมื่อเลือกสายใหม่
+COLOR_CHOOSE\n
+โปรดเลือกสองสี\nจากรูปภาพทาง\nด้านขวา:
+Company bankrupt
+บริษัทล้มละลาย
+company_chat
+แชทบริษัท
+Company_msg
+คู่แข่ง
+Comparing pak files ...
+กำลังเปรียบเทียบไฟล์ pak ...
+Composed by
+ประพันธ์โดย
+Configure AI
+กำหนดค่า AI
+Configure AI setttings
+กำหนดการตั้งค่า AI
+Congratulation\nScenario was complete in\n%i months %i years.
+ขอแสดงความยินดี!\nฉากทัศน์เสร็จสมบูรณ์\nภายในเวลา \n%i เดือน และ %i ปี!
+Connect factory
+เชื่อมต่อโรงงาน
+Connected stops
+จุดรับส่งที่เชื่อมต่อ:
+Connected with server
+เชื่อมต่อกับเซิร์ฟเวอร์แล้ว
+connection
+การเชื่อมต่อ
+Connections
+การเชื่อมต่อ
+Constructed by
+วาดภาพโดย 
+Constructed by %s
+วาดภาพโดย %s
+construction speed
+ความเร็วการก่อสร้าง
+Construction_Btn
+ค่าก่อสร้าง
+Consumed
+บริโภคแล้ว
+contains the following doubled objects:</strong><p>
+ มีวัตถุต่อไปนี้มากกว่าหนึ่งครั้ง:</strong><p/>
+convoi %d of %d
+ขบวน %d จาก %d
+convoi error tooltips
+ทูลทิปข้อผิดพลาดขบวนรถ
+Convoi following mode
+โหมดติดตามขบวนยานพาหนะ
+Convoi has been sent\nto the nearest depot\nof appropriate type.\n
+ขบวนยานพาหนะถูกส่ง\nไปยังอู่ประเภทที่เหมาะสม\nที่ใกล้ที่สุดแล้ว\n
+Convoi is sold when all wagons are empty.
+ยานพาหนะจะถูกขายทันทีที่ขนถ่ายจนว่างเปล่าแล้ว
+convoi mouseover tooltips
+ทูลทิปเมื่อชี้ขบวนรถ
+convoi passed last\nmonth %i\n
+\nขบวนรถที่ผ่านเมื่อเดือน\nที่แล้ว: %i\n
+Convois
+ขบวนยานพาหนะ
+Convois: %d\nProfit: %s
+ยานพาหนะ: %d\nกำไร: %s
+Convoys
+ขบวนยานพาหนะ
+Copy Convoi
+คัดลอกขบวนยานพาหนะ
+Copy the selected convoi and its schedule or line
+คัดลอกขบวนยานพาหนะที่เลือกพร้อมตารางเดินรถหรือสาย
+Copy to clipboard
+คัดลอกไปยังคลิปบอร์ด
+Cost
+ค่าใช้จ่าย
+cost for removal
+ค่ารื้อถอน 
+Cost per unit
+ค่าใช้จ่ายต่อหน่วย
+Cost: %8s (%.2f$/km %.2f$/m)\n
+ค่าใช้จ่าย: %s (%.2f$/km %.2f$/month)\n
+Cost: %8s (%.2f$/km)\n
+ค่าใช้จ่าย: %8s (%.2f$/km)\n
+Costs
+ค่าใช้จ่าย
+Create a new line based on this schedule
+สร้างสายใหม่โดยอิงจากตารางนี้
+curiosity builder
+สร้างสถานที่ท่องเที่ยว
+curlist_title
+รายการสถานที่ท่องเที่ยว
+CURRENCY
+$
+Current game
+เกมปัจจุบัน
+Currently playing:
+กำลังเล่น:
+Customers live in:
+ลูกค้าอาศัยอยู่ใน:
+Date format
+รูปแบบวันที่
+DAY_SYMBOL
+วัน
+deactivated in online mode
+ปิดใช้งานในโหมดออนไลน์
+Dec.
+ธ.ค.
+Deccelerate time
+ลดความเร็วเวลา
+December
+ธันวาคม
+decrease underground view level
+ลดระดับมุมมองใต้ดิน
+Del Stop
+ ลบ
+Delete Line
+ลบสาย
+Delete the current stop
+ลบจุดรับส่งปัจจุบัน
+Delete the selected line (if without associated convois).
+ลบสายที่เลือก (หากไม่มีขบวนยานพาหนะใช้งานอยู่)
+Delete this file.
+ลบไฟล์นี้
+Delivered
+ส่งมอบแล้ว
+Demand
+ความต้องการ
+Demand: %.0f MW
+ความต้องการ: %.0f MW\n
+Denkmal
+อนุสาวรีย์
+Departed
+ออกเดินทางแล้ว
+Departs at
+ออกเดินทางเวลา (dd:hh:mm)
+Departure after
+บรรทุก %% หรือรอเป็นเวลา (dd-hh-mm)
+Departure board
+เวลาออกเดินทาง
+Departures per month
+เที่ยวออกเดินทางต่อเดือน
+Departures to\n
+เที่ยวออกเดินทางไปยัง\n
+Depot
+อู่
+Depots
+อู่
+Der Tunnel ist nicht frei!\n
+อุโมงค์ไม่ว่าง\n
+Destination
+ขาเข้า
+Destroying map ...
+กำลังทำลายแผนที่เดิม ...
+Details
+รายละเอียด
+Developed by the Simutrans Team
+พัฒนาโดยทีมงาน Simutrans
+Die Bruecke ist nicht frei!\n
+สะพานไม่ว่าง!\n
+diesel
+ดีเซล
+direct_chat_to:
+ข้อความตรงถึง
+directmail
+ใบปลิว
+Direkt erreichbare Haltestellen
+เส้นทางตรงจากที่นี่
+disable midi
+ปิดเสียงเพลง MIDI
+Display bars above factory to show the status
+แสดงแถบเหนือโรงงานเพื่อแสดงสถานะ
+Display settings
+การตั้งค่าการแสดงผล
+Distance
+ระยะทาง
+distributing cities
+กระจายเมือง
+distributing factories
+กระจายโรงงาน
+Do not show
+ไม่แสดง
+Dock
+ท่าเรือ
+Dock must be built on single slope!
+ท่าเรือต้องสร้างบนช่องที่มีความลาดชันเดี่ยวเท่านั้น
+Downloading
+กำลังดาวน์โหลด
+dp_title
+รายการอู่
+Du hast %d Monate Zeit, deine Schulden zurueckzuzahlen
+คุณมีเวลา %d เดือนในการชำระหนี้คืน
+Durchsatz
+สูงสุด 
+Economy
+เศรษฐกิจและเมือง
+Eigenbesitz\n
+ทรัพย์สินสาธารณะ\n
+Ein %s\npasst hier nicht.\n
+'%s'\nไม่พอดีกับที่นี่!\n
+Einstellungen
+การตั้งค่า
+Einstellungen aendern
+ตัวเลือก
+electric
+ไฟฟ้า
+Electricity
+ไฟฟ้า
+Electricity producer\n\n
+ผู้ผลิตไฟฟ้า\n\n
+Electrics_tab
+ระบบไฟฟ้า
+Electrify track
+ติดตั้งระบบไฟฟ้าบนราง
+enlarge map
+ขยายแผนที่
+enter a value between %i and %i
+ป้อนค่าระหว่าง %i ถึง %i
+Enter address
+ป้อนที่อยู่
+Enter Password
+เปลี่ยนชื่อผู้เล่นและรหัสผ่าน
+Error
+ข้อผิดพลาด
+Erzeuge neue Karte.\n
+โปรดรอสักครู่ ขณะกำลังสร้าง\nแผนที่ใหม่\n\n(อาจใช้เวลาสองสาม\nนาทีสำหรับแผนที่ขนาดใหญ่)\n
+Es wird bereits\nein Fahrplan\neingegeben\n
+กำลังวางแผน\nตารางเวลาอยู่\nกรุณาทำให้เสร็จก่อน\nที่จะจัดตารางเวลาใหม่!\n
+Extract files
+แตกไฟล์ pak จาก zip
+Fabrikanschluss
+โรงงานที่เชื่อมต่อ
+Fabrikname
+ชื่อโรงงาน
+Factories
+โรงงาน
+factory details
+การเชื่อมโยงโรงงาน
+factorybuilder
+สร้างโรงงาน
+Fahrplan
+ตารางเวลา
+Fahrtziel
+ปลายทาง: 
+Fahrzeuge koennen so nicht entfernt werden
+ไม่สามารถนำยานพาหนะออก\nด้วยวิธีนี้ได้!\n
+Fahrzeuge:
+ยานพาหนะ:
+Farbe
+สีของผู้เล่น
+Fast forward
+เร่งความเร็ว
+Feb.
+ก.พ.
+February
+กุมภาพันธ์
+Ferry_tab
+เรือข้ามฟาก
+Fertig
+เสร็จสิ้น
+Filename
+ชื่อไฟล์:
+Files from:
+ไฟล์จาก:
+Filter:
+ตัวกรอง:
+Finances of %s
+การเงินของ %s
+Finanzen
+การเงิน
+find mismatch
+เปรียบเทียบ pak ของคุณ
+fl_title
+รายการโรงงาน
+Flug_tab
+เครื่องบินโดยสาร
+follow me
+ติดตาม
+Follow the convoi on the map.
+ติดตามขบวนบนแผนที่
+font size
+ขนาดแบบอักษร (เฉพาะแบบอักษร .ttf และ .otf)
+For questions and support please visit:
+สำหรับคำถามและข้อสงสัย กรุณาเยี่ยมชม:
+Forest
+ป่าไม้
+Found new city
+ก่อตั้งเมืองใหม่
+Fracht
+สินค้า
+Frame time:
+เวลาต่อเฟรม:
+Free Capacity
+ความจุที่ว่าง
+freeplay mode
+โหมดเล่นอิสระ
+Freight
+สินค้า
+Friction:
+สัมประสิทธิ์แรงเสียดทานปัจจุบัน:
+fuel_cell
+เซลล์เชื้อเพลิง
+Full load
+รอการบรรทุกขั้นต่ำ  
+Fullscreen (changed after restart)
+เต็มจอ (มีผลหลังเริ่มใหม่)
+Fundament
+ฐานราก
+Fussgaenger
+คนเดินเท้า
+Game info
+ข้อมูลเกม
+GAME PAUSED
+หยุดเกมชั่วคราว
+Game_msg
+ทั่วไป
+Gear:
+อัตราทดเกียร์:
+Gebaeude
+อาคาร
+General
+ทั่วไป
+generate script
+สร้างสคริปต์มาโครโครงสร้างพื้นฐาน
+Generated
+ผลิตแล้ว
+Generation: %.0f MW
+กำลังการผลิต: %.0f MW\n
+Gewicht
+น้ำหนัก
+Gewinn
+รายได้: 
+Give the selected vehicle(s) an individual schedule
+แก้ไขตารางเวลาเฉพาะคันหรือสายที่กำหนดให้กับยานพาหนะที่เลือก
+gl_btn_sort_catg
+หมวดหมู่
+gl_title
+รายการสินค้า
+go home
+ไปที่อู่
+Goods
+สินค้า
+Goods AI
+AI สินค้า
+Goods list
+รายการสินค้า
+Gross Profit
+กระแสเงินสด
+Groundobj
+วัตถุ
+groundobj builder
+วางวัตถุทิวทัศน์
+Grow city
+ขยายเมือง
+Growth
+การเติบโตของเมือง
+GUI settings
+GUI
+H
+จุดรับส่ง
+Hangar
+โรงเก็บเครื่องบิน
+Happy
+พึงพอใจ
+Has slope graphics
+มีกราฟิกทางลาด
+Has Snow
+มีหิมะ
+Haus kaufen
+ซื้อบ้าน
+Helligk.
+การแสดงผล
+Help
+วิธีใช้
+Help text not found
+ไม่พบข้อความช่วยเหลือ
+hide all building
+ซ่อนอาคารทั้งหมด
+hide city building
+ซ่อนอาคารในเมือง
+Hide labels
+ซ่อนป้ายชื่อ
+hide objects under cursor
+ซ่อนวัตถุใต้เคอร์เซอร์
+hide station names
+ซ่อนชื่อสถานี
+hide transparent
+โปร่งใสแทนการซ่อน
+hide trees
+ซ่อนต้นไม้
+Hier warten/lagern:
+สินค้าและผู้โดยสารที่รอ:
+Higher transport fees, crossconnect all factories
+ค่าขนส่งสูงขึ้น ปิดใช้งาน Just-in-time
+highlight single ways
+แสดงจุดสิ้นสุด/จุดขาดของเส้นทางจราจร
+Highlite schedule
+เน้นจุดรับส่งในตารางเวลา
+hl_title
+รายการสถานี
+hl_txt_filter
+ตัวกรอง:
+hl_txt_sort
+เรียงตาม:
+hlf_chk_airport
+สนามบิน
+hlf_chk_anleger
+ท่าเรือ
+hlf_chk_bahnhof
+สถานีรถไฟ
+hlf_chk_bushalt
+ป้ายรถเมล์
+hlf_chk_frachthof
+ลานขนถ่ายสินค้า
+hlf_chk_keine_verb
+ไม่มีการเชื่อมต่อ
+hlf_chk_maglevstop
+สถานีรถไฟแมกเลฟ
+hlf_chk_monorailstop
+สถานีโมโนเรล
+hlf_chk_name_filter
+กรองชื่อ:
+hlf_chk_narrowgaugestop
+สถานีรถไฟรางแคบ
+hlf_chk_overflow
+แออัด
+hlf_chk_spezial_filter
+ตัวกรองพิเศษ:
+hlf_chk_tramstop
+ป้ายรถราง
+hlf_chk_type_filter
+กรองประเภท:
+hlf_chk_waren_abgabe
+สินค้าออก:
+hlf_chk_waren_annahme
+สินค้าเข้า:
+hlf_title
+ตัวกรองรายการสถานี
+Home depot not found!\nYou need to send the\nconvoi to the depot\nmanually.
+ไม่พบอู่ซ่อมบำรุง\nคุณต้องส่งยานพาหนะ\nไปที่นั่นด้วยตนเอง
+Homeless
+คนไร้บ้าน
+Horizontal stripe ownership
+แสดงความเป็นเจ้าของด้วยแถบแนวนอน
+hydrogene
+ไฮโดรเจน
+Icon size:
+ขนาดไอคอน:
+Idle:
+ว่าง:
+ignore climates
+ละเว้นภูมิอากาศ
+In the industry legend show only currently existing factories
+แสดงเฉพาะโรงงานที่มีอยู่ในปัจจุบันในคำอธิบายสัญลักษณ์อุตสาหกรรม
+In Transit
+อยู่ระหว่างขนส่ง
+Increase Industry density
+เพิ่มความหนาแน่นของอุตสาหกรรม
+increase underground view level
+เพิ่มระดับมุมมองใต้ดิน
+industrial building
+อาคารอุตสาหกรรม
+Industry overlay
+การแสดงข้อมูลอุตสาหกรรม
+Infinite mouse scrolling
+เลื่อนแผนที่แบบไร้ขีดจำกัด
+Infinite scrolling using mouse
+อาจไม่ทำงานกับหน้าจอสัมผัส!
+Init map ...
+กำลังเตรียมข้อมูลแผนที่...
+Input
+วัตถุดิบ
+Ins Stop
+แทรกจุดรับส่ง
+Insert stop before the current stop
+แทรกจุดรับส่งก่อนหน้าจุดรับส่งปัจจุบัน
+Install graphics
+ติดตั้งกราฟิก
+Install paks
+ดาวน์โหลดและติดตั้งชุด Pak แล้ว
+Insufficient funds!
+เงินทุนไม่เพียงพอ!
+Intercity road len:
+ความยาวถนนระหว่างเมือง:
+Intro. date
+วันที่เปิดตัว
+Intro. date:
+วันที่เปิดตัว:
+invalid
+ไม่ได้กำหนด.
+Invalid coordinate
+คำสั่งไม่ถูกต้อง
+Invert stops
+สลับลำดับจุดรับส่ง
+isometric map
+มุมมองไอโซเมตริก
+Jan.
+ม.ค.
+January
+มกราคม
+join game
+เล่นออนไลน์
+July
+กรกฎาคม
+Jump to
+ไปยัง
+June
+มิถุนายน
+just now
+เมื่อสักครู่
+Kann Spielstand\nnicht laden.\n
+ไม่สามารถโหลดเกมที่บันทึกไว้ได้!
+Kann Spielstand\nnicht speichern.\n
+ไม่สามารถเปิด\nไฟล์ปลายทาง\nเพื่อเขียนได้!
+keep city roads
+คงถนนในเมืองไว้
+Kein Besitzer\n
+ไม่มีเจ้าของ\n
+keine
+ไม่มี
+Keine Einzelfahrzeuge im Depot
+ไม่มียานพาหนะเก็บอยู่ที่นี่
+Keyboard_Help\n
+วิธีใช้แป้นพิมพ์\n
+koord
+พิกัด
+Kreuzung
+จุดตัด
+labellist_title
+รายการเครื่องหมาย
+Lade Relief
+โหลดแผนที่ความสูง
+Laden
+โหลดเกมใหม่
+Land attraction
+สถานที่ท่องเที่ยวนอกเมือง
+Land industries
+ห่วงโซ่อุตสาหกรรม:
+LANG_CHOOSE\n
+โปรดเลือก\nภาษาที่คุณต้องการ:\n
+LARGE_NUMBER_STRING
+M
+LARGE_NUMBER_VALUE
+1e6
+Last Month
+เดือนที่แล้ว:
+Last used tools
+เครื่องมือที่ใช้ล่าสุด
+Last Year
+ปีที่แล้ว:
+Leaving depot!
+กำลังออกจากอู่!
+leer
+ว่าง
+Left button drags minimap too
+ปุ่มซ้ายลากแผนที่ย่อได้ด้วย
+legacy (large heights)
+แบบดั้งเดิม (ความสูงมาก)
+legacy (small heights)
+แบบดั้งเดิม (ความสูงน้อย)
+Legend
+คำอธิบายแผนที่
+Leistung
+กำลัง
+Leistung: %d kW
+กำลัง: %d kW
+Leitung
+สายไฟฟ้า
+length: %d
+ความยาว: %d
+letzen Monat: diesen Monat:
+เดือนที่แล้ว:   เดือนนี้:
+Line
+สาย
+Line Management
+การจัดการสาย
+line name mouseover tooltips
+ทูลทิปเมื่อชี้ชื่อสาย
+linear
+เชิงเส้น
+Lineless convoys serving this stop
+ขบวนรถที่ไม่มีสายที่ให้บริการจุดรับส่งนี้
+Lines serving this stop
+สายที่ให้บริการจุดรับส่งนี้
+List of industries on the map
+รายชื่อโรงงานในแผนที่
+LKW_tab
+รถบรรทุก
+Load game
+โหลดเกม
+load height data from file
+โหลดข้อมูลความสูงจากไฟล์.
+Load mode:
+โหมดการบรรทุก:
+Load scenario
+โหลดสถานการณ์
+Load script tool
+โหลดเครื่องมือสคริปต์
+Load Scripted AI
+โหลดสคริปต์ AI
+Load settings from
+ใช้การตั้งค่าจาก
+loaded
+บรรทุกแล้ว
+loaded passenger/freight
+เรียงลำดับผู้โดยสาร/สินค้าตาม
+Loading (%i->%i%%)!
+กำลังบรรทุก (%i->%i%%)
+Loading (%i%%) departure %s!
+กำลังบรรทุก (%i%%) ออกเดินทาง %s!
+Loading (%i%%)!
+กำลังบรรทุก (%i%%)!
+Loading addon paks ...
+กำลังโหลด pak เสริม...
+Loading map ...
+กำลังโหลดแผนที่...
+Loading paks ...
+กำลังโหลด pak...
+Loading skins ...
+กำลังโหลดสกิน...
+Loading time:
+โหลดเสร็จสมบูรณ์ใน: 
+Lock Control key
+ล็อคปุ่ม Control
+Lock game
+ไม่อนุญาตให้เปลี่ยนผู้เล่น (ต้องยืนยัน)
+Lokomotive_tab
+หัวรถจักร
+m3
+m³
+Maglev
+แมกเลฟ
+maglev vehicle
+ยานพาหนะแมกเลฟ
+maglev_track
+ทางรถไฟแมกเลฟ
+Maglevdepot
+โรงซ่อมบำรุงรถไฟแมกเลฟ
+Mail Demand %d\n
+ความต้องการไปรษณีย์ %d\n
+Mail level
+ระดับไปรษณีย์
+Mailbox
+ข้อความ
+Mailbox Options
+ตัวเลือกข้อความ
+Maintenance
+ค่าบำรุงรักษา
+make stop public (or join with public stop next) costs %i per tile and level
+ทำให้จุดรับส่งเป็นสาธารณะ (หรือรวมกับจุดรับส่งสาธารณะข้างเคียง) ค่าใช้จ่าย %i$ ต่อช่องและระดับ
+Make way or stop public (will join with neighbours), %i times maintainance
+ทำให้เส้นทางหรือจุดรับส่งเป็นสาธารณะ (จะเชื่อมต่อกับส่วนข้างเคียง) ค่าบำรุงรักษา %i เท่า
+Manual (Human)
+ควบคุมเอง (มนุษย์)
+Manufactured:
+ผลิตเมื่อ:
+Map roughness
+ความขรุขระของแผนที่:
+map view
+แผนที่
+map zoom
+ซูม
+Mar.
+มี.ค.
+March
+มีนาคม
+Margin (%%)
+อัตรากำไร
+Marker
+วางเครื่องหมาย
+max
+สูงสุด
+Max Boost (%%)
+เพิ่มผลผลิตสูงสุด (%%)
+Max income:
+รายได้สูงสุด:
+Max. speed
+ความเร็วสูงสุด
+Max. speed:
+ความเร็วสูงสุด:
+Max. waiting time
+เวลารอสูงสุด (dd:hh:mm)
+Maximum 254 stops\nin a schedule!\n
+มีจุดรับส่งได้สูงสุด 254 จุด\nในตารางเดินรถ!\n
+maximum length of rivers
+ความยาวแม่น้ำสูงสุด
+Maximum tile height difference reached.
+ความแตกต่างของความสูง\nระหว่างสองช่องถึงระดับ\nสูงสุดแล้ว
+Maxspeed
+ความเร็วสูงสุด
+May
+พฤษภาคม
+Median Citizen per town
+มัธยฐานประชากรต่อเมือง:
+Meldung
+ข้อความ
+Menge
+จำนวน
+merge stop
+รวมจุดรับส่ง
+MessageOptionsText
+\nปีใหม่\n\nข่าวสารผู้เล่น\n\nข่าวสารเมือง\n\nไม่มีเส้นทาง\n\nจุดหมายใหม่\n\nการแจ้งเตือน\n\nยานพาหนะใหม่\n\nสถานีเต็ม\n\nปัญหา\n\nการจราจรติดขัด\n\nสถานการณ์\n\nแชททั่วไป\n\nแชทบริษัท\n\nแชทส่วนตัว\n\n
+min
+ต่ำสุด
+minimum length of rivers
+ความยาวแม่น้ำต่ำสุด
+Minimum load
+การบรรทุกขั้นต่ำ (%%)
+Missing pakfiles
+มีออบเจกต์สูญหาย!
+Modify the selected line
+แก้ไขสายที่เลือก
+Monate alt
+เดือน
+Monorail
+โมโนเรล
+monorail vehicle
+ยานพาหนะโมโนเรล
+monorail_track
+รางโมโนเรล
+Monorailboden
+ทางยกระดับ
+Monoraildepot
+โรงซ่อมบำรุงโมโนเรล
+Month
+เดือน
+month wait time
+เวลารอต่อเดือน
+Monthly departures
+เวลาออกเดินทางที่กำหนด
+Months
+เดือน
+Monument
+อนุสาวรีย์
+Monuments
+อนุสาวรีย์
+Mountain height
+ความสูงของภูเขา:
+Move the map
+เลื่อนแผนที่
+Movingobj
+วัตถุเคลื่อนที่
+Music playing disabled/not available
+ปิดเสียงดนตรี/ไม่พร้อมใช้งาน
+Music volume:
+ระดับเสียงดนตรี:
+mute sound
+ปิดเสียง
+Name
+ชื่อ
+Narrowgauge
+รถรางขนาดเล็ก
+Narrowgauge are not available yet!
+รางรถรางขนาดเล็กยังไม่พร้อมใช้งาน
+narrowgauge vehicle
+ยานพาหนะรถรางขนาดเล็ก
+narrowgauge_track
+รางรถรางขนาดเล็ก
+Narrowgaugedepot
+โรงซ่อมบำรุงรถรางขนาดเล็ก
+Net ID: %p
+Net ID: %p\n
+Net Wealth
+มูลค่าสุทธิ
+Net wealth near zero
+มูลค่าสุทธิใกล้ศูนย์
 Neue Karte
 การ์ดใหม่
+Neue Welt
+สร้างเกมใหม่
+new convoi
+ขบวนใหม่
+New Line
+สายใหม่
+New line created!\nYou can assign the line now\nby selecting it from the\nline selector above.
+สร้างสายใหม่แล้ว!\nคุณสามารถกำหนดสายได้ในขณะนี้\nโดยเลือกจากตัวเลือกสาย\nด้านบน
+New Vehicles
+ยานพาหนะใหม่
+Nickname:
+ชื่อเล่น:
+no buildings hidden
+ไม่ซ่อนอาคาร
+no convois
+ไม่มีขบวน
+No goods are loaded onto this convoi.
+จะไม่มีการบรรทุกสินค้าลงในขบวนนี้
+no goods waiting
+ไม่มีสินค้ารออยู่
+no load
+ส่งลงเท่านั้น
+No player
+ไม่มีผู้เล่น
+No Route
+ไม่มีเส้นทาง
+No stop here!
+ต้องใช้เครื่องมือนี้บนช่องจุดรับส่ง
+No suitable ground!
+พื้นที่ไม่เหมาะสม!
+No suitable townhall available for this climate!
+ไม่มีศาลากลางที่เหมาะสมสำหรับสภาพภูมิอากาศนี้!
+No terminal station here!
+ไม่สามารถสร้างสถานีปลายทาง\nที่นี่ได้! จำเป็นต้องมีส่วนปลาย\nของถนน/รางที่ราบเรียบ
+no timeline
+ทุกยุคสมัย
+No transformer connected.
+ไม่มีสถานีจ่ายไฟฟ้าย่อยเชื่อมต่ออยู่: พลังงานทั้งหมดจะสูญเปล่า
+no tree
+ไม่มีต้นไม้
+No vehicles are available for purchase.
+ไม่มียานพาหนะให้เลือกซื้อ
+No. of Factories
+โรงงานและร้านค้า:
+Noch kein Fahrzeug\nmit Fahrplan\nvorhanden\n
+"ฉันต้องไปที่ไหน?"\nคุณต้องกำหนดตารางเวลาให้ขบวนนี้ หรือกำหนดให้ใช้งานสายก่อนสั่งให้ออกเดินทาง
+none
+ไม่มี
+nord
+ทิศเหนือ
+nordost
+ทิศตะวันออกเฉียงเหนือ
+nordwest
+ทิศตะวันตกเฉียงเหนือ
+Not allowed to make publicly owned ways!
+ไม่อนุญาตให้สร้างเส้นทางที่เป็นของสาธารณะ!
+Not allowed!\nThe convoi's schedule can\nnot be changed currently.\nTry again later!
+ต้องไม่เปลี่ยนตารางเดินรถของยานพาหนะ\nในระหว่างการค้นหาเส้นทาง
+Not enough fields would remain.
+จะเหลือพื้นที่เพาะปลูกไม่เพียงพอ
+Not online
+ไม่ได้ออนไลน์
+Nov.
+พ.ย.
+November
+พฤศจิกายน
+now
+ตอนนี้
+Now active as %s.\n
+ขณะนี้ใช้งานเป็น %s\n
+nowhere
+ไม่มีปลายทาง
+Number of rivers
+จำนวนแม่น้ำ
+Object
+วัตถุ
+Oct.
+ต.ค.
+Odometer: %s km
+มาตรวัดระยะทาง: %s km
+Ok
+ตกลง
+Oktober
+ตุลาคม
+On loan since %i month(s)
+กู้ยืมมาแล้ว %i เดือน
+On mouseover
+เมื่อเลื่อนเมาส์ชี้
+on the
+ออกเดินทางครั้งแรกเวลา (dd-hh-mm)
+On this map, you are not\nallowed to change player!\n
+ในแผนที่นี้ คุณไม่สามารถ\nเปลี่ยนผู้เล่นได้!\n
+Only city chains
+เฉพาะห่วงโซ่อุตสาหกรรมในเมือง
+Only first %d differing paks reported. There are probably more.
+รายงานเฉพาะ pak ที่ต่างกัน %d รายการแรกเท่านั้น ซึ่งอาจมีมากกว่านี้
+Only full Unicode fonts
+เฉพาะฟอนต์ Unicode เต็มรูปแบบ
+Only land chains
+เฉพาะห่วงโซ่อุตสาหกรรมนอกเมือง
+Only one transformer per factory!
+มีสถานีจ่ายไฟฟ้าย่อยได้เพียงแห่งเดียวต่อโรงงาน!
+Only show goods which are currently handled by factories
+แสดงเฉพาะสินค้าที่โรงงานจัดการอยู่ในปัจจุบัน
+open
+เปิด
+Operation
+ค่าดำเนินการ
+Ops Profit
+กำไรจากการดำเนินงาน
+Optionen
+ตัวเลือก
+Or enter a server manually:
+หรือป้อนเซิร์ฟเวอร์ด้วยตนเอง:
+Origin
+ต้นทาง
+ost
+ทิศตะวันออก
+Output
+ผลผลิต
+Ownership
+ความเป็นเจ้าของ
+Pak which may cause severe errors:
+Pak ที่อาจทำให้เกิดข้อผิดพลาดร้ายแรง:
+Pak which may cause visual errors:
+Pak ที่อาจทำให้เกิดข้อผิดพลาดในการแสดงผล:
+Pak(s) different:
+Pak ที่แตกต่างกัน:
+Pak(s) missing on client:
+Pak ที่ไม่มีในฝั่งไคลเอนต์:
+Pak(s) not on server:
+Pak ที่ไม่มีบนเซิร์ฟเวอร์:
+Pakset differences
+ความแตกต่างของ Pakset
+paletten
+ ลัง
+Pas_tab
+รถไฟโดยสาร
+Passagiere
+ผู้โดยสาร
+Passagierrate
+ระดับผู้โดยสาร
+Passagierziele
+จุดหมายผู้โดยสาร/ไปรษณีย์
+Passenger AI
+AI ผู้โดยสาร
+Passenger Demand %d\n
+ความต้องการผู้โดยสาร %d\n
+Passengers %d %c, %d %c, %d no route
+ผู้โดยสาร %d %c, %d %c, %d ไม่มีเส้นทาง
+Passengers %d %s, %d %s, %d no route
+ผู้โดยสาร %d %s, %d %s, %d ไม่มีเส้นทาง
+Password
+รหัสผ่าน
+Pause
+หยุดชั่วคราว
+Pax <%i>  Mail <%i>
+ผู้โดยสาร <%i>  ไปรษณีย์ <%i>
+Pax level
+ระดับผู้โดยสาร
+PaxDest
+จุดหมายปลายทาง
+Percent Electricity
+การผลิตไฟฟ้า (%% ความต้องการ):
+personal_chat
+แชทส่วนตัว
+Pipette
+คัดลอกวัตถุที่เลือก
+Planes are not available yet!
+ยังไม่มีเครื่องบินให้บริการ!
+Plant tree
+ปลูกต้นไม้
+player
+ผู้เล่น
+player -1
+ผู้เล่นบุคคล
+player 0
+บริการสาธารณะ
+player 1
+Napik 128 AS
+player 10
+ผู้เล่น 10
+player 11
+ผู้เล่น 11
+player 12
+ผู้เล่น 12
+player 13
+ผู้เล่น 13
+player 2
+Trikky Transport
+player 3
+Meyer Moving Co.
+player 4
+Freight Forwarder VM
+player 5
+H-Trans Ltd
+player 6
+PSK & Co KG
+player 7
+ผู้เล่น 7
+player 8
+ผู้เล่น 8
+player 9
+ผู้เล่น 9
+Player ranking
+อันดับผู้เล่น
+Please choose vehicles first\n
+กรุณาเลือกยานพาหนะก่อน\n
+Post
+ไปรษณีย์
+Postrate
+ระดับไปรษณีย์
+Power
+กำลังไฟฟ้า
+Power (MW)
+กำลังไฟฟ้า (MW)
+Power:
+กำลังไฟฟ้า:
+Power: %4d kW\n
+กำลังไฟฟ้า: %4d kW\n
+Powerlines
+สายไฟฟ้า
+Price
+ราคา
+Problems_msg
+ปัญหา
+Produced
+ผลิตแล้ว
+Produces: %.1f units/minute
+ผลิตได้: %.1f หน่วย/นาที
+Production of %s has been stopped:\n%s\n
+การผลิต %s หยุดลงแล้ว:\n%s\n
+Production/Boost
+การผลิต/เพิ่มผลผลิต
+Produktion
+การผลิต:
+Profit
+กำไร
+promote to line
+เลื่อนขั้นเป็นสาย
+public_chat
+แชททั่วไป
+q1
+ฤดูใบไม้ผลิ
+q2
+ฤดูร้อน
+q3
+ฤดูใบไม้ร่วง
+q4
+ฤดูหนาว
+Query server
+ค้นหาเซิร์ฟเวอร์
+rail car
+ตู้รถไฟ
+random
+สุ่ม
+Random age
+สุ่มยุคสมัย
+Random map
+สุ่มแผนที่
+Rathaus
+ศาลาว่าการเมือง
+Rating
+การประเมิน
+ratio_pax
+อัตราส่วนผู้โดยสาร
+Relevant
+ที่เกี่ยวข้อง
+Reliefkarte
+แผนที่
+Remove
+ลบป้ายกำกับ
+remove airstrips
+ลบรันเวย์หรือแท็กซี่เวย์
+remove channels
+ลบคลอง
+remove interm. signals
+ลบสัญญาณไฟระหว่างทาง
+remove maglev tracks
+ลบรางแมกเลฟ
+remove monorails
+ลบรางโมโนเรล
+remove narrowgauge tracks
+ลบรางรถรางขนาดเล็ก
+remove powerlines
+ลบสายไฟฟ้า
+remove roads
+ลบถนน
+remove signal
+ลบสัญญาณไฟ
+remove tracks
+ลบรางรถไฟ
+Remove wayobj %s
+ลบอุปกรณ์เส้นทาง %s
+replace existing ways
+แทนที่เส้นทางเดิม
+replace faster wayobjs
+แทนที่อุปกรณ์เส้นทางที่เร็วกว่า
+replace other signals
+แทนที่สัญญาณไฟอื่น
+replace stop
+แทนที่จุดรับส่ง
+request closing
+ขอปิดกิจการ
+residential house
+บ้านพักอาศัย
+Restore natural slope
+คืนค่าความลาดชันตามธรรมชาติ
+Restwert:
+มูลค่าขายต่อ:
+Retire date
+วันที่ปลดประจำการ
+Retire. date:
+วันที่ปลดประจำการ:
+return ticket
+คัดลอกย้อนกลับ
+Revenue
+รายได้
+Revenue/unit/100 tiles
+รายได้/หน่วย/100 ช่อง
+Revert schedule
+คืนค่าการเปลี่ยนแปลง
+Revision:
+รุ่นปรับปรุง:
+road
+ถนน
+road vehicle
+ยานพาหนะทางบก
+Roadsign
+ป้ายจราจร
+Rotate Building
+หมุนอาคาร
+Rotate map
+หมุนแผนที่
+Rotation
+การหมุน
+Routing
+การกำหนดเส้นทาง
+Running cost
+ค่าใช้จ่ายในการดำเนินงาน
+sack
+ กระสอบ
+sail
+พลังลม
+Save
+บันทึกเกม
+Save generated script
+บันทึกสคริปต์ที่สร้างขึ้น
+Saving map ...
+กำลังบันทึกแผนที่...
+Scenario complete: %i%%
+สถานการณ์เสร็จสิ้น: %i%%
+Scenario Debug
+ดีบักสถานการณ์จำลอง
+Scenario Error Log
+บันทึกข้อผิดพลาดของสคริปต์
+Scenario Goal
+เป้าหมายของสถานการณ์จำลอง
+Scenario Info
+ข้อมูลสถานการณ์จำลอง
+Scenario information
+ข้อมูลสถานการณ์
+Scenario Result
+ผลลัพธ์สถานการณ์จำลอง
+Scenario Rules
+กฎของสถานการณ์จำลอง
+Scenario_
+สถานการณ์ 
+Schedule changing!
+กำลังเปลี่ยนตารางเวลา!
+Schienentunnel
+สร้างอุโมงค์รถไฟ
+Schiff_tab
+เรือ
+Schiffdepot
+อู่เรือ
+Schleppkahn_tab
+เรือโป๊ะ
+Screen scale:
+มาตราส่วนหน้าจอ:
+Screenshot
+ภาพหน้าจอ
+Scroll threshold
+ระดับการเลื่อนหน้าจอ
+Search:
+ค้นหา:
+Seasons
+ฤดูกาล
+Sehenswuerdigkeit
+สถานที่ท่องเที่ยว
+Select a server to join:
+เลือกเซิร์ฟเวอร์ที่ต้องการเข้าร่วม:
+Select a theme for display
+เลือกธีมสำหรับการแสดงผล
+Select display font
+เลือกฟอนต์แสดงผล
+Select one or more graphics to install (Ctrl+click):
+เลือกกราฟิกตั้งแต่หนึ่งรายการขึ้นไปเพื่อติดตั้ง (Ctrl+คลิก):
+Select soundfont
+เลือก Soundfont
+Sell the selected vehicle(s)
+ขายยานพาหนะที่เลือก
+Selling of the program is forbidden.
+ห้ามจำหน่ายโปรแกรมนี้
+sended
+จดหมายที่ส่งแล้ว
+SEP_FRACTION
+.
+SEP_THOUSAND
+,
+SEP_THOUSAND_EXPONENT
+3
+Sept.
+ก.ย.
+September
+กันยายน
+Served by
+ให้บริการโดย
+Served by me
+ให้บริการโดยฉัน
+Server did not respond!
+เซิร์ฟเวอร์ไม่ตอบสนอง!
+Serves Line:
+ให้บริการสาย:
+Service
+การบริการ
+set signal spacing
+กำหนดระยะห่างสัญญาณไฟ
+Setting
+การตั้งค่า
+Ship
+เรือ
+shops and stores
+ร้านค้าและสำนักงาน
+Show all
+แสดงทั้งหมด
+show all building
+แสดงอาคารทั้งหมด
+Show also vehicles no longer in production.
+แสดงยานพาหนะที่เลิกผลิตแล้วด้วย
+Show also vehicles that do not match for current action.
+แสดงยานพาหนะที่ไม่ตรงกับการกระทำปัจจุบันด้วย
+Show always
+แสดงเสมอ
+Show climates
+แสดงเขตภูมิอากาศ
+Show construction info
+แสดงข้อมูลการก่อสร้าง
+Show contour
+แสดงระดับความสูง
+Show even servers with wrong version or pakset
+แสดงเซิร์ฟเวอร์ที่เวอร์ชันหรือ pakset ไม่ตรงด้วย
+Show finances for transport type
+แสดงการเงินตามประเภทการขนส่ง
+Show future
+แสดงในอนาคต
+show grid
+แสดงเส้นตาราง
+Show industry
+แสดงรายชื่ออุตสาหกรรม
+Show legend
+แสดงคำอธิบายสัญลักษณ์
+Show map scale
+แสดงรหัสสีแผนที่
+Show mismatched
+แสดงที่ไม่ตรงกัน
+Show networks
+แสดงเครือข่าย
+Show obsolete
+แสดงที่เลิกใช้แล้ว
+Show offline
+แสดงที่ออฟไลน์
+Show only used
+แสดงเฉพาะที่ใช้งาน
+Show outline
+แสดงเฉพาะโครงสร้างพื้นฐาน
+Show schedules
+แสดงตารางเวลา
+Show servers that are offline
+แสดงเซิร์ฟเวอร์ที่ออฟไลน์
+Show servers where game version or pakset does not match your client
+แสดงเซิร์ฟเวอร์ที่เวอร์ชันเกมหรือ pakset ไม่ตรงกับเครื่องของคุณ
+show station coverage
+แสดงพื้นที่ครอบคลุมของสถานี
+show station names
+แสดงชื่อสถานี
+show waiting bars
+แสดงแถบจำนวนผู้รอ
+show/hide block reservations
+แสดง/ซ่อนการจองบล็อก
+Show/hide estimated arrival times
+แสดง/ซ่อนเวลามาถึงโดยประมาณ
+show/hide object owner
+แสดง/ซ่อนเจ้าของวัตถุ
+Show/hide statistics
+แสดง/ซ่อนสถิติ
+Shows buttons about networks overlay.
+แสดงปุ่มเกี่ยวกับภาพซ้อนทับเครือข่าย
+Shows buttons on network overlay.
+แสดงปุ่มบนภาพซ้อนทับเครือข่าย
+Shows buttons on special topics.
+แสดงปุ่มสำหรับหัวข้อพิเศษ
+Shows consumer/suppliers for factories
+แสดงผู้บริโภค/ผู้จัดหาสำหรับโรงงาน
+Shows the color code for several selections.
+แสดงรหัสสีสำหรับตัวเลือกต่างๆ
+Shows the currently selected schedule
+แสดงตารางเวลาที่เลือกอยู่ในปัจจุบัน
+Shrink city
+ลดขนาดเมือง
+shuffle midis
+สุ่มเพลง
+Signal
+สัญญาณไฟ
+signal spacing
+ระยะห่างสัญญาณไฟ
+Sim:
+การจำลอง:
+Similar view as the main window
+มุมมองคล้ายกับหน้าต่างหลัก
+Single toolbar only
+แถบเครื่องมือเดี่ยวเท่านั้น
+Size (%d MB):
+ขนาด (%d MB):
+Size (area)
+ขนาด (พื้นที่)
+sliced underground mode
+มุมมองแผนที่แบบตัดขวาง
+slot empty
+ช่องว่าง
+Smart hide objects
+ซ่อนวัตถุแบบชาญฉลาด
+Sort by
+เรียงตาม
+Sort by:
+เรียงตาม:
+Sort waiting list by
+เรียงลำดับรายการรอตาม
+Sound
+เสียง
+Sound settings
+การตั้งค่าเสียง
+Sound volume:
+ระดับเสียง:
+Soundfonts are located in the music directory.
+Soundfont อยู่ในโฟลเดอร์ music
+special freight
+สินค้าพิเศษ
+Speed Bonus
+โบนัสความเร็ว
+Speedbonus\nroad %i km/h, rail %i km/h\nships %i km/h, planes %i km/h.
+โบนัสความเร็ว\nถนน %i km/h, ราง %i km/h\nเรือ %i km/h, เครื่องบิน %i km/h
+Speedlimit
+ขีดจำกัดความเร็ว
+Speichern
+บันทึก
+Spieler
+ผู้เล่น
+Spieler(mz)
+ผู้เล่น
+Spielerliste
+รายชื่อผู้เล่น
+Spielstand wurde\ngeladen!\n
+โหลดเกม\nสำเร็จแล้ว!\n
+Spielstand wurde\ngespeichert!\n
+บันทึกเกม\nสำเร็จแล้ว!\n
+Sprache
+ภาษา
 Sprachen
 ภาษา
 Stadtinformation
 ข้อมูลของเมือง
 Start
 เริ่ม
+Start the selected vehicle(s)
+ปล่อยยานพาหนะที่เลือกออกวิ่ง
+Starte Spiel
+เริ่มเกม
+station labels
+สถานี
+Station tiles:
+ช่องสถานี:
+Station_msg
+สถานี
+Status
+สถานะจุดจอด
+stay on this level
+คงระดับนี้ไว้
+steam
+ไอน้ำ
+Step timeline one year
+เลื่อนเส้นเวลาไปข้างหน้าหนึ่งปี
+Stopping permissions
+สิทธิ์การจอดรับส่ง
+Stops
+จุดรับส่ง
+Storage
+คลังสินค้า
+Storage capacity
+ความจุคลังสินค้า
+straight route
+เส้นทางตรง
+Strassendepot
+อู่รถยนต์
+Strassentunnel
+สร้างอุโมงค์ถนน
+street car
+รถราง
+sued
+ทิศใต้
+suedost
+ทิศตะวันออกเฉียงใต้
+suedwest
+ทิศตะวันตกเฉียงใต้
+Summer snowline
+แนวหิมะในฤดูร้อน
+Supplied: %.0f %%
+จัดส่งแล้ว: %.0f %%
+Suppliers
+ผู้จัดหา:
+Tage alt
+วันก่อน
+The following graphics are unmaintained:
+กราฟิกต่อไปนี้ไม่มีการดูแลรักษา:
+The generated script was saved!\n
+บันทึกสคริปต์ที่สร้างแล้ว!\n
+The gradient does not fit a tunnel
+ความลาดชันไม่เหมาะกับการสร้างอุโมงค์
+The script cannot be saved!\n
+ไม่สามารถบันทึกสคริปต์ได้!\n
+Theme selector
+ตัวเลือกธีม
+There are still vehicles\nstored in this depot!\n
+ยังมีรถอยู่ในอู่นี้!\n
+This Month
+เดือนนี้:
+This Year
+ปีนี้:
+Tile not empty.
+เคลียร์พื้นที่ก่อน\nใช้เครื่องมือปรับความลาดชัน
+timeline
+ตามยุคสมัย
+tl_title
+รายชื่อเมือง
+To attract more tourists\n%s built\na %s\nwith the aid of\n%i tax payers.
+การจราจรใน %1$s กำลังเพิ่มขึ้น:\nผู้เสียภาษี %3$i รายทำให้การก่อสร้าง\n%2$s กลายเป็นจริง
+To heavy traffic\nresults in traffic jam.\n
+การจราจรที่หนาแน่นเกินไป\nทำให้เกิดการจราจรติดขัด\n
+To: %s
+ถึง: %s
+Toggle day/night view
+สลับมุมมองกลางวัน/กลางคืน
+Toggle vehicle tooltips
+สลับทูลทิปยานพาหนะ
+tonnen
+ตัน
+Toolbar position:
+ตำแหน่งแถบเครื่องมือ:
+Total inhabitants:
+จำนวนประชากรทั้งหมด: 
+Tourist attractions
+สถานที่ท่องเที่ยว:
+Tourists
+สถานที่ท่องเที่ยว
+Town_msg
+จุดหมายใหม่
+Town: %s\n
+เมือง: %s\n
+Towns
+เมือง
+track
+รางรถไฟ
+Tracks
+รางรถไฟ
+Traffic
+การจราจร
+traffic settings
+การจราจร
+Train
+รถไฟ
+Trains are not available yet!
+ยังไม่มีรถไฟให้บริการ!
+Tram
+รถราง
+tram %i km/h, monorail %i km/h\nmaglev %i km/h, narrowgauge %i km/h.
+รถราง %i km/h, โมโนเรล %i km/h\nแมกเลฟ %i km/h, รถรางขนาดเล็ก %i km/h.
+tram_track
+รางรถราง
+Tramdepot
+อู่รถราง
+Trams are not available yet!
+ยังไม่มีรถรางให้บริการ!
+Transferring game ...
+กำลังถ่ายโอนเกม...
+Transformer only next to factory!
+สถานีจ่ายไฟฟ้าย่อยต้องอยู่บน\nที่ราบว่างเปล่า\nติดกับโรงงาน!
+Translation
+การแปลภาษา
+transparencies
+ความโปร่งใส
+transparent background
+พื้นหลังโปร่งใส
+transparent station coverage
+พื้นที่ครอบคลุมของสถานีแบบโปร่งใส
+Transported
+การเดินทาง
+Trees disabled!
+ปิดการแสดงต้นไม้!
+TrolleyBus_tab
+รถบัสไฟฟ้า
+Truck
+รถบรรทุก
+tt_Other
+อื่นๆ
+Tunnel muss an\neinfachem\nHang beginnen!\n
+อุโมงค์ต้อง\nเริ่มต้นบนทางลาดตรง!\n
+Tunnel must start on single way!
+อุโมงค์ต้องเริ่มต้นบนเส้นทางเดี่ยว!
+Tunnelboden
+อุโมงค์
+under the Artistic License
+ภายใต้สัญญาอนุญาต Artistic License
+underground mode
+มุมมองใต้ดิน
+UNDO failed!
+ไม่สามารถยกเลิกได้อีกต่อไป\nคุณสามารถยกเลิกการสร้างเส้นทางได้\nเฉพาะเมื่อยังไม่มีการสร้างสัญญาณ/สถานี/จุดรับส่ง\nหรือสิ่งอื่นใดบนเส้นทาง
+Undo last ways construction
+ยกเลิกการสร้างเส้นทางล่าสุด
+Unemployed
+ว่างงาน
+Unhappy
+ไม่พอใจ
+units/day
+/เดือน, 
+Unloading (%i%%)!
+กำลังขนถ่ายออก (%i%%)!
+Update Line
+แก้ไขสาย
+upgrade HQ
+อัปเกรดสำนักงานใหญ่
+Usage: %.0f %%
+การใช้งาน: %.0f %%
+Usage/Output
+การใช้งาน/ผลผลิต
+Use beginner mode
+ใช้โหมดผู้เริ่มต้น
+Use timeline start year
+ใช้ไทม์ไลน์ตั้งแต่ปี:
+Vehicle %s can't find a route!
+ยานพาหนะ %s\nหาเส้นทางไม่พบ!
+Vehicle %s is stucked!
+ยานพาหนะ %s ติดขัด!
+Vehicle count:
+จำนวนยานพาหนะ:
+Vehicle details
+รายละเอียดยานพาหนะ
+Vehicle Name
+ชื่อยานพาหนะ
+Vehicle Power
+กำลังของยานพาหนะ
+vehicles stored
+ยานพาหนะในอู่
+Verbrauch
+ปริมาณการใช้:
+Vergroessere die Karte\n
+ขยายแผนที่\n
+Verkauf
+ลบทันที!
+verkaufen
+ขาย
+Verkehrsteilnehmer
+รถยนต์ในเมือง
+Verschuldet:\n\nDu hast %d Monate Zeit,\ndie Schulden zurueckzuzahlen.\n
+คุณมีเวลา %d เดือน\nในการชำระหนี้สิน\n
+vh_title
+รายการยานพาหนะทั้งหมด
+via
+ผ่าน (รายละเอียด)
+via %s\n
+ ผ่าน %s\n
+via Menge
+ผ่าน (จำนวน)
+via owner
+ผ่าน (เจ้าของ)
+voranstellen
+วางไว้ข้างหน้า
+Waggon_tab
+ตู้รถไฟ
+waiting
+กำลังรอ
+Waiting for clearance!
+กำลังรอเส้นทางว่าง!
+Walked
+เดินเท้า
+walking
+เดิน
+Warnings_msg
+การจราจร
+Wasser
+น้ำ
+Water
+คลอง
+Water level
+ระดับน้ำทะเล:
+water vehicle
+ยานพาหนะทางน้ำ
+way %s cannot longer used:\n
+เส้นทางประเภท %s ไม่สามารถใช้งานได้อีกต่อไป:\n
+way %s cannot longer used:\n%s\n
+ประเภทเส้นทาง %s ไม่สามารถใช้งานได้อีกต่อไป:\n
+way %s now available:\n
+เส้นทางประเภท %s พร้อมใช้งานแล้ว:\n
+Way toll
+ค่าผ่านทาง
+Ways not connected
+เส้นทางไม่ได้เชื่อมต่อกัน
+waytype
+ประเภทเส้นทาง
+Wegpunkt
+จุดทางผ่าน
+Weight
+น้ำหนัก
+Weight:
+น้ำหนัก:
+Weight/unit
+น้ำหนัก/หน่วย
+Welcome to Simutrans
+ยินดีต้อนรับสู่ Simutrans
+Welcome, %s!
+ยินดีต้อนรับ, %s!
+Wert
+มูลค่า
+west
+ทิศตะวันตก
+Wind direction
+ทิศทางลม
+Winter snowline
+แนวหิมะในฤดูหนาว
+withdraw
+ปลดระวาง
+Withdraw All
+ถอนกลับทั้งหมด
+WRONGSAVE
+\nไฟล์เซฟไม่เข้ากัน\nไม่สามารถโหลดไฟล์ได้\n
+Year
+ปี
+Year %i has started.
+ปี %i ได้เริ่มต้นขึ้นแล้ว
+YEAR_SYMBOL
+ปี
+Years
+ปี
+Your primary color:
+สีหลักของคุณ:
+Your secondary color:
+สีรองของคุณ:
+Zielort
+จุดหมายปลายทาง
+zooming in
+ซูมเข้า
+zooming out
+ซูมออก
+Zu nah am Kartenrand
+คุณไม่สามารถสร้าง\nใกล้กับขอบแผนที่\nมากเกินไปได้
+#__________________________________record_text__________________________________
+#__________________________________record_text__________________________________
+New world record for maglevs: %.1f km/h by %s.
+ลอยตัวด้วยแม่เหล็กที่ความเร็ว\n%.1f km/h โดย %s:\nสถิติโลกใหม่!
+New world record for monorails: %.1f km/h by %s.
+รางเดี่ยวสร้างขึ้นเพื่อความเร็ว:\nทำความเร็วได้ %.1f km/h\nโดย %s\nกลายเป็นสถิติโลกใหม่!
+New world record for motorcars: %.1f km/h by %s.
+เหลือเพียงรอยเบรกบนถนน\nจากการซิ่งด้วยความเร็ว %.1f km/h\nโดย %s\nจนสร้างสถิติโลกใหม่!
+New world record for narrowgauges: %.1f km/h by %s.
+สถิติโลกใหม่สำหรับรถรางขนาดเล็ก: %.1f km/h โดย %s
+New world record for planes: %.1f km/h by %s.
+ย่นระยะทางอีกครั้ง:\n%2$s บินด้วยความเร็ว %1$.1f km/h\nสถิติโลกใหม่!
+New world record for railways: %.1f km/h by %s.
+พุ่งทะยานไปบนราง\nที่ความเร็ว %.1f km/h\n%s ทำสถิติโลกใหม่สำหรับรถไฟ\m
+New world record for ship: %.1f km/h by %s.
+รางวัลบลูริบบันด์สำหรับการเดินเรือ\nที่ความเร็ว %.1f km/h ตกเป็นของ\n%s
+#________________________________script_ai_text_________________________________
+#________________________________script_ai_text_________________________________
+%s build additional convoy to line: %s
+%s สร้างขบวนรถเพิ่มเติมในสาย: %s
+%s build rail line from %s (%s) to %s (%s)
+%s สร้างทางรถไฟจาก %s (%s) ไปยัง %s (%s)
+%s build road line from %s (%s) to %s (%s)
+%s สร้างเส้นทางถนนจาก %s (%s) ไปยัง %s (%s)
+%s build ship line from %s (%s) to %s (%s)
+%s สร้างเส้นทางเรือจาก %s (%s) ไปยัง %s (%s)
+%s extends the route from %s (%s) to %s (%s)
+%s ขยายเส้นทางจาก %s (%s) ไปยัง %s (%s)
+%s optimize way line from %s (%s) to %s (%s)
+%s ปรับปรุงเส้นทางจาก %s (%s) ไปยัง %s (%s)
+%s removes convoys from line: %s
+%s ลบขบวนรถออกจากสาย: %s
+vehicles of the line %s were retired
+ยานพาหนะของสาย %s ถูกปลดระวางแล้ว
+#_________________________________tooltip_text__________________________________
+#_________________________________tooltip_text__________________________________
+Add convois with similar schedule to this line.
+เพิ่มขบวนรถที่มีตารางเวลาใกล้เคียงกันเข้าสู่สายนี้
+Attach current coordinate to the comment
+แนบพิกัดปัจจุบันลงในความคิดเห็น
+Enter intervall in days, hours, minutes
+ระบุช่วงเวลาเป็น วัน, ชั่วโมง, นาที
+Mirrors order of stops
+กลับลำดับจุดรับส่ง
+Revert to original schedule
+คืนค่ากลับสู่ตารางเดิม
+Tutorial not available for this pakset. Please try loading Pak128.
+ไม่มีบทเรียนสอนเล่นสำหรับชุดแพ็กนี้ กรุณาลองโหลด Pak128
+#_______________________________unnecessary_text________________________________
+#_______________________________unnecessary_text________________________________
+1center
+%s %s
+1extern
+%s สาขา %s
+1suburb
+%s %s %s
+2center
+%s กลาง %s
+2extern
+%s ภายนอก %s
+2suburb
+%s Greenfields %s %s
+3center
+%s หลัก %s
+3extern
+%s พื้นที่ %s
+3suburb
+%s หมู่บ้าน %s %s
+4center
+%s ด้านใน %s
+4extern
+%s ด้านนอก %s
+4suburb
+%s ชนบท %s
+5center
+%s ใจกลางเมือง %s
+5extern
+%s เปลี่ยนสาย %s
+5suburb
+%s เมือง %s
+6center
+%s ชุมทาง %s
+6extern
+%s จุดเปลี่ยนเส้นทาง %s
+6suburb
+%s ชานเมือง %s %s
+7center
+%s เมือง %s
+7extern
+%s ที่ราบ %s
+7suburb
+%s สวนสาธารณะ %s
+8center
+%s ย่านธุรกิจ %s
+8extern
+%s %s ขอบเมือง %s
+8suburb
+%s เมืองบริวาร %s
+9center
+%s สายหลัก %s
+9extern
+%s ทางเลี่ยง %s
+9suburb
+%s เมซโซ %s
+Nsuburb
+ชานเมือง N
+Ocenter
+ใจกลางเมือง O
+Oextern
+รอบนอกเมือง O
+Osuburb
+ชานเมือง O
+Pcenter
+ใจกลางเมือง P
+Pextern
+รอบนอกเมือง P
+Psuburb
+ชานเมือง P
+Qcenter
+ใจกลางเมือง Q
+Qextern
+รอบนอกเมือง Q
+Qsuburb
+ชานเมือง Q
+Rcenter
+ใจกลางเมือง R
+Rextern
+รอบนอกเมือง R
+Rsuburb
+ชานเมือง R

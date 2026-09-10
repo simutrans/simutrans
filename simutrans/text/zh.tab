@@ -12,11 +12,19 @@ wenquanyi_9pt.bdf
 #                            Language: zh T. Chinese                           #
 #                                Encoding: UTF-8                               #
 #                            Font: wenquanyi_9pt.bdf                           #
-#                           Date Created: 11.03 2026                           #
+#                           Date Created: 10.09 2026                           #
 #                                                                              #
 ################################################################################
 #__________________________________button_text__________________________________
 #__________________________________button_text__________________________________
+Absolute times
+絕對時間
+allow reverse passage
+允許反向通行
+AMBIENT_SOUND
+環境音效
+CASH_SOUND
+收銀音效
 cl_btn_filter_disable
 禁用
 cl_btn_filter_enable
@@ -41,6 +49,16 @@ clf_btn_invers
 反選
 clf_btn_keine
 取消選擇
+climate area percentage
+氣候區域百分比
+Continue Game
+繼續遊戲
+CROSSING_SOUND
+平交道警報音
+FACTORY_SOUND
+工廠音效
+Find matching convois
+尋找相符的運輸工具
 gl_btn_sort_bonus
 紅利
 gl_btn_sort_name
@@ -49,6 +67,8 @@ gl_btn_sort_revenue
 收益
 gl_btn_unsort
 未排序
+height based
+依高度決定
 hl_btn_filter_disable
 禁用
 hl_btn_filter_enable
@@ -71,12 +91,62 @@ hlf_btn_invers
 反選
 hlf_btn_keine
 取消選擇
+humidities
+濕度邊界
+Install
+安裝
+Lake
+湖泊
+Lake height
+最高湖泊高度
+Maximize height levels
+最大化高度等級
+moisture land
+陸地濕度增加量
+moisture water
+水面濕度增加量
 Networks
 交通網絡
+Num pad keys always move map
+數字鍵盤按鍵一律移動地圖
+Open Sea
+外海
+Owner only
+僅限擁有者
+Queueing
+等候趨勢
+rainfall
+降雨量
+Reselect closes tools
+重新選取工具即可取消選取
+Return to menu
+返回選單
 Road toll
 路費
 Scenario
 場景信息
+sea
+海洋氣候
+Shared only
+僅限共用
+Single GUI
+單一介面
+Sound range:
+聲音範圍：
+Start this as a server
+以此遊戲作為伺服器啟動
+temperature borders
+溫度邊界
+temperature-humidity based
+依溫濕度決定
+TOOL_SOUND
+工具音效
+TRAFFIC_SOUND
+交通音效
+Transfers
+轉乘
+Tutorial
+教學
 #_________________________________climates_text_________________________________
 #_________________________________climates_text_________________________________
 arctic
@@ -97,32 +167,70 @@ tundra
 #__________________________________error_text___________________________________
  Loading scenario script failed
 載入場景腳本失敗
+A building blocks the construction
+建築物阻礙施工
+A powerline blocks the construction
+電纜阻礙了建設
+Another way blocks the construction
+另一條道路阻礙了建設
+Bridge blocked by way below or above.
+橋梁被上方或下方的道路阻擋。
+Can't buy obsolete vehicles!
+無法購買已淘汰的車輛！
+Cannot alter water
+無法改變水域
+Cannot build on a double slope!
+無法在雙斜坡上建造！
 Cannot built depot here!
 無法在這裡建造車庫
 Cannot built this station/building\nin underground mode here.
 該建築不能建於地底
+Cannot connect to the\ncenter of a double slope!
+無法連接到\n雙斜坡的中間！
 Cannot create generic line!\nSelect line type by\nusing filter tabs.
 不能創建「全部」類型的路線\n請選擇合適的類型，再創建路線
 Cannot create socket
 未能建立通訊
+Cannot cross the end of a runway
+無法橫穿跑道末端
+Cannot rotate this building!
+無法旋轉此建築物！
+Client closed connection during transfer
+客戶端在傳輸過程中關閉了連線
 Convoi handles exhausted!
 車輛總數已達到最大
 Convoy already deleted!
 車輛已移除!
+Corrupt file
+檔案損毀
+Could not open file
+無法開啟檔案
 Das Feld gehoert\neinem anderen Spieler\n
 該陸地屬於其他玩家
+Depots cannot be built on runways!
+車廠不能建造在跑道上！
+Depots must be built on flat dead-end way tiles!
+車廠必須建造在平坦的盡頭路線格上！
 Der Besitzer erlaubt das Entfernen nicht
 建築物擁有者拒絕移除建築\n汽車或行人在路上，無法移除
 Diese Zusammenstellung kann nicht fahren!\n
 非法組合
+Elevated way can only be joined in line
+高架道路只能沿直線連接
+Failed to write file
+寫入檔案失敗
 Flugzeughalt muss auf\nRunway liegen!\n
 飛機必須放置在滑行道上
+Forbidden by scenario
+被場景禁止
 Hier kann dieses\nFlughafengebaeude nicht\ngebaut werden!\n
 無法在這裡建造飛機場
 Hier kann kein\nSignal aufge-\nstellt werden!\n
 不能在這裡放置道路標誌
 In order to lock the game, you have to protect the public player by password!
 想要鎖定遊戲，必須設置密碼以防其他玩家繼續遊戲
+Loading a new game will end the current server session!
+載入新遊戲將結束目前的伺服器連線階段！
 Lost connection\nto server!
 與服務器失去連接
 Lost synchronisation\nwith server.
@@ -133,16 +241,40 @@ Monorailhalt muss auf\nMonorail liegen!\n
 單軌車站必須建造在單軌軌道上
 Monorails are not available yet!
 單軌鐵路還不可用
+More than one possibility to build this dock found.
+建造此碼頭有多種可能的方式。
 Narrowgaugehalt muss auf\nNarrowgauge liegen!\n
 窄軌車站必須建造在窄軌軌道上
+No bridges over runways!
+跑道上方不能建造橋梁！
+No curves on runways
+跑道不能轉彎！
+No suitable crossing
+沒有合適的平交道！ (最高速度太快？)
+No suitable way on the ground!
+車站只能建造在\n平直相符的路線上！
 No through station here!
 車站必須建造在路的盡頭或道路直綫段上
+Not allowed to copy object.
+你不能建造該物件！\n(原因：錯誤的玩家或已淘汰)
+Not enough bytes transferred
+傳輸的位元組不足
+Not enough clearance.
+兩條路線之間至少需要 2 級高度差。
+Not enough empty space
+剩餘可用空間不足。
 Not enough money!
 資金不足
+Not initialized
+無法初始化函式庫。
 On narrowgauge track only!\n
 只適用於窄軌軌道！\n
 Only public player can lock games!
 只有公共服務可以鎖上遊戲
+Only up and down movement in the underground!
+地下圖塊只能使用整體升高/降低工具來升高和降低！
+Out of funds
+你的資金不足以進行此操作！
 Post muss neben\nHaltestelle\nliegen!\n
 車站擴展建築必須建設在車站或碼頭附近
 Protocoll error (expecting game)
@@ -151,10 +283,38 @@ Schiffhalt muss im\nWasser liegen!\n
 輪船停靠點只能建造在靠近碼頭的水面上
 Server busy
 伺服器繁忙！
+Server version too new
+伺服器使用的是較新的程式版本。
+Ship depots must be built on water!
+船廠必須建造在水上！
+Show all revenue messages
+顯示所有收益訊息
+Show no revenue messages
+不顯示收益訊息
+Show only player's revenue
+僅顯示玩家的收益
+Slope is too steep
+坡度太陡
 Terraforming not possible\nhere in underground view
 無法在地底修整地形
+This tunnel branches. You can try Control+Click to remove.
+此隧道有分支。您可以嘗試按住 Control 點擊來拆除。
+Too far away to merge stations!
+距離太遠，無法合併車站！
+Tunnel can only be entered at its portal
+隧道只能從洞口進入
+Unknown error
+未知錯誤
 Upgrade must have\na higher level
 需要更高級別才能升級
+Vehicle %s cannot choose because stop too short!
+車輛 %s 無法選擇，因為車站太短！
+Watertable reached
+已達地下水位
+Way does not match the slope here
+此處道路與坡度不符
+Wrong direction to enter the bridge
+進入橋梁的方向錯誤
 Zughalt muss auf\nSchiene liegen!\n
 火車車站必須建造在鐵路軌道上
 #___________________________________help_text___________________________________
@@ -163,6 +323,74 @@ Zughalt muss auf\nSchiene liegen!\n
 幫助索引\n關於模擬交通（simutrans）\n\n%1$s\n如何使用\n\n%2$s\n如何開始遊戲\n\n%4$s\n如何操作遊戲\n\n%5$s\n\n工具\n%3$s\n其他窗口\n\n%6$s
 <title>Keyboard Help</title>\n<h1><strong>Keyboard Help</strong></h1><p>\n
 <title>鍵盤幫助</title>\n<h1><strong>鍵盤幫助</strong></h1>\n<p>\n<strong>鍵盤幫助</strong> 顯示快捷鍵功能\n</p>\n<p>\n<strong>鍵盤幫助</strong> 當某未定義快捷鍵按下時或從<a href="general.txt">一般幫助</a>打開\n</p>\n<p>\n快捷鍵區分大小寫 (使用[<em>Shift</em>]轉換大小寫)\n</p>\n<p>\n被引用的鍵包括:\n</p>\n<p>\n[<em>方向鍵</em>]: 遊戲地圖按其方向移動<br>\n[<em>Backspace</em>]: 關閉遊戲界面中所有的窗口、工具欄和幫助文檔<br>\n[<em>Delete</em>]或[<em>Escape</em>]: 關閉遊戲界面中最上層的窗口、工具欄或幫助文檔<br>\n[<em>Enter</em>]或[<em>Return</em>]: 確認操作<br>\n[<em>Page-Up</em>]或[<em>></em>]: 放大遊戲地圖<br>\n[<em>Page-Down</em>]或[<em><</em>]: 縮小遊戲地圖<br>\n[<em>F1</em>]: 打開<a href="general.txt">Simutrans幫助</a><br></p>\n<p>\n[<em>1</em>]: 朝南移動遊戲地圖<br>\n[<em>2</em>]: 朝東南方向移動遊戲地圖<br>\n[<em>3</em>]: 朝東移動遊戲地圖<br>\n[<em>4</em>]: 朝西南方向移動遊戲地圖<br>\n[<em>6</em>]: 朝東北方向移動遊戲地圖<br>\n[<em>7</em>]: 朝西移動遊戲地圖<br>\n[<em>8</em>]: 朝西北方向移動遊戲地圖<br>\n[<em>9</em>]: 朝北移動遊戲地圖\n</p>\n<p>\n[<em>Shift</em>] + <a href="mouse.txt">鼠標</a>: 在<a href="map.txt">地圖</a>中打開<a href="industry_info.txt">工業產業鏈</a><br>\n[<em>CTRL</em>] + 工具: 建設慢速公路、鐵軌或更直的公路、鐵軌<br>\n</p>
+At least one stop is connected to the town.
+至少有一個車站連接到該城鎮。
+At least one tile is connected to one stop.
+至少有一格連接到一個車站。
+Color according to transport capacity left
+根據剩餘運輸容量著色
+Color-coded terrain according to altitude.
+依海拔高度對地形進行顏色標記。
+Decrease water height
+降低水位
+Highlight railroad tracks
+高亮顯示鐵路軌道
+Highlite depots
+高亮顯示車廠
+Highlite electrical transmission lines
+高亮顯示輸電線路
+Highlite factories
+高亮顯示工廠
+Highlite forests
+高亮顯示森林
+Highlite tourist attraction
+高亮顯示旅遊景點
+Increase water height
+增加水位
+Open station/stop details
+顯示車站詳情
+Overlay city limits
+覆蓋顯示城市邊界
+Overlay passenger destinations when a town window is open
+開啟城鎮視窗時覆蓋顯示乘客目的地
+Overlay schedules/network
+覆蓋顯示時刻表/路網
+Overlay town names
+覆蓋顯示城鎮名稱
+Please click on the map to add\nwaypoints or stops to this\nschedule.
+請在地圖上點擊以新增\n路標或車站至此\n時刻表。
+Remove double stops from schedule
+從時刻表中移除重複的停靠站
+Set tile climate %s
+將此地面轉換為 %s 氣候區
+Show capacity and if halt is overcrowded
+顯示容量以及車站是否擁擠
+Show how many convoi reach a station
+顯示抵達車站的運輸工具數量
+Show how many people/much is waiting at halts
+顯示等候的人數/貨物量
+Show initial passenger departure
+顯示乘客與郵件的出發地。
+Show level of city buildings
+顯示城市建築等級
+Show mail service coverage/mail network
+顯示郵件服務覆蓋範圍
+Show passenger coverage/passenger network
+顯示客運網路覆蓋範圍
+Show speedlimit of ways
+顯示路線速限
+Show the change of waiting at halts
+顯示自上月以來等候數量的變化
+Show the owenership of infrastructure
+顯示基礎設施所有權
+Show transported freight/freight network
+顯示運輸貨物/貨運網絡
+Show usage of network
+顯示網絡使用情況
+Shows a listing with all industries on the map.
+顯示地圖上所有工業的列表。
+Sum of departure/arrivals at halts
+車站出發/到達總數
 #____________________________________ki_text____________________________________
 #____________________________________ki_text____________________________________
 %s now\noffers bus services\nbetween %s\nand attraction\n%s\nat (%i,%i).\n
@@ -209,6 +437,8 @@ TRAMTOOLS
 %s 興建了一個新總部
 Factory chain extended\nfor %s near\n%s built with\n%i factories.
 經濟逐漸繁榮\n%s 擴大產業, 於 %s 附近建設了 %i 間工廠
+Net wealth less than 10%% of starting capital!
+淨資產低於起始資本的 10%%！
 New %s now available:\n%s\n
 新 %s 現在可用:\n%s
 New factory chain\nfor %s near\n%s built with\n%i factories.
@@ -217,20 +447,50 @@ New vehicle now available:\n%s\n
 新交通工具現在可用\n\n -- %s --
 Now %u clients connected.
 現在有 %u 個用戶已連接
+overtaking
+超車
 Remove vehicle from map. Use with care!
 移除該運輸工具(請小心使用!)
 Screenshot\ngespeichert.\n
 遊戲截圖已保存
 Sends the convoi to the last depot it departed from!
 將運輸隊調回最後的發車庫
+Server preparing game ...
+伺服器正在準備遊戲...
+Trees
+樹木
 With a big festival\n%s built\na new monument.\n%i citicens rejoiced.
 %s 為某盛大的節日建立了紀念館\n%i 個市民感到十分高興
+#___________________________________obsolete____________________________________
+#___________________________________obsolete____________________________________
+Line Filter
+路線過濾器
 #_________________________________program_text__________________________________
 #_________________________________program_text__________________________________
+(%.2f$/km %.2f$/m)
+(%.2f$/km %.2f$/月)
 (%i)-
 (%i)
 (in depot)
 (在車廠)
+[0] south-facing
+[0] 朝南
+[1] east-facing
+[1] 朝東
+[2] north-facing
+[2] 朝北
+[3] west-facing
+[3] 朝西
+[4] southeast corner
+[4] 東南角
+[5] northeast corner
+[5] 東北角
+[6] northwest corner
+[6] 西北角
+[7] southwest corner
+[7] 西南角
+/month
+/月
 \nBauzeit bis
 直到
 \nBauzeit von
@@ -269,6 +529,10 @@ With a big festival\n%s built\na new monument.\n%i citicens rejoiced.
 %d 運輸隊
 %d Einzelfahrzeuge im Depot
 %d 車輛存放在這
+%d more convois
+還有 %d 個運輸工具
+%i car(s),
+%i 節車卡，
 %i km/h (max. %ikm/h)
 %ikm/h(最高 %ikm/h)
 %i years %i months old.
@@ -283,8 +547,12 @@ With a big festival\n%s built\na new monument.\n%i citicens rejoiced.
 %s %s
 %s has entered a depot.
 %s 已回到車庫
+%s has left.
+%s 已離開。
 %s land %d %s
 %s %d %s 外
+%s now known as %s.
+%s 現更名為 %s。
 %s wasted\nyour money with a\nnew townhall\nwhen it reached\n%i inhabitants.
 %s 的居民達到 %i\n因此興建了一個新市政廳
 %s\nis crowded.
@@ -295,24 +563,66 @@ With a big festival\n%s built\na new monument.\n%i citicens rejoiced.
 %s 已清盤
 %u Client(s)\n
 %u 玩家\n
+%u days ago
+%u 天前
+%u hours ago
+%u 小時前
+%u minutes ago
+%u 分鐘前
 %u Player (%u locked)\n
 %u 個玩家 (%u 個已鎖定)\n
+%u years ago
+%u 年前
+<clear schedule>
+<清除時刻表>
+<create new line>
+<建立新路線>
+<h1>Error</h1><p><strong>
+<h1>錯誤：主 pak 目錄中有重複物件</h1><p><strong>在 
+<h1>Warning</h1><p><strong>addons for
+<h1>警告：附加元件目錄中有重複物件</h1><p><strong>附加元件用於 
+<individual schedule>
+<個別時刻表>
 <no line>
 <未指定路線>
+<no schedule set>
+<未設定時刻表>
+<promote to line>
+<提升為路線>
 1 convoi
 1 運輸隊
 1 Einzelfahrzeug im Depot
 1輛車存放在這
+1 minute ago
+1 分鐘前
+1 year ago
+1 年前
+100 km/h = %i tiles/month
+100 km/h = %i 格/月
 1LIGHT_CHOOSE
 亮度:
+1th
+1日
 1WORLD_CHOOSE
 新遊戲的設置:
+21th
+21日
+22th
+22日
+23th
+23日
 2LIGHT_CHOOSE
 顔色:
+2th
+2日
 2WORLD_CHOOSE
 地圖編號:
+31th
+31日
 3LIGHT_CHOOSE
 鼠標卷動速度:
+3th
+3日
 4LIGHT_CHOOSE
 鼠標逆向卷動
 5LIGHT_CHOOSE
@@ -325,6 +635,8 @@ With a big festival\n%s built\na new monument.\n%i citicens rejoiced.
 交通密度:
 8WORLD_CHOOSE
 日夜模式
+A bridge must end on a way!
+橋梁必須連接在道路上！
 A bridge must start on a way!
 這橋的兩端只能建于自己擁有的平地上且需在一條綫上
 Abfrage
@@ -333,6 +645,8 @@ Abnehmer
 消費者
 About
 關於
+About scenario
+關於場景
 Abriss
 摧毀/移除
 Absenken
@@ -355,6 +669,10 @@ Add Stop
 新建車站
 Add stops for backward travel
 為回程路段增設車站
+air
+跑道/滑行道
+Aircraft
+飛機
 aircraft_tab
 貨機
 airplane
@@ -375,6 +693,8 @@ allowed climates:\n
 允許的氣候
 Alters a schedule.
 調整路線資料
+and arranged by
+並整理自
 Angenommene Waren
 鄰近工廠可輸送的物資
 anhaengen
@@ -387,10 +707,14 @@ Appends stops at the end of the schedule
 新增車站於路線的末端
 Apply Line
 應用路線
+Apr.
+4月
 April
 4月
 Arbeiter aus:
 工人居住在：
+Arrivals from\n
+到達自\n
 Arrived
 到達
 Assets
@@ -399,16 +723,24 @@ Aufloesen
 解散
 Aufspanntransformator
 變壓站
+Aug.
+8月
 August
 8月
+auto
+自動
 Autohalt muss auf\nStrasse liegen!\n
 巴士、車輛停靠站必須建在道路上
 Available
 可用
+Available at custom date
+在自訂日期可用
 Bahndepot
 鐵路車廠
 Bankrott:\n\nDu bist bankrott.\n
 破產:\n\n你已經破產, 遊戲結束
+based on Simutrans 84.22.1
+基於 Simutrans 84.22.1
 battery
 電池
 Baum
@@ -433,6 +765,16 @@ Blockstrecke ist\nbelegt\n
 \n其他列車正使用此段鐵路。
 Boden
 陸地
+Bonus Multiplier: %i%%
+獎勵倍率：%i%%
+Bonus Speed: %i km/h
+獎勵速度：%i km/h
+Bonusspeed: %i km/h
+最高可能速度：%i km/h
+Boost (%%)
+加成 (%%)
+Borderless (disabled on fullscreen)
+無邊框 (全螢幕時停用)
 bridge is too high for its type!
 無法在這裏建造\n因為離地面的高度超出了其橋腳的高度限制
 Bridge is too long for this type!\n
@@ -461,6 +803,8 @@ Build monorail depot
 興建單軌列車廠
 Build narrowgauge depot
 興建窄軌列車廠
+build portal only
+僅建造洞口
 Build powerline
 興建電纜
 Build presignals
@@ -487,10 +831,20 @@ Built random attraction
 隨機興建景點
 Bus_tab
 巴士
+Can be overgrown
+可被植被覆蓋
 Can only move from halt to halt or waypoint to waypoint.
 只能從一個車站轉移到另一個車站，或從一個途經點轉移到另一個途經點。
 Cancel
 取消
+Cannot build here
+無法在此建造
+Cannot connect to offline server!
+無法連接到離線伺服器！
+Capacity
+容量
+Capacity:
+容量：
 Capacity: %.0f MW
 負載量： %.0f MW\n
 Capacity: %d%s %s\n
@@ -503,6 +857,10 @@ cars.\nstate
 車輛\n
 Cash
 現金
+Category
+類別
+Change label style
+更改標籤樣式
 Change player
 切換玩家
 Chart
@@ -517,6 +875,8 @@ chooses a random map
 選擇隨機地圖
 citicens
 居住量
+Cities can only be built on flat empty ground!
+城市只能建造在平坦的空地上！
 City attraction
 市內景點
 City industries
@@ -535,6 +895,10 @@ cl_title
 車輛列表
 cl_txt_sort
 排序：
+clamp
+箝位
+Cleanup schedule
+清理時刻表
 Clear block reservation
 顯示／重置佔用路段
 clf_chk_aircrafts
@@ -559,6 +923,8 @@ clf_chk_noroute
 無適當路線
 clf_chk_noschedule
 無行程表
+clf_chk_obsolete
+已淘汰
 clf_chk_ships
 船
 clf_chk_spezial_filter
@@ -575,34 +941,64 @@ clf_chk_waren
 物資：
 clf_title
 車輛/船隻清單分類
+Click to open the finance dialog.
+點擊開啟財務對話框。
+Climate
+氣候
 Climate Control
 氣候/地形控制
+Climates
+氣候
 closed
 欄截
+Closes topmost line window when new line selected.
+選擇新路線時關閉最上層的路線視窗。
 COLOR_CHOOSE\n
 請選擇閣下的色系。\n
 Company bankrupt
 您的公司已經破產！
+company_chat
+公司聊天
 Company_msg
 競爭對手
 Comparing pak files ...
 正在比對遊戲資料檔案...
+Composed by
+作曲：
+Configure AI
+設定 AI
+Configure AI setttings
+設定 AI 選項
 Congratulation\nScenario was complete in\n%i months %i years.
 恭喜!\n歷經 %i 月 %i 年, 此遊戲場景已完成!
+Connect factory
+連接工廠
 Connected stops
 可供使用的站：
 Connected with server
 已連接到伺服器
+connection
+連接
+Connections
+連接
 Constructed by
 繪畫者：
 Constructed by %s
 繪畫者：%s
+construction speed
+建設速度
 Construction_Btn
 建設開支
+Consumed
+已消耗
+contains the following doubled objects:</strong><p>
+ 包含以下重複的物件：</strong><p/>
 convoi %d of %d
 運輸工具 %d / %d
 convoi error tooltips
 顯示交通工具的錯誤提示
+Convoi following mode
+運輸工具跟隨模式
 Convoi has been sent\nto the nearest depot\nof appropriate type.\n
 該運輸工具已召回\n至鄰近合適廠房。
 Convoi is sold when all wagons are empty.
@@ -621,8 +1017,18 @@ Copy Convoi
 複製編成
 Copy the selected convoi and its schedule or line
 重複購買所選運輸工具並複製路線資料。
+Copy to clipboard
+複製到剪貼簿
+Cost
+費用
 cost for removal
 清除費用
+Cost per unit
+每單位費用
+Cost: %8s (%.2f$/km %.2f$/m)\n
+費用: %s (%.2f$/km %.2f$/月)\n
+Cost: %8s (%.2f$/km)\n
+費用：%8s (%.2f$/km)\n
 Costs
 成本
 Create a new line based on this schedule
@@ -633,12 +1039,22 @@ curlist_title
 景點列表
 CURRENCY
 ¥
+CURRENCY_LEFT
+$
+Current game
+目前遊戲
 Currently playing:
 進行中:
 Customers live in:
 乘客居住於:
+Date format
+日期格式
+DAY_SYMBOL
+日
 deactivated in online mode
 不適用於連線遊戲
+Dec.
+12月
 Deccelerate time
 減慢遊戲速度
 December
@@ -651,14 +1067,32 @@ Delete Line
 刪除路線
 Delete the current stop
 清除此站
+Delete the selected line (if without associated convois).
+刪除所選路線 (如果沒有關聯的運輸工具)。
 Delete this file.
 刪除此檔案
+Delivered
+已運送
+Demand
+需求
 Demand: %.0f MW
 需求： %.0f MW\n
 Denkmal
 古蹟
 Departed
 已出發
+Departs at
+出發時間
+Departure after
+%% 裝載或等候 (dd-hh-mm)
+Departure board
+出發時刻表
+Departures per month
+每月出發班次
+Departures to\n
+出發前往\n
+Depot
+車廠
 Depots
 車廠
 Der Tunnel ist nicht frei!\n
@@ -669,22 +1103,40 @@ Destroying map ...
 正在刪除地圖...
 Details
 詳情
+Developed by the Simutrans Team
+由 Simutrans 團隊開發
 Die Bruecke ist nicht frei!\n
 橋上存在其他玩家的所有物
 diesel
 柴油
+direct_chat_to:
+私訊給：
+directmail
+宣傳單
 Direkt erreichbare Haltestellen
 從這裡開始的直達路綫
 disable midi
 關閉背景音樂
+Display bars above factory to show the status
+在工廠上方顯示狀態圖表
 Display settings
 顯示設置
 Distance
 行走距離
+distributing cities
+配送城市
+distributing factories
+配送工廠
+Do not show
+不顯示
 Dock
 碼頭
 Dock must be built on single slope!
 碼頭只能建築在沿海單面斜坡上
+Downloading
+下載中
+dp_title
+車廠列表
 Du hast %d Monate Zeit, deine Schulden zurueckzuzahlen
 僅餘 %d 個月還清債務
 Durchsatz
@@ -695,6 +1147,8 @@ Eigenbesitz\n
 公共財產
 Ein %s\npasst hier nicht.\n
 空間不足, 無法建造 %s
+Einstellungen
+設置
 Einstellungen aendern
 變更選項
 electric
@@ -721,6 +1175,8 @@ Erzeuge neue Karte.\n
 新地圖創建中, 請稍候\n(大地圖耗時會稍久一些)
 Es wird bereits\nein Fahrplan\neingegeben\n
 正在安排車輛計劃表\n請在重新安排前先完成設定
+Extract files
+解壓縮檔案
 Fabrikanschluss
 相關廠商
 Fabrikname
@@ -743,6 +1199,8 @@ Farbe
 玩家顔色
 Fast forward
 快速進行
+Feb.
+2月
 February
 2月
 Ferry_tab
@@ -751,6 +1209,8 @@ Fertig
 已完成
 Filename
 檔案名
+Files from:
+檔案來源：
 Filter:
 篩選：
 Finances of %s
@@ -767,6 +1227,10 @@ follow me
 跟隨
 Follow the convoi on the map.
 在地圖上跟隨
+font size
+字型大小
+For questions and support please visit:
+如有問題或需要支援，請造訪：
 Forest
 森林
 Found new city
@@ -779,12 +1243,16 @@ Free Capacity
 空載量
 freeplay mode
 自由模式
+Freight
+貨運
 Friction:
 當前摩擦係數
 fuel_cell
 燃料箱
 Full load
 最小負載
+Fullscreen (changed after restart)
+全螢幕 (重新啟動後生效)
 Fundament
 地基
 Fussgaenger
@@ -801,6 +1269,10 @@ Gebaeude
 建築
 General
 一般
+generate script
+產生腳本
+Generated
+已發電
 Generation: %.0f MW
 發電量: %.0f MW\n
 Gewicht
@@ -825,16 +1297,24 @@ Gross Profit
 資金流動
 Groundobj
 目标
+groundobj builder
+地面物件建造工具
 Grow city
 發展城市
 Growth
 城市發展
+GUI settings
+GUI 設置
 H
 車站
 Hangar
 飛機庫
 Happy
 高興
+Has slope graphics
+具有斜坡圖形
+Has Snow
+有積雪
 Haus kaufen
 購買房屋
 Helligk.
@@ -847,6 +1327,10 @@ hide all building
 隱藏所有建築
 hide city building
 隱藏城市建築
+Hide labels
+隱藏標籤
+hide objects under cursor
+隱藏游標下的物件
 hide station names
 隱藏車站名稱
 hide transparent
@@ -857,6 +1341,10 @@ Hier warten/lagern:
 待運乘客/貨物
 Higher transport fees, crossconnect all factories
 提高運輸費用, 關閉及時制度
+highlight single ways
+醒目標示中斷路線
+Highlite schedule
+高亮顯示時刻表中的車站
 hl_title
 車站列表
 hl_txt_filter
@@ -901,18 +1389,32 @@ Home depot not found!\nYou need to send the\nconvoi to the depot\nmanually.
 找不到車庫\n請手動設置車輛行程表令其回到車庫
 Homeless
 流浪者
+Horizontal stripe ownership
+水平條紋標示所有權
 hydrogene
 氫氣
+Icon size:
+圖示大小：
 Idle:
 空閒
 ignore climates
 忽略氣候限制
+In the industry legend show only currently existing factories
+在工業圖例中僅顯示當前存在的工廠
+In Transit
+運輸中
 Increase Industry density
 增加工業
 increase underground view level
 將切面推上一層
 industrial building
 工業建築
+Industry overlay
+工業覆蓋圖
+Infinite mouse scrolling
+滑鼠無限捲動
+Infinite scrolling using mouse
+使用滑鼠無限捲動
 Init map ...
 初始化地圖中...
 Input
@@ -921,16 +1423,28 @@ Ins Stop
 插入
 Insert stop before the current stop
 在此車站前增加車站
+Install graphics
+安裝圖像
+Install paks
+下載並安裝 Pak 套件。
+Insufficient funds!
+資金不足！
 Intercity road len:
 城市道路長度
+Intro. date
+推出日期
 Intro. date:
 開發日期
 invalid
 未定義
 Invalid coordinate
 指令無效
+Invert stops
+反轉停靠站
 isometric map
 等距視圖
+Jan.
+1月
 January
 1月
 join game
@@ -941,10 +1455,14 @@ Jump to
 跳至
 June
 6月
+just now
+剛才
 Kann Spielstand\nnicht laden.\n
 無法載入存儲的遊戲
 Kann Spielstand\nnicht speichern.\n
 無法打開目標文件
+keep city roads
+保留城市道路
 Kein Besitzer\n
 無物主
 keine
@@ -973,12 +1491,22 @@ LARGE_NUMBER_STRING
 億
 LARGE_NUMBER_VALUE
 百万
+Last Month
+上個月：
+Last used tools
+最近使用的工具
 Last Year
 上年度
 Leaving depot!
 正離開車廠！
 leer
 空的
+Left button drags minimap too
+左鍵也可拖動小地圖
+legacy (large heights)
+傳統 (大高度差)
+legacy (small heights)
+傳統 (小高度差)
 Legend
 圖例
 Leistung
@@ -987,30 +1515,50 @@ Leistung: %d kW
 功率: %d kW
 Leitung
 電線
+length: %d
+長度：%d
 letzen Monat: diesen Monat:
 上月  本月
 Line
 路線
 Line Management
 路線管理
+line name mouseover tooltips
+滑鼠懸停顯示路線名稱提示
+linear
+線性
 Lineless convoys serving this stop
 途經本站的車輛
 Lines serving this stop
 途經本站的路線
+List of industries on the map
+地圖上的工廠列表
 LKW_tab
 貨車
 Load game
 載入遊戲
 load height data from file
 從文檔載入高度圖
+Load mode:
+裝載模式：
 Load scenario
 載入場景
+Load script tool
+載入腳本工具
+Load Scripted AI
+載入腳本 AI
+Load settings from
+套用設定自
 loaded
 承載
 loaded passenger/freight
 排列乘客/貨運,按
 Loading (%i->%i%%)!
 載入中 (%i->%i%%)
+Loading (%i%%) departure %s!
+正在裝載 (%i%%)，出發時間：%s！
+Loading (%i%%)!
+正在裝載 (%i%%)！
 Loading addon paks ...
 正在載入附加的遊戲資料檔...
 Loading map ...
@@ -1019,6 +1567,10 @@ Loading paks ...
 正在載入遊戲資料檔...
 Loading skins ...
 正在載入樣式...
+Loading time:
+完全裝載於：
+Lock Control key
+鎖定 Control 鍵
 Lock game
 禁止切換玩家 (需確認)
 Lokomotive_tab
@@ -1035,6 +1587,8 @@ Maglevdepot
 磁浮列車廠
 Mail Demand %d\n
 運郵需求 %d\n
+Mail level
+郵件等級
 Mailbox
 消息中心
 Mailbox Options
@@ -1043,14 +1597,20 @@ Maintenance
 維修
 make stop public (or join with public stop next) costs %i per tile and level
 公有化車站（或與鄰接的公共車站合併）每格每等級的成本為$%i
+Make way or stop public (will join with neighbours), %i times maintainance
+將路線或車站設為公共（將與相鄰連接），%i 倍維護費
 Manual (Human)
 人類玩家
 Manufactured:
 製造商
 Map roughness
 地圖粗糙度
+map view
+地圖視圖
 map zoom
 縮放
+Mar.
+3月
 March
 3月
 Margin (%%)
@@ -1059,16 +1619,24 @@ Marker
 設定標記
 max
 最高
+Max Boost (%%)
+最大增產 (%%)
 Max income:
 最高收入
+Max. speed
+最高速度
 Max. speed:
 最高速度：
+Max. waiting time
+最長等候時間 (日:時:分)
 Maximum 254 stops\nin a schedule!\n
 一個車輛計劃表最多能容納254個途徑點
 maximum length of rivers
 河流最長長度
 Maximum tile height difference reached.
 兩個地形格之間的高度差已達到最大
+Maxspeed
+最高速度
 May
 5月
 Median Citizen per town
@@ -1077,12 +1645,18 @@ Meldung
 消息
 Menge
 總數
+merge stop
+合併車站
 MessageOptionsText
 \n新年度\n\n玩家消息\n\n城市消息\n\n沒有路線\n\n新目標\n\n聊天\n\n新車輛\n\n車站爆滿\n\n問題\n\n交通擁擠
 min
 最低
 minimum length of rivers
 河流最短長度
+Minimum load
+最低裝載量 (%%)
+Missing pakfiles
+物件缺失！
 Modify the selected line
 修改所選路線
 Monate alt
@@ -1097,8 +1671,12 @@ Monorailboden
 高架道路
 Monoraildepot
 單軌列車廠
+Month
+月份
 month wait time
 最大等候時間（月）
+Monthly departures
+固定發車時間
 Months
 月
 Monument
@@ -1107,6 +1685,8 @@ Monuments
 紀念碑
 Mountain height
 山勢高度：
+Move the map
+移動地圖
 Movingobj
 移動物體
 Music playing disabled/not available
@@ -1131,6 +1711,8 @@ Net ID: %p
 電網編號： %p\n
 Net Wealth
 總資產
+Net wealth near zero
+淨資產接近零
 Neue Karte
 新地圖
 Neue Welt
@@ -1143,6 +1725,8 @@ New line created!\nYou can assign the line now\nby selecting it from the\nline s
 已開設新路線！\n請在路線列表中選擇該路線，\n並修改路線資料。
 New Vehicles
 購車開支
+Nickname:
+暱稱：
 no buildings hidden
 顯示所有建築
 no convois
@@ -1153,18 +1737,28 @@ no goods waiting
 沒有貨物等候
 no load
 取消承載
+No player
+無玩家
 No Route
 無路線
 No stop here!
 此工具只能應用於車站
 No suitable ground!
 地點不合適！
+No suitable townhall available for this climate!
+此氣候沒有合適的市政廳！
 No terminal station here!
 不能在此建設總站！請檢查建\n設地點是否在對應路軌或鐵路\n的末端。
 no timeline
 不使用時間軸
+No transformer connected.
+未連接變壓站。\n所有電力都將被浪費。
 no tree
 沒有樹林
+No vehicles are available for purchase.
+沒有可購買的車輛。
+No. of Factories
+工廠與商店：
 Noch kein Fahrzeug\nmit Fahrplan\nvorhanden\n
 "我該去哪裏?"\n在派出車輛前，必須先給其制定行程表或者安排到已有的行程表
 none
@@ -1175,18 +1769,30 @@ nordost
 東北
 nordwest
 西北
+Not allowed to make publicly owned ways!
+不允許建造公共道路！
 Not allowed!\nThe convoi's schedule can\nnot be changed currently.\nTry again later!
 尋找路綫期間，無法修改車輛路線表
 Not enough fields would remain.
 此農場預留空間不足
+Not online
+未連線
+Nov.
+11月
 November
 11月
+now
+現在
 Now active as %s.\n
 當前玩家為%s\n
+nowhere
+無處
 Number of rivers
 河流數量
 Object
 物件
+Oct.
+10月
 Odometer: %s km
 里程計： %s　公里
 Ok
@@ -1195,16 +1801,24 @@ Oktober
 10月
 On loan since %i month(s)
 負債狀況已經維持了%i個月
+On mouseover
+滑鼠懸停時
+on the
+於
 On this map, you are not\nallowed to change player!\n
 遊戲已鎖定, 無法切換玩家\n
 Only city chains
 只顯示城市的工業鏈
 Only first %d differing paks reported. There are probably more.
 只顯示首%d個不相同的遊戲資料檔。可能會有更多。
+Only full Unicode fonts
+僅限完整 Unicode 字型
 Only land chains
 只顯示郊外的工業鏈
 Only one transformer per factory!
 一間工廠只能設置一個變壓器
+Only show goods which are currently handled by factories
+僅顯示工廠目前處理的貨物
 open
 通行
 Operation
@@ -1213,12 +1827,22 @@ Ops Profit
 運營利潤
 Optionen
 選項
+Or enter a server manually:
+或手動輸入伺服器：
+ORDINAL_DAY_SYMBOL
+日
 Origin
 出發地
 ost
 東
 Output
 輸出
+Ownership
+所有權
+Pak which may cause severe errors:
+缺少以下物件 (pak)，可能會導致運輸鏈中斷：
+Pak which may cause visual errors:
+以下物件 (pak) 已被相似物件取代：
 Pak(s) different:
 不相同的遊戲資料檔：
 Pak(s) missing on client:
@@ -1239,6 +1863,8 @@ Passagierziele
 乘客/郵件目的地
 Passenger AI
 電腦玩家－客運
+Passenger Demand %d\n
+乘客需求 %d\n
 Passengers %d %c, %d %c, %d no route
 乘客 %d %c, %d %c, %d 無路綫
 Passengers %d %s, %d %s, %d no route
@@ -1247,10 +1873,18 @@ Password
 密碼
 Pause
 暫停
+Pax <%i>  Mail <%i>
+乘客 <%i>  郵件 <%i>
+Pax level
+乘客等級
 PaxDest
 目的地
 Percent Electricity
 供電率(%%需求)
+personal_chat
+私人聊天
+Pipette
+重建選取的物件
 Planes are not available yet!
 飛機還不可用
 Plant tree
@@ -1287,6 +1921,8 @@ player 8
 玩家8
 player 9
 玩家9
+Player ranking
+玩家排名
 Please choose vehicles first\n
 請先選擇車輛
 Post
@@ -1295,20 +1931,34 @@ Postrate
 郵件量
 Power
 電力
+Power (MW)
+功率 (MW)
 Power:
 功率
+Power: %4d kW\n
+功率：%4d kW\n
 Powerlines
 電纜
+Price
+價格
 Problems_msg
 問題
+Produced
+已生產
+Produces: %.1f units/minute
+目前 %.1f/分鐘
 Production of %s has been stopped:\n%s\n
 %s 已停產\n%s
+Production/Boost
+產量/增產
 Produktion
 生產
 Profit
 利潤
 promote to line
 改進路綫
+public_chat
+公開聊天
 q1
 春季
 q2
@@ -1317,6 +1967,8 @@ q3
 秋季
 q4
 冬季
+Query server
+查詢伺服器
 rail car
 火車
 random
@@ -1331,6 +1983,8 @@ Rating
 評價
 ratio_pax
 乘客運載率(%%)
+Relevant
+相關
 Reliefkarte
 地圖
 Remove
@@ -1351,10 +2005,16 @@ remove powerlines
 拆除電纜
 remove roads
 拆除道路
+remove signal
+拆除號誌
 remove tracks
 拆除路軌
 Remove wayobj %s
 拆除道路 %s
+replace existing ways
+置換現有道路
+replace faster wayobjs
+置換更快的道路設施
 replace other signals
 置換其他標誌
 replace stop
@@ -1367,12 +2027,18 @@ Restore natural slope
 還原原來的斜坡
 Restwert:
 轉售價格
+Retire date
+退役日期
 Retire. date:
 退休日期
 return ticket
 複製此回程
 Revenue
 收入
+Revenue/unit/100 tiles
+收益/單位/100格
+Revert schedule
+還原變更
 Revision:
 修正
 road
@@ -1381,20 +2047,44 @@ road vehicle
 道路車輛
 Roadsign
 路牌
+Rotate Building
+旋轉建築物
 Rotate map
 旋轉地圖
 Rotation
 旋轉
 Routing
 尋找路線中
+Running cost
+營運成本
 sack
 袋
 sail
 風
+Save
+儲存遊戲
+Save generated script
+儲存產生的腳本
 Saving map ...
 地圖存儲中...
 Scenario complete: %i%%
 場景已完成： %i%%
+Scenario Debug
+除錯
+Scenario Error Log
+腳本錯誤
+Scenario Goal
+場景目標
+Scenario Info
+場景信息
+Scenario information
+目前場景詳細資訊
+Scenario Result
+進度
+Scenario Rules
+規則
+Scenario_
+場景 
 Schedule changing!
 正在更新路線表！
 Schienentunnel
@@ -1405,14 +2095,32 @@ Schiffdepot
 造船廠
 Schleppkahn_tab
 駁船
+Screen scale:
+螢幕縮放：
 Screenshot
 截圖
+Scroll threshold
+捲動門檻值
+Search:
+搜尋：
 Seasons
 季節
 Sehenswuerdigkeit
 旅遊勝地
+Select a server to join:
+選擇要加入的伺服器：
+Select a theme for display
+選擇顯示佈景主題
+Select display font
+選擇顯示字型
+Select one or more graphics to install (Ctrl+click):
+選擇要安裝的一或多個圖像 (Ctrl+點擊)：
+Select soundfont
+選擇音色庫
 Sell the selected vehicle(s)
 賣出所選車輛
+Selling of the program is forbidden.
+禁止販售本程式。
 sended
 郵件已發送
 SEP_FRACTION
@@ -1421,8 +2129,14 @@ SEP_THOUSAND
 ,
 SEP_THOUSAND_EXPONENT
 3
+Sept.
+9月
 September
 9月
+Served by
+服務提供者
+Served by me
+由我服務
 Server did not respond!
 服務器無回應
 Serves Line:
@@ -1445,8 +2159,20 @@ Show also vehicles no longer in production.
 同時顯示不再生產的車輛
 Show also vehicles that do not match for current action.
 同時顯示不符合所選指令的車輛
+Show always
+永遠顯示
+Show climates
+顯示氣候
+Show construction info
+顯示建造資訊
+Show contour
+顯示高度
 Show even servers with wrong version or pakset
 同時顯示使用錯誤遊戲版本或資料集的服務器
+Show finances for transport type
+依運輸類型顯示財務狀況
+Show future
+顯示未來
 show grid
 顯示網格
 Show industry
@@ -1455,20 +2181,48 @@ Show legend
 顯示圖例
 Show map scale
 顯示地圖比例
+Show mismatched
+顯示不相符項目
+Show networks
+顯示路網
 Show obsolete
 顯示已淘汰的
+Show offline
+顯示離線
+Show only used
+僅顯示已使用的
+Show outline
+僅顯示基礎設施
 Show schedules
 顯示路綫表
+Show servers that are offline
+顯示離線的伺服器
+Show servers where game version or pakset does not match your client
+顯示遊戲版本或 Pak 套件與客戶端不符的伺服器
 show station coverage
 顯示車站服務範圍
 show station names
 顯示車站名稱
 show waiting bars
 顯示等候圖表
+show/hide block reservations
+顯示/隱藏閉塞區間預約
+Show/hide estimated arrival times
+顯示/隱藏預計到達時間
+show/hide object owner
+顯示/隱藏物件擁有者
 Show/hide statistics
 顯示/隱藏數據統計
+Shows buttons about networks overlay.
+顯示網絡覆蓋層按鈕。
+Shows buttons on network overlay.
+顯示網絡覆蓋按鈕。
+Shows buttons on special topics.
+顯示特殊主題按鈕。
 Shows consumer/suppliers for factories
 顯示工廠的客戶和供應商
+Shows the color code for several selections.
+顯示多個選取項目的顏色代碼。
 Shows the currently selected schedule
 顯示當前所選的路綫表
 Shrink city
@@ -1481,14 +2235,24 @@ signal spacing
 信號間距
 Sim:
 模擬週期
+Similar view as the main window
+與主視窗相似的視圖
+Single toolbar only
+僅單一工具列
 Size (%d MB):
 大小 (%d MB):
+Size (area)
+大小 (面積)
 sliced underground mode
 切面地圖模式
 slot empty
 尚未使用
+Smart hide objects
+智能隱藏物件
 Sort by
 排列按
+Sort by:
+排序方式：
 Sort waiting list by
 排列等候列表,按
 Sound
@@ -1497,8 +2261,12 @@ Sound settings
 音效設置
 Sound volume:
 音效音量
+Soundfonts are located in the music directory.
+音色庫位於 music 目錄中。
 special freight
 特殊貨物
+Speed Bonus
+速度獎勵
 Speedbonus\nroad %i km/h, rail %i km/h\nships %i km/h, planes %i km/h.
 速度加成\n道路 %i km/h  鐵路 %i km/h\n船運 %i km/h  空運 %i km/h
 Speedlimit
@@ -1527,20 +2295,30 @@ Start the selected vehicle(s)
 派遣所選車輛
 Starte Spiel
 開始遊戲
+station labels
+車站標籤
 Station tiles:
 車站長度：
 Station_msg
 車站
 Status
 車站狀態
+stay on this level
+保持在此高度
 steam
 蒸汽
 Step timeline one year
 跳至下一年
+Stopping permissions
+停靠權限
 Stops
 車站
+Storage
+倉儲
 Storage capacity
 容量
+straight route
+直線路徑
 Strassendepot
 車庫
 Strassentunnel
@@ -1555,10 +2333,22 @@ suedwest
 西南
 Summer snowline
 夏季雪綫
+Supplied: %.0f %%
+供應：%.0f %%
 Suppliers
 供應商
 Tage alt
 天
+The following graphics are unmaintained:
+以下圖像未被維護：
+The generated script was saved!\n
+產生的腳本已儲存！\n
+The gradient does not fit a tunnel
+坡度不適合建造隧道
+The script cannot be saved!\n
+無法儲存腳本！\n
+Theme selector
+主題選擇器
 There are still vehicles\nstored in this depot!\n
 車廠内還有車輛！\n
 This Month
@@ -1575,12 +2365,16 @@ To attract more tourists\n%s built\na %s\nwith the aid of\n%i tax payers.
 %s 爲了吸引更多的旅客\n興建了 %s\n(在 %i 納稅人的支持下)
 To heavy traffic\nresults in traffic jam.\n
 交通過於繁忙導致交通阻塞
+To: %s
+到：%s
 Toggle day/night view
 切換日/夜視圖
 Toggle vehicle tooltips
 切換車輛工具提示
 tonnen
 噸
+Toolbar position:
+工具列位置：
 Total inhabitants:
 居民總數
 Tourist attractions
@@ -1599,6 +2393,8 @@ Tracks
 路軌
 Traffic
 交通
+traffic settings
+交通設定
 Train
 火車
 Trains are not available yet!
@@ -1619,20 +2415,30 @@ Transformer only next to factory!
 變壓站必須建造在與工廠毗連的平坦空地上
 Translation
 翻譯
+transparencies
+透明度
+transparent background
+透明背景
 transparent station coverage
 透明顯示車站覆蓋範圍
 Transported
 路程
+Trees disabled!
+樹木已停用！
 TrolleyBus_tab
 無軌電車
 Truck
 貨車
+tt_Other
+其他
 Tunnel muss an\neinfachem\nHang beginnen!\n
 隧道入口必須建造在斜坡上
 Tunnel must start on single way!
 隧道入口必須連接道路或鐵路
 Tunnelboden
 隧道
+under the Artistic License
+依據 Artistic License 授權
 underground mode
 地底模式
 UNDO failed!
@@ -1645,12 +2451,16 @@ Unhappy
 不高興
 units/day
 件/月、　
+Unloading (%i%%)!
+正在卸貨 (%i%%)！
 Update Line
 更新路綫
 upgrade HQ
 升級總部
 Usage: %.0f %%
 使用率: %.0f %%
+Usage/Output
+使用量/產出
 Use beginner mode
 正在使用新手模式
 Use timeline start year
@@ -1659,24 +2469,38 @@ Vehicle %s can't find a route!
 車輛 %s 無法找到路綫
 Vehicle %s is stucked!
 車輛 %s 被卡住了
+Vehicle count:
+車輛數量：
 Vehicle details
 車輛詳情
+Vehicle Name
+車輛名稱
+Vehicle Power
+車輛功率
+vehicles stored
+已存放車輛
 Verbrauch
 消耗量
 Vergroessere die Karte\n
 擴大地圖
+Verkauf
+立即移除！
 verkaufen
 販售模式
 Verkehrsteilnehmer
 城市車輛
 Verschuldet:\n\nDu hast %d Monate Zeit,\ndie Schulden zurueckzuzahlen.\n
 僅餘 %d 個月還清債務
+vh_title
+所有車輛列表
 via
 途經站(細節)
 via %s\n
 途經 %s\n
 via Menge
 途經站(數量)
+via owner
+經由 (擁有者)
 voranstellen
 前置
 Waggon_tab
@@ -1685,6 +2509,10 @@ waiting
 等待中
 Waiting for clearance!
 等待清理中
+Walked
+步行
+walking
+步行
 Warnings_msg
 交通狀況
 Wasser
@@ -1701,14 +2529,30 @@ way %s cannot longer used:\n%s\n
 無法再建造 %s 路
 way %s now available:\n
 現在可用%s 路了\n
+Way toll
+道路通行費
 Ways not connected
 道路未連接
+waytype
+通道類型
 Wegpunkt
 途經點
+Weight
+重量
+Weight:
+重量：
+Weight/unit
+每單位重量
+Welcome to Simutrans
+歡迎來到 Simutrans
+Welcome, %s!
+歡迎，%s！
 Wert
 價格
 west
 西
+Wind direction
+風向
 Winter snowline
 冬季雪綫
 withdraw
@@ -1717,10 +2561,18 @@ Withdraw All
 全部撤消
 WRONGSAVE
 檔案可能已損壞, 無法載入遊戲
+Year
+年份
 Year %i has started.
 %i 年己開始
+YEAR_SYMBOL
+年
 Years
 年
+Your primary color:
+您的主要顏色：
+Your secondary color:
+您的次要顏色：
 Zielort
 目的地
 zooming in
@@ -1745,6 +2597,38 @@ New world record for railways: %.1f km/h by %s.
 %2$s 创造了新鐵路世界紀錄: %1$.1f km/h
 New world record for ship: %.1f km/h by %s.
 %2$s 創造了船運新世界紀錄:\n%1$.1f km/h
+#________________________________script_ai_text_________________________________
+#________________________________script_ai_text_________________________________
+%s build additional convoy to line: %s
+%s 為路線建造額外運輸工具：%s
+%s build rail line from %s (%s) to %s (%s)
+%s 建造了從 %s (%s) 到 %s (%s) 的鐵路線
+%s build road line from %s (%s) to %s (%s)
+%s 建造了從 %s (%s) 到 %s (%s) 的道路線
+%s build ship line from %s (%s) to %s (%s)
+%s 建造了從 %s (%s) 到 %s (%s) 的航運路線
+%s extends the route from %s (%s) to %s (%s)
+%s 將路線從 %s (%s) 延伸至 %s (%s)
+%s optimize way line from %s (%s) to %s (%s)
+%s 優化了從 %s (%s) 到 %s (%s) 的路線
+%s removes convoys from line: %s
+%s 從路線移除運輸工具：%s
+vehicles of the line %s were retired
+路線 %s 的車輛已退役
+#_________________________________tooltip_text__________________________________
+#_________________________________tooltip_text__________________________________
+Add convois with similar schedule to this line.
+將具有相似時刻表的運輸工具加入此路線。
+Attach current coordinate to the comment
+將目前座標附加到註釋
+Enter intervall in days, hours, minutes
+以天、小時、分鐘輸入間隔
+Mirrors order of stops
+反轉停靠順序
+Revert to original schedule
+還原所有時刻表變更。
+Tutorial not available for this pakset. Please try loading Pak128.
+此 pakset 不提供教學。請嘗試載入 Pak128。
 #_______________________________unnecessary_text________________________________
 #_______________________________unnecessary_text________________________________
 &0_CITY_SYLL
@@ -1878,6 +2762,8 @@ Asuburb
 Bcenter
 不存在
 Bextern
+不存在
+Bsuburb
 不存在
 Ccenter
 不存在

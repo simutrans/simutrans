@@ -1,0 +1,8 @@
+<title>Agrandar mapa</title>
+
+<h1>Agrandar mapa</h1>
+
+<p>Aquí se puede ampliar el mapa hacia la derecha y hacia abajo. Si lo que quieres es ampliarlo hacia la izquierda o hacia arriba, primero tienes que rotar el mapa, después agrandarlo y luego volver a rotarlo.
+<br>
+En la parte superior derecha de la ventana se muestra una vista previa del mapa ampliado.
+</p>

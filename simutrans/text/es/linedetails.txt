@@ -1,0 +1,47 @@
+<title>Información de la Línea</title>
+
+<h1><strong>Información de la Línea</strong></h1>
+
+<p>
+La <em>Información de la Línea</em> muestra y permite editar las propiedades de una sola línea (un grupo de <a href="convoiinfo.txt">convoyes</a> que comparten el mismo <a href="schedule.txt">itinerario</a>). Se abre desde el <em>Depósito</em>, desde la <em>Información del Convoy</em> o desde la <em>Lista de Líneas</em>.</p>
+<p>Arriba está el nombre de la línea; pulsa en la casilla para cambiarlo. Debajo se muestran el número de <a href="convoiinfo.txt">convoyes</a>, la capacidad utilizada y el beneficio. Más abajo hay cuatro pestañas.</p>
+<p>
+<strong>Itinerario</strong> es la pestaña de la izquierda. Aquí se puede modificar el <a href="schedule.txt">itinerario</a> de todos los <a href="convoiinfo.txt">convoyes</a> de la línea. Su itinerario se sustituirá por el nuevo en cuanto cambies de pestaña o cierres la <em>Información de la Línea</em>. Esta pestaña se selecciona automáticamente si la ventana se abrió desde el <em>Depósito</em> o desde la <em>Información del Convoy</em>.</p>
+<p>
+<strong>Gráfica</strong> muestra en un gráfico distintos datos sobre la línea y sobre los vehículos asignados a ella (el eje X es el tiempo, en meses):</p>
+<p>
+- <em>Capacidad Libre</em>: espacio que queda libre en los vehículos para mercancías y pasajeros.<br>
+- <em>Transportado</em>: cantidad de mercancías y pasajeros que han usado la línea.<br>
+- <em>Ingresos</em>: dinero generado por los vehículos.<br>
+- <em>Costes de explotación</em>: gasto que generan los vehículos mientras circulan.<br>
+- <a href="finances.txt"><em>Beneficio</em></a>: ingresos menos gastos (los ingresos menos los costes de explotación).<br>
+- <a href="convoiinfo.txt"><em>Convoyes</em></a>: número de convoyes asignados a la línea.<br>
+</p>
+<p>
+<strong>Lista de Vehículos</strong>
+muestra todos los <a href="convoiinfo.txt">convoyes</a> asignados a esta línea. Si falta alguno, es probable que se le asignara un itinerario nuevo a mano y por eso saliera de la línea.</p>
+<p>
+Hay tres botones de gestión:<br/>
+- <em>Eliminar línea</em> borra la línea y cierra esta ventana. Todos los convoyes que estaban asignados seguirán con el itinerario actual.<br/>
+- <em>Retirar todo</em> retira todos los convoyes de la línea que estén fuera de un depósito. Esos convoyes dejarán de recoger carga nueva y se venderán en cuanto se queden vacíos. Sirve para renovar los convoyes de la línea: abre un <a href="depot.txt">depósito</a> por el que pase esta línea, monta un convoy nuevo y asígnalo a la línea. Después pulsa <em>Retirar todo</em>, copia el convoy nuevo en el depósito tantas veces como haga falta y ponlos todos en marcha.</p>
+<p>
+Debajo de los botones se listan los convoyes de la línea. Pulsa sobre uno para ver más información sobre él (usa la barra deslizante para recorrer la lista).<br>
+De cada convoy se muestra:<br>
+<em>nombre</em> que tenga asignado (por defecto es el del primer vehículo <a href="depot.txt">comprado</a> o montado para ese convoy).<br>
+<em>ingresos</em>: el beneficio (lo ingresado menos los costes de explotación).<br>
+<em>Línea:</em> el nombre de la línea asignada al convoy, e indica si está en un <a href="depot.txt">depósito</a>.<br>
+<em>gráficos</em>: la composición del convoy y cuánta carga lleva en ese momento.
+</p>
+<p>
+<strong>Lista de Estaciones</strong>
+muestra las <a href="station.txt">paradas</a>. Pulsa sobre una parada para abrir su información.<br>
+De cada parada se muestra:<br>
+<em>nombre</em> de la parada (los puntos de ruta no aparecen). El color indica cómo está funcionando la <a href="station.txt">parada</a> en cuanto a saturación. Es el mismo color que se usa en la <a href="haltlist.txt">Lista de Estaciones</a> y en la información de la parada, y el mismo de la barra de color que aparece sobre la parada en la vista de juego:<br>
+- <em>amarillo:</em> sin servicio.<br>
+- <em>verde:</em> no necesita mejoras.<br>
+- <em>naranja:</em> se podría mejorar.<br>
+- <em>rojo:</em> conviene mejorarla.<br>
+Después del nombre van los <em>iconos de vehículo</em>, que indican qué tipos de vehículo pueden usar la parada (se usan también en la información de la parada y en la Lista de Estaciones). Los iconos son: autobús (vehículos de pasajeros por carretera), camión (vehículos de mercancías por carretera), tren, barco y avión. Los tranvías pueden aparecer con el icono de autobús o con el de tren, según el tipo de estación.<br>
+La línea siguiente contiene los <em>iconos de carga</em>, que indican qué puede manejar la parada (pasajeros, mercancías y correo; también se usan en la información de la parada y en la Lista de Estaciones), seguidos de un resumen de cuántos pasajeros o mercancías hay esperando.<br>
+CONSEJO: añadir las extensiones adecuadas cambia la categoría de lo que una parada puede manejar. Se pueden añadir <a href="special.txt">oficinas de correos</a> a una parada para que acepte correo.<br>
+</p>

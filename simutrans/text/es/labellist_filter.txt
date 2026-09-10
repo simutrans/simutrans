@@ -1,0 +1,12 @@
+<title>Lista de Marcadores</title>
+
+<h1><strong>Lista de marcadores del jugador</strong></h1>
+
+<p>
+Aquí se listan todos los marcadores que hay en el mapa.
+<br>
+La opción <em>Solo jugador activo</em> muestra únicamente los marcadores del jugador activo.
+</p>
+<p>
+Pulsando sobre una entrada puedes editar su texto.
+</p>

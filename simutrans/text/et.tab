@@ -12,11 +12,19 @@ Prop-Latin1.bdf
 #                              Language: et Eesti                              #
 #                                Encoding: UTF-8                               #
 #                             Font: Prop-Latin1.bdf                            #
-#                            Date Created: 3.04 2025                           #
+#                           Date Created: 10.09 2026                           #
 #                                                                              #
 ################################################################################
 #__________________________________button_text__________________________________
 #__________________________________button_text__________________________________
+Absolute times
+Absoluutajad
+allow reverse passage
+luba vastassuunas läbisõit
+AMBIENT_SOUND
+Ümbruse helid
+CASH_SOUND
+Kassahelid
 cl_btn_filter_disable
 blokeeritud
 cl_btn_filter_enable
@@ -41,62 +49,580 @@ clf_btn_invers
 inv.
 clf_btn_keine
 ei ole
+climate area percentage
+Ühe kliima suurus 
+Continue Game
+Jätka mängu
+CROSSING_SOUND
+Ülesõiduhoiatused
+FACTORY_SOUND
+Tehasehelid
+Find matching convois
+Leia sobivad konvoid
+gl_btn_sort_bonus
+Boonus
+gl_btn_sort_name
+Nimi
+gl_btn_sort_revenue
+Tulu
+gl_btn_unsort
+Sorteerimata
+height based
+Kliima kõrguse järgi
+hl_btn_filter_disable
+Keelatud
+hl_btn_filter_enable
+Võimaldatud
+hl_btn_filter_settings
+Seaded
+hl_btn_sort_asc
+Kasvav
+hl_btn_sort_desc
+Kahanev
+hl_btn_sort_name
+Nimi
+hl_btn_sort_type
+Tüüp
+hl_btn_sort_waiting
+Ootel
+hlf_btn_alle
+kõik
+hlf_btn_invers
+inv.
+hlf_btn_keine
+ei ole
+humidities
+niiskuspiirid
+Install
+Paigalda
+Lake
+Järv
+Lake height
+maks. järve kõrgus
+Maximize height levels
+Maksimeeri kõrgustasemed
+moisture land
+suurenemine maa kohal
+moisture water
+suurenemine vee kohal
+Networks
+Võrgud
+Num pad keys always move map
+Numbrilaua klahvid liigutavad alati kaarti
+Open Sea
+Avameri
+Owner only
+Ainult omanikule
+Queueing
+Ootetrend
+rainfall
+niiskus
+Reselect closes tools
+Uuesti valimine sulgeb tööriista
+Return to menu
+Tagasi menüüsse
+Road toll
+Teemaks
+Scenario
+Stsenaarium
+sea
+merekliima
+Shared only
+Ainult jagatud
+Single GUI
+Üksik GUI
+Sound range:
+Heli ulatus:
+Start this as a server
+Käivita see serverina
+temperature borders
+temperatuuripiirid
+temperature-humidity based
+Kliimad ilmastiku põhjal
+TOOL_SOUND
+Tööriistahelid
+TRAFFIC_SOUND
+Liiklusmüra
+Transfers
+Ümberistumised
+Tutorial
+Õpetus
 #_________________________________climates_text_________________________________
 #_________________________________climates_text_________________________________
 arctic
 arktiline kliima
+desert
+Kõrb
+mediterran
+Vahemereline
+rocky
+Alpiinne (kivine)
+temperate
+Parasvöötmeline
+tropic
+Troopiline
+tundra
+Tundra
 #__________________________________error_text___________________________________
 #__________________________________error_text___________________________________
+ Loading scenario script failed
+ Stsenaariumi skripti laadimine ebaõnnestus
+A building blocks the construction
+Hoonestus takistab ehitust
+A powerline blocks the construction
+Elektriliin takistab ehitamist
+Another way blocks the construction
+Teine tee takistab ehitamist
+Bridge blocked by way below or above.
+Sild on blokeeritud all- või ülalpool asuva tee tõttu.
+Can't buy obsolete vehicles!
+Aegunud sõidukeid ei saa osta!
+Cannot alter water
+Vett ei saa muuta
+Cannot build on a double slope!
+Kahekordsele nõlvale ei saa ehitada!
 Cannot built depot here!
 Siia ei saa depood ehitada.
+Cannot built this station/building\nin underground mode here.
+Seda jaama/hoonet ei saa\nsiia maa-aluses režiimis ehitada.
+Cannot connect to the\ncenter of a double slope!
+Ei saa ühendada\nkahekordse nõlva keskele!
 Cannot create generic line!\nSelect line type by\nusing filter tabs.
 Ei saa luua üldist liini!\nVali liini tüüp\nkasutades sakke.
+Cannot create socket
+Soklit ei õnnestunud luua
+Cannot cross the end of a runway
+Lennuraja otsa ei saa ületada
+Cannot rotate this building!
+Seda hoonet ei saa pöörata!
+Client closed connection during transfer
+Klient sulges ühenduse ülekande ajal
+Convoi handles exhausted!
+Konvoide limiit on täis!
+Convoy already deleted!
+Konvoi on juba kustutatud!
+Corrupt file
+Vigane fail
+Could not open file
+Faili ei õnnestunud avada
+Das Feld gehoert\neinem anderen Spieler\n
+See maa kuulub\nteisele mängijale!\n
+Depots cannot be built on runways!
+Depoosid ei saa ehitada lennuradadele!
+Depots must be built on flat dead-end way tiles!
+Depood tuleb ehitada tasasele tupiktee ruudule!
+Der Besitzer erlaubt das Entfernen nicht
+Omanik ei luba seda eemaldada!
+Diese Zusammenstellung kann nicht fahren!\n
+See koosseis ei saa sõita!\n
+Elevated way can only be joined in line
+Kõrgendatud teed saab ühendada ainult sirgjooneliselt
+Failed to write file
+Faili kirjutamine ebaõnnestus. (Õigused?)
+Flugzeughalt muss auf\nRunway liegen!\n
+Lennukipeatus peab\nolema rullteel.
+Forbidden by scenario
+Stsenaariumi poolt keelatud
+Hier kann dieses\nFlughafengebaeude nicht\ngebaut werden!\n
+Siia ei saa seda\nlennujaamahoonet\nehitada!\n
+Hier kann kein\nSignal aufge-\nstellt werden!\n
+Siia ei saa\nsignaale paigaldada!\n
+In order to lock the game, you have to protect the public player by password!
+Mängu lukustamiseks pead avaliku mängija parooliga kaitsma!
+Loading a new game will end the current server session!
+Uue mängu laadimine lõpetab praeguse serveriseansi!
+Lost connection\nto server!
+Ühendus serveriga\nkatkes!
+Lost synchronisation\nwith server.
+Sünkroonimine serveriga\nkatkes.
+Maglevhalt muss auf\nMaglevschiene liegen!\n
+Maglevipeatus peab asuma\nmaglevirööbastel!\n
+Monorailhalt muss auf\nMonorail liegen!\n
+Monorelsi peatused peavad\nasuma monorelsi teel!\n
+Monorails are not available yet!
+Monorelss ei ole veel saadaval.
+More than one possibility to build this dock found.
+Leiti mitu võimalust selle kai ehitamiseks.
+Narrowgaugehalt muss auf\nNarrowgauge liegen!\n
+Kitserööpmeline peatus peab\nasuma kitserööpmelisel teel!\n
+No bridges over runways!
+Lennuradade kohale ei tohi sildu ehitada!
+No curves on runways
+Lennurajad ei tohi teha pöördeid!
+No suitable crossing
+Sobiv ülesõit puudub! (maks. kiirus liiga suur?)
+No suitable way on the ground!
+Peatusi saab ehitada vaid\nsirgetele tasastele sobivatele teedele!
+No through station here!
+Jaamad peavad asuma tupikteedel või sirgetel ilma ristmiketa lõikudel.
+Not allowed to copy object.
+Seda objekti ei saa ehitada!\n(Põhjus: vale mängija või aegunud)
+Not enough bytes transferred
+Pole piisavalt baite üle kantud
+Not enough clearance.
+Kahe tee vahel peab olema vähemalt kahe taseme kõrguste vahe.
+Not enough empty space
+Pole piisavalt vaba ruumi.
+Not enough money!
+Sul pole piisavalt raha,\net seda osta!
+Not initialized
+Teeki ei saanud lähtestada.
+On narrowgauge track only!\n
+Ainult kitsarööpmelisele teele!\n
+Only public player can lock games!
+Ainult avalik mängija saab mänge lukustada!
+Only up and down movement in the underground!
+Maa all saab liikuda ainult üles ja alla!
+Out of funds
+Raha sai otsa
+Post muss neben\nHaltestelle\nliegen!\n
+Jaama laiendushoone\n(nt postkontor, ladu)\npeab asuma vabal ruudul\nolemasoleva peatuse/jaama kõrval.\n
+Protocoll error (expecting game)
+Protokolli viga (oodati mängu)
+Schiffhalt muss im\nWasser liegen!\n
+Laevapeatus peab asuma\nvees kai lähedal!\n
+Server busy
+Server on hõivatud
+Server version too new
+Serveri versioon on liiga uus
+Ship depots must be built on water!
+Laevadepood tuleb ehitada veele!
+Show all revenue messages
+Näita kõiki tuluteateid
+Show no revenue messages
+Ära näita tuluteateid
+Show only player's revenue
+Näita ainult mängija tulusid
+Slope is too steep
+Kalle on liiga järsk
+Terraforming not possible\nhere in underground view
+Maa kujundamine pole siin\nmaa-aluses vaates võimalik
+This tunnel branches. You can try Control+Click to remove.
+See tunnel hargneb. Eemaldamiseks võid proovida Ctrl+klõpsu.
+Too far away to merge stations!
+Jaamade liitmiseks liiga kaugel!
+Tunnel can only be entered at its portal
+Tunnelisse pääseb ainult selle portaali kaudu
+Unknown error
+Tundmatu viga
+Upgrade must have\na higher level
+Uuendusel peab olema\nkõrgem tase
+Vehicle %s cannot choose because stop too short!
+Sõiduk %s ei saa valida, sest peatus on liiga lühike!
+Watertable reached
+Ruutu ei saa rohkem madaldada!\nJõuti veetasemeni.
+Way does not match the slope here
+Tee ei sobi siin kaldega
+Wrong direction to enter the bridge
+Vale suund sillale sõitmiseks
+Zughalt muss auf\nSchiene liegen!\n
+Raudteepeatused peavad\nasuma raudteel.\n
+#___________________________________help_text___________________________________
+#___________________________________help_text___________________________________
+<h1>Index</h1><p>*: only english</p><p>General</p>%s<p>Usage</p>%s<p>Tools</p>%s<p>Start</p>%s<p>How to play</p>%s<p>Others:</p>%s
+<title>Abi</title><h1>Abi sisukord</h1><p><it>Simutransi kohta</it></p>%1$s<p><it>Kuidas kasutada</it></p>%2$s<p><it>Kuidas mängu alustada</it></p>%4$s<p><it>Kuidas mängida</it></p>%5$s<p><it>Tööriistad</it></p>%3$s<p><it>Muud aknad</it></p>%6$s
+<title>Keyboard Help</title>\n<h1><strong>Keyboard Help</strong></h1><p>\n
+<title>Klaviatuuri kiirklahvid</title>\n<h1><strong>Klaviatuuri abi</strong></h1>\n<p>\n<p><strong>Klaviatuuri abi</strong> avaneb määramata klahvi vajutamisel või lehelt <a href="general.txt">Üldine abi</a>.\n</p>\n<p>\nKlahvivajutused on tõstutundlikud (suurtähtede jaoks kasuta [<em>Shift</em>]).\n</p>\n<p>\nMääratud funktsioonidega klahvid on:\n</p>\n<p>\n[<em>Nooleklahvid</em>]: keri mänguvaadet noole suunas.<br>\n[<em>Backspace</em>]: sulge kõik aknad, tööriistaribad ja abitekstid.<br>\n[<em>Delete</em>], või [<em>Escape</em>]: sulge pealmine aken, tööriistariba või abitekst.<br>\n[<em>Page-Up</em>], või [<em>&gt;</em>]: suurenda mänguvaadet.<br>\n[<em>Page-Down</em>], või  [<em>&lt;</em>]: vähenda mänguvaadet.\n[<em>CTRL</em>] + tööriist: ehita sirgemaid teid (isegi üle kiiremate teede) või pööra valikujärjekord ümber päringu või kustutamise ajal.<br>\n</p>
+At least one stop is connected to the town.
+Vähemalt üks peatus on linnaga ühendatud.
+At least one tile is connected to one stop.
+Vähemalt üks ruut on ühendatud ühe peatusega.
+Color according to transport capacity left
+Värvi vastavalt järelejäänud veovõimsusele
+Color-coded terrain according to altitude.
+Värvikoodiga maastik vastavalt kõrgusele.
+Decrease water height
+Madalda veetaset
+Highlight railroad tracks
+Tõsta raudteed esile
+Highlite depots
+Tõsta depood esile
+Highlite electrical transmission lines
+Tõsta elektriliinid esile
+Highlite factories
+Tõsta tehased esile
+Highlite forests
+Tõsta metsad esile
+Highlite tourist attraction
+Tõsta turismiatraktsioon esile
+Increase water height
+Tõsta veetaset ühe taseme võrra
+Open station/stop details
+Ava jaama/peatuse üksikasjad
+Overlay city limits
+Kuva linnapiirid
+Overlay passenger destinations when a town window is open
+Kuva reisijate sihtkohad, kui linnaaken on avatud
+Overlay schedules/network
+Kuva sõiduplaanid/võrk
+Overlay town names
+Kuva linnanimed
+Please click on the map to add\nwaypoints or stops to this\nschedule.
+Palun klõpsa kaardil, et lisada\nsõiduplaani vahepunkte\nvõi peatusi.
+Remove double stops from schedule
+Eemalda sõiduplaanist topeltpeatused
+Set tile climate %s
+Määra ruudu kliimaks %s
+Show capacity and if halt is overcrowded
+Näita mahutavust ja peatuse ülekoormatust
+Show how many convoi reach a station
+Näita, mitu konvoid jaama jõuab
+Show how many people/much is waiting at halts
+Näita peatustes ootajate hulka
+Show initial passenger departure
+Näita reisijate ja posti lähtekohta
+Show level of city buildings
+Näita linnaehitiste taset
+Show mail service coverage/mail network
+Näita postivõrgu katvust
+Show passenger coverage/passenger network
+Näita reisijatevõrgu katvust
+Show speedlimit of ways
+Näita teede kiiruspiirangut
+Show the change of waiting at halts
+Näita ootajate hulga muutust peatustes
+Show the owenership of infrastructure
+Näita infrastruktuuri omandit
+Show transported freight/freight network
+Näita veetud kaupa/kaubavõrku
+Show usage of network
+Näita võrgu koormust
+Shows a listing with all industries on the map.
+Näitab nimekirja kõigist kaardil olevatest tööstustest.
+Sum of departure/arrivals at halts
+Väljumiste ja saabumiste summa peatustes
 #____________________________________ki_text____________________________________
 #____________________________________ki_text____________________________________
 %s now\noffers bus services\nbetween %s\nand attraction\n%s\nat (%i,%i).\n
 %s nüüd\npakub bussiühendust\n %s\nja\n%svahel\(%i,%i).\n
 %s now\noffers bus services\nbetween %s\nand factory\n%s\nat (%i,%i).\n
 %s nüüd\npakub bussiühendust\n %s\nja\n%svahel\(%i,%i).\n
+%s\nnow operates\n%i trucks between\n%s at (%i,%i)\nand %s at (%i,%i).
+%s\nkäitab nüüd\n%i veokit vahemikus\n%s kohas (%i,%i)\nja %s kohas (%i,%i).
+%s\nopened a new railway\nbetween %s\nat (%i,%i) and\n%s at (%i,%i).
+%s\navas uue raudtee\nvahemikus %s\nkohas (%i,%i) ja\n%s kohas (%i,%i).
+Airline service by\n%s\nnow between\n%s \nand %s.\n
+%s\nlennuliin toimib nüüd\nvahemikus %s \nja %s.\n
+Ferry service by\n%s\nnow between\n%s \nand %s.\n
+%s\nparvlaevaühendus\nnüüd vahemikus\n%s \nja %s.\n
+Travellers now\nuse %s's\nbusses between\n%s \nand %s.\n
+%s\navab uue bussiühenduse\n%s ja\n%s vahel.\n
+#___________________________________menu_text___________________________________
+#___________________________________menu_text___________________________________
+EDITTOOLS
+Kaarditööriistad
+LISTTOOLS
+Nimekirjad
+MAGLEVTOOLS
+Maglevi tööriistad
+MONORAILTOOLS
+Monorelsi tööriistad
+NARROWGAUGETOOLS
+Kitserööpmelise raudtee tööriistad
+RAILTOOLS
+Raudteetööriistad
+ROADTOOLS
+Teetööriistad
+SHIPTOOLS
+Laevatööriistad
+SLOPETOOLS
+Maastikutööriistad
+SPECIALTOOLS
+Eritööriistad
+TRAMTOOLS
+Trammitööriistad
+#_________________________________message_text__________________________________
+#_________________________________message_text__________________________________
+%s s\nheadquarter now\nat (%i,%i).
+%s on ehitanud uue peakorteri.
+Factory chain extended\nfor %s near\n%s built with\n%i factories.
+Majandus areneb:\n%s %s lähedal laiendab ahelat.\nRajati %i uut tehast.
+Net wealth less than 10%% of starting capital!
+Puhasväärtus on alla 10%% algkapitalist!
+New %s now available:\n%s\n
+Uus %s on nüüd saadaval:\n%s\n
+New factory chain\nfor %s near\n%s built with\n%i factories.
+Tööstuse kasv: uus tootmisahel\n%s jaoks koha %s lähedal,\nehitatud %i tehasega.
+New vehicle now available:\n%s\n
+\n Uus sõiduk on\n nüüd saadaval:\n\n\n -- %s --\n\n
+Now %u clients connected.
+Praegu on ühendatud %u klienti.
+overtaking
+möödasõit
+Remove vehicle from map. Use with care!
+Eemalda sõiduk kaardilt. Kasuta ettevaatlikult!
+Screenshot\ngespeichert.\n
+Kuvatõmmis\nsalvestatud.\n
+Sends the convoi to the last depot it departed from!
+Saadab konvoi viimasesse depoosse, kust see väljus!
+Server preparing game ...
+Server valmistab mängu ette ...
+Trees
+Puud
+With a big festival\n%s built\na new monument.\n%i citicens rejoiced.
+Suure pidustusega\nehitas %s\nuue monumendi.\n%i kodanikku rõõmustas.
+#___________________________________obsolete____________________________________
+#___________________________________obsolete____________________________________
+Line Filter
+Liinifilter
 #_________________________________program_text__________________________________
 #_________________________________program_text__________________________________
+(%.2f$/km %.2f$/m)
+(%.2f€/km %.2f€/k)
+(%.2f$/km)
+(%.2f€/km)
 (in depot)
 (depoos)
+[0] south-facing
+[0] lõunasuunaline
+[1] east-facing
+[1] idasuunaline
+[2] north-facing
+[2] põhjasuunaline
+[3] west-facing
+[3] läänesuunaline
+[4] southeast corner
+[4] kagunurk
+[5] northeast corner
+[5] kirdenurk
+[6] northwest corner
+[6] loenurk
+[7] southwest corner
+[7] edelanurk
+/month
+/kuus
+\nBauzeit bis
+ kuni 
+\nBauzeit von
+\nIlmub alates 
+\nCan't open heightfield file.\n
+\nKõrguskaarti ei saa avada.\n
+\ndirection:
+\nsuunad: 
+\nelektrified
+\nelektrifitseeritud\n
+\nHeightfield has wrong image type.\n
+\nKõrguskaardil on vale\npilditüüp.\n
+\nis reserved by:
+\nbroneerinud 
+\nminimum speed:
+\nminimaalne kiirus: 
+\nnot elektrified
+\nelektrifitseerimata\n
+\nRibi (masked)
+\nsuunad (maskeeritud): 
+\nRibi (unmasked)
+\nsuunad\n (maskeerimata): 
+\nSet phases:
+\nMäära faaside aeg\n  / siis \\  siis nihe
+\nsingle way
+\nÜhesuunaline tee
+\nway1 reserved by
+\ntee 1 broneerinud 
+\nway2 reserved by
+\ntee 2 broneerinud 
+\nwith sign/signal\n
+\nmärgi/signaaliga\n
 %d buildings\n
 %d ehitisi
 %d convois
 %d konvoid
 %d Einzelfahrzeuge im Depot
 %d sõidukit siin
+%d more convois
+Veel %d konvoid
+%i car(s),
+%i vagun(it),
 %i km/h (max. %ikm/h)
 %i km/h(maks. %ikm/h)
+%i years %i months old.
+%i aastat ja %i kuud vana.
+%s at (%i,%i) now public stop.
+%s on saanud avalikuks ümberistumissõlmeks.
 %s building %s %s
 %s %s %s
 %s city %d %s
 %s linn %d %s
+%s factory %s %s
+%s %s hoov
 %s has entered a depot.
 %s sisenes depoosse.
+%s has left.
+%s on lahkunud.
 %s land %d %s
 %s maa %d %s
+%s now known as %s.
+%s uus nimi on %s.
 %s wasted\nyour money with a\nnew townhall\nwhen it reached\n%i inhabitants.
 %s\nehitas\nuue raekoja\nkui jõudis\n%i elanikuni.
 %s\nis crowded.
 %s\n on ülerahvastatud
+%s\nspeed %i\nmax_speed %i\ndx:%i dy:%i
+%1$s\n\n\nmaksimaalne kiirus %3$i km/h\n\nhetkekiirus %2$i km/h.\n\n
+%s\nwas liquidated.
+%s\nlikvideeriti.
+%u Client(s)\n
+%u klient(i)\n
+%u days ago
+%u päeva tagasi
+%u hours ago
+%u tundi tagasi
+%u minutes ago
+%u minutit tagasi
+%u Player (%u locked)\n
+%u mängija (%u lukus)\n
+%u years ago
+%u aastat tagasi
+<clear schedule>
+<tühjenda sõiduplaan>
+<create new line>
+<loo uus liin>
+<h1>Error</h1><p><strong>
+<h1>Viga</h1><p><strong>
+<h1>Warning</h1><p><strong>addons for
+<h1>Hoiatus</h1><p><strong>lisad: 
+<individual schedule>
+<individuaalne sõiduplaan>
 <no line>
 <liine pole>
+<no schedule set>
+<sõiduplaani pole määratud>
+<promote to line>
+<muuda liiniks>
 1 convoi
 1 konvoi
 1 Einzelfahrzeug im Depot
 1 sõiduk siin.
+1 minute ago
+1 minut tagasi
+1 year ago
+1 aasta tagasi
+100 km/h = %i tiles/month
+100 km/h = %i ruutu/kuus
 1LIGHT_CHOOSE
 Heledus:
+1th
+.
 1WORLD_CHOOSE
 Uue mängu seaded:
+21th
+.
+22th
+.
+23th
+.
 2LIGHT_CHOOSE
 Värvid:
+2th
+.
 2WORLD_CHOOSE
 Kaart number:
+31th
+.
 3LIGHT_CHOOSE
 Kerimiskiirus:
+3th
+.
 4LIGHT_CHOOSE
 Pöördkerimine
 5LIGHT_CHOOSE
@@ -109,6 +635,8 @@ Jalakäijad linnas
 Liiklustihedus:
 8WORLD_CHOOSE
 päeva ja öö vaheldumine
+A bridge must end on a way!
+Sild peab lõppema teel!
 A bridge must start on a way!
 Sild peab\nhakkama \nteel.
 Abfrage
@@ -117,26 +645,56 @@ Abnehmer
 Tarbija
 About
 Teave
+About scenario
+Stsenaariumi teave
 Abriss
 Hävita/Eemalda
 Absenken
 Madalda maad
+Abspanntransformator
+Trafo
+Accelerate time
+Kiirenda aega
+Act. load: %u MW\n
+Tegelik koormus: %u MW\n
+Active player only
+Ainult aktiivne mängija
+Add forest
+Lisa mets
+Add random citycar
+Lisa juhuslik linnaauto
+add server
+Lisa server
 Add Stop
 Lisa peatus
 Add stops for backward travel
 Lisa peatused tagasiretkele.
+air
+lennurada/rullimistee
+Aircraft
+Lennukid
 aircraft_tab
 Veolennukid
+airplane
+lennuk
 Airport
 Lennujaam
 AIRTOOLS
 Lennujaama vahendid
 All
 Kõik
+all convoi tooltips
+kõik konvoi vihjed
+Allow city growth
+Luba linna kasv
 Allow player change
 Luba mängija vahetamist
+allowed climates:\n
+Lubatud kliimad:\n
 Alters a schedule.
 Lisa/eemalda peatus sõiduplaani/sõiduplaanist
+and arranged by
+ja korraldanud
 Angenommene Waren
 Kaubad mida läheduses olevad tööstused vajavad
 anhaengen
@@ -145,34 +703,52 @@ Anhaenger_tab
 Järelkärud
 Anheben
 Tõsta maad
+Appends stops at the end of the schedule
+Lisab peatused sõiduplaani lõppu
 Apply Line
 Rakenda liin
+Apr.
+apr.
 April
 aprill
 Arbeiter aus:
 Töötajad elavad:
+Arrivals from\n
+Saabumised liinilt\n
 Arrived
 Kohale jõudnud
 Assets
 Väärtused
 Aufloesen
 Võta koost lahti
+Aufspanntransformator
+Trafo
+Aug.
+aug.
 August
 august
 Autohalt muss auf\nStrasse liegen!\n
 Auto- või bussipeatus \npeab olema \nasetatud teele.
 Available
 Kasutatav
+Available at custom date
+Kasutatav määratud kuupäeval
 Bahndepot
 Rongidepoo
 Bankrott:\n\nDu bist bankrott.\n
 Pankrot: \n\nSa oled pankrotis!\n
+based on Simutrans 84.22.1
+põhineb Simutrans 84.22.1-l
 battery
 Aku
 Baum
 Puu
+baum builder
+Istuta puid
 Baustelle
 Ehitusala
+Bauzeit
+Ehitusaeg
 Beenden
 Välju
 Beginner mode
@@ -187,6 +763,18 @@ Blockstrecke ist\nbelegt\n
 \nRaudtee on kasutuses\nteise rongi poolt!\n
 Boden
 Maa
+Bonus Multiplier: %i%%
+Boonuse kordaja: %i%%
+Bonus Speed: %i km/h
+Boonuskiirus: %i km/h
+Bonusspeed: %i km/h
+Boonuskiirus: %i km/h
+Boost (%%)
+Võimendus (%%)
+Borderless (disabled on fullscreen)
+Ääristeta (keelatud täisekraanil)
+bridge is too high for its type!
+Sild on oma tüübi jaoks liiga kõrge!
 Bridge is too long for this type!\n
 Sild on liiga\npikk valitud\nsillatüübi jaoks.
 Bruecke
@@ -195,6 +783,8 @@ Bruecke muss an\neinfachem\nHang beginnen!\n
 Sillad peavad\nalgama sirgelt\nteelõigult!
 Brueckenboden
 sild
+Build air depot
+Ehita lennukidepoo
 build choosesignals
 Ehita signaale
 Build city market
@@ -205,8 +795,14 @@ build HQ
 Ehita peakorter
 Build land consumer
 Ehita uus elektrijaam.
+Build maglev depot
+Ehita maglev-depoo
 Build monorail depot
 Ehita monoraudtee depoo
+Build narrowgauge depot
+Ehita kitsarööpmelise depoo
+build portal only
+ehita ainult portaal
 Build powerline
 Ehita elektriliin
 Build presignals
@@ -223,6 +819,8 @@ Build tram depot
 Ehita trammidepoo
 Build truck depot
 Ehita garaa?
+Building costs estimates
+Eeldatavad ehituskulud
 Buildings
 Ei eksisteeri!
 Built artifical slopes
@@ -231,24 +829,54 @@ Built random attraction
 Ehita suvaline atraktsioon.
 Bus_tab
 Bussid
+Can be overgrown
+Võib rohtuda
+Can only move from halt to halt or waypoint to waypoint.
+Saab liigutada vaid peatusest peatusesse või teepunktist teepunkti.
 Cancel
 Tühista
+Cannot build here
+Siia ei saa ehitada
+Cannot connect to offline server!
+Võrguühenduseta serveriga ei saa ühendust!
+Capacity
+Mahutavus
+Capacity:
+Mahutavus:
+Capacity: %.0f MW
+Võimsus: %.0f MW
+Capacity: %d%s %s\n
+Mahutavus: %3d%s %s\n
 Capacity: %s\nLoad: %d (%d%%)
 Mahutavus: %s\nÂ» %d (%d%%)
 Cars are not available yet!
 Autod ei ole veel saadaval.
+cars.\nstate
+ autot\n
 Cash
 Kontobilanss
+Category
+Kategooria
+Change label style
+Muuda sildi stiili
 Change player
 Vaheta mängijat
 Chart
 Diagramm
+Chat_msg
+Vestlus
+Choose direction
+Vali suund
 Choose operation executed on clicking stored/new vehicles
 Vali tegevus vajutades uutele/olemasolevatele sõidukitele
 chooses a random map
 Valib juhusliku kaardi.
 citicens
 Linnaelanikud
+Cities can only be built on flat empty ground!
+Linnu saab ehitada ainult tasasele tühjale maale!
+City attraction
+Linna vaatamisväärsus
 City industries
 Marketid linnas
 City list
@@ -257,20 +885,34 @@ City size
 Linna suurus
 city_road
 Linnatänav
+citybuilding builder
+Ehita linnahooneid
 CityLimit
 Linna piirid
 cl_title
 Sõidukite nimekiri
 cl_txt_sort
 Sordi:
+clamp
+piira
+Cleanup schedule
+Puhasta sõiduplaan
+Clear block reservation
+Tühjenda ploki broneering
 clf_chk_aircrafts
 lennukid
 clf_chk_cars
 Bussid/veoautod
 clf_chk_indepot
 depoos
+clf_chk_maglev
+Maglevid
+clf_chk_monorail
+Monorelsid
 clf_chk_name_filter
 Filtreeri nimed:
+clf_chk_narrowgauge
+Kitsarööpmelised rongid
 clf_chk_noincome
 sissetulekut pole
 clf_chk_noline
@@ -279,6 +921,8 @@ clf_chk_noroute
 marsruuti pole
 clf_chk_noschedule
 sõiduplaani pole
+clf_chk_obsolete
+Vananenud
 clf_chk_ships
 Laevad
 clf_chk_spezial_filter
@@ -287,38 +931,1682 @@ clf_chk_stucked
 kinni
 clf_chk_trains
 Rongid
+clf_chk_trams
+Trammid
 clf_chk_type_filter
 Filtri tüübid:
 clf_chk_waren
 Filtreeri kaupu:
 clf_title
 Sõidukinimekirja filter
+Click to open the finance dialog.
+Klõpsa rahaasjade akna avamiseks.
+Climate
+Kliima
 Climate Control
 Sea kliimaolud
+Climates
+Kliimad
+closed
+suletud.
+Closes topmost line window when new line selected.
+Sulgeb pealmise liiniakna, kui valitakse uus liin.
 COLOR_CHOOSE\n
 Palun vali \ncolour tabelist:\n
+Company bankrupt
+Ettevõte on pankrotis
+company_chat
+Ettevõtte vestlus
+Company_msg
+Konkurendid
+Comparing pak files ...
+Pak-failide võrdlemine...
+Composed by
+Helilooja
+Configure AI
+Seadista tehisintellekti
+Configure AI setttings
+Seadista tehisintellekti sätteid
+Congratulation\nScenario was complete in\n%i months %i years.
+Õnnitleme!\nStsenaarium täideti\n%i kuu ja %i aastaga.
+Connect factory
+Ühenda tehas
+Connected stops
+Ühendatud peatused
+Connected with server
+Serveriga ühendatud
+connection
+ühendus
+Connections
+Ühendused
 Constructed by
 Värvis
 Constructed by %s
 Värvis %s
+construction speed
+ehituskiirus
 Construction_Btn
 Ehitus maksab
+Consumed
+Tarbitud
+contains the following doubled objects:</strong><p>
+ sisaldab järgmisi objekte rohkem kui üks kord:</strong><p/>
 convoi %d of %d
 Konvoi number %d %d-st
+convoi error tooltips
+konvoi veavihjed
+Convoi following mode
+Konvoi jälgimise režiim
 Convoi has been sent\nto the nearest depot\nof appropriate type.\n
 Sõiduk on saadetud lähimasse sobivasse depoosse.
 Convoi is sold when all wagons are empty.
 Sõiduk müüakse niipea kui see on täiesti tühi.
+convoi mouseover tooltips
+konvoi hiirekursori vihjed
+convoi passed last\nmonth %i\n
+\neelmisel kuul läbinud\nkonvoid: %i\n
+Convois
+Konvoid
+Convois: %d\nProfit: %s
+Konvoid: %d\nKasum: %s
+Convoys
+Konvoid
+Copy Convoi
+Kopeeri konvoi
+Copy the selected convoi and its schedule or line
+Kopeeri valitud konvoi ja selle sõiduplaan või liin
+Copy to clipboard
+Kopeeri lõikelauale
+Cost
+Maksumus
+cost for removal
+Lammutuskulu 
+Cost per unit
+Ühiku maksumus
+Cost: %8s (%.2f$/km %.2f$/m)\n
+Hind: %s (%.2f$/km %.2f$/kuu)\n
+Cost: %8s (%.2f$/km)\n
+Maksumus: %8s (%.2f€/km)\n
+Costs
+Kulud
+Create a new line based on this schedule
+Loo selle sõiduplaani põhjal uus liin
+curiosity builder
+Vaatamisväärsuste ehitaja
+curlist_title
+Vaatamisväärsuste nimekiri
 CURRENCY
 €
+Current game
+Praegune mäng
+Currently playing:
+Hetkel mängib:
+Customers live in:
+Kliendid elavad siin:
+Date format
+Kuupäeva vorming
+deactivated in online mode
+Pole võrgurežiimis aktiivne
+Dec.
+dets.
+Deccelerate time
+Aeglusta aega
+December
+detsember
+decrease underground view level
+vähenda maa-aluse vaate taset
+Del Stop
+Kustuta peatus
+Delete Line
+Kustuta liin
+Delete the current stop
+Kustuta praegune peatus
+Delete the selected line (if without associated convois).
+Kustuta valitud liin (kui sellel pole konvoisid).
+Delete this file.
+Kustuta see fail.
+Delivered
+Tarnitud
+Demand
+Nõudlus
+Demand: %.0f MW
+Nõudlus: %.0f MW
+Denkmal
+Mälestusmärk
+Departed
+Väljunud
+Departs at
+Väljub kell
+Departure after
+%% täituvus või ooteaeg (dd-hh-mm)
+Departure board
+Väljumiste tahvel
+Departures per month
+Väljumisi kuus
+Departures to\n
+Väljumised sihtkohta:\n
+Depot
+Depoo
+Depots
+Depood
+Der Tunnel ist nicht frei!\n
+Tunnel pole vaba!\n
+Destination
+Sihtkoht
+Destroying map ...
+Kaardi hävitamine...
+Details
+Üksikasjad
+Developed by the Simutrans Team
+Arendanud Simutransi meeskond
+Die Bruecke ist nicht frei!\n
+Sild pole vaba!\n
+diesel
+diisel
+direct_chat_to:
+Otsesõnum kasutajale:
+directmail
+Otsepost
+Direkt erreichbare Haltestellen
+Otseühendusega peatused
+disable midi
+Vaigista MIDI-muusika
+Display bars above factory to show the status
+Kuva tehase kohal olekuribasid
+Display settings
+Kuvasätted
+Distance
+Vahemaa
+distributing cities
+linnade jaotamine
+distributing factories
+tehaste jaotamine
+Do not show
+Ära näita
+Dock
+Dokk
+Dock must be built on single slope!
+Dokk tuleb ehitada ühekordsele nõlvale!
+Downloading
+Allalaadimine
+dp_title
+Depoode nimekiri
+Du hast %d Monate Zeit, deine Schulden zurueckzuzahlen
+Sul on võla tagasimaksmiseks aega %d kuud
+Durchsatz
+Läbilaskevõime
+Economy
+Majandus
+Eigenbesitz\n
+Avalik omand\n
+Ein %s\npasst hier nicht.\n
+%s\nei sobi siia.\n
+Einstellungen
+Sätted
+Einstellungen aendern
+Muuda sätteid
+electric
+elektriline
+Electricity
+Elekter
+Electricity producer\n\n
+Elektritootja\n\n
+Electrics_tab
+Elekter
+Electrify track
+Elektrifitseeri rööpad
+enlarge map
+Suurenda kaarti
+enter a value between %i and %i
+sisesta väärtus vahemikus %i kuni %i
+Enter address
+Sisesta aadress
+Enter Password
+Sisesta parool
+Error
+Viga
+Erzeuge neue Karte.\n
+Uue kaardi loomine...\n
+Es wird bereits\nein Fahrplan\neingegeben\n
+Sõiduplaani juba\nsisestatakse.\nLõpeta see enne!\n
+Extract files
+Paki failid lahti
+Fabrikanschluss
+Tehaseühendus
+Fabrikname
+Tehase nimi
+Factories
+Tehased
+factory details
+Tehase seosed
+factorybuilder
+Tehaste ehitaja
+Fahrplan
+Sõiduplaan
+Fahrtziel
+Sihtkoht: 
+Fahrzeuge koennen so nicht entfernt werden
+Sõidukeid ei saa\nsedasi eemaldada!\n
+Fahrzeuge:
+Sõidukid:
+Farbe
+Mängija värv
+Fast forward
+Kiiresti edasi
+Feb.
+Veebr.
+February
+veebruar
+Ferry_tab
+Parvlaevad
+Fertig
+Valmis
+Filename
+Failinimi:
+Files from:
+Failid asukohast:
+Finances of %s
+%s finantsid
+Finanzen
+Finantsid
+find mismatch
+Võrdle pakki
+fl_title
+Tehaste nimekiri
+Flug_tab
+Reisilennukid
+follow me
+Jälgi
+Follow the convoi on the map.
+Jälgi konvoid kaardil.
+font size
+Fondi suurus (ainult .ttf ja .otf fondid)
+For questions and support please visit:
+Küsimuste ja abi saamiseks külastage:
+Forest
+Mets
+Found new city
+Asuta uus linn
+Fracht
+Veos
+Frame time:
+Kaadriaeg:
+Free Capacity
+Vaba mahutavus
+freeplay mode
+vabamängu režiim
+Freight
+Veos
+Friction:
+praegune hõõrdetegur:
+fuel_cell
+kütuseelement
+Full load
+Oota minimaalset koormat  
+Fullscreen (changed after restart)
+Täisekraan (rakendub pärast taaskäivitust)
+Fundament
+Vundament
+Fussgaenger
+Jalakäija
+Game info
+Mängu teave
+GAME PAUSED
+Mäng pausil
+Game_msg
+Üldine
+Gear:
+Ülekanne:
+Gebaeude
+Hoone
+General
+Üldine
+generate script
+Loo taristumakro skript
+Generated
+Genereeritud
+Generation: %.0f MW
+Tootmine: %.0f MW\n
+Gewicht
+Kaal
+Gewinn
+Tulu: 
+Give the selected vehicle(s) an individual schedule
+Muuda valitud sõiduki(te) eraldi sõiduplaani või määratud liini
+gl_btn_sort_catg
+Kategooria
+gl_title
+Kaupade nimekiri
+go home
+Mine depoosse
+Goods
+Kaubad
+Goods AI
+Kauba tehisintellekt
+Goods list
+Kaupade nimekiri
+Gross Profit
+Rahavoog
+Groundobj
+Objekt
+groundobj builder
+Aseta maastikuobjekte
+Grow city
+Kasvata linna
+Growth
+Linna kasv
+GUI settings
+Kasutajaliides
+H
+peatus
+Hangar
+Angaar
+Happy
+Rahul
+Has slope graphics
+Nõlvagraafikaga
+Has Snow
+Lumega
+Haus kaufen
+Osta maja
+Helligk.
+Kuva
+Help
+Abi
+Help text not found
+Abitekst puudub.
+hide all building
+peida kõik hooned
+hide city building
+peida linnahooned
+Hide labels
+Peida sildid
+hide objects under cursor
+peida kursori all olevad objektid
+hide station names
+peida peatuste nimed
+hide transparent
+Läbipaistev peidetu asemel
+hide trees
+Peida puud
+Hier warten/lagern:
+Ootel kaubad ja reisijad:
+Higher transport fees, crossconnect all factories
+Kõrgemad veotasud, lülita Just-in-time välja.
+highlight single ways
+Näitab teede lõppu/katkestust.
+Highlite schedule
+Tõsta sõiduplaani peatused esile
+hl_title
+Peatuste nimekiri
+hl_txt_filter
+Filter:
+hl_txt_sort
+Sorteeritud:
+hlf_chk_airport
+Lennujaamad
+hlf_chk_anleger
+Sadam
+hlf_chk_bahnhof
+Raudteejaam
+hlf_chk_bushalt
+Bussipeatus
+hlf_chk_frachthof
+Kaubahoov
+hlf_chk_keine_verb
+Ühendus puudub
+hlf_chk_maglevstop
+Maglevijaam
+hlf_chk_monorailstop
+Monorailipeatus
+hlf_chk_name_filter
+Nimefilter:
+hlf_chk_narrowgaugestop
+Kitsarööpmelise jaam
+hlf_chk_overflow
+Ülerahvastatud
+hlf_chk_spezial_filter
+Erifilter:
+hlf_chk_tramstop
+Trammipeatus
+hlf_chk_type_filter
+Tüübifilter:
+hlf_chk_waren_abgabe
+Kauba väljastus:
+hlf_chk_waren_annahme
+Kauba vastuvõtt:
+hlf_title
+Peatuste nimekirja filter
+Home depot not found!\nYou need to send the\nconvoi to the depot\nmanually.
+Depood ei leitud.\nSa pead saatma\nsõiduki sinna käsitsi.
+Homeless
+Kodutud
+Horizontal stripe ownership
+Horisontaalsete triipudega omand
+hydrogene
+Vesinik
+Icon size:
+Ikooni suurus:
+Idle:
+Tegevusetu:
+ignore climates
+Eira kliimat
+In the industry legend show only currently existing factories
+Näita tööstuste legendis ainult praegu olemasolevaid tehaseid
+In Transit
+Teel
+Increase Industry density
+Suurenda tööstustihedust
+increase underground view level
+suurenda maa-aluse vaate taset
+industrial building
+Tööstushooned
+Industry overlay
+Tööstuskiht
+Infinite mouse scrolling
+Lõputu kaardi kerimine
+Infinite scrolling using mouse
+Ei pruugi puuteekraanidega töötada!
+Init map ...
+Kaardi lähtestamine...
+Input
+Sisend
+Ins Stop
+Sisesta peatus
+Insert stop before the current stop
+Sisesta peatus enne praegust peatust
+Install graphics
+Paigalda graafika
+Install paks
+Pak-komplektid laaditakse alla ja paigaldatakse.
+Insufficient funds!
+Raha ei jätku!
+Intercity road len:
+Linnadevahelise tee pikkus:
+Intro. date
+Kasutuselevõtu kpv
+Intro. date:
+Kasutuselevõtu kpv:
+invalid
+määramata.
+Invalid coordinate
+Vigane käsk
+Invert stops
+Pööra peatuste järjekord
+isometric map
+Isomeetriline vaade
+Jan.
+Jaan.
+January
+jaanuar
+join game
+Mängi võrgus
+July
+juuli
+Jump to
+Hüppa
+June
+juuni
+just now
+äsja
+Kann Spielstand\nnicht laden.\n
+Salvestatud mängu\nei saa laadida!\n
+Kann Spielstand\nnicht speichern.\n
+Sihtfaili ei saa\nkirjutamiseks\navada!\n
+keep city roads
+säilita linnatänavad
+Kein Besitzer\n
+Omanikuta\n
+keine
+ei ole
+Keine Einzelfahrzeuge im Depot
+Siin pole sõidukeid.
+Keyboard_Help\n
+Klaviatuuri abi\n
+koord
+Koordinaadid
+Kreuzung
+Ristmik
+labellist_title
+Markerite nimekiri
+Lade Relief
+Laadi kõrguskaart
+Laden
+Laadi mäng
+Land attraction
+Maapiirkonna vaatamisväärsus
+Land industries
+Tööstusahelad:
+LANG_CHOOSE\n
+Palun vali oma\neelistatud keel:\n
+LARGE_NUMBER_STRING
+M
+LARGE_NUMBER_VALUE
+1e6
+Last Month
+Eelmine kuu:
+Last used tools
+Viimati kasutatud tööriistad
+Last Year
+Eelmine aasta:
+Leaving depot!
+Väljub depoost!
+leer
+tühi
+Left button drags minimap too
+Vasak nupp lohistab ka minikaarti
+legacy (large heights)
+pärand (suured kõrgused)
+legacy (small heights)
+pärand (väikesed kõrgused)
+Legend
+Kaardi legend
+Leistung
+Võimsus
+Leistung: %d kW
+Võimsus: %d kW
+Leitung
+Elektriliin
+length: %d
+pikkus: %d
+letzen Monat: diesen Monat:
+eelmisel kuul:   sel kuul:
+Line
+Liin
+Line Management
+Liinihaldus
+line name mouseover tooltips
+liininime vihjed hiirekursori all
+linear
+lineaarne
+Lineless convoys serving this stop
+Seda peatust teenindavad liinita konvoid
+Lines serving this stop
+Seda peatust teenindavad liinid
+List of industries on the map
+Kaardil olevate tööstuste nimekiri
+LKW_tab
+Veoautod
+Load game
+Laadi mäng
+load height data from file
+Laadi kõrgusandmed failist.
+Load mode:
+Laadimisrežiim:
+Load scenario
+Laadi stsenaarium
+Load script tool
+Laadi skriptitööriist
+Load Scripted AI
+Laadi skriptitud tehisintellekt
+Load settings from
+Rakenda seaded asukohast
+loaded
+laaditud
+loaded passenger/freight
+Sorteeri reisijad/kaubad:
+Loading (%i->%i%%)!
+Laadimine (%i->%i%%)!
+Loading (%i%%) departure %s!
+Laadimine (%i%%) väljumine %s!
+Loading (%i%%)!
+Laadimine (%i%%)!
+Loading addon paks ...
+Lisapakkide laadimine...
+Loading map ...
+Kaardi laadimine...
+Loading paks ...
+Pakkide laadimine...
+Loading skins ...
+Kujunduste laadimine...
+Loading time:
+Laadimisaeg:
+Lock Control key
+Lukusta Control-klahv
+Lock game
+Keela mängija vahetamine (vajab kinnitust).
+Lokomotive_tab
+Vedurid
+m3
+m³
+maglev vehicle
+maglevisõiduk
+maglev_track
+Maglevirada
+Maglevdepot
+Maglevidepoo
+Mail Demand %d\n
+Postinõudlus %d\n
+Mail level
+Postitase
+Mailbox
+Sõnumid
+Mailbox Options
+Sõnumivalikud
+Maintenance
+Hooldus
+make stop public (or join with public stop next) costs %i per tile and level
+Tee peatus avalikuks (või liida naabruses oleva avaliku peatusega), maksab %i€ ruudu ja taseme kohta
+Make way or stop public (will join with neighbours), %i times maintainance
+Muuda tee või peatus avalikuks (ühendatakse naabritega), %i-kordne hoolduskulu
+Manual (Human)
+Käsitsi (inimene)
+Manufactured:
+Toodetud:
+Map roughness
+Kaardi ebatasasus:
+map view
+Kaart
+map zoom
+suum
+Mar.
+märts
+March
+märts
+Margin (%%)
+Marginaal
+Marker
+Aseta tähis
+Max Boost (%%)
+Maks. võimendus (%%)
+Max income:
+Maks. sissetulek:
+Max. speed
+Maks. kiirus
+Max. speed:
+Maks. kiirus:
+Max. waiting time
+Maks. ooteaeg (pp:tt:mm)
+Maximum 254 stops\nin a schedule!\n
+Sõiduplaanis saab olla\nmaksimaalselt 254 peatust!\n
+maximum length of rivers
+Jõgede maks. pikkus
+Maximum tile height difference reached.
+Kahe ruudu vaheline\nmaksimaalne kõrguste\nerinevus on käes.
+Maxspeed
+Maksimaalne kiirus
+May
+mai
+Median Citizen per town
+Mediaanelanike arv linna kohta:
+Meldung
+Sõnum
+Menge
+kogus
+merge stop
+liida peatus
+MessageOptionsText
+\nUusaasta\n\nMängijate uudised\n\nLinnauudised\n\nMarsruut puudub\n\nUued sihtkohad\n\nTeavitus\n\nUued sõidukid\n\nJaam täis\n\nProbleemid\n\nLiiklusummikud\n\nStsenaarium\n\nÜldine vestlus\n\nEttevõtte vestlus\n\nPrivaatne vestlus\n\n
+min
+min.
+minimum length of rivers
+Jõgede min. pikkus
+Minimum load
+Minimaalne koorem (%%)
+Missing pakfiles
+Objektid puuduvad!
+Modify the selected line
+Muuda valitud liini
+Monate alt
+kuud vana.
+Monorail
+Monorelss
+monorail vehicle
+monorailisõiduk
+monorail_track
+Monorailirada
+Monorailboden
+Kõrgendatud tee
+Monoraildepot
+Monorelsidepoo
+Month
+Kuu
+month wait time
+kuu ooteaeg
+Monthly departures
+Kindlad väljumisajad
+Months
+Kuud
+Monuments
+Monumendid
+Mountain height
+Mäe kõrgus:
+Move the map
+Liiguta kaarti
+Movingobj
+liikuv objekt
+Music playing disabled/not available
+Muusika keelatud/pole saadaval.
+Music volume:
+Muusika helitugevus:
+mute sound
+Vaigista heli
+Name
+Nimi
+Narrowgauge
+Kitserööpmeline
+Narrowgauge are not available yet!
+Kitserööpmelised teed pole veel saadaval.
+narrowgauge vehicle
+kitsarööpmeline sõiduk
+narrowgauge_track
+Kitsarööpmeline raudtee
+Narrowgaugedepot
+Kitserööpmelise depoo
+Net ID: %p
+Võrgu ID: %p\n
+Net Wealth
+Puhasväärtus
+Net wealth near zero
+Puhasväärtus on peaaegu null
 Neue Karte
 Uus kaart
+Neue Welt
+Loo uus mäng
+new convoi
+Uus konvoi
+New Line
+Uus liin
+New line created!\nYou can assign the line now\nby selecting it from the\nline selector above.
+Uus liin loodud!\nSaad nüüd liini määrata,\nvalides selle ülalolevast\nliinivalijast.
+New Vehicles
+Uued sõidukid
+Nickname:
+Hüüdnimi:
+no buildings hidden
+hooneid pole peidetud
+no convois
+Konvoisid pole
+No goods are loaded onto this convoi.
+Sellele konvoile ei laadita kaupa
+no goods waiting
+kaupu ei oota
+no load
+Ainult mahalaadimine
+No player
+Mängija puudub
+No Route
+Marsruut puudub
+No stop here!
+Tööriista tuleb kasutada peatuse ruutudel.
+No suitable ground!
+Sobiv maapind puudub!
+No suitable townhall available for this climate!
+Selle kliima jaoks sobiv raekoda puudub!
+No terminal station here!
+Siia ei saa lõppjaama\nehitada! Vaja on tasase\ntee/rööbastee lõputükki.
+no timeline
+kõik ajastud
+No transformer connected.
+Trafot pole ühendatud: kogu elekter läheb raisku.
+no tree
+Puid pole
+No vehicles are available for purchase.
+Ostuks pole sõidukeid saadaval.
+No. of Factories
+Tehased ja poed:
+Noch kein Fahrzeug\nmit Fahrplan\nvorhanden\n
+"Kuhu ma sõidan?"\nEnne sõidukäsu andmist pead määrama sellele konvoile sõiduplaani või liini.
+none
+ei ole
+nord
+Põhi
+nordost
+Kirre
+nordwest
+Loode
+Not allowed to make publicly owned ways!
+Avalike teede rajamine pole lubatud!
+Not allowed!\nThe convoi's schedule can\nnot be changed currently.\nTry again later!
+Sõiduki sõiduplaani\nei tohi marsruudi leidmise\najal muuta.
+Not enough fields would remain.
+Selle farmi ümber ei\njääks piisavalt põlde.
+Not online
+Pole võrgus
+Nov.
+nov
+November
+november
+now
+nüüd
+Now active as %s.\n
+Nüüd aktiivne kasutajana %s.\n
+nowhere
+mitte kuskil
+Number of rivers
+Jõgede arv
+Object
+Objekt
+Oct.
+Okt.
+Odometer: %s km
+Odomeeter: %s km
+Ok
+OK
+Oktober
+oktoober
+On loan since %i month(s)
+Laenul %i kuu(d)
+On mouseover
+Hiirega osutamisel
+on the
+väljumine kuus esmalt (pp-tt-mm)
+On this map, you are not\nallowed to change player!\n
+Sellel kaardil ei ole\nlubatud mängijat vahetada!\n
+Only city chains
+Ainult linnaketid
+Only first %d differing paks reported. There are probably more.
+Teatati ainult esimestest %d erinevast pakist. Tõenäoliselt on neid rohkem.
+Only full Unicode fonts
+Ainult täielikud Unicode-fondid
+Only land chains
+Ainult maaketid
+Only one transformer per factory!
+Ainult üks trafo tehase kohta!
+Only show goods which are currently handled by factories
+Näita ainult kaupu, mida tehased hetkel käitlevad
+open
+avatud.
+Operation
+Käituskulud
+Ops Profit
+Tegevuskasum
+Optionen
+Valikud
+Or enter a server manually:
+Või sisesta server käsitsi:
+ORDINAL_DAY_SYMBOL
+.
+Origin
+Lähtekoht
+ost
+Ida
+Output
+Väljund
+Ownership
+Omand
+Pak which may cause severe errors:
+Pak-failid, mis võivad põhjustada tõsiseid vigu:
+Pak which may cause visual errors:
+Pak-failid, mis võivad põhjustada visuaalseid vigu:
+Pak(s) different:
+Erinev(ad) pak(id):
+Pak(s) missing on client:
+Kliendil puuduv(ad) pak(id):
+Pak(s) not on server:
+Serveris puuduv(ad) pak(id):
+Pakset differences
+Pak-komplekti erinevused
+paletten
+ kasti
+Pas_tab
+Reisirongid
+Passagiere
+Reisijad
+Passagierrate
+Reisijate tase
+Passagierziele
+Reisijate sihtkohad
+Passenger AI
+Reisijate tehisintellekt
+Passenger Demand %d\n
+Reisijate nõudlus %d\n
+Passengers %d %c, %d %c, %d no route
+Reisijad %d %c, %d %c, %d marsruudita
+Passengers %d %s, %d %s, %d no route
+Reisijad %d %s, %d %s, %d marsruudita
+Password
+Parool
+Pause
+Paus
+Pax <%i>  Mail <%i>
+Reisijad <%i>  Post <%i>
+Pax level
+Reisijate tase
+PaxDest
+Sihtkohad
+Percent Electricity
+Elektritoodang (%% nõudlusest):
+personal_chat
+Eravestlused
+Pipette
+Ehita valitud objekt uuesti
+Planes are not available yet!
+Lennukid ei ole veel saadaval!
+Plant tree
+Istuta puid
+player
+Mängija
+player -1
+Inimmängija
+player 0
+avalik teenus
+player 1
+Napik 128 AS
+player 10
+mängija 10
+player 11
+Mängija 11
+player 12
+Mängija 12
+player 13
+Mängija 13
 player 2
 Trikky Transport
 player 3
 Meyer Moving Co.
+player 4
+Freight Forwarder VM
+player 5
+H-Trans Ltd
+player 6
+PSK & Co KG
+player 7
+Mängija 7
+player 8
+Mängija 8
+player 9
+Mängija 9
+Player ranking
+Mängijate edetabel
+Please choose vehicles first\n
+Palun vali esmalt sõidukid\n
+Postrate
+Postitase
+Power
+Võimsus
+Power (MW)
+Võimsus (MW)
+Power:
+Võimsus:
+Power: %4d kW\n
+Võimsus: %4d kW\n
+Powerlines
+Elektriliinid
+Price
+Hind
+Problems_msg
+Probleemid
+Produced
+Toodetud
+Produces: %.1f units/minute
+Toodab: %.1f ühikut/minutis
+Production of %s has been stopped:\n%s\n
+%s tootmine on lõpetatud:\n%s\n
+Production/Boost
+Toodang/võimendus
+Produktion
+Toodang:
+Profit
+Kasum
+promote to line
+Muuda liiniks
+public_chat
+Üldvestlus
+q1
+Kevad
+q2
+Suvi
+q3
+Sügis
+q4
+Talv
+Query server
+Päring serverile
+rail car
+raudteesõiduk
+random
+juhuslik
+Random age
+Juhuslik ajastu
+Random map
+Juhuslik kaart
+Rathaus
+Raekoda
+Rating
+Hinnang
+ratio_pax
+Reisijate suhe
+Relevant
+Asjakohane
+Reliefkarte
+Kaart
+Remove
+Eemalda
+remove airstrips
+Eemalda lennurada või rullimistee
+remove channels
+Eemalda kanalid
+remove interm. signals
+Eemalda vahesignaalid
+remove maglev tracks
+Eemalda maglev-teed
+remove monorails
+Eemalda monorelsid
+remove narrowgauge tracks
+Eemalda kitsarööpmelised teed
+remove powerlines
+Eemalda elektriliinid
+remove roads
+Eemalda teed
+remove signal
+eemalda signaal
+remove tracks
+Eemalda rööpad
+Remove wayobj %s
+Eemalda teeobjekt %s
+replace existing ways
+asenda olemasolevad teed
+replace faster wayobjs
+asenda kiiremad teeobjektid
+replace other signals
+Asenda teised signaalid
+replace stop
+Asenda peatus
+request closing
+taotle sulgemist
+residential house
+Elumajad
+Restore natural slope
+Taasta looduslik kalle
+Restwert:
+Jääkväärtus:
+Retire date
+Tootmise lõpp
+Retire. date:
+Tootmise lõpp:
+return ticket
+kopeeri tagurpidi
+Revenue
+Tulu
+Revenue/unit/100 tiles
+Tulu/ühik/100 ruutu
+Revert schedule
+Taasta sõiduplaan
+Revision:
+Revisjon:
+road
+tee
+road vehicle
+maanteesõiduk
+Roadsign
+Liiklusmärk
+Rotate Building
+Pööra hoonet
+Rotate map
+Pööra kaarti
+Rotation
+Pööramine
+Routing
+Marsruutimine
+Running cost
+Käituskulud
+sack
+ kotti
+sail
+tuul
+Save
+Salvesta mäng
+Save generated script
+Salvesta loodud skript
+Saving map ...
+Kaardi salvestamine ...
+Scenario complete: %i%%
+Stsenaarium läbitud: %i%%
+Scenario Debug
+Silumine
+Scenario Error Log
+Skriptivead
+Scenario Goal
+Stsenaariumi eesmärk
+Scenario Info
+Lühiinfo
+Scenario information
+Praeguse stsenaariumi üksikasjad
+Scenario Result
+Edenemine
+Scenario Rules
+Reeglid
+Scenario_
+Stsenaarium 
+Schedule changing!
+Sõiduplaani muutmine!
+Schienentunnel
+Ehita raudteetunnel
+Schiff_tab
+Laevad
+Schiffdepot
+Laevadepoo
+Schleppkahn_tab
+Pargased
+Screen scale:
+Ekraani skaala:
+Screenshot
+Kuvatõmmis
+Scroll threshold
+Kerimislävi
+Search:
+Otsi:
+Seasons
+Aastaajad
+Sehenswuerdigkeit
+Vaatamisväärsus
+Select a server to join:
+Vali server, millega liituda:
+Select a theme for display
+Vali kuvatav teema
+Select display font
+Vali ekraanifont
+Select one or more graphics to install (Ctrl+click):
+Vali paigaldamiseks üks või mitu graafikat (Ctrl+klõps):
+Select soundfont
+Vali soundfont
+Sell the selected vehicle(s)
+Müü valitud sõiduk(id)
+Selling of the program is forbidden.
+Programmi müümine on keelatud.
+sended
+Saadetud post
+SEP_FRACTION
+,
+SEP_THOUSAND
+,
+SEP_THOUSAND_EXPONENT
+3
+September
+september
+Served by
+Teenindab
+Served by me
+Minu teenindatud
+Server did not respond!
+Server ei vastanud!
+Serves Line:
+Teenindab liini:
+Service
+Teenindus
+set signal spacing
+Määra signaalide vahemaa
+Setting
+Sätted
+Ship
+Laev
+shops and stores
+Poed ja kontorid
+Show all
+Näita kõiki
+show all building
+Näita kõiki hooneid
+Show also vehicles no longer in production.
+Näita ka sõidukeid, mida enam ei toodeta.
+Show also vehicles that do not match for current action.
+Näita ka sõidukeid, mis ei sobi valitud tegevuseks.
+Show always
+Näita alati
+Show climates
+Näita kliimavöötmeid
+Show construction info
+Näita ehitusteavet
+Show contour
+Näita kõrgusjooni
+Show even servers with wrong version or pakset
+Näita ka vale versiooni või paksetiga servereid
+Show finances for transport type
+Näita transpordiliigi finantse
+Show future
+Näita tulevikku
+show grid
+Näita ruudustikku
+Show industry
+Tööstuste nimekiri
+Show legend
+Näita legendi
+Show map scale
+Näita kaardi mõõtkava
+Show mismatched
+Näita mittesobivaid
+Show networks
+Näita võrke
+Show obsolete
+Näita aegunuid
+Show offline
+Näita võrgust väljas
+Show only used
+Näita ainult kasutatavaid
+Show outline
+Näita piirjooni
+Show schedules
+Näita sõiduplaane
+Show servers that are offline
+Näita servereid, mis on võrgust väljas
+Show servers where game version or pakset does not match your client
+Näita servereid, kus mänguversioon või pakset ei vasta kliendile
+show station coverage
+Näita jaama leviala
+show station names
+näita jaamade nimesid
+show waiting bars
+Näita ooteribasid
+show/hide block reservations
+näita/peida plokibroneeringuid
+Show/hide estimated arrival times
+Näita/peida eeldatavad saabumisajad
+show/hide object owner
+näita/peida objekti omanikku
+Show/hide statistics
+Näita/peida statistika
+Shows buttons about networks overlay.
+Näitab võrgukatte nuppe.
+Shows buttons on network overlay.
+Näitab ühendusvõrgu katte nuppe.
+Shows buttons on special topics.
+Näitab eriteemade nuppe.
+Shows consumer/suppliers for factories
+Näitab tehaste tarbijaid ja tarnijaid
+Shows the color code for several selections.
+Näitab värvikoode erinevate valikute jaoks.
+Shows the currently selected schedule
+Näitab hetkel valitud sõiduplaani
+Shrink city
+Vähenda linna
+shuffle midis
+Sega lugusid
+Signal
+Signaal
+signal spacing
+Signaalide vahemaa
+Similar view as the main window
+Sarnane vaade peaaknaga
+Single toolbar only
+Ainult üks tööriistariba
 Size (%d MB):
 Suurus (%d MB):
+Size (area)
+Suurus (pindala)
+sliced underground mode
+Viilutatud kaardivaade
+slot empty
+tühi pesa
+Smart hide objects
+Nutikas objektide peitmine
+Sort by
+Sorteeri
+Sort by:
+Sorteeri:
+Sort waiting list by
+Sorteeri ootenimekirja:
+Sound
+Heli
+Sound settings
+Helisätted
+Sound volume:
+Helitugevus:
+Soundfonts are located in the music directory.
+Soundfont-failid asuvad muusikakaustas.
+special freight
+Erikaup
+Speed Bonus
+Kiirusboonus
+Speedbonus\nroad %i km/h, rail %i km/h\nships %i km/h, planes %i km/h.
+Kiirusboonus\ntee %i km/h, raudtee %i km/h\nlaevad %i km/h, lennukid %i km/h.
+Speedlimit
+Kiiruspiirang
+Speichern
+Salvesta
+Spieler
+Mängija
+Spieler(mz)
+Mängijad
+Spielerliste
+Mängijate nimekiri
+Spielstand wurde\ngeladen!\n
+Mänguseis on\nlaaditud!\n
+Spielstand wurde\ngespeichert!\n
+Mänguseis on\nsalvestatud!\n
+Sprache
+Keel
+Sprachen
+Keeled
+Stadtinformation
+Linnainfo
+Start
+Alusta
+Start the selected vehicle(s)
+Käivita valitud sõiduk(id)
+Starte Spiel
+Alusta mängu
+station labels
+Jaamad
+Station tiles:
+Jaama ruudud:
+Station_msg
+Jaamad
+Status
+Olek
+stay on this level
+jää sellele tasandile
+steam
+aur
+Step timeline one year
+Liigu ajajoonel üks aasta edasi
+Stopping permissions
+Peatumisload
+Stops
+Peatused
+Storage
+Ladu
+Storage capacity
+Laomaht
+straight route
+sirge marsruut
+Strassendepot
+Garaaž
+Strassentunnel
+Ehita maanteetunnel
+street car
+tramm
+sued
+Lõuna
+suedost
+Kagu
+suedwest
+Edel
+Summer snowline
+Suvine lumepiir
+Supplied: %.0f %%
+Tarnitud: %.0f %%
+Suppliers
+Tarnijad:
+Tage alt
+päeva vana.
+The following graphics are unmaintained:
+Järgmised graafikad on hooldamata:
+The generated script was saved!\n
+Loodud skript salvestati!\n
+The gradient does not fit a tunnel
+Kallak ei sobi tunneli jaoks
+The script cannot be saved!\n
+Skripti ei saa salvestada!\n
+Theme selector
+Teemavalija
+There are still vehicles\nstored in this depot!\n
+Selles depoos on\nveel sõidukeid!\n
+This Month
+Sel kuul
+This Year
+Sel aastal
+Tile not empty.
+Ruut pole tühi.
+timeline
+Järgi ajastut
+tl_title
+Linnade nimekiri
+To attract more tourists\n%s built\na %s\nwith the aid of\n%i tax payers.
+Liiklus linnas %1$s on tõusuteel:\n%3$i maksumaksja toel sai teoks\n%2$s ehitus.
+To heavy traffic\nresults in traffic jam.\n
+Liiga tihe liiklus\ntekitab liiklusummiku.\n
+To: %s
+Kuhu: %s
+Toggle day/night view
+Lülita päeva/öö vaadet
+Toggle vehicle tooltips
+Lülita sõiduki kohtspikreid
+tonnen
+t
+Toolbar position:
+Tööriistariba asukoht:
+Total inhabitants:
+Elanikke kokku:
+Tourist attractions
+Turismiatraktsioonid
+Tourists
+Vaatamisväärsused
+Town_msg
+Linnad
+Town: %s\n
+Linn: %s\n
+Towns
+Linnad
+track
+raudtee
+Tracks
+Rööpad
+Traffic
+Liiklus
+traffic settings
+Liiklus
+Train
+Rong
+Trains are not available yet!
+Rongid pole veel saadaval!
+Tram
+Tramm
+tram %i km/h, monorail %i km/h\nmaglev %i km/h, narrowgauge %i km/h.
+tramm %i km/h, monorelss %i km/h\nmaglev %i km/h, kitsarööpmeline %i km/h.
+tram_track
+trammitee
+Tramdepot
+Trammidepoo
+Trams are not available yet!
+Trammid pole veel saadaval!
+Transferring game ...
+Mängu edastamine...
+Transformer only next to factory!
+Trafo peab asuma\ntühjal tasasel maal\ntehase kõrval!
+Translation
+Tõlge
+transparencies
+Läbipaistvus
+transparent background
+läbipaistev taust
+transparent station coverage
+Läbipaistev jaama leviala
+Transported
+Veetud
+Trees disabled!
+Puud keelatud!
+TrolleyBus_tab
+Trollibussid
+Truck
+Veoauto
+tt_Other
+Muu
+Tunnel muss an\neinfachem\nHang beginnen!\n
+Tunnel peab\nalgama sirgel\nnõlval!\n
+Tunnel must start on single way!
+Tunnel peab algama üksikult teelt.
+Tunnelboden
+Tunnel
+under the Artistic License
+Artistic License'i alusel
+underground mode
+Maa-alune vaade
+UNDO failed!
+Tagasivõtmine pole enam võimalik.\nMarsruudi ehitust saab tagasi\nvõtta vaid seni, kuni teele\npole ehitatud signaale/jaamu/peatusi\nvõi midagi muud.
+Undo last ways construction
+Võta viimane teeehitus tagasi
+Unemployed
+Töötud
+Unhappy
+Rahulolematu
+units/day
+/kuus, 
+Unloading (%i%%)!
+Mahalaadimine (%i%%)!
+Update Line
+Muuda liini
+upgrade HQ
+Uuenda peakorterit
+Usage: %.0f %%
+Kasutus: %.0f %%
+Usage/Output
+Kasutus/Toodang
+Use beginner mode
+Kasuta algaja režiimi
+Use timeline start year
+Kasuta ajatelge alates aastast:
+Vehicle %s can't find a route!
+Sõiduk %s\nei leia marsruuti!
+Vehicle %s is stucked!
+Sõiduk %s on kinni jäänud!
+Vehicle count:
+Sõidukite arv:
+Vehicle details
+Sõiduki üksikasjad
+Vehicle Name
+Sõiduki nimi
+Vehicle Power
+Sõiduki võimsus
+vehicles stored
+hoiustatud sõidukid
+Verbrauch
+Tarbimine:
+Vergroessere die Karte\n
+Suurenda kaarti.\n
+Verkauf
+Eemalda kohe!
+verkaufen
+Müü
+Verkehrsteilnehmer
+Linnaautod
+Verschuldet:\n\nDu hast %d Monate Zeit,\ndie Schulden zurueckzuzahlen.\n
+Sul on võla tasumiseks\naega %d kuud.\n
+vh_title
+Kõigi sõidukite nimekiri
+via
+kaudu (detailne)
+via %s\n
+ kaudu %s\n
+via Menge
+kaudu (kogus)
+via owner
+kaudu (omanik)
+voranstellen
+Aseta ette
+Waggon_tab
+Vagunid
+waiting
+ootel
+Waiting for clearance!
+Ootab vaba teed!
+Walked
+Kõnnitud
+walking
+Kõndimine
+Warnings_msg
+Liiklus
+Wasser
+Vesi
+Water
+Kanal
+Water level
+Merepind:
+water vehicle
+veesõiduk
+way %s cannot longer used:\n
+Teetüüpi %s ei saa enam kasutada.\n
+way %s cannot longer used:\n%s\n
+teetüüpi %s ei saa enam kasutada:\n
+way %s now available:\n
+Teetüüp %s on nüüd saadaval.\n
+Way toll
+Teemaks
+Ways not connected
+Teed pole ühendatud
+waytype
+teetüüp
+Wegpunkt
+Vahepunkt
+Weight
+Kaal
+Weight:
+Kaal:
+Weight/unit
+Kaal/ühik
+Welcome to Simutrans
+Tere tulemast Simutransi
+Welcome, %s!
+Tere tulemast, %s!
+Wert
+Väärtus
+west
+Lääs
+Wind direction
+Tuule suund
+Winter snowline
+Talvine lumepiir
+withdraw
+Kõrvalda
+Withdraw All
+Kõrvalda kõik
+WRONGSAVE
+\nÜhildumatu salvestatud mäng.\nFaili ei saa laadida.\n
+Year
+Aasta
+Year %i has started.
+%i. aasta on alanud.
+Years
+Aastad
+Your primary color:
+Sinu põhivärv:
+Your secondary color:
+Sinu lisavärv:
+Zielort
+sihtkoht
+zooming in
+Suurenda
+zooming out
+Vähenda
+Zu nah am Kartenrand
+Nii lähedale kaardi\nservale ei saa\nehitada.
+#__________________________________record_text__________________________________
+#__________________________________record_text__________________________________
+New world record for maglevs: %.1f km/h by %s.
+Magnetitel hõljumas kiirusel\n%.1f km/h (%s):\nUus maailmarekord!
+New world record for monorails: %.1f km/h by %s.
+Üks rööbas kiiruse jaoks:\ntäpselt %.1f km/h\nsaavutatud sõidukiga %s\nteeb sellest uue maailmarekordi!
+New world record for motorcars: %.1f km/h by %s.
+Ainult pidurdusjäljed on jäänud\nkihutamisest kiirusel %.1f km/h\nsõidukiga %s,\net püstitada uus maailmarekord!
+New world record for narrowgauges: %.1f km/h by %s.
+Uus maailmarekord kitserööpmelistele: %.1f km/h sõidukilt %s.
+New world record for planes: %.1f km/h by %s.
+Vahemaad kahanevad taas:\n%2$s lendas %1$.1f km/h.\nUus maailmarekord!
+New world record for railways: %.1f km/h by %s.
+Rööbastel mürisedes\nkiirusel %.1f km/h.\n%s püstitab uue rongide maailmarekordi.\n
+New world record for ship: %.1f km/h by %s.
+Sinise Lindi kiirusega\n%.1f km/h sõitmise eest võitis\n%s.
+#________________________________script_ai_text_________________________________
+#________________________________script_ai_text_________________________________
+%s build additional convoy to line: %s
+%s lisas konvoi liinile: %s
+%s build rail line from %s (%s) to %s (%s)
+%s ehitas raudteeliini: %s (%s) -> %s (%s)
+%s build road line from %s (%s) to %s (%s)
+%s ehitas maanteeliini: %s (%s) -> %s (%s)
+%s build ship line from %s (%s) to %s (%s)
+%s ehitas laevaliini: %s (%s) -> %s (%s)
+%s extends the route from %s (%s) to %s (%s)
+%s pikendab liini: %s (%s) -> %s (%s)
+%s optimize way line from %s (%s) to %s (%s)
+%s optimeerib teed: %s (%s) -> %s (%s)
+%s removes convoys from line: %s
+%s eemaldab konvoid liinilt: %s
+vehicles of the line %s were retired
+liini %s sõidukid kõrvaldati kasutusest
+#_________________________________tooltip_text__________________________________
+#_________________________________tooltip_text__________________________________
+Add convois with similar schedule to this line.
+Lisa sellele liinile sarnase sõiduplaaniga konvoid.
+Attach current coordinate to the comment
+Lisa kommentaarile praegune koordinaat
+Enter intervall in days, hours, minutes
+Sisesta intervall päevades, tundides, minutites
+Mirrors order of stops
+Pööra peatuste järjekord ümber
+Revert to original schedule
+Taasta algne sõiduplaan
+Tutorial not available for this pakset. Please try loading Pak128.
+Õpetus pole selle pakikomplekti jaoks saadaval. Palun proovi laadida Pak128.
 #_______________________________unnecessary_text________________________________
 #_______________________________unnecessary_text________________________________
 %1_CITY_SYLL
@@ -339,21 +2627,53 @@ Puju
 %s %s
 1extern
 %s haru %s
+1suburb
+%s %s %s
 2center
 %s kesk %s
 2extern
 %s välis %s
+2suburb
+%s roheala %s %s
 3center
 %s põhi %s
 3extern
 %s maa %s
+3suburb
+%s küla %s %s
 4center
 %s sise %s
 4extern
 %s välis %s
+4suburb
+%s maa %s
 5center
 %s vahetus %s
+5extern
+%s ümberistumis %s
+5suburb
+%s alev %s
 6center
 %s kesk %s
+6extern
+%s vahetus %s
+6suburb
+%s äärelinna %s %s
 7center
 %s linna %s
+7extern
+%s tasandiku %s
+7suburb
+%s pargi %s
+8center
+%s äri %s
+8extern
+%s %s ääre %s
+8suburb
+%s satelliit %s
+9center
+%s telje %s
+9extern
+%s ümbersõidu %s
+9suburb
+%s vahe %s

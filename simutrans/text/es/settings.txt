@@ -1,0 +1,13 @@
+<title>Configuración avanzada</title>
+
+<h1><strong>Configuración avanzada</strong></h1>
+
+<p>
+La <strong>Configuración avanzada</strong> permite modificar casi cualquier parámetro del motor del juego, igual que si editaras el archivo de configuración central <it>simuconf.tab</it>. Por eso todos los parámetros tienen exactamente el mismo nombre que su equivalente en <it>simuconf.tab</it>, donde además encontrarás su documentación.</p>
+
+<p>
+Si modificas una partida ya empezada, puede que tengas que guardarla y volver a cargarla para que los cambios surtan efecto. Algunos ajustes (como las conexiones entre fábricas) solo afectan a los objetos que se creen a partir de ese momento.</p>
+
+<p>
+<em>Atención:</em><br>
+Es muy fácil dejar la partida injugable o arruinarla por completo.</p>

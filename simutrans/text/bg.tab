@@ -12,33 +12,705 @@ cyr.bdf
 #                            Language: bg Bulgarian                            #
 #                                Encoding: UTF-8                               #
 #                                 Font: cyr.bdf                                #
-#                            Date Created: 2.06 2024                           #
+#                           Date Created: 10.09 2026                           #
 #                                                                              #
 ################################################################################
+#__________________________________button_text__________________________________
+#__________________________________button_text__________________________________
+Absolute times
+Показвай времето като „ден чч:мм месец“
+allow reverse passage
+Разреши преминаване в обратна посока
+AMBIENT_SOUND
+Околни звуци
+CASH_SOUND
+Звуци при плащане
+cl_btn_filter_disable
+Изключено
+cl_btn_filter_enable
+Включено
+cl_btn_filter_settings
+Настройки
+cl_btn_sort_asc
+Възходящо
+cl_btn_sort_desc
+Низходящо
+cl_btn_sort_id
+Вътрешен ID
+cl_btn_sort_income
+Доход
+cl_btn_sort_name
+Име
+cl_btn_sort_type
+Тип
+clf_btn_alle
+Всички
+clf_btn_invers
+Обратно
+clf_btn_keine
+Няма
+climate area percentage
+Процент на климатичната зона
+Continue Game
+Продължи играта
+CROSSING_SOUND
+Звуци на прелезите
+FACTORY_SOUND
+Звуци от предприятията
+Find matching convois
+Намери съвместими превозни състави
+gl_btn_sort_bonus
+Бонус
+gl_btn_sort_name
+Име
+gl_btn_sort_revenue
+Приход
+gl_btn_unsort
+Без сортиране
+height based
+Климат според височината
+hl_btn_filter_disable
+Изключено
+hl_btn_filter_enable
+Включено
+hl_btn_filter_settings
+Настройки
+hl_btn_sort_asc
+Възходящо
+hl_btn_sort_desc
+Низходящо
+hl_btn_sort_name
+Име
+hl_btn_sort_type
+Тип
+hl_btn_sort_waiting
+Чакащи
+hlf_btn_alle
+Всички
+hlf_btn_invers
+Обратно
+hlf_btn_keine
+Няма
+humidities
+Граници на влажността
+Install
+Инсталиране
+Lake
+Езера
+Lake height
+Макс. височина на езерата
+Maximize height levels
+Максимални нива на височина
+moisture land
+Увеличение на влажността над суша
+moisture water
+Увеличение на влажността над вода
+Networks
+Мрежи
+Num pad keys always move map
+Цифровата клавиатура винаги мести картата
+Open Sea
+Открито море
+Owner only
+Само собственикът
+Queueing
+Опашки
+rainfall
+Валежи
+Reselect closes tools
+Повторният избор затваря инструментите
+Return to menu
+Връщане в менюто
+Road toll
+Пътна такса
+Scenario
+Сценарий
+sea
+Морски климат
+Shared only
+Само споделените
+Single GUI
+Единен интерфейс
+Sound range:
+Обхват на звука:
+Start this as a server
+Стартирай тази игра като сървър
+temperature borders
+Температурни граници
+temperature-humidity based
+Климат според температура и влажност
+TOOL_SOUND
+Звуци на инструментите
+TRAFFIC_SOUND
+Звуци от трафика
+Transfers
+Прехвърляния
+Tutorial
+Обучение
 #_________________________________climates_text_________________________________
 #_________________________________climates_text_________________________________
 arctic
 Арктически климат
 desert
 Пустиня
+mediterran
+Средиземноморски
+rocky
+Скалист
 temperate
 Умерен
+tropic
+Тропически
+tundra
+Тундра
 #__________________________________error_text___________________________________
 #__________________________________error_text___________________________________
+ Loading scenario script failed
+Неуспешно зареждане на скрипта на сценария
+A building blocks the construction
+Сграда пречи на строителството
+A powerline blocks the construction
+Електропровод пречи на строителството
+Another way blocks the construction
+Друг път пречи на строителството
+Bridge blocked by way below or above.
+Мостът е блокиран от път отдолу или отгоре.
+Can't buy obsolete vehicles!
+Не могат да се купуват остарели превозни средства!
+Cannot alter water
+Водата не може да се променя
+Cannot build on a double slope!
+Не може да се строи върху двоен склон!
 Cannot built depot here!
 Тук не можеш да депо(гараж)
+Cannot built this station/building\nin underground mode here.
+Тази станция/сграда не може да бъде построена\nтук в подземен режим.
+Cannot connect to the\ncenter of a double slope!
+Мост не може да се свърже в средата на двоен наклон!\nИзползвайте инструмент за оформяне на терена, за да поправите това.
+Cannot create generic line!\nSelect line type by\nusing filter tabs.
+Не може да се създаде обща линия!\nИзберете тип линия чрез\nразделите за филтриране.
+Cannot create socket
+Не може да се създаде мрежов сокет
+Cannot cross the end of a runway
+Краят на пистата не може да се пресича
+Cannot rotate this building!
+Тази сграда не може да се завърти!
+Client closed connection during transfer
+Клиентът затвори връзката по време на прехвърлянето
+Convoi handles exhausted!
+Достигнат е максималният брой превозни състави!
+Convoy already deleted!
+Превозният състав вече е изтрит!
+Corrupt file
+Повреден файл
+Could not open file
+Файлът не може да бъде отворен
+Das Feld gehoert\neinem anderen Spieler\n
+Този участък\nпринадлежи на\nдруг играч!\n
+Depots cannot be built on runways!
+Депа не могат да се строят върху писти!
+Depots must be built on flat dead-end way tiles!
+Депата трябва да се строят върху равни крайни клетки на път!
+Der Besitzer erlaubt das Entfernen nicht
+Собственикът не разрешава премахването
+Diese Zusammenstellung kann nicht fahren!\n
+Тази композиция\nне може да се движи!\n
+Elevated way can only be joined in line
+Естакада може да се свърже само по права линия
+Failed to write file
+Неуспешен запис на файла
+Flugzeughalt muss auf\nRunway liegen!\n
+Самолетната спирка\nтрябва да бъде върху\nписта!\n
+Forbidden by scenario
+Забранено от сценария
+Hier kann dieses\nFlughafengebaeude nicht\ngebaut werden!\n
+Тази летищна\nсграда не може да бъде\nпостроена тук!\n
+Hier kann kein\nSignal aufge-\nstellt werden!\n
+Тук не може да бъде\nпоставен сигнал!\n
+In order to lock the game, you have to protect the public player by password!
+За да заключите играта, трябва да защитите обществения играч с парола!
+Loading a new game will end the current server session!
+Зареждането на нова игра ще прекрати текущата сървърна сесия!
+Lost connection\nto server!
+Връзката със\nсървъра е прекъсната!
+Lost synchronisation\nwith server.
+Синхронизацията\nсъс сървъра е загубена.
+Maglevhalt muss auf\nMaglevschiene liegen!\n
+Спирката за маглев\nтрябва да бъде върху\nмаглев път!\n
+Monorailhalt muss auf\nMonorail liegen!\n
+Монорелсовата спирка\nтрябва да бъде върху\nмонорелсов път!\n
+Monorails are not available yet!
+Монорелсите все още не са достъпни!
+More than one possibility to build this dock found.
+Намерени са няколко възможности за построяване на този кей.
+Narrowgaugehalt muss auf\nNarrowgauge liegen!\n
+Теснолинейната спирка\nтрябва да бъде върху\nтеснолинеен път!\n
+No bridges over runways!
+Не се допускат мостове над писти!
+No curves on runways
+На пистите не са позволени завои
+No suitable crossing
+Няма подходящо пресичане
+No suitable way on the ground!
+Няма подходящ път на терена!
+No through station here!
+Тук не може да има проходна станция!
+Not allowed to copy object.
+Копирането на този обект не е разрешено.
+Not enough bytes transferred
+Прехвърлени са недостатъчно байтове
+Not enough clearance.
+Няма достатъчно свободно пространство.
+Not enough empty space
+Няма достатъчно свободно място
 Not enough money!
 Недостатъчно средства(пари)
+Not initialized
+Не е инициализирано
+On narrowgauge track only!\n
+Само върху теснолинеен път!\n
+Only public player can lock games!
+Само общественият играч може да заключва игри!
+Only up and down movement in the underground!
+В подземен режим теренът може само да се повдига или снижава!
+Out of funds
+Недостатъчно средства
+Post muss neben\nHaltestelle\nliegen!\n
+Станционната сграда\nтрябва да бъде\nдо спирка!\n
+Protocoll error (expecting game)
+Грешка в протокола (очаква се игра)
+Schiffhalt muss im\nWasser liegen!\n
+Корабната спирка\nтрябва да бъде\nвъв водата!\n
+Server busy
+Сървърът е зает
+Server version too new
+Версията на сървъра е твърде нова
+Ship depots must be built on water!
+Корабните депа трябва да се строят във вода!
+Show all revenue messages
+Показвай всички съобщения за приходи
+Show no revenue messages
+Не показвай съобщения за приходи
+Show only player's revenue
+Показвай само приходите на играча
+Slope is too steep
+Наклонът е твърде стръмен
+Terraforming not possible\nhere in underground view
+Тераформирането не е възможно\nтук в подземен режим
+This tunnel branches. You can try Control+Click to remove.
+Този тунел се разклонява. Опитайте Ctrl+клик, за да го премахнете.
+Too far away to merge stations!
+Твърде далеч за обединяване на станции!
+Tunnel can only be entered at its portal
+В тунел може да се влезе само през неговия портал
+Unknown error
+Неизвестна грешка
+Upgrade must have\na higher level
+Надстройката трябва да е\nот по-високо ниво
+Vehicle %s cannot choose because stop too short!
+Превозното средство %s не може да избере път, защото спирката е твърде къса!
+Watertable reached
+Достигнато е нивото на подпочвените води
+Way does not match the slope here
+Пътят не съответства на наклона тук
+Wrong direction to enter the bridge
+Грешна посока за влизане в моста
+Zughalt muss auf\nSchiene liegen!\n
+Железопътната спирка\nтрябва да бъде върху\nжелезен път!\n
+#___________________________________help_text___________________________________
+#___________________________________help_text___________________________________
+<h1>Index</h1><p>*: only english</p><p>General</p>%s<p>Usage</p>%s<p>Tools</p>%s<p>Start</p>%s<p>How to play</p>%s<p>Others:</p>%s
+<title>Помощ</title><h1>Съдържание</h1><p>*: само на английски</p><p>Общи</p>%s<p>Използване</p>%s<p>Инструменти</p>%s<p>Начало</p>%s<p>Как се играе</p>%s<p>Други:</p>%s
+<title>Keyboard Help</title>\n<h1><strong>Keyboard Help</strong></h1><p>\n
+<title>Клавиатурна помощ</title>\n<h1><strong>Клавиатурна помощ</strong></h1>\n<p>\n<strong>Клавиатурната помощ</strong> показва функциите на основните клавиши.\n</p>\n<p>\nСтраницата <strong>Клавиатурна помощ</strong> се отваря при натискане на невалиден клавиш или от <a href="general.txt">Основната помощ</a>.\n</p>\n<p>\nКлавишите са чувствителни към регистъра (използвайте [<em>Shift</em>] за главни букви).\n</p>\n<p>\nКлавиши с назначени функции:\n</p>\n<p>\n[<em>Стрелки</em>]: преместват изгледа на картата по посока на стрелката.<br>\n[<em>Backspace</em>]: затваря всички прозорци, ленти с инструменти и помощни текстове.<br>\n[<em>Delete</em>] или [<em>Escape</em>]: затваря най-горния прозорец, лента с инструменти или помощен текст.<br>\n[<em>Enter</em>] или [<em>Return</em>]: потвърждава действия.<br>\n[<em>Page-Up</em>] или [<em>></em>]: увеличава мащаба.<br>\n[<em>Page-Down</em>] или [<em>знак по-малко</em>]: намалява мащаба.<br>\n[<em>F1</em>]: отваря <a href="general.txt">Помощта на Simutrans</a>.<br></p>\n<p>\n[<em>1</em>]: премества изгледа на юг.<br>\n[<em>2</em>]: премества изгледа на югоизток.<br>\n[<em>3</em>]: премества изгледа на изток.<br>\n[<em>4</em>]: премества изгледа на югозапад.<br>\n[<em>6</em>]: премества изгледа на североизток.<br>\n[<em>7</em>]: премества изгледа на запад.<br>\n[<em>8</em>]: премества изгледа на северозапад.<br>\n[<em>9</em>]: премества изгледа на север.\n</p>\n<p>\n[<em>Shift</em>] + <a href="mouse.txt">мишка</a>: показва връзките във <a href="industry_info.txt">веригата за снабдяване на предприятията</a> върху <a href="map.txt">картата</a>.<br>\n[<em>CTRL</em>] + инструмент: строи по-бавни пътища върху по-бързи или прокарва по-прави (по-директни) пътища.<br>\n</p>
+At least one stop is connected to the town.
+Поне една спирка е свързана с града.
+At least one tile is connected to one stop.
+Поне една клетка е свързана с една спирка.
+Color according to transport capacity left
+Цветът показва оставащия транспортен капацитет
+Color-coded terrain according to altitude.
+Оцветяване на терена според надморската височина.
+Decrease water height
+Намали нивото на водата
+Highlight railroad tracks
+Подчертай железопътните линии
+Highlite depots
+Подчертай депата
+Highlite electrical transmission lines
+Подчертай електропроводите
+Highlite factories
+Подчертай предприятията
+Highlite forests
+Подчертай горите
+Highlite tourist attraction
+Подчертай туристическите забележителности
+Increase water height
+Повиши нивото на водата
+Open station/stop details
+Отвори подробности за станцията/спирката
+Overlay city limits
+Покажи границите на градовете
+Overlay passenger destinations when a town window is open
+Покажи дестинациите на пътниците, когато е отворен прозорецът на град
+Overlay schedules/network
+Покажи разписанията/мрежата
+Overlay town names
+Покажи имената на градовете
+Please click on the map to add\nwaypoints or stops to this\nschedule.
+Щракнете върху картата, за да добавите\nточки или спирки към това\nразписание.
+Remove double stops from schedule
+Премахни дублираните спирки от разписанието
+Set tile climate %s
+Задай климат %s на клетката
+Show capacity and if halt is overcrowded
+Покажи капацитета и дали спирката е претоварена
+Show how many convoi reach a station
+Покажи колко превозни състава достигат станция
+Show how many people/much is waiting at halts
+Покажи колко хора/товар чакат на спирките
+Show initial passenger departure
+Покажи началната точка на пътниците
+Show level of city buildings
+Покажи нивото на градските сгради
+Show mail service coverage/mail network
+Покажи покритието на пощенските услуги/пощенската мрежа
+Show passenger coverage/passenger network
+Покажи покритието за пътници/пътническата мрежа
+Show speedlimit of ways
+Покажи ограниченията на скоростта на пътищата
+Show the change of waiting at halts
+Покажи промяната на чакането по спирките
+Show the owenership of infrastructure
+Покажи собствеността на инфраструктурата
+Show transported freight/freight network
+Покажи превозените товари/товарната мрежа
+Show usage of network
+Покажи използването на мрежата
+Shows a listing with all industries on the map.
+Показва списък на всички предприятия на картата.
+Sum of departure/arrivals at halts
+Сума на заминаванията/пристиганията по спирките
+#____________________________________ki_text____________________________________
+#____________________________________ki_text____________________________________
+%s now\noffers bus services\nbetween %s\nand attraction\n%s\nat (%i,%i).\n
+%s вече\nпредлага автобусна линия\nмежду %s\nи забележителността\n%s\nпри (%i,%i).\n
+%s now\noffers bus services\nbetween %s\nand factory\n%s\nat (%i,%i).\n
+%s вече\nпредлага автобусна линия\nмежду %s\nи предприятието\n%s\nпри (%i,%i).\n
+%s\nnow operates\n%i trucks between\n%s at (%i,%i)\nand %s at (%i,%i).
+%s\nвече обслужва\n%i камиона между\n%s при (%i,%i)\nи %s при (%i,%i).
+%s\nopened a new railway\nbetween %s\nat (%i,%i) and\n%s at (%i,%i).
+%s\nоткри нова железопътна линия\nмежду %s\nпри (%i,%i) и\n%s при (%i,%i).
+Airline service by\n%s\nnow between\n%s \nand %s.\n
+Авиолинията на\n%s\nвече свързва\n%s \nи %s.\n
+Ferry service by\n%s\nnow between\n%s \nand %s.\n
+Фериботната линия на\n%s\nвече свързва\n%s \nи %s.\n
+Travellers now\nuse %s's\nbusses between\n%s \nand %s.\n
+Пътниците вече\nизползват автобусите на %s\nмежду\n%s \nи %s.\n
+#___________________________________menu_text___________________________________
+#___________________________________menu_text___________________________________
+EDITTOOLS
+Редактор на картата
+LISTTOOLS
+Списъци
+MAGLEVTOOLS
+Маглев
+MONORAILTOOLS
+Монорелс
+NARROWGAUGETOOLS
+Теснолинейни
+RAILTOOLS
+Железопътни
+ROADTOOLS
+Пътни
+SHIPTOOLS
+Корабни
+SLOPETOOLS
+Редактор на терена
+SPECIALTOOLS
+Специални сгради
+TRAMTOOLS
+Трамвайни
+#_________________________________message_text__________________________________
+#_________________________________message_text__________________________________
+%s s\nheadquarter now\nat (%i,%i).
+%s вече има\nцентрала при (%i,%i).
+Factory chain extended\nfor %s near\n%s built with\n%i factories.
+Производствената верига\nза %s край\n%s е разширена с\n%i предприятия.
+Net wealth less than 10%% of starting capital!
+Нетното богатство е под 10%% от началния капитал!
+New %s now available:\n%s\n
+Вече е достъпен нов %s:\n%s\n
+New factory chain\nfor %s near\n%s built with\n%i factories.
+Нова производствена верига\nза %s край\n%s е изградена с\n%i предприятия.
+New vehicle now available:\n%s\n
+Вече е достъпно ново превозно средство:\n%s\n
+Now %u clients connected.
+В момента са свързани %u клиента.
+overtaking
+изпреварване
+Remove vehicle from map. Use with care!
+Премахни превозното средство от картата. Използвай внимателно!
+Screenshot\ngespeichert.\n
+Екранната снимка\nе запазена.\n
+Sends the convoi to the last depot it departed from!
+Изпраща превозния състав в последното депо, от което е тръгнал!
+Server preparing game ...
+Сървърът подготвя играта...
+Trees
+Дървета
+With a big festival\n%s built\na new monument.\n%i citicens rejoiced.
+С голям фестивал\n%s построи\nнов паметник.\n%i жители празнуваха.
+#___________________________________obsolete____________________________________
+#___________________________________obsolete____________________________________
+Line Filter
+Филтър на линиите
 #_________________________________program_text__________________________________
 #_________________________________program_text__________________________________
+(%.2f$/km %.2f$/m)
+(%.2f$/км %.2f$/мес.)
+(%.2f$/km)
+(%.2f$/км)
+(%i)-
+(%i)
+(in depot)
+(в депо)
+[0] south-facing
+[0] на юг
+[1] east-facing
+[1] на изток
+[2] north-facing
+[2] на север
+[3] west-facing
+[3] на запад
+[4] southeast corner
+[4] югоизточен ъгъл
+[5] northeast corner
+[5] североизточен ъгъл
+[6] northwest corner
+[6] северозападен ъгъл
+[7] southwest corner
+[7] югозападен ъгъл
+/month
+/месец
+\nBauzeit bis
+\nДостъпно до
+\nBauzeit von
+\nДостъпно от
+\nCan't open heightfield file.\n
+\nНе може да се отвори файлът с релефа.\n
+\ndirection:
+\nпосока:
+\nelektrified
+\nелектрифициран
+\nHeightfield has wrong image type.\n
+\nФайлът с релефа е с неподходящ тип изображение.\n
+\nis reserved by:
+\nе резервиран от:
+\nminimum speed:
+\nминимална скорост:
+\nnot elektrified
+\nне е електрифициран
+\nRibi (masked)
+\nПосоки (маскирани)
+\nRibi (unmasked)
+\nПосоки (немаскирани)
+\nSet phases:
+\nЗадай фази:
+\nsingle way
+\nеднопосочен път
+\nway1 reserved by
+\nпът 1 е резервиран от
+\nway2 reserved by
+\nпът 2 е резервиран от
+\nwith sign/signal\n
+\nсъс знак/сигнал\n
+%d buildings\n
+%d сгради\n
+%d convois
+%d превозни състава
+%d Einzelfahrzeuge im Depot
+%d отделни превозни средства в депото
+%d more convois
+още %d превозни средства
+%i car(s),
+%i автомобила,
+%i km/h (max. %ikm/h)
+%i км/ч (макс. %iкм/ч)
+%i years %i months old.
+%i години и %i месеца.
+%s at (%i,%i) now public stop.
+%s при (%i,%i) вече е обществена спирка.
+%s building %s %s
+%s сграда %s %s
+%s city %d %s
+%s град %d %s
+%s factory %s %s
+%s предприятие %s %s
+%s has entered a depot.
+%s влезе в депо.
+%s has left.
+%s напусна.
+%s land %d %s
+%s земя %d %s
+%s now known as %s.
+%s вече се нарича %s.
+%s wasted\nyour money with a\nnew townhall\nwhen it reached\n%i inhabitants.
+%s похарчи\nпарите ви за\nнова кметство,\nкогато достигна\n%i жители.
+%s\nis crowded.
+%s\nе претоварена.
+%s\nspeed %i\nmax_speed %i\ndx:%i dy:%i
+%1$s\nскорост %2$i\nмакс. скорост %3$i\ndx:%4$i dy:%5$i
+%s\nwas liquidated.
+%s\nбеше ликвидирана.
+%u Client(s)\n
+%u клиент(а)\n
+%u days ago
+преди %u дни
+%u hours ago
+преди %u часа
+%u minutes ago
+преди %u минути
+%u Player (%u locked)\n
+%u играч(и) (%u заключени)\n
+%u years ago
+преди %u години
+<clear schedule>
+<изчисти разписанието>
+<create new line>
+<създай нова линия>
+<h1>Error</h1><p><strong>
+<h1>Грешка</h1><p><strong>
+<h1>Warning</h1><p><strong>addons for
+<h1>Предупреждение</h1><p><strong>добавки за
+<individual schedule>
+<индивидуално разписание>
+<no line>
+<без линия>
+<no schedule set>
+<няма зададено разписание>
+<promote to line>
+<превърни в линия>
+1 convoi
+1 превозен състав
+1 Einzelfahrzeug im Depot
+1 отделно превозно средство в депото
+1 minute ago
+преди 1 минута
+1 year ago
+преди 1 година
+100 km/h = %i tiles/month
+100 км/ч = %i клетки/месец
+1LIGHT_CHOOSE
+Яркост:
+1th
+1-ви
+1WORLD_CHOOSE
+Настройки на новата игра:
+21th
+21-ви
+22th
+22-ри
+23th
+23-ти
+2LIGHT_CHOOSE
+Цветове:
+2th
+2-ри
+2WORLD_CHOOSE
+Номер на картата:
+31th
+31-ви
+3LIGHT_CHOOSE
+Скорост на превъртане:
+3th
+3-ти
+4LIGHT_CHOOSE
+Обратно превъртане
+5LIGHT_CHOOSE
+Пешеходци на спирките
+5WORLD_CHOOSE
+Брой градове
+6LIGHT_CHOOSE
+Пешеходци в градовете
+6WORLD_CHOOSE
+Плътност на трафика:
+8WORLD_CHOOSE
+Смяна ден/нощ
+A bridge must end on a way!
+Мостът трябва да завършва върху път!
+A bridge must start on a way!
+Мостът трябва да започва върху път!
+Abfrage
+Режим за преглед
+Abnehmer
+Потребител
+About
+За програмата
+About scenario
+За сценария
+Abriss
+Разруши/Премахни
+Absenken
+Понижи терена
+Abspanntransformator
+Понижаващ трансформатор
+Accelerate time
+Ускори времето
+Act. load: %u MW\n
+Тек. товар: %u МВт\n
+Active player only
+Само активният играч
+Add forest
+Добави гора
+Add random citycar
+Добави случаен градски автомобил
+add server
+Добави сървър
+Add Stop
+Добави спирка
+Add stops for backward travel
+Добави спирки за обратното пътуване
 air
 Въздух
+Aircraft
+Самолет
+aircraft_tab
+Товарни самолети
 airplane
 Самолет
 Airport
 Летище
+AIRTOOLS
+Въздушен транспорт
+All
+Всички
+all convoi tooltips
+Всички подсказки за превозните състави
+Allow city growth
+Разреши растежа на града
+Allow player change
+Разреши смяна на играча
+allowed climates:\n
+разрешени климати:\n
+Alters a schedule.
+Променя разписание.
+and arranged by
+и аранжирано от
+Angenommene Waren
+Приемани стоки
+anhaengen
+Прикачи
+Anhaenger_tab
+Ремаркета
+Anheben
+Повдигни терена
+Appends stops at the end of the schedule
+Добавя спирки в края на разписанието
 Apply Line
 използвай линия
+Apr.
+Апр.
 April
 Април
 Arbeiter aus:
@@ -49,30 +721,574 @@ Arrived
 Доставено
 Assets
 Автомобили стойност
+Aufloesen
+Разпусни
+Aufspanntransformator
+Повишаващ трансформатор
+Aug.
+Авг.
 August
 Август
+auto
+авто
+Autohalt muss auf\nStrasse liegen!\n
+Спирката трябва да бъде\nвърху път!\n
+Available
+Достъпно
+Available at custom date
+Достъпно на избрана дата
+Bahndepot
+Железопътно депо
+Bankrott:\n\nDu bist bankrott.\n
+Фалит:\n\nВие сте фалирали.\n
+based on Simutrans 84.22.1
+базирано на Simutrans 84.22.1
+battery
+Батерия
+Baum
+Дърво
+baum builder
+Засади дърво
+Baustelle
+Строителна площадка
+Bauzeit
+Време за строителство
+Beenden
+Изход
+Beginner mode
+Режим за начинаещи
+Besonderes Gebaeude
+Забележителност
+BF
+гара
+bio
+биогориво
+Blockstrecke ist\nbelegt\n
+Железопътният блок е\nзает\n
+Boden
+Земя
+Bonus Multiplier: %i%%
+Множител на бонуса: %i%%
+Bonus Speed: %i km/h
+Бонусна скорост: %i км/ч
+Bonusspeed: %i km/h
+Бонусна скорост: %i км/ч
 Boost (%%)
 Увеличете (%%)
+Borderless (disabled on fullscreen)
+Без рамка (изключено при цял екран)
+bridge is too high for its type!
+Мостът е твърде висок за този тип!
+Bridge is too long for this type!\n
+Мостът е твърде дълъг\nза този тип!\n
+Bruecke
+Мост
+Bruecke muss an\neinfachem\nHang beginnen!\n
+Мостът трябва\nда започва от\nединичен склон!\n
+Brueckenboden
+Мост
 Build air depot
 Построй хангар
+build choosesignals
+Построй изборни сигнали
+Build city market
+Построй градски пазар
+Build drain
+Построй понижаващ трансформатор
+build HQ
+Построй централа
+Build land consumer
+Построй сухоземен потребител
 Build maglev depot
 Построй МагЛев депо
+Build monorail depot
+Построй монорелсово депо
 Build narrowgauge depot
 Построй теснолинейно депо
+build portal only
+строеж само на портала
 Build powerline
 Построй далекопровод
+Build presignals
+Построй предсигнали
+Build road depot
+Построй пътно депо
+Build ship depot
+Построй корабно депо
+Build signals
+Построй сигнали
+Build train depot
+Построй железопътно депо
+Build tram depot
+Построй трамвайно депо
+Build truck depot
+Построй товарно депо
+Building costs estimates
+Прогнозна стойност на строителството
+Buildings
+Сгради
+Built artifical slopes
+Изграждане на изкуствени склонове
+Built random attraction
+Построй случайна забележителност
+Bus_tab
+Автобуси
+Can be overgrown
+Може да бъде обрасло
+Can only move from halt to halt or waypoint to waypoint.
+Може да се премества само от спирка до спирка или от точка до точка.
+Cancel
+Отказ
+Cannot build here
+Тук не може да се строи
+Cannot connect to offline server!
+Не може да се свържете с офлайн сървър!
+Capacity
+Капацитет
+Capacity:
+Капацитет:
+Capacity: %.0f MW
+Капацитет: %.0f МВт
+Capacity: %d%s %s\n
+Капацитет: %d%s %s\n
+Capacity: %s\nLoad: %d (%d%%)
+Капацитет: %s\nТовар: %d (%d%%)
+Cars are not available yet!
+Автомобилите все още не са достъпни!
+cars.\nstate
+автомобили\n
+Cash
+Налични средства
+Category
+Категория
+Change label style
+Промени стила на надписите
+Change player
+Смени играча
+Chart
+Графика
+Chat_msg
+Чат
+Choose direction
+Изберете посока
+Choose operation executed on clicking stored/new vehicles
+Изберете операцията при щракване върху складирани/нови превозни средства
+chooses a random map
+Избира случайна карта
+citicens
+Жители
+Cities can only be built on flat empty ground!
+Градове могат да се строят само върху равен и свободен терен!
+City attraction
+Градски забележителности
+City industries
+Градски предприятия
+City list
+Списък на градовете
+City size
+Размер
+city_road
+Градски път
+citybuilding builder
+Построй градски сгради
+CityLimit
+Граници на града
+cl_title
+Списък на превозните състави
+cl_txt_sort
+Сортиране:
+clamp
+Ограничаване
+Cleanup schedule
+Почисти разписанието
+Clear block reservation
+Изчисти резервирането на блока
+clf_chk_aircrafts
+Самолети
+clf_chk_cars
+Пътни превозни средства
+clf_chk_indepot
+в депо
+clf_chk_maglev
+Маглев
+clf_chk_monorail
+Монорелс
+clf_chk_name_filter
+Филтър по име:
+clf_chk_narrowgauge
+Теснолинейни
+clf_chk_noincome
+без доход
+clf_chk_noline
+без линия
+clf_chk_noroute
+без маршрут
+clf_chk_noschedule
+без разписание
+clf_chk_obsolete
+Остарели
+clf_chk_ships
+Кораби
+clf_chk_spezial_filter
+Специален филтър:
+clf_chk_stucked
+заседнали
+clf_chk_trains
+Влакове
+clf_chk_trams
+Трамваи
+clf_chk_type_filter
+Филтър по тип:
+clf_chk_waren
+Филтър по товар:
+clf_title
+Филтър на списъка с превозни състави
+Click to open the finance dialog.
+Щракнете, за да отворите прозореца с финансите.
+Climate
+Климат
+Climate Control
+Настройки на климата
+Climates
+Климати
+closed
+затворено
+Closes topmost line window when new line selected.
+Затваря най-горния прозорец на линия при избор на нова линия.
+COLOR_CHOOSE\n
+Моля,\nизберете цвят\nот таблицата:\n
+Company bankrupt
+Компанията е фалирала
+company_chat
+Фирмен чат
+Company_msg
+Конкуренти
+Comparing pak files ...
+Сравняване на pak файловете...
+Composed by
+Композитор
+Configure AI
+Настрой ИИ
+Configure AI setttings
+Настройки на ИИ
+Congratulation\nScenario was complete in\n%i months %i years.
+Поздравления!\nСценарият беше завършен за\n%i месеца и %i години.
+Connect factory
+Свържи фабрика
+Connected stops
+Свързани спирки
+Connected with server
+Свързан със сървъра
+connection
+връзка
+Connections
+Връзки
+Constructed by
+Създадено от
+Constructed by %s
+Създадено от %s
+construction speed
+Скорост на строителство
+Construction_Btn
+Строителство
+Consumed
+Потребено
+contains the following doubled objects:</strong><p>
+съдържа следните дублирани обекти:</strong><p>
+convoi %d of %d
+състав %d от %d
+convoi error tooltips
+Подсказки за грешки на превозните състави
+Convoi following mode
+Режим на следване на превозно средство
+Convoi has been sent\nto the nearest depot\nof appropriate type.\n
+Превозният състав е изпратен\nдо най-близкото депо\nот подходящ тип.\n
+Convoi is sold when all wagons are empty.
+Превозният състав ще бъде продаден, когато всички вагони са празни.
+convoi mouseover tooltips
+Подсказки за превозните състави при посочване
+convoi passed last\nmonth %i\n
+През миналия месец\nпреминаха %i превозни състава\n
+Convois
+Превозни състави
+Convois: %d\nProfit: %s
+Състави: %d\nПечалба: %s
+Convoys
+Превозни състави
+Copy Convoi
+Копирай състава
+Copy the selected convoi and its schedule or line
+Копирай избрания състав и неговото разписание или линия
+Copy to clipboard
+Копирай в клипборда
+Cost
+Разход
+cost for removal
+Цена за премахване
+Cost per unit
+Цена за единица
+Cost: %8s (%.2f$/km %.2f$/m)\n
+Цена: %8s (%.2f$/км %.2f$/мес.)\n
+Cost: %8s (%.2f$/km)\n
+Цена: %8s (%.2f$/км)\n
+Costs
+Разходи
+Create a new line based on this schedule
+Създай нова линия по това разписание
+curiosity builder
+Построй забележителност
+curlist_title
+Списък на забележителностите
+CURRENCY
+лв.
+CURRENCY_LEFT
+0
+Current game
+Текуща игра
+Currently playing:
+В момента звучи:
+Customers live in:
+Клиентите живеят в:
+Date format
+Формат на датата
+DAY_SYMBOL
+д
+deactivated in online mode
+неактивно в онлайн режим
+Dec.
+Дек.
+Deccelerate time
+Забави времето
+December
+Декември
+decrease underground view level
+намали нивото на подземния изглед
+Del Stop
+Изтрий спирка
+Delete Line
+Изтрий линия
+Delete the current stop
+Изтрий текущата спирка
+Delete the selected line (if without associated convois).
+Изтрий избраната линия (ако няма свързани превозни състави).
+Delete this file.
+Изтрий този файл.
+Delivered
+Доставено
+Demand
+Потребност
+Demand: %.0f MW
+Потребление: %.0f МВт
+Denkmal
+Паметник
+Departed
+Замина
+Departs at
+Заминава в
+Departure after
+Отпътуване след
+Departure board
+Табло на заминаванията
+Departures per month
+Заминавания на месец
+Departures to\n
+Заминавания към\n
+Depot
+Депо
+Depots
+Депа
+Der Tunnel ist nicht frei!\n
+Тунелът не е свободен!\n
+Destination
+Дестинация
+Destroying map ...
+Изчистване на картата...
+Details
+Подробности
+Developed by the Simutrans Team
+Разработено от екипа на Simutrans
+Die Bruecke ist nicht frei!\n
+Мостът не е свободен!\n
+diesel
+дизел
+direct_chat_to:
+личен чат с:
+directmail
+директна поща
+Direkt erreichbare Haltestellen
+Директно достижими спирки
+disable midi
+Изключи MIDI
+Display bars above factory to show the status
+Показвай индикатори над предприятията за тяхното състояние
+Display settings
+Настройки на дисплея
+Distance
+Разстояние
+distributing cities
+разпределяне на градовете
+distributing factories
+разпределяне на предприятията
+Do not show
+Не показвай
+Dock
+Кей
+Dock must be built on single slope!
+Кеят трябва да бъде построен върху единичен склон!
+Downloading
+Изтегляне
+dp_title
+Списък на депата
+Du hast %d Monate Zeit, deine Schulden zurueckzuzahlen
+Имате %d месеца да изплатите дълга си
+Durchsatz
+Пропускателност
+Economy
+Икономика
+Eigenbesitz\n
+Собственост\n
+Ein %s\npasst hier nicht.\n
+Тук няма място\nза %s.\n
+Einstellungen
+Настройки
+Einstellungen aendern
+Промени настройките
+electric
+електрически
+Electricity
+Електричество
+Electricity producer\n\n
+Производител на електроенергия\n\n
+Electrics_tab
+Електрически превозни средства
+Electrify track
+Електрифицирай пътя
+enlarge map
+Разшири картата
+enter a value between %i and %i
+Въведете стойност между %i и %i
+Enter address
+Въведете адрес
+Enter Password
+Въведете парола
+Error
+Грешка
+Erzeuge neue Karte.\n
+Създава се нова карта.\n
+Es wird bereits\nein Fahrplan\neingegeben\n
+Вече се\nвъвежда разписание\n
+Extract files
+Разархивиране на файлове
+Fabrikanschluss
+Връзка с предприятие
+Fabrikname
+Име на предприятие
+Factories
+Предприятия
+factory details
+Подробности за предприятието
+factorybuilder
+Построй предприятие
+Fahrplan
+Разписание
+Fahrtziel
+Дестинация
+Fahrzeuge koennen so nicht entfernt werden
+Превозните средства не могат да бъдат премахнати по този начин
+Fahrzeuge:
+Превозни средства:
+Farbe
+Цвят
+Fast forward
+Ускорен ход
+Feb.
+Фев.
+February
+Февруари
+Ferry_tab
+Фериботи
+Fertig
+Готово
+Filename
+Име на файл
+Files from:
+Файлове от:
+Filter:
+Филтър:
+Finances of %s
+Финанси на %s
+Finanzen
+Финанси
+find mismatch
+Намери несъответствие
+fl_title
+Списък на предприятията
+Flug_tab
+Пътнически самолети
 follow me
 следвам
+Follow the convoi on the map.
+Следвай превозния състав на картата.
+font size
+Размер на шрифта
+For questions and support please visit:
+За въпроси и поддръжка посетете:
 Forest
 Гора
 Found new city
 Основи град
+FPS:
+Кадри/сек:
+Fracht
+Товари
+Frame time:
+Време за кадър:
+Free Capacity
+Свободен капацитет
+freeplay mode
+Свободен режим
+Freight
+Товар
+Friction:
+Триене:
 fuel_cell
 Горивна клетка
 Full load
 Пълен товар
+Fullscreen (changed after restart)
+Цял екран (променя се след рестарт)
 Fundament
 Основа
+Fussgaenger
+Пешеходец
+Game info
+Информация за играта
+GAME PAUSED
+ИГРАТА Е НА ПАУЗА
+Game_msg
+Общи
+Gear:
+Предавателно число:
+Gebaeude
+Сграда
+General
+Общи
+generate script
+Генерирай скрипт
+Generated
+Генерирано
+Generation: %.0f MW
+Производство: %.0f МВт
+Gewicht
+Тегло
+Gewinn
+Печалба
+Give the selected vehicle(s) an individual schedule
+Задай индивидуално разписание на избраните превозни средства
+gl_btn_sort_catg
+по категория
+gl_title
+Списък на товарите
 go home
 в депо
 Goods
@@ -81,12 +1297,32 @@ Goods AI
 Стоки на AI
 Goods list
 Списък на стоки
+Gross Profit
+Брутна печалба
+Groundobj
+Наземен обект
+groundobj builder
+Постави наземен обект
+Grow city
+Разрасни града
 Growth
 Растеж
+GUI settings
+Настройки на интерфейса
+H
+спирка
 Hangar
 Хангар
 Happy
 Щастливи / Радостни
+Has slope graphics
+Има графики за наклон
+Has Snow
+Има снежна графика
+Haus kaufen
+Купи сграда
+Helligk.
+Яркост
 Help
 Помощ
 Help text not found
@@ -95,32 +1331,966 @@ hide all building
 Скрий всички сгради
 hide city building
 Скрий жилищните сгради
+Hide labels
+Скрий надписите
+hide objects under cursor
+Скрий обектите под курсора
 hide station names
 Скрий имената на гарите(спирките)
+hide transparent
+Прозрачност вместо скриване
 hide trees
 Скрий дърветата
+Hier warten/lagern:
+Тук чакат/се съхраняват:
+Higher transport fees, crossconnect all factories
+По-високи транспортни такси, свържи всички предприятия помежду им
+highlight single ways
+Показва края/прекъсването на транспортните пътища.
+Highlite schedule
+Подчертай разписанието
+hl_title
+Списък на спирките
+hl_txt_filter
+Филтър:
+hl_txt_sort
+Сортирай по:
+hlf_chk_airport
+Летища
+hlf_chk_anleger
+Кейове
+hlf_chk_bahnhof
+Железопътни станции
+hlf_chk_bushalt
+Автобусни спирки
+hlf_chk_frachthof
+Товарни станции
+hlf_chk_keine_verb
+без връзка
+hlf_chk_maglevstop
+Спирки за маглев
+hlf_chk_monorailstop
+Монорелсови спирки
+hlf_chk_name_filter
+Филтър по име:
+hlf_chk_narrowgaugestop
+Теснолинейни спирки
+hlf_chk_overflow
+Над капацитета
+hlf_chk_spezial_filter
+Специален филтър:
+hlf_chk_tramstop
+Трамвайни спирки
+hlf_chk_type_filter
+Филтър по тип:
+hlf_chk_waren_abgabe
+Предлага:
+hlf_chk_waren_annahme
+Приема:
+hlf_title
+Филтър на списъка със спирки
+Home depot not found!\nYou need to send the\nconvoi to the depot\nmanually.
+Началното депо не е намерено!\nТрябва ръчно да изпратите\nсъстава в депо.
 Homeless
 Бездомен
+Horizontal stripe ownership
+Собственост с хоризонтални ивици
 hydrogene
 Водород
+Icon size:
+Размер на иконите:
+Idle:
+В престой:
+ignore climates
+Игнорирай климатите
+In the industry legend show only currently existing factories
+В легендата на предприятията показвай само съществуващите предприятия
+In Transit
+В движение
+Increase Industry density
+Увеличи плътността на индустрията
+increase underground view level
+увеличи нивото на подземния изглед
 industrial building
 Индустриална сграда
+Industry overlay
+Показване на предприятията
+Infinite mouse scrolling
+Безкрайно превъртане с мишката
+Infinite scrolling using mouse
+Безкрайно превъртане с мишката
+Init map ...
+Инициализиране на картата...
+Input
+Вход
+Ins Stop
+Вмъкни спирка
+Insert stop before the current stop
+Вмъкни спирка преди текущата
+Install graphics
+Инсталиране на графични пакети
+Install paks
+Инсталиране на пакети
+Insufficient funds!
+Недостатъчно средства!
+Intercity road len:
+Дължина на междуградския път:
+Intro. date
+Дата на въвеждане
+Intro. date:
+Дата на въвеждане:
+invalid
+невалидно
 Invalid coordinate
 Невалидни кординати
+Invert stops
+Обърни реда на спирките
+isometric map
+Изометрична карта
+Jan.
+Ян.
 January
 Януари
 join game
 Присъедини се
 July
 Юли
+Jump to
+Отиди до
 June
 Юни
+just now
+току-що
+Kann Spielstand\nnicht laden.\n
+Запазената игра\nне може да се зареди.\n
+Kann Spielstand\nnicht speichern.\n
+Запазената игра\nне може да се запише.\n
+keep city roads
+запазване на градските пътища
+Kein Besitzer\n
+Без собственик\n
+keine
+няма
+Keine Einzelfahrzeuge im Depot
+Няма отделни превозни средства в депото
+Keyboard_Help\n
+Клавиатурна помощ\n
+koord
+координати
+Kreuzung
+Пресичане
+labellist_title
+Списък на етикетите
+Lade Relief
+Зареди релеф
+Laden
+Зареди
+Land attraction
+Извънградска забележителност
+Land industries
+Извънградски предприятия
+LANG_CHOOSE\n
+Моля, изберете\nезик:\n
+LARGE_NUMBER_STRING
+млн.
+LARGE_NUMBER_VALUE
+1e6
+Last Month
+Миналия месец
+Last used tools
+Последно използвани инструменти
+Last Year
+Миналата година
+Leaving depot!
+Напуска депото!
+leer
+празен
+Left button drags minimap too
+Левият бутон също мести миникартата
+legacy (large heights)
+стар режим (големи височини)
+legacy (small heights)
+стар режим (малки височини)
+Legend
+Легенда
+Leistung
+Мощност
+Leistung: %d kW
+Мощност: %d кВт
+Leitung
+Електропровод
+length: %d
+дължина: %d
+letzen Monat: diesen Monat:
+миналия месец: този месец:
+Line
+Линия
+Line Management
+Управление на линии
+line name mouseover tooltips
+Имена на линиите при посочване
+linear
+линеен
+Lineless convoys serving this stop
+Състави без линия, обслужващи тази спирка
+Lines serving this stop
+Линии, обслужващи тази спирка
+List of industries on the map
+Списък на предприятията на картата
+LKW_tab
+Камиони
+Load game
+Зареди игра
+load height data from file
+Зареди данни за релефа от файл
+Load mode:
+Режим на зареждане:
 Load scenario
 Зареди сценарий
+Load script tool
+Зареди скриптов инструмент
+Load Scripted AI
+Зареди скриптов ИИ
+Load settings from
+Зареди настройки от
+loaded
+заредено
+loaded passenger/freight
+заредени пътници/товар
+Loading (%i->%i%%)!
+Зареждане (%i->%i%%)!
+Loading (%i%%) departure %s!
+Зареждане (%i%%), отпътуване %s!
+Loading (%i%%)!
+Зареждане (%i%%)!
+Loading addon paks ...
+Зареждане на допълнителни pak файлове...
+Loading map ...
+Зареждане на карта...
+Loading paks ...
+Зареждане на pak файлове...
+Loading skins ...
+Зареждане на скинове...
+Loading time:
+Време за зареждане:
+Lock Control key
+Заключи клавиша Ctrl
+Lock game
+Заключи играта
 Lokomotive_tab
 Локомотиви
+m3
+ м³
+Maglev
+Маглев
+maglev vehicle
+маглев превозно средство
+maglev_track
+маглев път
+Maglevdepot
+Депо за маглев
+Mail Demand %d\n
+Търсене на поща %d\n
+Mail level
+Ниво на пощата
+Mailbox
+Съобщения
+Mailbox Options
+Настройки на съобщенията
+Maintenance
+Поддръжка
+make stop public (or join with public stop next) costs %i per tile and level
+Направи спирката обществена (или я свържи със съседна обществена спирка), цена %i на клетка и ниво
+Make way or stop public (will join with neighbours), %i times maintainance
+Направи пътя или спирката обществени (ще се свържат със съседните), %i пъти поддръжката
+Manual (Human)
+Ръчно (човек)
+Manufactured:
+Произведено:
+Map roughness
+Неравност на картата
+map view
+Изглед на картата
+map zoom
+Мащаб на картата
+Mar.
+Мар.
+March
+Март
+Margin (%%)
+Марж (%%)
+Marker
+Маркер
+max
+макс.
+Max Boost (%%)
+Макс. увеличение (%%)
+Max income:
+Макс. доход:
+Max. speed
+Макс. скорост
+Max. speed:
+Макс. скорост:
+Max. waiting time
+Макс. време за изчакване
+Maximum 254 stops\nin a schedule!\n
+Максимум 254 спирки\nв едно разписание!\n
+maximum length of rivers
+Максимална дължина на реките
+Maximum tile height difference reached.
+Достигната е максималната разлика във височината на клетките.
+Maxspeed
+Макс. скорост
+May
+Май
+Median Citizen per town
+Медианен брой жители на град
+Meldung
+Съобщение
+Menge
+Количество
+merge stop
+Обедини спирка
+MessageOptionsText
+\nНова година\n\nНовини за ИИ\n\nГрадски новини\n\nБез маршрут\n\nНови предприятия\n\nЧат\n\nНови превозни средства\n\nПретоварени спирки\n\nПроблеми\n\nЗадръстване\n\nСценарий
+min
+мин.
+minimum length of rivers
+Минимална дължина на реките
+Minimum load
+Минимално натоварване
+Missing pakfiles
+Липсващи pak файлове
+Modify the selected line
+Промени избраната линия
+Monate alt
+месеца
+Monorail
+Монорелс
+monorail vehicle
+монорелсово превозно средство
+monorail_track
+монорелсов път
+Monorailboden
+Монорелсово трасе
+Monoraildepot
+Монорелсово депо
+Month
+Месец
+month wait time
+месечно време за изчакване
+Monthly departures
+Отпътувания на месец
+Months
+Месеци
+Monument
+Паметник
+Monuments
+Паметници
+Mountain height
+Височина на планините
+Move the map
+Премести картата
+Movingobj
+Движещ се обект
+Music playing disabled/not available
+Възпроизвеждането на музика е изключено/недостъпно
+Music volume:
+Сила на музиката:
+mute sound
+Изключи звука
+Name
+Име
+Narrowgauge
+Теснолинейка
+Narrowgauge are not available yet!
+Теснолинейният транспорт все още не е достъпен!
+narrowgauge vehicle
+теснолинейно превозно средство
+narrowgauge_track
+теснолинеен път
+Narrowgaugedepot
+Теснолинейно депо
+Net ID: %p
+Мрежов ID: %p
+Net Wealth
+Нетно богатство
+Net wealth near zero
+Нетното богатство е близо до нула
 Neue Karte
 Нова карта
+Neue Welt
+Нов свят
+new convoi
+Нов превозен състав
+New Line
+Нова линия
+New line created!\nYou can assign the line now\nby selecting it from the\nline selector above.
+Създадена е нова линия!\nСега можете да я зададете,\nкато я изберете от\nсписъка с линии по-горе.
+New Vehicles
+Нови превозни средства
+Nickname:
+Псевдоним:
+no buildings hidden
+Няма скрити сгради
+no convois
+Няма превозни състави
+No goods are loaded onto this convoi.
+На този превозен състав не се товарят стоки.
+no goods waiting
+Няма чакащи стоки
+no load
+Без товарене
+No player
+Без играч
+No Route
+Няма маршрут
+No stop here!
+Тук няма спирка!
+No suitable ground!
+Няма подходящ терен!
+No suitable townhall available for this climate!
+Няма подходящо кметство за този климат!
+No terminal station here!
+Тук няма крайна станция!
+no timeline
+без времева линия
+No transformer connected.
+Няма свързан трансформатор.
+no tree
+без дървета
+No vehicles are available for purchase.
+Няма налични превозни средства за покупка.
+No. of Factories
+Брой предприятия
+Noch kein Fahrzeug\nmit Fahrplan\nvorhanden\n
+Няма превозно средство\nс разписание\n
+none
+няма
+nord
+север
+nordost
+североизток
+nordwest
+северозапад
+Not allowed to make publicly owned ways!
+Не е позволено да правите обществени пътища!
+Not allowed!\nThe convoi's schedule can\nnot be changed currently.\nTry again later!
+Не е позволено!\nРазписанието на състава\nне може да бъде променено сега.\nОпитайте по-късно!
+Not enough fields would remain.
+Ще останат твърде малко полета.
+Not online
+Извън мрежата
+Nov.
+Ноем.
+November
+Ноември
+now
+сега
+Now active as %s.\n
+Сега сте активни като %s.\n
+nowhere
+никъде
+Number of rivers
+Брой реки
+Object
+Обект
+Oct.
+Окт.
+Odometer: %s km
+Одометър: %s км
+Ok
+OK
+Oktober
+Октомври
+On loan since %i month(s)
+Заем от %i месец(а)
+On mouseover
+При посочване
+on the
+на
+On this map, you are not\nallowed to change player!\n
+На тази карта нямате\nправо да сменяте играча!\n
+Only city chains
+Само градски вериги
+Only first %d differing paks reported. There are probably more.
+Показани са само първите %d различаващи се pak файла. Вероятно има още.
+Only full Unicode fonts
+Само шрифтове с пълен Unicode
+Only land chains
+Само извънградски вериги
+Only one transformer per factory!
+Само един трансформатор на предприятие!
+Only show goods which are currently handled by factories
+Показвай само стоки, които в момента се обработват от предприятия
+open
+отворено
+Operation
+Експлоатация
+Ops Profit
+Оперативна печалба
+Optionen
+Настройки
+Or enter a server manually:
+Или въведете сървър ръчно:
+ORDINAL_DAY_SYMBOL
+.
+Origin
+Произход
+ost
+изток
+Output
+Изход
+Ownership
+Собственост
+Pak which may cause severe errors:
+Pak файлове, които могат да причинят сериозни грешки:
+Pak which may cause visual errors:
+Pak файлове, които могат да причинят визуални грешки:
+Pak(s) different:
+Различни pak файлове:
+Pak(s) missing on client:
+Pak файлове, липсващи при клиента:
+Pak(s) not on server:
+Pak файлове, които липсват на сървъра:
+Pakset differences
+Разлики в pakset-а
+paletten
+ палети
+Pas_tab
+Пътнически влакове
+Passagiere
+Пътници
+Passagierrate
+Ниво на пътниците
+Passagierziele
+Дестинации на пътниците
+Passenger AI
+ИИ за пътници
+Passenger Demand %d\n
+Търсене на пътници %d\n
+Passengers %d %c, %d %c, %d no route
+Пътници %d %c, %d %c, %d без маршрут
+Passengers %d %s, %d %s, %d no route
+Пътници %d %s, %d %s, %d без маршрут
+Password
+Парола
+Pause
+Пауза
+Pax <%i>  Mail <%i>
+Пътници <%i>  Поща <%i>
+Pax level
+Ниво на пътниците
+PaxDest
+Дестинации на пътниците
+Percent Electricity
+Процент електричество
+personal_chat
+Лични чатове
+Pipette
+Пипета
+Planes are not available yet!
+Самолетите все още не са достъпни!
+Plant tree
+Засади дърво
+player
+играч
+player -1
+Играч -1
+player 0
+Обществен играч
+player 1
+Играч 1
+player 10
+Играч 10
+player 11
+Играч 11
+player 12
+Играч 12
+player 13
+Играч 13
+player 2
+Играч 2
+player 3
+Играч 3
+player 4
+Играч 4
+player 5
+Играч 5
+player 6
+Играч 6
+player 7
+Играч 7
+player 8
+Играч 8
+player 9
+Играч 9
+Player ranking
+Класация на играчите
+Please choose vehicles first\n
+Първо изберете превозни средства\n
+Post
+Поща
+Postrate
+Ниво на пощата
+Power
+Мощност
+Power (MW)
+Мощност (МВт)
+Power:
+Мощност:
+Power: %4d kW\n
+Мощност: %4d кВт\n
+Powerlines
+Електропроводи
+Price
+Цена
+Problems_msg
+Проблеми
+Produced
+Произведено
+Produces: %.1f units/minute
+Производство: %.1f единици/минута
+Production of %s has been stopped:\n%s\n
+Производството на %s е спряно:\n%s\n
+Production/Boost
+Производство/Увеличение
+Produktion
+Производство
+Profit
+Печалба
+promote to line
+Превърни в линия
+public_chat
+Общ чат
+q1
+Пролет
+q2
+Лято
+q3
+Есен
+q4
+Зима
+Query server
+Запитай сървъра
+rail car
+релсов автомобил
+random
+случайно
+Random age
+Случайна възраст
+Random map
+Случайна карта
+Rathaus
+Кметство
+Rating
+Оценка
+ratio_pax
+Съотношение пътници
+Relevant
+Подходящи
+Reliefkarte
+Карта на релефа
+Remove
+Премахни
+remove airstrips
+Премахни пистите
+remove channels
+Премахни каналите
+remove interm. signals
+Премахни междинните сигнали
+remove maglev tracks
+Премахни маглев пътищата
+remove monorails
+Премахни монорелсовите пътища
+remove narrowgauge tracks
+Премахни теснолинейните пътища
+remove powerlines
+Премахни електропроводите
+remove roads
+Премахни пътищата
+remove signal
+Премахни сигнал
+remove tracks
+Премахни железопътните линии
+Remove wayobj %s
+Премахни обект на пътя %s
+replace existing ways
+замяна на съществуващи пътища
+replace faster wayobjs
+замяна на по-бързи пътни обекти
+replace other signals
+замени другите сигнали
+replace stop
+Премести спирка
+request closing
+заявка за затваряне
+residential house
+Жилищна сграда
+Restore natural slope
+Възстанови естествения склон
+Restwert:
+Остатъчна стойност:
+Retire date
+Дата на изтегляне
+Retire. date:
+Дата на изтегляне:
+return ticket
+Обратен билет
+Revenue
+Приход
+Revenue/unit/100 tiles
+Приход/единица/100 клетки
+Revert schedule
+Възстанови разписанието
+Revision:
+Ревизия:
+road
+път
+road vehicle
+пътно превозно средство
+Roadsign
+Пътен знак
+Rotate Building
+Завърти сградата
+Rotate map
+Завърти картата
+Rotation
+Завъртане
+Routing
+Маршрутизиране
+Running cost
+Експлоатационни разходи
+sack
+ чувала
+sail
+платно
+Save
+Запази
+Save generated script
+Запази генерирания сценарий
+Saving map ...
+Запазване на картата...
+Scenario complete: %i%%
+Сценарият е завършен: %i%%
+Scenario Debug
+Отладка на сценария
+Scenario Error Log
+Дневник с грешки на сценария
+Scenario Goal
+Цел на сценария
+Scenario Info
+Информация за сценария
+Scenario information
+Информация за сценария
+Scenario Result
+Резултат от сценария
+Scenario Rules
+Правила на сценария
+Scenario_
+Сценарий
+Schedule changing!
+Разписанието се променя!
+Schienentunnel
+Железопътен тунел
+Schiff_tab
+Кораби
+Schiffdepot
+Корабно депо
+Schleppkahn_tab
+Баржи
+Screen scale:
+Мащаб на екрана:
+Screenshot
+Екранна снимка
+Scroll threshold
+Праг на превъртане
+Search:
+Търсене:
+Seasons
+Сезони
+Sehenswuerdigkeit
+Забележителност
+Select a server to join:
+Изберете сървър за присъединяване:
+Select a theme for display
+Изберете тема за интерфейса
+Select display font
+Изберете шрифт
+Select one or more graphics to install (Ctrl+click):
+Изберете един или повече графични пакети за инсталиране (Ctrl+щракване):
+Select soundfont
+Избери звуков шрифт
+Sell the selected vehicle(s)
+Продай избраните превозни средства
+Selling of the program is forbidden.
+Продажбата на програмата е забранена.
+sended
+Изпратено
+SEP_FRACTION
+,
+SEP_THOUSAND
+ 
+SEP_THOUSAND_EXPONENT
+3
+Sept.
+Септ.
+September
+Септември
+Served by
+Обслужва се от
+Served by me
+Обслужвани от мен
+Server did not respond!
+Сървърът не отговори!
+Serves Line:
+Обслужва линия:
+Service
+Обслужване
+set signal spacing
+Задай разстояние между сигналите
+Setting
+Настройка
+Ship
+Кораб
+shops and stores
+Магазини и офиси
+Show all
+Покажи всички
+show all building
+Покажи всички сгради
+Show also vehicles no longer in production.
+Показвай и превозни средства, които вече не се произвеждат.
+Show also vehicles that do not match for current action.
+Показвай и превозни средства, които не отговарят на текущото действие.
+Show always
+Показвай винаги
+Show climates
+Покажи климатите
+Show construction info
+Показване на информация за строителството
+Show contour
+Покажи релефните контури
+Show even servers with wrong version or pakset
+Показвай и сървъри с различна версия или pakset
+Show finances for transport type
+Покажи финансите за този вид транспорт
+Show future
+Покажи бъдещите
+show grid
+Покажи решетката
+Show industry
+Покажи индустрията
+Show legend
+Покажи легендата
+Show map scale
+Покажи мащаба на картата
+Show mismatched
+Покажи несъответстващите
+Show networks
+Покажи мрежите
+Show obsolete
+Покажи остарелите
+Show offline
+Покажи офлайн
+Show only used
+Покажи само използваните
+Show outline
+Покажи очертанията
+Show schedules
+Покажи разписанията
+Show servers that are offline
+Покажи сървърите, които в момента са офлайн
+Show servers where game version or pakset does not match your client
+Покажи сървъри, чиято версия на играта или pakset не съвпада с клиента
+show station coverage
+Покажи покритието на спирките
+show station names
+Покажи имената на спирките
+show waiting bars
+Покажи индикаторите за чакащи
+show/hide block reservations
+Покажи/скрий резервирането на блокове
+Show/hide estimated arrival times
+Покажи/скрий прогнозните часове на пристигане
+show/hide object owner
+Покажи/скрий собственика на обекта
+Show/hide statistics
+Покажи/скрий статистиката
+Shows buttons about networks overlay.
+Показва бутоните за слоевете на мрежата.
+Shows buttons on network overlay.
+Показва бутоните за мрежовия слой.
+Shows buttons on special topics.
+Показва бутони за специални теми.
+Shows consumer/suppliers for factories
+Показва потребителите/доставчиците на предприятията
+Shows the color code for several selections.
+Показва цветовата легенда за различни избори.
+Shows the currently selected schedule
+Показва текущо избраното разписание
+Shrink city
+Намали града
+shuffle midis
+Разбъркай MIDI файловете
+Signal
+Сигнал
+signal spacing
+Разстояние между сигналите
+Sim:
+Сим. цикли:
+Similar view as the main window
+Изглед като в основния прозорец
+Single toolbar only
+Само една лента с инструменти
+Size (%d MB):
+Размер (%d МБ):
+Size (area)
+Размер (площ)
+sliced underground mode
+Разрез на подземния режим
+slot empty
+Празен слот
+Smart hide objects
+Интелигентно скриване на обекти
+Sort by
+Сортирай по
+Sort by:
+Сортирай по:
+Sort waiting list by
+Сортирай списъка с чакащи по
+Sound
+Звук
+Sound settings
+Настройки на звука
+Sound volume:
+Сила на звука:
+Soundfonts are located in the music directory.
+Звуковите шрифтове се намират в директорията за музика.
+special freight
+специален товар
+Speed Bonus
+Бонус за скорост
+Speedbonus\nroad %i km/h, rail %i km/h\nships %i km/h, planes %i km/h.
+Бонус скорост\nпът %i км/ч, жп %i км/ч\nкораби %i км/ч, самолети %i км/ч.
+Speedlimit
+Ограничение на скоростта
+Speichern
+Запази
+Spieler
+Играч
+Spieler(mz)
+Играчи
+Spielerliste
+Списък на играчите
+Spielstand wurde\ngeladen!\n
+Играта беше\nзаредена успешно!\n
+Spielstand wurde\ngespeichert!\n
+Играта беше\nзапазена успешно!\n
+Sprache
+Език
+Sprachen
+Езици
 Stadtinformation
 статистика на града
 Start
@@ -129,3 +2299,499 @@ Start the selected vehicle(s)
 Отправи избраното превозно средство
 Starte Spiel
 Старт игра
+station labels
+Надписи на спирките
+Station tiles:
+Клетки на станцията:
+Station_msg
+Спирки
+Status
+Състояние
+stay on this level
+оставане на това ниво
+steam
+пара
+Step timeline one year
+Премести времевата линия с една година
+Stopping permissions
+Разрешения за спиране
+Stops
+Спирки
+Storage
+Склад
+Storage capacity
+Капацитет на склада
+straight route
+прав маршрут
+Strassendepot
+Пътно депо
+Strassentunnel
+Пътен тунел
+street car
+градски автомобил
+sued
+юг
+suedost
+югоизток
+suedwest
+югозапад
+Summer snowline
+Лятна снежна граница
+Supplied: %.0f %%
+Снабдено: %.0f %%
+Suppliers
+Доставчици
+Tage alt
+дни
+The following graphics are unmaintained:
+Следните графични пакети вече не се поддържат:
+The generated script was saved!\n
+Генерираният скрипт беше запазен!\n
+The gradient does not fit a tunnel
+Наклонът не е подходящ за тунел
+The script cannot be saved!\n
+Скриптът не може да бъде запазен!\n
+Theme selector
+Избор на тема
+There are still vehicles\nstored in this depot!\n
+В това депо все още има\nсъхранявани превозни средства!\n
+This Month
+Този месец
+This Year
+Тази година
+Tile not empty.
+Клетката не е празна.
+timeline
+Времева линия
+tl_title
+Списък на градовете
+To attract more tourists\n%s built\na %s\nwith the aid of\n%i tax payers.
+За да привлече повече туристи,\n%s построи\n%s\nс помощта на\n%i данъкоплатци.
+To heavy traffic\nresults in traffic jam.\n
+Твърде интензивният трафик\nпричинява задръстване.\n
+To: %s
+До: %s
+Toggle day/night view
+Включи/изключи изглед ден/нощ
+Toggle vehicle tooltips
+Включи/изключи подсказките за превозни средства
+tonnen
+т
+Toolbar position:
+Позиция на лентата с инструменти:
+Total inhabitants:
+Общо жители:
+Tourist attractions
+Туристически забележителности
+Tourists
+Туристи
+Town_msg
+Градски новини
+Town: %s\n
+Град: %s\n
+Towns
+Градове
+track
+път
+Tracks
+Железопътни линии
+Traffic
+Трафик
+traffic settings
+Настройки на трафика
+Train
+Влак
+Trains are not available yet!
+Влаковете все още не са достъпни!
+Tram
+Трамвай
+tram %i km/h, monorail %i km/h\nmaglev %i km/h, narrowgauge %i km/h.
+трамвай %i км/ч, монорелс %i км/ч\nмаглев %i км/ч, теснолинейка %i км/ч.
+tram_track
+трамваен път
+Tramdepot
+Трамвайно депо
+Trams are not available yet!
+Трамваите все още не са достъпни!
+Transferring game ...
+Прехвърляне на играта...
+Transformer only next to factory!
+Трансформатор може да се строи само до предприятие!
+Translation
+Превод
+transparencies
+Прозрачности
+transparent background
+Прозрачен фон
+transparent station coverage
+Прозрачно покритие на спирките
+Transported
+Превозено
+Trees disabled!
+Дърветата са изключени!
+TrolleyBus_tab
+Тролейбуси
+Truck
+Камион
+tt_Other
+Друго
+Tunnel muss an\neinfachem\nHang beginnen!\n
+Тунелът трябва\nда започва от\nединичен склон!\n
+Tunnel must start on single way!
+Тунелът трябва да започва от единичен път!
+Tunnelboden
+Тунел
+under the Artistic License
+под Artistic License
+underground mode
+Подземен режим
+UNDO failed!
+Отмяната е неуспешна!
+Undo last ways construction
+Отмени последното строителство на път
+Unemployed
+Безработни
+Unhappy
+Недоволни
+units/day
+единици/ден
+Unloading (%i%%)!
+Разтоварване (%i%%)!
+Update Line
+Обнови линия
+upgrade HQ
+Подобри централата
+Usage: %.0f %%
+Използване: %.0f %%
+Usage/Output
+Използване/Производство
+Use beginner mode
+Използвай режим за начинаещи
+Use timeline start year
+Използвай началната година на времевата линия
+Vehicle %s can't find a route!
+Превозното средство %s не може да намери маршрут!
+Vehicle %s is stucked!
+Превозното средство %s е заседнало!
+Vehicle count:
+Брой превозни средства:
+Vehicle details
+Подробности за превозното средство
+Vehicle Name
+Име на превозното средство
+Vehicle Power
+Мощност на превозното средство
+vehicles stored
+Съхранявани превозни средства
+Verbrauch
+Потребление
+Vergroessere die Karte\n
+Разшири картата\n
+Verkauf
+Продажба
+verkaufen
+Продай
+Verkehrsteilnehmer
+Участник в движението
+Verschuldet:\n\nDu hast %d Monate Zeit,\ndie Schulden zurueckzuzahlen.\n
+Задлъжнели сте:\n\nИмате %d месеца,\nза да изплатите дълга.\n
+vh_title
+Списък на всички превозни средства
+via
+чрез
+via %s\n
+ чрез %s\n
+via Menge
+чрез количество
+via owner
+по собственик на следващата спирка
+voranstellen
+Постави отпред
+Waggon_tab
+Вагони
+waiting
+чака
+Waiting for clearance!
+Чака разрешение за преминаване!
+Walked
+Изминато пеша
+walking
+пеша
+Warnings_msg
+Предупреждения
+Wasser
+Вода
+Water
+Воден път
+Water level
+Ниво на водата:
+water vehicle
+водно превозно средство
+way %s cannot longer used:\n
+Пътища от тип %s вече не могат да се използват:\n
+way %s cannot longer used:\n%s\n
+Пътища от тип %s вече не могат да се използват:\n%s\n
+way %s now available:\n
+Вече са достъпни пътища от тип %s:\n
+Way toll
+Пътна такса
+Ways not connected
+Пътищата не са свързани
+waytype
+Тип път
+Wegpunkt
+Точка от маршрута
+Weight
+Тегло
+Weight:
+Тегло:
+Weight/unit
+Тегло/единица
+Welcome to Simutrans
+Добре дошли в Simutrans
+Welcome, %s!
+Добре дошли, %s!
+Wert
+Стойност
+west
+запад
+Wind direction
+Посока на вятъра
+Winter snowline
+Зимна снежна граница
+withdraw
+Изтегли
+Withdraw All
+Изтегли всички
+WRONGSAVE
+\nНесъвместима версия на записа.\nТози файл не може да бъде зареден.\n
+Year
+Година
+Year %i has started.
+Започна %i година.
+YEAR_SYMBOL
+г
+Years
+Години
+Your primary color:
+Вашият основен цвят:
+Your secondary color:
+Вашият вторичен цвят:
+Zielort
+Дестинация
+zooming in
+Увеличаване
+zooming out
+Намаляване
+Zu nah am Kartenrand
+Твърде близо до края на картата
+#__________________________________record_text__________________________________
+#__________________________________record_text__________________________________
+New world record for maglevs: %.1f km/h by %s.
+Нов световен рекорд за маглев: %.1f км/ч от %s.
+New world record for monorails: %.1f km/h by %s.
+Нов световен рекорд за монорелс: %.1f км/ч от %s.
+New world record for motorcars: %.1f km/h by %s.
+Нов световен рекорд за автомобили: %.1f км/ч от %s.
+New world record for narrowgauges: %.1f km/h by %s.
+Нов световен рекорд за теснолинейни влакове: %.1f км/ч от %s.
+New world record for planes: %.1f km/h by %s.
+Нов световен рекорд за самолети: %.1f км/ч от %s.
+New world record for railways: %.1f km/h by %s.
+Нов световен рекорд за железници: %.1f км/ч от %s.
+New world record for ship: %.1f km/h by %s.
+Нов световен рекорд за кораби: %.1f км/ч от %s.
+#________________________________script_ai_text_________________________________
+#________________________________script_ai_text_________________________________
+%s build additional convoy to line: %s
+%s построява допълнителен конвой за линия: %s
+%s build rail line from %s (%s) to %s (%s)
+%s построява железопътна линия от %s (%s) до %s (%s)
+%s build road line from %s (%s) to %s (%s)
+%s построява пътна линия от %s (%s) до %s (%s)
+%s build ship line from %s (%s) to %s (%s)
+%s построява корабна линия от %s (%s) до %s (%s)
+%s extends the route from %s (%s) to %s (%s)
+%s удължава маршрута от %s (%s) до %s (%s)
+%s optimize way line from %s (%s) to %s (%s)
+%s оптимизира трасето от %s (%s) до %s (%s)
+%s removes convoys from line: %s
+%s премахва конвои от линия: %s
+vehicles of the line %s were retired
+Превозните средства от линия %s бяха извадени от експлоатация
+#_________________________________tooltip_text__________________________________
+#_________________________________tooltip_text__________________________________
+Add convois with similar schedule to this line.
+Добави към тази линия превозни средства с подобно разписание.
+Attach current coordinate to the comment
+Добави текущите координати към съобщението
+Enter intervall in days, hours, minutes
+Въведете интервал в дни, часове и минути
+Mirrors order of stops
+Огледално подрежда реда на спирките
+Revert to original schedule
+Възстанови първоначалното разписание
+Tutorial not available for this pakset. Please try loading Pak128.
+Обучението не е налично за този pakset. Опитайте да заредите Pak128.
+#_______________________________unnecessary_text________________________________
+#_______________________________unnecessary_text________________________________
+&0_CITY_SYLL
+град
+&1_CITY_SYLL
+поле
+&2_CITY_SYLL
+брод
+&3_CITY_SYLL
+дол
+&4_CITY_SYLL
+връх
+&5_CITY_SYLL
+река
+&6_CITY_SYLL
+езеро
+&7_CITY_SYLL
+ово
+&8_CITY_SYLL
+ица
+&9_CITY_SYLL
+ино
+&A_CITY_SYLL
+ево
+&B_CITY_SYLL
+ник
+&C_CITY_SYLL
+ово
+%1_CITY_SYLL
+Северо
+%2_CITY_SYLL
+Мало
+%3_CITY_SYLL
+Бело
+%4_CITY_SYLL
+Долно
+%5_CITY_SYLL
+Петро
+%6_CITY_SYLL
+Светло
+%7_CITY_SYLL
+Ново
+%8_CITY_SYLL
+Горно
+%9_CITY_SYLL
+Черно
+%A_CITY_SYLL
+Старо
+%B_CITY_SYLL
+Велико
+0center
+%s Център %s
+0extern
+%s Село %s
+0suburb
+%s Предградие %s
+1center
+%s %s
+1extern
+%s %s Клон
+1suburb
+%s, гара %s%s
+2center
+%s %s Централна
+2extern
+%s %s Близка
+2suburb
+%s Поля %s %s
+3center
+%s %s Главна
+3extern
+%s %s Област
+3suburb
+%s Село %s %s
+4center
+%s %s Вътрешна
+4extern
+%s %s Външна
+4suburb
+%s Селска %s
+5center
+%s %s Товарна
+5extern
+%s Прекачване %s
+5suburb
+%s Град %s
+6center
+%s Връзка %s
+6extern
+%s Разпределителна %s
+6suburb
+%s Покрайнини %s %s
+7center
+%s Град %s
+7extern
+%s Местна %s
+7suburb
+%s Парк %s
+8center
+%s Делови център %s
+8extern
+%s %s Резервна %s
+8suburb
+%s Предградие %s
+9center
+%s Осова %s
+9extern
+%s Обходна %s
+9suburb
+%s Междинна %s
+Acenter
+%s Център %s
+Bcenter
+%s Център %s
+Ccenter
+%s Център %s
+Dcenter
+%s Център %s
+Ecenter
+%s Център %s
+Fcenter
+%s Център %s
+Gcenter
+%s Център %s
+Hcenter
+%s Център %s
+Icenter
+%s Център %s
+Jcenter
+%s Център %s
+Kcenter
+%s Център %s
+Lcenter
+%s Център %s
+Mcenter
+%s Център %s
+Ncenter
+%s Център %s
+Ocenter
+%s Център %s
+Pcenter
+%s Център %s
+Qcenter
+%s Център %s
+Rcenter
+%s Център %s
+Scenter
+%s Център %s
+Tcenter
+%s Център %s
+Ucenter
+%s Център %s
+Vcenter
+%s Център %s
+Wcenter
+%s Център %s
+Xcenter
+%s Център %s
+Ycenter
+%s Център %s
+Zcenter
+%s Център %s

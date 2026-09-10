@@ -1,0 +1,31 @@
+<title>Construir atracciones turísticas</title>
+<h1><strong>Construir atracciones turísticas</strong></h1>
+<p>La ventana se divide en cuatro partes.
+<br>
+- arriba a la izquierda, la lista de edificios disponibles<br>
+- abajo a la izquierda, una imagen del edificio elegido<br>
+- arriba a la derecha, algunas opciones<br>
+- abajo a la derecha, información sobre el edificio elegido<br></p>
+<h1>Lista de selección</h1>
+<p>
+En la lista aparecen todos los edificios especiales y monumentos disponibles según las opciones marcadas arriba a la derecha (<em>Atracción turística de ciudad</em>, <em>Atracción turística de interior</em>, <em>Monumentos</em>).
+Hay dos pestañas que cambian la forma de identificar los edificios.<br>
+- <em>Traducción:</em> muestra el nombre del edificio en el idioma seleccionado. Si no hay traducción disponible en ese idioma, se usa el nombre del objeto.<br>
+- <em>Objeto:</em> muestra el nombre interno que Simutrans da a ese tipo de edificio.
+<br>
+<br>
+El color del texto significa lo siguiente:<br>
+- <em>texto azul:</em> la atracción tiene que construirse en una ciudad<br>
+- <em>texto verde:</em> la atracción tiene que construirse en el campo<br>
+- <em>texto negro:</em> monumentos, que solo se pueden construir una vez<br>
+</p>
+<h1>Opciones</h1>
+<p>
+- <em>Ignorar climas:</em> desactiva las restricciones climáticas asociadas a cada tipo de edificio.<br>
+- <em>Usar cronología:</em> la lista solo incluirá los edificios disponibles en el año actual de la partida.<br>
+- <em>Mostrar obsoletos:</em> amplía la lista para incluir también los edificios que ya están obsoletos en el año actual.<br>
+- <em>Atracción turística de ciudad:</em> incluye en la lista las atracciones de ciudad.<br>
+- <em>Atracción turística de interior:</em> incluye en la lista las atracciones de campo.<br>
+- <em>Monumentos:</em> incluye en la lista los monumentos.<br>
+- <em>Rotación:</em> si el edificio elegido se puede ver desde varios ángulos, aquí se elige una vista concreta. La imagen de abajo a la izquierda cambia para reflejarlo. Si esta opción se pone en <em>Aleatorio</em>, se usará una vista al azar.<br>
+</p>

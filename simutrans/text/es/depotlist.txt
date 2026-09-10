@@ -1,0 +1,7 @@
+<title>Lista de Depósitos</title>
+
+<h1><strong>Lista de Depósitos</strong></h1>
+
+<p>
+Esta ventana lista todos los depósitos que hay en el mapa. Con las pestañas se pueden filtrar por tipo de vehículo. Pulsa con el botón derecho sobre una entrada, o pulsa sobre la flecha, para llevar la vista del mapa hasta ese depósito; pulsa con el botón izquierdo sobre la entrada para abrir la ventana del depósito.
+</p>

@@ -12,11 +12,19 @@ cyr.bdf
 #                              Language: ko Korean                             #
 #                                Encoding: UTF-8                               #
 #                                 Font: cyr.bdf                                #
-#                            Date Created: 4.04 2026                           #
+#                           Date Created: 10.09 2026                           #
 #                                                                              #
 ################################################################################
 #__________________________________button_text__________________________________
 #__________________________________button_text__________________________________
+Absolute times
+시간을 일:hh:mm 형식으로 표시
+allow reverse passage
+역방향 통행 허용
+AMBIENT_SOUND
+환경음
+CASH_SOUND
+금전 효과음
 cl_btn_filter_disable
 불가능
 cl_btn_filter_enable
@@ -41,6 +49,16 @@ clf_btn_invers
 반전
 clf_btn_keine
 모두 해제
+climate area percentage
+단일 기후 크기
+Continue Game
+게임 계속하기
+CROSSING_SOUND
+건널목 경고음
+FACTORY_SOUND
+공장 효과음
+Find matching convois
+일치하는 차량 찾기
 gl_btn_sort_bonus
 보너스
 gl_btn_sort_name
@@ -49,6 +67,8 @@ gl_btn_sort_revenue
 수입
 gl_btn_unsort
 정렬되지않음
+height based
+고도 기반
 hl_btn_filter_disable
 불가능
 hl_btn_filter_enable
@@ -71,16 +91,62 @@ hlf_btn_invers
 반전
 hlf_btn_keine
 모두 해제
+humidities
+습도 경계
+Install
+설치
+Lake
+호수
+Lake height
+최대 호수 고도
+Maximize height levels
+고도 단계 최대화
+moisture land
+육지에서 증가
+moisture water
+해상에서 증가
 Networks
 네트워크
+Num pad keys always move map
+숫자 패드 키로 항상 지도 이동
+Open Sea
+공해
+Owner only
+소유자 전용
 Queueing
 대기시간
+rainfall
+강우량
+Reselect closes tools
+도구를 다시 선택하면 선택 해제
+Return to menu
+메뉴로 돌아가기
 Road toll
 통행료
 Scenario
 시나리오 정보
+sea
+해양성 기후
+Shared only
+공유 정류장만
+Single GUI
+단일 GUI
+Sound range:
+효과음 범위:
+Start this as a server
+이 게임을 서버로 시작
+temperature borders
+기온 경계
+temperature-humidity based
+기온-습도 기반
+TOOL_SOUND
+도구 효과음
+TRAFFIC_SOUND
+교통 소음
 Transfers
 환승
+Tutorial
+튜토리얼
 #_________________________________climates_text_________________________________
 #_________________________________climates_text_________________________________
 arctic
@@ -101,36 +167,70 @@ tundra
 #__________________________________error_text___________________________________
  Loading scenario script failed
 시나리오를 불러오는데에 실패했습니다.
+A building blocks the construction
+건물이 건설을 가로막고 있습니다
+A powerline blocks the construction
+송전선이 건설을 방해합니다.
+Another way blocks the construction
+다른 도로가 건설을 방해합니다.
+Bridge blocked by way below or above.
+위 또는 아래의 길로 인해 다리가 막혔습니다.
 Can't buy obsolete vehicles!
 생산 중단된 차량을 살 수 없습니다!
 Cannot alter water
 더이상 물을 채우거나 뺄 수 없습니다.
+Cannot build on a double slope!
+완만한 경사지 또는 평지에만 건설할 수 있습니다!
 Cannot built depot here!
 여기에 차고지를 건설할 수 없습니다.
 Cannot built this station/building\nin underground mode here.
 이 건물/역은 지하에 건설할 수 없습니다.\n
+Cannot connect to the\ncenter of a double slope!
+다리는 급경사의 중간에 연결할 수 없습니다!\n지형 도구를 사용하여 수정하십시오.
 Cannot create generic line!\nSelect line type by\nusing filter tabs.
 일반 노선을 만들 수 없습니다!\n필터탭을 사용해서\n노선 타입을 선택하세요.\n
 Cannot create socket
 소켓을 만들 수 없습니다
+Cannot cross the end of a runway
+활주로 끝을 가로지를 수 없습니다.
+Cannot rotate this building!
+이 건물은 회전할 수 없습니다!
+Client closed connection during transfer
+전송 중 클라이언트와의 연결이 끊어졌습니다
 Convoi handles exhausted!
 최대 차량 수에 도달했습니다.\n이 이상 차량을 생성할 수 없습니다.
 Convoy already deleted!
 이미 차량이 제거되었습니다!
+Corrupt file
+파일이 손상되었거나 잘렸습니다.
+Could not open file
+파일에 접근할 수 없습니다. 권한을 확인하십시오.
 Das Feld gehoert\neinem anderen Spieler\n
 이 토지는\n다른 플레이어가\n소유하고 있습니다!\n
+Depots cannot be built on runways!
+활주로에는 차고를 건설할 수 없습니다!
+Depots must be built on flat dead-end way tiles!
+차고는 막다른 평지 길 타일에 건설해야 합니다!
 Der Besitzer erlaubt das Entfernen nicht
 주인이 \n없애는 것을\n허락하지 않습니다!\n
 Diese Zusammenstellung kann nicht fahren!\n
 이 조합으로\n운행할 수 없습니다!\n
+Elevated way can only be joined in line
+고가 도로는 일직선으로만 연결할 수 있습니다.
+Failed to write file
+파일을 저장할 수 없습니다. (권한 문제?)
 Flugzeughalt muss auf\nRunway liegen!\n
 비행기는 활주로에서만 착륙할 수 있습니다.
+Forbidden by scenario
+시나리오에 의해 금지됨
 Hier kann dieses\nFlughafengebaeude nicht\ngebaut werden!\n
 여기에\n공항을 건설할 수 없습니다.\n
 Hier kann kein\nSignal aufge-\nstellt werden!\n
 여기에 열차 신호등을\n만들 수 없습니다.\n
 In order to lock the game, you have to protect the public player by password!
 게임을 잠그기위해 공공 서비스에 비밀번호를 거세요!
+Loading a new game will end the current server session!
+새 게임을 불러오면 현재 서버 세션이 종료됩니다!
 Lost connection\nto server!
 서버와의 연결이 끊어졌습니다!
 Lost synchronisation\nwith server.
@@ -141,16 +241,38 @@ Monorailhalt muss auf\nMonorail liegen!\n
 모노레일 열차는 모노레일 위에서만 운행할 수 있습니다.\n
 Monorails are not available yet!
 모노레일은 아직 사용할 수 없습니다!
+More than one possibility to build this dock found.
+이 부두를 건설할 수 있는 위치가 여러 곳 발견되었습니다.
 Narrowgaugehalt muss auf\nNarrowgauge liegen!\n
 협궤열차는 협궤철도 위에서만 운행할 수 있습니다.
+No bridges over runways!
+활주로 위에는 다리를 건설할 수 없습니다!
+No curves on runways
+활주로는 곡선으로 건설할 수 없습니다!
+No suitable crossing
+적합한 건널목이 없습니다! (최고 속도가 너무 빠릅니까?)
+No suitable way on the ground!
+정류장은 평평하고 직선인\n알맞은 길 위에만 건설할 수 있습니다!
 No through station here!
 역은 선로의 끝부분이나 교차지점이 없는\n직선 선로 위에서만 건설할 수 있습니다.
+Not allowed to copy object.
+해당 시설을 건설할 수 없습니다!\n(이유: 잘못된 플레이어 또는 구형)
+Not enough bytes transferred
+전송된 바이트 수가 부족합니다
+Not enough clearance.
+공간이 부족합니다. 두 길 사이에 최소 2단계의 높이 차이가 필요합니다.
+Not enough empty space
+빈 공간이 부족합니다.
 Not enough money!
 돈이 부족합니다.
+Not initialized
+라이브러리를 초기화할 수 없습니다.
 On narrowgauge track only!\n
 협궤철도에서만 이용할 수 있습니다!\n
 Only public player can lock games!
 주인장만 게임을 잠글 수 있습니다!
+Only up and down movement in the underground!
+지하 타일은 위/아래 이동 도구로만 올리거나 내릴 수 있습니다!
 Out of funds
 돈이 부족합니다!
 Post muss neben\nHaltestelle\nliegen!\n
@@ -161,14 +283,38 @@ Schiffhalt muss im\nWasser liegen!\n
 배는 항구 주변에서만 정박 할 수 있습니다!\n
 Server busy
 서버가 복잡합니다.
+Server version too new
+서버가 더 최신 버전의 프로그램을 사용하고 있습니다.
+Ship depots must be built on water!
+선박 차고는 물 위에 건설해야 합니다!
+Show all revenue messages
+모든 수익 메시지 표시
+Show no revenue messages
+수익 메시지 표시 안 함
+Show only player's revenue
+플레이어의 수익만 표시
+Slope is too steep
+경사가 너무 가파릅니다.
 Terraforming not possible\nhere in underground view
 지형변경은 지하에서 사용할 수 없습니다.
 This tunnel branches. You can try Control+Click to remove.
 이 터널은 2개 이상의 출구가 있습니다. Crtl+클릭으로 철거하세요.
+Too far away to merge stations!
+역을 통합하기에는 너무 멉니다!
+Tunnel can only be entered at its portal
+터널은 갱구를 통해서만 진입할 수 있습니다.
+Unknown error
+알 수 없는 오류
 Upgrade must have\na higher level
 더 높은 레벨에서 업그레이드를 해야합니다.
 Vehicle %s cannot choose because stop too short!
 차량 %s가 정차하기에는 승강장이 너무 짧습니다.
+Watertable reached
+타일을 더 이상 낮출 수 없습니다!\n수면에 도달했습니다.
+Way does not match the slope here
+이곳의 경사와 도로가 맞지 않습니다.
+Wrong direction to enter the bridge
+다리에 진입하는 방향이 잘못되었습니다.
 Zughalt muss auf\nSchiene liegen!\n
 기차는 철도 위에서만 운행할 수 있습니다.\n
 #___________________________________help_text___________________________________
@@ -177,6 +323,14 @@ Zughalt muss auf\nSchiene liegen!\n
 <title>도움말</title><h1>도움말 목록</h1><p><it>Simutrans에 대해</it></p>%1$s<p><it>사용법</it></p>%2$s<p><it>게임 시작</it></p>%4$s<p><it>게임하는 법</it></p>%5$s<p><it>도구</it></p>%3$s<p><it>기타</it></p>%6$s
 <title>Keyboard Help</title>\n<h1><strong>Keyboard Help</strong></h1><p>\n
 <title>단축키 도움말</title>\n<h1><strong>단축키 도움말</strong></h1>\n<p>\n<strong>단축키 도움말은</strong> 단축키의 다양한 기능들을 보여줍니다.\n</p>\n<p>\n<strong>단축키 도움말은</strong> 할당되지 않은 단축키를 누를때나 <a href="general.txt">일반 도움말</a>을 열 때 나타납니다.\n</p>\n<p>\n키 입력은 대소문자를 구별합니다.\n (대문자 입력은 [<em>Shift</em>]를 사용)\n</p>\n<p>\n할당된 탄축키는 다음과 같습니다:\n</p>\n<p>\n[<em>화살표키</em>]: 게임 화면을 화살표 방향으로 이동합니다.<br>\n[<em>Backspace</em>]: 게임화면의 모든 창, 툴바, 도움말을 닫습니다.<br>\n[<em>Delete</em>], 또는 [<em>Esc</em>]: 게임화면의 맨위의 창, 툴바 또는 도움말을 닫습니다.<br>\n[<em>Enter</em>], or [<em>Return</em>]: 행동을 확정할때 사용합니다.<br>\n[<em>Page-Up</em>], 또는 [<em>></em>]: 게임화면을 확대합니다.<br>\n[<em>Page-Down</em>], 또는 [<em><</em>]: 게임화면을 축소합니다.\n[<em>F1</em>]: <a href="general.txt">Simutrans 도움말</a>을 엽니다.<br></p>\n<p>\n[<em>1</em>]: 왼쪽아래(남쪽) 방향으로 화면이 이동합니다.<br>\n[<em>2</em>]: 아래(동남쪽) 방향으로 화면이\n 이동합니다.<br>\n[<em>3</em>]: 오른쪽아래(동쪽) 방향으로 화면이 이동합니다.<br>\n[<em>4</em>]: 왼쪽(남서쪽) 방향으로 화면이 이동합니다.<br>\n[<em>6</em>]: 오른쪽(북동쪽) 방향으로 화면이 이동합니다.<br>\n[<em>7</em>]: 왼쪽위(서쪽) 방향으로 화면이 이동합니다.<br>\n[<em>8</em>]: 위(북서쪽) 방향으로 화면이 이동합니다.<br>\n[<em>9</em>]: 오른쪽위(북쪽) 방향으로 화면이 이동합니다.\n</p>\n<p>\n[<em>Shift</em>] + <a href="mouse.txt">마우스</a>: <a href="map.txt">지도</a>상에서 사용하면 <a href="industry_info.txt">산업 공급 체인</a>의 연결들을 볼\n 수 있습니다.<br>\n[<em>CTRL</em>] + 도구버튼: 속도제한이 높은 도로나 선로 위에 속도제한이 낮은 도로나 선로를 덮어 씌울 때, 또는 똑바른 직선 도로나 선로를 건설할 때 사용합니다.\n</p>\n<p>\n\n
+At least one stop is connected to the town.
+최소 하나의 정류장이 도시에 연결되어 있습니다.
+At least one tile is connected to one stop.
+최소 하나의 타일이 정류장에 연결되어 있습니다.
+Color according to transport capacity left
+남은 수송 용량에 따라 색상 표시
+Color-coded terrain according to altitude.
+지형 등고선 음영 표시/숨기기.
 Decrease water height
 수면을 한 단계 내리기
 Highlight railroad tracks
@@ -205,16 +359,38 @@ Overlay town names
 도시 이름 표시
 Please click on the map to add\nwaypoints or stops to this\nschedule.
 지도를 클릭하여 웨이포인트 또는 역을 스케줄에 추가하세요.
+Remove double stops from schedule
+스케줄에서 중복 정류장 제거
 Set tile climate %s
 이 땅을 %s 기후로 바꿉니다.
+Show capacity and if halt is overcrowded
+정류장 수용량 및 혼잡 여부 표시
+Show how many convoi reach a station
+정류장에 도달하는 차량 수 표시
+Show how many people/much is waiting at halts
+정류장 대기 인원/화물량 표시
+Show initial passenger departure
+승객 및 우편 출발지 표시
+Show level of city buildings
+도시 건물 레벨 표시
+Show mail service coverage/mail network
+우편 서비스 범위 표시
+Show passenger coverage/passenger network
+승객 네트워크 범위 표시
 Show speedlimit of ways
 선로/도로의 제한속도 표시
+Show the change of waiting at halts
+지난달 대비 정류장 대기량 변화 표시
 Show the owenership of infrastructure
 기반시설(선로/도로 등)의 소유자 표시
 Show transported freight/freight network
 운송된 화물의 경로 표시
+Show usage of network
+네트워크 이용량 표시
 Shows a listing with all industries on the map.
 지도에 존재하는 모든 산업의 목록
+Sum of departure/arrivals at halts
+정류장 출발/도착 합계
 #____________________________________ki_text____________________________________
 #____________________________________ki_text____________________________________
 %s now\noffers bus services\nbetween %s\nand attraction\n%s\nat (%i,%i).\n
@@ -261,6 +437,8 @@ TRAMTOOLS
 %s는 새로운 본사를 건설했습니다.
 Factory chain extended\nfor %s near\n%s built with\n%i factories.
 경제 성장:\n%s 근처의 %s는 체인을 확장합니다.\n%i에 새로운 공장이 건설됩니다.\n
+Net wealth less than 10%% of starting capital!
+순자산이 초기 자본의 10%% 미만입니다!
 New %s now available:\n%s\n
 새로운 %s를 사용할 수 있습니다.:\n%s\n
 New factory chain\nfor %s near\n%s built with\n%i factories.
@@ -269,12 +447,18 @@ New vehicle now available:\n%s\n
 \n 새로운 차량을\n 사용할 수 있습니다:\n\n\n -- %s --\n\n
 Now %u clients connected.
 플레이어 %u가 연결되었습니다.
+overtaking
+추월
 Remove vehicle from map. Use with care!
 차량을 제거합니다. 조심하세요!
 Screenshot\ngespeichert.\n
 스크린샷이\n저장되었습니다.\n
 Sends the convoi to the last depot it departed from!
 가장 마지막으로 방문한 차고지로 보냅니다.
+Server preparing game ...
+서버가 게임을 준비하는 중...
+Trees
+나무
 With a big festival\n%s built\na new monument.\n%i citicens rejoiced.
 대형 축제와 함께,\n%s에 새로운\n기념물이 건설되었습니다.\n%i 시민들이 기뻐하고 있습니다.
 #___________________________________obsolete____________________________________
@@ -283,10 +467,32 @@ Line Filter
 노선 필터
 #_________________________________program_text__________________________________
 #_________________________________program_text__________________________________
+(%.2f$/km %.2f$/m)
+ (%.2f$/km %.2f$/월)
+(%.2f$/km)
+ (%.2f$/km)
 (%i)-
 (%i)
 (in depot)
 (차고지 안에 있음)
+[0] south-facing
+[0] 남향
+[1] east-facing
+[1] 동향
+[2] north-facing
+[2] 북향
+[3] west-facing
+[3] 서향
+[4] southeast corner
+[4] 남동쪽 모서리
+[5] northeast corner
+[5] 북동쪽 모서리
+[6] northwest corner
+[6] 북서쪽 모서리
+[7] southwest corner
+[7] 남서쪽 모서리
+/month
+/월
 \nBauzeit bis
 까지
 \nBauzeit von
@@ -325,6 +531,10 @@ Line Filter
 차량 %d대
 %d Einzelfahrzeuge im Depot
 %d 차량은 여기에 입고되어 있습니다.
+%d more convois
+%d대 더 많은 차량
+%i car(s),
+%i량, 
 %i km/h (max. %ikm/h)
 %i km/h (최고속력 %ikm/h)
 %i years %i months old.
@@ -335,10 +545,16 @@ Line Filter
 %s %s %s
 %s city %d %s
 %s %d %s
+%s factory %s %s
+%s %s 야드
 %s has entered a depot.
 %s가 차고로 들어왔습니다.
+%s has left.
+%s이(가) 나갔습니다.
 %s land %d %s
 %s %d 외부의 %s
+%s now known as %s.
+%s의 이름이 %s(으)로 변경되었습니다.
 %s wasted\nyour money with a\nnew townhall\nwhen it reached\n%i inhabitants.
 %s 주민수가 %i에 도달해, 새 시청을 지었습니다.
 %s\nis crowded.
@@ -349,12 +565,26 @@ Line Filter
 %s 가 파산했습니다.\n모든 사업은 중지되었고, 재산은 매각되었습니다.
 %u Client(s)\n
 %u 클라이언트\n
+%u days ago
+%u일 전
+%u hours ago
+%u시간 전
+%u minutes ago
+%u분 전
 %u Player (%u locked)\n
 %u 플레이어 (%u 잠김)\n
+%u years ago
+%u년 전
 <clear schedule>
 <스케줄 취소>
 <create new line>
 <새 노선 만들기>
+<em>%s</em> - %s<br>\n
+[<em>%s</em>]: %s<br>\n
+<h1>Error</h1><p><strong>
+<H1>오류: 메인 pak 디렉토리에 중복된 객체가 있습니다</H1><p><strong>위치: 
+<h1>Warning</h1><p><strong>addons for
+<h1>경고: 애드온 디렉토리에 중복된 객체가 있습니다</h1><p><strong>다음 애드온: 
 <individual schedule>
 <개별 스케줄>
 <no line>
@@ -367,16 +597,36 @@ Line Filter
 차량 1대
 1 Einzelfahrzeug im Depot
 여기에 차량 1대가 있습니다.
+1 minute ago
+1분 전
+1 year ago
+1년 전
+100 km/h = %i tiles/month
+100 km/h = %i 타일/월
 1LIGHT_CHOOSE
 밝기:
+1th
+1일
 1WORLD_CHOOSE
 새 게임 설정:
+21th
+21일
+22th
+22일
+23th
+23일
 2LIGHT_CHOOSE
 색상:
+2th
+2일
 2WORLD_CHOOSE
 지도 번호:
+31th
+31일
 3LIGHT_CHOOSE
 스크롤 속도:
+3th
+3일
 4LIGHT_CHOOSE
 역방향 스크롤
 5LIGHT_CHOOSE
@@ -389,6 +639,8 @@ Line Filter
 교통량:
 8WORLD_CHOOSE
 낮/밤 변화
+A bridge must end on a way!
+다리는 길 위에서 끝나야 합니다!
 A bridge must start on a way!
 다리 경로의 끝부분을 소유하고 있지 않거나, 다리 경로가 막혀있습니다.
 Abfrage
@@ -423,6 +675,8 @@ Add stops for backward travel
 여정 뒤에 정류장을 추가합니다.
 air
 활주로/유도로
+Aircraft
+항공
 aircraft_tab
 화물 수송기
 airplane
@@ -443,6 +697,8 @@ allowed climates:\n
 가능한 기후:\n
 Alters a schedule.
 스케줄에서 정류장을 추가/제거
+and arranged by
+및 편곡
 Angenommene Waren
 근처 공장에 필요한 물품
 anhaengen
@@ -455,10 +711,14 @@ Appends stops at the end of the schedule
 스케줄 끝에 정류장 추가
 Apply Line
 노선 적용
+Apr.
+4월
 April
 4월
 Arbeiter aus:
 노동자 거주지:
+Arrivals from\n
+출발지:\n
 Arrived
 도착
 Assets
@@ -467,16 +727,24 @@ Aufloesen
 해체하다
 Aufspanntransformator
 변전소
+Aug.
+8월
 August
 8월
+auto
+자동
 Autohalt muss auf\nStrasse liegen!\n
 버스/자동차는 도로 위에서만 운행할 수 있습니다.
 Available
 사용가능
+Available at custom date
+지정한 날짜에 사용 가능
 Bahndepot
 철도 차량기지
 Bankrott:\n\nDu bist bankrott.\n
 파산:\n\n당신은 파산했습니다!\n
+based on Simutrans 84.22.1
+Simutrans 84.22.1 기반
 battery
 배터리
 Baum
@@ -501,10 +769,16 @@ Blockstrecke ist\nbelegt\n
 \n선로가 또다른 기차에\n의해 막혀있습니다!\n
 Boden
 땅
+Bonus Multiplier: %i%%
+보너스 배율: %i%%
+Bonus Speed: %i km/h
+보너스 속도: %i km/h
 Bonusspeed: %i km/h
 가능한 최고속력: %i km/h
 Boost (%%)
 증산률 (%%)
+Borderless (disabled on fullscreen)
+테두리 없음 (전체화면 시 비활성화)
 bridge is too high for its type!
 이 타입의 다리를 건설하기에는 너무 높습니다!
 Bridge is too long for this type!\n
@@ -533,6 +807,8 @@ Build monorail depot
 모노레일 차량기지 건설
 Build narrowgauge depot
 협궤철도 차량기지 건설
+build portal only
+갱구만 건설
 Build powerline
 송전선 건설
 Build presignals
@@ -559,12 +835,18 @@ Built random attraction
 관광지를 무작위로 건설
 Bus_tab
 버스
+Can be overgrown
+수풀로 덮일 수 있음
 Can only move from halt to halt or waypoint to waypoint.
 정류장부터 정류장 사이\n또는 웨이포인트부터 웨이포인트 사이에만\n이동할 수 있습니다.
 Cancel
 취소
+Cannot build here
+여기에는 건설할 수 없습니다.
 Cannot connect to offline server!
 오프라인 서버에 연결할 수 없습니다.
+Capacity
+용량
 Capacity:
 수송량:
 Capacity: %.0f MW
@@ -579,6 +861,10 @@ cars.\nstate
 자동차\n
 Cash
 잔액
+Category
+카테고리
+Change label style
+라벨 스타일 변경
 Change player
 플레이어 교체
 Chart
@@ -593,6 +879,8 @@ chooses a random map
 랜덤 맵을 선택합니다.
 citicens
 시민
+Cities can only be built on flat empty ground!
+도시는 비어 있는 평지에만 건설할 수 있습니다!
 City attraction
 시내 관광명소
 City industries
@@ -611,6 +899,10 @@ cl_title
 차량 목록
 cl_txt_sort
 분류:
+clamp
+클램프
+Cleanup schedule
+중복 항목 제거
 Clear block reservation
 예약된 선로를 보임/리셋함
 clf_chk_aircrafts
@@ -635,6 +927,8 @@ clf_chk_noroute
 경로 없음
 clf_chk_noschedule
 스케줄 없음
+clf_chk_obsolete
+단종
 clf_chk_ships
 선박
 clf_chk_spezial_filter
@@ -651,24 +945,46 @@ clf_chk_waren
 필터 상품:
 clf_title
 차량목록 필터
+Click to open the finance dialog.
+클릭하여 재정 대화상자를 엽니다.
+Climate
+기후
 Climate Control
 기후 설정
+Climates
+기후
 closed
 닫음.
+Closes topmost line window when new line selected.
+새 노선을 선택하면 최상단 노선 창을 닫습니다.
 COLOR_CHOOSE\n
 색상을 선택하세요.:\n
 Company bankrupt
 회사 파산
+company_chat
+회사 채팅
 Company_msg
 경쟁자
 Comparing pak files ...
 팩 비교 중...
+Composed by
+작곡:
+Configure AI
+AI 설정
+Configure AI setttings
+AI 세부 설정
 Congratulation\nScenario was complete in\n%i months %i years.
 축하합니다!\n이 시나리오가 \n%i개월, %i년 만에\n완료되었습니다!
+Connect factory
+공장 연결
 Connected stops
 연결된 정류장
 Connected with server
 서버에 연결되었습니다.
+connection
+연결
+Connections
+연결
 Constructed by
 제작자
 Constructed by %s
@@ -679,10 +995,14 @@ Construction_Btn
 건설비용
 Consumed
 소비
+contains the following doubled objects:</strong><p>
+ 다음 객체가 중복 포함되어 있습니다:</strong><p/>
 convoi %d of %d
 %d번째 차량 %d대중
 convoi error tooltips
 차량 오류 도구팁
+Convoi following mode
+차량 추적 모드
 Convoi has been sent\nto the nearest depot\nof appropriate type.\n
 차량을 적당한 타입의\n가까운 차고로 보냅니다.\n
 Convoi is sold when all wagons are empty.
@@ -701,8 +1021,14 @@ Copy Convoi
 차량 복사
 Copy the selected convoi and its schedule or line
 선택된 차량과 스케줄 또는 노선을 복사
+Copy to clipboard
+클립보드에 복사
+Cost
+비용
 cost for removal
 제거비용:
+Cost per unit
+단위당 비용
 Cost: %8s (%.2f$/km %.2f$/m)\n
 비용: %s (%.2f$/km %.2f$달)\n
 Cost: %8s (%.2f$/km)\n
@@ -717,12 +1043,20 @@ curlist_title
 관광명소 목록
 CURRENCY
 ₩
+Current game
+현재 게임
 Currently playing:
 게임중:
 Customers live in:
 소비자 거주지:
+Date format
+날짜 형식
+DAY_SYMBOL
+일
 deactivated in online mode
 온라인에서는 사용할 수 없습니다.
+Dec.
+12월
 Deccelerate time
 감속 시간
 December
@@ -749,32 +1083,62 @@ Denkmal
 기념물
 Departed
 출발
+Departs at
+출발 시간 (dd:hh:mm)
+Departure after
+%% 적재 또는 대기 시간 (dd-hh-mm)
 Departure board
 출발 시간
+Departures per month
+월별 출발 횟수
+Departures to\n
+도착지:\n
+Depot
+차고
 Depots
 차고지
 Der Tunnel ist nicht frei!\n
 터널이 비어있지 않습니다.\n
 Destination
 도착
+Destroying map ...
+기존 지도 삭제 중...
 Details
 세부사항
+Developed by the Simutrans Team
+Simutrans 팀 개발
 Die Bruecke ist nicht frei!\n
 다리가 비어있지 않습니다!\n
 diesel
 디젤
+direct_chat_to:
+직접 메시지 대상:
+directmail
+전단지
 Direkt erreichbare Haltestellen
 여기에서 바로가는 경로
 disable midi
 미디 음악 음소거
+Display bars above factory to show the status
+공장 위에 상태 표시 막대 표시
 Display settings
 디스플레이 설정
 Distance
 주행거리
+distributing cities
+도시 배치 중
+distributing factories
+공장 배치 중
+Do not show
+표시하지 않음
 Dock
 항구
 Dock must be built on single slope!
 항구는 반드시 1개의 경사면 타일에 건설되어야 합니다.
+Downloading
+다운로드 중
+dp_title
+차고 목록
 Du hast %d Monate Zeit, deine Schulden zurueckzuzahlen
 부채 상환 기한이 %d개월 남았습니다.
 Durchsatz
@@ -785,6 +1149,8 @@ Eigenbesitz\n
 공공 재산\n
 Ein %s\npasst hier nicht.\n
 '%s'는 여기에서\n 맞지 않습니다!\n
+Einstellungen
+설정
 Einstellungen aendern
 옵션 바꾸기
 electric
@@ -811,6 +1177,8 @@ Erzeuge neue Karte.\n
 새 지도가 생성될 때까지\n기다리세요.\n\n(대형 지도는 시간이\n오래 걸립니다.)\n\n
 Es wird bereits\nein Fahrplan\neingegeben\n
 이 스케줄은\n진행중입니다.\n스케줄을 새로 짜기 전에\n먼저 기존 스케줄을 끝내세요!\n
+Extract files
+zip에서 pak 파일 압축 풀기.
 Fabrikanschluss
 연결된 공장
 Fabrikname
@@ -833,6 +1201,8 @@ Farbe
 플레이어 색상
 Fast forward
 빨리감기
+Feb.
+2월
 February
 2월
 Ferry_tab
@@ -841,6 +1211,8 @@ Fertig
 완료
 Filename
 파일명:
+Files from:
+파일 출처:
 Filter:
 필터:
 Finances of %s
@@ -857,6 +1229,10 @@ follow me
 따라가기
 Follow the convoi on the map.
 지도상의 차량을 따라감
+font size
+글꼴 크기 (.ttf 및 .otf 글꼴 전용)
+For questions and support please visit:
+질문이나 지원이 필요한 경우 다음을 방문하세요:
 Forest
 숲
 Found new city
@@ -871,12 +1247,16 @@ Free Capacity
 비어있음
 freeplay mode
 프리게임 모드
+Freight
+화물
 Friction:
 현재 마찰 요소:
 fuel_cell
 연료전지
 Full load
 최소 적하량:
+Fullscreen (changed after restart)
+전체화면 (재시작 후 적용)
 Fundament
 기초
 Fussgaenger
@@ -893,6 +1273,8 @@ Gebaeude
 건물
 General
 일반
+generate script
+인프라 매크로 스크립트 생성
 Generated
 생산
 Generation: %.0f MW
@@ -919,16 +1301,24 @@ Gross Profit
 현금 흐름
 Groundobj
 오브젝트
+groundobj builder
+경관 오브젝트 배치
 Grow city
 도시 키우기
 Growth
 도시 성장
+GUI settings
+GUI 설정
 H
 정지
 Hangar
 격납고
 Happy
 행복
+Has slope graphics
+경사면 그래픽 있음
+Has Snow
+적설
 Haus kaufen
 집 구매
 Helligk.
@@ -941,6 +1331,8 @@ hide all building
 모든 건물 숨기기
 hide city building
 도시 건물 숨기기
+Hide labels
+라벨 숨기기
 hide objects under cursor
 커서 밑의 오브젝트 숨기기
 hide station names
@@ -951,6 +1343,10 @@ hide trees
 나무 숨기기
 Hier warten/lagern:
 대기중인 상품과 승객:
+Higher transport fees, crossconnect all factories
+더 높은 운송 요율, 적시 공급(JIT) 비활성화.
+highlight single ways
+단절된 경로 강조
 Highlite schedule
 스케줄의 정류장 강조
 hl_title
@@ -997,8 +1393,12 @@ Home depot not found!\nYou need to send the\nconvoi to the depot\nmanually.
 차고지를 찾을 수 없습니다.\n수동으로 차량을\n차고지로 보내세요.
 Homeless
 노숙자
+Horizontal stripe ownership
+가로 줄무늬 소유권 표시
 hydrogene
 수소
+Icon size:
+아이콘 크기:
 Idle:
 일이없는:
 ignore climates
@@ -1013,6 +1413,12 @@ increase underground view level
 지하시점 레벨 증가
 industrial building
 공장 건물
+Industry overlay
+산업 오버레이
+Infinite mouse scrolling
+무한 지도 스크롤
+Infinite scrolling using mouse
+터치스크린에서는 작동하지 않을 수 있습니다!
 Init map ...
 지도 초기화중...
 Input
@@ -1021,16 +1427,28 @@ Ins Stop
 삽입
 Insert stop before the current stop
 현재의 정류장 전단계에 정류장을 삽입
+Install graphics
+그래픽 설치
+Install paks
+Pak 세트 다운로드 및 설치
+Insufficient funds!
+자금이 부족합니다!
 Intercity road len:
 도시간 도로 길이:
+Intro. date
+도입일
 Intro. date:
 도입 날짜:
 invalid
 정의되지 않음.
 Invalid coordinate
 잘못된 명령
+Invert stops
+정류장 순서 반전
 isometric map
 게임화면 시점
+Jan.
+1월
 January
 1월
 join game
@@ -1041,10 +1459,14 @@ Jump to
 건너뛰기
 June
 6월
+just now
+방금
 Kann Spielstand\nnicht laden.\n
 게임을 불러올 수 없습니다!
 Kann Spielstand\nnicht speichern.\n
 게임을 저장을 할 수 없습니다!
+keep city roads
+시내도로 유지
 Kein Besitzer\n
 주인 없음\n
 keine
@@ -1083,6 +1505,12 @@ Leaving depot!
 차고지를 떠남!
 leer
 비어있는
+Left button drags minimap too
+마우스 왼쪽 버튼으로도 미니맵 이동
+legacy (large heights)
+레거시 (높은 고도)
+legacy (small heights)
+레거시 (낮은 고도)
 Legend
 지도 범례
 Leistung
@@ -1091,30 +1519,50 @@ Leistung: %d kW
 전력: %d kW
 Leitung
 송전선
+length: %d
+길이: %d
 letzen Monat: diesen Monat:
 지난달: 이번달:
 Line
 노선
 Line Management
 노선 관리
+line name mouseover tooltips
+노선 이름 마우스오버 툴팁
+linear
+선형
 Lineless convoys serving this stop
 노선이 할당되지 않은 차량
 Lines serving this stop
 이 정류장에서 운행하는 노선
+List of industries on the map
+지도 상의 산업 시설 목록
 LKW_tab
 트럭
 Load game
 게임 불러오기
 load height data from file
 파일로부터 height 데이터 불러오기
+Load mode:
+적재 모드:
 Load scenario
 시나리오 불러오기
+Load script tool
+스크립트 도구 불러오기
+Load Scripted AI
+스크립트 AI 불러오기
+Load settings from
+설정 불러오기:
 loaded
 적재된
 loaded passenger/freight
 승객/화물 분류
 Loading (%i->%i%%)!
 적재중 (%i->%i%%)
+Loading (%i%%) departure %s!
+적재 중 (%i%%) 출발 %s!
+Loading (%i%%)!
+적재 중 (%i%%)!
 Loading addon paks ...
 추가 팩을 불러오는 중...
 Loading map ...
@@ -1123,6 +1571,10 @@ Loading paks ...
 팩을 불러오는 중...
 Loading skins ...
 스킨을 불러오는 중...
+Loading time:
+완전 적재 소요 시간: 
+Lock Control key
+Control 키 고정
 Lock game
 플레이어 교체를 할 수 없습니다. (인증 필요)
 Lokomotive_tab
@@ -1139,6 +1591,8 @@ Maglevdepot
 자기부상열차 차량기지
 Mail Demand %d\n
 편지 수요 %d\n
+Mail level
+우편 등급
 Mailbox
 메시지 센터
 Mailbox Options
@@ -1147,14 +1601,20 @@ Maintenance
 유지 관리
 make stop public (or join with public stop next) costs %i per tile and level
 공용 정류장(또는 이웃하는 공용정류장과 통합)을 만드는데 타일과 높이당 %i$의 비용이 듭니다.
+Make way or stop public (will join with neighbours), %i times maintainance
+길 또는 정류장을 공공으로 전환 (인접 시설과 연결), 유지비 %i배
 Manual (Human)
 수동 (사람)
 Manufactured:
 제조:
 Map roughness
 지도의 거칠음:
+map view
+지도
 map zoom
 지도 줌
+Mar.
+3월
 March
 3월
 Margin (%%)
@@ -1167,8 +1627,12 @@ Max Boost (%%)
 최대촉진률 (%%)
 Max income:
 최대수입:
+Max. speed
+최고 속도
 Max. speed:
 최고속력:
+Max. waiting time
+최대 대기 시간 (일:시:분)
 Maximum 254 stops\nin a schedule!\n
 스케줄에는 최대 254개의 정류장을\n할당할 수 있습니다.\n
 maximum length of rivers
@@ -1185,12 +1649,16 @@ Meldung
 메시지
 Menge
 수량
+merge stop
+정류장 통합
 MessageOptionsText
 \n새해\n\nAI\n\n도시\n\n새 행선지\n\n채팅\n\n신규차량\n\n역 포화\n\n문제\n\n교통정체\n\n시나리오
 min
 최소
 minimum length of rivers
 강의 최소 길이
+Minimum load
+최소 적재량 (%%)
 Missing pakfiles
 오브젝트가 없습니다!
 Modify the selected line
@@ -1207,8 +1675,12 @@ Monorailboden
 올라가는 길
 Monoraildepot
 모노레일 차량기지
+Month
+월
 month wait time
 개월 대기시간
+Monthly departures
+고정 출발 시각
 Months
 개월
 Monument
@@ -1217,6 +1689,8 @@ Monuments
 기념물
 Mountain height
 산의 높이:
+Move the map
+지도 이동
 Movingobj
 오브젝트 이동
 Music playing disabled/not available
@@ -1241,6 +1715,8 @@ Net ID: %p
 전력망 ID: %p\n
 Net Wealth
 전 자산
+Net wealth near zero
+순자산이 0에 근접함
 Neue Karte
 새 지도
 Neue Welt
@@ -1265,18 +1741,26 @@ no goods waiting
 대기중인 상품 없음
 no load
 적재량 없음
+No player
+플레이어 없음
 No Route
 경로 없음
 No stop here!
 이 도구는 정거장 타일에만 사용되어야 합니다.
 No suitable ground!
 적합한 지형의 땅이 없습니다.
+No suitable townhall available for this climate!
+이 기후에 적합한 시청이 없습니다!
 No terminal station here!
 여기에 터미널을 \n지을 수 없습니다! 평지에 위치한 \n도로/선로 끝부분에 지어야 합니다.
 no timeline
 모든 시대
+No transformer connected.
+연결된 변전소가 없습니다: 모든 전력이 낭비됩니다.
 no tree
 나무 없음
+No vehicles are available for purchase.
+구입 가능한 차량이 없습니다.
 No. of Factories
 공장과 상점 수
 Noch kein Fahrzeug\nmit Fahrplan\nvorhanden\n
@@ -1289,18 +1773,30 @@ nordost
 북동쪽
 nordwest
 북서쪽
+Not allowed to make publicly owned ways!
+공공 소유 길을 건설할 수 없습니다!
 Not allowed!\nThe convoi's schedule can\nnot be changed currently.\nTry again later!
 경로를 탐색하는 동안\n차량의 스케줄을\n바꿀 수 없습니다.
 Not enough fields would remain.
 이 농장 주변에는\n충분한 평지가 없습니다.
+Not online
+오프라인
+Nov.
+11월
 November
 11월
+now
+지금
 Now active as %s.\n
 %s가 활성화됨.\n
+nowhere
+없음
 Number of rivers
 강의 개수
 Object
 오브젝트
+Oct.
+10월
 Odometer: %s km
 주행기록: %s km
 Ok
@@ -1309,10 +1805,18 @@ Oktober
 10월
 On loan since %i month(s)
 %i달 동안 대출
+On mouseover
+마우스 오버 시
+on the
+매월 첫 출발 (일-시-분)
 On this map, you are not\nallowed to change player!\n
 이 게임에서는 플레이어를 교체할 수 없습니다.\n\n
 Only city chains
 도시에 체인 만들기
+Only first %d differing paks reported. There are probably more.
+처음 %d개의 서로 다른 pak만 보고되었습니다. 더 있을 수 있습니다.
+Only full Unicode fonts
+전체 유니코드 글꼴만
 Only land chains
 지상 산업 체인 만들기
 Only one transformer per factory!
@@ -1329,6 +1833,8 @@ Optionen
 설정
 Or enter a server manually:
 또는 참여할 서버 직접 입력:
+ORDINAL_DAY_SYMBOL
+일
 Origin
 출처
 ost
@@ -1373,10 +1879,16 @@ Pause
 일시정지
 Pax <%i>  Mail <%i>
 여객 <%i> 편지 <%i>
+Pax level
+승객 등급
 PaxDest
 목적지
 Percent Electricity
 전기 생산량 (%%):
+personal_chat
+개인 채팅
+Pipette
+선택한 시설 다시 건설
 Planes are not available yet!
 비행기는 아직 사용할 수 없습니다!
 Plant tree
@@ -1413,6 +1925,8 @@ player 8
 플레이어 8
 player 9
 플레이어 9
+Player ranking
+플레이어 순위
 Please choose vehicles first\n
 먼저 차량을 선택하세요!\n
 Post
@@ -1429,10 +1943,14 @@ Power: %4d kW\n
 전력: %4d kW\n
 Powerlines
 송전선
+Price
+가격
 Problems_msg
 문제
 Produced
 생산
+Produces: %.1f units/minute
+현재 분당 %.1f개 생산
 Production of %s has been stopped:\n%s\n
 %s의 생산이 중지되었습니다:\n%s\n
 Production/Boost
@@ -1443,6 +1961,8 @@ Profit
 이익
 promote to line
 노선 생성
+public_chat
+전체 채팅
 q1
 봄
 q2
@@ -1467,6 +1987,8 @@ Rating
 비율
 ratio_pax
 승객 비율
+Relevant
+관련
 Reliefkarte
 지도
 Remove
@@ -1487,10 +2009,16 @@ remove powerlines
 송전선 철거
 remove roads
 도로 철거
+remove signal
+신호기 철거
 remove tracks
 선로 철거
 Remove wayobj %s
 도로 오브젝트 %s를 제거
+replace existing ways
+기존 도로 교체
+replace faster wayobjs
+더 빠른 도로 오브젝트 교체
 replace other signals
 다른 신호기로 교체
 replace stop
@@ -1503,12 +2031,18 @@ Restore natural slope
 자연 경사면 복구
 Restwert:
 재판매 가격:
+Retire date
+퇴역일
 Retire. date:
 퇴역 날짜:
 return ticket
 왕복운행 노선
 Revenue
 수입
+Revenue/unit/100 tiles
+수익/단위/100타일
+Revert schedule
+변경 사항 취소
 Revision:
 수정:
 road
@@ -1517,16 +2051,24 @@ road vehicle
 자동차
 Roadsign
 도로 표지판
+Rotate Building
+건물 회전
 Rotate map
 지도 회전
 Rotation
 회전
 Routing
 여정
+Running cost
+운행 비용
 sack
 가방
 sail
 바람
+Save
+게임 저장
+Save generated script
+생성된 스크립트 저장
 Saving map ...
 지도를 저장 중...
 Scenario complete: %i%%
@@ -1545,6 +2087,8 @@ Scenario Result
 성과
 Scenario Rules
 규칙
+Scenario_
+시나리오 
 Schedule changing!
 스케줄 교체!
 Schienentunnel
@@ -1555,8 +2099,14 @@ Schiffdepot
 조선소
 Schleppkahn_tab
 바지선
+Screen scale:
+화면 배율:
 Screenshot
 스크린샷
+Scroll threshold
+스크롤 임계값
+Search:
+검색:
 Seasons
 계절
 Sehenswuerdigkeit
@@ -1565,8 +2115,16 @@ Select a server to join:
 참여할 서버 고르기:
 Select a theme for display
 디스플레이 테마 선택하기
+Select display font
+표시 글꼴 선택
+Select one or more graphics to install (Ctrl+click):
+설치할 그래픽을 하나 이상 선택하세요 (Ctrl+클릭):
+Select soundfont
+사운드폰트 선택
 Sell the selected vehicle(s)
 선택한 차량을 팝니다.
+Selling of the program is forbidden.
+프로그램의 판매는 금지되어 있습니다.
 sended
 보낸 편지
 SEP_FRACTION
@@ -1575,8 +2133,14 @@ SEP_THOUSAND
 ,
 SEP_THOUSAND_EXPONENT
 3
+Sept.
+9월
 September
 9월
+Served by
+운행 플레이어
+Served by me
+내가 운행
 Server did not respond!
 서버가 응답하지 않습니다.
 Serves Line:
@@ -1599,8 +2163,20 @@ Show also vehicles no longer in production.
 더 이상 생산되지 않는 차량도 보기
 Show also vehicles that do not match for current action.
 선택한 행동에 사용할 수 없는 차량도 보기
+Show always
+항상 표시
+Show climates
+기후 표시
+Show construction info
+건설 정보 표시
+Show contour
+등고선 표시
 Show even servers with wrong version or pakset
 종류를 알 수 없는 버전이나 팩 서버도 표시
+Show finances for transport type
+수송 수단별 재정 표시
+Show future
+미래 차량 표시
 show grid
 격자 보기
 Show industry
@@ -1609,10 +2185,18 @@ Show legend
 범례 보기
 Show map scale
 색상 코드
+Show mismatched
+일치하지 않는 항목 표시
+Show networks
+네트워크 표시
 Show obsolete
 폐기된 것도 표시
 Show offline
 오프라인 서버 보기
+Show only used
+사용 중인 항목만 표시
+Show outline
+인프라만 표시
 Show schedules
 스케줄 보기
 Show servers that are offline
@@ -1633,10 +2217,16 @@ show/hide object owner
 오브젝트 주인 보기/숨기기
 Show/hide statistics
 통계 보기/숨기
+Shows buttons about networks overlay.
+네트워크 오버레이 버튼을 표시합니다.
+Shows buttons on network overlay.
+네트워크 오버레이 버튼을 표시합니다.
 Shows buttons on special topics.
 특정한 주제들을 보여줍니다.
 Shows consumer/suppliers for factories
 공장의 공급자/소비자 보기
+Shows the color code for several selections.
+여러 선택 항목에 대한 색상 코드를 표시합니다.
 Shows the currently selected schedule
 현재 선택된 스케줄 보기
 Shrink city
@@ -1651,8 +2241,12 @@ Sim:
 심루프:
 Similar view as the main window
 주 게임창처럼 보이게 합니다.
+Single toolbar only
+단일 툴바만 사용
 Size (%d MB):
 파일크기 (%d MB):
+Size (area)
+크기 (면적)
 sliced underground mode
 층 시점
 slot empty
@@ -1661,6 +2255,8 @@ Smart hide objects
 커서 주변 숨기기
 Sort by
 승객/화물 분류
+Sort by:
+분류:
 Sort waiting list by
 대기목록 분류
 Sound
@@ -1669,8 +2265,12 @@ Sound settings
 소리 설정
 Sound volume:
 소리 볼륨:
+Soundfonts are located in the music directory.
+사운드폰트는 music 디렉터리에 위치해야 합니다.
 special freight
 특별화물
+Speed Bonus
+속도 보너스
 Speedbonus\nroad %i km/h, rail %i km/h\nships %i km/h, planes %i km/h.
 속도 보너스: 도로 %i km/h, 철도 %i km/h\n선박 %i km/h, 항공기 %i km/h.
 Speedlimit
@@ -1699,22 +2299,30 @@ Start the selected vehicle(s)
 선택한 차량을 내보냅니다.
 Starte Spiel
 게임 시작
+station labels
+역 이름
 Station tiles:
 역 타일:
 Station_msg
 역
 Status
 정지 상태
+stay on this level
+이 높이 유지
 steam
 증기
 Step timeline one year
 연도별 타임라인
+Stopping permissions
+정차 권한
 Stops
 정류장
 Storage
 재고량
 Storage capacity
 창고 용량
+straight route
+직선 경로
 Strassendepot
 차고지
 Strassentunnel
@@ -1735,6 +2343,16 @@ Suppliers
 공급자:
 Tage alt
 일 전.
+The following graphics are unmaintained:
+다음 그래픽은 유지관리되지 않습니다:
+The generated script was saved!\n
+매크로가 성공적으로 저장되었습니다.\n스크립트 도구로 다시 실행할 수 있습니다.
+The gradient does not fit a tunnel
+터널을 건설하기에 적합한 경사가 아닙니다.
+The script cannot be saved!\n
+스크립트를 저장할 수 없습니다!\n
+Theme selector
+테마 선택
 There are still vehicles\nstored in this depot!\n
 차량이 차고지에서\n대기중입니다!\n
 This Month
@@ -1751,12 +2369,16 @@ To attract more tourists\n%s built\na %s\nwith the aid of\n%i tax payers.
 %1$s에서의 교통량 증가: %3$i 주민들이 %2$s 건설
 To heavy traffic\nresults in traffic jam.\n
 많은 교통량이\n 교통혼잡을 유발합니다.\n
+To: %s
+받는 사람: %s
 Toggle day/night view
 낮/밤 시점 토글
 Toggle vehicle tooltips
 차량 도구팁 토글
 tonnen
 톤
+Toolbar position:
+툴바 위치:
 Total inhabitants:
 총 주민수:
 Tourist attractions
@@ -1775,6 +2397,8 @@ Tracks
 선로
 Traffic
 교통량
+traffic settings
+교통 설정
 Train
 기차
 Trains are not available yet!
@@ -1795,10 +2419,16 @@ Transformer only next to factory!
 변전소는 공장 옆의 빈 평지에 건설해주세요!
 Translation
 번역
+transparencies
+투명도
+transparent background
+투명한 배경
 transparent station coverage
 역 범위 반투명으로 보기
 Transported
 수송실적
+Trees disabled!
+나무 비활성화됨!
 TrolleyBus_tab
 트롤리 버스
 Truck
@@ -1811,6 +2441,8 @@ Tunnel must start on single way!
 터널은 직선 도로에서 시작해야 합니다.
 Tunnelboden
 터널
+under the Artistic License
+Artistic License에 따름
 underground mode
 지하 시점
 UNDO failed!
@@ -1823,6 +2455,8 @@ Unhappy
 불행
 units/day
 단위/개월　
+Unloading (%i%%)!
+하역 중 (%i%%)!
 Update Line
 노선 수정
 upgrade HQ
@@ -1839,8 +2473,16 @@ Vehicle %s can't find a route!
 차량 %s이\n경로를 찾을 수 없음!
 Vehicle %s is stucked!
 차량 %s이 갇힘!
+Vehicle count:
+차량 수:
 Vehicle details
 차량 상세
+Vehicle Name
+차량 이름
+Vehicle Power
+차량 출력
+vehicles stored
+보관된 차량
 Verbrauch
 소비
 Vergroessere die Karte\n
@@ -1853,12 +2495,16 @@ Verkehrsteilnehmer
 자가용
 Verschuldet:\n\nDu hast %d Monate Zeit,\ndie Schulden zurueckzuzahlen.\n
 부채 상환 기한이\n %d개월 남았습니다.\n
+vh_title
+모든 차량 목록
 via
 경유(세부사항)
 via %s\n
  %s를 경유\n
 via Menge
 경유 (수량)
+via owner
+경유 (소유자)
 voranstellen
 맨앞에 넣기
 Waggon_tab
@@ -1891,14 +2537,26 @@ Way toll
 통행료
 Ways not connected
 길이 연결되지 않았습니다.
+waytype
+경로 유형
 Wegpunkt
 웨이포인트
+Weight
+무게
 Weight:
 무게:
+Weight/unit
+단위당 무게
+Welcome to Simutrans
+Simutrans에 오신 것을 환영합니다
+Welcome, %s!
+%s님, 환영합니다!
 Wert
 가격
 west
 서쪽
+Wind direction
+풍향
 Winter snowline
 겨울 만년설 높이
 withdraw
@@ -1907,8 +2565,12 @@ Withdraw All
 모두 퇴역
 WRONGSAVE
 \n호환되지 않는 세이브입니다.\n불러올 수 없습니다.\n
+Year
+연도
 Year %i has started.
 %i년에 시작.
+YEAR_SYMBOL
+년
 Years
 년
 Your primary color:
@@ -1939,6 +2601,38 @@ New world record for railways: %.1f km/h by %s.
 기차 %2$s가 %1$.1f km/h로 세계 신기록 달성!
 New world record for ship: %.1f km/h by %s.
 선박 %2$s가 %1$.1f km/h로 세계 신기록 달성!
+#________________________________script_ai_text_________________________________
+#________________________________script_ai_text_________________________________
+%s build additional convoy to line: %s
+%s이(가) 노선에 차량 추가: %s
+%s build rail line from %s (%s) to %s (%s)
+%s이(가) %s (%s)에서 %s (%s)까지 철도 노선 건설
+%s build road line from %s (%s) to %s (%s)
+%s이(가) %s (%s)에서 %s (%s)까지 도로 노선 건설
+%s build ship line from %s (%s) to %s (%s)
+%s이(가) %s (%s)에서 %s (%s)까지 선박 노선 건설
+%s extends the route from %s (%s) to %s (%s)
+%s이(가) %s (%s)에서 %s (%s)까지 경로 연장
+%s optimize way line from %s (%s) to %s (%s)
+%s이(가) %s (%s)에서 %s (%s)까지 경로 최적화
+%s removes convoys from line: %s
+%s이(가) 노선에서 차량 제거: %s
+vehicles of the line %s were retired
+%s 노선의 차량이 퇴역했습니다
+#_________________________________tooltip_text__________________________________
+#_________________________________tooltip_text__________________________________
+Add convois with similar schedule to this line.
+비슷한 스케줄의 차량을 이 노선에 추가합니다.
+Attach current coordinate to the comment
+코멘트에 현재 좌표 첨부
+Enter intervall in days, hours, minutes
+간격을 일, 시간, 분 단위로 입력
+Mirrors order of stops
+정류장 순서 반전
+Revert to original schedule
+모든 스케줄 변경 사항 취소
+Tutorial not available for this pakset. Please try loading Pak128.
+이 팍셋에서는 튜토리얼을 이용할 수 없습니다. Pak128을 불러와 보세요.
 #_______________________________unnecessary_text________________________________
 #_______________________________unnecessary_text________________________________
 &0_CITY_SYLL
@@ -2003,6 +2697,12 @@ New world record for ship: %.1f km/h by %s.
 천
 %F_CITY_SYLL
 동
+0center
+0도심
+0extern
+0외곽
+0suburb
+0교외
 1center
 %s %s
 1extern
@@ -2057,3 +2757,55 @@ New world record for ship: %.1f km/h by %s.
 %s 우회 %s
 9suburb
 %s 중간 %s
+Acenter
+A도심
+Aextern
+A외곽
+Asuburb
+A교외
+Bcenter
+B도심
+Bextern
+B외곽
+Bsuburb
+B교외
+Ccenter
+C도심
+Cextern
+C외곽
+Csuburb
+C교외
+Dcenter
+D도심
+Dextern
+D외곽
+Dsuburb
+D교외
+Ecenter
+E도심
+Eextern
+E외곽
+Esuburb
+E교외
+Fcenter
+F도심
+Fextern
+F외곽
+Fsuburb
+F교외
+Gcenter
+G도심
+Gextern
+G외곽
+Gsuburb
+G교외
+Hcenter
+H도심
+Hextern
+H외곽
+Hsuburb
+H교외
+Icenter
+I도심
+Iextern
+I외곽

@@ -28,6 +28,7 @@
 	FIX: Crash when using makeobj 'merge' or 'extract' commands
 	ADD: (victor_18993) schedule editor shows the route of the schedule on the map
 	FIX: Crash on Windows when receiving gameinfo for server with motd with >= 260 chars
+	CHG: Now using iso codes for CS, DA and EL (was CZ, DK and GR)
 
 
 Release of 124.5 (r11993 on 31-May-2026):

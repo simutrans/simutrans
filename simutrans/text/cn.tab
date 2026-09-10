@@ -12,13 +12,15 @@ wenquanyi_9pt.bdf
 #                           Language: cn Sim. Chinese                          #
 #                                Encoding: UTF-8                               #
 #                            Font: wenquanyi_9pt.bdf                           #
-#                           Date Created: 18.04 2026                           #
+#                           Date Created: 10.09 2026                           #
 #                                                                              #
 ################################################################################
 #__________________________________button_text__________________________________
 #__________________________________button_text__________________________________
 Absolute times
 显示时间格式为dd:hh:mm
+allow reverse passage
+允许逆行
 AMBIENT_SOUND
 环境音
 CASH_SOUND
@@ -109,6 +111,8 @@ Num pad keys always move map
 忽略小键盘锁定
 Open Sea
 开放海洋
+Owner only
+闲人免进
 Queueing
 排队中
 rainfall
@@ -123,6 +127,8 @@ Scenario
 场景信息
 sea
 海洋气候
+Shared only
+非私有
 Single GUI
 单窗口模式
 Sound range:
@@ -160,9 +166,13 @@ tundra
 #__________________________________error_text___________________________________
 #__________________________________error_text___________________________________
  Loading scenario script failed
- 载入场景脚本失败
+载入场景脚本失败
 A building blocks the construction
 前面有栋楼挡路了！
+A powerline blocks the construction
+电缆阻碍了建设
+Another way blocks the construction
+另一条道路阻碍了建设
 Bridge blocked by way below or above.
 桥梁高度不足以支撑下方的道路。
 Can't buy obsolete vehicles!
@@ -172,7 +182,7 @@ Cannot alter water
 Cannot build on a double slope!
 只能建在单一斜坡或平坦的地面上！
 Cannot built depot here!
-不能在这里建造车库
+不能在这里建造整备库
 Cannot built this station/building\nin underground mode here.
 该建筑不能建于地底
 Cannot connect to the\ncenter of a double slope!
@@ -181,6 +191,8 @@ Cannot create generic line!\nSelect line type by\nusing filter tabs.
 不能创建通用线路！\n用筛选选项卡\n选择线路类型。
 Cannot create socket
 网络初始化失败！
+Cannot cross the end of a runway
+无法横穿跑道末端
 Cannot rotate this building!
 不能旋转此建筑！
 Client closed connection during transfer
@@ -196,13 +208,15 @@ Could not open file
 Das Feld gehoert\neinem anderen Spieler\n
 该陆地属于其他玩家
 Depots cannot be built on runways!
-不能在跑道上建机库！
+不能在跑道上建整备库！
 Depots must be built on flat dead-end way tiles!
-仓库只能建在平坦路面的尽头！
+整备库只能建在平坦路面的尽头！
 Der Besitzer erlaubt das Entfernen nicht
 该建筑拥有者拒绝移除建筑\n汽车或行人在路上，不能移除
 Diese Zusammenstellung kann nicht fahren!\n
 非法组合
+Elevated way can only be joined in line
+高架道路只能沿直线连接
 Failed to write file
 不能写入文件。（权限问题？）
 Flugzeughalt muss auf\nRunway liegen!\n
@@ -279,12 +293,16 @@ Show no revenue messages
 不显示收益信息
 Show only player's revenue
 仅显示玩家的收益
+Slope is too steep
+坡度太陡
 Terraforming not possible\nhere in underground view
 不能在地底修整地形
 This tunnel branches. You can try Control+Click to remove.
 这条隧道有超过 2 个入口。\n你可尝试按住 Ctrl 键并点击来移除这条隧道。
 Too far away to merge stations!
 距离太远，不能合并。
+Tunnel can only be entered at its portal
+隧道只能从洞口进入
 Unknown error
 未知错误
 Upgrade must have\na higher level
@@ -293,6 +311,10 @@ Vehicle %s cannot choose because stop too short!
 载具 %s 不能选择，因为站点太短！
 Watertable reached
 图块不能再往下放了！\n已触及地下水位。
+Way does not match the slope here
+此处道路与坡度不匹配
+Wrong direction to enter the bridge
+进入桥梁的方向错误
 Zughalt muss auf\nSchiene liegen!\n
 火车车站必须建造在铁路轨道上
 #___________________________________help_text___________________________________
@@ -314,7 +336,7 @@ Decrease water height
 Highlight railroad tracks
 高亮显示铁路轨道
 Highlite depots
-高亮标记车厂
+高亮标记整备库
 Highlite electrical transmission lines
 高亮标记电力线
 Highlite factories
@@ -432,7 +454,7 @@ Remove vehicle from map. Use with care!
 Screenshot\ngespeichert.\n
 游戏截图已保存
 Sends the convoi to the last depot it departed from!
-将运输队调回最后的发车库
+将运输队调回最后的发车库（整备库）
 Server preparing game ...
 服务器正在准备地图传输 ...
 Trees
@@ -452,7 +474,7 @@ Line Filter
 (%i)-
 (%i)
 (in depot)
-(在仓库)
+(在整备库)
 [0] south-facing
 (0) 面向南
 [1] east-facing
@@ -526,7 +548,7 @@ Line Filter
 %s factory %s %s
 %s %s
 %s has entered a depot.
-%s\n已到达仓库。
+%s\n已到达整备库。
 %s has left.
 %s 已离开服务器。
 %s land %d %s
@@ -718,7 +740,7 @@ Available
 Available at custom date
 可用
 Bahndepot
-火车车库
+火车库
 Bankrott:\n\nDu bist bankrott.\n
 破产:\n\n你已经破产, 游戏结束
 based on Simutrans 84.22.1
@@ -744,7 +766,7 @@ BF
 bio
 天然生物
 Blockstrecke ist\nbelegt\n
-\n这段铁路正被其他列车使用。\n
+这段铁路正被其他列车使用。\n
 Boden
 地
 Bonus Multiplier: %i%%
@@ -768,7 +790,7 @@ Bruecke muss an\neinfachem\nHang beginnen!\n
 Brueckenboden
 桥
 Build air depot
-建造飞机舱
+建造飞机库
 build choosesignals
 建月台选择信号灯
 Build city market
@@ -780,11 +802,13 @@ build HQ
 Build land consumer
 建一个新的发电厂
 Build maglev depot
-建设磁浮列车厂
+建造磁浮列车库
 Build monorail depot
 建一个单轨列车库
 Build narrowgauge depot
-兴建窄轨列车厂
+建造窄轨列车库
+build portal only
+仅建造洞口
 Build powerline
 建电线
 Build presignals
@@ -800,7 +824,7 @@ Build train depot
 Build tram depot
 建有轨电车库
 Build truck depot
-建货车库
+建卡车库
 Building costs estimates
 建筑预算
 Buildings
@@ -814,9 +838,11 @@ Bus_tab
 Can be overgrown
 可过度发展
 Can only move from halt to halt or waypoint to waypoint.
-只可以从 \n一个站到宁一个站或 \n一个停顿点到宁一个停顿点移动。
+只能从一个站到另一个站或一个停靠站到另一个停靠站移动。
 Cancel
 取消
+Cannot build here
+无法在此建造
 Cannot connect to offline server!
 不能连接至离线服务器！
 Capacity
@@ -884,7 +910,7 @@ clf_chk_aircrafts
 clf_chk_cars
 巴士/卡车
 clf_chk_indepot
-在车库
+在整备库
 clf_chk_maglev
 磁悬浮列车
 clf_chk_monorail
@@ -978,7 +1004,7 @@ convoi error tooltips
 Convoi following mode
 正在被跟踪隧道内编队
 Convoi has been sent\nto the nearest depot\nof appropriate type.\n
-交通工具已经被召回到最近\n同类的库。\n
+交通工具已经被召至最近的同类整备库。
 Convoi is sold when all wagons are empty.
 在编队完全空时，它将会被卖。
 convoi mouseover tooltips
@@ -1070,9 +1096,9 @@ Departures per month
 Departures to\n
 前往\n
 Depot
-仓库
+整备库
 Depots
-车库
+整备库
 Der Tunnel ist nicht frei!\n
 隧道内仍有载具在行驶
 Destination
@@ -1114,7 +1140,7 @@ Dock must be built on single slope!
 Downloading
 下载中
 dp_title
-仓库列表
+整备库列表
 Du hast %d Monate Zeit, deine Schulden zurueckzuzahlen
 仅余 %d 个月还清债务
 Durchsatz
@@ -1177,6 +1203,8 @@ Farbe
 玩家颜色
 Fast forward
 快速进行
+Feb.
+2月
 February
 二月
 Ferry_tab
@@ -1264,7 +1292,7 @@ gl_btn_sort_catg
 gl_title
 商品列表
 go home
-回车库
+回整备库
 Goods
 货物
 Goods AI
@@ -1338,7 +1366,7 @@ hlf_chk_bahnhof
 hlf_chk_bushalt
 公共汽车站
 hlf_chk_frachthof
-zai
+上落客货区
 hlf_chk_keine_verb
 未连接
 hlf_chk_maglevstop
@@ -1364,9 +1392,11 @@ hlf_chk_waren_annahme
 hlf_title
 车站列表筛选
 Home depot not found!\nYou need to send the\nconvoi to the depot\nmanually.
-找不到仓库\n请手动设置行程表令其回到仓库
+找不到整备库。\n请手动设置行程表令其回到整备库。
 Homeless
 流浪者
+Horizontal stripe ownership
+横条带所有权
 hydrogene
 氢气
 Icon size:
@@ -1419,6 +1449,8 @@ Invert stops
 反转站序
 isometric map
 等距视图
+Jan.
+1月
 January
 一月
 join game
@@ -1435,6 +1467,8 @@ Kann Spielstand\nnicht laden.\n
 不能载入存储的游戏
 Kann Spielstand\nnicht speichern.\n
 不能打开目标文件
+keep city roads
+保留城市道路
 Kein Besitzer\n
 无物主
 keine
@@ -1470,7 +1504,7 @@ Last used tools
 Last Year
 上年度
 Leaving depot!
-正离开仓库！
+正离开整备库！
 leer
 空的
 Left button drags minimap too
@@ -1548,7 +1582,7 @@ Lock game
 Lokomotive_tab
 机车
 m3
-立方米
+m³
 Maglev
 磁浮铁路
 maglev vehicle
@@ -1556,7 +1590,7 @@ maglev vehicle
 maglev_track
 磁浮路轨
 Maglevdepot
-磁浮列车厂
+磁浮列车库
 Mail Demand %d\n
 最大邮件量 %d\n
 Mail level
@@ -1626,7 +1660,7 @@ min
 minimum length of rivers
 河流最短长度
 Minimum load
-最低载入 (%%)
+最低承载量 (%%)
 Missing pakfiles
 对象丢失！
 Modify the selected line
@@ -1642,7 +1676,7 @@ monorail_track
 Monorailboden
 高架道路
 Monoraildepot
-单轨列车车厂
+单轨列车车库
 Month
 月
 month wait time
@@ -1723,6 +1757,8 @@ No terminal station here!
 不能在此建设总站！请建车建\n设地点是否在对应路线的末端。
 no timeline
 不使用时间轴
+No transformer connected.
+未连接变压站。\n所有电力都将被浪费。
 no tree
 没有树林
 No vehicles are available for purchase.
@@ -1747,6 +1783,8 @@ Not enough fields would remain.
 此处场地预留空间不足。
 Not online
 不在线
+Nov.
+11月
 November
 十一月
 now
@@ -1880,7 +1918,7 @@ Meyer Moving Co.
 player 4
 货运代理人 VM
 player 5
-H-Trans公司
+H-Trans有限公司
 player 6
 PSK & Co KG
 player 7
@@ -1979,6 +2017,10 @@ remove tracks
 拆除路轨
 Remove wayobj %s
 拆除道路 %s
+replace existing ways
+置换现有道路
+replace faster wayobjs
+置换更快的道路设施
 replace other signals
 置换其他标志
 replace stop
@@ -2127,6 +2169,8 @@ Show always
 始终显示
 Show climates
 显示气候带
+Show construction info
+显示建造信息
 Show contour
 显示高度
 Show even servers with wrong version or pakset
@@ -2265,18 +2309,24 @@ Station_msg
 车站
 Status
 车站状态
+stay on this level
+保持在此高度
 steam
 蒸汽
 Step timeline one year
 跳至下一年
+Stopping permissions
+其他能使用此停靠站的玩家
 Stops
 车站
 Storage
 保管库
 Storage capacity
 容量
+straight route
+直线路径
 Strassendepot
-车库
+整备库
 Strassentunnel
 建造道路隧道
 street car
@@ -2306,7 +2356,7 @@ The script cannot be saved!\n
 Theme selector
 主题选择器
 There are still vehicles\nstored in this depot!\n
-仓库内还有载具
+整备库内还有载具！
 This Month
 本月
 This Year
@@ -2362,7 +2412,7 @@ tram %i km/h, monorail %i km/h\nmaglev %i km/h, narrowgauge %i km/h.
 tram_track
 电车轨
 Tramdepot
-电车车库
+有轨电车车库
 Trams are not available yet!
 电车还不可用！
 Transferring game ...
@@ -2434,7 +2484,7 @@ Vehicle Name
 Vehicle Power
 功率
 vehicles stored
-仓库内的载具
+整备库内的载具
 Verbrauch
 消耗量
 Vergroessere die Karte\n
@@ -2732,11 +2782,11 @@ Tutorial not available for this pakset. Please try loading Pak128.
 %Z_CITY_SYLL
 冬天
 0center
-%s 轴 %s
+%s 中心 %s
 0extern
 %s 旁道 %s
 0suburb
-日光浴场村
+%s 郊外 %s
 1center
 %s %s
 1extern
@@ -2768,7 +2818,7 @@ Tutorial not available for this pakset. Please try loading Pak128.
 5suburb
 %s 镇 %s
 6center
-%s 中心 %s
+%s 中转 %s
 6extern
 %s 交换 %s
 6suburb
@@ -2786,8 +2836,164 @@ Tutorial not available for this pakset. Please try loading Pak128.
 8suburb
 %s 卫星 %s
 9center
-9extern
+%s 轴 %s
 9extern
 %s 旁道 %s
 9suburb
 %s 中部 %s
+Acenter
+%s 中心 %s
+Aextern
+%s 外围 %s
+Asuburb
+%s 郊外 %s %s
+Bcenter
+%s 中心 %s
+Bextern
+%s 外围 %s
+Bsuburb
+%s 郊外 %s %s
+Ccenter
+%s 中心 %s
+Cextern
+%s 外围 %s
+Csuburb
+%s 郊外 %s %s
+Dcenter
+%s 中心 %s
+Dextern
+%s 外围 %s
+Dsuburb
+%s 郊外 %s %s
+Ecenter
+%s 中心 %s
+Eextern
+%s 外围 %s
+Esuburb
+%s 郊外 %s %s
+Fcenter
+%s 中心 %s
+Fextern
+%s 外围 %s
+Fsuburb
+%s 郊外 %s %s
+Gcenter
+%s 中心 %s
+Gextern
+%s 外围 %s
+Gsuburb
+%s 郊外 %s %s
+Hcenter
+%s 中心 %s
+Hextern
+%s 外围 %s
+Hsuburb
+%s 郊外 %s %s
+Icenter
+%s 中心 %s
+Iextern
+%s 外围 %s
+Isuburb
+%s 郊外 %s %s
+Jcenter
+%s 中心 %s
+Jextern
+%s 外围 %s
+Jsuburb
+%s 郊外 %s %s
+Kcenter
+%s 中心 %s
+Kextern
+%s 外围 %s
+Ksuburb
+%s 郊外 %s %s
+Lcenter
+%s 中心 %s
+Lextern
+%s 外围 %s
+Lsuburb
+%s 郊外 %s %s
+Mcenter
+%s 中心 %s
+Mextern
+%s 外围 %s
+Msuburb
+%s 郊外 %s %s
+Ncenter
+%s 中心 %s
+Nextern
+%s 外围 %s
+Nsuburb
+%s 郊外 %s %s
+Ocenter
+%s 中心 %s
+Oextern
+%s 外围 %s
+Osuburb
+%s 郊外 %s %s
+Pcenter
+%s 中心 %s
+Pextern
+%s 外围 %s
+Psuburb
+%s 郊外 %s %s
+Qcenter
+%s 中心 %s
+Qextern
+%s 外围 %s
+Qsuburb
+%s 郊外 %s %s
+Rcenter
+%s 中心 %s
+Rextern
+%s 外围 %s
+Rsuburb
+%s 郊外 %s %s
+Scenter
+%s 中心 %s
+Sextern
+%s 外围 %s
+Ssuburb
+%s 郊外 %s %s
+Tcenter
+%s 中心 %s
+Textern
+%s 外围 %s
+Tsuburb
+%s 郊外 %s %s
+Ucenter
+%s 中心 %s
+Uextern
+%s 外围 %s
+Usuburb
+%s 郊外 %s %s
+Vcenter
+%s 中心 %s
+Vextern
+%s 外围 %s
+Vsuburb
+%s 郊外 %s %s
+Wcenter
+%s 中心 %s
+Wextern
+%s 外围 %s
+Wsuburb
+%s 郊外 %s %s
+Xcenter
+%s 中心 %s
+Xextern
+%s 外围 %s
+Xsuburb
+%s 郊外 %s %s
+Ycenter
+%s 中心 %s
+Yextern
+%s 外围 %s
+Ysuburb
+%s 郊外 %s %s
+Zcenter
+%s 中心 %s
+Zextern
+%s 外围 %s
+Zsuburb
+%s 郊外 %s %s

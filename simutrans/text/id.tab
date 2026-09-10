@@ -12,11 +12,19 @@ Prop-Latin1.bdf
 #                            Language: id Indonesia                            #
 #                             Encoding: ISO-8859-1                             #
 #                             Font: Prop-Latin1.bdf                            #
-#                           Date Created: 11.03 2026                           #
+#                           Date Created: 10.09 2026                           #
 #                                                                              #
 ################################################################################
 #__________________________________button_text__________________________________
 #__________________________________button_text__________________________________
+Absolute times
+Tampilkan waktu sebagai hari:jj:mm dalam bulan
+allow reverse passage
+izinkan lewat arah sebaliknya
+AMBIENT_SOUND
+suara lingkungan
+CASH_SOUND
+suara kas
 cl_btn_filter_disable
 Non-aktif
 cl_btn_filter_enable
@@ -41,6 +49,16 @@ clf_btn_invers
 inv.
 clf_btn_keine
 tidak ada
+climate area percentage
+persentase luas iklim
+Continue Game
+Lanjutkan Permainan
+CROSSING_SOUND
+peringatan perlintasan
+FACTORY_SOUND
+suara pabrik
+Find matching convois
+Cari konvoi yang cocok
 gl_btn_sort_bonus
 Bonus
 gl_btn_sort_name
@@ -49,6 +67,8 @@ gl_btn_sort_revenue
 Harga
 gl_btn_unsort
 Acak
+height based
+berdasarkan ketinggian
 hl_btn_filter_disable
 Non-aktif
 hl_btn_filter_enable
@@ -71,14 +91,58 @@ hlf_btn_invers
 Balik
 hlf_btn_keine
 Tidak ada
+humidities
+batas kelembapan
+Install
+Pasang
+Lake
+Danau
+Lake height
+Tinggi danau maks.
+Maximize height levels
+Maksimalkan tingkat ketinggian
+moisture land
+kelembapan daratan
+moisture water
+kelembapan perairan
 Networks
 Rute
+Num pad keys always move map
+Tombol keypad angka selalu menggeser peta
+Open Sea
+Laut Lepas
+Owner only
+Hanya pemilik
 Queueing
 Tren menunggu
+rainfall
+curah hujan
+Reselect closes tools
+Memilih ulang alat akan membatalkan pilihannya
+Return to menu
+Kembali ke menu
 Road toll
 Jalan Tol
 Scenario
 Info skenario
+sea
+Iklim Laut
+Shared only
+Hanya yang dibagikan
+Single GUI
+GUI tunggal
+Sound range:
+Jangkauan suara:
+Start this as a server
+Mulai permainan ini sebagai server
+temperature borders
+batas suhu
+temperature-humidity based
+berdasarkan suhu-kelembapan
+TOOL_SOUND
+suara aksi alat
+TRAFFIC_SOUND
+suara lalu lintas
 Transfers
 Yang lewat
 #_________________________________climates_text_________________________________
@@ -101,36 +165,70 @@ Iklim Tundra
 #__________________________________error_text___________________________________
  Loading scenario script failed
 Scenario script tidak dapat dibuka
+A building blocks the construction
+Sebuah bangunan menghalangi pembangunan
+A powerline blocks the construction
+Kabel listrik menghalangi pembangunan
+Another way blocks the construction
+Jalan lain menghalangi pembangunan
+Bridge blocked by way below or above.
+Jembatan terhalang oleh jalur di bawah atau di atas.
 Can't buy obsolete vehicles!
 Kendaraan tua tidak dapat dibeli.
 Cannot alter water
 Air tidak dapat ditambah atau dikurangi lagi.
+Cannot build on a double slope!
+Hanya dapat dibangun di lereng tunggal atau tanah datar!
 Cannot built depot here!
 Depot tidak dapat dibangun di sini.
 Cannot built this station/building\nin underground mode here.
 Stasiun/bangunan ini tidak dapat\ndibangun di bawah tanah di sini.
+Cannot connect to the\ncenter of a double slope!
+Jembatan tidak dapat tersambung ke tengah lereng ganda!\nGunakan alat lanskap untuk memperbaikinya.
 Cannot create generic line!\nSelect line type by\nusing filter tabs.
 Rute semua jenis tidak dapat dibuat.\nGunakan filter untuk\nmemilih jenis kendaraan.
 Cannot create socket
 Koneksi socket tidak dapat dilakukan
+Cannot cross the end of a runway
+Tidak dapat melintasi ujung landasan pacu
+Cannot rotate this building!
+Tidak dapat memutar bangunan ini!
+Client closed connection during transfer
+Klien menutup sambungan saat transfer
 Convoi handles exhausted!
 Konvoi sudah mencapai jumlah maksimum.
 Convoy already deleted!
 Konvoi sudah dihapus.
+Corrupt file
+Berkas rusak atau terpotong.
+Could not open file
+Tidak dapat mengakses berkas. Periksa izin akses?
 Das Feld gehoert\neinem anderen Spieler\n
 Tanah ini\ndimiliki oleh\npemain lain.\n
+Depots cannot be built on runways!
+Depo tidak dapat dibangun di landasan pacu!
+Depots must be built on flat dead-end way tiles!
+Depo harus dibangun di kotak jalur buntu yang datar!
 Der Besitzer erlaubt das Entfernen nicht
 Pemilik tidak\nmemberikan ijin\nuntuk menghapus.\n
 Diese Zusammenstellung kann nicht fahren!\n
 Salah Kombinasi\nKendaraan tdk dpt bergerak!\n
+Elevated way can only be joined in line
+Jalan layang hanya dapat disambung dalam satu garis lurus
+Failed to write file
+Gagal menulis berkas. (Izin akses?)
 Flugzeughalt muss auf\nRunway liegen!\n
 Tempat parkir pesawat\nharus di taxiway.
+Forbidden by scenario
+Dilarang oleh skenario
 Hier kann dieses\nFlughafengebaeude nicht\ngebaut werden!\n
 Bandara tidak dapat\n\ndibangun di sini.\n
 Hier kann kein\nSignal aufge-\nstellt werden!\n
 Sinyal kereta tidak dapat\ndiletakkan di sini.\n
 In order to lock the game, you have to protect the public player by password!
 Untuk mengunci permainan, anda harus memberikan kata sandi untuk public player.
+Loading a new game will end the current server session!
+Membuka permainan baru akan mengakhiri sesi server saat ini!
 Lost connection\nto server!
 Koneksi dengan\nserver terputus.
 Lost synchronisation\nwith server.
@@ -141,18 +239,38 @@ Monorailhalt muss auf\nMonorail liegen!\n
 Stasiun Monorel\nharus dibuat di\njalur Monorel!\n
 Monorails are not available yet!
 Monorel belum dikembangkan!
+More than one possibility to build this dock found.
+Ditemukan lebih dari satu kemungkinan untuk membangun dermaga ini.
 Narrowgaugehalt muss auf\nNarrowgauge liegen!\n
 Stasiun rel sempit hanya dapat diletakkan di rel sempit.
+No bridges over runways!
+Tidak boleh ada jembatan di atas landasan pacu!
+No curves on runways
+Landasan pacu tidak boleh berbelok!
+No suitable crossing
+Tidak ada perlintasan yang cocok! (kecepatan maks. terlalu cepat?)
 No suitable way on the ground!
 Pemberhentian hanya dapat dibangun\ndi jalurnya dan harus datar.
 No through station here!
 Pemberhentian hanya dapat dibangun di jalur lurus tanpa persimpangan.
+Not allowed to copy object.
+Anda tidak dapat membangun objek tersebut!\n(Alasan: Pemain yang salah atau sudah usang)
+Not enough bytes transferred
+Bita yang ditransfer tidak cukup
+Not enough clearance.
+Di antara dua jalur diperlukan perbedaan tinggi minimal dua tingkat.
+Not enough empty space
+Tidak cukup ruang kosong yang tersisa.
 Not enough money!
 Uang Anda tidak cukup\nuntuk membangun ini.
+Not initialized
+Tidak dapat menginisialisasi pustaka.
 On narrowgauge track only!\n
 Hanya untuk rel sempit.\n
 Only public player can lock games!
 Hanya public player yang dapat mengunci permainan.
+Only up and down movement in the underground!
+Ubin bawah tanah hanya dapat dinaikkan dan diturunkan menggunakan alat naik/turun semua!
 Out of funds
 Uang Anda tidak cukup untuk melakukan hal ini.
 Post muss neben\nHaltestelle\nliegen!\n
@@ -163,20 +281,54 @@ Schiffhalt muss im\nWasser liegen!\n
 Pemberhentian kapal harus\ndibangun di air\ndi dekat dermaga.\n
 Server busy
 Server sibuk.
+Server version too new
+Server menggunakan versi program yang lebih baru.
+Ship depots must be built on water!
+Depot kapal harus dibangun di atas air!
+Show all revenue messages
+Tampilkan semua pesan pendapatan
+Show no revenue messages
+Tampilkan pesan tanpa pendapatan
+Show only player's revenue
+Hanya tampilkan pendapatan pemain
+Slope is too steep
+Kemiringan terlalu curam
 Terraforming not possible\nhere in underground view
 Di bawah tanah, tanah tidak dapat dinaikturunkan.
 This tunnel branches. You can try Control+Click to remove.
 Terowongan ini memiliki cabang. Ctrl+klik untuk membongkar.
+Too far away to merge stations!
+Terlalu jauh untuk menggabungkan stasiun!
+Tunnel can only be entered at its portal
+Terowongan hanya dapat dimasuki melalui portalnya
+Unknown error
+Kesalahan tidak diketahui
 Upgrade must have\na higher level
 Hanya dapat diperbaharui\nke tingkat yang lebih tinggi.
 Vehicle %s cannot choose because stop too short!
 Kendaraan %s tidak dapat memilih karena pemberhentian terlalu pendek.
+Watertable reached
+Mencapai permukaan air tanah
+Way does not match the slope here
+Jalan tidak sesuai dengan kemiringan di sini
+Wrong direction to enter the bridge
+Arah salah untuk masuk ke jembatan
 Zughalt muss auf\nSchiene liegen!\n
 Stasiun kereta\nhanya dapat dibangun\ndi atas rel kereta.\n
 #___________________________________help_text___________________________________
 #___________________________________help_text___________________________________
 <h1>Index</h1><p>*: only english</p><p>General</p>%s<p>Usage</p>%s<p>Tools</p>%s<p>Start</p>%s<p>How to play</p>%s<p>Others:</p>%s
 <title>Help</title><h1>Help Index</h1><p><it>About Simutrans</it></p>%1$s<p><it>How to use</it></p>%2$s<p><it>How to start a game</it></p>%4$s<p><it>How to play</it></p>%5$s<p><it>Tools</it></p>%3$s<p><it>Others windows</it></p>%6$s
+<title>Keyboard Help</title>\n<h1><strong>Keyboard Help</strong></h1><p>\n
+<title>Pengikatan Papan Ketik</title>\n<h1><strong>Bantuan Papan Ketik</strong></h1>\n<p>\n<p><strong>Bantuan Papan Ketik</strong> terbuka saat tombol yang belum ditetapkan ditekan atau dari <a href="general.txt">Bantuan Umum</a>.\n</p>\n<p>\nPenekanan tombol peka huruf besar-kecil (gunakan [<em>Shift</em>] untuk huruf besar).\n</p>\n<p>\nTombol dengan fungsi yang ditetapkan meliputi:\n</p>\n<p>\n[<em>Tombol Panah</em>]: gulir tampilan permainan ke arah panah.<br>\n[<em>Backspace</em>]: tutup semua jendela, bilah alat, dan teks bantuan.<br>\n[<em>Delete</em>], atau [<em>Escape</em>]: tutup jendela, bilah alat, atau teks bantuan teratas.<br>\n[<em>Page-Up</em>], atau [<em>&gt;</em>]: perbesar tampilan permainan.<br>\n[<em>Page-Down</em>], atau  [<em>&lt;</em>]: perkecil tampilan permainan.\n[<em>CTRL</em>] + alat: bangun jalur yang lebih lurus (bahkan di atas jalur yang lebih cepat) atau balikkan urutan pemilihan saat kueri atau penghapusan.<br>\n</p>
+At least one stop is connected to the town.
+Setidaknya satu pemberhentian terhubung ke kota.
+At least one tile is connected to one stop.
+Setidaknya satu kotak terhubung ke satu pemberhentian.
+Color according to transport capacity left
+Warna sesuai sisa kapasitas angkut
+Color-coded terrain according to altitude.
+Tampilkan/sembunyikan bayangan kontur medan.
 Decrease water height
 Menurunkan air sebanyak satu tingkat
 Highlight railroad tracks
@@ -193,6 +345,8 @@ Highlite tourist attraction
 Menampilkan tempat wisata
 Increase water height
 Meninggikan air sebanyak satu tingkat
+Open station/stop details
+Tampilkan rincian stasiun
 Overlay city limits
 Menampilkan batas kota
 Overlay passenger destinations when a town window is open
@@ -203,6 +357,8 @@ Overlay town names
 Menampilkan nama kota
 Please click on the map to add\nwaypoints or stops to this\nschedule.
 Klik di peta untuk menambah\nwaypoint atau pemberhentian\nke jadwal ini.
+Remove double stops from schedule
+Hapus perhentian ganda dari jadwal
 Set tile climate %s
 Mengubah tanah ini menjadi iklim %s.
 Show capacity and if halt is overcrowded
@@ -279,6 +435,8 @@ Infrastruktur Trem
 %s membangun kantor pusat baru.
 Factory chain extended\nfor %s near\n%s built with\n%i factories.
 Ekonomi meningkat:\n%s di dekat %s menambah pabrik.\n%i pabrik baru dibangun.
+Net wealth less than 10%% of starting capital!
+Kekayaan bersih kurang dari 10%% dari modal awal!
 New %s now available:\n%s\n
 %s baru tersedia:\n%s\n
 New factory chain\nfor %s near\n%s built with\n%i factories.
@@ -287,12 +445,18 @@ New vehicle now available:\n%s\n
 \n Kendaraan baru\n tersedia:\n\n\n -- %s --\n\n
 Now %u clients connected.
 Saat ini %u orang tersambung.
+overtaking
+mendahului
 Remove vehicle from map. Use with care!
 Menghapus kendaraan. (Gunakan secara hati-hati)
 Screenshot\ngespeichert.\n
 Screenshot\ntersimpan.\n
 Sends the convoi to the last depot it departed from!
 Mengirim konvoi ke depot tempat konvoi ini berangkat.
+Server preparing game ...
+Server sedang menyiapkan permainan ...
+Trees
+Pohon
 With a big festival\n%s built\na new monument.\n%i citicens rejoiced.
 %s membangun\nmonumen baru.\n%i penduduk bersuka cita.
 #___________________________________obsolete____________________________________
@@ -301,10 +465,30 @@ Line Filter
 Filter rute
 #_________________________________program_text__________________________________
 #_________________________________program_text__________________________________
+(%.2f$/km %.2f$/m)
+(%.2f$/km %.2f$/bln)
 (%i)-
 (%i)
 (in depot)
 (di depot)
+[0] south-facing
+[0] menghadap selatan
+[1] east-facing
+[1] menghadap timur
+[2] north-facing
+[2] menghadap utara
+[3] west-facing
+[3] menghadap barat
+[4] southeast corner
+[4] sudut tenggara
+[5] northeast corner
+[5] sudut timur laut
+[6] northwest corner
+[6] sudut barat laut
+[7] southwest corner
+[7] sudut barat daya
+/month
+/bulan
 \nBauzeit bis
 -
 \nBauzeit von
@@ -343,8 +527,12 @@ Filter rute
 %d konvoi
 %d Einzelfahrzeuge im Depot
 %d kendaraan disimpan di sini.
+%d more convois
+%d konvoi lagi
+%i car(s),
+%i gerbong, 
 %i km/h (max. %ikm/h)
-%i km/h (maks. %i km/h)
+%i km/h (maks. %ikm/h)
 %i years %i months old.
 Usia: %i tahun %i bulan
 %s at (%i,%i) now public stop.
@@ -357,8 +545,12 @@ Usia: %i tahun %i bulan
 %s %s (pabrik)
 %s has entered a depot.
 %s telah kembali ke depot.
+%s has left.
+%s telah keluar.
 %s land %d %s
 %s %d %s pinggir kota
+%s now known as %s.
+%s sekarang dikenal sebagai %s.
 %s wasted\nyour money with a\nnew townhall\nwhen it reached\n%i inhabitants.
 %s \nmembangun\nbalai kota baru\nsaat mencapai\n%i penduduk.
 %s\nis crowded.
@@ -369,12 +561,24 @@ Usia: %i tahun %i bulan
 %s bangkrut dan\nsudah dikeluarkan.\nSeluruh aktifitas dihentikan\ndan semua aset telah dijual.
 %u Client(s)\n
 %u orang\n
+%u days ago
+%u hari yang lalu
+%u hours ago
+%u jam yang lalu
+%u minutes ago
+%u menit yang lalu
 %u Player (%u locked)\n
 %u pemain (%u terkunci)\n
+%u years ago
+%u tahun yang lalu
 <clear schedule>
 <kosongkan jadwal>
 <create new line>
 <buat rute baru>
+<h1>Error</h1><p><strong>
+<h1>Kesalahan: Objek ganda di direktori pak utama</h1><p><strong>Di 
+<h1>Warning</h1><p><strong>addons for
+<h1>Peringatan: Objek ganda di direktori addon</h1><p><strong>Addon untuk 
 <individual schedule>
 <jadwal masing-masing>
 <no line>
@@ -387,16 +591,36 @@ Usia: %i tahun %i bulan
 1 konvoi
 1 Einzelfahrzeug im Depot
 1 kendaraan disimpan di sini.
+1 minute ago
+1 menit yang lalu
+1 year ago
+1 tahun yang lalu
+100 km/h = %i tiles/month
+100 km/h = %i kotak/bulan
 1LIGHT_CHOOSE
 Brightness
+1th
+ke-1
 1WORLD_CHOOSE
 Peta
+21th
+ke-21
+22th
+ke-22
+23th
+ke-23
 2LIGHT_CHOOSE
 Warna
+2th
+ke-2
 2WORLD_CHOOSE
 No. Peta
+31th
+ke-31
 3LIGHT_CHOOSE
 Scroll Speed
+3th
+ke-3
 4LIGHT_CHOOSE
 Scroll Inverse
 5LIGHT_CHOOSE
@@ -409,6 +633,8 @@ Pedestrians in town
 Traffic Density
 8WORLD_CHOOSE
 Tampilkan Malam Hari
+A bridge must end on a way!
+Jembatan harus berakhir di jalur!
 A bridge must start on a way!
 Ujung jembatan tidak tersedia atau terdapat penghalang di antaranya.
 Abfrage
@@ -441,6 +667,10 @@ Add Stop
 Tambah pemberhentian
 Add stops for backward travel
 Tambah pemberhentian untuk perjalanan balik.
+air
+udara
+Aircraft
+Pesawat
 aircraft_tab
 Pesawat kargo
 airplane
@@ -461,6 +691,8 @@ allowed climates:\n
 Iklim yang diijinkan:\n
 Alters a schedule.
 Tambah/hapus pemberhentian dari/ke jadwal
+and arranged by
+dan disusun oleh
 Angenommene Waren
 Barang yang dibutuhkan oleh industri dekat sini
 anhaengen
@@ -485,16 +717,24 @@ Aufloesen
 Batalkan
 Aufspanntransformator
 Gardu Listrik
+Aug.
+Agu.
 August
 Agustus
+auto
+otomatis
 Autohalt muss auf\nStrasse liegen!\n
 Halte Bus\nharus dibuat\ndi jalan.
 Available
 Tersedia
+Available at custom date
+Tersedia pada tanggal khusus
 Bahndepot
 Depot kereta
 Bankrott:\n\nDu bist bankrott.\n
 Bangkrut:\n\nAnda bangkrut.\n
+based on Simutrans 84.22.1
+berdasarkan Simutrans 84.22.1
 battery
 Baterai
 Baum
@@ -519,10 +759,16 @@ Blockstrecke ist\nbelegt\n
 \nJalur sedang digunakan kereta lainnya,\ntunggu hingga kereta lewat!\n
 Boden
 Tanah
+Bonus Multiplier: %i%%
+Pengali Bonus: %i%%
+Bonus Speed: %i km/h
+Kecepatan Bonus: %i km/h
 Bonusspeed: %i km/h
 Kecepatan maks. yang mungkin dicapai: %i km/h
 Boost (%%)
 Peningkatan produksi(%%)
+Borderless (disabled on fullscreen)
+Tanpa bingkai (dinonaktifkan di layar penuh)
 bridge is too high for its type!
 Melebihi tinggi maksimum jenis jembatan ini.
 Bridge is too long for this type!\n
@@ -551,6 +797,8 @@ Build monorail depot
 Bangun depot monorel
 Build narrowgauge depot
 Membangun depot rel sempit
+build portal only
+bangun portal saja
 Build powerline
 Bangun SUTET
 Build presignals
@@ -577,12 +825,18 @@ Built random attraction
 Bangun Venue apapun
 Bus_tab
 Bus
+Can be overgrown
+Dapat ditumbuhi tanaman
 Can only move from halt to halt or waypoint to waypoint.
 Hanya dapat memindah\npemberhentian ke pemberhentian\natau waypoint ke waypoint
 Cancel
 Batalkan
+Cannot build here
+Tidak dapat membangun di sini
 Cannot connect to offline server!
 Tidak dapat menghubungi server offline.
+Capacity
+Kapasitas
 Capacity:
 Kapasitas:
 Capacity: %.0f MW
@@ -597,6 +851,10 @@ cars.\nstate
 mobil\n
 Cash
 Kas
+Category
+Kategori
+Change label style
+Ubah gaya label
 Change player
 Ganti Pemain
 Chart
@@ -611,6 +869,8 @@ chooses a random map
 Peta Acak
 citicens
 Penduduk
+Cities can only be built on flat empty ground!
+Kota hanya dapat dibangun di tanah kosong yang datar!
 City attraction
 Venue dalam kota
 City industries
@@ -629,6 +889,8 @@ cl_title
 Daftar kendaraan
 cl_txt_sort
 Urutkan:
+Cleanup schedule
+Hapus entri ganda
 Clear block reservation
 Menampilkan jalur/jalan yang digunakan
 clf_chk_aircrafts
@@ -671,28 +933,46 @@ clf_chk_waren
 Filter barang:
 clf_title
 Filter daftar kendaraan
+Click to open the finance dialog.
+Klik untuk membuka dialog keuangan.
+Climate
+Iklim
 Climate Control
 Pengaturan kondisi alam
+Climates
+Iklim
 closed
 ditutup.
+Closes topmost line window when new line selected.
+Tutup jendela jalur teratas saat jalur baru dipilih.
 COLOR_CHOOSE\n
 Pilih dua warna\ndari gambar\ndi kanan:
 Company bankrupt
 Perusahaan bangkrut
+company_chat
+Obrolan perusahaan
 Company_msg
 Lawan
 Comparing pak files ...
 Membandingkan berkas pak...
+Composed by
+Digubah oleh
 Configure AI
 Mengatur lawan komputer
 Configure AI setttings
 Melakukan pengaturan lawan komputer
 Congratulation\nScenario was complete in\n%i months %i years.
 Selamat!\nSkenario sudah\nselesai dalam\n%i bulan dan %i tahun.
+Connect factory
+Hubungkan pabrik
 Connected stops
 Pemberhentian yang terhubung:
 Connected with server
 Terhubung ke server
+connection
+koneksi
+Connections
+Sambungan
 Constructed by
 Digambar oleh
 Constructed by %s
@@ -703,10 +983,14 @@ Construction_Btn
 Biaya pembangunan
 Consumed
 Dihabiskan
+contains the following doubled objects:</strong><p>
+ berisi objek berikut lebih dari satu kali:</strong><p/>
 convoi %d of %d
 Konvoi %d dari %d
 convoi error tooltips
 keterangan kesalahan konvoi
+Convoi following mode
+Mode ikuti konvoi
 Convoi has been sent\nto the nearest depot\nof appropriate type.\n
 Konvoi telah dikirim\nke depot terdekat\nsesuai dengan jenisnya.\n
 Convoi is sold when all wagons are empty.
@@ -725,8 +1009,14 @@ Copy Convoi
 Salin konvoi
 Copy the selected convoi and its schedule or line
 Salin konvoi yang dipilih beserta rute/jadwalnya
+Copy to clipboard
+Salin ke papan klip
+Cost
+Biaya
 cost for removal
 Biaya untuk menghapus
+Cost per unit
+Biaya per unit
 Cost: %8s (%.2f$/km %.2f$/m)\n
 Harga: %s (%.2f$/km %.2f$/m)\n
 Cost: %8s (%.2f$/km)\n
@@ -739,12 +1029,20 @@ curiosity builder
 Pembangun tempat wisata
 curlist_title
 Daftar tujuan turis
+CURRENCY
+$
+Current game
+Permainan saat ini
 Currently playing:
 Sedang bermain:
 Customers live in:
 Pelanggan tinggal di:
+Date format
+Format tanggal
 deactivated in online mode
 Tidak aktif saat online
+Dec.
+Des.
 Deccelerate time
 Perlambat waktu
 December
@@ -771,10 +1069,18 @@ Denkmal
 Monumen
 Departed
 Berangkat
+Departs at
+Berangkat pada (hh:jj:mm)
+Departure after
+%% muatan atau menunggu selama (hh-jj-mm)
 Departure board
 Waktu keberangkatan
+Departures per month
+Keberangkatan per bulan
 Departures to\n
 Keberangkatan ke\n
+Depot
+Depo
 Depots
 Depot
 Der Tunnel ist nicht frei!\n
@@ -785,20 +1091,38 @@ Destroying map ...
 Menghapus peta yang lalu...
 Details
 Detil
+Developed by the Simutrans Team
+Dikembangkan oleh Tim Simutrans
 Die Bruecke ist nicht frei!\n
 Jembatan tidak kosong.\n
+direct_chat_to:
+Obrolan langsung ke:
+directmail
+selebaran
 Direkt erreichbare Haltestellen
 Rute langsung dari sini:
 disable midi
 Matikan Musik
+Display bars above factory to show the status
+Tampilkan batang status di atas pabrik
 Display settings
 Pengaturan tampilan
 Distance
 Jarak
+distributing cities
+mendistribusikan kota
+distributing factories
+mendistribusikan pabrik
+Do not show
+Jangan tampilkan
 Dock
 Galangan Kapal
 Dock must be built on single slope!
 Dermaga harus dibangun di tanah miring.
+Downloading
+Mengunduh
+dp_title
+Daftar depo
 Du hast %d Monate Zeit, deine Schulden zurueckzuzahlen
 Anda memiliki %d bulan untuk membayar utang.
 Durchsatz
@@ -809,6 +1133,8 @@ Eigenbesitz\n
 Fasilitas umum\n
 Ein %s\npasst hier nicht.\n
 '%s'\ntidak dapat diletakkan di sini.\n
+Einstellungen
+Pengaturan
 Einstellungen aendern
 Pilihan
 electric
@@ -833,6 +1159,8 @@ Erzeuge neue Karte.\n
 Silakan tunggu.\nPeta sedang dibuat.\n\n(Proses dapat berlangsung beberapa\nmenit untuk peta yang besar)\n
 Es wird bereits\nein Fahrplan\neingegeben\n
 Jadwal sedang dibuat.\nSelesaikan terlebih\ndahulu sebelum\nmenjadwal ulang.\n
+Extract files
+Ekstrak berkas pak dari zip.
 Fabrikanschluss
 Pabrik yang terhubung
 Fabrikname
@@ -879,6 +1207,10 @@ follow me
 Ikuti ini
 Follow the convoi on the map.
 Ikuti konvoi di peta
+font size
+ukuran font
+For questions and support please visit:
+Untuk pertanyaan dan dukungan silakan kunjungi:
 Forest
 Hutan
 Found new city
@@ -891,12 +1223,16 @@ Free Capacity
 Kapasitas kosong
 freeplay mode
 Permainan bebas
+Freight
+Kargo
 Friction:
 Faktor gesekan:
 fuel_cell
 fuel cell
 Full load
 Muatan minimum:
+Fullscreen (changed after restart)
+Layar penuh (berubah setelah mulai ulang)
 Fundament
 Pondasi
 Fussgaenger
@@ -913,6 +1249,8 @@ Gebaeude
 Bangunan
 General
 Umum
+generate script
+buat skrip
 Generated
 Dibuat
 Generation: %.0f MW
@@ -939,14 +1277,22 @@ Gross Profit
 Cash Flow
 Groundobj
 Objek
+groundobj builder
+pembuat objek tanah
 Grow city
 Perbesar kota
 Growth
 Pertumbuhan kota
+GUI settings
+Pengaturan GUI
 H
 halte
 Happy
 Senang
+Has slope graphics
+Memiliki grafik lereng
+Has Snow
+Bersalju
 Haus kaufen
 Beli rumah
 Helligk.
@@ -959,6 +1305,8 @@ hide all building
 Sembunyikan semua bangunan
 hide city building
 Sembunyikan bangunan kota
+Hide labels
+Sembunyikan label
 hide objects under cursor
 Sembunyikan objek dekat pointer mouse
 hide station names
@@ -971,6 +1319,8 @@ Hier warten/lagern:
 Barang/penumpang yang menunggu:
 Higher transport fees, crossconnect all factories
 Biaya angkut lebih tinggi, matikan just-in-time
+highlight single ways
+sorot jalur tunggal
 Highlite schedule
 Tampilan pemberhentian yang ada pada jadwal
 hl_title
@@ -1017,8 +1367,12 @@ Home depot not found!\nYou need to send the\nconvoi to the depot\nmanually.
 Depot tidak ditemukan.\nKendaraan harus dikirim ke\ndepot secara manual.
 Homeless
 Tunawisma
+Horizontal stripe ownership
+Kepemilikan garis horizontal
 hydrogene
 Hidrogen
+Icon size:
+Ukuran ikon:
 Idle:
 Diam:
 ignore climates
@@ -1033,6 +1387,12 @@ increase underground view level
 Tambah tingkat tampilan bawah tanah
 industrial building
 Bangunan industri
+Industry overlay
+Lapisan industri
+Infinite mouse scrolling
+Pengguliran peta tanpa batas
+Infinite scrolling using mouse
+Mungkin tidak berfungsi pada layar sentuh!
 Init map ...
 Menyiapkan peta...
 Input
@@ -1041,14 +1401,24 @@ Ins Stop
 Sisipkan
 Insert stop before the current stop
 Sisipkan pemberhentian sebelum pemberhentian yang dipilih
+Install graphics
+Pasang grafik
+Install paks
+Set pak diunduh dan dipasang.
+Insufficient funds!
+Dana tidak mencukupi!
 Intercity road len:
 Panjang jalan antarkota:
+Intro. date
+Tgl. perkenalan
 Intro. date:
 Tanggal kemunculan:
 invalid
 tidak benar.
 Invalid coordinate
 Urutan salah
+Invert stops
+Balikkan perhentian
 isometric map
 Tampilan isometrik
 January
@@ -1061,10 +1431,14 @@ Jump to
 Pergi ke
 June
 Juni
+just now
+baru saja
 Kann Spielstand\nnicht laden.\n
 Data permainan tidak dapat dibuka.
 Kann Spielstand\nnicht speichern.\n
 Berkas yang dituju\ntidak dapat\ndiubah.
+keep city roads
+pertahankan jalan perkotaan
 Kein Besitzer\n
 Tanpa pemilik\n
 keine
@@ -1095,12 +1469,20 @@ LARGE_NUMBER_VALUE
 1e6
 Last Month
 Bulan lalu:
+Last used tools
+Alat yang terakhir digunakan
 Last Year
 Tahun lalu:
 Leaving depot!
 Meninggalkan depot
 leer
 kosong
+Left button drags minimap too
+Tombol kiri juga menyeret peta mini
+legacy (large heights)
+klasik (ketinggian besar)
+legacy (small heights)
+klasik (ketinggian kecil)
 Legend
 Simbol peta
 Leistung
@@ -1109,30 +1491,48 @@ Leistung: %d kW
 Daya: %d kW
 Leitung
 Kabel listrik
+length: %d
+panjang: %d
 letzen Monat: diesen Monat:
 bulan lalu: bulan ini:
 Line
 Rute
 Line Management
 Pengelolaan rute
+line name mouseover tooltips
+tooltip nama jalur saat kursor diarahkan
 Lineless convoys serving this stop
 Konvoi tanpa rute yang melayani pemberhentian ini
 Lines serving this stop
 Rute yang melayani pemberhentian ini
+List of industries on the map
+Daftar industri di peta
 LKW_tab
 Truk
 Load game
 Buka permainan
 load height data from file
 Memuat data ketinggian dari berkas.
+Load mode:
+Mode muat:
 Load scenario
 Buka skenario
+Load script tool
+Muat alat skrip
+Load Scripted AI
+Muat Skrip AI
+Load settings from
+Terapkan pengaturan dari
 loaded
 dimuat
 loaded passenger/freight
 Urutkan penumpang/kargo
 Loading (%i->%i%%)!
 Terisi (%i->%i%%)
+Loading (%i%%) departure %s!
+Memuat (%i%%) keberangkatan %s!
+Loading (%i%%)!
+Memuat (%i%%)!
 Loading addon paks ...
 Sedang Memuat Addons ...
 Loading map ...
@@ -1141,10 +1541,16 @@ Loading paks ...
 Sedang memuat file utama ...
 Loading skins ...
 Sedang memuat skin ...
+Loading time:
+termuat penuh dalam: 
+Lock Control key
+Kunci tombol Control
 Lock game
 Mencegah ganti pemain (membutuhkan konfirmasi)
 Lokomotive_tab
 Lokomotif
+m3
+m³
 maglev vehicle
 Maglev
 maglev_track
@@ -1153,6 +1559,8 @@ Maglevdepot
 Depot maglev
 Mail Demand %d\n
 Kebutuhan pos %d\n
+Mail level
+Jumlah Pos
 Mailbox
 Pesan
 Mailbox Options
@@ -1161,12 +1569,16 @@ Maintenance
 Perawatan
 make stop public (or join with public stop next) costs %i per tile and level
 menjadikan pemberhentian umum (atau bergabung dengan pemberhentian umum di sebelahnya) biaya %i$ setiap kotak dan tingkat
+Make way or stop public (will join with neighbours), %i times maintainance
+Jadikan jalur atau perhentian publik (akan bergabung dengan tetangga), biaya pemeliharaan %i kali lipat
 Manual (Human)
 Manual (Manusia)
 Manufactured:
 Dibuat:
 Map roughness
 Kerumitan Peta:
+map view
+tampilan peta
 map zoom
 Perbesar Peta
 March
@@ -1181,8 +1593,12 @@ Max Boost (%%)
 Peningkatan maks.(%%)
 Max income:
 Pendapatan Max:
+Max. speed
+Kecepatan maks.
 Max. speed:
 Kecepatan Max:
+Max. waiting time
+Waktu tunggu maks. (dd:hh:mm)
 Maximum 254 stops\nin a schedule!\n
 Paling banyak 254\npemberhentian dalam jadwal\n
 maximum length of rivers
@@ -1199,12 +1615,16 @@ Meldung
 Pesan
 Menge
 jumlah
+merge stop
+gabungkan pemberhentian
 MessageOptionsText
 \nTahun baru\n\nBerita pemain\n\nBerita kota\n\nTidak ada jalan\n\nTujuan baru\n\nBincang\n\nKendaraan baru\n\nStasiun penuh\n\nMasalah\n\nKemacetan\n\nSkenario
 min
 min.
 minimum length of rivers
 Panjang sungai min.
+Minimum load
+Muatan minimum (%%)
 Missing pakfiles
 Objek tidak ditemukan.
 Modify the selected line
@@ -1221,8 +1641,12 @@ Monorailboden
 Substruktur Monorel
 Monoraildepot
 Depot monorel
+Month
+Bulan
 month wait time
 waktu tunggu (bulan)
+Monthly departures
+Waktu keberangkatan tetap
 Months
 Bulan
 Monument
@@ -1231,6 +1655,8 @@ Monuments
 Monumen
 Mountain height
 Tinggi gunung:
+Move the map
+Geser peta
 Movingobj
 objek bergerak
 Music playing disabled/not available
@@ -1281,18 +1707,26 @@ no goods waiting
 Tak ada penumpukan brg
 no load
 Tidak memuat
+No player
+Tidak ada pemain
 No Route
 Tidak ada jalan ke tujuan
 No stop here!
 Harus ditempatkan di pemberhentian!
 No suitable ground!
 Tidak ada tanah yang sesuai.
+No suitable townhall available for this climate!
+Tidak ada balai kota yang sesuai untuk iklim ini!
 No terminal station here!
 Stasiun/terminal tidak dapat dibangun\ndi sini. Hanya dapat dibangun\ndi ujung rel/jalan.
 no timeline
 semua masa
+No transformer connected.
+Tidak ada trafo yang terhubung: Semua daya akan terbuang.
 no tree
 Tanpa pohon
+No vehicles are available for purchase.
+Tidak ada kendaraan yang tersedia untuk dibeli.
 No. of Factories
 Pabrik dan toko
 Noch kein Fahrzeug\nmit Fahrplan\nvorhanden\n
@@ -1303,28 +1737,44 @@ nordost
 Timur laut
 nordwest
 Barat laut
+Not allowed to make publicly owned ways!
+Tidak diizinkan membuat jalur milik publik!
 Not allowed!\nThe convoi's schedule can\nnot be changed currently.\nTry again later!
 Jadwal tidak dapat diubah\nsaat sedang mencari jalur.\nCoba sekali lagi.
 Not enough fields would remain.
 Lahan yang tersisa untuk\nladang ini tidak cukup.
+Not online
+Tidak online
+now
+sekarang
 Now active as %s.\n
 Sekarang aktif sebagai %s.\n
+nowhere
+tidak ke mana-mana
 Number of rivers
 Jumlah sungai
 Object
 Objek
+Oct.
+Okt.
 Odometer: %s km
 Sudah ditempuh: %s km
 Ok
 OK
 On loan since %i month(s)
 Meminjam uang sejak %i bulan
+On mouseover
+Saat kursor diarahkan
+on the
+pada
 On this map, you are not\nallowed to change player!\n
 Permainan terkunci.\nSemua pemain tidak dapat mengubah apapun.\n
 Only city chains
 Bangun rantai industri dalam kota
 Only first %d differing paks reported. There are probably more.
 Hanya %d pak berbeda pertama yang dilaporkan. Mungkin masih ada lagi.
+Only full Unicode fonts
+Hanya font Unicode penuh
 Only land chains
 Bangun rantai industri luar kota
 Only one transformer per factory!
@@ -1385,10 +1835,16 @@ Pause
 Berhenti sementara
 Pax <%i>  Mail <%i>
 Penumpang <%i> Pos <%i>
+Pax level
+Jumlah Penumpang
 PaxDest
 Tujuan
 Percent Electricity
 Listrik dihasilkan (%% dari permintaan):
+personal_chat
+Obrolan pribadi
+Pipette
+Bangun kembali objek yang dipilih
 Planes are not available yet!
 Pesawat terbang belum tersedia.
 Plant tree
@@ -1425,6 +1881,8 @@ player 8
 pemain 8
 player 9
 pemain 9
+Player ranking
+Peringkat pemain
 Please choose vehicles first\n
 Pilih kendaraan terlebih dahulu\n
 Post
@@ -1441,10 +1899,14 @@ Power: %4d kW\n
 Daya: %4d kW\n
 Powerlines
 Kabel listrik
+Price
+Harga
 Problems_msg
 Masalah
 Produced
 Dibuat
+Produces: %.1f units/minute
+saat ini %.1f/menit
 Production of %s has been stopped:\n%s\n
 Pembuatan %s telah dihentikan:\n%s\n
 Production/Boost
@@ -1455,6 +1917,8 @@ Profit
 Keuntungan
 promote to line
 Masukkan ke rute
+public_chat
+Obrolan umum
 q1
 Musim semi
 q2
@@ -1501,10 +1965,16 @@ remove powerlines
 Hapus kabel listrik
 remove roads
 Hapus jalan
+remove signal
+hapus sinyal
 remove tracks
 Hapus Rel
 Remove wayobj %s
 Hapus objek %s
+replace existing ways
+ganti jalan yang ada
+replace faster wayobjs
+ganti objek jalan yang lebih cepat
 replace other signals
 Ganti sinyal lainnya
 replace stop
@@ -1517,12 +1987,18 @@ Restore natural slope
 Kembalikan ke kemiringan alami
 Restwert:
 Nilai Jual:
+Retire date
+Tanggal pensiun
 Retire. date:
 Tanggal tidak dibuat lagi:
 return ticket
 arah sebaliknya
 Revenue
 Laba Kendaraan
+Revenue/unit/100 tiles
+Pendapatan/unit/100 kotak
+Revert schedule
+Kembalikan perubahan
 Revision:
 Revisi
 road
@@ -1531,16 +2007,24 @@ road vehicle
 Kendaraan
 Roadsign
 Rambu-Rambu
+Rotate Building
+Putar bangunan
 Rotate map
 Putar peta
 Rotation
 Perputaran
 Routing
 Pencarian arah
+Running cost
+Biaya operasional
 sack
 bungkus/sak
 sail
 angin
+Save
+Simpan permainan
+Save generated script
+Simpan skrip yang dihasilkan
 Saving map ...
 Menyimpan peta...
 Scenario complete: %i%%
@@ -1559,6 +2043,8 @@ Scenario Result
 Perkembangan
 Scenario Rules
 Peraturan
+Scenario_
+Skenario 
 Schedule changing!
 Perubahan jadwal
 Schienentunnel
@@ -1569,8 +2055,14 @@ Schiffdepot
 Galangan kapal
 Schleppkahn_tab
 Kapal tongkang
+Screen scale:
+Skala layar:
 Screenshot
 Potret layar
+Scroll threshold
+Ambang batas gulir
+Search:
+Cari:
 Seasons
 Musim
 Sehenswuerdigkeit
@@ -1579,8 +2071,16 @@ Select a server to join:
 Pilih server untuk bergabung:
 Select a theme for display
 Pilih tema untuk ditampilkan
+Select display font
+Pilih font tampilan
+Select one or more graphics to install (Ctrl+click):
+Pilih satu atau beberapa grafik untuk dipasang (Ctrl+klik):
+Select soundfont
+Pilih soundfont
 Sell the selected vehicle(s)
 Jual kendaraan yang dipilih.
+Selling of the program is forbidden.
+Menjual program ini dilarang.
 sended
 Pos terkirim
 SEP_FRACTION
@@ -1589,6 +2089,12 @@ SEP_THOUSAND
 .
 SEP_THOUSAND_EXPONENT
 3
+Sept.
+Sep.
+Served by
+Dilayani oleh
+Served by me
+Dilayani oleh saya
 Server did not respond!
 Server tidak dapat dihubungi.
 Serves Line:
@@ -1611,8 +2117,20 @@ Show also vehicles no longer in production.
 Tampilkan juga kendaraan yang sudah tidak dibuat
 Show also vehicles that do not match for current action.
 Tampilkan juga kendaraan yang tidak sesuai digunakan saat ini.
+Show always
+Selalu tampilkan
+Show climates
+Tampilkan iklim
+Show construction info
+Tampilkan informasi pembangunan
+Show contour
+Tampilkan kontur
 Show even servers with wrong version or pakset
 Tampilkan juga server yang menggunakan versi/pakset yang berbeda.
+Show finances for transport type
+Tampilkan keuangan menurut jenis transportasi
+Show future
+Tampilkan masa depan
 show grid
 Tampilkan kotak-kotak
 Show industry
@@ -1623,12 +2141,16 @@ Show map scale
 Kode warna
 Show mismatched
 Tampilkan yang tidak cocok
+Show networks
+Tampilkan jaringan
 Show obsolete
 Tampilkan yang tua/kuno
 Show offline
 Tampilkan yang offline
 Show only used
 Tampilkan hanya yang digunakan
+Show outline
+Tampilkan garis luar
 Show schedules
 Tampilkan jadwal
 Show servers that are offline
@@ -1649,6 +2171,10 @@ show/hide object owner
 Tampilkan pemilik benda
 Show/hide statistics
 Tampilkan statistik
+Shows buttons about networks overlay.
+Menampilkan tombol hamparan jaringan.
+Shows buttons on network overlay.
+Menampilkan opsi hamparan jaringan koneksi.
 Shows buttons on special topics.
 Tampilkan tombol simbol peta
 Shows consumer/suppliers for factories
@@ -1669,8 +2195,12 @@ Sim:
 Simloops:
 Similar view as the main window
 Tampilan mirip dengan jendela utama
+Single toolbar only
+Hanya bilah alat tunggal
 Size (%d MB):
 Luas Peta
+Size (area)
+Ukuran (luas)
 sliced underground mode
 Tampilan atas+bawah tanah
 slot empty
@@ -1679,6 +2209,8 @@ Smart hide objects
 Sembunyikan objek secara otomatis
 Sort by
 urutkan
+Sort by:
+Urutkan berdasarkan:
 Sort waiting list by
 Urutkan daftar tunggu
 Sound
@@ -1687,8 +2219,12 @@ Sound settings
 Pengaturan suara
 Sound volume:
 Tingkat keras suara:
+Soundfonts are located in the music directory.
+Soundfont berada di direktori musik.
 special freight
 Kargo khusus
+Speed Bonus
+Bonus Kecepatan
 Speedbonus\nroad %i km/h, rail %i km/h\nships %i km/h, planes %i km/h.
 Bonus kecepatan (persentase)\nkecepatan minimum yang dibutuhkan: jalan %i km/h,\nrel %i km/h, kapal %i km/h, pesawat %i km/h
 Speedlimit
@@ -1717,22 +2253,30 @@ Start the selected vehicle(s)
 Menjalankan kendaraan yang dipilih.
 Starte Spiel
 Mainkan!
+station labels
+label stasiun
 Station tiles:
 Kotak stasiun:
 Station_msg
 Stasiun
 Status
 Keadaan
+stay on this level
+tetap di level ini
 steam
 uap
 Step timeline one year
 Maju satu tahun
+Stopping permissions
+Izin berhenti
 Stops
 Pemberhentian
 Storage
 Penyimpanan
 Storage capacity
 Daya tampung penyimpanan
+straight route
+rute lurus
 Strassendepot
 Garasi
 Strassentunnel
@@ -1753,6 +2297,16 @@ Suppliers
 Pemasok
 Tage alt
 hari (usia).
+The following graphics are unmaintained:
+Grafik berikut tidak dipelihara:
+The generated script was saved!\n
+Skrip yang dihasilkan telah disimpan!\n
+The gradient does not fit a tunnel
+Kemiringan tidak cocok untuk terowongan
+The script cannot be saved!\n
+Skrip tidak dapat disimpan!\n
+Theme selector
+Pemilih tema
 There are still vehicles\nstored in this depot!\n
 Masih ada kendaraan\ndi depot ini.\n
 This Month
@@ -1769,12 +2323,16 @@ To attract more tourists\n%s built\na %s\nwith the aid of\n%i tax payers.
 Lalu lintas di %1$s meningkat.\n%3$i pembayar pajak membuat pembangunan\n%2$s menjadi kenyataan.
 To heavy traffic\nresults in traffic jam.\n
 Lalu lintas padat\nmenyebabkan kemacetan.\n
+To: %s
+Ke: %s
 Toggle day/night view
 Ubah tampilan siang/malam
 Toggle vehicle tooltips
 Tampilkan keterangan kendaraan saat disorot
 tonnen
 Ton
+Toolbar position:
+Posisi bilah alat:
 Total inhabitants:
 Jumlah penghuni: 
 Tourist attractions
@@ -1793,6 +2351,8 @@ Tracks
 Rel
 Traffic
 Lalu lintas
+traffic settings
+pengaturan lalu lintas
 Train
 Kereta
 Trains are not available yet!
@@ -1813,10 +2373,16 @@ Transformer only next to factory!
 Transformer harus di\ntanah kosong dan rata\ndi sebelah pabrik.
 Translation
 Terjemahan
+transparencies
+transparansi
+transparent background
+latar belakang transparan
 transparent station coverage
 jangkauan stasiun tampil tembus pandang
 Transported
 Perjalanan
+Trees disabled!
+Pohon dinonaktifkan!
 TrolleyBus_tab
 Busway
 Truck
@@ -1829,6 +2395,8 @@ Tunnel must start on single way!
 Terowongan harus dimulai di jalan tunggal.
 Tunnelboden
 Terowongan
+under the Artistic License
+di bawah Lisensi Artistik
 underground mode
 tampilan bawah tanah
 UNDO failed!
@@ -1841,6 +2409,8 @@ Unhappy
 Tidak senang
 units/day
  per bulan\n
+Unloading (%i%%)!
+Membongkar (%i%%)!
 Update Line
 Ubah rute
 upgrade HQ
@@ -1857,8 +2427,16 @@ Vehicle %s can't find a route!
 Kendaraan %s tidak\nmenemukan jalan/jalur.
 Vehicle %s is stucked!
 Kendaraan %s tersangkut.
+Vehicle count:
+Jumlah kendaraan:
 Vehicle details
 Rincian kendaraan
+Vehicle Name
+Nama Kendaraan
+Vehicle Power
+Daya Kendaraan
+vehicles stored
+kendaraan disimpan
 Verbrauch
 Konsumsi
 Vergroessere die Karte\n
@@ -1871,12 +2449,16 @@ Verkehrsteilnehmer
 Mobil kota
 Verschuldet:\n\nDu hast %d Monate Zeit,\ndie Schulden zurueckzuzahlen.\n
 Anda memiliki %d bulan\nuntuk membayar utang.\n
+vh_title
+Daftar semua kendaraan
 via
 melewati(rincian)
 via %s\n
 lewat %s\n
 via Menge
 melewati(jumlah)
+via owner
+melalui pemilik
 voranstellen
 Taruh di depan
 Waggon_tab
@@ -1886,6 +2468,8 @@ menunggu
 Waiting for clearance!
 Menunggu jalan kosong.
 Walked
+Berjalan kaki
+walking
 Berjalan kaki
 Warnings_msg
 Lalu lintas
@@ -1907,14 +2491,26 @@ Way toll
 Tarif tol
 Ways not connected
 Jalan tidak terhubung
+waytype
+jenis jalur
 Wegpunkt
 Titik arah
+Weight
+Berat
 Weight:
 Berat:
+Weight/unit
+Berat/unit
+Welcome to Simutrans
+Selamat datang di Simutrans
+Welcome, %s!
+Selamat datang, %s!
 Wert
 Nilai
 west
 Barat
+Wind direction
+Arah angin
 Winter snowline
 Garis salju musim dingin
 withdraw
@@ -1923,6 +2519,8 @@ Withdraw All
 Tarik kembali semua
 WRONGSAVE
 \nData permainan tidak sesuai.\nBerkas tidak dapat dimuat.\n
+Year
+Tahun
 Year %i has started.
 Tahun %i telah dimulai.
 Years
@@ -1955,3 +2553,91 @@ New world record for railways: %.1f km/h by %s.
 MHX NEWS: Rekor kecepatan di dunia Kereta Api terpecahkan dengan kecepatan: %.1f km/h oleh %s. Selamat kepada Human, silahkan hubungi forums.simutrans.com untuk berbagi kisah anda dalam bermain game ini.
 New world record for ship: %.1f km/h by %s.
 MHX NEWS: Rekor kecepatan di dunia Kapal Laut terpecahkan dengan kecepatan: %.1f km/h oleh %s. Selamat kepada Human, silahkan hubungi forums.simutrans.com untuk berbagi kisah anda dalam bermain game ini.
+#________________________________script_ai_text_________________________________
+#________________________________script_ai_text_________________________________
+%s build additional convoy to line: %s
+%s menambahkan konvoi ke jalur: %s
+%s build rail line from %s (%s) to %s (%s)
+%s membangun jalur rel dari %s (%s) ke %s (%s)
+%s build road line from %s (%s) to %s (%s)
+%s membangun jalur jalan dari %s (%s) ke %s (%s)
+%s build ship line from %s (%s) to %s (%s)
+%s membangun jalur kapal dari %s (%s) ke %s (%s)
+%s extends the route from %s (%s) to %s (%s)
+%s memperpanjang rute dari %s (%s) ke %s (%s)
+%s optimize way line from %s (%s) to %s (%s)
+%s mengoptimalkan jalur dari %s (%s) ke %s (%s)
+%s removes convoys from line: %s
+%s menghapus konvoi dari jalur: %s
+vehicles of the line %s were retired
+kendaraan dari jalur %s telah dipensiunkan
+#_________________________________tooltip_text__________________________________
+#_________________________________tooltip_text__________________________________
+Add convois with similar schedule to this line.
+Tambahkan konvoi dengan jadwal serupa ke jalur ini.
+Attach current coordinate to the comment
+Lampirkan koordinat saat ini ke komentar
+Enter intervall in days, hours, minutes
+Masukkan interval dalam hari, jam, menit
+Mirrors order of stops
+Balikkan urutan perhentian
+Revert to original schedule
+Kembalikan semua perubahan jadwal.
+Tutorial not available for this pakset. Please try loading Pak128.
+Tutorial tidak tersedia untuk pakset ini. Silakan coba memuat Pak128.
+#_______________________________unnecessary_text________________________________
+#_______________________________unnecessary_text________________________________
+1center
+%s %s
+1extern
+%s cabang %s
+1suburb
+%s %s %s
+2center
+%s sentral %s
+2extern
+%s luar %s
+2suburb
+%s Greenfields %s %s
+3center
+%s utama %s
+3extern
+%s darat %s
+3suburb
+%s desa %s %s
+4center
+%s dalam %s
+4extern
+%s luar %s
+4suburb
+%s pedesaan %s
+5center
+%s pusat kota %s
+5extern
+%s transfer %s
+5suburb
+%s kota %s
+6center
+%s hub %s
+6extern
+%s pertukaran %s
+6suburb
+%s pinggiran %s %s
+7center
+%s kota %s
+7extern
+%s dataran %s
+7suburb
+%s taman %s
+8center
+%s bisnis %s
+8extern
+%s %s batas %s
+8suburb
+%s satelit %s
+9center
+%s poros %s
+9extern
+%s lingkar %s
+9suburb
+%s mezzo %s

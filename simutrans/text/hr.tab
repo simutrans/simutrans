@@ -12,11 +12,19 @@ prop-latin2.fnt
 #                             Language: hr Hrvatski                            #
 #                                Encoding: UTF-8                               #
 #                             Font: prop-latin2.fnt                            #
-#                           Date Created: 11.03 2026                           #
+#                           Date Created: 10.09 2026                           #
 #                                                                              #
 ################################################################################
 #__________________________________button_text__________________________________
 #__________________________________button_text__________________________________
+Absolute times
+Prikaži vrijeme kao dan:hh:mm u mjesecu
+allow reverse passage
+dozvoli prolaz u suprotnom smjeru
+AMBIENT_SOUND
+ambijentalni zvukovi
+CASH_SOUND
+zvuk naplate
 cl_btn_filter_disable
 onemoguceno
 cl_btn_filter_enable
@@ -41,6 +49,16 @@ clf_btn_invers
 inv.
 clf_btn_keine
 nijedno
+climate area percentage
+Veličina pojedinačne klime
+Continue Game
+Nastavi igru
+CROSSING_SOUND
+upozorenja prijelaza
+FACTORY_SOUND
+zvukovi tvornice
+Find matching convois
+Pronadji odgovarajuce konvoje
 gl_btn_sort_bonus
 bonusom
 gl_btn_sort_name
@@ -49,6 +67,8 @@ gl_btn_sort_revenue
 prihod
 gl_btn_unsort
 nesortirano
+height based
+Klima prema visini
 hl_btn_filter_disable
 onemoguceno
 hl_btn_filter_enable
@@ -71,6 +91,62 @@ hlf_btn_invers
 obrnuti
 hlf_btn_keine
 nista
+humidities
+granice vlažnosti
+Install
+Instaliraj
+Lake
+Jezero
+Lake height
+maks. visina jezera
+Maximize height levels
+Maksimiziraj razine visine
+moisture land
+povećanje iznad kopna
+moisture water
+povećanje iznad vode
+Networks
+Mreze
+Num pad keys always move map
+Tipke numericke tipkovnice uvijek pomicu mapu
+Open Sea
+Otvoreno more
+Owner only
+Samo vlasnik
+Queueing
+Trend čekanja
+rainfall
+vlažnost
+Reselect closes tools
+Ponovni odabir alata ga poništava
+Return to menu
+Povratak u izbornik
+Road toll
+Cestarina
+Scenario
+Informacije o scenariju
+sea
+morska klima
+Shared only
+Samo dijeljeno
+Single GUI
+Jedinstveno sučelje
+Sound range:
+Doseg zvuka:
+Start this as a server
+Pokreni server koristeći ovu igru.
+temperature borders
+temperaturne granice
+temperature-humidity based
+Klime prema vremenskim uvjetima
+TOOL_SOUND
+zvukovi radnji alata
+TRAFFIC_SOUND
+zvukovi prometa
+Transfers
+U prolazu
+Tutorial
+Vodič
 #_________________________________climates_text_________________________________
 #_________________________________climates_text_________________________________
 arctic
@@ -87,28 +163,72 @@ tropic
 tropska klima
 #__________________________________error_text___________________________________
 #__________________________________error_text___________________________________
+ Loading scenario script failed
+ Učitavanje skripte scenarija nije uspjelo
+A building blocks the construction
+Zgrada blokira gradnju
+A powerline blocks the construction
+Dalekovod blokira izgradnju
+Another way blocks the construction
+Drugi put blokira izgradnju
+Bridge blocked by way below or above.
+Most je blokiran putom ispod ili iznad.
+Can't buy obsolete vehicles!
+Zastarjela vozila se ne mogu kupiti!
+Cannot alter water
+Ovaj bazen se ne može više isušiti ili napuniti.
+Cannot build on a double slope!
+Može se graditi samo na jednostrukoj kosini ili ravnom tlu!
 Cannot built depot here!
 Depo se ne moze ovdje izgraditi.
 Cannot built this station/building\nin underground mode here.
 Zgrada se ne moze\n graditi podzemno.\n
+Cannot connect to the\ncenter of a double slope!
+Most se ne može spojiti na sredinu dvostruke kosine!\nUpotrijebite alat za oblikovanje terena da to ispravite.
 Cannot create generic line!\nSelect line type by\nusing filter tabs.
 Nije moguce napraviti genericku liniju!\nOdbrati tip linije\nkoristeci filtere.
 Cannot create socket
 Nije moguce otvoriti socket
+Cannot cross the end of a runway
+Kraj uzletno-sletne staze ne moze se presjeci
+Cannot rotate this building!
+Nije moguće rotirati ovu zgradu!
+Client closed connection during transfer
+Klijent je prekinuo vezu tijekom prijenosa
 Convoi handles exhausted!
 Dostignut najveci broj konvoja.
+Convoy already deleted!
+Konvoj je već obrisan!
+Corrupt file
+Datoteka je oštećena ili skraćena.
+Could not open file
+Nije moguće pristupiti datoteci. Provjerite dozvole?
 Das Feld gehoert\neinem anderen Spieler\n
 Ovaj dio \nzemlje posjeduje \ndrugi igrac!
+Depots cannot be built on runways!
+Depoi se ne mogu graditi na pistama!
+Depots must be built on flat dead-end way tiles!
+Depoi se moraju graditi na ravnim slijepim poljima puta!
 Der Besitzer erlaubt das Entfernen nicht
 \nVlasnik odbija\ndozvolu za\nuklnjanje ovoga!\n
 Diese Zusammenstellung kann nicht fahren!\n
 Ova kombinacija\se ne moze kretati!\n
+Elevated way can only be joined in line
+Nadvozni put moze se spojiti samo u ravnoj liniji
+Failed to write file
+Neuspjelo zapisivanje datoteke. (Dozvole?)
 Flugzeughalt muss auf\nRunway liegen!\n
 Stajanje zrakoplova mora\nbiti na voznoj stazi. 
+Forbidden by scenario
+Zabranjeno scenarijem
 Hier kann dieses\nFlughafengebaeude nicht\ngebaut werden!\n
 Ne mozete sagraditi\n\naerodromsku zgradu ovdje.\n
 Hier kann kein\nSignal aufge-\nstellt werden!\n
 Ne mozete staviti\nzeljeznicki signal ovdje.\n
+In order to lock the game, you have to protect the public player by password!
+Da biste zakljucali igru, morate zasticiti javnog igraca lozinkom!
+Loading a new game will end the current server session!
+Ucitavanje nove igre zavrsit ce trenutnu sesiju servera!
 Lost connection\nto server!
 Izgubljena veza\nna server!
 Lost synchronisation\nwith server.
@@ -119,30 +239,156 @@ Monorailhalt muss auf\nMonorail liegen!\n
 Monorail stajalista moraju\nbiti na monorail tracnici.
 Monorails are not available yet!
 Monorail jos nije dostupan.
+More than one possibility to build this dock found.
+Pronadjeno je vise od jedne mogucnosti za izgradnju ovog pristanista.
 Narrowgaugehalt muss auf\nNarrowgauge liegen!\n
 stajaliste uskog kolosijeka be trebalo biti na uskom kolosijeku
+No bridges over runways!
+Nema mostova preko piste!
+No curves on runways
+Piste ne mogu imati zavoje!
+No suitable crossing
+Nema odgovarajuceg prijelaza! (maks. brzina prevelika?)
+No suitable way on the ground!
+Stanice se mogu graditi samo na\nravnim vodoravnim odgovarajucim putovima!
 No through station here!
 Stanica se mora postaviti na krajevima\n puteva ili ravnim dijelovima bez krizanja.
+Not allowed to copy object.
+Ne mozete izgraditi taj objekt!\n(Razlog: Krivi igrac ili zastarjelo)
+Not enough bytes transferred
+Nije preneseno dovoljno bajtova
+Not enough clearance.
+Izmedju dva puta potrebna je minimalna visinska razlika od dva.
+Not enough empty space
+Nema dovoljno slobodnog prostora.
 Not enough money!
 Nemas dovoljno\nnovaca za gradnju ovoga!
+Not initialized
+Nije moguce inicijalizirati biblioteku.
 On narrowgauge track only!\n
 Samo na uskom kolosijeu!\n
+Only public player can lock games!
+Samo javni igrac moze zakljucati igre!
+Only up and down movement in the underground!
+Podzemno polje moze se samo podizati i spustati pomocu alata za gore/dolje!
+Out of funds
+Nemate dovoljno novca za ovo!
 Post muss neben\nHaltestelle\nliegen!\n
 Zgrada prosirenja stanice\n(npr. posta, skladiste)\nmora biti postavljena na slobodnu plocicu\nodmah do postojeceg stajalista/stanice.\n
 Protocoll error (expecting game)
 Greska protokola (ocekivana igra)
 Schiffhalt muss im\nWasser liegen!\n
 Brodsko stajaliste moze samo\nbiti postavljeno na vodu\nblizu doka!\n
+Server busy
+Server je zauzet
+Server version too new
+Server koristi noviju verziju programa.
+Ship depots must be built on water!
+Brodski depoi moraju biti izgrađeni na vodi!
+Show all revenue messages
+Prikaži sve poruke o prihodima
+Show no revenue messages
+Ne prikazuj poruke o prihodima
+Show only player's revenue
+Prikaži samo prihod igrača
+Slope is too steep
+Nagib je prestrm
 Terraforming not possible\nhere in underground view
 Oblikovanje zemlje nemoguce pod zemljom.
+This tunnel branches. You can try Control+Click to remove.
+Ovaj tunel ima više od 2 ulaza. Možete pokušati Ctrl+klik za uklanjanje ovog tunela.
+Too far away to merge stations!
+Predaleko za spajanje stanica!
+Tunnel can only be entered at its portal
+U tunel se moze uci samo kroz njegov portal
+Unknown error
+Nepoznata greška
 Upgrade must have\na higher level
 Nadogradnja mora imati\nveci nivo
+Vehicle %s cannot choose because stop too short!
+Vozilo %s ne može odabrati jer je stanica prekratka!
+Watertable reached
+Nije moguće dalje spuštati polje!\nDosegnuta je razina vode.
+Way does not match the slope here
+Put se ovdje ne poklapa s nagibom
+Wrong direction to enter the bridge
+Pogresan smjer za ulazak na most
 Zughalt muss auf\nSchiene liegen!\n
 Zeljeznicke stanice moraju\nbiti postavljene na\ntracnice.\n
 #___________________________________help_text___________________________________
 #___________________________________help_text___________________________________
+<h1>Index</h1><p>*: only english</p><p>General</p>%s<p>Usage</p>%s<p>Tools</p>%s<p>Start</p>%s<p>How to play</p>%s<p>Others:</p>%s
+<title>Pomoć</title><h1>Indeks pomoći</h1><p><it>O Simutransu</it></p>%1$s<p><it>Kako koristiti</it></p>%2$s<p><it>Kako započeti igru</it></p>%4$s<p><it>Kako igrati</it></p>%5$s<p><it>Alati</it></p>%3$s<p><it>Ostali prozori</it></p>%6$s
 <title>Keyboard Help</title>\n<h1><strong>Keyboard Help</strong></h1><p>\n
 <title>Tipkovnicka</title>\n<h1><strong>Tipkovnicka Pomoc</strong></h1>\n<p>\n<strong>Tipkovncika Pomoc</strong> prikazuje funkcije za razne pritiske tipaka na tipkovnici.\n</p>\n<p>\n<strong>Tipkovnicka pomoc</strong> otvara se kada se stisne nedodijeljena tipka ili od <a href="general.txt">Opca Pomoc</a>.\n</p>\n<p>\nPritisci tipke ovise o malim i velikim slovima (koristiti [<em>Shift</em>] za velika slova).\n</p>\n<p>\nTipke sa pridodijeljenim funkcijama ukljucuju:\n</p>\n<p>\n[<em>Strelice</em>]: pomicanje pogleda igre u smjeru strelice.<br>\n[<em>Backspace</em>]: zatvranje svih prozora, alatnih traka i tekstova pomoci u pogledu igre.<br>\n[<em>Delete</em>], ili [<em>Escape</em>]: zatvoriti vrsni prozor, alatnu traku ili tekst pomoci u pogledu igre.<br>\n[<em>Enter</em>], ili [<em>Return</em>]: koristenje za potvrdu akcija.<br>\n[<em>Page-Up</em>], ili [<em>></em>]: zoom-in pogled u igri.<br>\n[<em>Page-Down</em>], ili [<em> less than symbol</em>]: zoom-out pogled u igri.\n[<em>F1</em>]: otvoriti <a href="general.txt">Simutrans Pomoc</a>.<br></p>\n<p>\n[<em>1</em>]: pomicanje pogleda igre juzno.<br>\n[<em>2</em>]: pomicanje pogleda igre jugoistocno.<br>\n[<em>3</em>]: pomicanje pogleda igre istocno.<br>\n[<em>4</em>]: pomicanje pogleda igre jugozapadno.<br>\n[<em>6</em>]: pomicanje pogleda igre sjeveroistocno.<br>\n[<em>7</em>]: pomicanje pogleda igre zapadno.<br>\n[<em>8</em>]: pomicanje pogleda igre sjevernozapadno.<br>\n[<em>9</em>]: pomicanje pogleda igre sjeverno.\n</p>\n<p>\n[<em>Shift</em>] + <a href="mouse.txt">mis</a>: koristen na <a href="map.txt">Map</a> za pregled poveznica u <a href="industry_info.txt">Lancu Opskrbe Industrije</a>.<br>\n[<em>CTRL</em>] + tool: konstrukcija (signala & <a href="station.txt">Stajalista</a>) na gornjem nivou; ili gradnja sporijih cesta i tracnica preko brzih; ili gradnja ravnijih (direktnijih) ulica i tracnica.<br>\n[<em>CTRL</em>] + ([<em>F2</em>] do [<em>F12</em>]): postavlja odabir trenutnog alata za pritisak tipaka [<em>F2</em>] do [<em>F12</em>].\n</p>\n<p>
+At least one stop is connected to the town.
+Najmanje jedno stajalište je povezano s gradom.
+At least one tile is connected to one stop.
+Najmanje jedno polje je povezano s jednim stajalištem.
+Color according to transport capacity left
+Oboji prema preostalom transportnom kapacitetu
+Color-coded terrain according to altitude.
+Prikaži/sakrij sjenčanje reljefa terena.
+Decrease water height
+Isuši vodu za jednu razinu
+Highlight railroad tracks
+Istakni zeljeznicke pruge
+Highlite depots
+Istakni depoe
+Highlite electrical transmission lines
+Istakni dalekovode
+Highlite factories
+Istakni tvornice
+Highlite forests
+Istakni sume
+Highlite tourist attraction
+Istakni turisticke atrakcije
+Increase water height
+Podigni vodu za jednu razinu
+Open station/stop details
+Prikazi detalje stanice
+Overlay city limits
+Prikaz granica grada
+Overlay passenger destinations when a town window is open
+Prikaži odredišta putnika kada je otvoren prozor grada
+Overlay schedules/network
+Prikaz rasporeda/mreže
+Overlay town names
+Prikaz imena gradova
+Please click on the map to add\nwaypoints or stops to this\nschedule.
+Kliknite na kartu za dodavanje\ntočaka prolaza ili stanica ovom\nrasporedu.
+Remove double stops from schedule
+Ukloni dvostruke stanice iz rasporeda
+Set tile climate %s
+Pretvori ovo tlo u zonu: %s
+Show capacity and if halt is overcrowded
+Prikaži kapacitet i prenapučenost stanice
+Show how many convoi reach a station
+Prikaži koliko konvoja stiže na stanicu
+Show how many people/much is waiting at halts
+Prikaži koliko čeka
+Show initial passenger departure
+Prikaži ishodište putnika i pošte.
+Show level of city buildings
+Prikaži razinu gradskih zgrada
+Show mail service coverage/mail network
+Prikaži pokrivenost poštanskim uslugama
+Show passenger coverage/passenger network
+Prikaži pokrivenost putničke mreže
+Show speedlimit of ways
+Prikaži ograničenje brzine na putovima
+Show the change of waiting at halts
+Prikaži promjenu čekanja od prošlog mjeseca
+Show the owenership of infrastructure
+Prikaži vlasništvo nad infrastrukturom
+Show transported freight/freight network
+Prikaži prevezeni teret/teretnu mrežu
+Show usage of network
+Prikaži vozila po polju i mjesecu
+Shows a listing with all industries on the map.
+Prikazuje popis svih industrija na karti.
+Sum of departure/arrivals at halts
+Prikaži broj dolazaka i odlazaka vozila
 #____________________________________ki_text____________________________________
 #____________________________________ki_text____________________________________
 %s now\noffers bus services\nbetween %s\nand attraction\n%s\nat (%i,%i).\n
@@ -189,26 +435,62 @@ Alati Tramvaja/lakosinske zeljeznice
 %s s\nsredisnjica sada\nna (%i,%i).
 Factory chain extended\nfor %s near\n%s built with\n%i factories.
 Ekonomija jaca:\n%s bilzu %s povecava lanac.\n%i nova tvornica osnovana.
+Net wealth less than 10%% of starting capital!
+Neto vrijednost manja od 10%% pocetnog kapitala!
 New %s now available:\n%s\n
 Novo %s sada dostupno:\n%s\n
 New factory chain\nfor %s near\n%s built with\n%i factories.
 Rast industrije:Novi lanac industrije\m za %s blizu\n%s sagradjeno sa\n%i tvornica.
 New vehicle now available:\n%s\n
 \n Novo vozilo je\n sada dostupno:\n\n\n -- %s --\n\n
+Now %u clients connected.
+Trenutno je spojeno %u klijenata.
+overtaking
+pretjecanje
 Remove vehicle from map. Use with care!
 Ukloniti vozilo sa mape. (Koristi pazljivo!)
 Screenshot\ngespeichert.\n
 Snimak ekrana\nspremljen.\n
 Sends the convoi to the last depot it departed from!
 Salje konvoj u zadnji depo iz kojega je posao.
+Server preparing game ...
+Server priprema igru ...
+Trees
+Drveće
 With a big festival\n%s built\na new monument.\n%i citicens rejoiced.
 Sa velikim festivalom,\n %s sagradnjen\nnovi spomenik\n%i gradjana su se veselili.
+#___________________________________obsolete____________________________________
+#___________________________________obsolete____________________________________
+Line Filter
+Filter linija
 #_________________________________program_text__________________________________
 #_________________________________program_text__________________________________
+(%.2f$/km %.2f$/m)
+ (%.2f$/km %.2f$/mjesec)
+(%.2f$/km)
+ (%.2f$/km)
 (%i)-
 (%i)
 (in depot)
 (u depou)
+[0] south-facing
+[0] prema jugu
+[1] east-facing
+[1] prema istoku
+[2] north-facing
+[2] prema sjeveru
+[3] west-facing
+[3] prema zapadu
+[4] southeast corner
+[4] jugoistočni kut
+[5] northeast corner
+[5] sjeveroistočni kut
+[6] northwest corner
+[6] sjeverozapadni kut
+[7] southwest corner
+[7] jugozapadni kut
+/month
+/mjesec
 \nBauzeit bis
 do
 \nBauzeit von
@@ -247,6 +529,14 @@ do
 %d konvoja
 %d Einzelfahrzeuge im Depot
 %d vozila ovdje pohranjeno.
+%d more convois
+još %d konvoja
+%i car(s),
+%i vagon(a), 
+%i years %i months old.
+Starost: %i godina i %i mjeseci
+%s at (%i,%i) now public stop.
+%s je postalo javno čvorište.
 %s building %s %s
 %s %s %s
 %s city %d %s
@@ -255,8 +545,12 @@ do
 %s %s dvorista
 %s has entered a depot.
 %s je usao u depo.
+%s has left.
+%s je otišao.
 %s land %d %s
 %s %d izvan %s
+%s now known as %s.
+%s je sada poznat kao %s.
 %s wasted\nyour money with a\nnew townhall\nwhen it reached\n%i inhabitants.
 %s je trosio\ntvoj novac na\nnovu vijecnicu\nkada je dosegao\n%i stanovnika.
 %s\nis crowded.
@@ -265,22 +559,70 @@ do
 %s\nbrzina %i\nmax brzina %i\ndx:%i dy:%i
 %s\nwas liquidated.
 %s\n je likvidiran.
+%u Client(s)\n
+%u klijent(a)\n
+%u days ago
+prije %u dana
+%u hours ago
+prije %u sati
+%u minutes ago
+prije %u minuta
+%u Player (%u locked)\n
+%u igrača (%u zaključano)\n
+%u years ago
+prije %u godina
+<clear schedule>
+<očisti raspored>
+<create new line>
+<stvori novu liniju>
+<em>%s</em> - %s<br>\n
+[<em>%s</em>]: %s<br>\n
+<h1>Error</h1><p><strong>
+<H1>Greška: Dvostruki objekti u glavnom pak direktoriju</H1><p><strong>U 
+<h1>Warning</h1><p><strong>addons for
+<h1>Upozorenje: Dvostruki objekti u direktoriju dodataka</h1><p><strong>Dodaci za 
+<individual schedule>
+<pojedinačni raspored>
 <no line>
 <ne postoji ni jedna linija>
+<no schedule set>
+<nema postavljenog rasporeda>
+<promote to line>
+<pretvori u liniju>
 1 convoi
 1 konvoj
 1 Einzelfahrzeug im Depot
 1 vozilo ovdje spremljeno.
+1 minute ago
+prije jedne minute
+1 year ago
+prije 1 godine
+100 km/h = %i tiles/month
+100 km/h = %i polja/mjesec
 1LIGHT_CHOOSE
 Osvijetljenost:
+1th
+1.
 1WORLD_CHOOSE
 Postavke za Novu Igru
+21th
+21.
+22th
+22.
+23th
+23.
 2LIGHT_CHOOSE
 Boje:
+2th
+2.
 2WORLD_CHOOSE
 Broj mape:
+31th
+31.
 3LIGHT_CHOOSE
 Brzina pomicanja:
+3th
+3.
 4LIGHT_CHOOSE
 Obrnuto pomicanje
 5LIGHT_CHOOSE
@@ -293,6 +635,8 @@ Pjesaci u gradovima
 Gustoca prometa:
 8WORLD_CHOOSE
 promjena dana i noci
+A bridge must end on a way!
+Most mora završavati na putu!
 A bridge must start on a way!
 Ne posjedujete krajeve mosta,\n ili se nesto naslo na njegovom putu.
 Abfrage
@@ -301,24 +645,34 @@ Abnehmer
 Potrosac
 About
 O
+About scenario
+Autorska prava
 Abriss
 Uništi/Ukloni
 Absenken
 Snizi zemljište
+Abspanntransformator
+Transformator
 Accelerate time
 Vrijeme ubrzanja
+Act. load: %u MW\n
+Tren. opterećenje: %u MW\n
 Active player only
 Samo aktivan igrač
 Add forest
 Dodaj šumu
 Add random citycar
 Dodaj slucajan gradski automobil
+add server
+Dodaj server
 Add Stop
 Dodaj postaju
 Add stops for backward travel
 Dodaj postaje za povratak
 air
 Pista
+Aircraft
+Zrakoplovna kompanija
 aircraft_tab
 Teretni avioni
 airplane
@@ -339,6 +693,8 @@ allowed climates:\n
 Dozvoljene klime
 Alters a schedule.
 Dodaj/ukloni postaje iz voznog reda
+and arranged by
+i aranžirao
 Angenommene Waren
 Sirovine potrebne obliznjim industrijama
 anhaengen
@@ -351,26 +707,40 @@ Appends stops at the end of the schedule
 Dodaj postaju na kraj linije
 Apply Line
 Primjeni liniju
+Apr.
+Tra.
 April
 Travanj
 Arbeiter aus:
 Radnici zive u:
+Arrivals from\n
+Dolasci iz\n
 Arrived
 Opsrkba
 Assets
 Imovina
 Aufloesen
 Rastavi
+Aufspanntransformator
+Transformator
+Aug.
+Kol.
 August
 Kolovoz
+auto
+automatski
 Autohalt muss auf\nStrasse liegen!\n
 Autobusne postaje\nmoraju se\nnalazitina cesti.
 Available
 Dostupno
+Available at custom date
+Dostupno na prilagođeni datum
 Bahndepot
 Depo za vlakove.
 Bankrott:\n\nDu bist bankrott.\n
 Bankrot:\n\nBankrotirali ste!\n
+based on Simutrans 84.22.1
+temeljeno na Simutrans 84.22.1
 battery
 Akumulator
 Baum
@@ -395,6 +765,16 @@ Blockstrecke ist\nbelegt\n
 \nTracnicu koristi\ndrugi vlak\n
 Boden
 Zemljiste
+Bonus Multiplier: %i%%
+Množitelj bonusa: %i%%
+Bonus Speed: %i km/h
+Bonus brzina: %i km/h
+Bonusspeed: %i km/h
+Maks. moguća brzina: %i km/h
+Boost (%%)
+Povećanje (%%)
+Borderless (disabled on fullscreen)
+Bez rubova (onemogućeno preko cijelog zaslona)
 bridge is too high for its type!
 Most je previsok za svoj tip!
 Bridge is too long for this type!\n
@@ -423,6 +803,8 @@ Build monorail depot
 Izgradi depo za Monorail vozove
 Build narrowgauge depot
 Izgradi depo uskotracne pruge
+build portal only
+izgradi samo portal
 Build powerline
 Izgradi dalekovod
 Build presignals
@@ -449,10 +831,22 @@ Built random attraction
 Izgradi nasumicnu turisticku atrakciju
 Bus_tab
 Autobusi
+Can be overgrown
+Može zarasti
 Can only move from halt to halt or waypoint to waypoint.
 Moze se kretati\nsamo od postaje do postaje\ili od tocke do tocke.
 Cancel
 Ponistiti
+Cannot build here
+Ovdje se ne moze graditi
+Cannot connect to offline server!
+Nije moguće povezivanje s offline serverom!
+Capacity
+Kapacitet
+Capacity:
+Kapacitet:
+Capacity: %.0f MW
+Kapacitet: %.0f MW\n
 Capacity: %d%s %s\n
 Kapacitet: %3d %s %s
 Capacity: %s\nLoad: %d (%d%%)
@@ -463,10 +857,16 @@ cars.\nstate
 automobili\n
 Cash
 Stanje racuna
+Category
+Kategorija
+Change label style
+Promijeni stil natpisa
 Change player
 Promjena igraca
 Chart
 Grafikon
+Chat_msg
+Razgovor
 Choose direction
 Odabir smjera
 Choose operation executed on clicking stored/new vehicles
@@ -475,6 +875,8 @@ chooses a random map
 Odabire nasumicnu mapu.
 citicens
 Gradjani
+Cities can only be built on flat empty ground!
+Gradovi se mogu graditi samo na ravnom praznom tlu!
 City attraction
 Gradske atrakcije
 City industries
@@ -493,6 +895,10 @@ cl_title
 Lista vozila
 cl_txt_sort
 Sortirati:
+clamp
+ograničeno
+Cleanup schedule
+Ukloni dvostruke unose
 Clear block reservation
 Prikaz/reset reserviranih puteva
 clf_chk_aircrafts
@@ -517,6 +923,8 @@ clf_chk_noroute
 nema rute
 clf_chk_noschedule
 nema rasporeda
+clf_chk_obsolete
+Zastarjelo
 clf_chk_ships
 Brodovi
 clf_chk_spezial_filter
@@ -533,28 +941,64 @@ clf_chk_waren
 Filter tereta:
 clf_title
 Filter liste vozila
+Click to open the finance dialog.
+Kliknite za otvaranje prozora financija.
+Climate
+Klima
 Climate Control
 Postaviti klimu
+Climates
+Klime
 closed
 zatvoreno.
+Closes topmost line window when new line selected.
+Zatvara gornji prozor linije pri odabiru nove linije.
 COLOR_CHOOSE\n
 Molimo odabrati a\nboju iz tablice:\n
 Company bankrupt
 Kompanija bankrotirana
+company_chat
+Razgovor tvrtke
+Company_msg
+Konkurenti
+Comparing pak files ...
+Uspoređivanje pak datoteka ...
+Composed by
+Skladao
+Configure AI
+Konfiguriraj UI
+Configure AI setttings
+Konfiguriraj postavke UI
 Congratulation\nScenario was complete in\n%i months %i years.
 Cestitke!\nScenario je\nzavrsen unutar \n%i mjeseci i %i godina!
+Connect factory
+Poveži tvornicu
 Connected stops
 Spojena stajalista
+Connected with server
+Povezan sa serverom
+connection
+veza
+Connections
+Veze
 Constructed by
 Nacrtano od
 Constructed by %s
 Napravio %s
+construction speed
+brzina gradnje
 Construction_Btn
 Troskovi gradnje
+Consumed
+Potrošeno
+contains the following doubled objects:</strong><p>
+ sadrži sljedeće objekte više puta:</strong><p/>
 convoi %d of %d
 Konvoj %d od %d 
 convoi error tooltips
 Savjeti greske konvoja
+Convoi following mode
+Način praćenja konvoja
 Convoi has been sent\nto the nearest depot\nof appropriate type.\n
 Konvoj je poslan\nu najblizi depo \nprikladne vrste.\n
 Convoi is sold when all wagons are empty.
@@ -573,8 +1017,18 @@ Copy Convoi
 Kopiraj Konvoj
 Copy the selected convoi and its schedule or line
 Kopiraj odabrani konvoj i njegov vozni red ili liniju
+Copy to clipboard
+Kopiraj u međuspremnik
+Cost
+Trošak
 cost for removal
 Troskovi uklanjanja
+Cost per unit
+Cijena po jedinici
+Cost: %8s (%.2f$/km %.2f$/m)\n
+Cijena: %s (%.2f$/km %.2f$/mjesec)\n
+Cost: %8s (%.2f$/km)\n
+Cijena: %8s (%.2f$/km)\n
 Costs
 Troskovi
 Create a new line based on this schedule
@@ -585,8 +1039,18 @@ curlist_title
 Lista atrakcija
 CURRENCY
 €
+Current game
+Trenutna igra
 Currently playing:
 Svira:
+Customers live in:
+Kupci žive u:
+Date format
+Format datuma
+deactivated in online mode
+Nije aktivno u mrežnom načinu
+Dec.
+Pro.
 Deccelerate time
 Vrijeme decelaracije
 December
@@ -599,36 +1063,76 @@ Delete Line
 Obrisati liniju
 Delete the current stop
 Obrisati trenutno stajaliste
+Delete the selected line (if without associated convois).
+Obriši odabranu liniju (ako nema povezanih konvoja)
 Delete this file.
 Obrisati ovu datoteku.
+Delivered
+Isporučeno
+Demand
+Potražnja
+Demand: %.0f MW
+Potražnja: %.0f MW\n
 Denkmal
 Spomenik
 Departed
 Odaslan
+Departs at
+Polazi u (dd:hh:mm)
+Departure after
+%% popunjenosti ili čekanje (dd-hh-mm)
+Departure board
+Vrijeme polaska
+Departures per month
+Polazaka mjesečno
+Departures to\n
+Polasci za\n
+Depot
+Depo
 Depots
 Depoi
 Der Tunnel ist nicht frei!\n
 Tunel nije prazan.\n
 Destination
 Dolasci
+Destroying map ...
+Unistavanje stare mape ...
 Details
 Detalji
+Developed by the Simutrans Team
+Razvio Simutrans tim
 Die Bruecke ist nicht frei!\n
 Most nije slobodan!\n
 diesel
 dizel
+direct_chat_to:
+Direktna poruka za
+directmail
+Letci
 Direkt erreichbare Haltestellen
 Direktne rute odavde
 disable midi
 Zanijemiti MIDI glazbu
+Display bars above factory to show the status
+Prikazi trake iznad tvornica za prikaz statusa
 Display settings
 Opcije prikaza
 Distance
 Udaljenost
+distributing cities
+raspoređivanje gradova
+distributing factories
+raspoređivanje tvornica
+Do not show
+Ne prikazuj
 Dock
 dok
 Dock must be built on single slope!
 Dok mora biti sagradjen na poziciji s kosinom.
+Downloading
+Preuzimanje
+dp_title
+Popis depoa
 Du hast %d Monate Zeit, deine Schulden zurueckzuzahlen
 Imate %d mjeseca da otplatite svoj dug.
 Durchsatz
@@ -639,6 +1143,8 @@ Eigenbesitz\n
 Javni posjed\n
 Ein %s\npasst hier nicht.\n
 %s\nne pripada ovdje!\n
+Einstellungen
+Postavke
 Einstellungen aendern
 Promijeni opcije:\n
 electric
@@ -655,12 +1161,18 @@ enlarge map
 Povecati mapu
 enter a value between %i and %i
 Unijeti vrijednost izmedju %i i %i
+Enter address
+Unesi adresu
+Enter Password
+Promijeni ime igraca i lozinku
 Error
 Greska
 Erzeuge neue Karte.\n
 Molimo Vas, pricekajte dok se nova\nmapa ne kreira.\n\n (Ovo bi moglo\n potrajati nekoliko minuta\n za velike mape.)\n
 Es wird bereits\nein Fahrplan\neingegeben\n
 Raspored se\nplanira.\nPrvo zavrsi\n prije nego se ponovno napravi!\n
+Extract files
+Raspakiraj pak datoteke iz zipa.
 Fabrikanschluss
 Povezane tvornice
 Fabrikname
@@ -683,6 +1195,8 @@ Farbe
 Boja igraca
 Fast forward
 Ubrzati
+Feb.
+Velj.
 February
 Veljaca
 Ferry_tab
@@ -691,10 +1205,14 @@ Fertig
 Gotovo
 Filename
 Datoteka:
+Files from:
+Datoteke od:
 Finances of %s
 Financije %s
 Finanzen
 Financije
+find mismatch
+Usporedi svoj pak
 fl_title
 lista tvornica
 Flug_tab
@@ -703,6 +1221,10 @@ follow me
 Slijedi me.
 Follow the convoi on the map.
 Slijedi konvoj na mapi.
+font size
+Veličina fonta (samo .ttf i .otf fontovi)
+For questions and support please visit:
+Za pitanja i podrsku posjetite:
 Forest
 Suma
 Found new city
@@ -715,22 +1237,38 @@ Free Capacity
 Slobodan kapac.
 freeplay mode
 Slobodni modus
+Freight
+Teret
 Friction:
 trenutni faktor trenja:
 fuel_cell
 goriva celija
 Full load
 Min. napunjenost:
+Fullscreen (changed after restart)
+Cijeli zaslon (promjena nakon ponovnog pokretanja)
+Fundament
+Temelj
 Fussgaenger
 Pjesaci
+Game info
+Informacije o igri
 GAME PAUSED
 Igra je zaustavljena
+Game_msg
+Opcenito
 Gear:
 Vucna snaga:
 Gebaeude
 Gradjevina 
 General
 Opcenito
+generate script
+Generiraj makro skriptu infrastrukture
+Generated
+Generirano
+Generation: %.0f MW
+Proizvodnja: %.0f MW\n
 Gewicht
 Tezina
 Gewinn
@@ -753,14 +1291,22 @@ Gross Profit
 Tok novca
 Groundobj
 Objekt
+groundobj builder
+Postavi objekte krajolika
 Grow city
 Povecati grad
 Growth
 Rast grada
+GUI settings
+GUI postavke
 H
 postaja
 Happy
 Sretni
+Has slope graphics
+Ima grafiku nagiba
+Has Snow
+Ima snijeg
 Haus kaufen
 Kupiti kucu
 Helligk.
@@ -773,6 +1319,10 @@ hide all building
 Sakrij sve gradjevine
 hide city building
 Sakrij gradjevine u gradovima
+Hide labels
+Sakrij oznake
+hide objects under cursor
+sakrij objekte ispod kursora
 hide station names
 sakriti imena stanica
 hide transparent
@@ -781,6 +1331,12 @@ hide trees
 Sakrij stabla
 Hier warten/lagern:
 Roba i putnici koji cekaju:
+Higher transport fees, crossconnect all factories
+Vece naknade za prijevoz, onemoguci Just-in-time.
+highlight single ways
+Označava kraj/prekid prometnih putova.
+Highlite schedule
+Istakni stanice u rasporedu
 hl_title
 Lista stanica
 hl_txt_filter
@@ -825,18 +1381,32 @@ Home depot not found!\nYou need to send the\nconvoi to the depot\nmanually.
 Depo nije nadjen.\nMorate poslati\nvozilo tamo rucno.
 Homeless
 Beskucnik
+Horizontal stripe ownership
+Vodoravne pruge vlasnistva
 hydrogene
 Vodik
+Icon size:
+Velicina ikone:
 Idle:
 U mirovanju:
 ignore climates
 Ignoriranje klima
+In the industry legend show only currently existing factories
+Prikazi samo postojece tvornice u legendi industrije
+In Transit
+U tranzitu
 Increase Industry density
 Povecavanje gustoce industrije
 increase underground view level
 povecati nivo podzemnog pogleda
 industrial building
 Industrijske zgrade
+Industry overlay
+Prikaz industrije
+Infinite mouse scrolling
+Beskonacno pomicanje mape
+Infinite scrolling using mouse
+Mozda ne radi s ekranima na dodir!
 Init map ...
 Postavljanje mape ...
 Input
@@ -845,28 +1415,46 @@ Ins Stop
 Umetnuti
 Insert stop before the current stop
 Umetnuti prije trentnog stajalista
+Install graphics
+Instaliraj grafiku
+Install paks
+Pak paketi se preuzimaju i instaliraju.
+Insufficient funds!
+Nedovoljno sredstava!
 Intercity road len:
 Duzina medjugradske ceste:
+Intro. date
+Datum uvodjenja
 Intro. date:
 Datum uvodjenja:
 invalid
 nedefinirano.
 Invalid coordinate
 Neispravan redoslijed
+Invert stops
+Obrni stanice
 isometric map
 Izometricni pogled
+Jan.
+Sij.
 January
 Sijecanj
+join game
+Igraj na mreži
 July
 Srpanj
 Jump to
 Skociti na
 June
 Lipanj
+just now
+upravo sada
 Kann Spielstand\nnicht laden.\n
 Nije moguce ucitati spremljenu igru!
 Kann Spielstand\nnicht speichern.\n
 Nije moguce otvoriti\nciljnu datoteku\nza pisanje!
+keep city roads
+zadrzi gradske ulice
 Kein Besitzer\n
 Bez vlasnika\n
 keine
@@ -895,12 +1483,22 @@ LARGE_NUMBER_STRING
 M
 LARGE_NUMBER_VALUE
 1e6
+Last Month
+Zadnji mjesec:
+Last used tools
+Zadnje koristeni alati
 Last Year
 Zadnja godina:
 Leaving depot!
 Napustanje depoa!
 leer
 prazno
+Left button drags minimap too
+Lijeva tipka takodjer pomice minimapu
+legacy (large heights)
+stari način (velike visine)
+legacy (small heights)
+stari način (male visine)
 Legend
 Legedna mape
 Leistung
@@ -909,28 +1507,50 @@ Leistung: %d kW
 Snaga: %d kW
 Leitung
 Dalekovod
+length: %d
+dužina: %d
 letzen Monat: diesen Monat:
 zadnji mjesec: ovaj mjesec:
 Line
 Linija
 Line Management
 Upravljanje linijom
+line name mouseover tooltips
+skočni opisi s nazivom linije pri prelasku mišem
+linear
+linearno
+Lineless convoys serving this stop
+Konvoji bez linije koji opsluzuju ovu stanicu
 Lines serving this stop
 Linije ovoga stajalista
+List of industries on the map
+Popis industrija na mapi
 LKW_tab
 Kamioni
 Load game
 Ucitati igru
 load height data from file
 Ucitati podatci visine iz datoteke.
+Load mode:
+Nacin utovara:
 Load scenario
 Ucitati scenarij
+Load script tool
+Ucitaj skriptni alat
+Load Scripted AI
+Ucitaj skriptirani AI
+Load settings from
+Primijeni postavke iz
 loaded
 ukrcano
 loaded passenger/freight
 Sortiranje putnika/tereta po
 Loading (%i->%i%%)!
 Utovarivanje (%i->%i%%)
+Loading (%i%%) departure %s!
+Utovar (%i%%) polazak %s!
+Loading (%i%%)!
+Utovar (%i%%)!
 Loading addon paks ...
 Ucitavanje dodatnih paketa ...
 Loading map ...
@@ -939,16 +1559,26 @@ Loading paks ...
 Ucitavanje paketa ...
 Loading skins ...
 Ucitanje koza ...
+Loading time:
+potpuno utovaren za: 
+Lock Control key
+Zakljucaj tipku Control
 Lock game
 Zabraniti promjene igraca (zahtijeva potvrdu).
 Lokomotive_tab
 Lokomotive
+m3
+m³
 maglev vehicle
 Maglev vozilo
 maglev_track
 Maglev tracnica
 Maglevdepot
 Maglev depo
+Mail Demand %d\n
+Potraznja za postom %d\n
+Mail level
+Razina poste
 Mailbox
 Centar poruka
 Mailbox Options
@@ -957,30 +1587,46 @@ Maintenance
 Odrzavanje
 make stop public (or join with public stop next) costs %i per tile and level
 Naciti stajalista javnima (ili spojiti sa susjednim javinim stajalistima) kosta %i$ po plocici i nivou
+Make way or stop public (will join with neighbours), %i times maintainance
+Ucini put ili stanicu javnom (spojit ce se sa susjedima), %i puta vece odrzavanje
 Manual (Human)
 Uputsvo (ljudsko)
 Manufactured:
 Stvoreno:
 Map roughness
 hrapavost mape:
+map view
+Mapa
 map zoom
 zumiranje
+Mar.
+Ozu.
 March
 Ozujak
 Margin (%%)
 Margina
 Marker
 Naciti znak
+max
+maks.
+Max Boost (%%)
+Maks. pojacanje (%%)
 Max income:
 Najveci prihod:
+Max. speed
+Maks. brzina
 Max. speed:
 Najveca brzina:
+Max. waiting time
+Maks. vrijeme cekanja (dd:hh:mm)
 Maximum 254 stops\nin a schedule!\n
 Najvise 254 stajalista\nu rasporedu!\n
 maximum length of rivers
 Max. duzina rijeke
 Maximum tile height difference reached.
 Najveca visina\nrazlika izmedju\ndvije plocice \nje dostignuta!
+Maxspeed
+Maksimalna brzina
 May
 svibanj
 Median Citizen per town
@@ -989,12 +1635,18 @@ Meldung
 Poruka
 Menge
 Iznos
+merge stop
+spoji stanice
 MessageOptionsText
 \nNova Godina\n\nAI novosti\n\nGradske novosti\n\nNema rute\n\nNove industrije\n\n"chat"\n\nNova vozila\n\nStanica puna\n\nProblemi\n\nUpozorenja
 min
 min.
 minimum length of rivers
 Min. duzina rijeka
+Minimum load
+Minimalni utovar (%%)
+Missing pakfiles
+Objekti nedostaju!
 Modify the selected line
 Promjena odabrane linije
 Monate alt
@@ -1007,8 +1659,12 @@ Monorailboden
 Uzdignut put
 Monoraildepot
 Depo Monoraila
+Month
+Mjesec
 month wait time
 mjeseci cekanja
+Monthly departures
+Fiksna vremena polaska
 Months
 Mjeseci
 Monument
@@ -1017,6 +1673,8 @@ Monuments
 Spomenici
 Mountain height
 Velicina planine:
+Move the map
+Pomakni mapu
 Movingobj
 pokretni objekt
 Music playing disabled/not available
@@ -1037,8 +1695,12 @@ narrowgauge_track
 Uska tracnica
 Narrowgaugedepot
 Depo uske tracnice
+Net ID: %p
+Mrezni ID: %p\n
 Net Wealth
 Ukupna Imovina
+Net wealth near zero
+Neto vrijednost blizu nule
 Neue Karte
 Nova mapa
 Neue Welt
@@ -1051,6 +1713,8 @@ New line created!\nYou can assign the line now\nby selecting it from the\nline s
 Nova linija stvorena!\nMozes pridruziti liniju sada\nodabiruci je sa\nodabiraca linija gore.
 New Vehicles
 Nova vozila
+Nickname:
+Nadimak:
 no buildings hidden
 nijedna zgrada skrivena
 no convois
@@ -1061,18 +1725,28 @@ no goods waiting
 teret ne ceka
 no load
 Nema tereta
+No player
+Nema igraca
 No Route
 Nema rute
 No stop here!
 Alat se mora koristiti na plocicama stajalista.
 No suitable ground!
 Nije prigodna podloga!
+No suitable townhall available for this climate!
+Nema odgovarajuce gradske vijecnice za ovu klimu!
 No terminal station here!
 Nije moguce graditi terminal\n ovdje! Krajnji komad \nod ravne ceste/pruge je potreban.
 no timeline
 sve epohe
+No transformer connected.
+Nije spojen transformator: Sva struja ce biti potracena.
 no tree
 Nema stabala
+No vehicles are available for purchase.
+Nema dostupnih vozila za kupnju.
+No. of Factories
+Tvornice i trgovine:
 Noch kein Fahrzeug\nmit Fahrplan\nvorhanden\n
 "Gdje ja idem?"\nMorate ovome konvoju postaviti raspored ili dodijeliti mu liniju prije nego ode po nalog.
 none
@@ -1083,30 +1757,54 @@ nordost
 Sjeveroistok
 nordwest
 Sjeverozapad
+Not allowed to make publicly owned ways!
+Nije dozvoljeno praviti javne putove!
 Not allowed!\nThe convoi's schedule can\nnot be changed currently.\nTry again later!
 Raspored vozila\nse ne smije mijenjati\n prilikom trazenja rute.
 Not enough fields would remain.
 Ne bi dovoljno polja\n ostalo oko farme.
+Not online
+Nije na mrezi
+Nov.
+Stu.
 November
 Studeni
+now
+sada
 Now active as %s.\n
 Sada aktivan kao %s.\n
+nowhere
+nigdje
 Number of rivers
 Broj rijeka
 Object
 Objekt
+Oct.
+Lis.
 Ok
 U redu
 Oktober
 Listopad
 On loan since %i month(s)
 U kreditu vec %i mjesec(i)
+On mouseover
+Pri prelasku misa
+on the
+prvi polazak u mjesecu u (dd-hh-mm)
 On this map, you are not\nallowed to change player!\n
 Ova igra je zakljucana.\nPromjene od igraca nisu moguce.\n
 Only city chains
 Samo lanci gradova
+Only first %d differing paks reported. There are probably more.
+Prijavljeno je samo prvih %d razlicitih paketa. Vjerojatno ih ima vise.
+Only full Unicode fonts
+Samo potpuni Unicode fontovi
 Only land chains
 Samo lanci sela
+Only one transformer per factory!
+Samo jedan transformator po tvornici!
+Only show goods which are currently handled by factories
+Prikazi samo robu kojom tvornice trenutno rukuju
 open
 otvoreno.
 Operation
@@ -1115,12 +1813,28 @@ Ops Profit
 Operativni profit
 Optionen
 Opcije
+Or enter a server manually:
+Ili ručno unesite server:
 Origin
 Podrijetlo
 ost
 Istok
 Output
 Izlaz
+Ownership
+Vlasništvo
+Pak which may cause severe errors:
+Sljedeći objekti (pak) nedostaju, što može uzrokovati prekid transportnih lanaca:
+Pak which may cause visual errors:
+Sljedeći objekti (pak) su zamijenjeni sličnim objektima:
+Pak(s) different:
+Različiti pak(ovi):
+Pak(s) missing on client:
+Pak(ovi) koji nedostaju na klijentu:
+Pak(s) not on server:
+Pak(ovi) koji nisu na serveru:
+Pakset differences
+Razlike u paksetu
 paletten
 sanduk
 Pas_tab
@@ -1133,16 +1847,28 @@ Passagierziele
 ciljevi putnika/poste
 Passenger AI
 AI putnika
+Passenger Demand %d\n
+Potražnja putnika %d\n
 Passengers %d %c, %d %c, %d no route
 Putnici %d %c, %d %c, %d nemaju rutu
 Passengers %d %s, %d %s, %d no route
 Putnici %d %s, %d %s, %d nemaju rutu
+Password
+Lozinka:
 Pause
 Pauza
+Pax <%i>  Mail <%i>
+Putnici <%i>  Pošta <%i>
+Pax level
+Razina putnika
 PaxDest
 Odredista
 Percent Electricity
 Elektricitet (%% potraznje):
+personal_chat
+Privatni razgovori
+Pipette
+Ponovno izgradi odabrani objekt
 Planes are not available yet!
 Zrakoplovi jos nisu dostupni.
 Plant tree
@@ -1179,6 +1905,8 @@ player 8
 Igrac 8
 player 9
 Igrac 9
+Player ranking
+Poredak igrača
 Please choose vehicles first\n
 Molimo prvo odaberi vozila!\n
 Post
@@ -1187,16 +1915,32 @@ Postrate
 Nivo poste
 Power
 Snaga
+Power (MW)
+Snaga (MW)
 Power:
 Snaga:
+Power: %4d kW\n
+Snaga: %4d kW\n
 Powerlines
 Dalekovodi
+Price
+Cijena
+Problems_msg
+Problemi
+Produced
+Proizvedeno
+Produces: %.1f units/minute
+trenutno %.1f/minuti
 Production of %s has been stopped:\n%s\n
 Proizvodnja od %s je ukinuta:\n%s\n
+Production/Boost
+Proizvodnja/Povećanje
 Produktion
 Produkcija
 promote to line
 Promovirati u liniju
+public_chat
+Opći razgovor
 q1
 Proljece
 q2
@@ -1205,6 +1949,8 @@ q3
 Jesen
 q4
 Zima
+Query server
+Ispitaj server
 rail car
 Tracnicko vozilo
 random
@@ -1219,6 +1965,8 @@ Rating
 Procjena
 ratio_pax
 Omjer putnika
+Relevant
+Relevantno
 Reliefkarte
 Mapa
 Remove
@@ -1239,10 +1987,16 @@ remove powerlines
 ukloniti dalekovode
 remove roads
 ukloniti ceste
+remove signal
+ukloni signal
 remove tracks
 ukloniti tracnice
 Remove wayobj %s
 Ukloniti wayobj %s
+replace existing ways
+zamijeni postojece putove
+replace faster wayobjs
+zamijeni brze putne objekte
 replace other signals
 Zamjena postojecih signala
 replace stop
@@ -1255,32 +2009,64 @@ Restore natural slope
 Vratiti prirodni nagib.
 Restwert:
 Prodajna vrijednost:
+Retire date
+Datum povlačenja
 Retire. date:
 Datum umirovljenja:
 return ticket
 ponovo unazad
 Revenue
 Prihodi
+Revenue/unit/100 tiles
+Prihod/jedinica/100 polja
+Revert schedule
+Vrati promjene
+Revision:
+Revizija:
 road
 cesta
 road vehicle
 cestovni znak
 Roadsign
 Cestovni Znak
+Rotate Building
+Rotiraj zgradu
 Rotate map
 Okretanje mape
 Rotation
 Okretanje
 Routing
 Rutiranje
+Running cost
+Troškovi rada
 sack
 vrece
 sail
 vjetar
+Save
+Spremi igru
+Save generated script
+Spremi generiranu skriptu
 Saving map ...
 Spremanje mape...
 Scenario complete: %i%%
 Scenarij zavrsen:%i%%
+Scenario Debug
+Otklanjanje pogrešaka
+Scenario Error Log
+Pogreške skripte
+Scenario Goal
+Cilj scenarija
+Scenario Info
+Kratke informacije
+Scenario information
+Pojedinosti trenutnog scenarija
+Scenario Result
+Napredak
+Scenario Rules
+Pravila
+Scenario_
+Scenarij 
 Schedule changing!
 Raspored u promijeni!
 Schienentunnel
@@ -1291,14 +2077,32 @@ Schiffdepot
 Brodogradiliste
 Schleppkahn_tab
 Sleperi
+Screen scale:
+Mjerilo zaslona:
 Screenshot
 Uzeti snimak ekrana.
+Scroll threshold
+Prag pomicanja
+Search:
+Pretraži:
 Seasons
 Godisnja doba
 Sehenswuerdigkeit
 Turisticka atrakcija
+Select a server to join:
+Odaberite server za pridruživanje:
+Select a theme for display
+Odaberite temu za prikaz
+Select display font
+Odaberite font za prikaz
+Select one or more graphics to install (Ctrl+click):
+Odaberite jednu ili više grafika za instalaciju (Ctrl+klik):
+Select soundfont
+Odaberite soundfont
 Sell the selected vehicle(s)
 Prodati odabrano vozilo/la.
+Selling of the program is forbidden.
+Prodaja ovog programa je zabranjena.
 sended
 Poslana posta
 SEP_FRACTION
@@ -1307,8 +2111,14 @@ SEP_THOUSAND
 ,
 SEP_THOUSAND_EXPONENT
 3
+Sept.
+Ruj.
 September
 Rujan
+Served by
+Poslužuje
+Served by me
+Poslužujem ja
 Server did not respond!
 Server nije odgovorio!
 Serves Line:
@@ -1331,6 +2141,20 @@ Show also vehicles no longer in production.
 Prikaz takodjer vozila koja se vise ne proizvode.
 Show also vehicles that do not match for current action.
 Prikaz i vozila koja se ne mogu koristiti odabranom akcijom.
+Show always
+Uvijek prikaži
+Show climates
+Prikaži klime
+Show construction info
+Prikazi informacije o gradnji
+Show contour
+Prikaži visine
+Show even servers with wrong version or pakset
+Prikaži i servere s pogrešnom verzijom ili paksetom.
+Show finances for transport type
+Prikaži financije za vrstu prijevoza
+Show future
+Prikaži budućnost
 show grid
 Prikaz mreze
 Show industry
@@ -1339,36 +2163,76 @@ Show legend
 Prikaz legende
 Show map scale
 Skala mape
+Show mismatched
+Prikaži neusklađene
+Show networks
+Prikaži mreže
 Show obsolete
 Prikaz zastarjelih
+Show offline
+Prikaži izvanmrežne
+Show only used
+Prikaži samo korištene
+Show outline
+samo infrastruktura
 Show schedules
 Prikaz rasporeda
+Show servers that are offline
+Prikaži servere koji su izvan mreže
+Show servers where game version or pakset does not match your client
+Prikaži servere na kojima se verzija igre ili pakset ne podudara s vašim klijentom
 show station coverage
 Prikaz pokrivenosti stanice
 show station names
 Prikaz imena stanice
 show waiting bars
 prikaz motke cekanja
+show/hide block reservations
+prikaži/sakrij rezervacije blokova
+Show/hide estimated arrival times
+Prikaži/sakrij procijenjeno vrijeme dolaska
+show/hide object owner
+prikaži/sakrij vlasnika objekta
 Show/hide statistics
 Prikaz/Skrivanje Statistike
+Shows buttons about networks overlay.
+Prikazuje gumbe za prekrivanje mreže.
+Shows buttons on network overlay.
+Prikazuje opciju za prikaz mreže povezivanja.
+Shows buttons on special topics.
+Prikazuje gumbe za posebne teme.
 Shows consumer/suppliers for factories
 Prikaz potrosaca/dobavljaca za tvornice
+Shows the color code for several selections.
+Prikazuje kod boje za nekoliko odabira.
 Shows the currently selected schedule
 Prikaz trenutno prikazanog rasporeda
 Shrink city
 Smanjenje grada
 shuffle midis
 mijesanje mid-ova
+signal spacing
+Razmak signala
 Sim:
 Simloop-ovi:
+Similar view as the main window
+Sličan prikaz kao u glavnom prozoru
+Single toolbar only
+Samo jedna alatna traka
 Size (%d MB):
 Velicina (%d MB):
+Size (area)
+Veličina (površina)
 sliced underground mode
 Prikaz Kriske Sloja 
 slot empty
 isjecak prazan
+Smart hide objects
+Pametno sakrivanje objekata
 Sort by
 sortiranje prema
+Sort by:
+Sortiraj prema:
 Sort waiting list by
 Sortiranje liste cekanja prema
 Sound
@@ -1377,8 +2241,12 @@ Sound settings
 Postavke zvuka
 Sound volume:
 Jacina zvuka:
+Soundfonts are located in the music directory.
+Soundfontovi se nalaze u glazbenoj mapi.
 special freight
 Specijalni teret
+Speed Bonus
+Bonus za brzinu
 Speedbonus\nroad %i km/h, rail %i km/h\nships %i km/h, planes %i km/h.
 Brzinski bonus\n cesta %i km/h, tracnice %i km/h\nbrodovi %i km/h, zrakoplovi %i km/h.
 Speedlimit
@@ -1405,16 +2273,30 @@ Start the selected vehicle(s)
 Poslati odabrano/na vozilo/la
 Starte Spiel
 Pokreni igru
+station labels
+Stanice
 Station tiles:
 Plocice stanice:
+Station_msg
+Stanice
 Status
 Status stajalista
+stay on this level
+ostani na ovoj razini
 steam
 para
 Step timeline one year
 Pomaknuti za godinu dana unaprijed.
+Stopping permissions
+Drugi igrači koji mogu koristiti ovu stanicu
+Stops
+Stanice
+Storage
+Skladište
 Storage capacity
 Kapacitet spremanja
+straight route
+ravna ruta
 Strassendepot
 Garaza
 Strassentunnel
@@ -1429,10 +2311,22 @@ suedwest
 Jugozapad
 Summer snowline
 Ljetna snjezna linija
+Supplied: %.0f %%
+Opskrbljeno: %.0f %%
 Suppliers
 Dobavljaci
 Tage alt
 dana staro.
+The following graphics are unmaintained:
+Sljedeća grafika se ne održava:
+The generated script was saved!\n
+Makro je uspješno spremljen.\nMože se ponovno pokrenuti alatom za skripte.
+The gradient does not fit a tunnel
+Nagib ne odgovara tunelu
+The script cannot be saved!\n
+Skripta se ne može spremiti!\n
+Theme selector
+Odabir teme
 There are still vehicles\nstored in this depot!\n
 Jos ima vozila\nu ovom depou!\n
 This Month
@@ -1449,18 +2343,24 @@ To attract more tourists\n%s built\na %s\nwith the aid of\n%i tax payers.
 Za privlacenje vise turista,\n%s je sagradio\n %s\s pomocu od\n%i placenih poreza.
 To heavy traffic\nresults in traffic jam.\n
 Preveliki promet\nprouzrocuje zastoj.\n
+To: %s
+Do: %s
 Toggle day/night view
 Promjena dan/noc pogleda
 Toggle vehicle tooltips
 Promijena savjeta za vozila
 tonnen
 t
+Toolbar position:
+Položaj alatne trake:
 Total inhabitants:
 Ukupno stanovnika: 
 Tourist attractions
 Turisticke atrakcije:
 Tourists
 Znamenitosti
+Town_msg
+Nove destinacije
 Town: %s\n
 Grad od %s.\n
 Towns
@@ -1470,6 +2370,8 @@ tracnica
 Tracks
 Tracnice
 Traffic
+Promet
+traffic settings
 Promet
 Train
 Vlak
@@ -1485,24 +2387,36 @@ Tramdepot
 Tramvajski depo
 Trams are not available yet!
 Tramvaji jos nisu dostupni.
+Transferring game ...
+Prijenos igre ...
 Transformer only next to factory!
 Transformatori moraju biti na\npraznom ravnom tlu\nblizu tvornici!
 Translation
 Prijevod
+transparencies
+Prozirnost
+transparent background
+prozirna pozadina
 transparent station coverage
 transparentan prikaz pokrivanja
 Transported
 Putovanja
+Trees disabled!
+Drveće onemogućeno!
 TrolleyBus_tab
 trolejbusi
 Truck
 Kamion
+tt_Other
+Ostalo
 Tunnel muss an\neinfachem\nHang beginnen!\n
 Tuneli moraju\npocinjati na ravnom\nnagibu!\n
 Tunnel must start on single way!
 Tuneli moraju pocinjati na pojedinacnom putu.
 Tunnelboden
 Tunel
+under the Artistic License
+pod licencom Artistic License
 underground mode
 podzemni pogled
 UNDO failed!
@@ -1515,34 +2429,56 @@ Unhappy
 Nesretno
 units/day
 /mjesec, 
+Unloading (%i%%)!
+Istovar (%i%%)!
 Update Line
 Osvjeziti liniju
 upgrade HQ
 Nadogradnja HQ
+Usage: %.0f %%
+Iskorištenost: %.0f %%
+Usage/Output
+Potrošnja/Proizvodnja
+Use beginner mode
+Koristi početnički način
 Use timeline start year
 Koristenje trake godina:
 Vehicle %s can't find a route!
 Vozilo %s\nne moze naci rutu!
 Vehicle %s is stucked!
 Vozilo %s je zaglavljeno!
+Vehicle count:
+Broj vozila:
 Vehicle details
 Detalji Vozila
+Vehicle Name
+Naziv vozila
+Vehicle Power
+Snaga vozila
+vehicles stored
+spremljena vozila
 Verbrauch
 Potrosnja
 Vergroessere die Karte\n
 Povecanje mape.\n
+Verkauf
+Ukloni odmah!
 verkaufen
 Prodaje
 Verkehrsteilnehmer
 gradski auti
 Verschuldet:\n\nDu hast %d Monate Zeit,\ndie Schulden zurueckzuzahlen.\n
 Imas %d mjeseca\nza otplatu svojih dugova.\n
+vh_title
+Popis svih vozila
 via
 preko (detalj)
 via %s\n
  preko %s\n
 via Menge
 preko (kolicina)
+via owner
+preko (vlasnik)
 voranstellen
 Postaviti naprijed
 Waggon_tab
@@ -1551,6 +2487,14 @@ waiting
 cekanje
 Waiting for clearance!
 Cekanje na odobrenje!
+Walked
+Pješice
+walking
+Pješačenje
+Warnings_msg
+Promet
+Wasser
+Voda
 Water
 Kanal
 Water level
@@ -1563,14 +2507,30 @@ way %s cannot longer used:\n%s\n
 tip puta %s se ne moze vise koristiti:\n
 way %s now available:\n
 Putni tip %s je sada dostupan.\n
+Way toll
+Pristojba za put
 Ways not connected
 Putovi nisu spojeni
+waytype
+vrsta puta
 Wegpunkt
 Putna tocka
+Weight
+Težina
+Weight:
+Težina:
+Weight/unit
+Težina/jedinica
+Welcome to Simutrans
+Dobrodošli u Simutrans
+Welcome, %s!
+Dobrodošli, %s!
 Wert
 Vrijednost
 west
 Zapad
+Wind direction
+Smjer vjetra
 Winter snowline
 Zimska snjezna linija
 withdraw
@@ -1579,10 +2539,16 @@ Withdraw All
 Povuci Sve
 WRONGSAVE
 \nNekompatibilna spremljena igra.\nNemoguce ucitati datoteku.\n
+Year
+Godina
 Year %i has started.
 Godina %i je zapocela.
 Years
 Godina
+Your primary color:
+Vaša primarna boja:
+Your secondary color:
+Vaša sekundarna boja:
 Zielort
 Cilj
 zooming in
@@ -1607,6 +2573,38 @@ New world record for railways: %.1f km/h by %s.
 Novi svjetski rekord za \nvlakove:\n %.1f km/h - %s.
 New world record for ship: %.1f km/h by %s.
 Novi svjetski rekod za \nbrodove:\n %.1f km/h\n - %s.
+#________________________________script_ai_text_________________________________
+#________________________________script_ai_text_________________________________
+%s build additional convoy to line: %s
+%s gradi dodatni konvoj za liniju: %s
+%s build rail line from %s (%s) to %s (%s)
+%s gradi željezničku liniju od %s (%s) do %s (%s)
+%s build road line from %s (%s) to %s (%s)
+%s gradi cestovnu liniju od %s (%s) do %s (%s)
+%s build ship line from %s (%s) to %s (%s)
+%s gradi brodsku liniju od %s (%s) do %s (%s)
+%s extends the route from %s (%s) to %s (%s)
+%s produžuje rutu od %s (%s) do %s (%s)
+%s optimize way line from %s (%s) to %s (%s)
+%s optimizira rutu od %s (%s) do %s (%s)
+%s removes convoys from line: %s
+%s uklanja konvoje s linije: %s
+vehicles of the line %s were retired
+vozila linije %s su povučena
+#_________________________________tooltip_text__________________________________
+#_________________________________tooltip_text__________________________________
+Add convois with similar schedule to this line.
+Dodaj konvoje sa sličnim rasporedom ovoj liniji.
+Attach current coordinate to the comment
+Priloži trenutne koordinate komentaru
+Enter intervall in days, hours, minutes
+Unesi interval u danima, satima, minutama
+Mirrors order of stops
+Obrni redoslijed stanica
+Revert to original schedule
+Poništi sve promjene rasporeda.
+Tutorial not available for this pakset. Please try loading Pak128.
+Vodič nije dostupan za ovaj pakset. Pokušajte učitati Pak128.
 #_______________________________unnecessary_text________________________________
 #_______________________________unnecessary_text________________________________
 %D_CITY_SYLL
@@ -1621,22 +2619,54 @@ Hrast
 %s ekspoziturna %s
 1suburb
 %s %s %s
+2center
+%s centralna %s
 2extern
 %s vanjska %s
+2suburb
+%s Greenfields %s %s
 3center
 %s glavna %s
 3extern
 %s agrarna %s
 3suburb
 %s selo %s %s
+4center
+%s unutarnja %s
 4extern
 %s vanjska %s
+4suburb
+%s seoska %s
 5center
 %S u centru grada %s
+5extern
+%s presjedanje %s
+5suburb
+%s gradska %s
 6center
 %s cvorisna %s
+6extern
+%s čvorište %s
+6suburb
+%s predgrađe %s %s
 7center
 %s grad %s
+7extern
+%s ravnica %s
+7suburb
+%s park %s
+8center
+%s poslovna %s
+8extern
+%s %s rubna %s
+8suburb
+%s satelitska %s
+9center
+%s os %s
+9extern
+%s obilaznica %s
+9suburb
+%s mezzo %s
 Asuburb
 Ne postoji!
 Bcenter

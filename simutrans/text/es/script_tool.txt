@@ -1,0 +1,6 @@
+<title>Cargar herramienta desde script</title>
+<p>
+Esta ventana lista las herramientas escritas en Squirrel que amplían las funciones de Simutrans.
+<br />
+Las herramientas están en subdirectorios de <em>simutrans/</em>[conjunto gráfico]<em>/tool/</em> o de <em>simutrans/addons/</em>[conjunto gráfico]<em>/tool/</em>.
+</p>

@@ -1,0 +1,28 @@
+<title>Colocar objetos del paisaje</title>
+
+<h1>Colocar objetos del paisaje</h1>
+<p>
+Con la ventana «Colocar objetos del paisaje» puedes situar objetos variados para embellecer el mapa. Se abre desde las <a href="edittools.txt">Herramientas de Edición de Mapa</a>. Estos objetos no son necesarios para jugar: son puramente decorativos y no estorban al desarrollo. Entre ellos hay rocas dejadas por la glaciación, charcas con patos, flores, arbustos, cactus, hitos del paisaje y cosas por el estilo.<br>
+</p>
+<p>
+Arriba está la <em>selección</em> de una <em>zona climática</em> concreta.<br>
+- <em>Todo</em> significa que se listan todos los objetos disponibles, sea cual sea su zona climática; pero solo se pueden colocar los que encajen con el clima del suelo. Si quieres saltarte esa comprobación, activa al lado la opción <em>Ignorar climas</em>: así no se comprobará la zona climática al colocar el objeto.<br>
+Si eliges una zona climática acorde con el suelo que tienes pensado, solo se mostrarán los objetos que le correspondan.<br>
+<br>
+Debajo puedes cambiar cómo se muestran los nombres y cómo se ordena la lista.<br>
+- <em>Traducción:</em> muestra los nombres tal como se usan en el juego. Depende del idioma seleccionado; si no hay traducción para ese idioma, se muestra el nombre del objeto.<br>
+- <em>Objeto:</em> muestra el nombre interno que usa el programa.<br>
+- <em>Coste de retirada:</em> solo afecta al orden; los nombres que se muestran siguen siendo los traducidos.<br>
+El botón de al lado cambia el orden a descendente.<br>
+</p>
+<h1>Lista de selección</h1>
+<p>
+- A la izquierda está la lista de objetos del paisaje.<br>
+- A la derecha se muestra la información del objeto seleccionado: el nombre, el texto explicativo si lo tiene, todas las zonas climáticas en las que encaja, si hay gráfico para la nieve, qué estaciones del año tienen gráfico, cuánto cuesta demolerlo y quién dibujó el gráfico.<br>
+<em>4 estaciones</em> se refiere a primavera, verano, otoño e invierno.<br>
+- Abajo a la derecha se muestra la imagen del objeto seleccionado.<br>
+</p>
+<h1>Opciones</h1>
+<p>
+- <em>Ignorar climas:</em> desactiva la comprobación de la zona climática al colocar el objeto.<br>
+</p>

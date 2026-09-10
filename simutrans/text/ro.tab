@@ -12,11 +12,19 @@ prop-latin2.fnt
 #                              Language: ro Romana                             #
 #                                Encoding: UTF-8                               #
 #                             Font: prop-latin2.fnt                            #
-#                           Date Created: 11.03 2026                           #
+#                           Date Created: 10.09 2026                           #
 #                                                                              #
 ################################################################################
 #__________________________________button_text__________________________________
 #__________________________________button_text__________________________________
+Absolute times
+Afiseaza ora ca zi:hh:mm din luna
+allow reverse passage
+permite trecerea in sens invers
+AMBIENT_SOUND
+sunete ambientale
+CASH_SOUND
+sunet de incasare
 cl_btn_filter_disable
 dezactivat
 cl_btn_filter_enable
@@ -41,6 +49,16 @@ clf_btn_invers
 inv.
 clf_btn_keine
 nimic
+climate area percentage
+Marimea unei zone de clima 
+Continue Game
+Continua jocul
+CROSSING_SOUND
+avertizari la treceri
+FACTORY_SOUND
+zgomote de fabrica
+Find matching convois
+Gaseste convoaie identice
 gl_btn_sort_bonus
 Bonus
 gl_btn_sort_name
@@ -49,6 +67,8 @@ gl_btn_sort_revenue
 Venit
 gl_btn_unsort
 Nesortat
+height based
+Clima dupa altitudine
 hl_btn_filter_disable
 dezactivat
 hl_btn_filter_enable
@@ -71,6 +91,60 @@ hlf_btn_invers
 inv.
 hlf_btn_keine
 nimic
+humidities
+Limite de umiditate
+Install
+Instaleaza
+Lake
+Lac
+Lake height
+Inaltimea maxima a lacului
+Maximize height levels
+Maximizeaza nivelurile de altitudine
+moisture land
+creste peste uscat
+moisture water
+creste peste apa
+Networks
+Retele
+Num pad keys always move map
+Tastele numerice muta mereu harta
+Open Sea
+Mare deschisa
+Owner only
+Doar proprietarul
+Queueing
+Tendinta de asteptare
+rainfall
+Umiditate
+Reselect closes tools
+Reselectarea unei unelte o inchide
+Return to menu
+Inapoi la meniu
+Road toll
+Taxa de drum
+Scenario
+Informatii scenariu
+sea
+clima marina
+Shared only
+Doar cele partajate
+Single GUI
+Interfata unica
+Sound range:
+Raza sunetului:
+Start this as a server
+Porneste un server folosind acest joc.
+temperature borders
+limite de temperatura
+temperature-humidity based
+Clime dupa vreme
+TOOL_SOUND
+sunete pentru unelte
+TRAFFIC_SOUND
+zgomote de trafic
+Transfers
+Transbordari
 #_________________________________climates_text_________________________________
 #_________________________________climates_text_________________________________
 arctic
@@ -87,28 +161,72 @@ tropic
 clima tropicala
 #__________________________________error_text___________________________________
 #__________________________________error_text___________________________________
+ Loading scenario script failed
+Incarcarea scriptului\nde scenariu a esuat!\n
+A building blocks the construction
+O cladire blocheaza constructia.
+A powerline blocks the construction
+O linie electrica blocheaza constructia
+Another way blocks the construction
+Alt drum blocheaza constructia
+Bridge blocked by way below or above.
+Pod blocat de o cale dedesubt sau deasupra.
+Can't buy obsolete vehicles!
+Nu se pot cumpara vehicule invechite!
+Cannot alter water
+Acest bazin nu mai poate fi drenat sau umplut.
+Cannot build on a double slope!
+Se poate construi doar pe o panta simpla sau pe teren plat!
 Cannot built depot here!
 Nu pot construi depou aici.
 Cannot built this station/building\nin underground mode here.
 Cladirea nu poate fi\nconstruita sub pamant.\n
+Cannot connect to the\ncenter of a double slope!
+Un pod nu se poate conecta la mijlocul\nunei pante duble!\nFoloseste unealta de modelare a terenului.
 Cannot create generic line!\nSelect line type by\nusing filter tabs.
 Nu pot creea linie generica!\nAlege tipul de linie\nfolosind filtre.
 Cannot create socket
 Nu pot creea socket
+Cannot cross the end of a runway
+Capatul pistei nu poate fi traversat
+Cannot rotate this building!
+Aceasta cladire nu poate fi rotita!
+Client closed connection during transfer
+Clientul a inchis conexiunea in timpul transferului
 Convoi handles exhausted!
 Numar maxim de convoaie atins.
+Convoy already deleted!
+Convoiul a fost deja sters!
+Corrupt file
+Fisier deteriorat sau incomplet.
+Could not open file
+Fisierul nu a putut fi accesat. Verifica permisiunile.
 Das Feld gehoert\neinem anderen Spieler\n
 Aceasta parte a insulei\neste detinuta de\nun alt jucator!\n
+Depots cannot be built on runways!
+Depourile nu pot fi construite pe piste de decolare!
+Depots must be built on flat dead-end way tiles!
+Depourile trebuie construite pe casute de capat de cale, pe teren plat!
 Der Besitzer erlaubt das Entfernen nicht
 \nNu ai permsiunea!\n
 Diese Zusammenstellung kann nicht fahren!\n
 Combinatia\nnu functioneaza!\n
+Elevated way can only be joined in line
+O cale supraetajata poate fi conectata doar in linie dreapta
+Failed to write file
+Fisierul nu a putut fi scris. (Permisiuni?)
 Flugzeughalt muss auf\nRunway liegen!\n
 Trebuie sa fie\n pe taxiway.
+Forbidden by scenario
+Interzis de scenariu
 Hier kann dieses\nFlughafengebaeude nicht\ngebaut werden!\n
 Nu poti construi\n\naeroport aici.\n
 Hier kann kein\nSignal aufge-\nstellt werden!\n
 Aici nu se poate\nconstrui semafor!\n
+In order to lock the game, you have to protect the public player by password!
+Pentru a bloca jocul trebuie sa protejezi jucatorul public cu o parola!
+Loading a new game will end the current server session!
+Incarcarea unui joc nou va incheia sesiunea curenta de server!
 Lost connection\nto server!
 Nu exista!
 Lost synchronisation\nwith server.
@@ -119,30 +237,156 @@ Monorailhalt muss auf\nMonorail liegen!\n
 Statiile monorail trebuie\npuse pe linii monorail.
 Monorails are not available yet!
 Linie monorail indisponibila.
+More than one possibility to build this dock found.
+S-a gasit mai mult de o posibilitate de a construi acest doc.
 Narrowgaugehalt muss auf\nNarrowgauge liegen!\n
 acest stop trebuie construit pe linia specifica
+No bridges over runways!
+Nu se pot construi poduri peste piste!
+No curves on runways
+Pistele nu pot avea curbe!
+No suitable crossing
+Nu exista o trecere potrivita! (viteza maxima prea mare?)
+No suitable way on the ground!
+Statiile pot fi construite doar pe\ncai drepte si plane potrivite!
 No through station here!
 Statiile trebuie plasate la capatul liniilor sau pe sectiuni in line dreapta.
+Not allowed to copy object.
+Nu poti construi acel obiect!\n(Motiv: jucator gresit sau obiect invechit)
+Not enough bytes transferred
+Nu s-au transferat destui octeti.
+Not enough clearance.
+Intre doua cai este necesara o diferenta de inaltime de cel putin doua trepte.
+Not enough empty space
+Nu a mai ramas destul spatiu liber.
 Not enough money!
 Nu ai suficienti bani\npentru a construi!
+Not initialized
+Biblioteca nu a putut fi initializata.
 On narrowgauge track only!\n
 Doar pe ecartament ingust!\n
+Only public player can lock games!
+Doar jucatorul public poate bloca jocul!
+Only up and down movement in the underground!
+In subteran terenul poate fi ridicat sau coborat doar cu uneltele sus/jos!
+Out of funds
+Nu ai destui bani\npentru asta!
 Post muss neben\nHaltestelle\nliegen!\n
 Extensia (posta, depozit)\n trebuie plasat pe loc liber\nlanga o statie existenta.\n
 Protocoll error (expecting game)
 Eroare protocol (ceva s-a stricat)
 Schiffhalt muss im\nWasser liegen!\n
 O nava poate fi\n plasata doar inapa\nlanga un doc!\n
+Server busy
+Server ocupat
+Server version too new
+Serverul foloseste o versiune mai noua a programului.
+Ship depots must be built on water!
+Depourile navale trebuie construite pe apa!
+Show all revenue messages
+Arata toate mesajele de venit.
+Show no revenue messages
+Nu arata mesajele de venit.
+Show only player's revenue
+Arata doar veniturile jucatorului.
+Slope is too steep
+Panta este prea abrupta
 Terraforming not possible\nhere in underground view
 Teraformarea imposibila sub pamant.
+This tunnel branches. You can try Control+Click to remove.
+Acest tunel are mai mult de 2 intrari. Poti incerca Ctrl+clic pentru a-l elimina.
+Too far away to merge stations!
+Prea departe pentru a uni statiile!
+Tunnel can only be entered at its portal
+Intr-un tunel se poate intra doar prin portalul sau
+Unknown error
+Eroare necunoscuta
 Upgrade must have\na higher level
 Upgrade-ul se face\ndoar cu un nivel in plus.
+Vehicle %s cannot choose because stop too short!
+Vehiculul %s nu poate alege deoarece statia este prea scurta!
+Watertable reached
+Terenul nu mai poate fi coborat!\nS-a atins panza freatica.
+Way does not match the slope here
+Drumul nu se potriveste cu panta aici
+Wrong direction to enter the bridge
+Directie gresita pentru intrarea pe pod
 Zughalt muss auf\nSchiene liegen!\n
 Statiile trebuiesc\npuse pe\nsina normala.\n
 #___________________________________help_text___________________________________
 #___________________________________help_text___________________________________
+<h1>Index</h1><p>*: only english</p><p>General</p>%s<p>Usage</p>%s<p>Tools</p>%s<p>Start</p>%s<p>How to play</p>%s<p>Others:</p>%s
+<title>Ajutor</title><h1>Cuprins</h1><p><it>Despre Simutrans</it></p>%1$s<p><it>Cum se foloseste</it></p>%2$s<p><it>Cum se incepe un joc</it></p>%4$s<p><it>Cum se joaca</it></p>%5$s<p><it>Unelte</it></p>%3$s<p><it>Alte ferestre</it></p>%6$s
 <title>Keyboard Help</title>\n<h1><strong>Keyboard Help</strong></h1><p>\n
 <title>Ajutor tastatura</title>\n<h1><strong>Ajutor tastatura</strong></h1>\n<p>\n<strong>Ajutor tastatura</strong> arata diferitele actiuni peare le poti face folosindu-te de taste.\n</p>\n<p>\n<strong>Ajutor tastatura</strong> se deschide cand este apasata o tasta fara corespondenta sau din <a href="general.txt">Ajutor general</a>.\n</p>\n<p>\nScurtaturile (shortcuts) sunt case-sensitive (foloseste [<em>Shift</em>] pentru litere mari).\n</p>\n<p>\nFunctiile incluse contin:\n</p>\n<p>\n[<em>Sageti</em>]: muta camera in directia dorita.<br>\n[<em>Backspace</em>]: inchide toate ferestrele, texte ajutor si meniuri.<br>\n[<em>Delete</em>] sau [<em>Escape</em>]: inchide fereastra de sus, meniu sau text ajutor .<br>\n[<em>Enter</em>] sau [<em>Return</em>]: folosit pentru a confirma actiuni.<br>\n[<em>Page-Up</em>] sau [<em>></em>]: magnificare.<br>\n[<em>Page-Down</em>] sau [<em>"<"</em>]: zoom-out.\n[<em>F1</em>]: deschide <a href="general.txt">Ajutor general</a>.<br></p>\n<p>\n[<em>1</em>]: scroll game-view south-wards.<br>\n[<em>2</em>]: scroll game-view south-east-wards.<br>\n[<em>3</em>]: scroll game-view east-wards.<br>\n[<em>4</em>]: scroll game-view south-west-wards.<br>\n[<em>6</em>]: scroll game-view north-east-wards.<br>\n[<em>7</em>]: scroll game-view west-wards.<br>\n[<em>8</em>]: scroll game-view north-west-wards.<br>\n[<em>9</em>]: scroll game-view north-wards.\n</p>\n<p>\n[<em>Shift</em>] + <a href="mouse.txt">mouse</a>: used on <a href="map.txt">Map</a> to see links in <a href="industry_info.txt">Industry Supply Chain</a>.<br>\n[<em>CTRL</em>] + tool: construct (signals & <a href="station.txt">Stops</a>) on upper level; or build slower roads and tracks over faster ones; or build straighter (more direct) roads and tracks.<br>\n[<em>CTRL</em>] + ([<em>F2</em>] to [<em>F12</em>]): sets select current tool to keypresses [<em>F2</em>] to [<em>F12</em>].\n</p>\n<p>
+At least one stop is connected to the town.
+Cel putin o statie este conectata la oras.
+At least one tile is connected to one stop.
+Cel putin o casuta este conectata la o statie.
+Color according to transport capacity left
+Coloreaza in functie de capacitatea de transport ramasa
+Color-coded terrain according to altitude.
+Afiseaza/ascunde umbrirea reliefului.
+Decrease water height
+Scade nivelul apei cu o treapta
+Highlight railroad tracks
+Evidentiaza caile ferate
+Highlite depots
+Evidentiaza depourile
+Highlite electrical transmission lines
+Evidentiaza liniile electrice
+Highlite factories
+Evidentiaza fabricile
+Highlite forests
+Evidentiaza padurile
+Highlite tourist attraction
+Evidentiaza atractiile turistice
+Increase water height
+Creste nivelul apei cu o treapta
+Open station/stop details
+Arata detaliile statiei
+Overlay city limits
+Suprapune limitele oraselor
+Overlay passenger destinations when a town window is open
+Suprapune destinatiile pasagerilor cand este deschisa fereastra unui oras
+Overlay schedules/network
+Suprapune orare/retea
+Overlay town names
+Suprapune numele oraselor
+Please click on the map to add\nwaypoints or stops to this\nschedule.
+Apasa pe harta pentru a adauga\npuncte de trecere sau statii\nla acest orar.
+Remove double stops from schedule
+Elimina statiile duplicate din orar
+Set tile climate %s
+Transforma acest teren in zona %s
+Show capacity and if halt is overcrowded
+Arata capacitatea si daca statia este supraaglomerata
+Show how many convoi reach a station
+Arata cate convoaie ajung intr-o statie
+Show how many people/much is waiting at halts
+Arata cat/cati asteapta in statii
+Show initial passenger departure
+Arata originea pasagerilor si a postei.
+Show level of city buildings
+Arata nivelul cladirilor din oras
+Show mail service coverage/mail network
+Arata acoperirea serviciului postal
+Show passenger coverage/passenger network
+Arata acoperirea retelei de pasageri
+Show speedlimit of ways
+Arata limitele de viteza ale cailor
+Show the change of waiting at halts
+Arata cum s-a schimbat asteptarea fata de luna trecuta
+Show the owenership of infrastructure
+Arata proprietarul infrastructurii
+Show transported freight/freight network
+Arata marfa transportata / reteaua de marfa
+Show usage of network
+Arata vehicule pe casuta si luna
+Shows a listing with all industries on the map.
+Arata o lista cu toate industriile de pe harta.
+Sum of departure/arrivals at halts
+Arata numarul de vehicule sosite si plecate
 #____________________________________ki_text____________________________________
 #____________________________________ki_text____________________________________
 %s now\noffers bus services\nbetween %s\nand attraction\n%s\nat (%i,%i).\n
@@ -189,22 +433,60 @@ Unelte tramvai
 %s's a construit un nou sediu.
 Factory chain extended\nfor %s near\n%s built with\n%i factories.
 Economie puternica:\n%s aproape de %s se extinde.\n%i are o fabrica noua.
+Net wealth less than 10%% of starting capital!
+Averea neta este sub 10%% din capitalul initial!
 New %s now available:\n%s\n
 Noi %s acum disponibil:\n%s\n
 New factory chain\nfor %s near\n%s built with\n%i factories.
 Crestere: Nou lant industrial\npentru %s langa\n%s, constructie cu \n%i fabrici.
 New vehicle now available:\n%s\n
 \n Un nou vehicol este\nacum disponibil:\n\n\n -- %s --\n\n
+Now %u clients connected.
+In acest moment sunt conectati %u clienti.
+overtaking
+Depasire
+Remove vehicle from map. Use with care!
+Elimina vehiculul de pe harta. (A se folosi cu grija!)
 Screenshot\ngespeichert.\n
 Imaginea \ns-a salvat.\n
 Sends the convoi to the last depot it departed from!
 Vehicolul este trimis în depoul de unde provine!
+Server preparing game ...
+Serverul pregateste jocul ...
+Trees
+Copaci
+With a big festival\n%s built\na new monument.\n%i citicens rejoiced.
+Cu un mare festival,\n%s a inaugurat\nun nou monument.\n%i cetateni s-au bucurat.
+#___________________________________obsolete____________________________________
+#___________________________________obsolete____________________________________
+Line Filter
+Filtru linii
 #_________________________________program_text__________________________________
 #_________________________________program_text__________________________________
+(%.2f$/km %.2f$/m)
+(%.2f$/km %.2f$/luna)
 (%i)-
 (%i)
 (in depot)
 (in depou)
+[0] south-facing
+[0] orientat spre sud
+[1] east-facing
+[1] orientat spre est
+[2] north-facing
+[2] orientat spre nord
+[3] west-facing
+[3] orientat spre vest
+[4] southeast corner
+[4] colt sud-est
+[5] northeast corner
+[5] colt nord-est
+[6] northwest corner
+[6] colt nord-vest
+[7] southwest corner
+[7] colt sud-vest
+/month
+/luna
 \nBauzeit bis
 pana
 \nBauzeit von
@@ -217,28 +499,122 @@ pana
 \nelectrificat\n
 \nHeightfield has wrong image type.\n
 \nRelieful con?ine imagini\nincompatibile.\n
+\nis reserved by:
+\nrezervat de 
+\nminimum speed:
+\nviteza minima: 
 \nnot elektrified
 \nneelectrificata\n
+\nRibi (masked)
+\ndirectii (mascate): 
+\nRibi (unmasked)
+\ndirectii (nemascate): 
+\nSet phases:
+\nSeteaza timpul fazelor\n  / apoi \\  apoi decalajul
+\nsingle way
+\nCale unica
+\nway1 reserved by
+\ncalea 1 rezervata de 
+\nway2 reserved by
+\ncalea 2 rezervata de 
+\nwith sign/signal\n
+\ncu indicator sau semnal\n
+%d buildings\n
+%d cladiri\n
 %d convois
 %d convoi
 %d Einzelfahrzeuge im Depot
 %d sunt
+%d more convois
+inca %d convoaie
+%i car(s),
+%i vagoane, 
+%i years %i months old.
+Vechime: %i ani si %i luni
+%s at (%i,%i) now public stop.
+%s la (%i,%i) este acum statie publica.
+%s building %s %s
+%s cladire %s %s
+%s city %d %s
+%s oras %d %s
+%s factory %s %s
+%s fabrica %s %s
 %s has entered a depot.
 %s a intrat in depou.
+%s has left.
+%s a plecat.
+%s land %d %s
+%s teren %d %s
+%s now known as %s.
+%s se numeste acum %s.
 %s wasted\nyour money with a\nnew townhall\nwhen it reached\n%i inhabitants.
 %s \na construit o\n noua primarie\n cand a ajuns la\n%i locuitori.
+%s\nis crowded.
+%s\neste supraaglomerata.
+%s\nspeed %i\nmax_speed %i\ndx:%i dy:%i
+%s\nviteza %i\nviteza_max %i\ndx:%i dy:%i
+%s\nwas liquidated.
+%s\na fost lichidata.
+%u Client(s)\n
+%u client(i)\n
+%u days ago
+acum %u zile
+%u hours ago
+acum %u ore
+%u minutes ago
+acum %u minute
+%u Player (%u locked)\n
+%u jucatori (%u blocati)\n
+%u years ago
+acum %u ani
+<clear schedule>
+<sterge orarul>
+<create new line>
+<creeaza o linie noua>
+<h1>Error</h1><p><strong>
+<H1>Eroare: obiecte duplicate in directorul principal pak</H1><p><strong>In 
+<h1>Warning</h1><p><strong>addons for
+<h1>Avertisment: obiecte duplicate in directorul addon</h1><p><strong>Addon-uri pentru 
+<individual schedule>
+<orar individual>
+<no line>
+<fara linie>
+<no schedule set>
+<niciun orar setat>
+<promote to line>
+<transforma in linie>
 1 Einzelfahrzeug im Depot
 1 vehicol
+1 minute ago
+acum un minut
+1 year ago
+acum un an
+100 km/h = %i tiles/month
+100 km/h = %i casute/luna
 1LIGHT_CHOOSE
 Luminozitate:
+1th
+1.
 1WORLD_CHOOSE
 Setari pentru joc nou:
+21th
+21.
+22th
+22.
+23th
+23.
 2LIGHT_CHOOSE
 Nr. de culori:
+2th
+2.
 2WORLD_CHOOSE
 Numar harta:
+31th
+31.
 3LIGHT_CHOOSE
 Viteza de scrol:
+3th
+3.
 4LIGHT_CHOOSE
 Scrol invers
 5LIGHT_CHOOSE
@@ -251,6 +627,8 @@ Pietoni in orase
 Densit. traficului:
 8WORLD_CHOOSE
 Mod zi/noapte
+A bridge must end on a way!
+Un pod trebuie sa se termine pe o cale!
 A bridge must start on a way!
 Nu detii capetele podului sau acestea sunt obstructionate.
 Abfrage
@@ -259,24 +637,34 @@ Abnehmer
 Consumator
 About
 Despre
+About scenario
+Despre scenariu
 Abriss
 Distruge/Sterge
 Absenken
 Coboara nivel
+Abspanntransformator
+Transformator
 Accelerate time
 Accelereaza timpul
+Act. load: %u MW\n
+Consum actual: %u MW\n
 Active player only
 Doar jucător activ
 Add forest
 Adaugă pădure
 Add random citycar
 Adaugă ma?ină de ora? aleator
+add server
+Adauga server
 Add Stop
 Adaugă Stop
 Add stops for backward travel
 Adaugă stopuri pentru circula?ie inversă
 air
 pistă
+Aircraft
+Linie aeriana
 aircraft_tab
 Avioane de transport
 airplane
@@ -297,6 +685,8 @@ allowed climates:\n
 permite clime
 Alters a schedule.
 Adauga/sterge opriri in/din program
+and arranged by
+si aranjat de
 Angenommene Waren
 Nevoile uzinelor adiacente
 anhaengen
@@ -313,20 +703,30 @@ April
 Aprilie
 Arbeiter aus:
 Muncitorii traiesc in
+Arrivals from\n
+Sosiri din\n
 Arrived
 Sosit
 Assets
 Bunuri
 Aufloesen
 Dezansambleaza
+Aufspanntransformator
+Transformator
+auto
+Automat
 Autohalt muss auf\nStrasse liegen!\n
 Statiile trebuie\npuse pe drum.
 Available
 Disponibil
+Available at custom date
+Disponibil la o data personalizata
 Bahndepot
 Depou trenuri
 Bankrott:\n\nDu bist bankrott.\n
 Faliment:\n\nAi dat faliment!\n
+based on Simutrans 84.22.1
+bazat pe Simutrans 84.22.1
 battery
 Baterie
 Baum
@@ -351,6 +751,16 @@ Blockstrecke ist\nbelegt\n
 \nBlocaj folosit\nde un alt tren!\n
 Boden
 Uscat
+Bonus Multiplier: %i%%
+Multiplicator bonus: %i%%
+Bonus Speed: %i km/h
+Viteza bonus: %i km/h
+Bonusspeed: %i km/h
+Viteza maxima posibila: %i km/h
+Boost (%%)
+Crestere productie (%%)
+Borderless (disabled on fullscreen)
+Fara margini (dezactivat pe ecran complet)
 bridge is too high for its type!
 Podul este prea inalt!
 Bridge is too long for this type!\n
@@ -379,6 +789,8 @@ Build monorail depot
 Depou monorail
 Build narrowgauge depot
 Depou linie-ingusta
+build portal only
+construieste doar portalul
 Build powerline
 Statie transformator
 Build presignals
@@ -405,10 +817,22 @@ Built random attraction
 Atractie aleatoare
 Bus_tab
 Autobuze
+Can be overgrown
+Poate fi acoperit de vegetatie
 Can only move from halt to halt or waypoint to waypoint.
 Poti muta doar \ndin halta in halta sau \nde de la waypoint la waypoint.
 Cancel
 Anuleaza
+Cannot build here
+Nu se poate construi aici
+Cannot connect to offline server!
+Nu se poate conecta la un server offline!
+Capacity
+Capacitate
+Capacity:
+Capacitate:
+Capacity: %.0f MW
+Capacitate: %.0f MW\n
 Capacity: %d%s %s\n
 Capacitate: %3d%s %s\n
 Capacity: %s\nLoad: %d (%d%%)
@@ -419,10 +843,16 @@ cars.\nstate
 masini\n
 Cash
 Balanta cont
+Category
+Categorie
+Change label style
+Schimba stilul etichetelor
 Change player
 Schimba jucator
 Chart
 Grafic
+Chat_msg
+Chat
 Choose direction
 Alege directie
 Choose operation executed on clicking stored/new vehicles
@@ -431,6 +861,8 @@ chooses a random map
 Alege o harta aleatoare.
 citicens
 Cetateni
+Cities can only be built on flat empty ground!
+Orasele pot fi construite doar pe teren plat si liber!
 City attraction
 Atractii oras
 City industries
@@ -449,6 +881,10 @@ cl_title
 Lista vehicole
 cl_txt_sort
 Sorteaza dupa:
+clamp
+Limiteaza intervalul
+Cleanup schedule
+Elimina intrarile duplicate
 Clear block reservation
 Arata/reseteaza cai rezervate
 clf_chk_aircrafts
@@ -473,6 +909,8 @@ clf_chk_noroute
 nicio ruta
 clf_chk_noschedule
 niciun program
+clf_chk_obsolete
+Invechit
 clf_chk_ships
 Nave
 clf_chk_spezial_filter
@@ -489,28 +927,64 @@ clf_chk_waren
 Filtru bunuri:
 clf_title
 Filtru vehicole
+Click to open the finance dialog.
+Apasa pentru a deschide fereastra financiara.
+Climate
+Clima
 Climate Control
 Control clima
+Climates
+Clime
 closed
 oprit.
+Closes topmost line window when new line selected.
+Inchide fereastra liniei curente cand se selecteaza o linie noua.
 COLOR_CHOOSE\n
 Alege culoarea:\n
 Company bankrupt
 Companie falimentara
+company_chat
+Chat de companie
+Company_msg
+Concurenti
+Comparing pak files ...
+Se compara fisierele pak ...
+Composed by
+Compus de
+Configure AI
+Configurare IA
+Configure AI setttings
+Setari pentru configurarea IA
 Congratulation\nScenario was complete in\n%i months %i years.
 Felicitari!\nScenariul a fost\nterminat in\n%i luni si %i ani!
+Connect factory
+Conecteaza fabrica
 Connected stops
 Conecteaza statii
+Connected with server
+Conectat la server
+connection
+Conexiune
+Connections
+Conexiuni
 Constructed by
 Pictat de
 Constructed by %s
 Pictat de %s
+construction speed
+Viteza de constructie.
 Construction_Btn
 Costuri constructii
+Consumed
+Consumat
+contains the following doubled objects:</strong><p>
+ contine urmatoarele obiecte de mai multe ori:</strong><p/>
 convoi %d of %d
 convoi din %d  %d
 convoi error tooltips
 ajutor erori convoi
+Convoi following mode
+Mod urmarire convoi
 Convoi has been sent\nto the nearest depot\nof appropriate type.\n
 Convoiul a fost trimis\nin depoul cel mai\napropiat.\n
 Convoi is sold when all wagons are empty.
@@ -529,8 +1003,14 @@ Copy Convoi
 Duplicare convoi
 Copy the selected convoi and its schedule or line
 Copiaza convoiul si programul/linia aferenta 
+Copy to clipboard
+Copiaza in clipboard
 cost for removal
 Cost eliminare
+Cost per unit
+Cost pe unitate
+Cost: %8s (%.2f$/km %.2f$/m)\n
+Cost: %8s (%.2f$/km %.2f$/luna)\n
 Costs
 Costuri
 Create a new line based on this schedule
@@ -539,8 +1019,18 @@ curiosity builder
 Constructie curiozitate
 curlist_title
 Lista atractii
+CURRENCY
+$
+Current game
+Jocul curent
 Currently playing:
 Joaca:
+Customers live in:
+Clientii locuiesc in:
+Date format
+Format data
+deactivated in online mode
+Inactiv in modul online
 Deccelerate time
 Decelereaza timp
 December
@@ -553,34 +1043,74 @@ Delete Line
 Sterge linie
 Delete the current stop
 Sterge stop
+Delete the selected line (if without associated convois).
+Sterge linia selectata (daca nu are convoaie asociate)
 Delete this file.
 Sterge fila.
+Delivered
+Livrate
+Demand
+Cerere
+Demand: %.0f MW
+Cerere: %.0f MW\n
 Denkmal
 Monument
 Departed
 Plecat
+Departs at
+Pleaca la (zz:hh:mm)
+Departure after
+%% incarcare sau asteptare (zz-hh-mm)
+Departure board
+Ora plecarii
+Departures per month
+Plecari pe luna
+Departures to\n
+Plecari spre\n
+Depot
+Depou
 Depots
 Depouri
 Der Tunnel ist nicht frei!\n
 Tunelul nu este liber.\n
 Destination
 Sosiri
+Destroying map ...
+Se distruge harta veche ...
 Details
 Detalii
+Developed by the Simutrans Team
+Dezvoltat de echipa Simutrans
 Die Bruecke ist nicht frei!\n
 Podul nu este liber!\n
+direct_chat_to:
+Mesaj direct catre
+directmail
+Pliante
 Direkt erreichbare Haltestellen
 Traseu direct de aici
 disable midi
 Opreste muzica MIDI
+Display bars above factory to show the status
+Afiseaza bare deasupra fabricilor pentru a arata starea stocurilor
 Display settings
 Setare monitor
 Distance
 Distanta
+distributing cities
+se distribuie orasele
+distributing factories
+se distribuie fabricile
+Do not show
+Nu afisa
 Dock
 Doc
 Dock must be built on single slope!
 Docurile pot fi construite doar pe o panta.
+Downloading
+Se descarca
+dp_title
+Lista depourilor
 Du hast %d Monate Zeit, deine Schulden zurueckzuzahlen
 Ai %d luni sa platesti datoria.
 Durchsatz
@@ -591,6 +1121,8 @@ Eigenbesitz\n
 Proprietate publica\n
 Ein %s\npasst hier nicht.\n
 '%s'\nnu se potriveste aici!\n
+Einstellungen
+Setari
 Einstellungen aendern
 Schimba optiuni
 Electricity
@@ -605,12 +1137,18 @@ enlarge map
 Mareste harta
 enter a value between %i and %i
 introdu o valoarea intre %i si %i
+Enter address
+Introdu adresa
+Enter Password
+Schimba numele si parola jucatorului
 Error
 Eroare
 Erzeuge neue Karte.\n
 Te rog asteapta pana cand\n noua harta este creata.\n\n(S-ar putea sa dureze\nceva timp pt. harti imense)\n
 Es wird bereits\nein Fahrplan\neingegeben\n
 Lucrezi deja la\nun program.\nTermina-l inainte de a\nincepe unul nou.\n
+Extract files
+Extrage fisierele pak din arhiva zip.
 Fabrikanschluss
 Uzine conectate
 Fabrikname
@@ -641,12 +1179,16 @@ Fertig
 Gata
 Filename
 Nume fisier:
+Files from:
+Fisiere din:
 Filter:
 Filtru:
 Finances of %s
 Finantele %s
 Finanzen
 Finante
+find mismatch
+Compara pakul tau
 fl_title
 lista fabrici
 Flug_tab
@@ -655,6 +1197,10 @@ follow me
 Urmareste-ma.
 Follow the convoi on the map.
 Urmareste acest convoi pe harta.
+font size
+Marimea fontului (doar fonturi .ttf si .otf)
+For questions and support please visit:
+Pentru intrebari si asistenta viziteaza:
 Forest
 Padure
 Found new city
@@ -667,20 +1213,36 @@ Free Capacity
 Spatiu ramas
 freeplay mode
 joc liber
+Freight
+Marfa
 Friction:
 indice frecare:
 fuel_cell
 combustibil
 Full load
 Incarcatura minima:
+Fullscreen (changed after restart)
+Ecran complet (se aplica dupa repornire)
+Fundament
+Fundatie
 Fussgaenger
 Pieton
+Game info
+Informatii despre joc
 GAME PAUSED
 Pus pe pauza
+Game_msg
+General
 Gear:
 Viteza:
 Gebaeude
 Cladire
+generate script
+Genereaza un script macro de infrastructura
+Generated
+Generat
+Generation: %.0f MW
+Productie: %.0f MW\n
 Gewicht
 Greutate
 Gewinn
@@ -703,14 +1265,22 @@ Gross Profit
 Flux bani
 Groundobj
 Obiect
+groundobj builder
+Plaseaza obiecte de peisaj
 Grow city
 Creste oras.
 Growth
 Crestere oras
+GUI settings
+Interfata
 H
 stop
 Happy
 Bucuros
+Has slope graphics
+Are grafica pentru pante
+Has Snow
+Are zapada
 Haus kaufen
 Cumpara casa
 Helligk.
@@ -723,6 +1293,10 @@ hide all building
 ascunde toate cladirile
 hide city building
 ascunde toate cladirile
+Hide labels
+Ascunde numele locurilor si statiilor
+hide objects under cursor
+ascunde obiectele de sub cursor
 hide station names
 ascunde nume statii
 hide transparent
@@ -731,6 +1305,12 @@ hide trees
 Ascunde copacii
 Hier warten/lagern:
 Bunuri si pasageri care asteapta:
+Higher transport fees, crossconnect all factories
+Tarife de transport mai mari, dezactiveaza Just-in-time.
+highlight single ways
+Indica sfarsitul sau intreruperea cailor de transport.
+Highlite schedule
+Evidentiaza statiile din orar
 hl_title
 Lista statii
 hl_txt_filter
@@ -775,18 +1355,32 @@ Home depot not found!\nYou need to send the\nconvoi to the depot\nmanually.
 Depou inexistent!\nDepoul trebuie desemnat\nmanual.
 Homeless
 Cersetor
+Horizontal stripe ownership
+Banda orizontala cu culoarea proprietarului
 hydrogene
 Hidrogen
+Icon size:
+Marimea pictogramelor:
 Idle:
 Inactiv:
 ignore climates
 ignora clime
+In the industry legend show only currently existing factories
+Afiseaza in legenda industriei doar fabricile existente
+In Transit
+In tranzit
 Increase Industry density
 Mareste densitate industrii
 increase underground view level
 nivel suplimentar
 industrial building
 Cladiri industriale
+Industry overlay
+Suprapunere industrie
+Infinite mouse scrolling
+Derulare infinita a hartii
+Infinite scrolling using mouse
+Poate sa nu functioneze cu ecranele tactile!
 Init map ...
 Creez harta ...
 Input
@@ -795,28 +1389,46 @@ Ins Stop
 Insereaza
 Insert stop before the current stop
 Adauga stop inainte
+Install graphics
+Instaleaza grafica
+Install paks
+Paksetele vor fi descarcate si instalate.
+Insufficient funds!
+Fonduri insuficiente!
 Intercity road len:
 Lungime drum intercity:
+Intro. date
+Data intro.
 Intro. date:
 Intro. data:
 invalid
 nedefinit
 Invalid coordinate
 Ordin invalid
+Invert stops
+Inverseaza statiile
 isometric map
 Vedere izometrica
+Jan.
+Ian.
 January
 Ianuarie
+join game
+Joaca online
 July
 Iulie
 Jump to
 Sari la
 June
 Iunie
+just now
+chiar acum
 Kann Spielstand\nnicht laden.\n
 Nu pot incarca salvarile!
 Kann Spielstand\nnicht speichern.\n
 Nu pot deschide\n fila pentru\n scriere!
+keep city roads
+pastreaza drumurile orasenesti
 Kein Besitzer\n
 Fara proprietar\n
 keine
@@ -845,12 +1457,22 @@ LARGE_NUMBER_STRING
 M
 LARGE_NUMBER_VALUE
 Ie6
+Last Month
+Luna trecuta:
+Last used tools
+Ultimele unelte folosite
 Last Year
 Anul trecut:
 Leaving depot!
 Paraseste depoul!
 leer
 gol
+Left button drags minimap too
+Butonul stang trage si minimapa
+legacy (large heights)
+vechi (inaltimi mari)
+legacy (small heights)
+vechi (inaltimi mici)
 Legend
 Legenda harta
 Leistung
@@ -859,28 +1481,50 @@ Leistung: %d kW
 Putere: %d kW
 Leitung
 Linie electrica
+length: %d
+lungime: %d
 letzen Monat: diesen Monat:
 luna trecuta: luna curenta:
 Line
 Traseu
 Line Management
 Management trasee
+line name mouseover tooltips
+indicii cu numele liniei la trecerea cursorului
+linear
+Liniar
+Lineless convoys serving this stop
+Convoaie fara linie care deservesc aceasta statie
 Lines serving this stop
 Trasee pentru aceasta oprire
+List of industries on the map
+Lista industriilor de pe harta
 LKW_tab
 Camioane
 Load game
 Incarca joc
 load height data from file
 Incarca inaltime din fisier.
+Load mode:
+Mod incarcare: 
 Load scenario
 Incarca scenariu
+Load script tool
+Incarca unealta din script
+Load Scripted AI
+Incarca IA din script
+Load settings from
+Aplica setarile din
 loaded
 incarcat
 loaded passenger/freight
 Sorteaza pasageri/marfa dupa
 Loading (%i->%i%%)!
 Se incarca (%i->%i%%)
+Loading (%i%%) departure %s!
+Se incarca (%i%%), plecare %s!
+Loading (%i%%)!
+Se incarca (%i%%)!
 Loading addon paks ...
 Incarc pakuri suplimentare ...
 Loading map ...
@@ -889,6 +1533,10 @@ Loading paks ...
 Incarc pakuri ...
 Loading skins ...
 Incarc skinuri ...
+Loading time:
+incarcat complet in: 
+Lock Control key
+Blocheaza tasta Control
 Lock game
 Refuza schimbarile jucatorului (necesita confirmare).
 Lokomotive_tab
@@ -901,6 +1549,10 @@ maglev_track
 sina maglev
 Maglevdepot
 depou maglev
+Mail Demand %d\n
+Cerere de posta %d\n
+Mail level
+Nivel posta
 Mailbox
 Centru mesaje
 Mailbox Options
@@ -909,12 +1561,16 @@ Maintenance
 Mentenanta
 make stop public (or join with public stop next) costs %i per tile and level
 fa statia publica (sau conecteaza la cele adiacente publice) costuri %i$ pe dala si nivel
+Make way or stop public (will join with neighbours), %i times maintainance
+Fa calea sau statia publica (se va uni cu vecinii), de %i ori intretinerea
 Manual (Human)
 Manual (Uman)
 Manufactured:
 Fabricat:
 Map roughness
 Dificultate teren:
+map view
+Harta
 map zoom
 zoom
 March
@@ -923,16 +1579,26 @@ Margin (%%)
 Margine
 Marker
 Indicator
+max
+maxim
+Max Boost (%%)
+Crestere maxima (%%)
 Max income:
 Venit maxim:
+Max. speed
+Viteza maxima
 Max. speed:
 Viteza max.:
+Max. waiting time
+Timp maxim de asteptare (zz:hh:mm)
 Maximum 254 stops\nin a schedule!\n
 Maxim 254 statii\nintr-un program!\n
 maximum length of rivers
 Lungima maxima
 Maximum tile height difference reached.
 Diferenta maxima\n intre doua dale\n a fost atinsa.
+Maxspeed
+Viteza maxima
 May
 Mai
 Median Citizen per town
@@ -941,12 +1607,18 @@ Meldung
 Mesaj
 Menge
 cantitate
+merge stop
+uneste statia
 MessageOptionsText
 \nAn nou\n\nStiri AI\n\nStiri Oras\n\nNicio ruta\n\nIndustrii noi\n\n"chat"\n\nMasini noi\n\nStatii pline\n\nProbleme\n\nAvertizari\n\nScenario
 min
 min.
 minimum length of rivers
 Lungime minima
+Minimum load
+Incarcatura minima (%%)
+Missing pakfiles
+Lipsesc obiecte (pak)!
 Modify the selected line
 Modifica traseul
 Monate alt
@@ -959,14 +1631,20 @@ Monorailboden
 Cale elevata
 Monoraildepot
 Depou monorail
+Month
+Luna
 month wait time
 luni de asteptare
+Monthly departures
+Ore de plecare fixe
 Months
 Luni
 Monuments
 Monumente
 Mountain height
 Inaltime munte
+Move the map
+Muta harta
 Movingobj
 mutare obiect
 Music playing disabled/not available
@@ -987,8 +1665,12 @@ narrowgauge_track
 linie ecartament ingust
 Narrowgaugedepot
 depou ecartament ingust
+Net ID: %p
+ID retea: %p\n
 Net Wealth
 Avere
+Net wealth near zero
+Avere neta aproape de zero
 Neue Karte
 Harta noua
 Neue Welt
@@ -1001,14 +1683,40 @@ New line created!\nYou can assign the line now\nby selecting it from the\nline s
 Traseul nou este gata!\nAtribuirea se face cu\nselectorul de traseu.\n
 New Vehicles
 Vehicol nou
+Nickname:
+Porecla:
 no buildings hidden
 nicio cladire ascunsa
 no convois
 nu este conv.
 No goods are loaded onto this convoi.
 Acest convoi nu va fi incarcat
+no goods waiting
+nu asteapta bunuri
+no load
+Doar descarcare
+No player
+Fara jucator
+No Route
+Fara ruta
+No stop here!
+Unealta trebuie folosita pe casute de statie.
+No suitable ground!
+Teren nepotrivit!
+No suitable townhall available for this climate!
+Nu exista o primarie potrivita pentru aceasta clima!
+No terminal station here!
+Nu se poate construi o statie terminus aici!\nEste nevoie de un capat\nde drum sau de cale, pe teren plat.
+no timeline
+toate epocile
+No transformer connected.
+Niciun transformator conectat: toata energia se va pierde.
 no tree
 fara copaci
+No vehicles are available for purchase.
+Nu exista vehicule disponibile pentru cumparare.
+No. of Factories
+Fabrici si magazine:
 Noch kein Fahrzeug\nmit Fahrplan\nvorhanden\n
 "Unde ma duc?"\nTrebuie sa-i dai convoiului un program sau o linie inainte de alte ordine.
 none
@@ -1019,50 +1727,316 @@ nordost
 Nord-est
 nordwest
 Nord-vest
+Not allowed to make publicly owned ways!
+Nu este permisa transformarea cailor in cai publice!
 Not allowed!\nThe convoi's schedule can\nnot be changed currently.\nTry again later!
 Programul nu poate\n fi schimbat\n in acest moment.
+Not enough fields would remain.
+Nu ar ramane destule campuri\nin jurul acestei ferme.
+Not online
+Fara conexiune
+Nov.
+Noi.
 November
 Noiembrie
+now
+acum
+Now active as %s.\n
+Acum activ ca %s.\n
+nowhere
+nicaieri
 Number of rivers
 Numar de rauri
+Object
+Obiect
+Odometer: %s km
+Kilometraj: %s km
 Oktober
 Octombrie
+On loan since %i month(s)
+In pierdere de %i luni
+On mouseover
+La trecerea cu mouse-ul
+on the
+plecari pe luna, prima la (zz-hh-mm)
 On this map, you are not\nallowed to change player!\n
 Jocul este oprit.\nNicio modificare nu este posobila.\n
+Only city chains
+Construieste lant industrial urban
+Only first %d differing paks reported. There are probably more.
+Sunt raportate doar primele %d pakuri diferite. Probabil sunt mai multe.
+Only full Unicode fonts
+Doar fonturi Unicode complete
+Only land chains
+Construieste lant industrial rural
+Only one transformer per factory!
+Doar un transformator pe fabrica!
+Only show goods which are currently handled by factories
+Arata doar bunurile procesate in prezent de fabrici
+open
+Deschis.
+Operation
+Costuri de operare
 Ops Profit
 Profit ops
 Optionen
 Optiuni
+Or enter a server manually:
+Sau introdu manual un server:
+ORDINAL_DAY_SYMBOL
+.
 Origin
 Origine
+ost
+Est
+Output
+Productie
+Ownership
+Proprietar
+Pak which may cause severe errors:
+Urmatoarele obiecte (pak) lipsesc, ceea ce poate duce la intreruperea lanturilor de transport:
+Pak which may cause visual errors:
+Urmatoarele obiecte (pak) au fost inlocuite cu obiecte similare:
+Pak(s) different:
+Pak(uri) diferite:
+Pak(s) missing on client:
+Pak(uri) lipsa la client:
+Pak(s) not on server:
+Pak(uri) inexistente pe server:
+Pakset differences
+Diferente intre paksete
 paletten
 palete
+Pas_tab
+Trenuri de pasageri
 Passagiere
 pasageri
 Passagierrate
 Trafic pasageri
+Passagierziele
+Destinatii pasageri/posta
+Passenger AI
+IA pasageri
+Passenger Demand %d\n
+Cerere de pasageri %d\n
+Passengers %d %c, %d %c, %d no route
+Pasageri %d %c, %d %c, %d fara ruta
+Passengers %d %s, %d %s, %d no route
+Pasageri %d %s, %d %s, %d fara ruta
+Password
+Parola:
+Pause
+Pauza
+Pax <%i>  Mail <%i>
+Pasageri <%i> Posta <%i>
+Pax level
+Nivel pasageri
+PaxDest
+Destinatii
 Percent Electricity
 Electricitate (%% cerinta)
+personal_chat
+Mesaje private
+Pipette
+Reconstruieste obiectul selectat
 Planes are not available yet!
 Avioanele nu sunt inca disponibile.
+Plant tree
+Planteaza copaci
+player
+Jucator
+player -1
+Jucator uman
+player 0
+Serviciu public
+player 1
+Regii Sinelor
+player 10
+Jucator 10
+player 11
+Jucator 11
+player 12
+Jucator 12
+player 13
+Jucator 13
 player 2
 Trikky Transport
 player 3
 Meyer Moving Co.
+player 4
+Marfa Rapida SRL
+player 5
+Regele Soselei SRL
+player 6
+Compania Transporta-Tot
+player 7
+Trenuri de Nadejde SA
+player 8
+Calatorii la Fix
+player 9
+Jucator 9
+Player ranking
+Clasamentul jucatorilor
+Please choose vehicles first\n
+Alege mai intai vehiculele!\n
 Post
 Post?
+Postrate
+Nivel posta
 Power
 Putere
+Power (MW)
+Putere (MW)
+Power:
+Putere:
+Power: %4d kW\n
+Putere: %4d kW\n
+Powerlines
+Linii electrice
+Price
+Pret
+Problems_msg
+Probleme
+Produced
+Produs
+Produces: %.1f units/minute
+in prezent %.1f/minut
+Production of %s has been stopped:\n%s\n
+Productia de %s a fost oprita:\n%s\n
+Production/Boost
+Productie/Crestere
+Produktion
+Productie:
 promote to line
 Traseu nou
+public_chat
+Chat general
+q1
+Primavara
+q2
+Vara
+q3
+Toamna
+q4
+Iarna
+Query server
+Interogheaza serverul
+rail car
+Vagon
+random
+Aleatoriu
+Random age
+Varsta aleatoare
 Random map
 Harta aleatoare
+Rathaus
+Primarie
+Rating
+Evaluare
+ratio_pax
+Raport pasageri
+Reliefkarte
+Harta
+Remove
+Sterge eticheta
+remove airstrips
+Elimina piste de decolare sau de rulare
+remove channels
+Elimina canale
+remove interm. signals
+Elimina semnale intermediare
+remove maglev tracks
+Elimina cai maglev
+remove monorails
+Elimina monoraiuri
+remove narrowgauge tracks
+Elimina cai cu ecartament ingust
+remove powerlines
+Elimina linii electrice
+remove roads
+Elimina sosele
+remove signal
+elimina semnalul
+remove tracks
+Elimina sine
+Remove wayobj %s
+Elimina obiectul de cale %s
+replace existing ways
+inlocuieste drumurile existente
+replace faster wayobjs
+inlocuieste obiectele de drum mai rapide
+replace other signals
+Inlocuieste celelalte semnale
+replace stop
+Inlocuieste statia
+request closing
+cerere de inchidere
+residential house
+Cladiri rezidentiale
+Restore natural slope
+Restaureaza panta naturala
+Restwert:
+Valoare de revanzare:
+Retire date
+Data retragerii
+Retire. date:
+Data retragerii:
 return ticket
 Retur
 Revenue
 Venit
+Revenue/unit/100 tiles
+Venit pe unitate si 100 casute
+Revert schedule
+Anuleaza modificarile
+Revision:
+Revizie:
+road
+Sosea
+road vehicle
+Vehicul rutier
+Roadsign
+Indicator rutier
+Rotate Building
+Roteste cladirea
+Rotate map
+Roteste harta
+Rotation
+Rotire
+Routing
+Se calculeaza ruta
+Running cost
+Costuri de exploatare
 sack
  sac(i)
+sail
+vant
+Save
+Salveaza jocul
+Save generated script
+Salveaza scriptul generat
+Saving map ...
+Se salveaza harta ...
+Scenario complete: %i%%
+Scenariu finalizat: %i%%
+Scenario Debug
+Depanare
+Scenario Error Log
+Erori de script
+Scenario Goal
+Obiectiv
+Scenario Info
+Informatii pe scurt
+Scenario information
+Detalii despre scenariul curent
+Scenario Result
+Progres
+Scenario Rules
+Reguli
+Scenario_
+Scenariu 
+Schedule changing!
+Se schimba orarul!
 Schienentunnel
 Tunel feroviar
 Schiff_tab
@@ -1071,88 +2045,616 @@ Schiffdepot
 Depou nave
 Schleppkahn_tab
 Balize
+Screen scale:
+Scara ecranului:
+Screenshot
+Captura de ecran
+Scroll threshold
+Prag de derulare
+Search:
+Cauta:
+Seasons
+Anotimpuri
+Sehenswuerdigkeit
+Atractie turistica
+Select a server to join:
+Alege un server la care sa te conectezi:
+Select a theme for display
+Alege o tema de afisare
+Select display font
+Alege fontul de afisare
+Select one or more graphics to install (Ctrl+click):
+Alege unul sau mai multe paksete de instalat (Ctrl+clic):
+Select soundfont
+Alege soundfont
 Sell the selected vehicle(s)
 Vehicolul selectat este vândut
+Selling of the program is forbidden.
+Vanzarea acestui program este interzisa.
+sended
+Posta trimisa
 SEP_FRACTION
 ,
+SEP_THOUSAND
+.
+SEP_THOUSAND_EXPONENT
+3
+Sept.
+Sep.
 September
 Septembrie
+Served by
+Deservit de
+Served by me
+Deservite de mine
 Server did not respond!
 Serverul nu a raspuns!
+Serves Line:
+Deserveste linia:
+set signal spacing
+Stabileste distanta dintre semnale
+Setting
+Setari
+Ship
+Nava
+shops and stores
+Magazine si birouri
+Show all
+Arata tot
+show all building
+Arata toate cladirile
+Show also vehicles no longer in production.
+Arata si vehiculele care nu mai sunt in productie.
+Show also vehicles that do not match for current action.
+Arata si vehiculele care nu pot fi folosite pentru actiunea selectata.
+Show always
+Arata mereu
+Show climates
+Arata climele
+Show construction info
+Arata informatiile de constructie
+Show contour
+Arata altitudinile
+Show even servers with wrong version or pakset
+Arata si serverele cu versiune sau pakset incompatibil.
+Show finances for transport type
+Arata finantele pe tip de transport
+Show future
+Arata viitoarele
+show grid
+Arata grila
+Show industry
+Lista industriilor
+Show legend
+Selectii
+Show map scale
+Coduri de culori
+Show mismatched
+Arata incompatibile
+Show networks
+Retele
+Show obsolete
+Arata invechite
+Show offline
+Arata offline
+Show only used
+Arata doar cele folosite
+Show outline
+doar infrastructura
+Show schedules
+Arata orarele
+Show servers that are offline
+Arata serverele offline
+Show servers where game version or pakset does not match your client
+Arata serverele a caror versiune sau pakset nu corespunde clientului tau
+show station coverage
+Arata acoperirea statiilor
+show station names
+arata numele statiilor
+show waiting bars
+Arata barele de asteptare
+show/hide block reservations
+arata/ascunde rezervarile de sectiune
+Show/hide estimated arrival times
+Arata/ascunde orele estimate de sosire
+show/hide object owner
+arata/ascunde proprietarul obiectelor
+Show/hide statistics
+Arata/ascunde statisticile
+Shows buttons about networks overlay.
+Arata butoanele pentru suprapunerea retelelor.
+Shows buttons on network overlay.
+Arata optiunea de suprapunere a unei retele de conexiuni.
+Shows buttons on special topics.
+Arata butoanele pentru subiecte speciale.
+Shows consumer/suppliers for factories
+Arata consumatorii si furnizorii fabricilor
+Shows the color code for several selections.
+Arata codul de culori pentru diverse selectii.
+Shows the currently selected schedule
+Arata orarul selectat in acest moment
+Shrink city
+Micsoreaza orasul
+shuffle midis
+Melodii aleatorii
+Signal
+Semnal
+signal spacing
+Distanta dintre semnale
+Sim:
+Simloops:
+Similar view as the main window
+Vedere similara cu fereastra principala
+Single toolbar only
+Doar o singura bara de unelte
 Size (%d MB):
 Dimensiune (%d MB):
+Size (area)
+Marime (suprafata)
+sliced underground mode
+Vedere subterana pe straturi
+slot empty
+loc gol
+Smart hide objects
+Ascundere inteligenta a obiectelor
+Sort by
+sorteaza dupa
+Sort by:
+Sorteaza dupa:
+Sort waiting list by
+Sorteaza lista de asteptare dupa
 Sound
 Sunet
 Sound settings
 Setare sunet
 Sound volume:
 Volum efecte:
+Soundfonts are located in the music directory.
+Fisierele soundfont se afla in directorul 'music'.
+special freight
+Marfa speciala
+Speed Bonus
+Bonus de viteza
+Speedbonus\nroad %i km/h, rail %i km/h\nships %i km/h, planes %i km/h.
+Bonusul de viteza in procente\nnecesita viteza minima: sosea %i km/h,\ncale ferata %i km/h, nave %i km/h, avioane %i km/h,
+Speedlimit
+Limita de viteza
+Speichern
+Salveaza
+Spieler
+Jucator
+Spieler(mz)
+Jucatori
+Spielerliste
+Lista jucatorilor
+Spielstand wurde\ngeladen!\n
+\nJocul a fost incarcat cu succes.\n
 Spielstand wurde\ngespeichert!\n
 \nSalvarea jocului s-a terminat!\n
 Sprache
 Limba
 Sprachen
 Limbi
+Stadtinformation
+Statistica orasului
+Start the selected vehicle(s)
+Porneste vehiculele selectate.
 Starte Spiel
 Incepe Jocul
+station labels
+Statii
+Station tiles:
+Casute de statie:
+Station_msg
+Statii
 Status
 Stare
+stay on this level
+ramai la acest nivel
 steam
 aburi
+Step timeline one year
+Avanseaza cronologia cu un an.
+Stopping permissions
+Alti jucatori care pot folosi aceasta statie
+Stops
+Statii
+Storage
+Depozit
+Storage capacity
+Capacitate de depozitare
+straight route
+traseu drept
+Strassendepot
+Garaj
 Strassentunnel
 Tunel
+street car
+Tramvai
+sued
+Sud
+suedost
+Sud-est
+suedwest
+Sud-vest
+Summer snowline
+Limita zapezii vara
+Supplied: %.0f %%
+Aprovizionat: %.0f %%
 Suppliers
 Parteneri:
 Tage alt
 zile
+The following graphics are unmaintained:
+Urmatoarele paksete nu mai sunt intretinute:
+The generated script was saved!\n
+Macro salvata cu succes.\nPoate fi reluata cu unealta de script.
+The gradient does not fit a tunnel
+Panta nu are inaltimea potrivita pentru un tunel
+The script cannot be saved!\n
+Scriptul nu a putut fi salvat!\n
+Theme selector
+Selector de teme
 There are still vehicles\nstored in this depot!\n
 Mai este vehicol\nîn depou!\n
+This Month
+Luna aceasta:
 This Year
 Anul actual:
+Tile not empty.
+Elibereaza casuta inainte de\na folosi unealta de pante.
+timeline
+Respecta epoca
+tl_title
+Lista oraselor
+To attract more tourists\n%s built\na %s\nwith the aid of\n%i tax payers.
+Traficul in %1$s este in crestere:\n%3$i contribuabili au facut posibila\nconstruirea %2$s.
+To heavy traffic\nresults in traffic jam.\n
+Traficul intens\nprovoaca un ambuteiaj.\n
+To: %s
+Catre: %s
+Toggle day/night view
+Comuta vederea zi/noapte
+Toggle vehicle tooltips
+Comuta indiciile despre vehicule
 tonnen
 t
+Toolbar position:
+Pozitia barei de unelte:
+Total inhabitants:
+Total locuitori: 
+Tourist attractions
+Atractii turistice:
+Tourists
+Atractii
+Town_msg
+Destinatii noi
+Town: %s\n
+Orasul %s.\n
+Towns
+Orase
+track
+Sina
 Tracks
 Trasee
 Traffic
 Trafic
+traffic settings
+Trafic
 Train
 Tren
+Trains are not available yet!
+Trenurile nu sunt inca disponibile.
+Tram
+Tramvai
+tram %i km/h, monorail %i km/h\nmaglev %i km/h, narrowgauge %i km/h.
+tramvai %i km/h, monorail %i km/h\nmaglev %i km/h, ecartament ingust %i km/h.
+tram_track
+Sina de tramvai
+Tramdepot
+Depou de tramvaie
+Trams are not available yet!
+Tramvaiele nu sunt inca disponibile.
+Transferring game ...
+Se transfera jocul ...
+Transformer only next to factory!
+Transformatoarele trebuie asezate pe\nteren plat si liber,\nlanga o fabrica!
+Translation
+Traducere
+transparencies
+Transparenta
+transparent background
+fundal transparent
+transparent station coverage
+Acoperire transparenta a statiilor
+Transported
+Calatorii
+Trees disabled!
+Copacii sunt dezactivati!
+TrolleyBus_tab
+Troleibuze
 Truck
 Camion
+tt_Other
+Altele
+Tunnel muss an\neinfachem\nHang beginnen!\n
+Tunelurile trebuie\nsa inceapa pe o\npanta simpla!\n
+Tunnel must start on single way!
+Tunelurile trebuie sa inceapa pe o singura cale.
+Tunnelboden
+Tunel
+under the Artistic License
+sub licenta Artistic License
+underground mode
+Vedere subterana
+UNDO failed!
+Anularea nu mai este posibila.\nPoti anula construirea unei rute\ndoar cat timp nu s-a construit\nniciun semnal, nicio statie sau\naltceva pe traseu.
+Undo last ways construction
+Anuleaza ultima constructie de cai
+Unemployed
+Someri
+Unhappy
+Nemultumiti
 units/day
 /zi, 
+Unloading (%i%%)!
+Se descarca (%i%%)!
 Update Line
 Actualizare traseu
+upgrade HQ
+Imbunatateste sediul
+Usage: %.0f %%
+Utilizare: %.0f %%
+Usage/Output
+Consum/Productie
+Use beginner mode
+Foloseste modul incepator
+Use timeline start year
+Foloseste cronologia din anul:
+Vehicle %s can't find a route!
+Vehiculul %s\nnu gaseste o ruta!
+Vehicle %s is stucked!
+Vehiculul %s este blocat!
+Vehicle count:
+Numar de vehicule:
+Vehicle details
+Detalii vehicul
+Vehicle Name
+Numele vehiculului
+Vehicle Power
+Puterea vehiculului
+vehicles stored
+vehicule depozitate
 Verbrauch
 Consum
+Vergroessere die Karte\n
+Mareste harta.\n
+Verkauf
+Elimina acum!
 verkaufen
 Vânzare
 Verkehrsteilnehmer
 Automobil
+Verschuldet:\n\nDu hast %d Monate Zeit,\ndie Schulden zurueckzuzahlen.\n
+Ai %d luni\npentru a-ti plati datoria.\n
+vh_title
+Lista tuturor vehiculelor
 via %s\n
  via %s\n
+via Menge
+prin (cantitate)
+via owner
+prin (proprietar)
+voranstellen
+Pune in fata
 Waggon_tab
 Vagoane
+waiting
+in asteptare
+Waiting for clearance!
+Se asteapta cale libera!
+Walked
+Pe jos
+walking
+Pe jos
+Warnings_msg
+Trafic
+Wasser
+Apa
+Water
+Canal
+Water level
+Nivelul marii:
+water vehicle
+Vehicul acvatic
+way %s cannot longer used:\n
+Tipul de cale %s nu mai poate fi folosit.\n
+way %s cannot longer used:\n%s\n
+tipul de cale %s nu mai poate fi folosit:\n%s\n
+way %s now available:\n
+Tipul de cale %s este acum disponibil.\n
+Way toll
+Taxa de cale
+Ways not connected
+Caile nu sunt conectate
+waytype
+Tip de cale
+Wegpunkt
+Punct de trecere
+Weight
+Greutate
+Weight:
+Greutate:
+Weight/unit
+Greutate/unitate
+Welcome to Simutrans
+Bun venit la Simutrans
+Welcome, %s!
+Bun venit, %s!
 Wert
 Valoare
+west
+Vest
+Wind direction
+Directia vantului
+Winter snowline
+Limita zapezii iarna
+withdraw
+Retrage
+Withdraw All
+Retrage tot
+WRONGSAVE
+\nJoc salvat incompatibil.\nFisierul nu poate fi incarcat.\n
+Year
+An
+Year %i has started.
+A inceput anul %i.
 Years
 An
+Your primary color:
+Culoarea ta principala:
+Your secondary color:
+Culoarea ta secundara:
+Zielort
+destinatie
+zooming in
+Apropie
+zooming out
+Departeaza
+Zu nah am Kartenrand
+Nu poti construi\nasa aproape de\nmarginea hartii.
+#__________________________________record_text__________________________________
+#__________________________________record_text__________________________________
+New world record for maglevs: %.1f km/h by %s.
+Levitand pe magneti la\n%.1f km/h de catre %s:\nNou record mondial!
+New world record for monorails: %.1f km/h by %s.
+O sina construita pentru viteza:\nExact %.1f km/h\natinsi de %s\ninseamna un nou record mondial!
+New world record for motorcars: %.1f km/h by %s.
+Doar urme de cauciuc au ramas\nde la goana cu %.1f km/h\na lui %s\npentru un nou record mondial!
+New world record for narrowgauges: %.1f km/h by %s.
+Nou record mondial pentru trenurile cu ecartament ingust: %.1f km/h de catre %s.
+New world record for planes: %.1f km/h by %s.
+Distantele se micsoreaza din nou:\n%2$s a zburat cu %1$.1f km/h.\nNou record mondial!
+New world record for railways: %.1f km/h by %s.
+Tunand pe sine\ncu %.1f km/h,\n%s stabileste un nou record mondial pentru trenuri.\n
+New world record for ship: %.1f km/h by %s.
+Panglica Albastra pentru croaziera\ncu %.1f km/h a fost castigata de\n%s.
+#________________________________script_ai_text_________________________________
+#________________________________script_ai_text_________________________________
+%s build additional convoy to line: %s
+%s adauga un convoi suplimentar pe linia: %s
+%s build rail line from %s (%s) to %s (%s)
+%s construieste o linie feroviara de la %s (%s) la %s (%s)
+%s build road line from %s (%s) to %s (%s)
+%s construieste o linie rutiera de la %s (%s) la %s (%s)
+%s build ship line from %s (%s) to %s (%s)
+%s construieste o linie navala de la %s (%s) la %s (%s)
+%s extends the route from %s (%s) to %s (%s)
+%s extinde ruta de la %s (%s) la %s (%s)
+%s optimize way line from %s (%s) to %s (%s)
+%s optimizeaza traseul de la %s (%s) la %s (%s)
+%s removes convoys from line: %s
+%s elimina convoaie de pe linia: %s
+vehicles of the line %s were retired
+vehiculele liniei %s au fost retrase
+#_________________________________tooltip_text__________________________________
+#_________________________________tooltip_text__________________________________
+Add convois with similar schedule to this line.
+Adauga la aceasta linie convoaiele cu orar asemanator.
+Attach current coordinate to the comment
+Ataseaza coordonata curenta la mesaj
+Enter intervall in days, hours, minutes
+Introdu intervalul in zile, ore si minute.
+Mirrors order of stops
+Inverseaza ordinea statiilor.
+Revert to original schedule
+Anuleaza toate modificarile orarului.
+Tutorial not available for this pakset. Please try loading Pak128.
+Tutorialul nu este disponibil pentru acest pakset. Incearca sa incarci Pak128.
 #_______________________________unnecessary_text________________________________
 #_______________________________unnecessary_text________________________________
+&0_CITY_SYLL
+esti
 &1_CITY_SYLL
 câmpie
 &2_CITY_SYLL
 sat
+&3_CITY_SYLL
+eni
 &4_CITY_SYLL
 vad
+&5_CITY_SYLL
+ani
 &6_CITY_SYLL
 dumbrava
 &7_CITY_SYLL
 vârf
+&8_CITY_SYLL
+ele
 &9_CITY_SYLL
 cruci
 &A_CITY_SYLL
 hotar
+&B_CITY_SYLL
+ita
+&C_CITY_SYLL
+oaia
+&D_CITY_SYLL
+isor
+&E_CITY_SYLL
+ul
+&F_CITY_SYLL
+easca
+&G_CITY_SYLL
+ova
+&H_CITY_SYLL
+aru
+&I_CITY_SYLL
+eanca
+&J_CITY_SYLL
+asca
+&K_CITY_SYLL
+ata
+&L_CITY_SYLL
+u Mare
+&M_CITY_SYLL
+u Mic
+&N_CITY_SYLL
+u Nou
+&O_CITY_SYLL
+u Vechi
+&P_CITY_SYLL
+estii de Sus
+&Q_CITY_SYLL
+enii de Jos
+&R_CITY_SYLL
+inti
+&S_CITY_SYLL
+oiu
+&T_CITY_SYLL
+ureni
+&U_CITY_SYLL
+estii Noi
+&V_CITY_SYLL
+enii Vechi
+&W_CITY_SYLL
+ulesti
+&X_CITY_SYLL
+eanu
+&Y_CITY_SYLL
+oaica
+&Z_CITY_SYLL
+estii Mari
+%0_CITY_SYLL
+Brad
+%1_CITY_SYLL
+Bals
+%2_CITY_SYLL
+Mihail
+%3_CITY_SYLL
+Frasin
+%4_CITY_SYLL
+Izvor
 %5_CITY_SYLL
 Râmnicu
 %6_CITY_SYLL
@@ -1161,24 +2663,120 @@ Slatina
 Vama
 %8_CITY_SYLL
 Întorsura
+%9_CITY_SYLL
+Radul
+%A_CITY_SYLL
+Batran
 %B_CITY_SYLL
 deal
+%C_CITY_SYLL
+Corn
+%D_CITY_SYLL
+Turn
+%E_CITY_SYLL
+Zid
+%F_CITY_SYLL
+Stejar
+%G_CITY_SYLL
+Alb
+%H_CITY_SYLL
+Bran
+%I_CITY_SYLL
+Ocol
+%J_CITY_SYLL
+Pod
+%K_CITY_SYLL
+Corb
+%L_CITY_SYLL
+Lung
+%M_CITY_SYLL
+Mogos
+%N_CITY_SYLL
+Negur
+%O_CITY_SYLL
+Ostrov
+%P_CITY_SYLL
+Petr
+%Q_CITY_SYLL
+Rar
+%R_CITY_SYLL
+Rus
+%S_CITY_SYLL
+Salc
+%T_CITY_SYLL
+Targ
+%U_CITY_SYLL
+Ulm
+%V_CITY_SYLL
+Vultur
+%W_CITY_SYLL
+Vad
+%X_CITY_SYLL
+Cetat
+%Y_CITY_SYLL
+Plop
+%Z_CITY_SYLL
+Zavoi
+0center
+%s centru %s
+0extern
+%s sat %s
+0suburb
+%s suburbie %s
 1center
 %s %s
+1extern
+%s ramura %s
+1suburb
+%s cartier %s
 2center
 %s centru %s
 2extern
 %s de sus %s
+2suburb
+%s pajistea %s %s
 3center
 %s principal %s
 3extern
 %s de jos %s
+3suburb
+%s catun %s %s
 4center
 %s secundar %s
 4extern
 %s extern %s
+4suburb
+%s colonie %s
 5center
 %s transfer %s
+5extern
+%s pasaj %s
+5suburb
+%s targ %s
+6center
+%s nod %s
+6extern
+%s schimb %s
+6suburb
+%s periferie %s %s
+7center
+%s oras %s
+7extern
+%s campie %s
+7suburb
+%s parc %s
+8center
+%s afaceri %s
+8extern
+%s %s margine %s
+8suburb
+%s satelit %s
+9center
+%s axa %s
+9extern
+%s ocolire %s
+9suburb
+%s mijloc %s
 Acenter
 Nu există!
 Aextern
@@ -1259,3 +2857,79 @@ Msuburb
 Nu exista!
 Ncenter
 Nu exista!
+Nextern
+%s asezare %s
+Nsuburb
+%s cartier nou %s
+Ocenter
+%s centru vechi %s
+Oextern
+%s catun %s
+Osuburb
+%s suburbie veche %s
+Pcenter
+%s piata %s
+Pextern
+%s podis %s
+Psuburb
+%s mahala %s
+Qcenter
+%s bulevard %s
+Qextern
+%s vale %s
+Qsuburb
+%s colina %s
+Rcenter
+%s forum %s
+Rextern
+%s lunca %s
+Rsuburb
+%s livada %s
+Scenter
+%s bazar %s
+Sextern
+%s poiana %s
+Ssuburb
+%s cartier de sus %s
+Tcenter
+%s targ vechi %s
+Textern
+%s deal %s
+Tsuburb
+%s cartier de jos %s
+Ucenter
+%s piata mare %s
+Uextern
+%s padure %s
+Usuburb
+%s cartier vechi %s
+Vcenter
+%s centru civic %s
+Vextern
+%s vad %s
+Vsuburb
+%s cartier de vest %s
+Wcenter
+%s centru comercial %s
+Wextern
+%s balta %s
+Wsuburb
+%s cartier de est %s
+Xcenter
+%s cetate %s
+Xextern
+%s ostrov %s
+Xsuburb
+%s cartier de nord %s
+Ycenter
+%s piateta %s
+Yextern
+%s plopis %s
+Ysuburb
+%s cartier de sud %s
+Zcenter
+%s centru istoric %s
+Zextern
+%s zavoi %s
+Zsuburb
+%s cartier industrial %s

@@ -9,16 +9,18 @@ Prop-Latin1.bdf
 #                                                                              #
 #                        Simutrans Base Translation File                       #
 #                             Scenario: Base texts                             #
-#                          Language: olo Livvinkarjal                          #
+#                           Language: ol Livvinkarjal                          #
 #                                Encoding: UTF-8                               #
 #                             Font: Prop-Latin1.bdf                            #
-#                           Date Created: 11.03 2026                           #
+#                           Date Created: 10.09 2026                           #
 #                                                                              #
 ################################################################################
 #__________________________________button_text__________________________________
 #__________________________________button_text__________________________________
 Absolute times
 Näytä kuun aijat dd:hh:mm-muvvos
+allow reverse passage
+salli kulgu vastusuundah
 AMBIENT_SOUND
 Ymbaristön iänet:
 CASH_SOUND
@@ -49,6 +51,8 @@ clf_btn_keine
 ei nimidä
 climate area percentage
 Ilmastopalstoin suurus:
+Continue Game
+Jatka kižua
 CROSSING_SOUND
 Tazorist. varoitusiänet:
 FACTORY_SOUND
@@ -107,18 +111,24 @@ Num pad keys always move map
 Älä käytä numpad-kluaviššoi kartan liikuttamizeh
 Open Sea
 Meri
+Owner only
+Vai omistajale
 Queueing
 Vuottajien muutos
 rainfall
 Kostevuon mugah
 Reselect closes tools
 Ruadoinstr:n valličuksen iäreottuamine uuvessahvalličuksel
+Return to menu
+Tagazeh menyih
 Road toll
 Tiemaksut
 Scenario
 Tieduo skenuariospäi
 sea
 meri
+Shared only
+Vai yhtehizile
 Single GUI
 Yksil. käyttöl.
 Sound range:
@@ -135,6 +145,8 @@ TRAFFIC_SOUND
 Likendehen iänet:
 Transfers
 Vaihtoi
+Tutorial
+Opastus
 #_________________________________climates_text_________________________________
 #_________________________________climates_text_________________________________
 arctic
@@ -155,6 +167,12 @@ tundru
 #__________________________________error_text___________________________________
  Loading scenario script failed
 Skenuariošriftan täyttiämine ei mennyh hyvin.
+A building blocks the construction
+Sroju estäy srojindua
+A powerline blocks the construction
+Sähköliinii estäy srojindua
+Another way blocks the construction
+Toine tie estäy srojindua
 Bridge blocked by way below or above.
 Sildu on typitty ylähän- libo alahanpäi.
 Can't buy obsolete vehicles!
@@ -167,10 +185,14 @@ Cannot built depot here!
 Depoa ei voi srojie täh.
 Cannot built this station/building\nin underground mode here.
 Tädä azemua/srojua ei voi srojie muan alle.
+Cannot connect to the\ncenter of a double slope!
+Ei voi yhtistiä kaksoiskaldivon\nkeskikohtah!
 Cannot create generic line!\nSelect line type by\nusing filter tabs.
 Ei voitu luadie ylehispäi liiniedy! Valličče liinin tiippu enzin.
 Cannot create socket
 Yhtevyön luadimine ei mennyh hyvin. (ei voitu luadie socketoa)
+Cannot cross the end of a runway
+Kiidotien piädy ei voi ylittiä
 Cannot rotate this building!
 Tädä srojua ei voi kiändäy.
 Client closed connection during transfer
@@ -179,16 +201,28 @@ Convoi handles exhausted!
 Kulgunevvoloin enimäismiäry tavattih.
 Convoy already deleted!
 Kulgunevvo on jo otettu iäre.
+Corrupt file
+Rikkoitunuh failu
 Could not open file
 Tiijostuo ei voitu avata.
 Das Feld gehoert\neinem anderen Spieler\n
 Plitku on toizen kižuajan omistukses.
+Depots cannot be built on runways!
+Depoloi ei voi sroija kiidoteile!
+Depots must be built on flat dead-end way tiles!
+Depot pidäy sroija tazazile tupikkutien ruudoile!
 Der Besitzer erlaubt das Entfernen nicht
 Omistai ei ole andanuh lubua objektan ottamizeh iäre.
 Diese Zusammenstellung kann nicht fahren!\n
 Tädä yhtistelmiä ei voi käyttäy.
+Elevated way can only be joined in line
+Nostetun tien voibi yhtistiä vai suorah
+Failed to write file
+Failan kirjutandu ei onnistunuh
 Flugzeughalt muss auf\nRunway liegen!\n
 Seizondupaikan tulou olla ruloamisdorogal.
+Forbidden by scenario
+Kielletty stsenuarien mugah
 Hier kann dieses\nFlughafengebaeude nicht\ngebaut werden!\n
 Lendokentysrojua ei voi srojie täh.
 Hier kann kein\nSignal aufge-\nstellt werden!\n
@@ -221,12 +255,18 @@ No suitable way on the ground!
 Azetukset voi panna vaiku tazazele muale, oigien luaduzele da suorale tiele.
 No through station here!
 Azemat tulou panna tien piäteheh libo suorale vuitile, mis ei ole ristavuksii.
+Not allowed to copy object.
+Ei sua kopiruija objektua.
 Not enough bytes transferred
 Tavuloi ei siirretty tävveliste.
 Not enough clearance.
 Kahten tien välil pidäy olla vähimytteh kahten yksikön korgevusero.
+Not enough empty space
+Ei ole kylläl tyhjiä tilua.
 Not enough money!
 Sinul ei ole tävveliste rahua tämän ostamizeh.
+Not initialized
+Ei ole alostettu
 On narrowgauge track only!\n
 Tämä meneh hyvin vaiku kaiduraizivotiel.
 Only public player can lock games!
@@ -245,22 +285,36 @@ Server busy
 Serveru on tungokselline.
 Server version too new
 Serveru käyttäy uvvembua versieda kižas.
+Ship depots must be built on water!
+Laivudepot pidäy sroija vedeh!
 Show all revenue messages
 Näytä kaikin oborottuviestit
 Show no revenue messages
 Älä näytä oborottuviestilöi
 Show only player's revenue
 Näytä vaiku kižuajan oborottu
+Slope is too steep
+Kaldivo on liijan jyrkkü
 Terraforming not possible\nhere in underground view
 Muata ei voi ruadua muan al.
 This tunnel branches. You can try Control+Click to remove.
 Tunnelil on enämbän kui kaksi sydämehpiäzyä. Ottuakses tunnelin iäre, käytä Ctrl+klikkuaustu.
 Too far away to merge stations!
 Azemat on liijan loitton toizispäih.
+Tunnel can only be entered at its portal
+Tunnelih voi mennä vai sen portualaspäi
+Unknown error
+Tundematoi haireh
 Upgrade must have\na higher level
 Päivityksen tulou olla korgiemboa tazoa.
 Vehicle %s cannot choose because stop too short!
 Kulgunevvo %s ei voi vallita pristania gu azetus on liijan lyhyt.
+Watertable reached
+Ruuttuu ei voi alendua enämbiä!\nPiästih vezitazoh.
+Way does not match the slope here
+Tie ei sovi tiä rindeheh
+Wrong direction to enter the bridge
+Väärä suundu sillale mänemizekse
 Zughalt muss auf\nSchiene liegen!\n
 Raudutieazemat voi srojie vaiku raudutiele.
 #___________________________________help_text___________________________________
@@ -305,6 +359,8 @@ Overlay town names
 Näytä linnoin nimet
 Please click on the map to add\nwaypoints or stops to this\nschedule.
 Klikkua kartua lizätäkses välietuappoi libo azetuksii reitile.
+Remove double stops from schedule
+Ota kaksoisazetukset iäre raspisuaniespäi
 Set tile climate %s
 Laita muan ilmastokse %s
 Show capacity and if halt is overcrowded
@@ -435,6 +491,8 @@ Liiniifiltru
 [6] luodehine kulmu
 [7] southwest corner
 [7] lounaine kulmu
+/month
+/kuu
 \nBauzeit bis
  vuoteh 
 \nBauzeit von
@@ -473,10 +531,10 @@ Korgevuskuva on viäränluaduine.
 %d kulgunevvuo
 %d Einzelfahrzeuge im Depot
 %d kulgunevvuo depos
+%d more convois
+Vie %d kulgunevvuo
 %i car(s),
 %i vagonua, 
-%i km/h (max. %ikm/h)
-%i km/h (max. %i km/h)
 %i years %i months old.
 Igä: %i vuottu da %i kuudu
 %s at (%i,%i) now public stop.
@@ -489,8 +547,12 @@ Azetus %s on muuttunuh julgizekse vaihtopaikakse.
 %s %s kenty
 %s has entered a depot.
 Kulgunevvo %s on tulluh depoh.
+%s has left.
+%s lähti.
 %s land %d %s
 %s %d kyläaloveh %s
+%s now known as %s.
+%s nygöi tunnetah nimel %s.
 %s wasted\nyour money with a\nnew townhall\nwhen it reached\n%i inhabitants.
 %s sroji uvven linnantaloin, ku se tavatti %i eläjän rajan.
 %s\nis crowded.
@@ -501,8 +563,16 @@ Azetus %s on tungokselline.
 %s on mennyh maksukyvyttomäkse. Kaikin ruado loppiettih, da yhtivön omazus myötih.
 %u Client(s)\n
 %u klijentu(a)\n
+%u days ago
+%u päiviä tagaperin
+%u hours ago
+%u čuassuu tagaperin
+%u minutes ago
+%u minuuttua tagaperin
 %u Player (%u locked)\n
 %u kižuaj(u)a (%u lukittu(u))\n
+%u years ago
+%u vuottu tagaperin
 <clear schedule>
 <tyhjendä aiguluvettelo>
 <create new line>
@@ -523,18 +593,36 @@ Azetus %s on tungokselline.
 1 kulgunevvo
 1 Einzelfahrzeug im Depot
 1 kulgunevvo depos
+1 minute ago
+1 minuuttu tagaperin
+1 year ago
+1 vuozi tagaperin
 100 km/h = %i tiles/month
 100 km/h = %i plitkua/kuu
 1LIGHT_CHOOSE
 Kirkavus:
+1th
+1.
 1WORLD_CHOOSE
 Uvven kižan laitokset:
+21th
+21.
+22th
+22.
+23th
+23.
 2LIGHT_CHOOSE
 Värit:
+2th
+2.
 2WORLD_CHOOSE
 Kartan noumer:
+31th
+31.
 3LIGHT_CHOOSE
 Vieretysvauhti:
+3th
+3.
 4LIGHT_CHOOSE
 Inversiellizet vieretyssuunnat
 5LIGHT_CHOOSE
@@ -605,6 +693,8 @@ allowed climates:\n
 Luvallizet ilmastot:\n
 Alters a schedule.
 Muuta reitii
+and arranged by
+da järjestänyh
 Angenommene Waren
 Lähäl olijoin yrityksien tarvičemat tavarat
 anhaengen
@@ -649,6 +739,8 @@ Bahndepot
 Veduridepo
 Bankrott:\n\nDu bist bankrott.\n
 Yhtivösi on mennyh maksukyvyttömäkse.
+based on Simutrans 84.22.1
+luajittu Simutrans 84.22.1 pohjal
 battery
 Akkumul'uatoru
 Baum
@@ -675,6 +767,8 @@ Boden
 Mua
 Bonus Multiplier: %i%%
 Bonuskerduaju: %i%%
+Bonus Speed: %i km/h
+Bonusvauhti: %i km/h
 Bonusspeed: %i km/h
 Korgein mahtolline vauhti: %i km/h
 Boost (%%)
@@ -709,6 +803,8 @@ Build monorail depot
 Sroji yksiraizivodepo
 Build narrowgauge depot
 Sroji kaiduraizivodepo
+build portal only
+sauvo vai portualu
 Build powerline
 Sroji sähkönsiirdoliinielöi
 Build presignals
@@ -741,6 +837,8 @@ Can only move from halt to halt or waypoint to waypoint.
 Kohtu voijah siirdäy vaiku azetukselpäi libo välietuapalpäi toizele.
 Cancel
 Peruuta
+Cannot build here
+Täh ei voi sroija
 Cannot connect to offline server!
 Serveru on iäre piäl, eigä se ole muga tavattavannu.
 Capacity
@@ -759,6 +857,10 @@ cars.\nstate
  kulgunevvuo\n
 Cash
 Čotan sal'do
+Category
+Kategourii
+Change label style
+Muuta sildikkuloin stiilii
 Change player
 Vaihta kižuajua
 Chart
@@ -773,6 +875,8 @@ chooses a random map
 Luaji piävyndähine kartu
 citicens
 Eläilugu
+Cities can only be built on flat empty ground!
+Linnoi voibi sroija vai tazazele tyhjäle muale!
 City attraction
 Linnunähtävys
 City industries
@@ -837,10 +941,14 @@ clf_chk_waren
 Filtrui tavarat
 clf_title
 Kulgunevvoluvettelon filtruičus
+Click to open the finance dialog.
+Klikkua avuamizekse finansidialogu.
 Climate
 Ilmasto
 Climate Control
 Landšaftan laitokset
+Climates
+Klimuatat
 closed
 salvattu.
 Closes topmost line window when new line selected.
@@ -849,20 +957,28 @@ COLOR_CHOOSE\n
 Valličče väriteemu al\nolijois paletoispäi:
 Company bankrupt
 Yhtivö on häviendäs
+company_chat
+Yhtivön čattu
 Company_msg
 Kilbailijat
 Comparing pak files ...
 Verdaillah pak-tiijostoloi...
+Composed by
+Säveldänyh
 Configure AI
 Muuta luadivoälyy
 Configure AI setttings
 Muuta luadivoälyn laitoksii
 Congratulation\nScenario was complete in\n%i months %i years.
 Hyvittelyt! Piäzit läbi skenuariospäi %i kuus da %i vuvves!
+Connect factory
+Yhtistiä zavodu
 Connected stops
 Yhtistetyt azetukset:
 Connected with server
 Yhtistetty serverale
+connection
+yhtevys
 Connections
 Yhtevykset
 Constructed by
@@ -921,12 +1037,18 @@ curiosity builder
 Nähtävyssrojii
 curlist_title
 Nähtävysluvettelo
+CURRENCY
+$
+Current game
+Nygöine kiža
 Currently playing:
 Nygöi soi:
 Customers live in:
 Aziiniekat eläh linnois:
 Date format
 Päivymiärymuodo:
+DAY_SYMBOL
+p
 deactivated in online mode
 Ei aktiivine nettukižas
 Dec.
@@ -967,6 +1089,8 @@ Departures per month
 Lähtöt/kuu:
 Departures to\n
 Lähtevät:\n
+Depot
+Depoo
 Depots
 Depot
 Der Tunnel ist nicht frei!\n
@@ -977,10 +1101,14 @@ Destroying map ...
 Hävitetäh vahnua kartua...
 Details
 Lizätiijot
+Developed by the Simutrans Team
+Kehittänyh Simutrans-joukko
 Die Bruecke ist nicht frei!\n
 Sildu ei ole vie välly.
 diesel
 Diizeli
+direct_chat_to:
+Suora viesti kelle
 directmail
 Lehtizet
 Direkt erreichbare Haltestellen
@@ -1099,6 +1227,8 @@ Follow the convoi on the map.
 Tule kulgunevvon jälles kartal
 font size
 Šriftusuurus (vaiku TTF- da OTF-šriftat):
+For questions and support please visit:
+Kyzymyksih da tugeh niškoi käy:
 Forest
 Meččät
 Found new city
@@ -1111,6 +1241,8 @@ Free Capacity
 Välly sija
 freeplay mode
 Vällykiža
+Freight
+Tavarat
 Friction:
 Nygöine treeniikoefitsijentu:
 fuel_cell
@@ -1135,6 +1267,8 @@ Gebaeude
 Sroju
 General
 Ylehine
+generate script
+Luaji infrastruktuurun makroskriptu
 Generated
 Luajittu
 Generation: %.0f MW
@@ -1191,6 +1325,8 @@ hide all building
 Peitä kaikin srojut
 hide city building
 Peitä linnusrojut
+Hide labels
+Peitä sildikat
 hide objects under cursor
 Peitä kursoran al olijat objektat
 hide station names
@@ -1203,6 +1339,8 @@ Hier warten/lagern:
 Passažiiroi/tavaroi vuottamas
 Higher transport fees, crossconnect all factories
 Korgeambii kulletustuloloi, zavodan tuotando ei azetu varaston mennes tävvelleh
+highlight single ways
+Ozuttau liikendehtielöin loppuo da katkevustu.
 Highlite schedule
 Näytä reitin azetukset
 hl_title
@@ -1249,8 +1387,12 @@ Home depot not found!\nYou need to send the\nconvoi to the depot\nmanually.
 Depuo ei löyditty; sinun pidäy tuöndäy kulgunevvo depoh manuaalizesti.
 Homeless
 Kodittomii
+Horizontal stripe ownership
+Gorizontualizet šoidut omistajale
 hydrogene
 Vodorodu
+Icon size:
+Ikonkan kogo:
 Idle:
 Vällyna:
 ignore climates
@@ -1311,10 +1453,14 @@ Jump to
 Mene siiriči kohtah
 June
 kezäkuu
+just now
+juuri nygöi
 Kann Spielstand\nnicht laden.\n
 Tallendustu ei voitu täyttäy.
 Kann Spielstand\nnicht speichern.\n
 Kižua ei voitu tallendau.
+keep city roads
+säilytä linnantiet
 Kein Besitzer\n
 Ei omistajua\n
 keine
@@ -1353,6 +1499,8 @@ Leaving depot!
 Lähtös depospäi
 leer
 tyhjy
+Left button drags minimap too
+Hurstii knopka tožo vedäy minikarttua
 legacy (large heights)
 Vahnu tila (kaksinkerdazet korgevuot)
 legacy (small heights)
@@ -1393,12 +1541,20 @@ Load mode:
 Täyttötaba:
 Load scenario
 Täytä skenuario
+Load script tool
+Luvve skriptitöölu
+Load Scripted AI
+Luvve skriptattu tekoäly
+Load settings from
+Ota azetukset ...päi
 loaded
 nakattu
 loaded passenger/freight
 Passažiiroin/gruuzun lajitteluperusteh:
 Loading (%i->%i%%)!
 Nakatah (%i->%i%%)
+Loading (%i%%) departure %s!
+Lastatah (%i%%), lähtö %s!
 Loading (%i%%)!
 Nakatah (%i%%)
 Loading addon paks ...
@@ -1411,10 +1567,14 @@ Loading skins ...
 Täytetäh käyttöliittymän gruafiekkoi...
 Loading time:
 Täyttöaigu: 
+Lock Control key
+Lukiče Ctrl-knopka
 Lock game
 Estä kižuajan vaihto (vuadiu varmendustu)
 Lokomotive_tab
 Vedurit
+m3
+m³
 maglev vehicle
 maglev-juna
 maglev_track
@@ -1579,12 +1739,18 @@ No stop here!
 Ruadoinstrumentua tulou käyttäy azetuksien kohtal.
 No suitable ground!
 Mua on ebäsobii.
+No suitable townhall available for this climate!
+Täh klimuattah ei ole sobijua linnantaluo!
 No terminal station here!
 Agjuazemua ei voi srojie täh. Tazazel mual olii tienpiäte tarvitah.
 no timeline
 Kaikin aiguvälit
+No transformer connected.
+Transformuatorua ei ole yhtistetty.
 no tree
 Ei puuloi
+No vehicles are available for purchase.
+Ei ole kulgunevvoloi ostettavakse.
 No. of Factories
 Zavodoi da kauppoi:
 Noch kein Fahrzeug\nmit Fahrplan\nvorhanden\n
@@ -1603,6 +1769,8 @@ Not allowed!\nThe convoi's schedule can\nnot be changed currently.\nTry again la
 Kulgunevvon aiguluvetteluo ei sua muuttua tien ečon aiguna.
 Not enough fields would remain.
 Ferman ymbarile ei jiäs tarbehekse peldoloi.
+Not online
+Ei ole verkos
 Nov.
 kylmykuu
 November
@@ -1655,6 +1823,8 @@ Optionen
 Laitokset
 Or enter a server manually:
 Libo syötä adressi manualizesti:
+ORDINAL_DAY_SYMBOL
+.
 Origin
 Alguperä
 ost
@@ -1705,6 +1875,10 @@ PaxDest
 Miäränpiät
 Percent Electricity
 Sähkön tuotando (% tarpehespäi):
+personal_chat
+Yksityzet čatat
+Pipette
+Pipettu
 Planes are not available yet!
 Lendokonehet ei ole vie suadavannu.
 Plant tree
@@ -1741,6 +1915,8 @@ player 8
 Kižuaju 8
 player 9
 Kižuaju 9
+Player ranking
+Kižuajien reitingu
 Please choose vehicles first\n
 Valličče kulgunevvot enzin.\n
 Post
@@ -1775,6 +1951,8 @@ Profit
 Tulos
 promote to line
 Muuta liinikse
+public_chat
+Yhtehine čattu
 q1
 Kevät
 q2
@@ -1827,6 +2005,10 @@ remove tracks
 Ota raudutielöi iäre
 Remove wayobj %s
 Ota tieobjektua %s iäre
+replace existing ways
+korvua olijat tiet
+replace faster wayobjs
+korvua tervämbät tieobjektat
 replace other signals
 Korvua muut ozutimet
 replace stop
@@ -1847,6 +2029,8 @@ return ticket
 Kopiirui tulole
 Revenue
 Ruadotulot
+Revenue/unit/100 tiles
+Tulo/yksikkö/100 ruuduu
 Revert schedule
 Kumua muutokset
 Revision:
@@ -1871,6 +2055,10 @@ sack
  säkkii
 sail
 tuuli
+Save
+Tallenda
+Save generated script
+Tallenda luajittu skriptu
 Saving map ...
 Tallendetah kartua...
 Scenario complete: %i%%
@@ -1889,6 +2077,8 @@ Scenario Result
 Progressu
 Scenario Rules
 Siännöt
+Scenario_
+Stsenuarii 
 Schedule changing!
 Reitii muutetah!
 Schienentunnel
@@ -1899,6 +2089,8 @@ Schiffdepot
 Dokku
 Schleppkahn_tab
 Baržat
+Screen scale:
+Ekruanan masštuabu:
 Screenshot
 Ota kuvakuabavus
 Scroll threshold
@@ -1921,6 +2113,8 @@ Select soundfont
 Valličče soundfont-tiijosto
 Sell the selected vehicle(s)
 Myö vallitut kulgunevvot
+Selling of the program is forbidden.
+Programman myömine on kielletty.
 sended
 Työn. poštu
 SEP_FRACTION
@@ -1963,6 +2157,8 @@ Show always
 Näytä ainos
 Show climates
 Ilmastot
+Show construction info
+Näytä srojindutiedot
 Show contour
 Muanmuvvot
 Show even servers with wrong version or pakset
@@ -2035,6 +2231,8 @@ Sim:
 Petlat:
 Similar view as the main window
 Samankaldaine nägymy kui piäikkunas
+Single toolbar only
+Vai yksi töölurivi
 Size (%d MB):
 Suurus (%d Mt):
 Size (area)
@@ -2061,6 +2259,8 @@ Soundfonts are located in the music directory.
 Soundfontat on 'music'-eččomistas.
 special freight
 Spetsgruuzu
+Speed Bonus
+Vauhtibonus
 Speedbonus\nroad %i km/h, rail %i km/h\nships %i km/h, planes %i km/h.
 Vuajittai vähimäisvauhti vauhtibonuksele (%%):\ndorogat %i km/h, raudutiet %i km/h,\nlaivat %i km/h, lendokonehet %i km/h
 Speedlimit
@@ -2097,16 +2297,22 @@ Station_msg
 Azemat
 Status
 Azetuksen tila
+stay on this level
+pyzy täl tazol
 steam
 höyry
 Step timeline one year
 Siirry vuvvel edehpäi
+Stopping permissions
+Azetusluvat
 Stops
 Azetukset
 Storage
 Varasto
 Storage capacity
 Varastotilavus
+straight route
+suora reitti
 Strassendepot
 Garažu
 Strassentunnel
@@ -2129,8 +2335,12 @@ Tage alt
 päiviä vahnu.
 The following graphics are unmaintained:
 Tulieloi gruafiekkupakiettoi ei hoijeta:
+The generated script was saved!\n
+Makro on tallendettu onnistunnuhes.\nSen voi toistua skripturuadivol.
 The gradient does not fit a tunnel
 Täh mägeh ei synny tunneli.
+The script cannot be saved!\n
+Skriptua ei voi tallendua!\n
 Theme selector
 Teeman valličus
 There are still vehicles\nstored in this depot!\n
@@ -2149,6 +2359,8 @@ To attract more tourists\n%s built\na %s\nwith the aid of\n%i tax payers.
 Linnan %1$s likendehmiärät kazvos: %3$i veronmaksajua luaji srojun %2$s srojimizespäi mahtollistu.
 To heavy traffic\nresults in traffic jam.\n
 Bohattu likendeh nostattau tungoksen.
+To: %s
+Kelle: %s
 Toggle day/night view
 Vaihta päivy/yö-tilua
 Toggle vehicle tooltips
@@ -2199,6 +2411,8 @@ Translation
 Kiännös
 transparencies
 Läbinägyvys
+transparent background
+läbinägyi taustu
 transparent station coverage
 Läbinägyi azemien kattavus
 Transported
@@ -2217,6 +2431,8 @@ Tunnel must start on single way!
 Tunnelit tulou algua tielpäi.
 Tunnelboden
 Tunneli
+under the Artistic License
+Artistic License -litsensien al
 underground mode
 Muanalaine nägymy
 UNDO failed!
@@ -2247,6 +2463,8 @@ Vehicle %s can't find a route!
 Kulgunevvo %s ei lövvä reitii.
 Vehicle %s is stucked!
 Kulgunevvo %s on juuttunuh.
+Vehicle count:
+Kulgunevvoloin lugumiäry:
 Vehicle details
 Kulgunevvon tiijot
 Vehicle Name
@@ -2275,6 +2493,8 @@ via %s\n
  kauti %s\n
 via Menge
 kauti (miäry)
+via owner
+kauti (omistai)
 voranstellen
 Laita edeh
 Waggon_tab
@@ -2315,6 +2535,12 @@ Weight
 Paino
 Weight:
 Paino:
+Weight/unit
+Paino/yksikky
+Welcome to Simutrans
+Terveh tulgua Simutransih
+Welcome, %s!
+Terveh tulgua, %s!
 Wert
 Arvo
 west
@@ -2385,12 +2611,16 @@ Kulgunevvoloi loppiettih liinilpäi %s.
 #_________________________________tooltip_text__________________________________
 Add convois with similar schedule to this line.
 Liziä liinile muut samankaldaistu reitii ajajat kulgunevvot
+Attach current coordinate to the comment
+Liitä nygöine koordinuattu kommentah
 Enter intervall in days, hours, minutes
 Syötä aiguväli päivis, čuassulois da minuutilois
 Mirrors order of stops
 Muuta azetuksien kundo inversiellizekse
 Revert to original schedule
 Kumua kaikin muutokset aiguluvetteloh
+Tutorial not available for this pakset. Please try loading Pak128.
+Täle pakiettusarjale ei ole opastustu. Ole hyvä, kokkua laduata Pak128.
 #_______________________________unnecessary_text________________________________
 #_______________________________unnecessary_text________________________________
 &0_CITY_SYLL
@@ -2489,13 +2719,19 @@ Riihi
 %s laidu %s %s
 7center
 %s linnu %s
+7extern
+%s tazangot %s
 7suburb
 %s puusto %s
 8center
 %s laukkukeskus %s
 8extern
 %s %s reunu %s
+8suburb
+%s satelliittu %s
 9center
 %s akseli %s
 9extern
 %s dorogu siiriči %s
+9suburb
+%s keski %s

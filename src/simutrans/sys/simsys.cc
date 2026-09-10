@@ -900,7 +900,7 @@ const char *dr_get_locale_string()
 		{ 0x0001, "ar" },
 		{ 0x0002, "bg" },
 		{ 0x0003, "ca" },
-		{ 0x0004, "zh\0Hans" },
+		{ 0x0004, "cn" }, // Simplified chinese "zh\0Hans" },
 		{ 0x0005, "cs" },
 		{ 0x0006, "da" },
 		{ 0x0007, "de" },

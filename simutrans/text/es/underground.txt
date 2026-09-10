@@ -1,0 +1,31 @@
+<title>Construir bajo tierra</title>
+
+<h1><strong>Construir bajo tierra</strong></h1>
+
+<p>
+En Simutrans hay dos vistas subterráneas, y a las dos se llega desde la ventana <a href="display.txt">Ajustes de pantalla</a> o mediante atajos de teclado.
+</p>
+
+<p>
+<em>Vista subterránea:</em> revela de golpe todos los niveles del subsuelo y oculta todos los objetos que están sobre el terreno. Por defecto se muestra la cuadrícula de la superficie, pero con ella cuesta bastante colocar los objetos en el sitio exacto, así que para construir bajo tierra se recomienda la vista siguiente.
+</p>
+
+<p>
+<em>Vista subterránea por capas:</em> con [Ctrl+U] puedes mostrar un único nivel de altura del subsuelo. Esta vista oculta todos los objetos que están por encima de la capa elegida, tanto bajo tierra como en la superficie. El nivel se ajusta desde la ventana <a href="display.txt">Ajustes de pantalla</a>, o con las teclas [+] y [-] en el pakset estándar (los atajos dependen del pakset). Se muestra la cuadrícula de la capa activa. Como el puntero del ratón solo se puede mover dentro del nivel actual, construir resulta más fácil.
+</p>
+
+<p>
+En general, las rutas subterráneas se construyen con las herramientas de túneles. Para poder construir bajo tierra hay que hacer primero un túnel o una entrada de túnel (<em>Ctrl + pulsar con la herramienta de túnel sobre una pendiente</em>).
+</p>
+<p>
+Para construir en otra capa del subsuelo, usa las herramientas de <em>pendientes artificiales</em> del menú <a href="slopetools.txt">Herramientas de Terreno</a>. Basta con pulsar con la herramienta elegida en el extremo de la carretera o de la vía.
+</p>
+<p>
+Las vías de tranvía se pueden tender bajo tierra sobre carreteras ya existentes, con las <a href="tramtools.txt">Herramientas de Tranvía/Tren Ligero</a> normales.
+</p>
+<p>
+Solo se pueden construir unas encima de otras las <a href="station.txt">paradas y estaciones</a> propias. Las ampliaciones de estación no se pueden construir bajo tierra.
+</p>
+<p>
+NOTA: si no puedes seguir construyendo bajo tierra, comprueba si hay obstáculos en la superficie.
+</p>

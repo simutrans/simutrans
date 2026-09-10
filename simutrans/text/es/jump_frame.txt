@@ -1,0 +1,12 @@
+<title>Saltar a</title>
+
+<h1><strong>Saltar a</strong></h1>
+
+<p>
+Esta ventana se abre con la tecla [J] y permite saltar a unas coordenadas concretas. Resulta útil para desplazarse deprisa a determinados puntos del mundo de juego.
+</p>
+
+<p>
+Cada casilla del mundo tiene dos coordenadas (x,y), y la (0,0) está en la esquina superior izquierda del mapa. Las coordenadas del cursor se muestran de forma permanente en la <a href="window.txt">barra de estado</a>.<br>
+NOTA: al rotar el mapa (con la tecla [R]) rotan también las coordenadas de todas las casillas.
+</p>

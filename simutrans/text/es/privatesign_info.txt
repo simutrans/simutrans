@@ -1,0 +1,10 @@
+<title>Barrera de acceso a vía privada</title>
+
+<h1><strong>Barrera de acceso a vía privada</strong></h1>
+
+<p>
+Con esta ventana puedes impedir que los jugadores no marcados entren con sus vehículos en tu vía a través de esta barrera. (Lo que se marque para el jugador Servicio Público afecta a los coches de ciudad.) El jugador que tenga permiso de paso verá la barrera abierta, y el jugador excluido la verá cerrada.
+</p>
+<p>
+Esta señal se construye desde una de las barras de herramientas de vías, como las <a href="railtools.txt">Herramientas de Trenes</a> o las <a href="roadtools.txt">Herramientas de Carreteras</a>.
+</p>

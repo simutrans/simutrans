@@ -1,26 +1,37 @@
-<title>Ayuda sobre Ajustes de Sonido</title>
+<title>Ayuda sobre los Ajustes de sonido</title>
 
-<h1><strong>Ajustes de Sonido</strong></h1>
+<h1><strong>Ajustes de sonido</strong></h1>
 
 <p>
-<strong>Ajustes de Sonido</strong> tiene controles para los efectos de sonido y la musica.
+La ventana <strong>Ajustes de sonido</strong> tiene los controles de los efectos de sonido y de la música de fondo. Se abre desde el menú <a href="options.txt">Opciones de Juego</a>.<br>
+NOTA: en Windows se recomienda una versión de Simutrans compilada con SDL para obtener mejor sonido.
 </p>
+
 <p>
-<strong>Ajustes de Sonido</strong> se abre desde<a href="options.txt">Opciones de Juego.</a>
+Usa los botones de flecha para ajustar los valores, o las barras deslizantes para subir y bajar el volumen.
 </p>
+
+<p><em>Volumen del sonido:</em> establece el volumen de los efectos de sonido del juego. El sonido se puede desactivar por completo con el botón <em>Silenciar sonido</em>.<br><br>
+Muchos objetos de Simutrans pueden emitir sonidos: ambientales (en la posición del cursor, tras unos segundos sin moverlo), pasos a nivel (cuando se acerca un vehículo), fábricas (cuando producen mercancías) y vehículos (al salir de una parada o estación). Qué sonidos hay implementados depende del pakset con el que juegues.
+</p>
+
 <p>
-Use las flechas para ajustar los parametros o <a href="mouse.txt">la barra de desplazamiento</a> para subir/bajar el volumen:
+<em>Volumen de la música:</em> establece el volumen de la música de fondo. La música se puede desactivar por completo con el botón <em>Silenciar música MIDI</em>. Si no hay música disponible, los controles no funcionan.<br>
+Las pistas de música (en formato MIDI) se guardan en la carpeta simutrans/music/.
 </p>
-<p><em>Volumen de los efectos:</em> establece el volumen de los efectos de sonido en el juego.
-</p>
+
 <p>
-<em>Volumen de la Musica:</em> establece el volumen de la musica. Si no esta disponible, el control no funcionara.
+<em>Reproduciendo actualmente:</em> cambia la música; los botones de flecha recorren las pistas disponibles.
 </p>
+
 <p>
-<em>Jugadores actuales:</em>
- cambia la musica; las flechas saltan a la siguiente/anterior cancion entre las disponibles.
+<em>Música Aleatoria:</em> las pistas se reproducen en orden aleatorio.
 </p>
+
 <p>
-ATENCION: El juego no incluye archivos de musica.<br>
-Ayuda a crear musica para el juego en http://wiki.simutrans.com
+NOTA: si Simutrans se arranca con la opción de línea de órdenes «-nosound» o «-nomidi», no se usará el sonido o la música.
+</p>
+
+<p>
+Hay más información sobre la música en Simutrans en http://wiki.simutrans.com
 </p>

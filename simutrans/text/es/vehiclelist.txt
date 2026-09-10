@@ -1,0 +1,10 @@
+<title>Lista de todos los vehículos</title>
+
+<h1>Lista de todos los tipos de vehículo del juego</h1>
+<p>Por defecto se muestran todos los vehículos, tanto los actuales como los futuros. Precisamente poder ver los futuros es el sentido de esta lista: en los depósitos no aparecen los vehículos que aún no han salido, así que aquí el jugador puede planificar mejor a largo plazo.
+</p>
+<p>
+<em>Mostrar futuros</em>: al desmarcarlo, la lista se limita a los vehículos que se pueden comprar ahora mismo.<br>
+<em>Mostrar obsoletos</em>: amplía la lista con los vehículos ya anticuados. Funciona igual que en los depósitos.<br>
+Al lado, con <em>Todo</em> se puede restringir la lista por tipo de mercancía, o a pasajeros o correo.
+</p>

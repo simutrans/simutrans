@@ -1,0 +1,15 @@
+<title>Control del semáforo</title>
+
+<h1><strong>Control del semáforo</strong></h1>
+
+<p>
+Puedes controlar la duración de las fases roja y verde de los semáforos. Los números que se eligen aquí son la duración de la fase verde, en segundos, para las direcciones norte/sur y este/oeste.
+</p>
+
+<p>
+Como todos los semáforos cambian a la vez, en el tercer campo puedes darle un desfase adicional a este, y así conseguir que el tráfico circule sin paradas en determinadas direcciones a lo largo de varios semáforos seguidos.
+</p>
+
+<p>
+Los semáforos se construyen desde la <a href="roadtools.txt">barra de Herramientas de Carreteras</a>.
+</p>

@@ -1,66 +1,95 @@
-<title>Ayuda de los Controles del Clima</title>
+<title>Ayuda sobre los Ajustes de Terreno</title>
 
-<h1><strong>Controles del Clima</strong></h1>
+<h1><strong>Ajustes de Terreno</strong></h1>
 
 <p>
-<strong>Controles del Clima</strong> establece las opciones para los aspectos topograficos y meteorologicos del juego</p>
-<p>
-<strong>Controles del Clima</strong> se abre con el boton<a href="new_world.txt">Crear un Nuevo Mundo</a>.
+Esta ventana establece las opciones topográficas y meteorológicas del mundo de juego. Se abre junto con la ventana <a href="new_world.txt">Crear un Nuevo Mundo</a>.
 </p>
-<p>
-Ajusta los parametros con los botones:
-</p>
-<p>
-<it>Opciones:</it>
-</p>
-<p>
 
-<em>Nivel del agua:</em> establece la altura del nivel del mar en el mapa.
-</p>
 <p>
+Para ajustar cada opción, pulsa las flechas que hay al lado de cada una, o escribe un número en la casilla.
+</p>
 
-<em>Altura:</em> establece la altura maxima del terreno.
-</p>
 <p>
+- <em>Nivel del agua:</em> establece la altura del nivel del mar en el mapa. El valor por defecto es -2 y se admiten valores entre -40 y 20. Cuanto más bajo es el nivel, más tierra aparece. Al contrario, los valores altos amplían la superficie marina y dejan menos tierra. Se puede construir hasta 3 niveles por debajo del nivel del mar (por ejemplo, túneles), pero nunca por debajo de -40. Cuanto mayor es la superficie cubierta por el mar, menos espacio queda para las ciudades; en esos casos el transporte marítimo puede ser la única opción viable. Nota: una <em>Máxima altura del lago</em> elevada (ver más abajo) también puede generar lagos tan grandes que parezcan mares.
+</p>
 
+<p>
+- <em>Altura de montañas:</em> el valor por defecto es 160; según el ajuste de <em>Terreno abrupto</em> (ver el parámetro siguiente), se admiten valores entre 0 y 1000. Con una altura de montañas de 1000 y un terreno abrupto de 0, las montañas de un mapa suficientemente grande alcanzarán aproximadamente el nivel 40. Unas montañas demasiado altas y escarpadas dejan poco espacio para ciudades e industrias.
+</p>
 
-<em>Terreno abrupto:</em> establece la irregularidad del terreno; un valor alto crea un terreno mas escarpado.<br>
-</p>
 <p>
-<it>Opciones de la cota de nieve:</it>
+- <em>Terreno abrupto:</em> establece la irregularidad del terreno. El valor por defecto es 4. Según el parámetro <em>Altura de montañas</em>, se admiten valores entre 0 y 10. Este parámetro determina la densidad de colinas y valles pequeños, es decir, lo accidentado que resulta el terreno generado. Un terreno demasiado escarpado puede no ser capaz de generar tantas ciudades, industrias o carreteras de conexión como se haya indicado en los ajustes.
 </p>
-<p>
 
-<em>Cota de nieve veraniega:</em> establece la cota de nieve en verano
-</p>
 <p>
+- <em>Cota invernal:</em> durante el invierno la nieve cae hasta esta altura. A lo largo del año, la cota de nieve desciende hasta este valor en enero y vuelve a subir hasta el nivel de las nieves perpetuas (zona de glaciares) en julio. Este valor no influye en la mecánica de juego y solo tiene efecto visual.
+</p>
 
-<em>Cota de nieve invernal:</em> establece la cota de nieve en invierno.<br>
-</p>
 <p>
-<it>Opciones del clima:</it>
+- <em>Dirección del viento:</em> la dirección predominante del viento. Este parámetro solo tiene efecto si las zonas climáticas se calculan a partir de la meteorología. En ese caso, los árboles pueden distribuirse según el nivel de humedad (zonas lluviosas).
 </p>
-<p>
 
-<em>clima desertico:</em>  muy poca lluvia y temperaturas extremas
+<p>
+Pestañas: <em>Climas desde la altura</em> / <em>Climas desde la meteorología</em>. Aquí se decide con qué método se calculan las zonas climáticas y se determinan los límites de cada zona. Para generar el mapa nuevo solo cuentan los valores que estén visibles en ese momento.
+</p>
+
+<p>
+<strong>Climas desde la altura</strong>
+</p>
+
+<p>
+- <em>Rango de altura (Desde/Hasta):</em> aquí se indica, para cada zona climática, el rango de altura usando los niveles absolutos del juego. La altura mínima es el nivel del mar (ver el primer parámetro de arriba); el valor máximo es 127. Los rangos de altura pueden solaparse. El orden de las zonas climáticas es libre: por ejemplo, la <em>Tundra</em> puede ir detrás del <em>Desértico</em>, y el <em>Tropical</em> detrás de esa.<br>
+<it>Atención:</it> conviene asignar cada nivel de altura al menos a una zona climática; de lo contrario el mapa puede quedar con un aspecto extraño. Según el pakset que se use, los edificios, las industrias y la vegetación pueden estar ligados a zonas climáticas concretas y, por tanto, solo se construirán dentro de ellas. El comienzo de la zona de glaciares (o clima polar) corresponde a la antigua «cota de nieve estival»: a partir de ahí y hacia arriba reinan las condiciones invernales todo el año. La zona de glaciares tiene muy pocas ciudades, industrias o vegetación, o ninguna. Nota: algunos paksets necesitan que todas las zonas climáticas estén repartidas de forma equilibrada por el mapa para que las cadenas de producción funcionen correctamente, ya que la colocación de sus fábricas también depende de las zonas climáticas.
+</p>
+
+<p>
+- <em>Tamaño de un clima único:</em> el valor por defecto es 10%; se admiten valores entre 0% y 100%. Este valor solo importa cuando las regiones climáticas se solapan; en ese caso influye en el tamaño de las zonas de solape resultantes.
+</p>
+
+<p>
+<strong>Climas desde la meteorología</strong>
 </p>
 <p>
-
-<em>clima tropical:</em> tipico de lugares cercanos al ecuador, altas temperaturas constantes a nivel del mar y suaves mesetas).
+- <em>Incremento de altura (tierra):</em> el valor por defecto es 1; se admiten valores entre 0 y 10.
 </p>
 <p>
-
-<em>clima mediterraneo:</em> clima ligeramente humedo y cambiante
+- <em>Incremento de altura (agua):</em> el valor por defecto es 1; se admiten valores entre 0 y 10.
 </p>
 <p>
-
-<em>clima templado:</em> se da en areas entre los tropicos y los polos, clima cambiante.
+- <em>Límites de humedad:</em> el rango por defecto va del 65% al 75%; se admiten valores entre 0% y 100%.
 </p>
 <p>
-
-<em>clima artico (tundra):</em> bajas temperaturas, muy cerca de los polos
+- <em>Límites de temperatura:</em> los valores por defecto son 20, 15, 8, 0 y -10; se admiten valores entre -30 y 30. En estos 5 umbrales de temperatura la zona climática va pasando del clima desértico al clima polar.
 </p>
 <p>
+<em>Cota estival:</em> la cota de nieve en verano (nieves perpetuas). El valor por defecto es 32 y se admiten valores desde el <em>Nivel del agua</em> hasta 127. A partir de aquí empieza el clima <em>Ártico</em>. En estas zonas aparecerán muy pocas ciudades, industrias o vegetación.
+</p>
 
-<em>clima rocoso:</em> cercano al desertico.
+<p>
+<strong>Árboles, lagos y ríos</strong>
+</p>
+
+<p>
+- <em>Árboles:</em> el valor por defecto es «Aleatorio»; las opciones disponibles son «Ninguno», «Aleatorio» y, si las zonas climáticas se asignan según la meteorología, «Humedad». «Ninguno» significa que no se generará ni un solo árbol en el mapa nuevo.<br>
+<it>Atención:</it> normalmente los aserraderos se colocan dentro de los bosques; sin embargo, si aquí se elige «Ninguno», los aserraderos se colocarán en cualquier punto del mapa, incluso si después el jugador planta bosques.<br>
+En mapas grandes, dibujar los árboles consume mucha CPU. Usa la opción «Ninguno» en ordenadores con procesador lento o poca memoria.
+</p>
+
+<p>
+<em>Máxima altura del lago:</em> el valor por defecto es 8 y se admiten valores desde el <em>Nivel del agua</em> (el primer valor de la lista de arriba) hasta 127.<br>
+<it>Aviso:</it> si este valor es demasiado alto pueden formarse lagos enormes, que llenen de agua valles inmensos y buena parte del mapa.
+</p>
+
+<p>
+<em>Número de ríos:</em> el valor por defecto es 16 y se admiten valores entre 0 y 1000. Establece el número máximo de ríos que se pueden generar y usar en el mapa. Los ríos estrechos no son navegables por barcos ni embarcaciones de ningún tipo.<br>
+<it>Atención:</it> si tienes intención de dibujar los ríos tú mismo, escribe aquí un valor de al menos 1. De lo contrario el programa dará por hecho que no hay ríos en el mapa y colocará al azar los edificios que deberían situarse a la orilla de un río.
+</p>
+
+<p>
+<em>Longitud mínima de ríos:</em> el valor por defecto de la longitud mínima es 20; se admiten valores desde 0 hasta 16 casillas por debajo de la longitud máxima.
+</p>
+
+<p>
+<em>Longitud máxima de ríos:</em> el valor por defecto de la longitud máxima es 512; se admiten valores desde la longitud mínima más 16 hasta 1024 casillas.
 </p>

@@ -12,13 +12,15 @@ prop-latin2.fnt
 #                            Language: sk Slovencina                           #
 #                                Encoding: UTF-8                               #
 #                             Font: prop-latin2.fnt                            #
-#                           Date Created: 11.03 2026                           #
+#                           Date Created: 10.09 2026                           #
 #                                                                              #
 ################################################################################
 #__________________________________button_text__________________________________
 #__________________________________button_text__________________________________
 Absolute times
 Zobraz čas ako den:hh:mm mesiaca
+allow reverse passage
+povoliť prejazd v protismere
 AMBIENT_SOUND
 zvuky okolia
 CASH_SOUND
@@ -109,6 +111,8 @@ Num pad keys always move map
 Numlock je vždy vypnutý
 Open Sea
 Oceán
+Owner only
+Iba vlastník
 Queueing
 trend čakania
 rainfall
@@ -123,10 +127,26 @@ Scenario
 Info scenára
 sea
 námorné podnebie
+Shared only
+Iba zdieľané
 Single GUI
 jedno GUI
+Sound range:
+Dosah zvuku:
+Start this as a server
+Spustiť server s touto hrou.
+temperature borders
+teplotné hranice
+temperature-humidity based
+Podnebie podľa počasia
+TOOL_SOUND
+zvuky akcií nástrojov
+TRAFFIC_SOUND
+zvuky dopravy
 Transfers
 Prestupy
+Tutorial
+Tutoriál
 #_________________________________climates_text_________________________________
 #_________________________________climates_text_________________________________
 arctic
@@ -147,50 +167,228 @@ Polárne podnebie
 #__________________________________error_text___________________________________
  Loading scenario script failed
 Nahranie scenára sa nepodarilo
+A building blocks the construction
+Budova blokuje výstavbu
+A powerline blocks the construction
+Elektrické vedenie blokuje stavbu
+Another way blocks the construction
+Iná cesta blokuje stavbu
+Bridge blocked by way below or above.
+Most je blokovaný cestou pod ním alebo nad ním.
+Can't buy obsolete vehicles!
+Nemožno kúpiť zastarané vozidlá!
+Cannot alter water
+Túto vodnú nádrž nie je možné viac vypustiť ani naplniť.
+Cannot build on a double slope!
+Dá sa postaviť iba na rovnom svahu alebo na rovine!
 Cannot built depot here!
 Tu nemôžeš postaviť depo.
+Cannot built this station/building\nin underground mode here.
+Túto stanicu/budovu nie je možné postaviť v podzemí.
+Cannot connect to the\ncenter of a double slope!
+Most sa nemôže napájať na stred dvojitého svahu!\nPoužite nástroj na úpravu terénu.
 Cannot create generic line!\nSelect line type by\nusing filter tabs.
 Linka nebola vygenerovaná !\nVyberte typ linky s použitím\nfiltra.
+Cannot create socket
+Nemožno vytvoriť socket
+Cannot cross the end of a runway
+Koniec vzletovej dráhy nemožno križovať
+Cannot rotate this building!
+Túto budovu nie je možné otočiť!
+Client closed connection during transfer
+Klient ukončil spojenie počas prenosu
 Convoi handles exhausted!
 Počet konvojov dosiahol maximálnu hodnotu.
+Convoy already deleted!
+Súprava už bola zmazaná!
+Corrupt file
+Súbor je poškodený alebo skrátený.
+Could not open file
+K súboru nie je možný prístup. Skontrolujte prístupové práva.
 Das Feld gehoert\neinem anderen Spieler\n
 Toto políčko patrí inému hráčovi !\n
+Depots cannot be built on runways!
+Depá nemožno stavať na pristávacích dráhach!
+Depots must be built on flat dead-end way tiles!
+Depá musia byť postavené na rovnom slepom zakončení cesty!
 Der Besitzer erlaubt das Entfernen nicht
 Majiteľ Ti to nedovolí\nzbúrat.\n
+Diese Zusammenstellung kann nicht fahren!\n
+Táto súprava\nnemôže vyraziť!\n
+Elevated way can only be joined in line
+Nadzemnú cestu možno napojiť len v priamom smere
+Failed to write file
+Nepodarilo sa zapísať súbor. (Prístupové práva?)
 Flugzeughalt muss auf\nRunway liegen!\n
 Stojánka musí byť\nna rolovacej ploche.
+Forbidden by scenario
+Zakázané scenárom
 Hier kann dieses\nFlughafengebaeude nicht\ngebaut werden!\n
 Tu nemôžeš postaviť\nletištnú budovu.\n
 Hier kann kein\nSignal aufge-\nstellt werden!\n
 Tu nemôžeš postavit'\nžiadny signalizátor !\n
+In order to lock the game, you have to protect the public player by password!
+Ak chcete zamknúť hru, musíte verejného hráča chrániť heslom!
+Loading a new game will end the current server session!
+Načítanie novej hry ukončí aktuálnu reláciu servera!
+Lost connection\nto server!
+Stratené spojenie\nso serverom!
+Lost synchronisation\nwith server.
+Stratená synchronizácia\nso serverom.
+Maglevhalt muss auf\nMaglevschiene liegen!\n
+Zastávka maglevu musí byť na trati maglevu!\n
 Monorailhalt muss auf\nMonorail liegen!\n
 Stanica visutej železnice\nmusí byť na trati.
 Monorails are not available yet!
 Visutá železnica ešte neexistuje.
+More than one possibility to build this dock found.
+Našlo sa viacero možností na postavenie tohto doku.
 Narrowgaugehalt muss auf\nNarrowgauge liegen!\n
 Stanica úzkokoľajky musí ležať na trati.
+No bridges over runways!
+Nemožno stavať mosty cez pristávacie dráhy!
+No curves on runways
+Pristávacie dráhy nemôžu mať zákruty!
+No suitable crossing
+Žiadne vhodné kríženie! (príliš vysoká max. rýchlosť?)
 No suitable way on the ground!
 Nevhodný úsek pre stavbu stanice alebo zastávky!
 No through station here!
 Tu nie je možné postaviť stanicu/zastávku.
+Not allowed to copy object.
+Tento objekt nemôžete postaviť!\n(Dôvod: Nesprávny hráč alebo je zastaraný)
+Not enough bytes transferred
+Nebolo prenesených dosť bajtov
+Not enough clearance.
+Medzi dvoma cestami je potrebný minimálny výškový rozdiel dva.
+Not enough empty space
+Nezostalo dostatok voľného miesta.
 Not enough money!
 Nedostatok peňazí\nna stavbu.
+Not initialized
+Knižnicu sa nepodarilo inicializovať.
 On narrowgauge track only!\n
 Len na úzkokoľajke!\n
 Only public player can lock games!
 Iba hráč 'Verejnej služby' môže uzamknúť hru.
+Only up and down movement in the underground!
+Podzemný diel možno len zdvihnúť a znížiť pomocou nástrojov hore/dole!
+Out of funds
+Na toto vám nezostáva dostatok peňazí!
 Post muss neben\nHaltestelle\nliegen!\n
 Pošta musí ležat \nvedľa zastávky !\n
+Protocoll error (expecting game)
+Chyba protokolu (očakáva sa hra)
 Schiffhalt muss im\nWasser liegen!\n
 Závory musia stát'\nna vode!\n
+Server busy
+Server je zaneprázdnený
+Server version too new
+Server používa novšiu verziu programu.
+Ship depots must be built on water!
+Lodné depá musia byť postavené na vode!
+Show all revenue messages
+Zobraziť všetky správy o tržbách
+Show no revenue messages
+Nezobrazovať správy o tržbách
+Show only player's revenue
+Zobraziť iba tržby hráča
+Slope is too steep
+Svah je príliš strmý
+Terraforming not possible\nhere in underground view
+Úprava terénu nie je možná\nv podzemnom zobrazení
+This tunnel branches. You can try Control+Click to remove.
+Tento tunel má viac ako 2 vstupy. Môžete skúsiť Ctrl+kliknutie na jeho odstránenie.
+Too far away to merge stations!
+Príliš ďaleko na zlúčenie staníc!
+Tunnel can only be entered at its portal
+Do tunela možno vojsť len jeho portálom
+Unknown error
+Neznáma chyba
 Upgrade must have\na higher level
 Nová stanica musí byť vyššej úrovne
 Vehicle %s cannot choose because stop too short!
 Vozidlo %s nemôže použiť zastávku, pretože je príliš krátka!
+Watertable reached
+Pole už nemožno viac znížiť!\nDosiahnutá hladina vody.
+Way does not match the slope here
+Cesta tu nezodpovedá svahu
+Wrong direction to enter the bridge
+Nesprávny smer vjazdu na most
 Zughalt muss auf\nSchiene liegen!\n
 Stanica musí stáť\nna koľajniciach!\n
 #___________________________________help_text___________________________________
 #___________________________________help_text___________________________________
+<h1>Index</h1><p>*: only english</p><p>General</p>%s<p>Usage</p>%s<p>Tools</p>%s<p>Start</p>%s<p>How to play</p>%s<p>Others:</p>%s
+<title>Nápoveda</title><h1>Register nápovedy</h1><p><it>O hre Simutrans</it></p>%1$s<p><it>Ako používať</it></p>%2$s<p><it>Ako začať hru</it></p>%4$s<p><it>Ako hrať</it></p>%5$s<p><it>Nástroje</it></p>%3$s<p><it>Ostatné okná</it></p>%6$s
+<title>Keyboard Help</title>\n<h1><strong>Keyboard Help</strong></h1><p>\n
+<title>Klávesové skratky</title>\n<h1><strong>Klávesová nápoveda</strong></h1>\n<p>\n<p><strong>Klávesová nápoveda</strong> sa otvorí pri stlačení nepriradeného klávesu alebo zo <a href="general.txt">Všeobecnej nápovedy</a>.\n</p>\n<p>\nRozlišujú sa veľké a malé písmená (použite [<em>Shift</em>] pre veľké písmená).\n</p>\n<p>\nKlávesy s priradenou funkciou zahŕňajú:\n</p>\n<p>\n[<em>Šípky</em>]: posun herného pohľadu v smere šípky.<br>\n[<em>Backspace</em>]: zatvoriť všetky okná, nástrojové lišty a texty nápovedy.<br>\n[<em>Delete</em>] alebo [<em>Escape</em>]: zatvoriť vrchné okno, nástrojovú lištu alebo nápovedu.<br>\n[<em>Page-Up</em>] alebo [<em>&gt;</em>]: priblížiť herný pohľad.<br>\n[<em>Page-Down</em>] alebo  [<em>&lt;</em>]: oddialiť herný pohľad.\n[<em>CTRL</em>] + nástroj: stavať rovnejšie cesty (aj cez rýchlejšie cesty) alebo obrátiť poradie výberu pri zisťovaní informácií či mazaní.<br>\n</p>
+At least one stop is connected to the town.
+Aspoň jedna zastávka je spojená s mestom.
+At least one tile is connected to one stop.
+Aspoň jedno políčko je spojené s jednou zastávkou.
+Color according to transport capacity left
+Zafarbiť podľa zostávajúcej prepravnej kapacity
+Color-coded terrain according to altitude.
+Zobraziť/skryť tieňovanie vrstevníc terénu.
+Decrease water height
+Znížiť hladinu vody o jednu úroveň
+Highlight railroad tracks
+Zvýrazniť železničné koľaje
+Highlite depots
+Zvýrazniť depá
+Highlite electrical transmission lines
+Zvýrazniť elektrické vedenia
+Highlite factories
+Zvýrazniť fabriky
+Highlite forests
+Zvýrazniť lesy
+Highlite tourist attraction
+Zvýrazniť turistickú atrakciu
+Increase water height
+Zvýšiť hladinu vody o jednu úroveň
+Open station/stop details
+Zobraziť podrobnosti o stanici
+Overlay city limits
+Zobraziť hranice mesta
+Overlay passenger destinations when a town window is open
+Zobraziť ciele cestujúcich pri otvorenom okne mesta
+Overlay schedules/network
+Zobraziť cestovné poriadky/sieť
+Overlay town names
+Zobraziť názvy miest
+Please click on the map to add\nwaypoints or stops to this\nschedule.
+Kliknite na mapu pre pridanie\nprejazdných bodov alebo zastávok do tohto\ncestovného poriadku.
+Remove double stops from schedule
+Odstrániť duplicitné zastávky z cestovného poriadku
+Set tile climate %s
+Zmeniť túto pôdu na podnebie %s
+Show capacity and if halt is overcrowded
+Zobraziť kapacitu a preplnenie zastávky
+Show how many convoi reach a station
+Zobraziť, koľko súprav prichádza do stanice
+Show how many people/much is waiting at halts
+Zobraziť, koľko ľudí/tovaru čaká na zastávkach
+Show initial passenger departure
+Zobraziť východiskovú stanicu cestujúcich a pošty.
+Show level of city buildings
+Zobraziť úroveň mestských budov
+Show mail service coverage/mail network
+Zobraziť pokrytie poštovými službami
+Show passenger coverage/passenger network
+Zobraziť pokrytie siete pre cestujúcich
+Show speedlimit of ways
+Zobraziť rýchlostné obmedzenia ciest/tratí
+Show the change of waiting at halts
+Zobraziť zmenu počtu čakajúcich od minulého mesiaca
+Show the owenership of infrastructure
+Zobraziť vlastníctvo infraštruktúry
+Show transported freight/freight network
+Zobraziť prepravovaný náklad/nákladnú sieť
+Show usage of network
+Zobraziť vozidlá na políčko za mesiac
+Shows a listing with all industries on the map.
+Zobrazí zoznam všetkých tovární na mape.
 Sum of departure/arrivals at halts
 Súčet množstva prijatého a odbaveného tovaru (cestujícich, pošty) na zastávke.
 #____________________________________ki_text____________________________________
@@ -205,6 +403,8 @@ Súčet množstva prijatého a odbaveného tovaru (cestujícich, pošty) na zast
 %s\notvára novú\nželezničnú trat' medzi \n%s\n(na %i,%i) a \n%s\n(na %i,%i).
 Airline service by\n%s\nnow between\n%s \nand %s.\n
 Spoločnosť %s\notvára leteckú linku\nmedzi mestami \n%s \na %s.\n
+Ferry service by\n%s\nnow between\n%s \nand %s.\n
+Trajektová linka\n%s\nteraz premáva medzi\n%s \na %s.\n
 Travellers now\nuse %s's\nbusses between\n%s \nand %s.\n
 %s\nvytvoril novú\nautobusovú linku\nmedzi \n%s a %s\n
 #___________________________________menu_text___________________________________
@@ -233,6 +433,12 @@ TRAMTOOLS
 Električková doprava
 #_________________________________message_text__________________________________
 #_________________________________message_text__________________________________
+%s s\nheadquarter now\nat (%i,%i).
+%s postavil nové sídlo.
+Factory chain extended\nfor %s near\n%s built with\n%i factories.
+Priemyselný reťazec rozšírený\npre %s blízko\n%s s počtom\n%i fabrík.
+Net wealth less than 10%% of starting capital!
+Čisté imanie je nižšie ako 10%% štartovacieho kapitálu!
 New %s now available:\n%s\n
 Bola zahájená sériová výroba %s\n'%s'\n
 New factory chain\nfor %s near\n%s built with\n%i factories.
@@ -241,46 +447,90 @@ New vehicle now available:\n%s\n
 Je dostupné nové vozidlo:\n>> %s <<\n
 Now %u clients connected.
 Práve je připojených %u hráčov.
+overtaking
+predchádzanie
 Remove vehicle from map. Use with care!
 Odstránenie vozidla z mapy. Používať opatrne!
 Screenshot\ngespeichert.\n
 Screenshot uložený.\n
 Sends the convoi to the last depot it departed from!
 Poslať celý konvoj do nabližšieho depa !
+Server preparing game ...
+Server pripravuje hru...
+Trees
+Stromy
 With a big festival\n%s built\na new monument.\n%i citicens rejoiced.
 S veľkou parádou\nodhalilo mesto %s\nnovú atrakciu.\n%i obyvateľov oslavuje.
+#___________________________________obsolete____________________________________
+#___________________________________obsolete____________________________________
+Line Filter
+Filter liniek
 #_________________________________program_text__________________________________
 #_________________________________program_text__________________________________
 (%i)-
 (%i) 
 (in depot)
 (v depe)
+[0] south-facing
+[0] otočený na juh
+[1] east-facing
+[1] otočený na východ
+[2] north-facing
+[2] otočený na sever
+[3] west-facing
+[3] otočený na západ
+[4] southeast corner
+[4] juhovýchodný roh
+[5] northeast corner
+[5] severovýchodný roh
+[6] northwest corner
+[6] severozápadný roh
+[7] southwest corner
+[7] juhozápadný roh
+/month
+/mesiac
 \nBauzeit bis
  do 
 \nBauzeit von
 \nVýstavba od 
+\nCan't open heightfield file.\n
+\nNemožno otvoriť mapu výšok.\n
 \ndirection:
 \nsmery:
 \nelektrified
 \nelektrifikované
+\nHeightfield has wrong image type.\n
+\nMapa výšok má nesprávny\ntyp obrázka.\n
 \nis reserved by:
 \nobsadené vlakom 
 \nminimum speed:
 \nnajnižšia povolená rýchlosť
 \nnot elektrified
 \nneelektrifikované
+\nRibi (masked)
+\nsmery (maskované): 
 \nRibi (unmasked)
 \nSmery\n (skryté): 
+\nSet phases:
+\nNastaviť čas fáz\n  / potom \\  potom posun
 \nsingle way
 \nJednosmerka
+\nway1 reserved by
+\ncestu 1 rezervuje 
+\nway2 reserved by
+\ncestu 2 rezervuje 
+\nwith sign/signal\n
+\nso značkou/návestidlom\n
 %d buildings\n
 %d budov\n
 %d convois
 %d súprav
 %d Einzelfahrzeuge im Depot
 %d zoznam vozidiel v depe
-%i km/h (max. %ikm/h)
-%i km/h (max. %i km/h)
+%d more convois
+%d ďalších konvojov
+%i car(s),
+%i vozidiel,
 %i years %i months old.
 %i rokov a %i mesiacov.
 %s at (%i,%i) now public stop.
@@ -289,30 +539,88 @@ S veľkou parádou\nodhalilo mesto %s\nnovú atrakciu.\n%i obyvateľov oslavuje.
 %s %s %s
 %s city %d %s
 %s mesto %d %s
+%s factory %s %s
+%s %s dvor
 %s has entered a depot.
 Vozidlo ,,%s'' prišlo do depa.
+%s has left.
+%s odišiel.
 %s land %d %s
 %s pozemok %d %s
+%s now known as %s.
+%s sa teraz volá %s.
 %s wasted\nyour money with a\nnew townhall\nwhen it reached\n%i inhabitants.
 Mesto %s\npostavilo\nnovú radnicu,\nkeď dosiahlo\n%i obyvateľov.
 %s\nis crowded.
 Zastávka ,,%s'' je pret'ažená
+%s\nspeed %i\nmax_speed %i\ndx:%i dy:%i
+%1$s\n\n\nmaximálna rýchlosť %3$i km/h\n\naktuálna rýchlosť %2$i km/h.\n\n
+%s\nwas liquidated.
+%s zbankrotoval a\nbol zlikvidovaný.\nVšetka prevádzka bola zastavená\na všetok majetok bol predaný.
+%u Client(s)\n
+%u klient(ov)\n
+%u days ago
+pred %u dňami
+%u hours ago
+pred %u hodinami
+%u minutes ago
+pred %u minútami
+%u Player (%u locked)\n
+%u hráčov (%u zamknutých)\n
+%u years ago
+pred %u rokmi
+<clear schedule>
+<vymazať cestovný poriadok>
+<create new line>
+<vytvoriť novú linku>
+<em>%s</em> - %s<br>\n
+[<em>%s</em>]: %s<br>\n
+<h1>Error</h1><p><strong>
+<H1>Chyba: Duplicitné objekty v hlavnom pak adresári</H1><p><strong>V 
+<h1>Warning</h1><p><strong>addons for
+<h1>Varovanie: Duplicitné objekty v adresári doplnkov</h1><p><strong>Doplnky pre 
+<individual schedule>
+<individuálny cestovný poriadok>
 <no line>
 <žiadna linka>
+<no schedule set>
+<nie je nastavený cestovný poriadok>
+<promote to line>
+<povýšiť na linku>
 1 convoi
 1 súprava
 1 Einzelfahrzeug im Depot
 1 vozidlo v depe
+1 minute ago
+pred 1 minútou
+1 year ago
+pred 1 rokom
+100 km/h = %i tiles/month
+100 km/h = %i políčok/mesiac
 1LIGHT_CHOOSE
 Svetlost':
+1th
+1.
 1WORLD_CHOOSE
 Nastavenia pre novú mapu:
+21th
+21.
+22th
+22.
+23th
+23.
 2LIGHT_CHOOSE
 Farebnost':
+2th
+2.
 2WORLD_CHOOSE
 Číslo mapy:
+31th
+31.
 3LIGHT_CHOOSE
 Rolovanie:
+3th
+3.
 4LIGHT_CHOOSE
 Inverzné rolovanie
 5LIGHT_CHOOSE
@@ -325,38 +633,66 @@ Chodci v mestách
 Hustota dopravy:
 8WORLD_CHOOSE
 Striedat' noc a deň
+A bridge must end on a way!
+Most musí končiť na ceste!
 A bridge must start on a way!
 Mosty musia\nzačínať na\n existujúcej ceste.
 Abfrage
 Informácie
 Abnehmer
 Odberateľ
+About
+O hre
+About scenario
+Autorské práva
 Abriss
 Búranie
 Absenken
 Terén znížit'
+Abspanntransformator
+Transformátor
 Accelerate time
 Zrýchliť čas
+Act. load: %u MW\n
+Aktuálne zaťaženie: %u MW\n
+Active player only
+Iba aktívny hráč
 Add forest
 Vysadiť les
+Add random citycar
+Pridať náhodné mestské auto
+add server
+Pridať server
 Add Stop
 Pridat'
 Add stops for backward travel
 Rovnaká spiatočná trasa
+air
+vzletová/rolovacia dráha
+Aircraft
+Letecká doprava
 aircraft_tab
 Nákladné lietadlá
+airplane
+lietadlo
 Airport
 Letisko
 AIRTOOLS
 Letecká doprava
 All
 Všetky
+all convoi tooltips
+všetky nápovedy súprav
 Allow city growth
 Povoliť rast mesta
 Allow player change
 Povoliť zmenu hráča
+allowed climates:\n
+Povolené podnebia:\n
 Alters a schedule.
 Pridať/odstrániť zastávky do/z cestovného poriadku
+and arranged by
+a zoradené podľa
 Angenommene Waren
 Tovar potrebný pre ďalší priemysel
 anhaengen
@@ -365,32 +701,46 @@ Anhaenger_tab
 Prívesy
 Anheben
 Terén zvýšit'
+Appends stops at the end of the schedule
+Pridať zastávku na koniec cestovného poriadku
 Apply Line
 Použit' linku
 April
 Apríl
 Arbeiter aus:
 Zamestnanci z:
+Arrivals from\n
+Príchody z\n
 Arrived
 Privezené
 Assets
 Majetok
 Aufloesen
 Rozpojiť
+Aufspanntransformator
+Transformátor
 Autohalt muss auf\nStrasse liegen!\n
 Zastávka musí byť\numiestnená na ceste.
 Available
 K dispozícii
+Available at custom date
+K dispozícii od zadaného dátumu
 Bahndepot
 Železničné depo
 Bankrott:\n\nDu bist bankrott.\n
 Bankrot:\n\nZbankrotoval si.\n
+based on Simutrans 84.22.1
+založené na Simutrans 84.22.1
+battery
+Batéria
 Baum
 Strom
 baum builder
 Záhradník
 Baustelle
 Stavenisko
+Bauzeit
+doba výstavby
 Beenden
 Skončit'
 Beginner mode
@@ -403,6 +753,16 @@ Blockstrecke ist\nbelegt\n
 Blok je obsadený !\n
 Boden
 Krajina
+Bonus Multiplier: %i%%
+Bonusový násobiteľ: %i%%
+Bonus Speed: %i km/h
+Bonusová rýchlosť: %i km/h
+Bonusspeed: %i km/h
+Max. možná rýchlosť: %i km/h
+Boost (%%)
+Navýšenie (%%)
+Borderless (disabled on fullscreen)
+Bez okrajov (vypnuté pri celej obrazovke)
 bridge is too high for its type!
 Tento typ mostu nemôže stáť tak vysoko.
 Bridge is too long for this type!\n
@@ -413,6 +773,8 @@ Bruecke muss an\neinfachem\nHang beginnen!\n
 Most môže byt' postavený\nlen na rovnom kopci !\n
 Brueckenboden
 most
+Build air depot
+Postaviť letecký hangár
 build choosesignals
 Postaviť hradlo
 Build city market
@@ -423,8 +785,14 @@ build HQ
 Postaviť centrálu
 Build land consumer
 Postavit' veternú elektráreň
+Build maglev depot
+Postaviť maglev depo
 Build monorail depot
 Postaviť depo Alwegu
+Build narrowgauge depot
+Postaviť úzkokoľajné depo
+build portal only
+postaviť iba portál
 Build powerline
 Postavit' elektrické vedenie
 Build presignals
@@ -441,6 +809,8 @@ Build tram depot
 Stavba električkového depa
 Build truck depot
 Stavba automobilového depa
+Building costs estimates
+Odhadované stavebné náklady
 Buildings
 Budovy
 Built artifical slopes
@@ -449,24 +819,52 @@ Built random attraction
 Postaviť náhodnú turistickú atrakciu
 Bus_tab
 Autobusy
+Can be overgrown
+Môže zarásť
+Can only move from halt to halt or waypoint to waypoint.
+Dá sa presúvať iba\nzo zastávky na zastávku alebo\nz prejazdného bodu na prejazdný bod.
 Cancel
 Návrat
+Cannot build here
+Tu sa nedá stavať
+Cannot connect to offline server!
+Nemožno sa pripojiť k offline serveru!
+Capacity
+Kapacita
+Capacity:
+Kapacita:
+Capacity: %.0f MW
+Kapacita: %.0f MW\n
 Capacity: %d%s %s\n
 Kapacita : %3d%s %s\n
+Capacity: %s\nLoad: %d (%d%%)
+Kapacita: %s\n\nPodiel: %d (%d%%)
 Cars are not available yet!
 Vozidlá sa zatiaľ nevyrábajú.
+cars.\nstate
+ vozidiel\n
 Cash
 Peniaze
+Category
+Kategória
+Change label style
+Zmeniť štýl nápisov
 Change player
 Zmeniť hráča
 Chart
 Grafy
+Chat_msg
+Čet
+Choose direction
+Zvoliť smer
 Choose operation executed on clicking stored/new vehicles
 Zvolit' vykonávanú operáciu pri kliknutí na zaparkované/nové vozidlá v depe
 chooses a random map
 Vybrať náhodnú mapu
 citicens
 Obyvatelia
+Cities can only be built on flat empty ground!
+Mestá je možné stavať iba na rovnom prázdnom teréne!
 City attraction
 Mestské pamiatky
 City industries
@@ -485,14 +883,26 @@ cl_title
 Zoznam vozidiel
 cl_txt_sort
 Triedenie:
+clamp
+ohraničiť
+Cleanup schedule
+Odstrániť duplicitné položky
+Clear block reservation
+Zobraziť/resetovať rezervované cesty
 clf_chk_aircrafts
 lietadlá
 clf_chk_cars
 Busy/Nákl.autá
 clf_chk_indepot
 depá
+clf_chk_maglev
+Maglevy
+clf_chk_monorail
+Monoraily
 clf_chk_name_filter
 Filter názvov:
+clf_chk_narrowgauge
+Úzkokoľajné vlaky
 clf_chk_noincome
 žiadny príjem
 clf_chk_noline
@@ -501,6 +911,8 @@ clf_chk_noroute
 žiadna cesta
 clf_chk_noschedule
 žiadny cest.por.
+clf_chk_obsolete
+Zastarané
 clf_chk_ships
 Lode
 clf_chk_spezial_filter
@@ -517,24 +929,46 @@ clf_chk_waren
 Filter cien:
 clf_title
 Filter vozidiel:
+Click to open the finance dialog.
+Kliknutím otvoríte dialóg financií.
+Climate
+Podnebie
 Climate Control
 Nastaviť podnebie
+Climates
+Podnebia
+closed
+zatvorené.
+Closes topmost line window when new line selected.
+Zavrie najvrchnejšie okno linky pri výbere novej linky.
 COLOR_CHOOSE\n
 Prosím zvoľ\nTvoju farbu\nkliknutím:\n
 Company bankrupt
 Spoločnosť skrachovala
+company_chat
+Firemný chat
 Company_msg
 Konkurenti
 Comparing pak files ...
 Porovnávanie *.pak súborov ...
+Composed by
+Skladateľ
 Configure AI
 Nastaviť umelú inteligenciu
+Configure AI setttings
+Konfigurovať nastavenia umelej inteligencie
 Congratulation\nScenario was complete in\n%i months %i years.
 Gratulácia!\n\nScenár bol úspešne uhraný za %i mesiace(ov) a %i rok(y)
+Connect factory
+Pripojiť fabriku
 Connected stops
 Zastávky v dosahu:
 Connected with server
 Spojený so serverom
+connection
+spojenie
+Connections
+Spojenia
 Constructed by
 Vytvoril: 
 Constructed by %s
@@ -545,14 +979,20 @@ Construction_Btn
 Stavby
 Consumed
 Spotrebované
+contains the following doubled objects:</strong><p>
+ obsahuje nasledujúce objekty viac ako raz:</strong><p/>
 convoi %d of %d
 konvoj %d z %d
 convoi error tooltips
 Zobraziť len varovné nápovedy
+Convoi following mode
+Režim sledovania súpravy
 Convoi has been sent\nto the nearest depot\nof appropriate type.\n
 Konvoj bol poslaný do\nnajbližšieho depa príslušného\ntypu.
 Convoi is sold when all wagons are empty.
 Konvoj bude vyradený, keď budú všetky jeho vozidlá prázdne.
+convoi mouseover tooltips
+nápovedy súprav pri prejdení myšou
 convoi passed last\nmonth %i\n
 \nkonvojov za posledný mesiac: %i\n
 Convois
@@ -565,70 +1005,164 @@ Copy Convoi
 Duplikovať
 Copy the selected convoi and its schedule or line
 Skopírovať zvolený konvoj s cest. poriadkom alebo linku
+Copy to clipboard
+Kopírovať do schránky
+Cost
+Cena
+cost for removal
+Náklady na odstránenie 
+Cost per unit
+Cena za jednotku
+Cost: %8s (%.2f$/km %.2f$/m)\n
+Cena: %s (%.2f$/km %.2f$/m)\n
+Cost: %8s (%.2f$/km)\n
+Cena: %8s (%.2f$/km)\n
+Costs
+Náklady
 Create a new line based on this schedule
 Vytvoriť novú linku podľa tohto cestovného poriadku
 curiosity builder
 Postaviť kuriozitu
 curlist_title
 Zoznam atrakcií
+CURRENCY
+$
+Current game
+Aktuálna hra
 Currently playing:
 Zmena prehrávania :
+Customers live in:
+Zákazníci žijú v:
+Date format
+Formát dátumu
+deactivated in online mode
+Neaktívne v online režime
 Deccelerate time
 Spomaliť hru
+decrease underground view level
+znížiť úroveň podzemného pohľadu
 Del Stop
 Zmazat'
 Delete Line
 Zrušit' linku
+Delete the current stop
+Zmazať aktuálnu zastávku
+Delete the selected line (if without associated convois).
+Zmazať vybranú linku (ak nemá priradené žiadne súpravy)
+Delete this file.
+Zmazať tento súbor.
+Delivered
+Doručené
+Demand
+Dopyt
+Demand: %.0f MW
+Dopyt: %.0f MW\n
 Denkmal
 Pomník
 Departed
 Odvezené
+Departs at
+Odchod o (dd:hh:mm)
+Departure after
+%% naloženia alebo čakanie (dd-hh-mm)
+Departure board
+Čas odchodu
+Departures per month
+Odchody za mesiac
+Departures to\n
+Odchody do\n
+Depot
+Depo
 Depots
 Depá
 Der Tunnel ist nicht frei!\n
 Tunel nie je voľný !
 Destination
 Cieľ určenia
+Destroying map ...
+Odstraňovanie starej mapy...
 Details
 Detaily
+Developed by the Simutrans Team
+Vyvinuté tímom Simutrans
+Die Bruecke ist nicht frei!\n
+Most nie je voľný!\n
+direct_chat_to:
+Priama správa pre
+directmail
+Letáky
 Direkt erreichbare Haltestellen
 Priame spojenia
+disable midi
+Stlmiť hudbu MIDI
+Display bars above factory to show the status
+Zobraziť stĺpce nad fabrikou na zobrazenie stavu
 Display settings
 Obrazovka :
+Distance
+Vzdialenosť
+distributing cities
+rozmiestňovanie miest
+distributing factories
+rozmiestňovanie fabrík
+Do not show
+Nezobrazovať
 Dock
 Dok 
 Dock must be built on single slope!
 Dok musí byť postavený na rovnom svahu.
+Downloading
+Sťahovanie
 dp_title
 Zoznam dep
 Du hast %d Monate Zeit, deine Schulden zurueckzuzahlen
 Máš %d mesiace na splatenie dlhu.
 Durchsatz
 Max.
+Economy
+Hospodárstvo a mestá
 Eigenbesitz\n
 Verejný majetok\n
 Ein %s\npasst hier nicht.\n
 '%s'\nsem nepasuje.\n
+Einstellungen
+Nastavenia
 Einstellungen aendern
 Zmena nastavení
 electric
 elektro
+Electricity
+Elektrina
+Electricity producer\n\n
+Výrobca elektriny\n\n
 Electrics_tab
 Elektrické vlaky
 Electrify track
 Elektrifikovaná trat'
+enlarge map
+Zväčšiť mapu
+enter a value between %i and %i
+zadajte hodnotu medzi %i a %i
+Enter address
+Zadajte adresu
+Enter Password
+Zmena mena hráča a hesla
 Error
 Chyba
 Erzeuge neue Karte.\n
 \nProsím čakaj,\nvytváram novú mapu...\n\n(Pri veľkých mapách\nto môže pár minút\ntrvat'...)\n
 Es wird bereits\nein Fahrplan\neingegeben\n
 Už bol jeden\ncestovný poriadok\nzadaný!\n
+Extract files
+Rozbaliť súbory pak zo zipu.
 Fabrikanschluss
 Spojenie s priemyslom
 Fabrikname
 názov fabriky
 Factories
 Fabriky
+factory details
+Spojenia fabriky
 factorybuilder
 Postaviť fabriku
 Fahrplan
@@ -651,12 +1185,16 @@ Fertig
 Hotovo
 Filename
 Súbor :
+Files from:
+Súbory z:
 Filter:
 cl_btn_filter_enable
 Finances of %s
 Financie spoločnosti %s
 Finanzen
 Financie
+find mismatch
+Porovnať váš pak
 fl_title
 Zoznam fabrík
 Flug_tab
@@ -665,54 +1203,94 @@ follow me
 Sledovanie
 Follow the convoi on the map.
 Sleduj súpravu na mape
+font size
+Veľkosť písma (iba písma .ttf a .otf)
+For questions and support please visit:
+V prípade otázok a podpory navštívte:
 Forest
 les
 Found new city
 Vybudovat' nové mesto (5.000.000$)
 Fracht
 Náklad
+Frame time:
+Čas snímky:
 Free Capacity
 Voľné miesto
 freeplay mode
 voľná hra
+Freight
+Náklad
+Friction:
+Aktuálny koeficient trenia:
+fuel_cell
+palivový článok
 Full load
 Vytaženie :
+Fullscreen (changed after restart)
+Celá obrazovka (zmena po reštarte)
+Fundament
+Základy
 Fussgaenger
 Chodec
+Game info
+Informácie o hre
 GAME PAUSED
 HRA POZASTAVENÁ
+Game_msg
+Všeobecné
 Gear:
 Príslušenstvo:
 Gebaeude
 Budova
+General
+Všeobecné
+generate script
+Generovať skript makra infraštruktúry
+Generated
+Vygenerované
+Generation: %.0f MW
+Výroba: %.0f MW\n
 Gewicht
 Hmotnost'
 Gewinn
 Príjem 
 Give the selected vehicle(s) an individual schedule
 Zadat' vybranému(ým) vozidlu(ám) osobitný cest. poriadok
+gl_btn_sort_catg
+Kategória
 gl_title
 Zoznam služieb
 go home
 Do depa
 Goods
 Tovar
+Goods AI
+AI tovaru
 Goods list
 Prehľady služieb
 Gross Profit
 Cash Flow
+Groundobj
+Objekt
 groundobj builder
 Postaviť objekt v krajine
 Grow city
 Zväčsiť mesto
 Growth
 Prírastok obyv.
+GUI settings
+GUI
 H
  
 Hangar
 Hangár
 Happy
 Uspokojené
+Has slope graphics
+Má grafiku svahu
+Has Snow
+Má sneh
 Haus kaufen
 Kúpiť dom
 Helligk.
@@ -725,12 +1303,24 @@ hide all building
 Skryť všetky budovy
 hide city building
 Skryť mestské budovy
+Hide labels
+Skryť nápisy
+hide objects under cursor
+skryť objekty pod kurzorom
+hide station names
+skryť názvy staníc
 hide transparent
 Priehľadné (neskrývať)
 hide trees
 Skryť stromy
 Hier warten/lagern:
 Čakajúci pasažieri/tovar:
+Higher transport fees, crossconnect all factories
+Vyššie prepravné poplatky, vypnúť Just-in-time.
+highlight single ways
+Označuje koniec/prerušenie dopravných ciest.
+Highlite schedule
+Zvýrazniť zastávky v cestovnom poriadku
 hl_title
 Zoznam zastávok
 hl_txt_filter
@@ -749,10 +1339,20 @@ hlf_chk_frachthof
 Nákl.rampa
 hlf_chk_keine_verb
 bez spojenia
+hlf_chk_maglevstop
+Stanica maglevu
+hlf_chk_monorailstop
+Zastávka monorailu
 hlf_chk_name_filter
 Filter názvov:
+hlf_chk_narrowgaugestop
+Úzkokoľajná stanica
+hlf_chk_overflow
+Preplnené
 hlf_chk_spezial_filter
 Speciálny filter:
+hlf_chk_tramstop
+Električková zastávka
 hlf_chk_type_filter
 Filter typov:
 hlf_chk_waren_abgabe
@@ -765,22 +1365,58 @@ Home depot not found!\nYou need to send the\nconvoi to the depot\nmanually.
 Depo nebolo nájdené!\nKonvoj treba poslat'\ndo depa manuálne.
 Homeless
 Bývanie hľadá
+Horizontal stripe ownership
+Vodorovné pruhy vlastníctva
 hydrogene
 Vodík
+Icon size:
+Veľkosť ikon:
+Idle:
+Nečinný:
 ignore climates
 Ignorovať podnebie
+In the industry legend show only currently existing factories
+V legende priemyslu zobrazovať iba existujúce fabriky
+In Transit
+V preprave
+Increase Industry density
+Zvýšiť hustotu priemyslu
+increase underground view level
+zvýšiť úroveň podzemného pohľadu
 industrial building
 priemyselná budova
+Industry overlay
+Priemyselná vrstva
+Infinite mouse scrolling
+Nekonečné posúvanie mapy
+Infinite scrolling using mouse
+Nemusí fungovať s dotykovými obrazovkami!
 Init map ...
 Vytváram mapu
+Input
+Vstup
 Ins Stop
 Vložit'
+Insert stop before the current stop
+Vložiť zastávku pred aktuálnu zastávku
+Install graphics
+Inštalovať grafiku
+Install paks
+Sady pak sa stiahnu a nainštalujú.
+Insufficient funds!
+Nedostatok financií!
 Intercity road len:
 Dĺžka ciest:
+Intro. date
+Dátum zavedenia
 Intro. date:
 Dostupné od:
+invalid
+nedefinované.
 Invalid coordinate
 -neplatné súradnice-
+Invert stops
+Obrátiť zastávky
 isometric map
 Izometrické zobrazenie
 January
@@ -789,18 +1425,28 @@ join game
 On-line hra
 July
 Júl
+Jump to
+Skočiť na
 June
 Jún
+just now
+práve teraz
 Kann Spielstand\nnicht laden.\n
 Nemôžem načítat' hru !\n
 Kann Spielstand\nnicht speichern.\n
 Nemôžem uložit' hru !\n
+keep city roads
+zachovať mestské cesty
 Kein Besitzer\n
 Bez majiteľa\n
 keine
 žiadny
 Keine Einzelfahrzeuge im Depot
 V depe nie je žiadne vozidlo
+Keyboard_Help\n
+Nápoveda ku klávesnici\n
+koord
+Súradnice
 Kreuzung
 Križovatka
 labellist_title
@@ -809,18 +1455,32 @@ Lade Relief
 Načítat' reliéf
 Laden
 Načítat'
+Land attraction
+Krajinná atrakcia
 Land industries
 Mimomestský priemysel:
 LANG_CHOOSE\n
 Prosím zvoľ Tvoj jazyk:\n
+LARGE_NUMBER_STRING
+M
+LARGE_NUMBER_VALUE
+1e6
 Last Month
 Minulý mesiac:
 Last used tools
 Nedávno použité nástroje
 Last Year
 Minulý rok:
+Leaving depot!
+Opúšťa depo!
 leer
 prázdne
+Left button drags minimap too
+Ľavé tlačidlo posúva aj minimapu
+legacy (large heights)
+pôvodné (veľké výšky)
+legacy (small heights)
+pôvodné (malé výšky)
 Legend
 Vysvetlivky
 Leistung
@@ -829,34 +1489,78 @@ Leistung: %d kW
 Výkon: %d kW
 Leitung
 Elektrické vedenie
+length: %d
+dĺžka: %d
 letzen Monat: diesen Monat:
 posledný mesiac:   tento mesiac:
 Line
 Linka
 Line Management
 Manažment liniek
+line name mouseover tooltips
+popisy názvu linky pri prejdení myšou
+linear
+lineárne
+Lineless convoys serving this stop
+Konvoje bez linky obsluhujúce túto zastávku
 Lines serving this stop
 Linky obsluhujúce túto stanicu
+List of industries on the map
+Zoznam priemyslu na mape
 LKW_tab
 Nákl. autá
 Load game
 Uložené hry
+load height data from file
+Načítať údaje o výške zo súboru.
+Load mode:
+Režim nakládky:
 Load scenario
 Scenáre
+Load script tool
+Načítať skriptovací nástroj
+Load Scripted AI
+Načítať skriptovanú AI
+Load settings from
+Použiť nastavenia z
 loaded
 naložené
 loaded passenger/freight
 Zoradiť náklad podľa
 Loading (%i->%i%%)!
 Naložené %i z %i%%
+Loading (%i%%) departure %s!
+Nakladá sa (%i%%) odchod %s!
+Loading (%i%%)!
+Nakladá sa (%i%%)!
+Loading addon paks ...
+Načítavanie doplnkových balíčkov pak...
 Loading map ...
 Nahrávam mapu ...
+Loading paks ...
+Načítavanie balíčkov pak...
+Loading skins ...
+Načítavanie vzhľadov...
+Loading time:
+plne naložené za: 
+Lock Control key
+Uzamknúť kláves Ctrl
+Lock game
+Zakázať zmeny hráčov (vyžaduje potvrdenie).
 Lokomotive_tab
 Lokomotívy
 m3
 m?
+maglev vehicle
+vozidlo maglevu
+maglev_track
+Trať maglevu
+Maglevdepot
+Depo maglevu
 Mail Demand %d\n
 Dopyt po pošte %d\n
+Mail level
+Úroveň pošty
 Mailbox
 Archív správ
 Mailbox Options
@@ -865,12 +1569,16 @@ Maintenance
 Údržba
 make stop public (or join with public stop next) costs %i per tile and level
 Sprístupnenie zastávky (prepojenie so susednými verejnými zastávkami) stojí %i$ za každé políčko a podlažie
+Make way or stop public (will join with neighbours), %i times maintainance
+Zverejniť cestu alebo zastávku (spojí sa so susednými), %i-násobná údržba
 Manual (Human)
 Človek
 Manufactured:
 Vyrobené:
 Map roughness
 Členitosť mapy
+map view
+Mapa
 map zoom
 mierka mapy
 March
@@ -883,8 +1591,12 @@ Max Boost (%%)
 Max. nárast (%%)
 Max income:
 Max. tržba:
+Max. speed
+Max. rýchlosť
 Max. speed:
 Max. rýchlosť:
+Max. waiting time
+Max. doba čakania (dd:hh:mm)
 Maximum 254 stops\nin a schedule!\n
 Maximum\n254 staníc\nv cestovnom poriadku!\n
 maximum length of rivers
@@ -905,8 +1617,12 @@ merge stop
 Spojiť zastávky
 MessageOptionsText
 \nNový rok\n\nKonkurencia\n\nMesto\n\nBez trasy\n\nPriemysel\n\n"chat"\n\nNové vozidlá\n\nPlné zastávky\n\nProblémy\n\nTraffic jams\n\nScenario
+min
+min.
 minimum length of rivers
 Min. dĺžka riek
+Minimum load
+Minimálne vyťaženie (%%)
 Missing pakfiles
 Chýbajú súbory grafickej sady!
 Modify the selected line
@@ -923,8 +1639,12 @@ Monorailboden
 Nosník visutej železnice
 Monoraildepot
 Depo
+Month
+Mesiac
 month wait time
 Max. čakanie (mes.)
+Monthly departures
+Pevné časy odchodov
 Months
 Mesiace
 Monument
@@ -933,6 +1653,8 @@ Monuments
 Pamätníky
 Mountain height
 Výškový rozdiel
+Move the map
+Posunúť mapu
 Movingobj
 pohyblivý objekt
 Music playing disabled/not available
@@ -983,18 +1705,26 @@ no goods waiting
 Nečaká žiadny tovar
 no load
 Nenakladať
+No player
+Žiadny hráč
 No Route
 Bez trasy
 No stop here!
 Nástroj je prístupný len na staniciach!
 No suitable ground!
 Nevhodný terén!
+No suitable townhall available for this climate!
+Pre toto podnebie nie je k dispozícii žiadna vhodná radnica!
 No terminal station here!
 Tu nie je možné postaviť\nkoncovú zastávku.\nMusí stáť na rovine\nna konci cesty.
 no timeline
 všetky obdobia
+No transformer connected.
+Nie je pripojený transformátor: Všetka energia vyjde nazmar.
 no tree
 bez stromov
+No vehicles are available for purchase.
+Nie sú k dispozícii žiadne vozidlá na nákup.
 No. of Factories
 Počet tovární a obchodov:
 Noch kein Fahrzeug\nmit Fahrplan\nvorhanden\n
@@ -1007,16 +1737,26 @@ nordost
 Severovýchod
 nordwest
 Severozápad
+Not allowed to make publicly owned ways!
+Nie je povolené vytvárať verejné cesty!
 Not allowed!\nThe convoi's schedule can\nnot be changed currently.\nTry again later!
 Odopreté!\nCestovný poriadok nemôže\nbyt' teraz zmenený.\nVyskúšajte neskôr !
 Not enough fields would remain.
 Okolo tejto farmy zostáva\nmálo políčok.
+Not online
+Nie je online
+now
+teraz
 Now active as %s.\n
 Teraz aktivny ako %s.\n
+nowhere
+nikde
 Number of rivers
 Počet riek
 Object
 Podľa ID
+Oct.
+Okt.
 Odometer: %s km
 Najazdené: %s km
 Ok
@@ -1025,26 +1765,56 @@ Oktober
 Október
 On loan since %i month(s)
 Počet mesiacov na splatenie dlhov: %i
+On mouseover
+Pri prejdení myšou
+on the
+odchod/mesiac najskôr o (dd-hh-mm)
 On this map, you are not\nallowed to change player!\n
 V tejto hre\nnemôžete hrať\nza iného hráča!\n
 Only city chains
 Postaviť mestský priemysel
 Only first %d differing paks reported. There are probably more.
 Ohlásených je len %d odlišných súborov. Ale je ich asi viac.
+Only full Unicode fonts
+Iba úplné písma Unicode
 Only land chains
 Postaviť mimomestský priemysel
 Only one transformer per factory!
 Továreň môže mať len jednu trafostanicu! 
+Only show goods which are currently handled by factories
+Zobrazovať iba tovar, ktorý aktuálne spracovávajú fabriky
+open
+otvorené.
 Operation
 Prevádzka
 Ops Profit
 Zisk EBITDA
 Optionen
 Nastavenia
+Or enter a server manually:
+Alebo zadajte server ručne:
+ORDINAL_DAY_SYMBOL
+.
 Origin
 Zdroj
 ost
 Východ
+Output
+Výstup
+Ownership
+Vlastníctvo
+Pak which may cause severe errors:
+Nasledujúce objekty (pak) chýbajú, čo môže spôsobiť zlyhanie prepravných reťazcov:
+Pak which may cause visual errors:
+Nasledujúce objekty (pak) boli nahradené podobnými objektmi:
+Pak(s) different:
+Rozdielne pak(y):
+Pak(s) missing on client:
+Pak(y) chýbajúce u klienta:
+Pak(s) not on server:
+Pak(y) nie sú na serveri:
+Pakset differences
+Rozdiely v paksete
 paletten
  paliet
 Pas_tab
@@ -1055,24 +1825,50 @@ Passagierrate
 Pasažieri
 Passagierziele
 Pasažierske/Poštové ciele
+Passenger AI
+AI cestujúcich
+Passenger Demand %d\n
+Dopyt cestujúcich %d\n
 Passengers %d %c, %d %c, %d no route
 Cestujúci %d %c, %d %c, %d bez spojenia
 Passengers %d %s, %d %s, %d no route
 Cestujúci %d %s, %d %s, %d bez spojenia
+Password
+Heslo:
 Pause
 Pauza
 Pax <%i>  Mail <%i>
 Cestujúci <%i> Pošta <%i>
+Pax level
+Úroveň cestujúcich
+PaxDest
+Ciele
+Percent Electricity
+Výroba elektriny (%% dopytu):
+personal_chat
+Súkromné chaty
+Pipette
+Znovu postaviť vybraný objekt
 Planes are not available yet!
 Dopravné lietadla ešte neboli vyvinuté.
 Plant tree
 Zasadit' strom
+player
+Hráč
 player -1
 človek
 player 0
 verejná služba
 player 1
 Napik 128 AS
+player 10
+hráč 10
+player 11
+Hráč 11
+player 12
+Hráč 12
+player 13
+Hráč 13
 player 2
 Trikky Transport
 player 3
@@ -1083,6 +1879,14 @@ player 5
 H-Trans GmbH
 player 6
 PSK & Co KG
+player 7
+Hráč 7
+player 8
+Hráč 8
+player 9
+Hráč 9
+Player ranking
+Rebríček hráčov
 Please choose vehicles first\n
 \nNajprv prosím vyber vozidlo !
 Post
@@ -1091,18 +1895,34 @@ Postrate
 Pošta
 Power
 Energia
+Power (MW)
+Výkon (MW)
 Power:
 Výkon:
+Power: %4d kW\n
+Výkon: %4d kW\n
 Powerlines
 El. vedenie
+Price
+Cena
+Problems_msg
+Problémy
+Produced
+Vyrobené
+Produces: %.1f units/minute
+aktuálne %.1f/minútu
 Production of %s has been stopped:\n%s\n
 Výroba %s\n'%s'\nbola ukončená.\n
+Production/Boost
+Produkcia/Zvýšenie
 Produktion
 Produkcia
 Profit
 Zisk
 promote to line
 Linka podľa trasy
+public_chat
+Verejný chat
 q1
 Jar
 q2
@@ -1111,14 +1931,24 @@ q3
 Jesen
 q4
 Zima
+Query server
+Dotaz na server
 rail car
 železničného vozidla
+random
+náhodne
+Random age
+Náhodný vek
 Random map
 Náhodná mapa
 Rathaus
 Radnica
 Rating
 Hodnotenie
+ratio_pax
+Pomer cest.
+Relevant
+Relevantné
 Reliefkarte
 Mapa reliéfu
 Remove
@@ -1127,26 +1957,56 @@ remove airstrips
 Odstrániť dráhu
 remove channels
 Zrušiť kanál
+remove interm. signals
+Odstrániť vložené návestidlá
+remove maglev tracks
+Odstrániť trate maglevu
 remove monorails
 Demontovať trať
+remove narrowgauge tracks
+Odstrániť úzkokoľajné trate
+remove powerlines
+Odstrániť elektrické vedenie
 remove roads
 Odstrániť vozovku
+remove signal
+odstrániť návestidlo
 remove tracks
 Demontovať trať
+Remove wayobj %s
+Odstrániť traťový objekt %s
+replace existing ways
+nahradiť existujúce cesty
+replace faster wayobjs
+nahradiť rýchlejšie dopravné stavby
+replace other signals
+Nahradiť ostatné návestidlá
 replace stop
 Vymeniť zastávky
+request closing
+žiadosť o zatvorenie
 residential house
 Obytný dom
 Restore natural slope
 Obnoviť pôvodný terén
 Restwert:
 Predajná hodnota:
+Retire date
+Dátum vyradenia
 Retire. date:
 Koniec výroby:
 return ticket
 Spiatoč.jazda
 Revenue
 Tržby
+Revenue/unit/100 tiles
+Tržba/jednotka/100 políčok
+Revert schedule
+Vrátiť zmeny
+Revision:
+Revízia:
+road
+cesta
 road vehicle
 cestného vozidla
 Roadsign
@@ -1157,14 +2017,40 @@ Rotate map
 Otočiť mapu
 Rotation
 Otočenie
+Routing
+Smerovanie
+Running cost
+Prevádzkové náklady
 sack
  vriec
 sail
 vietor
 Save
 Uložiť hru
+Save generated script
+Uložiť vygenerovaný skript
 Saving map ...
 Ukladám mapu ...
+Scenario complete: %i%%
+Scenár dokončený: %i%%
+Scenario Debug
+Ladenie
+Scenario Error Log
+Chyby skriptu
+Scenario Goal
+Cieľ scenára
+Scenario Info
+Krátke info
+Scenario information
+Podrobnosti o aktuálnom scenári
+Scenario Result
+Postup
+Scenario Rules
+Pravidlá
+Scenario_
+Scenár 
+Schedule changing!
+Zmena cestovného poriadku!
 Schienentunnel
 Stavba žel. tunela
 Schiff_tab
@@ -1173,20 +2059,54 @@ Schiffdepot
 Lodné depo
 Schleppkahn_tab
 Tahače
+Screen scale:
+Mierka obrazovky:
 Screenshot
 Urobiť screenshot.
+Scroll threshold
+Prah posúvania
+Search:
+Hľadať:
+Seasons
+Ročné obdobia
 Sehenswuerdigkeit
 Turistická destinácia
+Select a server to join:
+Vyberte server, ku ktorému sa chcete pripojiť:
+Select a theme for display
+Vyberte motív zobrazenia
+Select display font
+Vyberte písmo zobrazenia
+Select one or more graphics to install (Ctrl+click):
+Vyberte jednu alebo viac grafík na inštaláciu (Ctrl+kliknutie):
+Select soundfont
+Vyberte soundfont
 Sell the selected vehicle(s)
 Predat' vybrané vozidlo(á)
+Selling of the program is forbidden.
+Predaj tohto programu je zakázaný.
 sended
 Odosl. pošta
 SEP_FRACTION
 ,
+SEP_THOUSAND
+.
+SEP_THOUSAND_EXPONENT
+3
+Sept.
+Sep.
+Served by
+Obsluhuje
+Served by me
+Obsluhované mnou
+Server did not respond!
+Server neodpovedal!
 Serves Line:
 Obsluha linky:
 Service
 Obsluha
+set signal spacing
+Nastaviť vzdialenosť návestidiel
 Setting
 Konfigurovať
 Ship
@@ -1195,6 +2115,26 @@ shops and stores
 Obchody a kancelárie
 Show all
 Zobraziť všetko
+show all building
+Zobraziť všetky budovy
+Show also vehicles no longer in production.
+Zobraziť aj vozidlá, ktoré sa už nevyrábajú.
+Show also vehicles that do not match for current action.
+Zobraziť aj vozidlá, ktoré nemožno použiť pre vybranú akciu.
+Show always
+Vždy zobraziť
+Show climates
+Zobraziť podnebia
+Show construction info
+Zobraziť informácie o stavbe
+Show contour
+Zobraziť výšky
+Show even servers with wrong version or pakset
+Zobraziť aj servery s nesprávnou verziou alebo paksetom.
+Show finances for transport type
+Zobraziť financie podľa typu dopravy
+Show future
+Zobraziť budúcnosť
 show grid
 Zobraziť mriežku
 Show industry
@@ -1203,20 +2143,76 @@ Show legend
 Vysvetlivky
 Show map scale
 Nadm. výška
+Show mismatched
+Zobraziť nezhodujúce sa
+Show networks
+Zobraziť siete
 Show obsolete
 Zobraziť zastaralé
+Show offline
+Zobraziť offline
+Show only used
+Zobraziť iba používané
+Show outline
+iba infraštruktúra
 Show schedules
 Zobraziť trasu linky
+Show servers that are offline
+Zobraziť servery, ktoré sú offline
+Show servers where game version or pakset does not match your client
+Zobraziť servery, ktorých verzia hry alebo pakset sa nezhoduje s vaším klientom
 show station coverage
 Zobraziť spádové uzemie stanice
+show station names
+zobraziť názvy staníc
+show waiting bars
+Zobraziť pruhy čakania
+show/hide block reservations
+zobraziť/skryť rezervácie úsekov
+Show/hide estimated arrival times
+Zobraziť/skryť predpokladané časy príchodu
+show/hide object owner
+zobraziť/skryť vlastníka objektu
 Show/hide statistics
 Ukázat'/Skryt' štatistiku
+Shows buttons about networks overlay.
+Zobrazí tlačidlá pre prekrytie sietí.
+Shows buttons on network overlay.
+Zobrazí možnosť prekrytia dopravnej siete.
+Shows buttons on special topics.
+Zobrazí tlačidlá špeciálnych tém.
+Shows consumer/suppliers for factories
+Zobraziť odberateľov/dodávateľov pre továrne
+Shows the color code for several selections.
+Zobrazí farebné kódovanie pre rôzne voľby.
+Shows the currently selected schedule
+Zobraziť aktuálne vybraný cestovný poriadok
 Shrink city
 Zmenšiť mesto
+shuffle midis
+Náhodné poradie skladieb
+Signal
+Návestidlo
+signal spacing
+Vzdialenosť návestidiel
+Similar view as the main window
+Podobný pohľad ako v hlavnom okne
+Single toolbar only
+Iba jeden panel nástrojov
 Size (%d MB):
 Veľkost mapy:
+Size (area)
+Veľkosť (plocha)
+sliced underground mode
+Rez mapou
+slot empty
+prázdna pozícia
+Smart hide objects
+Inteligentné skrývanie objektov
 Sort by
 Zoradiť podľa
+Sort by:
+Zoradiť podľa:
 Sort waiting list by
 Triedit' podľa čakania
 Sound
@@ -1225,8 +2221,12 @@ Sound settings
 Nastavenia zvukov
 Sound volume:
 Hlasitost zvukov:
+Soundfonts are located in the music directory.
+Soundfonty sa nachádzajú v adresári s hudbou.
 special freight
 Špec. preprava
+Speed Bonus
+Rýchlostný bonus
 Speedbonus\nroad %i km/h, rail %i km/h\nships %i km/h, planes %i km/h.
 Expresný príplatok\ncesty %i km/h, železnica %i km/h\nlode %i km/h, lietadlá %i km/h.
 Speedlimit
@@ -1255,22 +2255,30 @@ Start the selected vehicle(s)
 Vyjst' s vybraným(i) vozidlom(i)
 Starte Spiel
 Nová hra
+station labels
+Stanice
 Station tiles:
 Rozloha stanice:
 Station_msg
 Stanice
 Status
 Stav
+stay on this level
+zostať na tejto úrovni
 steam
 para
 Step timeline one year
 Pridaj jeden rok
+Stopping permissions
+Iný hráč, ktorý môže používať túto zastávku
 Stops
 Zastávky
 Storage
 Zásoby
 Storage capacity
 Ložná kapacita
+straight route
+priama trasa
 Strassendepot
 Cestné depo
 Strassentunnel
@@ -1291,34 +2299,62 @@ Suppliers
 Dodávatelia
 Tage alt
 dní staré
+The following graphics are unmaintained:
+Nasledujúca grafika nie je udržiavaná:
+The generated script was saved!\n
+Makro bolo úspešne uložené.\nDá sa znova prehrať pomocou nástroja na skripty.
+The gradient does not fit a tunnel
+Sklon svahu sa nehodí pre tunel
+The script cannot be saved!\n
+Skript nie je možné uložiť!\n
+Theme selector
+Výber motívu
 There are still vehicles\nstored in this depot!\n
 V tomto depe\nsú ešte vozidlá !\n
 This Month
 Tento mesiac:
 This Year
 Tento rok:
+Tile not empty.
+Pred použitím nástroja na svahy\nvyčistite políčko.
 timeline
 Zodpovedajúce dobe
 tl_title
 Zoznam miest
+To attract more tourists\n%s built\na %s\nwith the aid of\n%i tax payers.
+Doprava v %1$s rastie:\n%3$i daňových poplatníkov umožnilo\nvýstavbu %2$s.
 To heavy traffic\nresults in traffic jam.\n
 Hustá doprava\nspôsobila zápchu.\n
+To: %s
+Do: %s
+Toggle day/night view
+Prepnúť denné/nočné zobrazenie
+Toggle vehicle tooltips
+Prepnúť popisky vozidiel
 tonnen
  t
+Toolbar position:
+Pozícia panela nástrojov:
 Total inhabitants:
 Počet obyvateľov: 
 Tourist attractions
 Počet turistických atrakcií:
 Tourists
 Turisti
+Town_msg
+Nové destinácie
 Town: %s\n
 Mesto %s.\n
 Towns
 Mestá
+track
+koľaj
 Tracks
 Trasy
 Traffic
 Premávka
+traffic settings
+Doprava
 Train
 Vlaky
 Trains are not available yet!
@@ -1339,20 +2375,30 @@ Transformer only next to factory!
 Trafostanice sú dostupné len\nna prázdnych a rovných políčkach\nsusediacich s továrňou!
 Translation
 Preklad
+transparencies
+Priehľadnosť
+transparent background
+priehľadné pozadie
 transparent station coverage
 Priehľadné sp. územie stanice
 Transported
 Odvezení
+Trees disabled!
+Stromy vypnuté!
 TrolleyBus_tab
 Trolejbusy
 Truck
 Automobily
+tt_Other
+Iné
 Tunnel muss an\neinfachem\nHang beginnen!\n
 Tunel musí začínat'\nna úpätí kopca !\n
 Tunnel must start on single way!
 Tunel musí začínať\nna voľnom konci cesty!\n
 Tunnelboden
 Tunel
+under the Artistic License
+pod licenciou Artistic License
 underground mode
 Pohľad do podzemia
 UNDO failed!
@@ -1365,6 +2411,8 @@ Unhappy
 Neuspokojené
 units/day
 /mes, 
+Unloading (%i%%)!
+Vykladanie (%i%%)!
 Update Line
 Upraviť linku
 upgrade HQ
@@ -1381,8 +2429,16 @@ Vehicle %s can't find a route!
 Vozidlo %s nemôže nájsť cestu !
 Vehicle %s is stucked!
 Vozidlo %s uviazlo!\n
+Vehicle count:
+Počet vozidiel:
 Vehicle details
 Detaily vozidla
+Vehicle Name
+Názov vozidla
+Vehicle Power
+Výkon vozidla
+vehicles stored
+uložené vozidlá
 Verbrauch
 Spotreba
 Vergroessere die Karte\n
@@ -1403,6 +2459,8 @@ via %s\n
  cez %s\n
 via Menge
 cez (počet)
+via owner
+cez (vlastník)
 voranstellen
 Na začiatok
 Waggon_tab
@@ -1411,6 +2469,10 @@ waiting
 Čaká
 Waiting for clearance!
 Čaká na voľnú cestu!
+Walked
+Pešo
+walking
+Chôdza
 Warnings_msg
 Doprava
 Wasser
@@ -1423,16 +2485,34 @@ water vehicle
 plavidlo
 way %s cannot longer used:\n
 Trať/cesta %s sa nemôže ďalej používať.\n
+way %s cannot longer used:\n%s\n
+Typ cesty %s sa už nedá použiť:\n
+way %s now available:\n
+Typ cesty %s je teraz dostupný.\n
+Way toll
+Mýto
 Ways not connected
 Možné len na spojených cestách!
+waytype
+typ cesty
 Wegpunkt
 Prejazd cez
+Weight
+Hmotnosť
 Weight:
 Hmotnosť:
+Weight/unit
+Hmotnosť/kus
+Welcome to Simutrans
+Vitajte v Simutrans
+Welcome, %s!
+Vitajte, %s!
 Wert
 Hodnota
 west
 Západ
+Wind direction
+Smer vetra
 Winter snowline
 Zimná hr. snehu
 withdraw
@@ -1441,8 +2521,12 @@ Withdraw All
 Vyradiť všetky!
 WRONGSAVE
 Nekomatibilná verzia\nuloženej hry. Hra nemôže\nbyt' načítaná.\n
+Year
+Rok
 Year %i has started.
 Začal rok %i!
+YEAR_SYMBOL
+r.
 Years
 Roky
 Your primary color:
@@ -1473,6 +2557,38 @@ New world record for railways: %.1f km/h by %s.
 Nový rýchlostný rekord\nna železnici dosiahol\nrýchlosťou %.1f km/h\nvlak %s.
 New world record for ship: %.1f km/h by %s.
 Nový rýchlostný rekord\nna vode dosiahla\nrýchlosťou %.1f km/h\nloď %s.
+#________________________________script_ai_text_________________________________
+#________________________________script_ai_text_________________________________
+%s build additional convoy to line: %s
+%s pridal novú súpravu na linku: %s
+%s build rail line from %s (%s) to %s (%s)
+%s stavia železničnú trať z %s (%s) do %s (%s)
+%s build road line from %s (%s) to %s (%s)
+%s stavia cestnú linku z %s (%s) do %s (%s)
+%s build ship line from %s (%s) to %s (%s)
+%s stavia lodnú linku z %s (%s) do %s (%s)
+%s extends the route from %s (%s) to %s (%s)
+%s predlžuje trasu z %s (%s) do %s (%s)
+%s optimize way line from %s (%s) to %s (%s)
+%s optimalizuje trasu z %s (%s) do %s (%s)
+%s removes convoys from line: %s
+%s odstraňuje konvoje z linky: %s
+vehicles of the line %s were retired
+vozidlá linky %s boli vyradené
+#_________________________________tooltip_text__________________________________
+#_________________________________tooltip_text__________________________________
+Add convois with similar schedule to this line.
+Pridať súpravy s podobným cestovným poriadkom k tejto linke.
+Attach current coordinate to the comment
+Pripojiť aktuálne súradnice ku komentáru
+Enter intervall in days, hours, minutes
+Zadajte interval v dňoch, hodinách a minútach
+Mirrors order of stops
+Obrátiť poradie zastávok
+Revert to original schedule
+Vrátiť všetky zmeny cestovného poriadku.
+Tutorial not available for this pakset. Please try loading Pak128.
+Tutoriál nie je pre tento pakset dostupný. Skúste načítať Pak128.
 #_______________________________unnecessary_text________________________________
 #_______________________________unnecessary_text________________________________
 &1_CITY_SYLL
@@ -1557,12 +2673,28 @@ Kolónia
 %s Hronov
 6center
 %s Kapitulská
+6extern
+%s prestup %s
+6suburb
+%s okraj %s %s
 7center
 %s Národná
+7extern
+%s rovina %s
+7suburb
+%s park %s
 8center
 %s Štefánikova
+8extern
+%s %s okraj %s
+8suburb
+%s satelit %s
 9center
 %s Masarykova
+9extern
+%s obchvat %s
+9suburb
+%s stred %s
 Acenter
 %s Štúrova
 Bcenter

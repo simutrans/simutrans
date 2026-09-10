@@ -9,14 +9,22 @@ Prop-Latin1.bdf
 #                                                                              #
 #                        Simutrans Base Translation File                       #
 #                             Scenario: Base texts                             #
-#                             Language: frp Arpitan                            #
+#                             Language: fp Arpitan                             #
 #                                Encoding: UTF-8                               #
 #                             Font: Prop-Latin1.bdf                            #
-#                            Date Created: 2.06 2024                           #
+#                           Date Created: 10.09 2026                           #
 #                                                                              #
 ################################################################################
 #__________________________________button_text__________________________________
 #__________________________________button_text__________________________________
+Absolute times
+Hores absolues
+allow reverse passage
+outorisar lo passâjo a l'envèrs
+AMBIENT_SOUND
+sons d'ambiance
+CASH_SOUND
+son d'encassament
 cl_btn_filter_disable
 dèsactivâ
 cl_btn_filter_enable
@@ -41,6 +49,16 @@ clf_btn_invers
 envèrsar
 clf_btn_keine
 nyun
+climate area percentage
+Talye d'un solèt climâ 
+Continue Game
+Continuar la partia
+CROSSING_SOUND
+avèrtissements de passâjo a nivél
+FACTORY_SOUND
+sons d'usina
+Find matching convois
+Trovar los convois corrèspondents
 gl_btn_sort_bonus
 pèr prima
 gl_btn_sort_name
@@ -49,6 +67,8 @@ gl_btn_sort_revenue
 Pèr bènèfiço
 gl_btn_unsort
 Dèsordonâ
+height based
+Climâ d'aprés la hôtor
 hl_btn_filter_disable
 dèsactivâ
 hl_btn_filter_enable
@@ -71,14 +91,62 @@ hlf_btn_invers
 envèrsar
 hlf_btn_keine
 nyun
+humidities
+limites d'humiditât
+Install
+Enstalar
+Lake
+Lèc
+Lake height
+Hôtior max. du lèc
+Maximize height levels
+Maximisar los nivéls de hôtior
+moisture land
+ôgmentacion sur la tèrra
+moisture water
+ôgmentacion sur l'égoua
 Networks
 Têla de transpôrt
+Num pad keys always move map
+Les tôches du pavâ numerico dèplaciont tojorn la mapa
+Open Sea
+Mâr uvèrta
+Owner only
+Propriètèro solament
 Queueing
 Coa d'atenta
+rainfall
+humiditâ
+Reselect closes tools
+Tornar selièccionar dèsèlyèccione l'otely
+Return to menu
+Tornar u mènu
+Road toll
+Pèâjo rotiér
 Scenario
 Informacions de mission
+sea
+climâ marin
+Shared only
+Partagiê solament
+Single GUI
+Entèrfatce unica
+Sound range:
+Portâye du son :
+Start this as a server
+Dèmârrer coment un sèrvòr
+temperature borders
+limites de tempèratura
+temperature-humidity based
+Climâs d'aprés lo temps
+TOOL_SOUND
+sons des otis
+TRAFFIC_SOUND
+bruits de trafic
 Transfers
 Travèrsant
+Tutorial
+Tudoriâl
 #_________________________________climates_text_________________________________
 #_________________________________climates_text_________________________________
 arctic
@@ -97,18 +165,174 @@ tundra
 climâ de tundra
 #__________________________________error_text___________________________________
 #__________________________________error_text___________________________________
+ Loading scenario script failed
+ Échèc du chargiment du scripte de scènario
+A building blocks the construction
+Un bâtimènt blloco la construccion
+A powerline blocks the construction
+Una linye èlèctrica blloco la construccion
+Another way blocks the construction
+Una ôtra vôye blloco la construccion
+Bridge blocked by way below or above.
+Pont bllocâ pèr una vêye d'avâl ou d'amont.
+Can't buy obsolete vehicles!
+Empossiblo d'achetar des vèyicllos obsolètos!
+Cannot alter water
+Ceti bassin pôt pas étre vidâ ou rempli de ples.
+Cannot build on a double slope!
+Pôt solament étre construyit sur una penta simpla ou un tèrren plat!
 Cannot built depot here!
 Impossiblo de consture\nun dèpot iqui.
 Cannot built this station/building\nin underground mode here.
 Impossiblo de construre un\b\nbâtiment dessos la tèrra.\n
+Cannot connect to the\ncenter of a double slope!
+Un pont pôt pas sè raliér u méten d'una dopla penta!\nUtilisâd l'otìlyâjo de tèrrassement pèr corrijir cen.
+Cannot create generic line!\nSelect line type by\nusing filter tabs.
+Empossiblo de fâre una linye gènèrica!\nChouèsésséd lo tipo de linye en\nutilisant los onglets de filtro.
+Cannot create socket
+Empossiblo de crèar lo socket
+Cannot cross the end of a runway
+Empossiblo de travèrsar la fin d'una pista d'atèrrisrâjo
+Cannot rotate this building!
+Empossiblo de virar ceta construccion!
+Client closed connection during transfer
+Lo cliant at cllôs la conèxion pendent lo transfèrt
+Convoi handles exhausted!
+Nombro maximo de convòis atenjo!
+Convoy already deleted!
+Convòi ja suprimâ!
+Corrupt file
+Fichiér corromput ou tronquâ.
+Could not open file
+Empossiblo d'uvrir lo fichiér. Controlâd les pèrmissions?
+Das Feld gehoert\neinem anderen Spieler\n
+Ceti tèrren apartint\na un ôtro juor!\n
+Depots cannot be built on runways!
+Los dèpôs pôvont pas étre construyits sur des pistas d'atèrrisrâjo!
+Depots must be built on flat dead-end way tiles!
+Los dèpôs dêvont étre construyits sur de cârôs de vêye plats et en cul-de-sac!
+Der Besitzer erlaubt das Entfernen nicht
+Lo propriètèro refuse\nla pèrmission de\nsuprimar cen!\n
+Diese Zusammenstellung kann nicht fahren!\n
+Ceta composicion\npôt pas partir!\n
+Elevated way can only be joined in line
+Una vêye èlevâ pôt solament étre racordâ en linye dreita
+Failed to write file
+Empossiblo d'ècrîre lo fichiér. (Pèrmissions?)
+Flugzeughalt muss auf\nRunway liegen!\n
+L'arrêt d'avion dêt\nétre sur una vouè de circulacion!\n
+Forbidden by scenario
+Dèfendu pèr lo scènario
 Hier kann dieses\nFlughafengebaeude nicht\ngebaut werden!\n
 Pas possiblo de\n\nconstrure d'aèropôrt iqui.\n
 Hier kann kein\nSignal aufge-\nstellt werden!\n
 Pas possiblo de\nconstrure de sinyâl iqui.\n
 In order to lock the game, you have to protect the public player by password!
 Pèr vèrrolyér la partia, vos devéds protègér lo joyòr avoèc un contresìnyo!
+Loading a new game will end the current server session!
+Chargiér un novél juè va chavonar la sèance actuèla du sèrvòr!
+Lost connection\nto server!
+Conèxion pèrdua\nu sèrvòr!
+Lost synchronisation\nwith server.
+Sincronisacion pèrdua\navèc lo sèrvòr.
+Maglevhalt muss auf\nMaglevschiene liegen!\n
+Un arrêt de maglev dêt étre placiê sur una vouè de maglev!\n
+Monorailhalt muss auf\nMonorail liegen!\n
+Los arrêts de monorail dêvont\nétre sur una vouè de monorail.\n
+Monorails are not available yet!
+Los monorails sont pas oncor disponiblos.
+More than one possibility to build this dock found.
+Més d'una possibilitât trovâ por construre ceti doc.
+Narrowgaugehalt muss auf\nNarrowgauge liegen!\n
+Un arèst de vouèye ètrêta dêt étre placiê sur una vouèye ètrêta
+No bridges over runways!
+Gins de pont sur les pistes !
+No curves on runways
+Les pistes pôvont pas fâre de virâjos !
+No suitable crossing
+Gins de croisement adaptâ ! (vèlocitâ trop granta ?)
+No suitable way on the ground!
+Los arèsts pôvont étre bâtis solament sur\ndes vouèyes drêtes, planes et d'acôrd!
+No through station here!
+Les gâres dêvont étre betâyes sur des vouès en cul-de-sac ou des troncôns drêts sens entèrsèccion.
+Not allowed to copy object.
+Vos pouede pas bâtir cél objèt!\n(Rêson: Crouyo jouor ou obsolèto)
+Not enough bytes transferred
+Pas assé d'octèts transfèrâs
+Not enough clearance.
+Entrè doves vouès, una difèrence de hôtior d'u muens doux est nècèssèra.
+Not enough empty space
+Reste pas assé d'èspâço libro.
+Not enough money!
+Vos avéde pas prod d'argent\npor achetar cen!
+Not initialized
+Empossiblo d'inicialisar la bibliotèca.
+On narrowgauge track only!\n
+Dêt étre placiê solament sur una vouèye ètrêta!
+Only public player can lock games!
+Solament lo jouyor public pôt vèrrolyér les parties !
+Only up and down movement in the underground!
+Una cârro soterrèna pôt étre solament montâye et bèssâye avouéc los otilys amont/avâl !
+Out of funds
+Vos avéd pas assé d'argent por cen !
+Post muss neben\nHaltestelle\nliegen!\n
+Un bâtiment d'èxtension de gâra\n(ègz. burô de pôsta, entrepôt)\ndêt étre placiê sur una cârro libra\na coutâ d'un arèst/gâra ègzistenta.\n
+Protocoll error (expecting game)
+Èrror de protocole (partia atendua)
+Schiffhalt muss im\nWasser liegen!\n
+Un arrèt de batiô dêt\nétre sur l'égoua\nprés d'un quê!\n
+Server busy
+Sèrvòr ocupâ
+Server version too new
+Lo sèrvòr utilise una vèrsion més novèla du programo.
+Ship depots must be built on water!
+Los dèpôs de batiôs dêvont étre construits sur l'égoua !
+Show all revenue messages
+Afichiér tos los mèssâjos de revègnus
+Show no revenue messages
+Cachér los mèssâjos de revègnus
+Show only player's revenue
+Afichiér solament los revègnus du jouyor
+Slope is too steep
+La penta est trop rèda
+Terraforming not possible\nhere in underground view
+Tèrrassament impossiblo\nicy en vua soterrena
+This tunnel branches. You can try Control+Click to remove.
+Ceti tunèl s'embranche. Vos pouede èprovar Contrôlo+Clic por lo suprimar.
+Too far away to merge stations!
+Trop luenh por fusiônar les gâres!
+Tunnel can only be entered at its portal
+On pôt entrar dens un tunèl solament per son portâl
+Unknown error
+Èrror encognua
+Upgrade must have\na higher level
+L'amèlyoracion dêt avêr\nun nivél més hôt
+Vehicle %s cannot choose because stop too short!
+Lo vèyicllo %s pôt pas chouèsir la vouye perce que l'arrèt est trop côrt!
+Watertable reached
+Nivél de la napa d'égoue avengiê!\nEmpossiblo d'abèssar més la case.
+Way does not match the slope here
+La vouye corrèspont pas a la penta d'icy
+Wrong direction to enter the bridge
+Môva dirèccion por entrar sur lo pont
+Zughalt muss auf\nSchiene liegen!\n
+Les gâres dêvont\nétre placiêes sur les\nrails !\n
 #___________________________________help_text___________________________________
 #___________________________________help_text___________________________________
+<h1>Index</h1><p>*: only english</p><p>General</p>%s<p>Usage</p>%s<p>Tools</p>%s<p>Start</p>%s<p>How to play</p>%s<p>Others:</p>%s
+<title>Éda</title><h1>Endèxe d'éda</h1><p><it>A propôs de Simutrans</it></p>%1$s<p><it>Coment utilisar</it></p>%2$s<p><it>Coment comenciér una partia</it></p>%4$s<p><it>Coment juar</it></p>%5$s<p><it>Otils</it></p>%3$s<p><it>Ôtres fenètres</it></p>%6$s
+<title>Keyboard Help</title>\n<h1><strong>Keyboard Help</strong></h1><p>\n
+<title>Règllâjo de cllaviér</title>\n<h1><strong>Éda de cllaviér</strong></h1>\n<p>\n<p><strong>Éda de cllaviér</strong> s'ôvre quand una toche pas assegna est apoyêe ou dês l'<a href="general.txt">Éda g·ènèrâla</a>.\n</p>\n<p>\nLes toches sont sensibles a la câssa (utilisâd [<em>Shift</em>] por les lètres majuscules).\n</p>\n<p>\nLes toches avouéc des fonccions assegna contegnont:\n</p>\n<p>\n[<em>Toches de flèche</em>]: dèfilar la vua de juè dens la direccion de la flèche.<br>\n[<em>Retôrn</em>]: cllôre totes les fenètres, bârres d'otils et tèxtos d'éda.<br>\n[<em>Suprimar</em>], ou [<em>Èchapa</em>]: cllôre la fenètre de dessus, la bârre d'otils ou lo tèxto d'éda.<br>\n[<em>Pâge amont</em>], ou [<em>&gt;</em>]: agrandir la vua de juè.<br>\n[<em>Pâge avâl</em>], ou  [<em>&lt;</em>]: dèmenevir la vua de juè.\n[<em>CTRL</em>] + otil: construre des vouèyes ples drêtes (mémo sur des vouèyes ples vrapides) ou envèrsar l'ôrdre de chouèx pendent la demande ou la suprèssion.<br>\n</p>
+At least one stop is connected to the town.
+U muens un arèto est ralhyê a la citâ.
+At least one tile is connected to one stop.
+U muens un cârro est ralhyê a un arèto.
+Color according to transport capacity left
+Colorer d'aprés la capacitâ de transpôrt réstenta
+Color-coded terrain according to altitude.
+Monstrar/cachiér l'ombrâjo du relièf du tèrren.
+Decrease water height
+Bessiér lo nivél d'égoua d'un cran
 Highlight railroad tracks
 Têla fèrrovièra salyents
 Highlite depots
@@ -119,26 +343,366 @@ Highlite factories
 Favèrges salyentes
 Highlite forests
 Jors salyentes
+Highlite tourist attraction
+Salyentar l'atraccion touristica
 Increase water height
 Ôgmentar l'égua d'un nivél
+Open station/stop details
+Montrar los dètalys de la gâra
+Overlay city limits
+Afichiér les limites de la citâ
+Overlay passenger destinations when a town window is open
+Afichiér les dèstinacions des passagiérs quand una fenétra de vela est uvèrta
+Overlay schedules/network
+Afichiér les fôlyes de rota/lo rèsô
+Overlay town names
+Afichiér los noms de les veles
+Please click on the map to add\nwaypoints or stops to this\nschedule.
+Volyéd clicar sur la mapa por apondre\ndes pouents de passâjo ou des arrêts a ceta\nfôlye de rota.
+Remove double stops from schedule
+Enlevar los doblos arrèts de l'horâro
+Set tile climate %s
+Convertir ceti tèrren en zona de %s
+Show capacity and if halt is overcrowded
+Afichiér la capacitât et se l'arrèt est surchargiê
+Show how many convoi reach a station
+Afichiér comben de convouès atenyont una gâra
+Show how many people/much is waiting at halts
+Afichiér comben atèndont ux arrèts
+Show initial passenger departure
+Afichiér l'origina des passagiérs et de la pôsta.
+Show level of city buildings
+Afichiér lo nivél des construccions de la citâ
+Show mail service coverage/mail network
+Afichiér la covèrtura du sèrvicio postâl
+Show passenger coverage/passenger network
+Afichiér la covèrtura du rèsô de passagiérs
+Show speedlimit of ways
+Afichiér la limita de vèlocitâ des vouyes
+Show the change of waiting at halts
+Afichiér l'èvolucion de l'atenta ux arrèts dês lo dèrriér mês
+Show the owenership of infrastructure
+Afichiér la propriètât de les enfrastructures
+Show transported freight/freight network
+Afichiér lo frèt transportâ / lo rèsô de frèt
+Show usage of network
+Afichiér los vèyicllos pèr case et mês
+Shows a listing with all industries on the map.
+Afiche una lista de totes les endustries sur la cârta.
+Sum of departure/arrivals at halts
+Soma des dèpârts et arrevâs ux arrèts
+#____________________________________ki_text____________________________________
+#____________________________________ki_text____________________________________
+%s now\noffers bus services\nbetween %s\nand attraction\n%s\nat (%i,%i).\n
+%s propôse\nora un sèrviço de car\nentre %s\net l'atraccion\n%s\na (%i,%i).\n
+%s now\noffers bus services\nbetween %s\nand factory\n%s\nat (%i,%i).\n
+%s propôse\nora un sèrviço de car\nentre %s\net l'usina\n%s\na (%i,%i).\n
+%s\nnow operates\n%i trucks between\n%s at (%i,%i)\nand %s at (%i,%i).
+%s\nèsplouète ora\n%i camions entre\n%s a (%i,%i)\net %s a (%i,%i).
+%s\nopened a new railway\nbetween %s\nat (%i,%i) and\n%s at (%i,%i).
+%s\na uvèrt una novêla vôye fèrrovièra\nentre %s\na (%i,%i) et\n%s a (%i,%i).
+Airline service by\n%s\nnow between\n%s \nand %s.\n
+Sèrviço aèrien pèr\n%s\nora entre\n%s \net %s.\n
+Ferry service by\n%s\nnow between\n%s \nand %s.\n
+Sèrvicio de bac pèr\n%s\nora entre\n%s \net %s.\n
+Travellers now\nuse %s's\nbusses between\n%s \nand %s.\n
+Les voyagiors utilisent\nora les busses de %s\nentre %s\net %s.\n
+#___________________________________menu_text___________________________________
+#___________________________________menu_text___________________________________
+EDITTOOLS
+Otìlyâjos d'èdicion de cârta
+LISTTOOLS
+Listes
+MAGLEVTOOLS
+Otìlyâjo de maglev
+MONORAILTOOLS
+Otìlyâjo de monorail
+NARROWGAUGETOOLS
+Otìlyâjo de vouè ètrêta
+RAILTOOLS
+Otìlyâjo de chemin de fèr
+ROADTOOLS
+Otìlyâjo de rota
+SHIPTOOLS
+Otìlyâjo navâl
+SLOPETOOLS
+Otìlyâjo de nivelament
+SPECIALTOOLS
+Otìlyâjo spèciâl de construccion
+TRAMTOOLS
+Otìlyâjo de trams
+#_________________________________message_text__________________________________
+#_________________________________message_text__________________________________
+%s s\nheadquarter now\nat (%i,%i).
+%s at construt un novél sièjo sociâl.
+Factory chain extended\nfor %s near\n%s built with\n%i factories.
+Chêna d'usinas ètendua\npèr %s prés de\n%s construita avouéc\n%i usinas.
+Net wealth less than 10%% of starting capital!
+Capitâl nèt d'avâl de 10%% du capitâl de dèpârt !
+New %s now available:\n%s\n
+Novél %s ora disponiblo:\n%s\n
+New factory chain\nfor %s near\n%s built with\n%i factories.
+Crèssua industrièla: Novèla chêna d'usines\npor %s prés de\n%s bâtia avouéc\n%i usines.
+New vehicle now available:\n%s\n
+\n Un novél vèyicllo est\n ora disponiblo:\n\n\n -- %s --\n\n
+Now %u clients connected.
+Ora %u cliant(s) conèctâ(s).
+overtaking
+dèpassâjo
+Remove vehicle from map. Use with care!
+Enlevar lo vèyicllo de la cârta. (A utilisar avouéc prudentia !)
+Screenshot\ngespeichert.\n
+Captura d'ècran\nsôvâye.\n
+Sends the convoi to the last depot it departed from!
+Envoye lo convouè u dèrriér dèpô d'ont qu'il est partiu.
+Server preparing game ...
+Lo sèrvòr prèpâre la partia ...
+Trees
+Âbros
+With a big festival\n%s built\na new monument.\n%i citicens rejoiced.
+Avouéc una granta féta,\n%s at bâti\nun novél monument.\n%i citoyens sè réjouyéssont.
+#___________________________________obsolete____________________________________
+#___________________________________obsolete____________________________________
+Line Filter
+Filtro de linyes
 #_________________________________program_text__________________________________
 #_________________________________program_text__________________________________
 (%i)-
 (%i) 
 (in depot)
 (u dèpot)
+[0] south-facing
+[0] orientâ u sud
+[1] east-facing
+[1] orientâ a l'èst
+[2] north-facing
+[2] orientâ u nord
+[3] west-facing
+[3] orientâ a l'ouèst
+[4] southeast corner
+[4] coin sud-èst
+[5] northeast corner
+[5] coin nord-èst
+[6] northwest corner
+[6] coin nord-ouèst
+[7] southwest corner
+[7] coin sud-ouèst
 [END]
 [FIN]
 [HOME]
 [POS1]
+/month
+/mês
 \nBauzeit bis
  tant qu'a 
+\nBauzeit von
+\nAparêt dês 
+\nCan't open heightfield file.\n
+\nEmpossiblo d'uvrir la mapa de les hôtors.\n
+\ndirection:
+\ndireccions : 
+\nelektrified
+\nèlèctrifiâ\n
+\nHeightfield has wrong image type.\n
+\nLa mapa de les hôtors at un\nmavês tipo d'émâge.\n
+\nis reserved by:
+\nrèservâ pèr 
+\nminimum speed:
+\nvèlocitâ minima : 
+\nnot elektrified
+\npas èlèctrifiâ\n
+\nRibi (masked)
+\ndireccions (masquâs) : 
+\nRibi (unmasked)
+\ndireccions\n (pas masquâs) : 
+\nSet phases:
+\nRègllar lo temps des fases\n  / pués \\  pués dècalâjo
+\nsingle way
+\nSens unico
+\nway1 reserved by
+\nvouèye 1 rèservâ pèr 
+\nway2 reserved by
+\nvouèye 2 rèservâ pèr 
+\nwith sign/signal\n
+\navouéc panél/sinyâl\n
+%d buildings\n
+%d construccions\n
+%d Einzelfahrzeuge im Depot
+%d vèyicllos u dèpô.
+%d more convois
+%d convois de ples
+%i car(s),
+%i vagon(s),
+%i years %i months old.
+%i ans et %i mês d'âjo.
+%s at (%i,%i) now public stop.
+%s est vegnu un èchanjo public.
+%s building %s %s
+%s bâtimènt %s %s
+%s city %d %s
+%s citâ %d %s
+%s factory %s %s
+Chantiér de %s %s
+%s has entered a depot.
+%s est entrâ dens un dèpô.
+%s has left.
+%s est partit.
+%s land %d %s
+%s campanye %d %s
+%s now known as %s.
+%s est ora cognu coment %s.
+%s wasted\nyour money with a\nnew townhall\nwhen it reached\n%i inhabitants.
+%s a gaspiyê\nvoutros sòlds por un\nnovél hôtél de vela\nquand el at avengiê\n%i habitents.
+%s\nis crowded.
+%s\nest saturâ.
+%s\nspeed %i\nmax_speed %i\ndx:%i dy:%i
+%1$s\n\n\nvèlocitâ maxima %3$i km/h\n\nvèlocitâ d'ora %2$i km/h.\n\n
+%s\nwas liquidated.
+%s\na étâ liquidâ.
+%u days ago
+y at %u jorns
+%u hours ago
+y at %u hores
+%u minutes ago
+y at %u menutes
+%u Player (%u locked)\n
+%u Jouyor (%u bllocâ)\n
+%u years ago
+y at %u ans
+<clear schedule>
+<èfaciér l'horèro>
+<create new line>
+<crèar una novêla linye>
+<h1>Error</h1><p><strong>
+<h1>Èrror</h1><p><strong>
+<h1>Warning</h1><p><strong>addons for
+<h1>Avèrtissament</h1><p><strong>èxtensions por
+<individual schedule>
+<horèro individuèl>
+<no line>
+<sens linye>
+<no schedule set>
+<sens horèro dèfeni>
+<promote to line>
+<promovêr en linye>
+1 Einzelfahrzeug im Depot
+1 vèyicllo u dèpô.
+1 minute ago
+y at una menuta
+1 year ago
+y at un an
+100 km/h = %i tiles/month
+100 km/h = %i cârros/mês
+1LIGHT_CHOOSE
+Luminositâ:
+1th
+1ér
+1WORLD_CHOOSE
+Règllâjos por una novêla partia:
+21th
+21émo
+22th
+22émo
+23th
+23émo
+2LIGHT_CHOOSE
+Colors:
+2th
+2émo
+2WORLD_CHOOSE
+Numerô de la carta:
+31th
+31émo
+3LIGHT_CHOOSE
+Vèlocitâ de dèfelament:
+3th
+3émo
+4LIGHT_CHOOSE
+Dèfelament envèrsâ
+5LIGHT_CHOOSE
+Piètons ux arètos
+5WORLD_CHOOSE
+Nombro de citâts:
+6LIGHT_CHOOSE
+Piètons en citâ
+6WORLD_CHOOSE
+Densitât du trafic:
+8WORLD_CHOOSE
+Cicllo jorn et nuet
+A bridge must end on a way!
+Un pont dêt s'achèvar sur una vôye!
+A bridge must start on a way!
+Un pont dêt comenciér sur una vôye!
+Abfrage
+Otil d'enspèccion
+Abnehmer
+Consomator:
+About
+A propôs
+About scenario
+A propôs du scènario
+Abriss
+Dètruire / Enlevar
+Absenken
+Bèssiér lo tèrren
+Abspanntransformator
+Transformator
+Accelerate time
+Accèlèrar lo temps
+Act. load: %u MW\n
+Chârge act.: %u MW\n
+Active player only
+Jouyor activo solament
+Add forest
+Apondre una forèt
+Add random citycar
+Apondre una vouètura de citâ a l'hasârd
+add server
+Apondre un sèrvòr
+Add Stop
+Apondre un arèto
+Add stops for backward travel
+Apondre des arètos por lo viâjo de retôrn
+air
+pista / vouèye de rulâjo
+Aircraft
+Avions
+aircraft_tab
+Avions de fret
+airplane
+avion
+Airport
+Aèropôrt
 AIRTOOLS
 Otìlyâjo d'aèropôrt
 All
 Tôt
+all convoi tooltips
+totes les enfobules de convouè
+Allow city growth
+Pèrmetre la crèssua citâ
+Allow player change
+Pèrmetre lo changement de jouyor
+allowed climates:\n
+Climâts outorisâs :\n
+Alters a schedule.
+Modifie un horèro.
+and arranged by
+et arrangiê pèr
+Angenommene Waren
+Bens accèptâs
+anhaengen
+Atachiér
+Anhaenger_tab
+Remôrques
+Anheben
+Haussiér lo tèrren
+Appends stops at the end of the schedule
+Apond des arètos a la fin de l'horèro
 Apply Line
 Aplicar la linye
+Apr.
+Avr.
 April
 Avrily
 Arbeiter aus:
@@ -153,14 +717,24 @@ Aufloesen
 Dèsassemblar
 Aufspanntransformator
 Tansfòrmatòr
+Aug.
+Ót
 August
 Ót
+auto
+ôto
+Autohalt muss auf\nStrasse liegen!\n
+Les arètos de car ou d'ôtomobila\ndêvont étre\nplaciês sur la routa!\n
 Available
 Disponiblo
+Available at custom date
+Disponiblo a una dâta pèrsonalisâye
 Bahndepot
 Depot fèrrovièro
 Bankrott:\n\nDu bist bankrott.\n
 Bancarota:\n\n\nVos êtes en falyita!\n
+based on Simutrans 84.22.1
+basâ sur Simutrans 84.22.1
 battery
 Bateria
 Baum
@@ -171,6 +745,10 @@ Baustelle
 Sito de\n\nconstruccion
 Bauzeit
 Data de construccion
+Beenden
+Quitar
+Beginner mode
+Môdo comèncient
 Besonderes Gebaeude
 Atraccion toristica
 BF
@@ -181,16 +759,24 @@ Blockstrecke ist\nbelegt\n
 Plôt de ralys\nutilisâ pèr\nun âtro tren\n
 Boden
 Tèrra
+Bonus Multiplier: %i%%
+Multiplicatòr de bonus: %i%%
+Bonus Speed: %i km/h
+Vèlocitâ de bonus: %i km/h
 Bonusspeed: %i km/h
 Vèlocitâ maxima possibla: %i km/h
 Boost (%%)
 Ôgmentar la productivitâ
+Borderless (disabled on fullscreen)
+Sens bordura (dèsactivâ en plen ècran)
 bridge is too high for its type!
 Cèti pont est trop yôt por son tipo!
 Bridge is too long for this type!\n
 Cèti pont est trop long por son tipo.
 Bruecke
 Pont
+Bruecke muss an\neinfachem\nHang beginnen!\n
+Los ponts dêvont\ncomenciér sur una\npenta simpla!\n
 Brueckenboden
 Pont
 Build air depot
@@ -211,6 +797,8 @@ Build monorail depot
 Construre un dèpot de monoraly
 Build narrowgauge depot
 Construre un dèpot a vi èhtrêta
+build portal only
+construre solament lo portâl
 Build powerline
 Construre una linye èlèctrica
 Build presignals
@@ -235,20 +823,38 @@ Built artifical slopes
 Construre de bârmes
 Built random attraction
 Construre una novèla atraccion
+Bus_tab
+Ôtobus
+Can be overgrown
+Pôt étre envayi pèr la vègètacion
+Can only move from halt to halt or waypoint to waypoint.
+Pôt solament sè dèplaciér d'arrèt en arrèt ou de pouent de passâjo en pouent de passâjo.
 Cancel
 Anular
+Cannot build here
+Empossiblo de construre ique
 Cannot connect to offline server!
 Conèxion impossibla u sèrvòr sur la têla!
+Capacity
+Capacitâ
 Capacity:
 Capacitâ
 Capacity: %.0f MW
 Capacitâ: %.0f MW\n
 Capacity: %d%s %s\n
 Capacitâ: %3d%s %s\n
+Capacity: %s\nLoad: %d (%d%%)
+Capacitâ: %s\nChârga: %d (%d%%)
+Cars are not available yet!
+Les vouètures sont pas oncor disponiblas!
 cars.\nstate
  vêtures\n
 Cash
 Balance
+Category
+Catègorie
+Change label style
+Changiér lo stilo d'ètiquèta
 Change player
 Changér de joyòr
 Chart
@@ -257,10 +863,14 @@ Chat_msg
 Barjacâjo
 Choose direction
 Sèleccionar la dirèccion
+Choose operation executed on clicking stored/new vehicles
+Chouèsir l'opèracion ègzècutâ en cliquient sur los vèyicllos en stock/nôvs
 chooses a random map
 Sèlèccionar una mapa alèatoèra.
 citicens
 Citoyens
+Cities can only be built on flat empty ground!
+Les citâs pôvont solament étre construites sur un tèrren plat et vouedo!
 City attraction
 Atraccion de la citâ
 City industries
@@ -269,6 +879,8 @@ City list
 Lista de citâs
 City size
 Talye de la citâ
+city_road
+Route de citâ
 citybuilding builder
 Construccions diens la citâ
 CityLimit
@@ -277,8 +889,16 @@ cl_title
 Lista de vèyicllos
 cl_txt_sort
 Dicèrnar pèr:
+clamp
+limitar
+Cleanup schedule
+Suprimar les entrâs dobles
+Clear block reservation
+Monstrar/rèinicialisar les vêyes rèsèrvâs
 clf_chk_aircrafts
 avions
+clf_chk_cars
+Ôtobus/camions
 clf_chk_indepot
 diens un dèpot
 clf_chk_maglev
@@ -289,6 +909,8 @@ clf_chk_name_filter
 Filtro pèr nom:
 clf_chk_narrowgauge
 Trens a vi èhtrêta
+clf_chk_noincome
+Fâre des pèrtes
 clf_chk_noline
 Sens linye
 clf_chk_noroute
@@ -313,34 +935,290 @@ clf_chk_waren
 Filtro pèr charâ:
 clf_title
 Filtro vèyicllo
+Click to open the finance dialog.
+Cliquiéd pèr uvrir la fenétra de finances.
+Climate
+Climâ
 Climate Control
 Règllâjos du climâ
+Climates
+Climâs
 closed
 fèrmâ.
+Closes topmost line window when new line selected.
+Cllôt la fenétra de linye u dessus quand una novèla linye est chouèsia.
+COLOR_CHOOSE\n
+Volyéd chouèsir doves\ncolors dens l'émâge\nsur la drêta:
+Company bankrupt
+Companie en fayita
+company_chat
+Barjacâjo de la companie
+Company_msg
+Concorrents
+Comparing pak files ...
+Comparèson des fichiérs pak...
+Composed by
+Composâ pèr
+Configure AI
+Configurar l'IA
+Configure AI setttings
+Configurar los règllâjos de l'IA
+Congratulation\nScenario was complete in\n%i months %i years.
+Fèlicitacions!\nLo scènario at étâ complètâ\nen %i mês et %i ans.
+Connect factory
+Raliér l'usina
+Connected stops
+Arrèts raliês:
+Connected with server
+Conèctâ u sèrvòr
+connection
+conèxion
+Connections
+Conèxions
+Constructed by
+Dèssinâ pèr 
+Constructed by %s
+Dèssinâ pèr %s
+construction speed
+vèlocitâ de construccion
 Construction_Btn
 Côte de construccion
+Consumed
+Consomâ
+contains the following doubled objects:</strong><p>
+ contint los objèts siuvents més d'un côp :</strong><p/>
+convoi %d of %d
+Convouè %d de %d
+convoi error tooltips
+enfobules d'èrror de convouè
+Convoi following mode
+Môdo siuvre lo convòi
+Convoi has been sent\nto the nearest depot\nof appropriate type.\n
+Lo convòi at étâ mandâ\nu dèpô lo ples prôcho\ndu bon tipo.\n
+Convoi is sold when all wagons are empty.
+Lo vèyicllo serat vendut dês qu'il serat complètament vouedo.
+convoi mouseover tooltips
+enfobules de survol de convouè
+convoi passed last\nmonth %i\n
+\nconvouès passâs lo mês\ndèrriér : %i\n
+Convois
+Convòis
+Convois: %d\nProfit: %s
+Convòis: %d\nPrôfit: %s
+Convoys
+Convòis
+Copy Convoi
+Copiyér lo convòi
+Copy the selected convoi and its schedule or line
+Copiyér lo convòi sèlèccionâ et son horèro ou sa linye
+Copy to clipboard
+Copiyér dens lo prèsse-papiérs
+Cost
+Cout
+cost for removal
+Côst de suprèssion 
+Cost per unit
+Cout pèr unitâ
+Cost: %8s (%.2f$/km %.2f$/m)\n
+Cût: %s (%.2f$/km %.2f$/mês)\n
+Cost: %8s (%.2f$/km)\n
+Cout: %8s (%.2f$/km)\n
+Costs
+Couts
+Create a new line based on this schedule
+Crèar una novèla linye d'aprés ceti horèro
+curiosity builder
+Construtor d'atraccions
+curlist_title
+Lista de les atraccions touristiques
+CURRENCY
+$
+Current game
+Partia en cors
+Currently playing:
+En cors de lèctura:
+Customers live in:
+Los clliants dèmôront a:
+Date format
+Format de dâta
+DAY_SYMBOL
+j
+deactivated in online mode
+Pas activâ sur la têla
+Dec.
+Dèc.
+Deccelerate time
+Ralentir lo temps
 December
 Dècembro
+decrease underground view level
+bessar lo nivél de vua soterrèna
+Del Stop
+ Enlevar
+Delete Line
+Suprimar la linye
+Delete the current stop
+Suprimar ceti arrèt
+Delete the selected line (if without associated convois).
+Suprimar la linye sèlèccionâ (se gins de convòis y sont associyês).
+Delete this file.
+Suprimar ceti fichiér.
+Delivered
+Livrâ
+Demand
+Demanda
+Demand: %.0f MW
+Demanda: %.0f MW
+Denkmal
+Monument
+Departed
+Parti
+Departs at
+Dèpârt a (jj:hh:mm)
+Departure after
+%% chârga ou atenta de (jj-hh-mm)
+Departure board
+Tablô des dèpârts
+Departures per month
+Dèpârts pèr mês
+Departures to\n
+Dèpârts vers\n
+Depot
+Dèpô
 Depots
 Dèpots
+Der Tunnel ist nicht frei!\n
+Lo tunèl est pas livro!\n
+Destination
+Dèstinacion
+Destroying map ...
+Dèstruccion de la vielye cârta...
+Details
+Dètalys
+Developed by the Simutrans Team
+Dèvelopâ pèr l'èquipa de Simutrans
+Die Bruecke ist nicht frei!\n
+Lo pont est pas livro!\n
+direct_chat_to:
+Mèssâjo dirèct a
+directmail
+Foliyèts
+Direkt erreichbare Haltestellen
+Linyes dirèctes dês ique
+disable midi
+Copar la musica MIDI
+Display bars above factory to show the status
+Afichiér des bârres d'amont l'usina pèr monstrar lo statut
 Display settings
 Règllâjo d'afichâjo
+distributing cities
+distribucion de les citâs
+distributing factories
+distribucion de les fabriques
+Do not show
+Monstrar pas
 Dock
 Pôrt
+Dock must be built on single slope!
+Los quês dêvont étre construyits sur una cârô a penta simpla!
+Downloading
+Tèlèchargiment
+dp_title
+Lista des dèpôs
+Du hast %d Monate Zeit, deine Schulden zurueckzuzahlen
+Vos éd %d mês pèr remborsar voutra dèta.
+Durchsatz
+Dèbit max. 
+Economy
+Èconomia et citâs
+Eigenbesitz\n
+Propriètâ publica\n
+Ein %s\npasst hier nicht.\n
+Un '%s'\nva pas ique!\n
+Einstellungen
+Règllâjos
+Einstellungen aendern
+Opcions
 electric
 èlèctrico
 Electricity
 Èlècrticitâ
 Electricity producer\n\n
 Productòrs d'èlèctricitâ\n\n
+Electrics_tab
+Èlèctricitât
 Electrify track
 Èlèctrifiar les vis
 enlarge map
 Ôgmentar la mapa
+enter a value between %i and %i
+entrâd una valor entre %i et %i
+Enter address
+Buchiér l'adrèce
+Enter Password
+Changiér lo nom de juor et lo mot de pâssa
+Error
+Èrror
+Erzeuge neue Karte.\n
+Volyéd atendre pendent qu'una novèla\ncârta est en trin d'étre fêta.\n\n(Cen pôt prendre doux-três\nmenutes pèr les grantes cârtes.)\n
+Es wird bereits\nein Fahrplan\neingegeben\n
+Un horèro est ja\nen trin d'étre pllanifiâ.\nFiniéd-lo d'abôrd\ndevant de recomenciér!\n
+Extract files
+Èxtrêre los fichiérs pak du zip.
+Fabrikanschluss
+Usinas raliâs
+Fabrikname
+Nom de l'usina
+Factories
+Usinas
+factory details
+Liyens de la fabrica
+factorybuilder
+Construtor de fabriques
+Fahrplan
+Horèro
+Fahrtziel
+Dèstinacion: 
+Fahrzeuge koennen so nicht entfernt werden
+Los vèyicllos pôvont pas\nétre enlevâs de ceta fêçon!\n
+Fahrzeuge:
+Vèyicllos:
+Farbe
+Color du jouyor
+Fast forward
+Avance rapida
+Feb.
+Fèvr.
 February
 Fèvriér
+Ferry_tab
+Bacs
+Fertig
+Tèrminâ
+Filename
+Nom du fichiér:
+Files from:
+Fichiérs de:
+Filter:
+Filtro:
+Finances of %s
+Finances de %s
+Finanzen
+Finances
+find mismatch
+Comparar voutron pak
+fl_title
+Lista de les fabriques
+Flug_tab
+Avions de passagiérs
 follow me
 Vens avoèc mè
+Follow the convoi on the map.
+Siuvre lo convoi sur la mapa.
+font size
+Talye de police (solament polices .ttf et .otf)
+For questions and support please visit:
+Pèr quèstions et assistence, visitâd:
 Forest
 Jor
 Found new city
@@ -355,12 +1233,16 @@ Free Capacity
 Capacìtâ rèsta
 freeplay mode
 Sens bancarota
+Freight
+Frèt
 Friction:
 Valyòr de friccion
 fuel_cell
 pila combustiblo
 Full load
 Charâ minima
+Fullscreen (changed after restart)
+Plen ècran (changiê aprés rèdèmarrâjo)
 Fundament
 Fondacion
 Fussgaenger
@@ -377,6 +1259,8 @@ Gebaeude
 Construccion
 General
 G·ènèral
+generate script
+G·ènèrar un script macro d'enfrastructura
 Generated
 G·ènèrâ
 Generation: %.0f MW
@@ -403,16 +1287,24 @@ Gross Profit
 Bènèfiço lôrdo
 Groundobj
 Objèt
+groundobj builder
+Placiér des objèts de payisâjo
 Grow city
 Agrantir la citâ.
 Growth
 Crèssua citâ
+GUI settings
+GUI
 H
 avri
 Hangar
 Remisa
 Happy
 Content
+Has slope graphics
+At des grafismos de penta
+Has Snow
+At de nêv
 Haus kaufen
 Achetar la mêson
 Helligk.
@@ -425,6 +1317,8 @@ hide all building
 cachér totes les construccions
 hide city building
 cachér les construccions de citâ
+Hide labels
+Cachér les ètiquètes
 hide objects under cursor
 cachér los èlèments sos lo cursòr
 hide station names
@@ -435,6 +1329,12 @@ hide trees
 cachér los âbros
 Hier warten/lagern:
 Passagérs e charâ en atenta:
+Higher transport fees, crossconnect all factories
+Frês de transpôrt més hôts, dèsactivar lo justo-a-temps.
+highlight single ways
+Endique la fin/entèrrupcion de les vouèyes de circulacion.
+Highlite schedule
+Salyentar los arrêts dens l'horèro
 hl_title
 Lista de stacions
 hl_txt_filter
@@ -447,6 +1347,8 @@ hlf_chk_anleger
 Pôrt
 hlf_chk_bahnhof
 Gâra
+hlf_chk_bushalt
+Arrèt d'ôtobus
 hlf_chk_frachthof
 Zona de charâ
 hlf_chk_keine_verb
@@ -477,8 +1379,12 @@ Home depot not found!\nYou need to send the\nconvoi to the depot\nmanually.
 Impossiblo de trovar lo dèpô.\nVos devéds i mandar\nlo vèyiclo manuèlment.
 Homeless
 Galapian
+Horizontal stripe ownership
+Propriyètât en bendes horizontâles
 hydrogene
 Hidrog·ènë
+Icon size:
+Talye d'icôna:
 Idle:
 Inactivo:
 ignore climates
@@ -493,18 +1399,42 @@ increase underground view level
 Sèrrar
 industrial building
 Construccion de favèrge
+Industry overlay
+Calque des industries
+Infinite mouse scrolling
+Dèfelâjo enfeni de la mapa
+Infinite scrolling using mouse
+Pôt pas fonccionar avèc los ècrans tactilos!
 Init map ...
 Après iniciar la mapa...
 Input
 Entrâ
 Ins Stop
 Apondre
+Insert stop before the current stop
+Ensèrar un arrêt devant l'arrêt d'ora
+Install graphics
+Enstalar des grafismos
+Install paks
+Los juès de paks sont tèlèchargiês et enstalâs.
+Insufficient funds!
+Fonds ensufisents!
+Intercity road len:
+Longior de rota entèr-citâts:
+Intro. date
+Dâta d'intro.
 Intro. date:
 Data d'introduccion:
 invalid
 invalido.
+Invalid coordinate
+Ôrdre envalido
+Invert stops
+Envèrsar los arrêts
 isometric map
 Mapa isomètrica
+Jan.
+Janv.
 January
 Janviér
 join game
@@ -515,10 +1445,14 @@ Jump to
 Alar a
 June
 Joen
+just now
+a cet'ora
 Kann Spielstand\nnicht laden.\n
 Impossiblo d'ovrir\nlo document enrègistrâ!\n
 Kann Spielstand\nnicht speichern.\n
 Impossiblo d'èhcrire\ndiens lo document enregistrâ!\n
+keep city roads
+gardar les routes de citâ
 Kein Besitzer\n
 Sens propriètèro\n
 keine
@@ -541,41 +1475,1197 @@ Land attraction
 Atraccion rurâla
 Land industries
 Chêna de favèrges
+LANG_CHOOSE\n
+Volyéd chouèsir voutra\nlengoua prèfèrâ:\n
+LARGE_NUMBER_STRING
+M
+LARGE_NUMBER_VALUE
+1e6
+Last Month
+Mês passâ:
+Last used tools
+Dèrriérs otìlys utilisâs
+Last Year
+An passâ:
+Leaving depot!
+Quite lo dèpô!
+leer
+vouedo
+Left button drags minimap too
+Lo boton gôcho dèplaciye la minimapa asse-ben
+legacy (large heights)
+ancian (grantes hôtors)
+legacy (small heights)
+ancian (petiôtes hôtors)
+Legend
+Lègenda de la mapa
+Leistung
+Puissance
+Leistung: %d kW
+Puissance: %d kW
+Leitung
+Linye èlèctrica
+length: %d
+longuor : %d
+letzen Monat: diesen Monat:
+mês dèrriér :   cél mês :
+Line
+Linye
+Line Management
+Gèstion de linyes
+line name mouseover tooltips
+enfobules de survol du nom de linye
+linear
+linèâr
+Lineless convoys serving this stop
+Convois sens linye dessèrvant ceti arrêt
+Lines serving this stop
+Linyes dessèrvant ceti arrêt
+List of industries on the map
+Lista des industries sur la mapa
+LKW_tab
+Camions
 Load game
 Chargér una partia
 load height data from file
 Chargiér un document de mapa d'altituda.
+Load mode:
+Môdo de chargiment:
 Load scenario
 Chargér una mission
+Load script tool
+Chargiér l'otìly de script
+Load Scripted AI
+Chargiér una IA scriptâ
+Load settings from
+Aplicar los règllâjos dês
 loaded
 chargiê
 loaded passenger/freight
 Dicèrnar los passagérs e lo trèt pèr
 Loading (%i->%i%%)!
 Chargiment (%i->%i%%)
+Loading (%i%%) departure %s!
+Chargiment (%i%%) dèpârt %s!
+Loading (%i%%)!
+Chargiment (%i%%)!
+Loading addon paks ...
+Chargiment des paks d'èxtension ...
+Loading map ...
+Chargiment de la mapa ...
+Loading paks ...
+Chargiment des paks ...
+Loading skins ...
+Chargiment des skins ...
+Loading time:
+entiérement chargiê en: 
+Lock Control key
+Vèrrolyér la toche Control
+Lock game
+Dèfendre los changements de jouyor (demande confirmacion).
+Lokomotive_tab
+Locomotives
+m3
+m³
+maglev vehicle
+vèyicllo maglev
+maglev_track
+Vouèye maglev
+Maglevdepot
+Dèpô de maglev
+Mail Demand %d\n
+Demanda de pôsta %d\n
+Mail level
+Nivél de pôsta
+Mailbox
+Mèssâjos
+Mailbox Options
+Opcions de mèssâjos
+Maintenance
+Entrètien
+make stop public (or join with public stop next) costs %i per tile and level
+Rendre l'arrèt public (ou jégndre a l'arrèt public vesin), côste %i$ pèr cârro et nivél
+Make way or stop public (will join with neighbours), %i times maintainance
+Rendre la vouè ou l'arrêt publico (rejouendrat los vesins), %i côps l'entrètien
+Manual (Human)
+Manuèl (Humèn)
+Manufactured:
+Fabriquâ:
+Map roughness
+Rugositât de la mapa:
+map view
+Mapa
+map zoom
+zoome
+Mar.
+Mârs
 March
 Mârs
+Margin (%%)
+Mârge
+Marker
+Placiér un marcôr
+Max Boost (%%)
+Boost maximo (%%)
+Max income:
+Revènu maximo:
+Max. speed
+Vèlocitâ maxima
+Max. speed:
+Vèlocitâ maxima:
+Max. waiting time
+Temps d'atenta maximo (dd:hh:mm)
+Maximum 254 stops\nin a schedule!\n
+Maximum de 254 arrêts\ndens un horèro!\n
+maximum length of rivers
+Longuor max. de les reviéres
+Maximum tile height difference reached.
+La difèrence maxima de hôtior entre doux cârros at étâ ategnenta.
+Maxspeed
+Vèlocitâ maxima
 May
 Mê
+Median Citizen per town
+Citoyens mèdians pèr citâ:
+Meldung
+Mèssâjo
+Menge
+Quantitât
+merge stop
+fusionar l'arrèt
+MessageOptionsText
+\nNovél An\n\nNovèles des jouyors\n\nNovèles de la citâ\n\nNyuna rota\n\nNovèles dèstinacions\n\nNotificacion\n\nNovéls vèyicllos\n\nGâra plêna\n\nProblèmos\n\nEmbrotelyâjos\n\nScènario\n\nBarjacâjo g·ènèral\n\nBarjacâjo d'entrepêsa\n\nBarjacâjo privâ\n\n
+min
+min.
+minimum length of rivers
+Longuor min. de les reviéres
+Minimum load
+Chârge minima (%%)
+Missing pakfiles
+Des objèts mancont!
+Modify the selected line
+Modifiar la linye chouèsia
+Monate alt
+mês.
+monorail vehicle
+vèyicllo monorail
+monorail_track
+Vouèye monorail
+Monorailboden
+Vouè surèlevâ
+Monoraildepot
+Dèpô de monorail
+Month
+Mês
+month wait time
+temps d'atenta mensuèl
+Monthly departures
+Dèpârts ficses
+Months
+Mês
+Mountain height
+Hôtior de la montagne :
+Move the map
+Dèplaciér la mapa
+Movingobj
+objèt mobilo
+Music playing disabled/not available
+Musica dèsactivâ/indisponibla.
+Music volume:
+Volumo de la musica :
+mute sound
+Copar lo son
+Name
+Nom
 Narrowgauge
 Vi èhtrêta
 Narrowgauge are not available yet!
 La vi èhtrêta n'est p'oncor disponibla ora.
+narrowgauge vehicle
+vèyicllo de vouèye ètrêta
+narrowgauge_track
+Vouèye ètrêta
+Narrowgaugedepot
+Dèpô de vouè ètrêta
+Net ID: %p
+ID de rèsô: %p\n
+Net Wealth
+Capitâl nèt
+Net wealth near zero
+Capitâl nèt prés de zèrô
+Neue Karte
+Novèla partia
+Neue Welt
+Crèar una novèla partia
+new convoi
+Novél convouè
+New Line
+Novèla linye
+New line created!\nYou can assign the line now\nby selecting it from the\nline selector above.
+Novèla linye crèâye!\nVos pouede ora assignar la linye\nen la chouèséssent dens lo\nsèlector de linye ce-dessus.
+New Vehicles
+Novéls vèyicllos
+Nickname:
+Surnom :
+no buildings hidden
+nyuna construccion cachiê
+no convois
+Nyun convouè
+No goods are loaded onto this convoi.
+Nyun ben serat chargiê dens ceti convouè
+no goods waiting
+nyun ben en atenta
+no load
+Dèchargiér solament
+No player
+Nyun jouyor
+No Route
+Sens itinèrèro
+No stop here!
+L'otil dêt étre utilisâ sur una cârro d'arrêt.
+No suitable ground!
+Gins de tèrren adaptâ !
+No suitable townhall available for this climate!
+Gins de mêson comena adaptâye por ceti climâ !
+No terminal station here!
+Empossiblo de bâtir una gâra \ntèrminus ique! Un bocon de fin \nde rota/vouèye plana est nècèssèro.
+no timeline
+totes les èpiques
+No transformer connected.
+Gins de transformatòr conèctâ : tota l'ènèrgia serat pèrdua.
+no tree
+Nyun âbro
+No vehicles are available for purchase.
+Gins de vèyicllos disponiblos a l'achat.
+No. of Factories
+Usines et botiques :
+Noch kein Fahrzeug\nmit Fahrplan\nvorhanden\n
+"Ont-que vês-jo?"\nVos dëede balyér un orèro a cél convouè ou l'assignar a una linye devant que lui balyér l'ôrdre de partir.
+none
+nyun
 nord
 Nôrd
+nordost
+Nord-èst
+nordwest
+Nord-ouèst
+Not allowed to make publicly owned ways!
+Pas ôtorisâ a fâre des vouès publiques !
+Not allowed!\nThe convoi's schedule can\nnot be changed currently.\nTry again later!
+L'orèro du vèyicllo\ndêt pas étre changiê\npendent la rechèrche d'itènèrèro.
+Not enough fields would remain.
+Pas prod de champs rèstêront\notôr de cela fèrma.
+Not online
+Pas sur la têla
 November
 Novembro
+now
+ora
+Now active as %s.\n
+Ora activo coment %s.\n
+nowhere
+nionlèc
+Number of rivers
+Nombro de reviéres
+Object
+Objèt
+Odometer: %s km
+Odomètro : %s km
+Ok
+OK
 Oktober
 Octobro
+On loan since %i month(s)
+Emprontâ dês %i muès
+On mouseover
+U survôl de la morise
+on the
+dèpârt/mês d'abôrd a (jj-hh-mm)
+On this map, you are not\nallowed to change player!\n
+Cela partia est vèrrolyêe.\nNyun changement de jouor est possiblo.\n
+Only city chains
+Construre la chêna d'endustrie de citâ
+Only first %d differing paks reported. There are probably more.
+Solament los %d premiérs paks difèrents signalâs. Y en at probabllament d'ôtros.
+Only full Unicode fonts
+Solament les polices Unicode complètes
+Only land chains
+Construre la chêna d'endustrie campèstra
+Only one transformer per factory!
+Solament un transformatòr pèr usina !
+Only show goods which are currently handled by factories
+Montrar solament los bens que sont d'ora trètâs pèr des usines
+open
+uvèrt.
+Operation
+Côts d'èxploitacion
+Ops Profit
+Bènèfice d'èxploitacion
 Optionen
 Opcions
+Or enter a server manually:
+Ou buchiéd un sèrvòr a la man :
+Origin
+Origina
+ost
+Èst
+Output
+Produccion
+Ownership
+Propriètât
+Pak which may cause severe errors:
+Los objèts siuvents (pak) mancont, cen que pôt provoyér una difalyence des chênes de transpôrt :
+Pak which may cause visual errors:
+Los objèts siuvents (pak) ont étâ remplaciês pèr des objèts semblâblos :
+Pak(s) different:
+Pak(s) difèrent(s) :
+Pak(s) missing on client:
+Pak(s) manquents sur lo cliant :
+Pak(s) not on server:
+Pak(s) pas sur lo sèrvòr :
+Pakset differences
+Difèrences de pakset
+paletten
+ quèsses
+Pas_tab
+Trens de passagiérs
+Passagiere
+Passagiérs
+Passagierrate
+Nivél de passagiérs
+Passagierziele
+Dèstinacions pass./posta
+Passenger AI
+IA de passagiérs
+Passenger Demand %d\n
+Demanda de voyagiors %d\n
+Passengers %d %c, %d %c, %d no route
+Passagiérs %d %c, %d %c, %d sens itinèrèro
+Passengers %d %s, %d %s, %d no route
+Passagiérs %d %s, %d %s, %d sens itinèrèro
+Password
+Mot de pâssa :
+Pause
+Pôsa
+Pax <%i>  Mail <%i>
+Passagiérs <%i>  Posta <%i>
+Pax level
+Nivél de passagiérs
+PaxDest
+Dèstinacions
+Percent Electricity
+Produccion d'èlèctricitât (%% de la demanda) :
+personal_chat
+Barjacâjos privâs
+Pipette
+Reconstrure l'objèt sèlèccionâ
+Planes are not available yet!
+Los avions sont pas oncor disponiblos.
+Plant tree
+Plantar des âbros
+player
+Jouyor
+player -1
+Jouyor humen
+player 0
+sèrviço public
+player 1
+Napik 128 AS
+player 10
+jouyor 10
+player 11
+Jouyor 11
+player 12
+Jouyor 12
+player 13
+Jouyor 13
+player 2
+Trikky Transport
+player 3
+Meyer Moving Co.
+player 4
+Freight Forwarder VM
+player 5
+H-Trans Ltd
+player 6
+PSK & Co KG
+player 7
+Jouyor 7
+player 8
+Jouyor 8
+player 9
+Jouyor 9
+Player ranking
+Cllassament des jouyors
+Please choose vehicles first\n
+S'il vos plét, chouèsésséd d'abôrd los vèyicllos!\n
+Post
+Posta
+Postrate
+Nivél de posta
+Power
+Pouessance
+Power (MW)
+Pouessance (MW)
+Power:
+Pouessance :
+Power: %4d kW\n
+Puessience: %4d kW\n
+Powerlines
+Linyes èlèctriques
+Price
+Prix
+Problems_msg
+Problèmos
+Produced
+Produit
+Produces: %.1f units/minute
+d'ora %.1f/menuta
+Production of %s has been stopped:\n%s\n
+La produccion de %s est arrètâye:\n%s\n
+Production/Boost
+Produccion/Stimulacion
+Produktion
+Produccion :
+Profit
+Bènèfice
+promote to line
+Promôvêr en linye
+public_chat
+Barjacâjo g·ènèral
+q1
+Printemps
+q2
+Ètiê
+q3
+Ôton
+q4
+Hivèrn
+Query server
+Entèrrogiér lo sèrvòr
+rail car
+vèyicllo fèrrovièro
+random
+aléatouèro
+Random age
+Âjo a l'hasârd
+Random map
+Cârta a l'hasârd
+Rathaus
+Hôtèl de vela
+Rating
+Èstimacion
+ratio_pax
+Ratio pass.
+Relevant
+Pèrtinent
+Reliefkarte
+Cârta
+Remove
+Enlevar l'ètiquèta
+remove airstrips
+Suprimar pista ou voua de circulacion
+remove channels
+Suprimar los canâls
+remove interm. signals
+Suprimar sinyâls entèrm.
+remove maglev tracks
+Suprimar les vouas maglev
+remove monorails
+Suprimar los monorails
+remove narrowgauge tracks
+Suprimar les vouas ètrêtes
+remove powerlines
+Suprimar les linyes èlèctriques
+remove roads
+Suprimar les routes
+remove signal
+suprimar lo sinyâl
+remove tracks
+Suprimar les vouas
+Remove wayobj %s
+Enlevar l'objèt de vouye %s
+replace existing ways
+remplaciér les vouas ègzistentes
+replace faster wayobjs
+remplaciér los objèts de voua més râpidos
+replace other signals
+Remplaciér los ôtros sinyâls
+replace stop
+Remplaciér l'arrêt
+request closing
+demandar la cllotura
+residential house
+Mêsons rèsidencièles
+Restore natural slope
+Rètablir la penta naturèla
+Restwert:
+Valor de revenda :
+Retire date
+Dâta de retrèta
+Retire. date:
+Dâta de retrèta :
+return ticket
+copiér a l'envèrs
+Revenue
+Revègnus du vèyicllo
+Revenue/unit/100 tiles
+Revègnu/unitât/100 cases
+Revert schedule
+Anular les modificacions
+Revision:
+Rèvision :
+road
+routa
+road vehicle
+vèyicllo rotiér
+Roadsign
+Sinyâl rotiér
+Rotate Building
+Virar la construccion
+Rotate map
+Virar la cârta
+Rotation
+Rotacion
+Routing
+Rotâjo
+Running cost
+Costos de fonccionament
+sack
+ sacs
+sail
+vent
+Save
+Sôvar la partia
+Save generated script
+Sôvar lo script g·ènèrâ
+Saving map ...
+Sôva de la cârta ...
+Scenario complete: %i%%
+Scènario complèt : %i%%
+Scenario Debug
+Dèbogâjo
+Scenario Error Log
+Èrrors de script
+Scenario Goal
+Objèctif du scènario
+Scenario Info
+En brèf
+Scenario information
+Dètalys du scènario actuâl
+Scenario Result
+Progrès
+Scenario Rules
+Règlles
+Scenario_
+Scènario 
+Schedule changing!
+Changement d'horâro !
+Schienentunnel
+Construre un tunèl fèrrovièro
+Schiff_tab
+Batiôs
+Schiffdepot
+Chantiér navâl
+Schleppkahn_tab
+Pèniches
+Screen scale:
+Èchièla de l'ècran :
+Screenshot
+Captura d'ècran
+Scroll threshold
+Sèly de dèfilament
+Search:
+Rechèrche :
+Seasons
+Sêsons
+Sehenswuerdigkeit
+Atraccion touristica
+Select a server to join:
+Selièccionar un sèrvòr a rèjondre :
+Select a theme for display
+Selièccionar un tèmo por l'afichâjo
+Select display font
+Selièccionar la police d'afichâjo
+Select one or more graphics to install (Ctrl+click):
+Selièccionar yon ou plusiors grafismos a enstalar (Ctrl+clic) :
+Select soundfont
+Selièccionar la soundfont
+Sell the selected vehicle(s)
+Vendre lo(s) vèyicllo(s) selièccionâ(s).
+Selling of the program is forbidden.
+La venda du programo est dèfendua.
+sended
+Pôsta mandâye
+SEP_FRACTION
+,
+SEP_THOUSAND
+.
+SEP_THOUSAND_EXPONENT
+3
+Sept.
+Sèpt.
 September
 Sèptembro
+Served by
+Dèssèrvi pèr
+Served by me
+Dèssèrvi pèr mè
+Server did not respond!
+Lo sèrvòr at pas rèpondu !
+Serves Line:
+Dèssèrt la linye :
+Service
+Sèrvicio
+set signal spacing
+Dèfenir la distance des sinyâls
+Setting
+Règllâjos
+Ship
+Batiô
+shops and stores
+Botiques et burôs
+Show all
+Afichiér tot
+show all building
+Afichiér totes les construccions
+Show also vehicles no longer in production.
+Afichiér étot los vèyicllos que sont pas més en produccion.
+Show also vehicles that do not match for current action.
+Afichiér étot los vèyicllos pas adaptâs por l'accion selièccionâye.
+Show always
+Tojorn afichiér
+Show climates
+Afichiér los climâs
+Show construction info
+Afichiér les enformacions de construccion
+Show contour
+Afichiér les hôtors
+Show even servers with wrong version or pakset
+Afichiér étot los sèrvòrs avouéc una fôssa vèrsion ou un fôs pakset
+Show finances for transport type
+Afichiér les finances pèr tipo de transpôrt
+Show future
+Afichiér l'avegnir
+show grid
+Afichiér la grilye
+Show industry
+Lista d'endustries
+Show legend
+Selièccions
+Show map scale
+Codes de colors
+Show mismatched
+Afichiér les discordances
+Show networks
+Afichiér los rèsôs
+Show obsolete
+Afichiér los obsolètos
+Show offline
+Afichiér hors legne
+Show only used
+Afichiér solament los utilisâs
+Show outline
+Enfrastructura solament
+Show schedules
+Afichiér los horâros
+Show servers that are offline
+Afichiér los sèrvòrs hors legne
+Show servers where game version or pakset does not match your client
+Afichiér los sèrvòrs yô que la vèrsion du juè ou lo pakset corrèspond pas a voutron cliènt
+show station coverage
+Afichiér la covèrtura des gâres
+show station names
+afichiér lo nom des gâres
+show waiting bars
+Afichiér les bârres d'atenta
+show/hide block reservations
+afichiér/cachér les rèzèrvacions de cantons
+Show/hide estimated arrival times
+Afichiér/cachér les hores d'arrevâye èstimâyes
+show/hide object owner
+afichiér/cachér lo propriètèro de l'objèt
+Show/hide statistics
+Afichiér/cachér les statistiques
+Shows buttons about networks overlay.
+Afiche los botons por la supèrposicion des rèsôs.
+Shows buttons on network overlay.
+Montre l'opcion de supèrposar un rèsô de conèxion.
+Shows buttons on special topics.
+Afiche los botons sur des sujèts spèciâls.
+Shows consumer/suppliers for factories
+Afiche los consomators/fornissors de les usines
+Shows the color code for several selections.
+Afiche lo code de colors por plusiors selièccions.
+Shows the currently selected schedule
+Afiche l'horâro d'ora selièccionâ
+Shrink city
+Rètrecir la citâ
+shuffle midis
+Mècllar les pistes
+Signal
+Sinyâl
+signal spacing
+Èspaciament des sinyâls
+Sim:
+Simloops :
+Similar view as the main window
+Vua semblâbla a la fenétra principâla
+Single toolbar only
+Bârra d'otelys unica solament
+Size (%d MB):
+Talye (%d MB) :
+Size (area)
+Talye (supèrficie)
+sliced underground mode
+Vuelye de la cârta per tranches
+slot empty
+emplaciament vouedo
+Smart hide objects
+Cachiê entèlig·ent des objèts
+Sort by
+Triyér pèr
+Sort by:
+Triyér pèr :
+Sort waiting list by
+Triyér la lista d'atenta pèr
+Sound
+Son
+Sound settings
+Règllâjos du son
+Sound volume:
+Volumo du son :
+Soundfonts are located in the music directory.
+Les soundfonts sè trôvont dens lo rèpèrtouèro de musica.
+special freight
+Fret spèciâl
+Speed Bonus
+Bonus de vèlocitâ
+Speedbonus\nroad %i km/h, rail %i km/h\nships %i km/h, planes %i km/h.
+Bonus de vèlocitâ\nrouta %i km/h, fèr %i km/h\nbatiôs %i km/h, avions %i km/h.
+Speedlimit
+Limitacion de vèlocitâ
+Speichern
+Enrègistrar
+Spieler
+Jouyòr
+Spieler(mz)
+Jouyòrs
+Spielerliste
+Lista de jouyòrs
+Spielstand wurde\ngeladen!\n
+Partia chargiêe!\n
+Spielstand wurde\ngespeichert!\n
+Partia enrègistrâye!\n
 Sprache
 lengoua
 Sprachen
 Lengoues
+Stadtinformation
+Statistiques de la citâ
 Start
 Dèpârt
+Start the selected vehicle(s)
+Dèmârrer lo(s) vèyicllos chouèsis
 Starte Spiel
 Comencér
+station labels
+Gâres
+Station tiles:
+Cases de la gâra:
+Station_msg
+Gâres
+Status
+Ètat
+stay on this level
+réstar a ceti nivél
+steam
+vapor
+Step timeline one year
+Avanciér la cronologia d'un an
+Stopping permissions
+Autorisacions d'arrèt
+Stops
+Arrèts
+Storage
+Stockâjo
+Storage capacity
+Capacitâ de stockâjo
+straight route
+routa drêta
+Strassendepot
+Garâjo
+Strassentunnel
+Construre un tunèl rotiér
+street car
+tram
+sued
+Sud
+suedost
+Sud-èst
+suedwest
+Sud-ouèst
+Summer snowline
+Limita des nêfs en ètê
+Supplied: %.0f %%
+Fourni: %.0f %%
+Suppliers
+Fournessors
+Tage alt
+jorns d'âjo
+The following graphics are unmaintained:
+Les grafiques siuventes sont pas mantiegnues:
+The generated script was saved!\n
+Lo script g·ènèrâ at étâ enrègistrâ!\n
+The gradient does not fit a tunnel
+La penta corrèspont pas por un tunèl
+The script cannot be saved!\n
+Lo script pôt pas étre enrègistrâ!\n
+Theme selector
+Sèlèctor de téma
+There are still vehicles\nstored in this depot!\n
+I y at d'oncor des vèyicllos\ndens ceti dèpô!\n
+This Month
+Ceti mês
+This Year
+Ceti an
+Tile not empty.
+Case pas voueda.
+timeline
+Rèspèctar la cronologia
+tl_title
+Lista de citâts
+To attract more tourists\n%s built\na %s\nwith the aid of\n%i tax payers.
+Lo trâfic a %1$s est en ôgmentacion:\n%3$i contribuyents ont fêt la construccion\nde %2$s una rèalitâ.
+To heavy traffic\nresults in traffic jam.\n
+Trop de trafic\nprovoche un belyon.\n
+To: %s
+A: %s
+Toggle day/night view
+Bascular la vua jorn/nuet
+Toggle vehicle tooltips
+Bascular les enfoboules de vèyicllos
+tonnen
+t
+Toolbar position:
+Posicion de la bârra d'otis:
+Total inhabitants:
+Totâl des habitents:
+Tourist attractions
+Atraccions touristiques
+Tourists
+Touristos
+Town_msg
+Citâts
+Town: %s\n
+Citâ: %s\n
+Towns
+Citâts
+track
+voua
+Tracks
+Vouyes
+Traffic
+Trafic
+traffic settings
+Trafic
+Train
+Tren
+Trains are not available yet!
+Les trens sont pas d'oncor disponiblos!
+tram %i km/h, monorail %i km/h\nmaglev %i km/h, narrowgauge %i km/h.
+tram %i km/h, monorail %i km/h\nmaglev %i km/h, voua ètrêta %i km/h.
+tram_track
+voua de tram
+Tramdepot
+Dèpô de trams
+Trams are not available yet!
+Les trams sont pas d'oncor disponiblos!
+Transferring game ...
+Transfèrt de la partia...
+Transformer only next to factory!
+Lo transformator dêt étre a coutâ d'una fabrica!
+Translation
+Traduccion
+transparencies
+Transparènce
+transparent background
+fond transparènt
+transparent station coverage
+Covèrtura des gâres transparente
+Transported
+Transportâ
+Trees disabled!
+Âbros dèsactivâs!
+TrolleyBus_tab
+Trolleybusses
+Truck
+Camion
+tt_Other
+Ôtro
+Tunnel muss an\neinfachem\nHang beginnen!\n
+Los tunèls dêvont\ncomenciér sur una\npenta drêta!\n
+Tunnel must start on single way!
+Los tunèls dêvont comenciér sur una vouye simpla!
+Tunnelboden
+Tunèl
+under the Artistic License
+sot la Licence Artistica
+underground mode
+Vuelye sot-tèrrena
+UNDO failed!
+Dèfâre empossiblo!
+Undo last ways construction
+Dèfâre la dèrriére construccion de vouyes
+Unemployed
+Sens emplê
+Unhappy
+Mècontent
+units/day
+/mês, 
+Unloading (%i%%)!
+Dèchargiment (%i%%)!
+Update Line
+Mèttre a jorn la linye
+upgrade HQ
+Mèlyorar lo sièjo
+Usage: %.0f %%
+Utilisacion: %.0f %%
+Usage/Output
+Utilisacion/Rendiment
+Use beginner mode
+Emplèyir lo modo dèmarror
+Use timeline start year
+Utilisar la cronologia dês l'an:
+Vehicle %s can't find a route!
+Lo vèyicllo %s pôt pas trovar de rota!
+Vehicle %s is stucked!
+Lo vèyicllo %s est bloquiê!
+Vehicle count:
+Nombro de vèyicllos:
+Vehicle details
+Dètalyos du vèyicllo
+Vehicle Name
+Nom du vèyicllo
+Vehicle Power
+Puessience du vèyicllo
+vehicles stored
+vèyicllos en dèpô
+Verbrauch
+Consomacion:
+Vergroessere die Karte\n
+Agrantir la cârta.\n
+Verkauf
+Vendre!
+verkaufen
+Vendre
+Verkehrsteilnehmer
+Vèyicllos de citâ
+Verschuldet:\n\nDu hast %d Monate Zeit,\ndie Schulden zurueckzuzahlen.\n
+Endèbtâ:\n\nVos éd %d mês de temps\npor rembourciér la dèta.\n
+vh_title
+Lista de tôs los vèyicllos
+via
+via (dètalhy)
+via %s\n
+ via %s\n
+via Menge
+via (quantitâ)
+via owner
+via (propriètèro)
+voranstellen
+Metre devant
+Waggon_tab
+Vagons
+waiting
+en atenta
+Waiting for clearance!
+En atenta de vouye libra!
+Walked
+A pied
+walking
+A piê
+Warnings_msg
+Avèrtissements
+Wasser
+Égoue
+Water
+Canâl
+Water level
+Nivél de la mar:
+water vehicle
+vèyicllo navâl
+way %s cannot longer used:\n
+Lo tipo de voua %s pôt pas més étre utilisâ.\n
+way %s cannot longer used:\n%s\n
+Lo tipo de vouèye %s pôt pas ples étre utilisâ:\n
+way %s now available:\n
+Lo tipo de voua %s est ora disponiblo :\n
+Way toll
+Pèâjo de vouye
+Ways not connected
+Vouyes pas raccordâyes
+waytype
+tipo de voua
+Wegpunkt
+Pouent de passâjo
+Weight
+Pêds
+Weight:
+Pêds:
+Weight/unit
+Pêds/unitât
+Welcome to Simutrans
+Benvignu a Simutrans
+Welcome, %s!
+Benvignu, %s!
+Wert
+Valor
+west
+Ouèst
+Wind direction
+Dirèccion du vent
+Winter snowline
+Limita des nêfs en hivèrn
+withdraw
+Retirar
+Withdraw All
+Retirar tot
+WRONGSAVE
+\nPartia enrègistrâye encompatibla.\nEmpossiblo de charjar lo fichiér.\n
+Year
+An
+Year %i has started.
+L'an %i at comenciê.
+Years
+Ans
+Your primary color:
+Voutra color primèra:
+Your secondary color:
+Voutra color secondèra:
+Zielort
+dèstinacion
+zooming in
+Zoom avant
+zooming out
+Zoom arriér
+Zu nah am Kartenrand
+Vos pouede pas construre\nsi prés du\nbôrd de la mapa.
+#__________________________________record_text__________________________________
+#__________________________________record_text__________________________________
+New world record for maglevs: %.1f km/h by %s.
+En lèvitacion sur des aimants a\n%.1f km/h pèr %s:\nNovél record du mondo!
+New world record for monorails: %.1f km/h by %s.
+Un sol râly bâti por la vèlocitâ:\nÈgzactament %.1f km/h\natenyê pèr %s\nen fât un novél record du mondo!
+New world record for motorcars: %.1f km/h by %s.
+Rèste solament des traces de pneu\na rulâr a %.1f km/h\npèr %s\npor avengiér un novél record du mondo!
+New world record for narrowgauges: %.1f km/h by %s.
+Novél record du mondo de vouè ètrêta : %.1f km/h pèr %s.
+New world record for planes: %.1f km/h by %s.
+Les distances sè rèduisont un côp de ples:\n%2$s at volâ a %1$.1f km/h.\nNovél record du mondo!
+New world record for railways: %.1f km/h by %s.
+Tonent sur les vouèyes\na %.1f km/h.\n%s ètablét un novél record du mondo por los trens.\m
+New world record for ship: %.1f km/h by %s.
+Lo Ruban blu por una navigaçon\na %.1f km/h est ganyê pèr\n%s.
+#________________________________script_ai_text_________________________________
+#________________________________script_ai_text_________________________________
+%s build additional convoy to line: %s
+%s a construit un convoi suplementèro por la linye: %s
+%s build rail line from %s (%s) to %s (%s)
+%s a construit una linye fèrrovièra de %s (%s) a %s (%s)
+%s build road line from %s (%s) to %s (%s)
+%s a construit una linye routièra de %s (%s) a %s (%s)
+%s build ship line from %s (%s) to %s (%s)
+%s a construit una linye de batiôs de %s (%s) a %s (%s)
+%s extends the route from %s (%s) to %s (%s)
+%s prolhonge la rota de %s (%s) a %s (%s)
+%s optimize way line from %s (%s) to %s (%s)
+%s optimise la vôye de %s (%s) a %s (%s)
+%s removes convoys from line: %s
+%s enléve des convois de la linye: %s
+vehicles of the line %s were retired
+los vèyicllos de la linye %s ont étâ retirâs
+#_________________________________tooltip_text__________________________________
+#_________________________________tooltip_text__________________________________
+Add convois with similar schedule to this line.
+Apondre des convois avouéc un horèro semblâblo a ceta linye.
+Attach current coordinate to the comment
+Atachiér la coordonâ actuèla u comentèro
+Enter intervall in days, hours, minutes
+Buchiér l'entèrvalo en jorns, hores, menutes
+Mirrors order of stops
+Envèrsar l'ôrdre des arrêts
+Revert to original schedule
+Anular tos los changements d'horâro.
+Tutorial not available for this pakset. Please try loading Pak128.
+Lo tudoriâl est pas disponiblo por ceti pakset. Volyéd charjar Pak128.
+#_______________________________unnecessary_text________________________________
+#_______________________________unnecessary_text________________________________
+0center
+0centro
+0extern
+0èxtèrno
+0suburb
+0fôrbôrg
+1center
+%s %s
+1extern
+%s brancha %s
+1suburb
+%s %s %s
+2center
+%s centrâl %s
+2extern
+%s èxtèrno %s
+2suburb
+%s Prâts Vèrts %s %s
+3center
+%s principâl %s
+3extern
+%s campanye %s
+3suburb
+%s velâjo %s %s
+4center
+%s entèrior %s
+4extern
+%s èxtèrior %s
+4suburb
+%s rurâl %s
+5center
+%s centro-citâ %s
+5extern
+%s correspondance %s
+5suburb
+%s vela %s
+6center
+%s pôlo %s
+6extern
+%s èchanjo %s
+6suburb
+%s pèrifèria %s %s
+7center
+%s citâ %s
+7extern
+%s planes %s
+7suburb
+%s parc %s
+8center
+%s afâres %s
+8extern
+%s %s bordo %s
+8suburb
+%s satèlite %s
+9center
+%s axo %s
+9extern
+%s contournament %s
+9suburb
+%s mèzo %s
+Acenter
+Acentro
+Aextern
+Aèxtèrno
+Asuburb
+Afôrbôrg
+Bcenter
+Bcentro

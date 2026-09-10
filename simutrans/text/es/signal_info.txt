@@ -1,0 +1,23 @@
+<title>Ventana de información de la señal</title>
+
+<h1>Ventana de información de la señal</h1>
+
+<p>
+Información sobre la señal.<br>
+- <em>Nombre de la señal</em><br>
+- <em>Descripción</em>: no siempre está disponible<br>
+- <em>Propietario</em>: qué jugador es dueño de la señal<br>
+- <em>Direcciones</em>: en qué direcciones es válida; en las demás, la ruta queda cerrada.<br>
+- <em>1</em> = sur, también en diagonal hacia el oeste<br>
+- <em>2</em> = oeste, también en diagonal hacia el norte<br>
+- <em>3</em> = en diagonal hacia el norte y hacia el sur<br>
+- <em>4</em> = norte, también en diagonal hacia el norte<br>
+- <em>5</em> = norte y sur<br>
+- <em>8</em> = este, también en diagonal hacia el este o el sur<br>
+- <em>9</em> = en diagonal hacia el este y hacia el oeste<br>
+- <em>10</em> = este y oeste<br>
+- <em>12</em> = en diagonal hacia el norte y hacia el sur<br>
+- <em>Eliminar señal</em>: quita esta señal<br>
+- <em>Dibujado por</em>: nombre de quien creó el gráfico<br>
+
+</p>
