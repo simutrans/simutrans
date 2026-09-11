@@ -3,76 +3,76 @@
 <h1><strong>Mapa</strong></h1>
 
 <p>
-<strong>Mapa</strong> fornece um mapa do mundo atual oferecendo informaÁıes sobre terreno, lugares importantes e redes de transporte. Ele tambÈm fornece um modo para mover a vis„o do jogo pelo mundo.
+<strong>Mapa</strong> fornece um mapa do mundo atual oferecendo informa√ß√µes sobre terreno, lugares importantes e redes de transporte. Ele tamb√©m fornece um modo para mover a vis√£o do jogo pelo mundo.
 </p>
 <p>
-Clique no Ìcone do mapa no topo da vis„o do jogo ou pressione <a href="keys.txt">[m]</a> para abrir o <strong>Mapa</strong>, cujo tamanho pode ser <a href="mouse.txt">ajustado</a> ou minimizado. Os trÍs botıes abaixo da barra de tÌtulo abrem trÍs legendas: opÁıes do mapa(explicadas mais abaixo), escala de cor mÌn./m·x. e a legenda das ind˙strias.
+Clique no √≠cone do mapa no topo da vis√£o do jogo ou pressione <a href="keys.txt">[m]</a> para abrir o <strong>Mapa</strong>, cujo tamanho pode ser <a href="mouse.txt">ajustado</a> ou minimizado. Os tr√™s bot√µes abaixo da barra de t√≠tulo abrem tr√™s legendas: op√ß√µes do mapa(explicadas mais abaixo), escala de cor m√≠n./m√°x. e a legenda das ind√∫strias.
 </p>
 <p>
-O mapa pode ser visto em v·rias tamanhos: aponte com o cursor do mouse e use o scroll, ou clique nas setas para a direita e para a esquerda na parte superior da janela para visualizar as escalas. Se a parte do mundo que deseja ver n„o estiver visÌvel, mude a escala do mapa, redimensione-o, ou mova-o: enquanto clica com o bot„o direito do mouse no mapa, arraste-o (ou use as barras deslizantes nas laterais).
+O mapa pode ser visto em v√°rias tamanhos: aponte com o cursor do mouse e use o scroll, ou clique nas setas para a direita e para a esquerda na parte superior da janela para visualizar as escalas. Se a parte do mundo que deseja ver n√£o estiver vis√≠vel, mude a escala do mapa, redimensione-o, ou mova-o: enquanto clica com o bot√£o direito do mouse no mapa, arraste-o (ou use as barras deslizantes nas laterais).
 <p>
 </p>
-No mapa, a ·gua È azul e as terras mais baixas s„o mais escuras que as terras mais altas. A parte do mundo na vis„o do jogo È mostrada por um quadrado com contorno amarelo no <strong>Mapa</strong>: o topo da vis„o do jogo corresponde ao lado superior esquerdo do ret‚ngulo amarelo (o Norte est· no topo do mapa, enquanto na vis„o do jogo est· no canto superior direito). Se o ret‚ngulo amarelo sair da ·rea do mapa, ·gua ser· vista na vis„o do jogo na ·rea correspondente.
+No mapa, a √°gua √© azul e as terras mais baixas s√£o mais escuras que as terras mais altas. A parte do mundo na vis√£o do jogo √© mostrada por um quadrado com contorno amarelo no <strong>Mapa</strong>: o topo da vis√£o do jogo corresponde ao lado superior esquerdo do ret√¢ngulo amarelo (o Norte est√° no topo do mapa, enquanto na vis√£o do jogo est√° no canto superior direito). Se o ret√¢ngulo amarelo sair da √°rea do mapa, √°gua ser√° vista na vis√£o do jogo na √°rea correspondente.
 </p>
 <p>
-Para mover a vis„o do jogo por dist‚ncias grandes no mundo, clique com o bot„o esquerdo no ponto desejado ou clique com o bot„o esquerdo do mouse e ao mesmo tempo arraste o ret‚ngulo amarelo.
+Para mover a vis√£o do jogo por dist√¢ncias grandes no mundo, clique com o bot√£o esquerdo no ponto desejado ou clique com o bot√£o esquerdo do mouse e ao mesmo tempo arraste o ret√¢ngulo amarelo.
 </p>
 <p>
-Aponte o cursor do mouse em uma <a href="industry_info.txt">ind˙stria</a> no mapa, para ver o seu nome. Se a opÁ„o "detalhes da f·brica" estiver ativada, aparecer· uma linha branca ligando a ind˙stria ao(s) seu(s) consumidor(es); pressionando [Shift] aparecer· uma linha vermelha ligando a ind˙stria ao(s) seu(s) fornecedor(es).
+Aponte o cursor do mouse em uma <a href="industry_info.txt">ind√∫stria</a> no mapa, para ver o seu nome. Se a op√ß√£o "detalhes da f√°brica" estiver ativada, aparecer√° uma linha branca ligando a ind√∫stria ao(s) seu(s) consumidor(es); pressionando [Shift] aparecer√° uma linha vermelha ligando a ind√∫stria ao(s) seu(s) fornecedor(es).
 </p>
 <p>
-No mapa (quando as opÁıes n„o est„o sendo usadas): <a href="citywindow.txt">·reas urbanas</a>, atraÁıes e t˙neis aparecem em cinza escuro; canais, azul; estradas, preto; ferrovias e trilhos de bonde, marrom escuro; pontes, cinza-claro; <a href="station.txt">Paradas</a>,vermelho; pistas de monotrilho/maglev, laranja; ·reas de aeroporto, bege; e veÌculos, em amarelo, normalmente em movimento.
+No mapa (quando as op√ß√µes n√£o est√£o sendo usadas): <a href="citywindow.txt">√°reas urbanas</a>, atra√ß√µes e t√∫neis aparecem em cinza escuro; canais, azul; estradas, preto; ferrovias e trilhos de bonde, marrom escuro; pontes, cinza-claro; <a href="station.txt">Paradas</a>,vermelho; pistas de monotrilho/maglev, laranja; √°reas de aeroporto, bege; e ve√≠culos, em amarelo, normalmente em movimento.
 </p>
 <p>
-Clique nos botıes de opÁıes para mostrar/ocultar detalhes no mapa (para os botıes aparecerem, clique no bot„o Legenda):
+Clique nos bot√µes de op√ß√µes para mostrar/ocultar detalhes no mapa (para os bot√µes aparecerem, clique no bot√£o Legenda):
 </p>
 <p>
-<em>Cidades:</em> nomes das <a href="citywindow.txt">·reas urbanas</a>.
+<em>Cidades:</em> nomes das <a href="citywindow.txt">√°reas urbanas</a>.
 </p>
 <p>
-<em>Passageiros:</em> ·rea de captura para passageiros por <a href="station.txt">Paradas</a>.
+<em>Passageiros:</em> √°rea de captura para passageiros por <a href="station.txt">Paradas</a>.
 </p>
 <p>
-<em>Correio:</em> ·rea de captura para correio por <a href="station.txt">Paradas</a>.
+<em>Correio:</em> √°rea de captura para correio por <a href="station.txt">Paradas</a>.
 </p>
 <p>
-<em>Mercadoria:</em> nÌvel de mercadorias e passageiros em estradas e outros tipos de vias (usa a escala de cor mÌn./m·x.).
+<em>Mercadoria:</em> n√≠vel de mercadorias e passageiros em estradas e outros tipos de vias (usa a escala de cor m√≠n./m√°x.).
 </p>
 <p>
-<em>QualificaÁ„o:</em> as cores indicam a operaÁ„o da <a href="station.txt">Parada</a> em relaÁ„o a qu„o lotada ela est· no momento. A mesma cor È mostrada nas barras de status na <a href="haltlist.txt">Lista de Paradas</a> e <a href="station.txt">InformaÁıes das Paradas</a> e <a href="linemanagement.txt">Gerenciador de Linhas</a> e È a mesma cor mostrada na barra de cor acima do nome de uma Parada na tela do jogo.
+<em>Qualifica√ß√£o:</em> as cores indicam a opera√ß√£o da <a href="station.txt">Parada</a> em rela√ß√£o a qu√£o lotada ela est√° no momento. A mesma cor √© mostrada nas barras de status na <a href="haltlist.txt">Lista de Paradas</a> e <a href="station.txt">Informa√ß√µes das Paradas</a> e <a href="linemanagement.txt">Gerenciador de Linhas</a> e √© a mesma cor mostrada na barra de cor acima do nome de uma Parada na tela do jogo.
 </p>
 <p>
-<em>ServiÁo:</em> nÌvel de mercadorias e passageiros usando uma <a href="station.txt">Parada</a> (usa a escala de cor mÌn./m·x.).
+<em>Servi√ßo:</em> n√≠vel de mercadorias e passageiros usando uma <a href="station.txt">Parada</a> (usa a escala de cor m√≠n./m√°x.).
 </p>
 <p>
-<em>Tr·fego:</em> nÌvel de <a href="convoiinfo.txt">veÌculos</a> em estradas e outros tipos de vias (usa a escala de cor mÌn./m·x.).
+<em>Tr√°fego:</em> n√≠vel de <a href="convoiinfo.txt">ve√≠culos</a> em estradas e outros tipos de vias (usa a escala de cor m√≠n./m√°x.).
 </p>
 <p>
-<em>Origem:</em> nÌvel de mercadorias e passageiros que comeÁam viagem de uma <a href="station.txt">Parada</a> (usa a escala de cor mÌn./m·x.).
+<em>Origem:</em> n√≠vel de mercadorias e passageiros que come√ßam viagem de uma <a href="station.txt">Parada</a> (usa a escala de cor m√≠n./m√°x.).
 </p>
 <p>
-<em>Destino:</em> nÌvel de mercadorias e passageiros terminando uma viagem em uma <a href="station.txt">Parada</a> (usa a escala de cor mÌn./m·x.).
+<em>Destino:</em> n√≠vel de mercadorias e passageiros terminando uma viagem em uma <a href="station.txt">Parada</a> (usa a escala de cor m√≠n./m√°x.).
 </p>
 <p>
-<em>Espera:</em> nÌvel de mercadorias e passageiros esperando por transporte em uma <a href="station.txt">Parada</a> (usa a escala de cor mÌn./m·x.).
+<em>Espera:</em> n√≠vel de mercadorias e passageiros esperando por transporte em uma <a href="station.txt">Parada</a> (usa a escala de cor m√≠n./m√°x.).
 </p>
 <p>
-<em>Vias:</em> ferrovias e trilhos de bonde e placas; trilhos, pontes e t˙neis s„o mostrados com a cor branca (vermelha se for eletrificado) e placas s„o mostradas com a cor amarela.
+<em>Vias:</em> ferrovias e trilhos de bonde e placas; trilhos, pontes e t√∫neis s√£o mostrados com a cor branca (vermelha se for eletrificado) e placas s√£o mostradas com a cor amarela.
 </p>
 <p>
-<em>Vel. M·xima:</em> estradas e pistas s„o mostradas pela velocidade m·xima permitida (usa a escala de cor mÌn./m·x.).
+<em>Vel. M√°xima:</em> estradas e pistas s√£o mostradas pela velocidade m√°xima permitida (usa a escala de cor m√≠n./m√°x.).
 </p>
 <p>
-<em>L. ElÈtricas:</em> <a href="special.txt">linhas elÈtricas</a> (usa a escala de cor mÌn./m·x. para visualizar o nÌvel de abastecimento do momento em que o Mapa foi aberto).
+<em>L. El√©tricas:</em> <a href="special.txt">linhas el√©tricas</a> (usa a escala de cor m√≠n./m√°x. para visualizar o n√≠vel de abastecimento do momento em que o Mapa foi aberto).
 </p>
 <p>
-<em>Turistas:</em> nÌvel de passageiros que as atraÁıes turÌsticas geram (usa a escala de cor mÌn./m·x.); esta opÁ„o tambÈm mostra as atraÁıes turÌsticas no mapa.
+<em>Turistas:</em> n√≠vel de passageiros que as atra√ß√µes tur√≠sticas geram (usa a escala de cor m√≠n./m√°x.); esta op√ß√£o tamb√©m mostra as atra√ß√µes tur√≠sticas no mapa.
 </p>
 <p>
-<em>F·bricas:</em> enfatiza as <a href="industry_info.txt">ind˙strias</a>; destaca os consumidores e fornecedores no mapa.
+<em>F√°bricas:</em> enfatiza as <a href="industry_info.txt">ind√∫strias</a>; destaca os consumidores e fornecedores no mapa.
 </p>
 <p>
-<em>DepÛsitos:</em> enfatiza os <a href="depot.txt">depÛsitos</a>. As cores indicam o tipo de transporte: navios, vermelho; estradas, amarelo; ferrovias, laranja; aviıes, lil·s; bondes, laranja escuro; e monotrilhos, marrom escuro.
+<em>Dep√≥sitos:</em> enfatiza os <a href="depot.txt">dep√≥sitos</a>. As cores indicam o tipo de transporte: navios, vermelho; estradas, amarelo; ferrovias, laranja; avi√µes, lil√°s; bondes, laranja escuro; e monotrilhos, marrom escuro.
 </p>
-<p> Traduzido pela Equipe de traduÁ„o do Simutrans PT-SubFÛrum (<em>http://pt.simutrans.com</em>), 17/01/2008.
+<p> Traduzido pela Equipe de tradu√ß√£o do Simutrans PT-SubF√≥rum (<em>http://pt.simutrans.com</em>), 17/01/2008.
 </p>

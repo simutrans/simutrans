@@ -1,70 +1,70 @@
-<title>Ajuda - Finanças</title>
+<title>Ajuda - FinanÃ§as</title>
 
-<h1><strong>Finanças</strong></h1>
+<h1><strong>FinanÃ§as</strong></h1>
 
 <p>
-A janela de <strong>Finanças</strong> mostra como está o fluxo de caixa de sua empresa, mostra o quanto você gastou com veiculos, tranpostes e etc.
+A janela de <strong>FinanÃ§as</strong> mostra como estÃ¡ o fluxo de caixa de sua empresa, mostra o quanto vocÃª gastou com veiculos, tranpostes e etc.
 </p>
 <p>
-Clique no ícone de dinheiro na parte superior de seu monitor, ou tecle <a href="keys.txt">[f]</a>, ou clique no nome de um <a href="players.txt">Jogador</a>, para abrir <strong>Finaças</strong>.
+Clique no Ã­cone de dinheiro na parte superior de seu monitor, ou tecle <a href="keys.txt">[f]</a>, ou clique no nome de um <a href="players.txt">Jogador</a>, para abrir <strong>FinaÃ§as</strong>.
 </p>
 <p>
-Os valores estão em Hajo Credits, nessa janela você pode ver seu fluxo deste ano e do ano anterior.<br>
-<em>Este Ano:</em> ano atual do calendário do jogo (o ano é mostrado na parte inferior a esquerda do seu monitor).<br>
-<em>Ano passado:</em> ano anterior do calendário do jogo.
+Os valores estÃ£o em Hajo Credits, nessa janela vocÃª pode ver seu fluxo deste ano e do ano anterior.<br>
+<em>Este Ano:</em> ano atual do calendÃ¡rio do jogo (o ano Ã© mostrado na parte inferior a esquerda do seu monitor).<br>
+<em>Ano passado:</em> ano anterior do calendÃ¡rio do jogo.
 </p>
 <p>
-Os valores anuais podem também ser vistos em um gráfico para os últimos doze anos, ou valores mensais para o ano passado.<br>
-Clique sobre o valor ou no botão de nome para mostrar o valor: O eixo vertical é a quantidade, o eixo horizontal é o tempo.<br>
-Clique nas abas para alterar os valores do gráfico<br>
-<em>Últimos 12 Anos:</em> mostra os valores anuais dos últimos doze anos do jogo.<br>
-<em>Últimos 12 Meses:</em> mostra os valores mensais dos últimos doze meses do jogo.
+Os valores anuais podem tambÃ©m ser vistos em um grÃ¡fico para os Ãºltimos doze anos, ou valores mensais para o ano passado.<br>
+Clique sobre o valor ou no botÃ£o de nome para mostrar o valor: O eixo vertical Ã© a quantidade, o eixo horizontal Ã© o tempo.<br>
+Clique nas abas para alterar os valores do grÃ¡fico<br>
+<em>Ãšltimos 12 Anos:</em> mostra os valores anuais dos Ãºltimos doze anos do jogo.<br>
+<em>Ãšltimos 12 Meses:</em> mostra os valores mensais dos Ãºltimos doze meses do jogo.
 </p>
 <p>
-Para ver os detalhes dos valores, clique nos botões dos valores para ver os detalhes no gráfico. Os valores incluem:
+Para ver os detalhes dos valores, clique nos botÃµes dos valores para ver os detalhes no grÃ¡fico. Os valores incluem:
 </p>
 <p>
-<em>Faturamento</em> e <em>L. Elétricas</em> - renda total do transporte de passageiros, bens, correio e de <a href="special.txt">transmissão de energia</a>.
+<em>Faturamento</em> e <em>L. ElÃ©tricas</em> - renda total do transporte de passageiros, bens, correio e de <a href="special.txt">transmissÃ£o de energia</a>.
 </p>
 <p>
-<em>Operação</em> - custo total de todas as operações dos <a href="convoiinfo.txt">Comboios</a> quando em trânsito.<br>
-{OBS: A operação de quanto o comboio gastou por quilômetro pode se vista em <a href="depot.txt">depósitos</a> ou em Informações de Comboios.}
+<em>OperaÃ§Ã£o</em> - custo total de todas as operaÃ§Ãµes dos <a href="convoiinfo.txt">Comboios</a> quando em trÃ¢nsito.<br>
+{OBS: A operaÃ§Ã£o de quanto o comboio gastou por quilÃ´metro pode se vista em <a href="depot.txt">depÃ³sitos</a> ou em InformaÃ§Ãµes de Comboios.}
 </p>
 <p>
-<em>Manutenção</em> - custo total para manter a rede de transporte.<br>
-{OBS: O custo por o mês para manter a rede (<em>Manutenção (mês)</em> é mostrado na direita de <strong>Finanças</strong>) é deduzido no fim do mês de calendário do jogo.}
+<em>ManutenÃ§Ã£o</em> - custo total para manter a rede de transporte.<br>
+{OBS: O custo por o mÃªs para manter a rede (<em>ManutenÃ§Ã£o (mÃªs)</em> Ã© mostrado na direita de <strong>FinanÃ§as</strong>) Ã© deduzido no fim do mÃªs de calendÃ¡rio do jogo.}
 </p>
 <p>
-<em>Lucro Operacional</em> - lucro com o transporte dos bens, passageiros o correio e a transmissão de energia (lucros menos custos de manutenção e operação).
+<em>Lucro Operacional</em> - lucro com o transporte dos bens, passageiros o correio e a transmissÃ£o de energia (lucros menos custos de manutenÃ§Ã£o e operaÃ§Ã£o).
 </p>
 <p>
-<em>Veículos Novos</em> - despesa e renda recebida da compra e da venda dos veículos.
+<em>VeÃ­culos Novos</em> - despesa e renda recebida da compra e da venda dos veÃ­culos.
 </p>
 <p>
-<em>Construção</em> - custo total gasto com construção de linhas da transmissão, redes do transporte, reflorestação, alta-voltagem, e de usar a ferramenta <a href="removal_tool.txt">Destruir/Remover</a> e outras ferramentas para remoção própria (canais, estradas, aeroporto, monotrilhos).
+<em>ConstruÃ§Ã£o</em> - custo total gasto com construÃ§Ã£o de linhas da transmissÃ£o, redes do transporte, reflorestaÃ§Ã£o, alta-voltagem, e de usar a ferramenta <a href="removal_tool.txt">Destruir/Remover</a> e outras ferramentas para remoÃ§Ã£o prÃ³pria (canais, estradas, aeroporto, monotrilhos).
 </p>
 <p>
 <em>Fluxo de Caixa</em> - renda total menos despesa total (custos).
 </p>
 <p>
-<em>Vol. Transportado</em> - é o número total dos bens, dos passageiros e de correio transportados.
+<em>Vol. Transportado</em> - Ã© o nÃºmero total dos bens, dos passageiros e de correio transportados.
 </p>
 <p>
-<em>Balanço</em> - é o dinheiro atual disponível para a construção ou compra de veículos novos (mostrada também no centro da barra na parte inferior do monitor).<br>
-{OBS: Se o jogador humano está no vermelho (balanço negativo) por três meses seguidos, o jogado irá à falência e o jogo acaba}.
+<em>BalanÃ§o</em> - Ã© o dinheiro atual disponÃ­vel para a construÃ§Ã£o ou compra de veÃ­culos novos (mostrada tambÃ©m no centro da barra na parte inferior do monitor).<br>
+{OBS: Se o jogador humano estÃ¡ no vermelho (balanÃ§o negativo) por trÃªs meses seguidos, o jogado irÃ¡ Ã  falÃªncia e o jogo acaba}.
 </p>
 <p>
-<em>Valor dos Veículos</em> - é o valor de todos os veículos da companhia no fim do último mês do calendário.<br>
-{OBS: a cada mês, os valores dos veiculos caem ligeiramente, o valor de venda atual para os veículos pode ser visto dentro de <a href="convoidetail.txt">Detalhes do Comboio</a> ou quando o veiculo está no depósito.}
+<em>Valor dos VeÃ­culos</em> - Ã© o valor de todos os veÃ­culos da companhia no fim do Ãºltimo mÃªs do calendÃ¡rio.<br>
+{OBS: a cada mÃªs, os valores dos veiculos caem ligeiramente, o valor de venda atual para os veÃ­culos pode ser visto dentro de <a href="convoidetail.txt">Detalhes do Comboio</a> ou quando o veiculo estÃ¡ no depÃ³sito.}
 </p>
 <p>
-<em>Margem (%)</em> - é a relação do lucro operacional aos rendimentos.
+<em>Margem (%)</em> - Ã© a relaÃ§Ã£o do lucro operacional aos rendimentos.
 </p>
 <p>
-<em>Ativos</em> - é a soma entre Balanço e Valor dos Veículos.
+<em>Ativos</em> - Ã© a soma entre BalanÃ§o e Valor dos VeÃ­culos.
 </p>
 <p>
-{OBS: Alguns custos, valor inicial do balanço e as finanças no jogo podem ser mudados dentro do simuconf.tab}
+{OBS: Alguns custos, valor inicial do balanÃ§o e as finanÃ§as no jogo podem ser mudados dentro do simuconf.tab}
 </p>
-<p> Traduzido pela Equipe de tradução do Simutrans PT-SubFórum (<em>http://pt.simutrans.com</em>), 17/01/2008.
+<p> Traduzido pela Equipe de traduÃ§Ã£o do Simutrans PT-SubFÃ³rum (<em>http://pt.simutrans.com</em>), 17/01/2008.
 </p>

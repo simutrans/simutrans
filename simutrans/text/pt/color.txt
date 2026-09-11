@@ -3,21 +3,21 @@
 <h1><strong>Cor</strong></h1>
 
 <p>
-Neste menu você pode alterar a <strong>cor</strong> de sua companhia de transporte.<br>
-Veículos, prédios e outros itens mostram a cor da sua companhia.
+Neste menu vocÃª pode alterar a <strong>cor</strong> de sua companhia de transporte.<br>
+VeÃ­culos, prÃ©dios e outros itens mostram a cor da sua companhia.
 </p>
 <p>
-A janela <strong>Cor</strong> é aberta através das <a href="options.txt">Preferências</a>.
+A janela <strong>Cor</strong> Ã© aberta atravÃ©s das <a href="options.txt">PreferÃªncias</a>.
 </p>
 <p>Clique nas cores mostradas para mudar a cor da companhia.<br>
-A barra de título da janela <strong>Cor</strong> muda para indicar que a nova cor está selecionada.
+A barra de tÃ­tulo da janela <strong>Cor</strong> muda para indicar que a nova cor estÃ¡ selecionada.
 </p>
 <p>
-A cor-padrão do jogador humano é o azul claro.<br>
-Alguns itens não estão programados para mudar de cor e portanto permanecerão inalterados.
+A cor-padrÃ£o do jogador humano Ã© o azul claro.<br>
+Alguns itens nÃ£o estÃ£o programados para mudar de cor e portanto permanecerÃ£o inalterados.
 </p>
 <p>
-{Dica: para mudar a cor dos outros jogadores use a <a href="players.txt">Lista de jogadores</a> ou <a href="special.txt">Mudar Jogador (P+)</a> para selecioná-lo}.
+{Dica: para mudar a cor dos outros jogadores use a <a href="players.txt">Lista de jogadores</a> ou <a href="special.txt">Mudar Jogador (P+)</a> para selecionÃ¡-lo}.
 </p>
-<p> Traduzido pela Equipe de tradução do Simutrans PT-SubFórum (<em>http://pt.simutrans.com</em>), 17/01/2008.
+<p> Traduzido pela Equipe de traduÃ§Ã£o do Simutrans PT-SubFÃ³rum (<em>http://pt.simutrans.com</em>), 17/01/2008.
 </p>

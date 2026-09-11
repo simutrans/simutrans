@@ -5,13 +5,13 @@
 - <a href="simutrans.txt">Bem-vindo</a><br>
 - <a href="window.txt">Interface/janela do jogo</a><br>
 - <a href="mouse.txt">Mouse/Rato</a><br>
-- <a href="keys.txt">Configuração do teclado</a>
+- <a href="keys.txt">ConfiguraÃ§Ã£o do teclado</a>
 </p>
 <p>
-<a href="options.txt"><strong>Preferências</strong></a><br>
+<a href="options.txt"><strong>PreferÃªncias</strong></a><br>
 - <a href="language.txt">Idioma</a><br>
 - <a href="color.txt">Cor do jogador</a><br>
-- <a href="display.txt">Vídeo</a><br>
+- <a href="display.txt">VÃ­deo</a><br>
 - <a href="sound.txt">Ajustes de som</a><br>
 - <a href="players.txt">Jogadores</a><br>
 - <a href="load.txt">Carregar jogo</a><br>
@@ -21,7 +21,7 @@
 </p>
 <p>
 <a href="window.txt"><strong>Menu principal</strong></a><br>
-- <a href="options.txt">Preferências</a><br>
+- <a href="options.txt">PreferÃªncias</a><br>
 - <a href="map.txt">Mapa</a><br>
 - <a href="inspection_tool.txt">Ferramenta de consulta</a><br>
 - <a href="slopetools.txt">Editor de terrenos</a><br>
@@ -29,57 +29,57 @@
 - <a href="monorailtools.txt">Monotrilhos e Maglevs</a><br>
 - <a href="tramtools.txt">Bondes</a><br>
 - <a href="roadtools.txt">Estradas</a><br>
-- <a href="shiptools.txt">Navegação</a><br>
+- <a href="shiptools.txt">NavegaÃ§Ã£o</a><br>
 - <a href="airtools.txt">Aeroportos</a><br>
 - <a href="special.txt">Ferramentas especiais</a><br>
 - - <a href="edittools.txt">Editor de mapa</a><br>
 - <a href="removal_tool.txt">Ferramenta Remover</a>
 </p>
 <p>
-<a href="window.txt"><strong>Opções de Gerenciamento</strong></a><br>
+<a href="window.txt"><strong>OpÃ§Ãµes de Gerenciamento</strong></a><br>
 - <a href="linemanagement.txt">Gerenciador de linhas</a><br>
 - <a href="list.txt">Listas</a><br>
 - - <a href="haltlist.txt">Lista de paradas</a><br>
 - - - <a href="haltlist_filter.txt">Filtro da lista de paradas</a><br>
-- - <a href="convoi.txt">Lista de veículos</a><br>
-- - - <a href="convoi_filter.txt">Filtro da lista de veículos</a><br>
+- - <a href="convoi.txt">Lista de veÃ­culos</a><br>
+- - - <a href="convoi_filter.txt">Filtro da lista de veÃ­culos</a><br>
 - - <a href="citylist_filter.txt">Lista das cidades</a><br>
 - - <a href="goods_filter.txt">Lista das cargas</a><br>
-- - <a href="factorylist_filter.txt">Lista das fábricas</a><br>
-- - <a href="curiositylist_filter.txt">Lista das atrações</a><br>
+- - <a href="factorylist_filter.txt">Lista das fÃ¡bricas</a><br>
+- - <a href="curiositylist_filter.txt">Lista das atraÃ§Ãµes</a><br>
 - <a href="mailbox.txt">Mensagens</a><br>
-- <a href="finances.txt">Finanças</a>
+- <a href="finances.txt">FinanÃ§as</a>
 </p>
 <p>
-<a href="window.txt"><strong>Outras opções</strong></a><br>
+<a href="window.txt"><strong>Outras opÃ§Ãµes</strong></a><br>
 - <a href="window.txt">Salvar imagem da tela</a><br>
 - <a href="window.txt">Pausa</a><br>
-- <a href="window.txt">Avanço rápido</a><br>
+- <a href="window.txt">AvanÃ§o rÃ¡pido</a><br>
 - <a href="window.txt">Ajuda</a>
 </p>
 <p>
-<a href="inspection_tool.txt"><strong>Outros diálogos</strong></a><br>
--<a href="depot.txt">Depósitos</a><br>
--<a href="schedule.txt">Programação de veículos</a><br>
-- <a href="station.txt">Informações das estações</a><br>
+<a href="inspection_tool.txt"><strong>Outros diÃ¡logos</strong></a><br>
+-<a href="depot.txt">DepÃ³sitos</a><br>
+-<a href="schedule.txt">ProgramaÃ§Ã£o de veÃ­culos</a><br>
+- <a href="station.txt">InformaÃ§Ãµes das estaÃ§Ãµes</a><br>
 - - <a href="station_details.txt">Detalhes da parada</a><br>
-- <a href="convoiinfo.txt">Informações do comboio</a><br>
-- - <a href="convoidetail.txt">Detalhes de comboio/veículo</a><br>
-- <a href="citywindow.txt">Estatísticas da cidade</a><br>
-- <a href="industry_info.txt">Informações das indústrias</a>
+- <a href="convoiinfo.txt">InformaÃ§Ãµes do comboio</a><br>
+- - <a href="convoidetail.txt">Detalhes de comboio/veÃ­culo</a><br>
+- <a href="citywindow.txt">EstatÃ­sticas da cidade</a><br>
+- <a href="industry_info.txt">InformaÃ§Ãµes das indÃºstrias</a>
 </p>
 <p>
-Se você não encontrou aqui a ajuda que procura, então tente:<br>
+Se vocÃª nÃ£o encontrou aqui a ajuda que procura, entÃ£o tente:<br>
 <em>http://guide.simutrans.com</em>, or<br>
 <em>http://wiki.simutrans.com</em>, or<br>
 <em>http://simutrans-tips.com</em>, or<br>
 <em>http://forum.simutrans.com</em>.
 </p>
-<p> Traduzido pela Equipe de tradução do Simutrans PT-SubFórum (<em>http://pt.simutrans.com</em>), 17/01/2008, atualizado em 07/02/2008.
+<p> Traduzido pela Equipe de traduÃ§Ã£o do Simutrans PT-SubFÃ³rum (<em>http://pt.simutrans.com</em>), 17/01/2008, atualizado em 07/02/2008.
 </p>
 <p>
-<strong>Equipe de tradução do Simutrans PT-SubFórum</strong>
+<strong>Equipe de traduÃ§Ã£o do Simutrans PT-SubFÃ³rum</strong>
 </p>
 <p>
-Quaquer problema, dúvida ou sugestão em nossas traduções, contacte-nos pelo <em>http://pt.simutrans.com</em>.
+Quaquer problema, dÃºvida ou sugestÃ£o em nossas traduÃ§Ãµes, contacte-nos pelo <em>http://pt.simutrans.com</em>.
 </p>

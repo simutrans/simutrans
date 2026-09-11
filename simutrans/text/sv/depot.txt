@@ -7,183 +7,183 @@
 
 
 <p>
-Fordonshallar - garage, vagnhallar, båthus och hangarer - används för att köpa och administrera fordon och fartyg. Olika transportmedel har sina egna typer av fordonshallar. Fordonshallar visar enbart elektrifierade fordonstyper om de finns på elektrifierade spår.<br>
-Om du spelar med en <a href="new_world.txt">tidslinje</a> så kan fler verktyg bli tillgängliga efterhand som tiden passerar i Simutrans.
+Fordonshallar - garage, vagnhallar, bÃ¥thus och hangarer - anvÃ¤nds fÃ¶r att kÃ¶pa och administrera fordon och fartyg. Olika transportmedel har sina egna typer av fordonshallar. Fordonshallar visar enbart elektrifierade fordonstyper om de finns pÃ¥ elektrifierade spÃ¥r.<br>
+Om du spelar med en <a href="new_world.txt">tidslinje</a> sÃ¥ kan fler verktyg bli tillgÃ¤ngliga efterhand som tiden passerar i Simutrans.
 
 </p>
 
 <p>
 
-Verktyg för att bygga de olika typerna av fordonshallar finns på verktygsraden för respektive fordonsslag: <a href="railtools.txt">lokstall/vagnhall</a>; <a href="monorailtools.txt">monorailvagnhall</a>; <a href="tramtools.txt">spårvagnshall</a>; <a href="roadtools.txt">garage</a>; <a href="shiptools.txt">båthus</a>
+Verktyg fÃ¶r att bygga de olika typerna av fordonshallar finns pÃ¥ verktygsraden fÃ¶r respektive fordonsslag: <a href="railtools.txt">lokstall/vagnhall</a>; <a href="monorailtools.txt">monorailvagnhall</a>; <a href="tramtools.txt">spÃ¥rvagnshall</a>; <a href="roadtools.txt">garage</a>; <a href="shiptools.txt">bÃ¥thus</a>
  och <a href="airtools.txt">hangar</a>.
 
 </p>
 
 <p>
-Klicka på en fordonshall på kartan med <a href="inspection_tool.txt">granskningsverktyget</a> för att öppna <strong>fordonshallsverktygen</strong> som ger dig information om och låter dig köpa och administrera <a href="convoiinfo.txt">konvojer</a> (ett eller en grupp av fordon/fartyg i trafik).<br>
-Titelraden av <strong>fordonshallsverktygen</strong> anger vilken typ av transportmedel som fordonshallen betjänar.
+Klicka pÃ¥ en fordonshall pÃ¥ kartan med <a href="inspection_tool.txt">granskningsverktyget</a> fÃ¶r att Ã¶ppna <strong>fordonshallsverktygen</strong> som ger dig information om och lÃ¥ter dig kÃ¶pa och administrera <a href="convoiinfo.txt">konvojer</a> (ett eller en grupp av fordon/fartyg i trafik).<br>
+Titelraden av <strong>fordonshallsverktygen</strong> anger vilken typ av transportmedel som fordonshallen betjÃ¤nar.
 
 </p>
 
 <p>
 
-<strong>Fordonshallsverktygen</strong> kan <a href="mouse.txt">ändras storlek på</a> (klicka på nerpilen på titelraden för att återgå till ursprunglig storlek).<br>
-Klicka på vänster/högerpilar på titelraden för att stega igenom fordonshallar för samma transportslag (kartan centreras runt fordonshallen).
+<strong>Fordonshallsverktygen</strong> kan <a href="mouse.txt">Ã¤ndras storlek pÃ¥</a> (klicka pÃ¥ nerpilen pÃ¥ titelraden fÃ¶r att Ã¥tergÃ¥ till ursprunglig storlek).<br>
+Klicka pÃ¥ vÃ¤nster/hÃ¶gerpilar pÃ¥ titelraden fÃ¶r att stega igenom fordonshallar fÃ¶r samma transportslag (kartan centreras runt fordonshallen).
 
 </p>
 
 <p>
-Högst upp i <strong>fordonshallsverktygen</strong> anges antalet <a href="convoiinfo.txt">konvojer</a> i fordonshallen, konvojnamn och <a href="linemanagement.txt">trafikeringslinje</a> visas.
-
-</p>
-
-<p>
-
-<a href="convoiinfo.txt"><em>Konvoj</em></a><em>namn:</em> Klicka på vänster-/högerpilsknappar bredvid konvojnamnet för att stega igenom de konvojer som finns i fordonshallen.<br>
-Att byta konvojnamn: klicka på rutan för konvojnamnet och skriv in ett nytt namn (som förval är detta märket på första komponent som köptes eller tilldelades en ny konvoj).
+HÃ¶gst upp i <strong>fordonshallsverktygen</strong> anges antalet <a href="convoiinfo.txt">konvojer</a> i fordonshallen, konvojnamn och <a href="linemanagement.txt">trafikeringslinje</a> visas.
 
 </p>
 
 <p>
 
-<a href="linemanagement.txt"><em>Trafikeringslinje</em></a><em>namn:</em> Klicka på vänster-/högerpilsknappar vid namn för att välja trafikeringslinjer för fordonshallens transporttyp, eller klicka på namnrutan för trafikeringslinjen för att öppna upp en rullgardinsmeny över trafikeringslinjer (klicka på en trafikeringslinje i rullgardinslistan för att välja denna).<br>
-Att ändra namn på trafikeringslinje: klicka på namnrutan för trafikeringslinjen och skriv in ett nytt namn (som förval tilldelas trafikeringslinjen ett nummer när den skapas).
+<a href="convoiinfo.txt"><em>Konvoj</em></a><em>namn:</em> Klicka pÃ¥ vÃ¤nster-/hÃ¶gerpilsknappar bredvid konvojnamnet fÃ¶r att stega igenom de konvojer som finns i fordonshallen.<br>
+Att byta konvojnamn: klicka pÃ¥ rutan fÃ¶r konvojnamnet och skriv in ett nytt namn (som fÃ¶rval Ã¤r detta mÃ¤rket pÃ¥ fÃ¶rsta komponent som kÃ¶ptes eller tilldelades en ny konvoj).
 
 </p>
 
 <p>
 
-<em>konvoj-bild</em> Under namnrutorna för konvoj- och trafikeringslinjenamn visas en bild av den valda konvojen.<br>
-Låt musen vila över bilden av en komponent av konvojen för att få mer detaljer om just denna komponent (visas i botten av <strong>fordonshallsverktygen</strong>).<br>
-Klicka på komponent av konvojbilden för att ta bort denna från den valda konvojen och förvara den i fordonshallen.
-
-</p>
-
-<p>
-Nedanför bilden visas antalet komponenter i vald konvoj, längden på konvojen i rutor (alla komponenter måste få plats på en lämplig <a href="station.txt"><em>hållplats</em></a> för att gods och passagerare skall kunna hämtas och lämnas där) samt vilken trafikeringslinje konvojen är knuten till.
+<a href="linemanagement.txt"><em>Trafikeringslinje</em></a><em>namn:</em> Klicka pÃ¥ vÃ¤nster-/hÃ¶gerpilsknappar vid namn fÃ¶r att vÃ¤lja trafikeringslinjer fÃ¶r fordonshallens transporttyp, eller klicka pÃ¥ namnrutan fÃ¶r trafikeringslinjen fÃ¶r att Ã¶ppna upp en rullgardinsmeny Ã¶ver trafikeringslinjer (klicka pÃ¥ en trafikeringslinje i rullgardinslistan fÃ¶r att vÃ¤lja denna).<br>
+Att Ã¤ndra namn pÃ¥ trafikeringslinje: klicka pÃ¥ namnrutan fÃ¶r trafikeringslinjen och skriv in ett nytt namn (som fÃ¶rval tilldelas trafikeringslinjen ett nummer nÃ¤r den skapas).
 
 </p>
 
 <p>
 
-Bland alternativknappar (klicka för att använda) för <strong>Fordonshallsverktyg</strong> finns:
+<em>konvoj-bild</em> Under namnrutorna fÃ¶r konvoj- och trafikeringslinjenamn visas en bild av den valda konvojen.<br>
+LÃ¥t musen vila Ã¶ver bilden av en komponent av konvojen fÃ¶r att fÃ¥ mer detaljer om just denna komponent (visas i botten av <strong>fordonshallsverktygen</strong>).<br>
+Klicka pÃ¥ komponent av konvojbilden fÃ¶r att ta bort denna frÃ¥n den valda konvojen och fÃ¶rvara den i fordonshallen.
+
+</p>
+
+<p>
+NedanfÃ¶r bilden visas antalet komponenter i vald konvoj, lÃ¤ngden pÃ¥ konvojen i rutor (alla komponenter mÃ¥ste fÃ¥ plats pÃ¥ en lÃ¤mplig <a href="station.txt"><em>hÃ¥llplats</em></a> fÃ¶r att gods och passagerare skall kunna hÃ¤mtas och lÃ¤mnas dÃ¤r) samt vilken trafikeringslinje konvojen Ã¤r knuten till.
 
 </p>
 
 <p>
 
-<em>Kör:</em> skickar iväg vald <a href="convoiinfo.txt">konvoj</a> om en rutt kan hittas.
+Bland alternativknappar (klicka fÃ¶r att anvÃ¤nda) fÃ¶r <strong>Fordonshallsverktyg</strong> finns:
 
 </p>
 
 <p>
 
-<a href="schedule.txt"><em>Tidtabell:</em></a> öppnar verktyg för att ändra rutt och hur länge en <a href="convoiinfo.txt">konvoj</a> väntar (till hur fylld) vid en <a href="station.txt">station</a>.
+<em>KÃ¶r:</em> skickar ivÃ¤g vald <a href="convoiinfo.txt">konvoj</a> om en rutt kan hittas.
 
 </p>
 
 <p>
 
-<em>Upplös:</em> parkerar de fordonsenheter som den valda <a href="convoiinfo.txt">konvojen</a> består av.
+<a href="schedule.txt"><em>Tidtabell:</em></a> Ã¶ppnar verktyg fÃ¶r att Ã¤ndra rutt och hur lÃ¤nge en <a href="convoiinfo.txt">konvoj</a> vÃ¤ntar (till hur fylld) vid en <a href="station.txt">station</a>.
 
 </p>
 
 <p>
 
-<em>Sälj:</em> säljer nuvarande <a href="convoiinfo.txt">konvoj</a>, <em>försäljningsvärdet</em> sätts in på ditt konto.
+<em>UpplÃ¶s:</em> parkerar de fordonsenheter som den valda <a href="convoiinfo.txt">konvojen</a> bestÃ¥r av.
 
 </p>
 
 <p>
 
-<a href="linemanagement.txt"><em>Ny linje:</em></a> öppnar verktyg för att sammanställa en <a href="schedule.txt">tidtabell</a> (en rutt och en minsta mängd varor/passagerare som konvojen väntar på vid varje stopp), som kan användas för flera <a href="convoiinfo.txt">konvojer</a>.
+<em>SÃ¤lj:</em> sÃ¤ljer nuvarande <a href="convoiinfo.txt">konvoj</a>, <em>fÃ¶rsÃ¤ljningsvÃ¤rdet</em> sÃ¤tts in pÃ¥ ditt konto.
 
 </p>
 
 <p>
 
-<em>Tilldela linje:</em> knyter en <a href="linemanagement.txt">linje</a> som visas i linjenamnsrutan överst i <strong>fordonshallsverktygen</strong> till en vald <a href="convoiinfo.txt">konvoj</a>.
+<a href="linemanagement.txt"><em>Ny linje:</em></a> Ã¶ppnar verktyg fÃ¶r att sammanstÃ¤lla en <a href="schedule.txt">tidtabell</a> (en rutt och en minsta mÃ¤ngd varor/passagerare som konvojen vÃ¤ntar pÃ¥ vid varje stopp), som kan anvÃ¤ndas fÃ¶r flera <a href="convoiinfo.txt">konvojer</a>.
 
 </p>
 
 <p>
 
-<a href="linemanagement.txt"><em>Ändra linje:</em></a> öppnar verktyg för att ändra <a href="schedule.txt">tidtabellen</a> (den rutt och en minsta mängd varor/passagerare som konvojen väntar på vid varje stopp) för vald linje.
+<em>Tilldela linje:</em> knyter en <a href="linemanagement.txt">linje</a> som visas i linjenamnsrutan Ã¶verst i <strong>fordonshallsverktygen</strong> till en vald <a href="convoiinfo.txt">konvoj</a>.
 
 </p>
 
 <p>
 
-<em>Kopiera</em> <a href="convoiinfo.txt"><em>konvoj:</em></a> köper och sätter samman en konvoj med samma sammansättning, <a href="schedule.txt">tidtabell</a> och <a href="linemanagement.txt">linje</a> som vald konvoj.
+<a href="linemanagement.txt"><em>Ã„ndra linje:</em></a> Ã¶ppnar verktyg fÃ¶r att Ã¤ndra <a href="schedule.txt">tidtabellen</a> (den rutt och en minsta mÃ¤ngd varor/passagerare som konvojen vÃ¤ntar pÃ¥ vid varje stopp) fÃ¶r vald linje.
 
 </p>
 
 <p>
-Nedanför alternativknapparna visas bilder av alla fordon och fordonskomponenter som det går att köpa.<br>
-<em>bilder av fordons-enheter:</em> fordonsenheter är indelade i typer som kan ses genom att klicka på indextabbarna. Indextabbarna delar in fordonsenheter i följande grupper: fordons-enheter för passagerare och post, andra motordrivna fordonsenheter, samt andra släp/vagnar.<br>
 
-En vit siffra över bilden av fordonsenheten visar hur många sådana enheter som finns i lager efter att en konvoj har upplösts. Lagrade fordonsenheter kan säljas eller användas i en ny konvoj.
+<em>Kopiera</em> <a href="convoiinfo.txt"><em>konvoj:</em></a> kÃ¶per och sÃ¤tter samman en konvoj med samma sammansÃ¤ttning, <a href="schedule.txt">tidtabell</a> och <a href="linemanagement.txt">linje</a> som vald konvoj.
 
 </p>
 
 <p>
-Låt muspekaren vila över en bild av en fordonsenhet för att se mer information om denna:<br>
+NedanfÃ¶r alternativknapparna visas bilder av alla fordon och fordonskomponenter som det gÃ¥r att kÃ¶pa.<br>
+<em>bilder av fordons-enheter:</em> fordonsenheter Ã¤r indelade i typer som kan ses genom att klicka pÃ¥ indextabbarna. Indextabbarna delar in fordonsenheter i fÃ¶ljande grupper: fordons-enheter fÃ¶r passagerare och post, andra motordrivna fordonsenheter, samt andra slÃ¤p/vagnar.<br>
 
-<em>Namn:</em> och i hakparentes framdrivningstyp för motorfordon.<br>
+En vit siffra Ã¶ver bilden av fordonsenheten visar hur mÃ¥nga sÃ¥dana enheter som finns i lager efter att en konvoj har upplÃ¶sts. Lagrade fordonsenheter kan sÃ¤ljas eller anvÃ¤ndas i en ny konvoj.
 
-<em>Kostnad:</em> inköpspris och i hakparenteser driftskostnad per kilometer<br>
+</p>
 
-<em>Kraft:</em> motorstyrka och maxhastighet för motoriserade fordon.<br>
+<p>
+LÃ¥t muspekaren vila Ã¶ver en bild av en fordonsenhet fÃ¶r att se mer information om denna:<br>
 
-<em>Kapacitet:</em> mängd och typ av  <a href="goods_filter.txt">varor</a> som kan fraktas i fordonsenheten.<br>
+<em>Namn:</em> och i hakparentes framdrivningstyp fÃ¶r motorfordon.<br>
+
+<em>Kostnad:</em> inkÃ¶pspris och i hakparenteser driftskostnad per kilometer<br>
+
+<em>Kraft:</em> motorstyrka och maxhastighet fÃ¶r motoriserade fordon.<br>
+
+<em>Kapacitet:</em> mÃ¤ngd och typ av  <a href="goods_filter.txt">varor</a> som kan fraktas i fordonsenheten.<br>
 
 <em>Vikt:</em> i ton.<br>
 
-<em>Maxhastighet:</em> för icke-motoriserade fordonsenheter.<br>
+<em>Maxhastighet:</em> fÃ¶r icke-motoriserade fordonsenheter.<br>
 
-<em>Introduktion:</em> datum när fordonsenheten blir tillgänglig om <a href="new_world.txt">tidslinje</a> är aktiverad.<br>
+<em>Introduktion:</em> datum nÃ¤r fordonsenheten blir tillgÃ¤nglig om <a href="new_world.txt">tidslinje</a> Ã¤r aktiverad.<br>
 
-<em>Tillbakadragning:</em> datum när en fordonsenhet blir föråldrad.<br>
+<em>Tillbakadragning:</em> datum nÃ¤r en fordonsenhet blir fÃ¶rÃ¥ldrad.<br>
 
-<em>Skapad av:</em> den person som skapade fordonsenheten för Simutrans.<br>
+<em>Skapad av:</em> den person som skapade fordonsenheten fÃ¶r Simutrans.<br>
 
-<em>Utväxling:</em> ? power ratio.<br>
+<em>UtvÃ¤xling:</em> ? power ratio.<br>
 
-<em>Andrahandsvärde:</em> den summa pengar som erhålls om en fordonsenhet säljs igen.
-
-</p>
-
-<p>
-Klicka på en bild av en fordonsenhet under indextabbarna för att antingen köpa eller sälja en sådan beroende på de inställningar som gjorts med fordonsalternativknappen längst ner till vänster i <strong>fordonshallsverktygen</strong> Denna knapp har tre lägen:<br>
-
-<em>Lägg till:</em> köper en fordonsenhet och lägger till densamma i den konvoj som är vald alternativt skapar en ny konvoj om ingen är vald.<br>
-
-<em>Ställ främst:</em> köper en fordonsenhet och placerar den först i den konvoj som är vald alternativt skapar en ny konvoj om ingen är vald.<br>
-
-<em>Försäljningsläge:</em> säljer lagrade fordonsenheter.<br>
+<em>AndrahandsvÃ¤rde:</em> den summa pengar som erhÃ¥lls om en fordonsenhet sÃ¤ljs igen.
 
 </p>
 
 <p>
+Klicka pÃ¥ en bild av en fordonsenhet under indextabbarna fÃ¶r att antingen kÃ¶pa eller sÃ¤lja en sÃ¥dan beroende pÃ¥ de instÃ¤llningar som gjorts med fordonsalternativknappen lÃ¤ngst ner till vÃ¤nster i <strong>fordonshallsverktygen</strong> Denna knapp har tre lÃ¤gen:<br>
 
-<em>färgstaplar</em> under bilderna av fordonsenheter visar vilka och i vilken ordning fordonsenheter kan sammanfogas för att bilda en funktionell <a href="convoiinfo.txt">konvoj</a> (färgstaplarna kan ändras beroende på inställning av fordonsalternativknappen).<br>
+<em>LÃ¤gg till:</em> kÃ¶per en fordonsenhet och lÃ¤gger till densamma i den konvoj som Ã¤r vald alternativt skapar en ny konvoj om ingen Ã¤r vald.<br>
 
-Färgerna anger:<br>
+<em>StÃ¤ll frÃ¤mst:</em> kÃ¶per en fordonsenhet och placerar den fÃ¶rst i den konvoj som Ã¤r vald alternativt skapar en ny konvoj om ingen Ã¤r vald.<br>
 
-- <em>grön:</em> fordonsenheten kan användas.<br>
-
-- <em>röd:</em> fordonsenheten kan inte användas<br>
-
-- <em>gul</em> en annan fordonsenhet måste placeras före eller efter för att konvojen skall kunna fungera.<br>
-
-- <em>blå:</em> fordonsenheten kan användas men är föråldrad.<br>
-
-{Tips: en konvoj är funktionell om den visar gröna staplar för alla fordonsenheter; om det finns kvar en gul stapel, så saknas en nödvändig fordonsenhet.}
+<em>FÃ¶rsÃ¤ljningslÃ¤ge:</em> sÃ¤ljer lagrade fordonsenheter.<br>
 
 </p>
 
 <p>
 
-<em>Visa föråldrade:</em> om du spelar med en <a href="new_world.txt">tidslinje</a>, visas även fordonsenheter som dragits tillbaka om den fyrkantiga knappen är nedtryckt.
+<em>fÃ¤rgstaplar</em> under bilderna av fordonsenheter visar vilka och i vilken ordning fordonsenheter kan sammanfogas fÃ¶r att bilda en funktionell <a href="convoiinfo.txt">konvoj</a> (fÃ¤rgstaplarna kan Ã¤ndras beroende pÃ¥ instÃ¤llning av fordonsalternativknappen).<br>
+
+FÃ¤rgerna anger:<br>
+
+- <em>grÃ¶n:</em> fordonsenheten kan anvÃ¤ndas.<br>
+
+- <em>rÃ¶d:</em> fordonsenheten kan inte anvÃ¤ndas<br>
+
+- <em>gul</em> en annan fordonsenhet mÃ¥ste placeras fÃ¶re eller efter fÃ¶r att konvojen skall kunna fungera.<br>
+
+- <em>blÃ¥:</em> fordonsenheten kan anvÃ¤ndas men Ã¤r fÃ¶rÃ¥ldrad.<br>
+
+{Tips: en konvoj Ã¤r funktionell om den visar grÃ¶na staplar fÃ¶r alla fordonsenheter; om det finns kvar en gul stapel, sÃ¥ saknas en nÃ¶dvÃ¤ndig fordonsenhet.}
+
+</p>
+
+<p>
+
+<em>Visa fÃ¶rÃ¥ldrade:</em> om du spelar med en <a href="new_world.txt">tidslinje</a>, visas Ã¤ven fordonsenheter som dragits tillbaka om den fyrkantiga knappen Ã¤r nedtryckt.
 
 </p>

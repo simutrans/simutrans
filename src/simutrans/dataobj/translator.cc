@@ -555,7 +555,7 @@ bool translator::load()
 				sprintf(langs[single_instance.lang_count].iso, "%c%c_%c%c", tolower(iso[0]), tolower(iso[1]), toupper(iso[0]), toupper(iso[1]));
 			}
 have_long_iso:
-			printf("Locale \"%s\" results in %s\n", langs[single_instance.lang_count].iso_base, langs[single_instance.lang_count].iso);
+DBG_MESSAGE("translator::load()","Locale \"%s\" results in %s\n", langs[single_instance.lang_count].iso_base, langs[single_instance.lang_count].iso);
 			load_language_file(file);
 			fclose(file);
 			langs[single_instance.lang_count].highest_character = guess_highest_unicode( single_instance.lang_count );

@@ -1,15 +1,15 @@
-<title>Ajuda - Opções</title>
+<title>Ajuda - OpÃ§Ãµes</title>
 
-<h1><strong>Opções</strong></h1>
+<h1><strong>OpÃ§Ãµes</strong></h1>
 
 <p>
-<strong>Opções</strong> abre controles para a operação e apresentação do jogo; e sair do Simutrans a partir da janela <strong>Opções</strong>.
+<strong>OpÃ§Ãµes</strong> abre controles para a operaÃ§Ã£o e apresentaÃ§Ã£o do jogo; e sair do Simutrans a partir da janela <strong>OpÃ§Ãµes</strong>.
 </p>
 <p>
-Clique sobre o ícone do disquete no topo da tela do jogo para abrir as <strong>Opções</strong>.
+Clique sobre o Ã­cone do disquete no topo da tela do jogo para abrir as <strong>OpÃ§Ãµes</strong>.
 </p>
 <p>
-Clique sobre um botão para abrir novos controles:
+Clique sobre um botÃ£o para abrir novos controles:
 </p>
 <p>
 <a href="language.txt"><em>Idioma:</em></a> define um idioma a ser usado no jogo.
@@ -18,11 +18,11 @@ Clique sobre um botão para abrir novos controles:
 <a href="color.txt"><em>Cores:</em></a> define a cor da companhia do Jogador.
 </p>
 <p>
-<a href="display.txt"><em>Vídeo:</em></a> cofigurações de como o jogo se aparentará visualmente no Simutrans.
+<a href="display.txt"><em>VÃ­deo:</em></a> cofiguraÃ§Ãµes de como o jogo se aparentarÃ¡ visualmente no Simutrans.
 </p>
 <p>
 <a href="sound.txt"><em>
-Som:</em></a> configurações para som e música no jogo.
+Som:</em></a> configuraÃ§Ãµes para som e mÃºsica no jogo.
 </p>
 <p>
 <a href="players.txt"><em>Jogadores:</em></a> abre controles para diferentes companhias dos jogadores.
@@ -34,10 +34,10 @@ Som:</em></a> configurações para som e música no jogo.
 <a href="save.txt"><em>Salvar:</em></a> abre controles para gravar o atual jogo, para continuar jogar depois.
 </p>
 <p>
-<a href="new_world.txt"><em>Novo jogo:</em></a> abre controles para començar um novo jogo (isto fecha as barras de ferramentas, textos e opções do jogo atual).
+<a href="new_world.txt"><em>Novo jogo:</em></a> abre controles para comenÃ§ar um novo jogo (isto fecha as barras de ferramentas, textos e opÃ§Ãµes do jogo atual).
 </p>
 <p>
-<em>Sair:</em> fecha o Simutrans, e o jogo atual não é salvo.
+<em>Sair:</em> fecha o Simutrans, e o jogo atual nÃ£o Ã© salvo.
 </p>
-<p> Traduzido pela Equipe de tradução do Simutrans PT-SubFórum (<em>http://pt.simutrans.com</em>), 17/01/2008. Atualizado em 20/12/2010.
+<p> Traduzido pela Equipe de traduÃ§Ã£o do Simutrans PT-SubFÃ³rum (<em>http://pt.simutrans.com</em>), 17/01/2008. Atualizado em 20/12/2010.
 </p>

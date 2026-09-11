@@ -1,62 +1,62 @@
-<title>Hjälp om Stadsinformation</title>
+<title>HjÃ¤lp om Stadsinformation</title>
 
 <h1><strong>Stadsinformation</strong></h1>
 
 <p>
-<strong>Stadsinformation</strong> visar statistik om vald tätort och kan användas för att ändra dess namn. En tätort kan vara en stad, småstad eller by; nedan används beteckningen stad för alla typer av tätorter.
+<strong>Stadsinformation</strong> visar statistik om vald tÃ¤tort och kan anvÃ¤ndas fÃ¶r att Ã¤ndra dess namn. En tÃ¤tort kan vara en stad, smÃ¥stad eller by; nedan anvÃ¤nds beteckningen stad fÃ¶r alla typer av tÃ¤torter.
 </p>
-<p>Varje stad har ett rådhus runt vilket det växer. Tillväxten befrämjas av att passagerare och post transporteras. Tillväxten visar sig genom att gator byggs eller tas över av <a href="players.txt">samhällsservice</a> (visas genom att vägarna kantas av trottoarer på huvudkartan) och genom att nya stadsbyggnader och <a href="industry_info.txt">industrier</a> dyker upp, samt genom att stadens gränser flyttas utåt.
-</p>
-<p>
-Genom att klicka på ett rådhus på huvudkartan med <a href="inspection_tool.txt">granskningsverktyget</a> eller på en stad i <a href="citylist_filter.txt">stadslistan</a> öppnas <strong>Stadsinformation</strong>. Här kan du se och ändra stadens namn, basuppgifter om staden, två mini-kartor samt statistiska kurvor över stadens utveckling över tid.
+<p>Varje stad har ett rÃ¥dhus runt vilket det vÃ¤xer. TillvÃ¤xten befrÃ¤mjas av att passagerare och post transporteras. TillvÃ¤xten visar sig genom att gator byggs eller tas Ã¶ver av <a href="players.txt">samhÃ¤llsservice</a> (visas genom att vÃ¤garna kantas av trottoarer pÃ¥ huvudkartan) och genom att nya stadsbyggnader och <a href="industry_info.txt">industrier</a> dyker upp, samt genom att stadens grÃ¤nser flyttas utÃ¥t.
 </p>
 <p>
-<em>Namn:</em> det namn som staden, småstaden eller byn bär visas överst i <strong>Stadsinformation</strong> i en textruta. <br>
-Detta namn används bl a när namn för <a href="station.txt">hållplatser</a> inom stadsgränserna skall skapas. 
-För att ändra namnet, klicka helt enkelt i textrutan och skriv in ett nytt.<br>
-{Tips: Använd <a href="keys.txt">[!]</a> för att växla om stadens namn visas ovanför rådhuset på huvudkartan. Läs readme_citylist.txt (finns i ...simutrans/text/) för mer information om hur stadsnamn skapas}.
+Genom att klicka pÃ¥ ett rÃ¥dhus pÃ¥ huvudkartan med <a href="inspection_tool.txt">granskningsverktyget</a> eller pÃ¥ en stad i <a href="citylist_filter.txt">stadslistan</a> Ã¶ppnas <strong>Stadsinformation</strong>. HÃ¤r kan du se och Ã¤ndra stadens namn, basuppgifter om staden, tvÃ¥ mini-kartor samt statistiska kurvor Ã¶ver stadens utveckling Ã¶ver tid.
 </p>
 <p>
-Under namnrutan ges lite grundläggande information om staden:<br>
-<em>Storlek:</em> aktuellt invånarantal. Den senaste utvecklingen visas inom parenteser..<br>
-<em>byggnader:</em> antal stadsbyggnader (bostadshus/affärsbyggnader/industribyggnader) inom stadens gränser.<br>
-<em>Kartkoordinater:</em> anger hur vitt stadens gränser sträcker sig (dessa kommer att ändras efterhand som staden växer). Det första värdeparet anger övre vänstra hörnet och det andra nedre högra hörnet. När städer växer kan deras stadområden komma att överlappa.
+<em>Namn:</em> det namn som staden, smÃ¥staden eller byn bÃ¤r visas Ã¶verst i <strong>Stadsinformation</strong> i en textruta. <br>
+Detta namn anvÃ¤nds bl a nÃ¤r namn fÃ¶r <a href="station.txt">hÃ¥llplatser</a> inom stadsgrÃ¤nserna skall skapas. 
+FÃ¶r att Ã¤ndra namnet, klicka helt enkelt i textrutan och skriv in ett nytt.<br>
+{Tips: AnvÃ¤nd <a href="keys.txt">[!]</a> fÃ¶r att vÃ¤xla om stadens namn visas ovanfÃ¶r rÃ¥dhuset pÃ¥ huvudkartan. LÃ¤s readme_citylist.txt (finns i ...simutrans/text/) fÃ¶r mer information om hur stadsnamn skapas}.
 </p>
 <p>
-Nuvarande antal <em>arbetslösa</em> och <em>hemlösa</em> invånare i staden. Dessa tal ökar när staden utökar sina gränser och minskar när stadsbyggnader byggs. Föröhållandet mellan dessa värden avgör vilken typ av stadsbyggnad som byggs/renoveras när staden bygger till.
+Under namnrutan ges lite grundlÃ¤ggande information om staden:<br>
+<em>Storlek:</em> aktuellt invÃ¥narantal. Den senaste utvecklingen visas inom parenteser..<br>
+<em>byggnader:</em> antal stadsbyggnader (bostadshus/affÃ¤rsbyggnader/industribyggnader) inom stadens grÃ¤nser.<br>
+<em>Kartkoordinater:</em> anger hur vitt stadens grÃ¤nser strÃ¤cker sig (dessa kommer att Ã¤ndras efterhand som staden vÃ¤xer). Det fÃ¶rsta vÃ¤rdeparet anger Ã¶vre vÃ¤nstra hÃ¶rnet och det andra nedre hÃ¶gra hÃ¶rnet. NÃ¤r stÃ¤der vÃ¤xer kan deras stadomrÃ¥den komma att Ã¶verlappa.
 </p>
 <p>
-Kryssrutan <em>Tillåt stadstillväxt</em> tillåter dig att aktivera eller avaktivera om staden får växa eller ej.
+Nuvarande antal <em>arbetslÃ¶sa</em> och <em>hemlÃ¶sa</em> invÃ¥nare i staden. Dessa tal Ã¶kar nÃ¤r staden utÃ¶kar sina grÃ¤nser och minskar nÃ¤r stadsbyggnader byggs. FÃ¶rÃ¶hÃ¥llandet mellan dessa vÃ¤rden avgÃ¶r vilken typ av stadsbyggnad som byggs/renoveras nÃ¤r staden bygger till.
 </p>
 <p>
-<em>Minikartorna</em> av spelvärlden i <strong>Stadsinformation</strong> visar som färgade punkter vart passagerare och post som genererats inom stadens gränser har för destination.<br>
-Den högra minikartan visar värden för innevarande spelkalendermånad, och den till vänster för föregående spelkalendermånad. Färgen på punkterna anger om destinationen kan nås eller ej:<br>
-- gul punkt: det finns en rutt och en <a href="station.txt">hållplats</a> som inte är överfull där resan kan ta sin början (motsvarande glatt ansikte i hållplatsinformationsfönstret).<br>
-- orange punkt: det finns inte någon rutt till resmålet.<br>
-- röd punkt: det finns en rutt till resmålet, men den hållplats där resan skulle påbörjas är överfull (motsvarande ledset ansikte i hållplatsinformationsfönstret.
+Kryssrutan <em>TillÃ¥t stadstillvÃ¤xt</em> tillÃ¥ter dig att aktivera eller avaktivera om staden fÃ¥r vÃ¤xa eller ej.
 </p>
 <p>
-Under minikartorna finns ett <em>kurvdiagram</em> som visar statistik för staden. <br>
-På y-axeln visas kvantitet och på x-axeln tid. 
-Klicka på tabbarna ovanför fönstret för att ändra tidsskalan på x-axeln:<br>
-<em>År:</em> visar årliga värden för de senaste 12 spelkalenderåren.<br>
-<em>Månader:</em> visar månatliga värden för de senaste 12 spelkalendermånaderna
+<em>Minikartorna</em> av spelvÃ¤rlden i <strong>Stadsinformation</strong> visar som fÃ¤rgade punkter vart passagerare och post som genererats inom stadens grÃ¤nser har fÃ¶r destination.<br>
+Den hÃ¶gra minikartan visar vÃ¤rden fÃ¶r innevarande spelkalendermÃ¥nad, och den till vÃ¤nster fÃ¶r fÃ¶regÃ¥ende spelkalendermÃ¥nad. FÃ¤rgen pÃ¥ punkterna anger om destinationen kan nÃ¥s eller ej:<br>
+- gul punkt: det finns en rutt och en <a href="station.txt">hÃ¥llplats</a> som inte Ã¤r Ã¶verfull dÃ¤r resan kan ta sin bÃ¶rjan (motsvarande glatt ansikte i hÃ¥llplatsinformationsfÃ¶nstret).<br>
+- orange punkt: det finns inte nÃ¥gon rutt till resmÃ¥let.<br>
+- rÃ¶d punkt: det finns en rutt till resmÃ¥let, men den hÃ¥llplats dÃ¤r resan skulle pÃ¥bÃ¶rjas Ã¤r Ã¶verfull (motsvarande ledset ansikte i hÃ¥llplatsinformationsfÃ¶nstret.
+</p>
+<p>
+Under minikartorna finns ett <em>kurvdiagram</em> som visar statistik fÃ¶r staden. <br>
+PÃ¥ y-axeln visas kvantitet och pÃ¥ x-axeln tid. 
+Klicka pÃ¥ tabbarna ovanfÃ¶r fÃ¶nstret fÃ¶r att Ã¤ndra tidsskalan pÃ¥ x-axeln:<br>
+<em>Ã…r:</em> visar Ã¥rliga vÃ¤rden fÃ¶r de senaste 12 spelkalenderÃ¥ren.<br>
+<em>MÃ¥nader:</em> visar mÃ¥natliga vÃ¤rden fÃ¶r de senaste 12 spelkalendermÃ¥naderna
 </p>
 
 <p>
-Genom att klicka på knapparna under kurvfönstret aktiverar eller avaktiverar du kurvan i fråga. En aktiverad knapp visas nedsänkt.<br>
-Kurvorna visas i samma färg som färgen på motsvarande knapp:<br>
-<em>Medborgare:</em> Antal människor som bor i staden<br>
-<em>Tillväxt:</em> Befolkningsförändringar.<br>
-<em>Antal hus:</em> Hur många stadsbyggnader det finns i staden.<br>
-<em>Stadsbilar:</em> Hur många stadsbilar som genererats.<br>
-<em>Antal resor:</em> Hur många passagerare som givit sig i väg på sin resa (visas som <a href="station.txt">glatt ansikte</a> i hållplatsinformationsfönstret)<br>
+Genom att klicka pÃ¥ knapparna under kurvfÃ¶nstret aktiverar eller avaktiverar du kurvan i frÃ¥ga. En aktiverad knapp visas nedsÃ¤nkt.<br>
+Kurvorna visas i samma fÃ¤rg som fÃ¤rgen pÃ¥ motsvarande knapp:<br>
+<em>Medborgare:</em> Antal mÃ¤nniskor som bor i staden<br>
+<em>TillvÃ¤xt:</em> BefolkningsfÃ¶rÃ¤ndringar.<br>
+<em>Antal hus:</em> Hur mÃ¥nga stadsbyggnader det finns i staden.<br>
+<em>Stadsbilar:</em> Hur mÃ¥nga stadsbilar som genererats.<br>
+<em>Antal resor:</em> Hur mÃ¥nga passagerare som givit sig i vÃ¤g pÃ¥ sin resa (visas som <a href="station.txt">glatt ansikte</a> i hÃ¥llplatsinformationsfÃ¶nstret)<br>
 <em>Passagerare:</em>Det sammanlagda antalet passagerare som genererats i staden.<br>
-<em>Skickad post:</em> Hur mycket post som har påbörjat sin färd mot sin destination<br>
-<em>Mail:</em> Den sammanlagda mängden post som genererats i staden.<br>
-<em>Varor i lager:</em>Antal gånger som kontroll fann varor i lager hos stadens fabriker<br>
-<em>Varor:</em>Antal gånger som lagerstatusen hos stadsfabrikerna kontrollerats.<br>
+<em>Skickad post:</em> Hur mycket post som har pÃ¥bÃ¶rjat sin fÃ¤rd mot sin destination<br>
+<em>Mail:</em> Den sammanlagda mÃ¤ngden post som genererats i staden.<br>
+<em>Varor i lager:</em>Antal gÃ¥nger som kontroll fann varor i lager hos stadens fabriker<br>
+<em>Varor:</em>Antal gÃ¥nger som lagerstatusen hos stadsfabrikerna kontrollerats.<br>
 </p>
 <p>
-{Tips: Inställningar som rör städer kan ändras i simuconf.tab och cityrules.tab}.
+{Tips: InstÃ¤llningar som rÃ¶r stÃ¤der kan Ã¤ndras i simuconf.tab och cityrules.tab}.
 </p>

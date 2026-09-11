@@ -3,53 +3,53 @@
 <h1><strong>Controle do Clima</strong></h1>
 
 <p>
-<strong>Controle do Clima</strong> ajusta diversas opções de aspectos topográficos e meteorológicos do jogo.</p>
+<strong>Controle do Clima</strong> ajusta diversas opÃ§Ãµes de aspectos topogrÃ¡ficos e meteorolÃ³gicos do jogo.</p>
 <p>
 <strong>Controle do Clima</strong> abre com <a href="new_world.txt">Criando um Novo Mundo</a>.
 </p>
-<p> Os botões de setas ajustam os parâmetros:
+<p> Os botÃµes de setas ajustam os parÃ¢metros:
 </p>
 <p>
-<it>Opções:</it>
+<it>OpÃ§Ãµes:</it>
 </p>
 <p>
-<em>Nível d'água:</em> ajusta qual a profundidade que se encontra a água no mapa.
+<em>NÃ­vel d'Ã¡gua:</em> ajusta qual a profundidade que se encontra a Ã¡gua no mapa.
 </p>
 <p>
-<em>Desnível:</em> ajusta a altura máxima atingida no terreno.
+<em>DesnÃ­vel:</em> ajusta a altura mÃ¡xima atingida no terreno.
 </p>
 <p>
-<em>Aspereza:</em> ajusta as ondulações do terreno; quanto maior o número, mais irregular será o terreno.<br>
+<em>Aspereza:</em> ajusta as ondulaÃ§Ãµes do terreno; quanto maior o nÃºmero, mais irregular serÃ¡ o terreno.<br>
 </p>
 <p>
-<it>Opções da linha de neve:</it>
+<it>OpÃ§Ãµes da linha de neve:</it>
 </p>
 <p>
-<em>Linha de neve no verão:</em> ajusta a altitude que começa a aparecer a neve permanente no verão.
+<em>Linha de neve no verÃ£o:</em> ajusta a altitude que comeÃ§a a aparecer a neve permanente no verÃ£o.
 </p>
 <p>
-<em>Linha de neve no inverno:</em> ajusta a altitude que começa a aparecer a neve permanente no inverno.<br>
+<em>Linha de neve no inverno:</em> ajusta a altitude que comeÃ§a a aparecer a neve permanente no inverno.<br>
 </p>
 <p>
-<it>Opções de clima:</it>
+<it>OpÃ§Ãµes de clima:</it>
 </p>
 <p>
-<em>Clima desértico:</em> ajusta a que altitude acima do nível do mar o clima desértico começa a aparecer.
+<em>Clima desÃ©rtico:</em> ajusta a que altitude acima do nÃ­vel do mar o clima desÃ©rtico comeÃ§a a aparecer.
 </p>
 <p>
-<em>Clima tropical:</em> ajusta a que altitude acima do nível do mar o clima tropical começa a aparecer.
+<em>Clima tropical:</em> ajusta a que altitude acima do nÃ­vel do mar o clima tropical comeÃ§a a aparecer.
 </p>
 <p>
-<em>Clima mediterrâneo:</em> ajusta a que altitude acima do nível do mar o clima mediterâneo começa a aparecer.
+<em>Clima mediterrÃ¢neo:</em> ajusta a que altitude acima do nÃ­vel do mar o clima mediterÃ¢neo comeÃ§a a aparecer.
 </p>
 <p>
-<em>Clima temperado:</em> ajusta a que altitude acima do nível do mar o clima temperado começa a aparecer.
+<em>Clima temperado:</em> ajusta a que altitude acima do nÃ­vel do mar o clima temperado comeÃ§a a aparecer.
 </p>
 <p>
-<em>Tundra:</em> ajusta a que altitude acima do nível do mar a tundra começa a aparecer.
+<em>Tundra:</em> ajusta a que altitude acima do nÃ­vel do mar a tundra comeÃ§a a aparecer.
 </p>
 <p>
-<em>Clima alpino:</em> ajusta a que altitude acima do nível do mar o clima alpino começa a aparecer.
+<em>Clima alpino:</em> ajusta a que altitude acima do nÃ­vel do mar o clima alpino comeÃ§a a aparecer.
 </p>
-<p> Traduzido pela Equipe de tradução do Simutrans PT-SubFórum (<em>http://pt.simutrans.com</em>), 17/01/2008.
+<p> Traduzido pela Equipe de traduÃ§Ã£o do Simutrans PT-SubFÃ³rum (<em>http://pt.simutrans.com</em>), 17/01/2008.
 </p>

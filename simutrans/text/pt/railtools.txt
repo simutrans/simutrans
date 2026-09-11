@@ -3,65 +3,65 @@
 <h1><strong>Ferrovias</strong></h1>
 
 <p>
-A <strong>Barra Ferrovias</strong> mostra as ferramentas para construir uma rede de transporte sobre trilhos. As ferramentas podem construir os trilhos (também eletrificar e demolir), pontes, túneis, sinais, depósitos, estações, plataformas e extensões. Se jogar com a <a href="new_world.txt">Linha do Tempo</a> ativa, com a passagem do tempo no Simutrans, novas ferramentas podem aparecer.
+A <strong>Barra Ferrovias</strong> mostra as ferramentas para construir uma rede de transporte sobre trilhos. As ferramentas podem construir os trilhos (tambÃ©m eletrificar e demolir), pontes, tÃºneis, sinais, depÃ³sitos, estaÃ§Ãµes, plataformas e extensÃµes. Se jogar com a <a href="new_world.txt">Linha do Tempo</a> ativa, com a passagem do tempo no Simutrans, novas ferramentas podem aparecer.
 </p>
 <p>
-Clique no ícone de trem na barra de ferramentas. Mova o cursor do mouse por cima do botão, depois de abrir ou clicar na barra de ferramentas, para ver o nome e, onde for o caso, o <a href="finances.txt">custo</a> da construção, custo de manutenção (dentro dos parênteses), limite de velocidade máxima e comprimento máximo.
+Clique no Ã­cone de trem na barra de ferramentas. Mova o cursor do mouse por cima do botÃ£o, depois de abrir ou clicar na barra de ferramentas, para ver o nome e, onde for o caso, o <a href="finances.txt">custo</a> da construÃ§Ã£o, custo de manutenÃ§Ã£o (dentro dos parÃªnteses), limite de velocidade mÃ¡xima e comprimento mÃ¡ximo.
 </p>
 <p>
 A <strong>Barra Ferrovias</strong> inclui, da esquerda para a direita:
 </p>
 <p>
-<em>Trilhos:</em> ferramenta de construir trilhos, para trens, entre dois pontos na visão do jogo. Os trilhos só podem ser construídos sobre barrancos na direção dos mesmos e não podem encontrar caminhos através de terreno acidentado ou sobre a água (só se utilizar pontes). Um trilho construído entre dois pontos pode usar um trilho existente em seu caminho.<br>
-Para construir um trilho: clique na ferramenta para selecionar o trilho (o cursor torna-se num trilho), em seguida, clique no terreno para dar o ponto de partida do trilho (mostra um trator na visão do jogo e exibe as coordenadas no mapa inferior direito do ecrã), e finalmente clique no terreno para o ponto final do trilho.<br>
-{Dica: Diferentes tipos de trilhos podem ser ligados (porém não quando construídos por diferentes<a href="players.txt">companhias</a>). Você pode utilizar também pontes e túneis para desviar de montanhas e obstruções. Use <a href="slopetools.txt"> Editor de terrenos</a> para mudar terreno, a fim de permitir caminhos para trilhos. Use a ferramenta Remover para remover pistas individuais e algumas obstruções. Use <a href="keys.txt">[Ctrl]</a> ao mesmo tempo para funções extras. Utilize o [z] para desfazer algo que já foi feito (custos não são reembolsados). Pressione [t] para ativar a ferramenta de construção do ultimo trilho utilizado.}
+<em>Trilhos:</em> ferramenta de construir trilhos, para trens, entre dois pontos na visÃ£o do jogo. Os trilhos sÃ³ podem ser construÃ­dos sobre barrancos na direÃ§Ã£o dos mesmos e nÃ£o podem encontrar caminhos atravÃ©s de terreno acidentado ou sobre a Ã¡gua (sÃ³ se utilizar pontes). Um trilho construÃ­do entre dois pontos pode usar um trilho existente em seu caminho.<br>
+Para construir um trilho: clique na ferramenta para selecionar o trilho (o cursor torna-se num trilho), em seguida, clique no terreno para dar o ponto de partida do trilho (mostra um trator na visÃ£o do jogo e exibe as coordenadas no mapa inferior direito do ecrÃ£), e finalmente clique no terreno para o ponto final do trilho.<br>
+{Dica: Diferentes tipos de trilhos podem ser ligados (porÃ©m nÃ£o quando construÃ­dos por diferentes<a href="players.txt">companhias</a>). VocÃª pode utilizar tambÃ©m pontes e tÃºneis para desviar de montanhas e obstruÃ§Ãµes. Use <a href="slopetools.txt"> Editor de terrenos</a> para mudar terreno, a fim de permitir caminhos para trilhos. Use a ferramenta Remover para remover pistas individuais e algumas obstruÃ§Ãµes. Use <a href="keys.txt">[Ctrl]</a> ao mesmo tempo para funÃ§Ãµes extras. Utilize o [z] para desfazer algo que jÃ¡ foi feito (custos nÃ£o sÃ£o reembolsados). Pressione [t] para ativar a ferramenta de construÃ§Ã£o do ultimo trilho utilizado.}
 </p>
 <p>
-<em>Eletrificar Trilhos:</em> esta ferramenta eletrifica trilhos, pontes, depósitos e túneis, para uso dos veículos elétricos.<br>
-Clique na ferramenta ou pressione [e] (o cursor torna-se num par de postes de eletrificação), em seguida, clique no trilho na visão do jogo para dar o ponto inicial da eletrificação (o mesmo ícone do cursor é fixado neste ponto), e finalmente clique no segundo ponto no trilho, para eletrificar o trecho entre os dois pontos.<br>
-{Dica: Use a ferramenta Remover para remover a eletrificação dos trilhos.}
+<em>Eletrificar Trilhos:</em> esta ferramenta eletrifica trilhos, pontes, depÃ³sitos e tÃºneis, para uso dos veÃ­culos elÃ©tricos.<br>
+Clique na ferramenta ou pressione [e] (o cursor torna-se num par de postes de eletrificaÃ§Ã£o), em seguida, clique no trilho na visÃ£o do jogo para dar o ponto inicial da eletrificaÃ§Ã£o (o mesmo Ã­cone do cursor Ã© fixado neste ponto), e finalmente clique no segundo ponto no trilho, para eletrificar o trecho entre os dois pontos.<br>
+{Dica: Use a ferramenta Remover para remover a eletrificaÃ§Ã£o dos trilhos.}
 </p>
 <p>
-<em>Remover trecho de trilhos:</em> esta ferramenta remove trilhos eletrificados e não eletrificados, quando não há veículos entre dois pontos na visão do jogo (Nota: plataformas, sinais, túneis e pontes do trecho também são removidos). O uso da ferramenta é associada ao custo da construção.<br>
-Para remover um trecho de trilho: clique na ferramenta (cursor se muda numa cruz vermelha), depois clique no ponto inicial do trecho a ser removido (neste mesmo ponto é fixada uma cruz vermelha); e finalmente clique em outro ponto do trilho, para remover o trecho entre estes dois pontos.<br>
+<em>Remover trecho de trilhos:</em> esta ferramenta remove trilhos eletrificados e nÃ£o eletrificados, quando nÃ£o hÃ¡ veÃ­culos entre dois pontos na visÃ£o do jogo (Nota: plataformas, sinais, tÃºneis e pontes do trecho tambÃ©m sÃ£o removidos). O uso da ferramenta Ã© associada ao custo da construÃ§Ã£o.<br>
+Para remover um trecho de trilho: clique na ferramenta (cursor se muda numa cruz vermelha), depois clique no ponto inicial do trecho a ser removido (neste mesmo ponto Ã© fixada uma cruz vermelha); e finalmente clique em outro ponto do trilho, para remover o trecho entre estes dois pontos.<br>
 {Dica: Altere o <a href="players.txt">jogador</a> para remover os trilhos de cada companhia.}
 </p>
 <p>
-<em>Pontes:</em> ferramenta para construir pontes retas, para os veículos ferroviários passarem, entre duas seções de trilhos na visão do jogo. As pontes têm um comprimento máximo. A ferramenta constrói pontes de uma ponta de trilho até um outro lugar adequado (outra ponta de trilho ou um barranco mais alto, dentro do limite de comprimento).<br>
-Para construir uma ponte: clique num botão de ponte desejada (o cursor torna-se numa ponte), e clique no final de um trilho (ponto inicial da ponte) para construir. Alguns obstáculos podem ser passados, mas montanhas altas ou falta de um local adequado para a ponte finalizar podem parar a sua construção, então deve-se colocar o trilho com as pontas alinhadas em ambos os lados do local onde se estará sendo construída a ponte, e tente novamente.<br>
-{Dicas: Use a ferramenta Remover para remover pontes (clique sobre o ponto  final da ponte) e alguns obstáculos à frente, como um edifício alto, por exemplo. Use as ferramentas para trilhos para conectar os fins da ponte aos trilhos.}
+<em>Pontes:</em> ferramenta para construir pontes retas, para os veÃ­culos ferroviÃ¡rios passarem, entre duas seÃ§Ãµes de trilhos na visÃ£o do jogo. As pontes tÃªm um comprimento mÃ¡ximo. A ferramenta constrÃ³i pontes de uma ponta de trilho atÃ© um outro lugar adequado (outra ponta de trilho ou um barranco mais alto, dentro do limite de comprimento).<br>
+Para construir uma ponte: clique num botÃ£o de ponte desejada (o cursor torna-se numa ponte), e clique no final de um trilho (ponto inicial da ponte) para construir. Alguns obstÃ¡culos podem ser passados, mas montanhas altas ou falta de um local adequado para a ponte finalizar podem parar a sua construÃ§Ã£o, entÃ£o deve-se colocar o trilho com as pontas alinhadas em ambos os lados do local onde se estarÃ¡ sendo construÃ­da a ponte, e tente novamente.<br>
+{Dicas: Use a ferramenta Remover para remover pontes (clique sobre o ponto  final da ponte) e alguns obstÃ¡culos Ã  frente, como um edifÃ­cio alto, por exemplo. Use as ferramentas para trilhos para conectar os fins da ponte aos trilhos.}
 </p>
 <p>
-<em>Túnel para trem:</em> esta ferramenta constrói um túnel reto, para os veículos ferroviários poderem atravessar pelo subsolo, entre dois trilhos alinhados na visão do jogo.
-Túneis não podem ser inclinados: os veículos entram e saem na mesma altura. A ferramenta cria um túnel no fim de um trilho, sendo colocado em um barranco.<br>
-Para construir um túnel: clique na ferramenta (cursor torna-se num túnel) e, em seguida, clique no final do trilho em um baranco para a entrada do túnel. Se um túnel não encontrar uma saída adequada (um barranco livre de obstruções), ele não será construído: coloque o trilho em ambos os lados que devem ser conectados, e tente novamente.<br>
-{Dica: Use a ferramenta de Edição de terrenos e a ferramenta Remover para criar locais adequados para entradas e saídas de um túnel. Use as ferramentas para trilhos para conectar saídas de túneis aos trilhos.}
+<em>TÃºnel para trem:</em> esta ferramenta constrÃ³i um tÃºnel reto, para os veÃ­culos ferroviÃ¡rios poderem atravessar pelo subsolo, entre dois trilhos alinhados na visÃ£o do jogo.
+TÃºneis nÃ£o podem ser inclinados: os veÃ­culos entram e saem na mesma altura. A ferramenta cria um tÃºnel no fim de um trilho, sendo colocado em um barranco.<br>
+Para construir um tÃºnel: clique na ferramenta (cursor torna-se num tÃºnel) e, em seguida, clique no final do trilho em um baranco para a entrada do tÃºnel. Se um tÃºnel nÃ£o encontrar uma saÃ­da adequada (um barranco livre de obstruÃ§Ãµes), ele nÃ£o serÃ¡ construÃ­do: coloque o trilho em ambos os lados que devem ser conectados, e tente novamente.<br>
+{Dica: Use a ferramenta de EdiÃ§Ã£o de terrenos e a ferramenta Remover para criar locais adequados para entradas e saÃ­das de um tÃºnel. Use as ferramentas para trilhos para conectar saÃ­das de tÃºneis aos trilhos.}
 </p>
 <p>
-<em>Sinais para Trilhos:</em>constrói sinais para os veículos ferroviários em um trilho na visão do jogo. Sinais direcionam e regulam o fluxo de veículos em trilhos e pontes, e em cruzamentos e estações. Sinais bidirecionais e de mão-única também podem ser construídos.<br>
-Para construir um sinal bidirecional no trilho: clique na ferramenta para selecionar sinal (cursor torna-se num par de sinais), depois clique no trilho. Para construir um sinal de mão-única: clique novamente no mesmo ponto, com o cursor de sinais, e clique novamente para voltar a ter um sinal para os dois sentidos.<br>
-IMPORTANTE: Tome cuidado ao colocar sinais de mão única, que impede alguns veículos chegarem ao destino; por padrão veículos são conduzidos à direita (pode ser alterado em simuconf.tab).<br>
--<em>Semáforo ferroviário:</em> os veículos prosseguem somente se o trilho à frente até o próximo semáforo ou até o próximo destino da <a href="schedule.txt">Programação</a> (uma <a href="station.txt">Estação</a> ou ponto de passagem) não está ocupado por nenhum outro veículo. No modo mão-única, estes sinais deixam passar veículos em uma única direção.<br>
-- <em>Sentido único:</em> veículos não prosseguem além do sinal (disponível só em modo mão-única). <br>
--<em>Pré-semáforo ferroviário:</em> os veículos proseguem se a seção do trilho à frente (ou entre três consecutivos sinais ou até o próximo destino da <a href="schedule.txt">Programação</a>) não está ocupado por nenhum outro veículo. No modo mão-única, estes sinais deixam passar veículos em uma única direção.<br>
--<em>Direcionador ferroviário para vaga livre:</em> direciona os veículos a uma plataforma vazia, em uma estação multi-plataforma: um veículo passando este sinal pode usar qualquer plataforma vazia em seu destino, e não apenas aquelas definidas em sua <a href="convoiinfo.txt">Programação</a>. Se nenhuma plataforma ou rota para o próximo destino vazia é encontrada, os veículos irão esperar no sinal.<br>
-{Dica: Remova os sinais com a ferramenta Remover. Mantenha pressionada <a href="keys.txt">[Ctrl]</a> para colocar sinais sobre pontes ferroviárias acima de trilhos em nível inferior.}
+<em>Sinais para Trilhos:</em>constrÃ³i sinais para os veÃ­culos ferroviÃ¡rios em um trilho na visÃ£o do jogo. Sinais direcionam e regulam o fluxo de veÃ­culos em trilhos e pontes, e em cruzamentos e estaÃ§Ãµes. Sinais bidirecionais e de mÃ£o-Ãºnica tambÃ©m podem ser construÃ­dos.<br>
+Para construir um sinal bidirecional no trilho: clique na ferramenta para selecionar sinal (cursor torna-se num par de sinais), depois clique no trilho. Para construir um sinal de mÃ£o-Ãºnica: clique novamente no mesmo ponto, com o cursor de sinais, e clique novamente para voltar a ter um sinal para os dois sentidos.<br>
+IMPORTANTE: Tome cuidado ao colocar sinais de mÃ£o Ãºnica, que impede alguns veÃ­culos chegarem ao destino; por padrÃ£o veÃ­culos sÃ£o conduzidos Ã  direita (pode ser alterado em simuconf.tab).<br>
+-<em>SemÃ¡foro ferroviÃ¡rio:</em> os veÃ­culos prosseguem somente se o trilho Ã  frente atÃ© o prÃ³ximo semÃ¡foro ou atÃ© o prÃ³ximo destino da <a href="schedule.txt">ProgramaÃ§Ã£o</a> (uma <a href="station.txt">EstaÃ§Ã£o</a> ou ponto de passagem) nÃ£o estÃ¡ ocupado por nenhum outro veÃ­culo. No modo mÃ£o-Ãºnica, estes sinais deixam passar veÃ­culos em uma Ãºnica direÃ§Ã£o.<br>
+- <em>Sentido Ãºnico:</em> veÃ­culos nÃ£o prosseguem alÃ©m do sinal (disponÃ­vel sÃ³ em modo mÃ£o-Ãºnica). <br>
+-<em>PrÃ©-semÃ¡foro ferroviÃ¡rio:</em> os veÃ­culos proseguem se a seÃ§Ã£o do trilho Ã  frente (ou entre trÃªs consecutivos sinais ou atÃ© o prÃ³ximo destino da <a href="schedule.txt">ProgramaÃ§Ã£o</a>) nÃ£o estÃ¡ ocupado por nenhum outro veÃ­culo. No modo mÃ£o-Ãºnica, estes sinais deixam passar veÃ­culos em uma Ãºnica direÃ§Ã£o.<br>
+-<em>Direcionador ferroviÃ¡rio para vaga livre:</em> direciona os veÃ­culos a uma plataforma vazia, em uma estaÃ§Ã£o multi-plataforma: um veÃ­culo passando este sinal pode usar qualquer plataforma vazia em seu destino, e nÃ£o apenas aquelas definidas em sua <a href="convoiinfo.txt">ProgramaÃ§Ã£o</a>. Se nenhuma plataforma ou rota para o prÃ³ximo destino vazia Ã© encontrada, os veÃ­culos irÃ£o esperar no sinal.<br>
+{Dica: Remova os sinais com a ferramenta Remover. Mantenha pressionada <a href="keys.txt">[Ctrl]</a> para colocar sinais sobre pontes ferroviÃ¡rias acima de trilhos em nÃ­vel inferior.}
 </p>
 <p>
-<a href="depot.txt"><em>Depósitos</em></a> <em>ferroviários:</em> esta ferramenta cria um depósito para compra e gerenciamento de comboios e composições. Depósitos têm um custo e manutenção e são construídos no final do trilho ferroviário na visão do jogo.<br>
-Para construir um depósito: clique na ferramenta (cursor torna-se num depósito), em seguida, clique no final do trilho.<br>
-{Dica: Para remover depósitos use a ferramenta Remover. Depósitos somente mostram veículos elétricos se estiver num trilho eletrificado.}
+<a href="depot.txt"><em>DepÃ³sitos</em></a> <em>ferroviÃ¡rios:</em> esta ferramenta cria um depÃ³sito para compra e gerenciamento de comboios e composiÃ§Ãµes. DepÃ³sitos tÃªm um custo e manutenÃ§Ã£o e sÃ£o construÃ­dos no final do trilho ferroviÃ¡rio na visÃ£o do jogo.<br>
+Para construir um depÃ³sito: clique na ferramenta (cursor torna-se num depÃ³sito), em seguida, clique no final do trilho.<br>
+{Dica: Para remover depÃ³sitos use a ferramenta Remover. DepÃ³sitos somente mostram veÃ­culos elÃ©tricos se estiver num trilho eletrificado.}
 </p>
 <p>
-<em>Estações:</em> a ferramenta constrói plataformas, utilizadas pelos veículos para carregar e descarregar mercadorias e passageiros. Plataformas têm um custo e manutenção e são construídas no trilho (mas não em curvas e cruzamentos).<br>
-A plataforma tem uma área de captura para mercadorias, passageiros e correio. Plataformas diferentes podem ter diferentes capacidades de mercadorias e passageiros. No canto de alguns botões, um ícone (utilizado em <a href="haltlist.txt">Lista de Paradas</a> e <a href="station.txt">Informações das Paradas</a>) mostra quais itens são tratados pela plataforma.<br>
+<em>EstaÃ§Ãµes:</em> a ferramenta constrÃ³i plataformas, utilizadas pelos veÃ­culos para carregar e descarregar mercadorias e passageiros. Plataformas tÃªm um custo e manutenÃ§Ã£o e sÃ£o construÃ­das no trilho (mas nÃ£o em curvas e cruzamentos).<br>
+A plataforma tem uma Ã¡rea de captura para mercadorias, passageiros e correio. Plataformas diferentes podem ter diferentes capacidades de mercadorias e passageiros. No canto de alguns botÃµes, um Ã­cone (utilizado em <a href="haltlist.txt">Lista de Paradas</a> e <a href="station.txt">InformaÃ§Ãµes das Paradas</a>) mostra quais itens sÃ£o tratados pela plataforma.<br>
 Para construir uma plataforma: clique na ferramenta para selecionar plataforma (cursor torna-se numa plataforma) e, em seguida, clique no trilho.<br>
-{Dica: Para remover plataformas da estação utilize a ferrementa Remover. Estender e criar estações multi-plataformas (construindo mais plataformas nos trilho) servem para acomodar mais veículos, aumentando a capacidade de carregamento. Pressione [v] para mostrar/esconder a área de captura de mercadorias e passageiros na visão do jogo. Mantenha pressionada<a href="keys.txt">[Ctrl]</a> para colocar estações sobre pontes ferroviárias acima de trilhos em nível inferior.}
+{Dica: Para remover plataformas da estaÃ§Ã£o utilize a ferrementa Remover. Estender e criar estaÃ§Ãµes multi-plataformas (construindo mais plataformas nos trilho) servem para acomodar mais veÃ­culos, aumentando a capacidade de carregamento. Pressione [v] para mostrar/esconder a Ã¡rea de captura de mercadorias e passageiros na visÃ£o do jogo. Mantenha pressionada<a href="keys.txt">[Ctrl]</a> para colocar estaÃ§Ãµes sobre pontes ferroviÃ¡rias acima de trilhos em nÃ­vel inferior.}
 </p>
 <p>
-<em>Extensões:</em> esta ferramenta constrói extensões e edifícios para estações, de modo que se possa aumentar a capacidade, área de captura para passageiros e mercadorias, e o custo de manutenção. No canto de alguns botões, um ícone (usado na Lista de Paradas e Informações das Paradas), que mostra itens que são tratados pela extensão.<br>
-Para construir uma extensão: clique na ferramenta para selecionar (cursor torna-se numa estensão) e, em seguida, clique na posição exigida, ao lado de uma estação, na visão do jogo. A nova extensão é agora considerada como sendo parte da estação.<br>
-{Dica: Remova as extensões utilizando a ferramenta Remover.}
+<em>ExtensÃµes:</em> esta ferramenta constrÃ³i extensÃµes e edifÃ­cios para estaÃ§Ãµes, de modo que se possa aumentar a capacidade, Ã¡rea de captura para passageiros e mercadorias, e o custo de manutenÃ§Ã£o. No canto de alguns botÃµes, um Ã­cone (usado na Lista de Paradas e InformaÃ§Ãµes das Paradas), que mostra itens que sÃ£o tratados pela extensÃ£o.<br>
+Para construir uma extensÃ£o: clique na ferramenta para selecionar (cursor torna-se numa estensÃ£o) e, em seguida, clique na posiÃ§Ã£o exigida, ao lado de uma estaÃ§Ã£o, na visÃ£o do jogo. A nova extensÃ£o Ã© agora considerada como sendo parte da estaÃ§Ã£o.<br>
+{Dica: Remova as extensÃµes utilizando a ferramenta Remover.}
 </p>
-<p> Traduzido pela Equipe de tradução do Simutrans PT-SubFórum (<em>http://pt.simutrans.com</em>), 17/01/2008.
+<p> Traduzido pela Equipe de traduÃ§Ã£o do Simutrans PT-SubFÃ³rum (<em>http://pt.simutrans.com</em>), 17/01/2008.
 </p>

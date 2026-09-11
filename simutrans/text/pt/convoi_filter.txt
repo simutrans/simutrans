@@ -1,40 +1,40 @@
-<title>Filtro da Lista de VeÌculos</title>
+<title>Filtro da Lista de Ve√≠culos</title>
 
-<h1><strong>Filtro da Lista de VeÌculos</strong></h1>
-
-<p>
-O <strong>Filtro da Lista de VeÌculos</strong> tem opÁıes para determinar quais <a href="convoiinfo.txt">Comboios</a> s„o mostrados na <a href="convoi.txt">Lista de VeÌculos</a>.
-</p>
-<p>
-Clique em Par‚metros na Lista de VeÌculos para abrir o <strong>Filtro da Lista de VeÌculos</strong>.
-
-</p>
-<p>
-Os botıes de opÁıes selecionam os Comboios a serem listados na Lista de VeÌculos quando a opÁ„o de filtro est· <a href="convoi.txt">ligada</a>. Apenas os Comboios que est„o dentro de todos os critÈrios selecionados s„o listados.
-</p>
-<p>
-Clique em uma caixa de seleÁ„o para selecionar o critÈrio para filtrar (o bot„o est· em baixo-relevo quando selecionado):
-</p>
-<p>
-<em>Filtro por nome:</em> seleciona o <a href="convoiinfo.txt">Comboio</a> pelo nome. Para usar: clique no bot„o para selecionar, ent„o clique na caixa de texto e digite o nome desejado exatamente (a opÁ„o diferencia letras mai˙sculas de min˙sculas, portanto preste muita atenÁ„o quanto a isso).
-</p>
+<h1><strong>Filtro da Lista de Ve√≠culos</strong></h1>
 
 <p>
-<em>Filtro por tipo:</em> listar· os Comboios por tipo de transporte se selecionado. Para us·-lo: clique no bot„o para selecionar, ent„o clique no(s) tipo(s) de transporte: Caminhıes, Trens, Barcos e Aviıes.
+O <strong>Filtro da Lista de Ve√≠culos</strong> tem op√ß√µes para determinar quais <a href="convoiinfo.txt">Comboios</a> s√£o mostrados na <a href="convoi.txt">Lista de Ve√≠culos</a>.
 </p>
 <p>
-<em>Filtro especial:</em> seleciona os <a href="convoiinfo.txt">Comboios</a> a serem listados pelos seguintes critÈrios (clique no bot„o para selecionar, ent„o clique):<br>
-- <em>sem rota</em> - n„o pode encontrar um caminho ao prÛximo destino.<br>
-- <em>sem programa</em> - sem uma <a href="schedule.txt">rota</a> atribuÌda.<br>
-- <em>sem renda</em> - os veÌculos que n„o est„o gerando lucros.<br>
-- <em>em depÛsito</em> - os veÌculos que est„o em um <a href="depot.txt">depÛsito</a>.<br>
-- <em>sem linha</em> - sem uma <a href="linemanagement.txt">Linha</a> atribuÌda.
+Clique em Par√¢metros na Lista de Ve√≠culos para abrir o <strong>Filtro da Lista de Ve√≠culos</strong>.
+
 </p>
 <p>
-<em>Filtro por carga:</em> seleciona os Comboios pela habilidade para transportar diferentes mercadorias e passageiros. Clique no bot„o ao lado do nome para selecionar o(s) item(ns). Use a <a href="mouse.txt">barra lateral</a> para ver os item(ns) na lista. As opÁıes incluem:<br>
+Os bot√µes de op√ß√µes selecionam os Comboios a serem listados na Lista de Ve√≠culos quando a op√ß√£o de filtro est√° <a href="convoi.txt">ligada</a>. Apenas os Comboios que est√£o dentro de todos os crit√©rios selecionados s√£o listados.
+</p>
+<p>
+Clique em uma caixa de sele√ß√£o para selecionar o crit√©rio para filtrar (o bot√£o est√° em baixo-relevo quando selecionado):
+</p>
+<p>
+<em>Filtro por nome:</em> seleciona o <a href="convoiinfo.txt">Comboio</a> pelo nome. Para usar: clique no bot√£o para selecionar, ent√£o clique na caixa de texto e digite o nome desejado exatamente (a op√ß√£o diferencia letras mai√∫sculas de min√∫sculas, portanto preste muita aten√ß√£o quanto a isso).
+</p>
+
+<p>
+<em>Filtro por tipo:</em> listar√° os Comboios por tipo de transporte se selecionado. Para us√°-lo: clique no bot√£o para selecionar, ent√£o clique no(s) tipo(s) de transporte: Caminh√µes, Trens, Barcos e Avi√µes.
+</p>
+<p>
+<em>Filtro especial:</em> seleciona os <a href="convoiinfo.txt">Comboios</a> a serem listados pelos seguintes crit√©rios (clique no bot√£o para selecionar, ent√£o clique):<br>
+- <em>sem rota</em> - n√£o pode encontrar um caminho ao pr√≥ximo destino.<br>
+- <em>sem programa</em> - sem uma <a href="schedule.txt">rota</a> atribu√≠da.<br>
+- <em>sem renda</em> - os ve√≠culos que n√£o est√£o gerando lucros.<br>
+- <em>em dep√≥sito</em> - os ve√≠culos que est√£o em um <a href="depot.txt">dep√≥sito</a>.<br>
+- <em>sem linha</em> - sem uma <a href="linemanagement.txt">Linha</a> atribu√≠da.
+</p>
+<p>
+<em>Filtro por carga:</em> seleciona os Comboios pela habilidade para transportar diferentes mercadorias e passageiros. Clique no bot√£o ao lado do nome para selecionar o(s) item(ns). Use a <a href="mouse.txt">barra lateral</a> para ver os item(ns) na lista. As op√ß√µes incluem:<br>
 - <em>tudo</em> seleciona todos os itens.<br>
-- <em>nada</em> nenhum item È selecionado.<br>
-- <em>inv.</em> inverte a seleÁ„o atual de itens.
+- <em>nada</em> nenhum item √© selecionado.<br>
+- <em>inv.</em> inverte a sele√ß√£o atual de itens.
 </p>
-<p> Traduzido pela Equipe de traduÁ„o do Simutrans PT-SubFÛrum (<em>http://pt.simutrans.com</em>), 17/01/2008.
+<p> Traduzido pela Equipe de tradu√ß√£o do Simutrans PT-SubF√≥rum (<em>http://pt.simutrans.com</em>), 17/01/2008.
 </p>

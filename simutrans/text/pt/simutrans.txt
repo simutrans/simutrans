@@ -3,33 +3,33 @@
 <h1><strong>Bem-vindo ao Simutrans...</strong></h1>
 
 <p>
-Escolha um, entre alguns milhares, dos mundos do Simutrans. Então, ponha-se no lugar de um jovem empreendedor com um pouco de dinheiro dado por seus avós: ansioso para deixá-los orgulhosos, com a ambição de estabelecer uma companhia de transporte de sucesso, seu desafio a partir de agora é construir uma empresa vitoriosa.
+Escolha um, entre alguns milhares, dos mundos do Simutrans. EntÃ£o, ponha-se no lugar de um jovem empreendedor com um pouco de dinheiro dado por seus avÃ³s: ansioso para deixÃ¡-los orgulhosos, com a ambiÃ§Ã£o de estabelecer uma companhia de transporte de sucesso, seu desafio a partir de agora Ã© construir uma empresa vitoriosa.
 </p>
 <p>
-Com o passar do tempo, transforme a sua pequena companhia em um grande império de transporte, mantendo as finanças equilibradas entregando cargas e satisfazendo o desejo de viajar de milhões de passageiros todos os meses.<br>
-Transporte passageiros, correio e mercadorias por estradas, ferrovias, navios e até pelo ar.
+Com o passar do tempo, transforme a sua pequena companhia em um grande impÃ©rio de transporte, mantendo as finanÃ§as equilibradas entregando cargas e satisfazendo o desejo de viajar de milhÃµes de passageiros todos os meses.<br>
+Transporte passageiros, correio e mercadorias por estradas, ferrovias, navios e atÃ© pelo ar.
 </p>
 <p>
-Cada mundo possui algo diferente a oferecer. Dê uma boa olhada ao seu redor... o futuro do lugar está em suas mãos e nas de seus concorrentes.
+Cada mundo possui algo diferente a oferecer. DÃª uma boa olhada ao seu redor... o futuro do lugar estÃ¡ em suas mÃ£os e nas de seus concorrentes.
 </p>
 <p>
-No começo, pode ser mais fácil de se começar suprindo uma usina de geração de energia com aquilo que ela precisa. A seguir, conecte outras indústrias, talvez usando estações de distribuição onde as mercadorias são recarregadas.<br>
-A desvantagem de somente transportar mercadorias é que as cidades não irão crescer e novas indústrias não aparecerão.
+No comeÃ§o, pode ser mais fÃ¡cil de se comeÃ§ar suprindo uma usina de geraÃ§Ã£o de energia com aquilo que ela precisa. A seguir, conecte outras indÃºstrias, talvez usando estaÃ§Ãµes de distribuiÃ§Ã£o onde as mercadorias sÃ£o recarregadas.<br>
+A desvantagem de somente transportar mercadorias Ã© que as cidades nÃ£o irÃ£o crescer e novas indÃºstrias nÃ£o aparecerÃ£o.
 </p>
 <p>
-Ou então, você pode começar imediatamente a transportar passageiros (e correio). Este é mais desafiador, já que os habitantes deste mundo querem viajar para os locais de suas preferências.<br>
-Alguns precisam ir trabalhar nas indústrias, outros querem fazer compras no Shopping Center da cidade grande, enquanto outros decidem visitar pontos turísticos.
+Ou entÃ£o, vocÃª pode comeÃ§ar imediatamente a transportar passageiros (e correio). Este Ã© mais desafiador, jÃ¡ que os habitantes deste mundo querem viajar para os locais de suas preferÃªncias.<br>
+Alguns precisam ir trabalhar nas indÃºstrias, outros querem fazer compras no Shopping Center da cidade grande, enquanto outros decidem visitar pontos turÃ­sticos.
 </p>
 <p>
-Se você não oferecer uma conexão até seus destinos, os passageiros não viajarão com você para sempre. Você precisará construir redes. Quando suas redes estiverem prontas, será necessário aumentar suas capacidades para absorver a demanda. Então, continue com o planejamento.<br>
-Se eles gostarem de seus serviços, as cidades crescerão, atraindo novas indústrias, e assim a economia será próspera.
+Se vocÃª nÃ£o oferecer uma conexÃ£o atÃ© seus destinos, os passageiros nÃ£o viajarÃ£o com vocÃª para sempre. VocÃª precisarÃ¡ construir redes. Quando suas redes estiverem prontas, serÃ¡ necessÃ¡rio aumentar suas capacidades para absorver a demanda. EntÃ£o, continue com o planejamento.<br>
+Se eles gostarem de seus serviÃ§os, as cidades crescerÃ£o, atraindo novas indÃºstrias, e assim a economia serÃ¡ prÃ³spera.
 </p>
 <p>
-Você pode jogar com o tempo que você quiser. Comece em 1880 e termine em 2050. Haverá novos veículos e edifícios durante todo esse tempo.<br>
-Jogue contra a IA ou do seu próprio jeito. Somente se ficar devendo por três meses, irá falir e será o fim de seu jogo.
+VocÃª pode jogar com o tempo que vocÃª quiser. Comece em 1880 e termine em 2050. HaverÃ¡ novos veÃ­culos e edifÃ­cios durante todo esse tempo.<br>
+Jogue contra a IA ou do seu prÃ³prio jeito. Somente se ficar devendo por trÃªs meses, irÃ¡ falir e serÃ¡ o fim de seu jogo.
 </p>
 <p>
-O <strong>Simutrans-Team</strong> e toda a comunidade te desejam muitas horas de diversão jogando Simutrans!
+O <strong>Simutrans-Team</strong> e toda a comunidade te desejam muitas horas de diversÃ£o jogando Simutrans!
 </p>
-<p> Traduzido pela Equipe de tradução do Simutrans PT-SubFórum (<em>http://pt.simutrans.com</em>), 17/01/2008. Veja a lista dos tradutores na Ajuda ou teclando F1.
+<p> Traduzido pela Equipe de traduÃ§Ã£o do Simutrans PT-SubFÃ³rum (<em>http://pt.simutrans.com</em>), 17/01/2008. Veja a lista dos tradutores na Ajuda ou teclando F1.
 </p>

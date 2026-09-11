@@ -3,83 +3,83 @@
 <h1><strong>Consultar</strong></h1>
 
 <p>
-A ferramenta <strong>Consultar</strong> é usada para abrir caixas de diálogo que fornecem informações ou controles para vários itens.
+A ferramenta <strong>Consultar</strong> Ã© usada para abrir caixas de diÃ¡logo que fornecem informaÃ§Ãµes ou controles para vÃ¡rios itens.
 </p>
 <p>
-Clique na lupa no topo da área de jogo ou pressione <a href="keys.txt">[a]</a> para abrir a ferramenta <strong>Consultar</strong> (o cursor mudará para uma lupa).
+Clique na lupa no topo da Ã¡rea de jogo ou pressione <a href="keys.txt">[a]</a> para abrir a ferramenta <strong>Consultar</strong> (o cursor mudarÃ¡ para uma lupa).
 </p>
 <p>
-Para usar: posicione o cursor em forma de lupa no local desejado na área de jogo e clique para abrir a caixa de diálogo. Se mais de um item estiver no local desejado, outro clique abrirá uma segunda caixa de diálogo.
-{Dica: a opção de abrir uma ou todas as caixas de diálogo do local está disponível no arquivo simuconf.tab}
+Para usar: posicione o cursor em forma de lupa no local desejado na Ã¡rea de jogo e clique para abrir a caixa de diÃ¡logo. Se mais de um item estiver no local desejado, outro clique abrirÃ¡ uma segunda caixa de diÃ¡logo.
+{Dica: a opÃ§Ã£o de abrir uma ou todas as caixas de diÃ¡logo do local estÃ¡ disponÃ­vel no arquivo simuconf.tab}
 </p>
 <p>
-Clique nos seguintes itens na área de jogo com a ferramenta para abrir as caixas de diálogo:
+Clique nos seguintes itens na Ã¡rea de jogo com a ferramenta para abrir as caixas de diÃ¡logo:
 </p>
 <p>
-<em>Depósitos</em> - abre <a href="depot.txt">controles</a> para comprar e gerenciar veículos naquele depósito.
+<em>DepÃ³sitos</em> - abre <a href="depot.txt">controles</a> para comprar e gerenciar veÃ­culos naquele depÃ³sito.
 </p>
 <p>
-<em>Paradas</em> - abre as <a href="station.txt">informações</a> daquela parada.
+<em>Paradas</em> - abre as <a href="station.txt">informaÃ§Ãµes</a> daquela parada.
 </p>
 <p>
-<em>Veículos</em> - abre as <a href="convoiinfo.txt">informações</a> daquele veículo.
+<em>VeÃ­culos</em> - abre as <a href="convoiinfo.txt">informaÃ§Ãµes</a> daquele veÃ­culo.
 </p>
 <p>
-<em>Prefeitura</em> - abre as <a href="citywindow.txt">informações</a> da população daquela área urbana.
-{Dica: a opção para abrir a caixa de diálogo fornecendo informações sobre o prédio da prefeitura está disponível no arquivo simuconf.tab}
+<em>Prefeitura</em> - abre as <a href="citywindow.txt">informaÃ§Ãµes</a> da populaÃ§Ã£o daquela Ã¡rea urbana.
+{Dica: a opÃ§Ã£o para abrir a caixa de diÃ¡logo fornecendo informaÃ§Ãµes sobre o prÃ©dio da prefeitura estÃ¡ disponÃ­vel no arquivo simuconf.tab}
 </p>
 <p>
-<em>Indústrias</em> - abre as <a href="industry_info.txt">informações</a> daquela indústria.
+<em>IndÃºstrias</em> - abre as <a href="industry_info.txt">informaÃ§Ãµes</a> daquela indÃºstria.
 </p>
 <p>
-<em>Edifícios</em> abrem uma caixa de diálogo que fornece informações sobre a construção (a barra de título mostra 'Edifício'). A informação contida inclui:<br>
-- <em>Descrição:</em> fornece informações sobre o edifício. Se não houver informação disponível então 'residência', ou 'edifício industrial', ou 'comércio e lojas' (no caso de edifícios comerciais) é mostrado. <br>
-- <em>Cidade de:</em> indica a qual área urbana que o edifício faz parte.<br>
-- <em>Geração de viagens:</em> é a popularidade relativa como destino para passageiros.<br>
-- <em>Geração de correios:</em> é a popularidade relativa como destino para correio.<br>
-- <em>Construído a partir de:</em> indica o ano que o edifício aparece quando se joga com <a href="new_world.txt">Linha do tempo</a>.<br>
-- <em>Valor:</em> indica o custo para remover o edifício com a ferramenta <a href="window.txt">Remover</a>.<br>
-- <em>Construído por:</em> nome da pessoa que criou o edifício para o Simutrans.
+<em>EdifÃ­cios</em> abrem uma caixa de diÃ¡logo que fornece informaÃ§Ãµes sobre a construÃ§Ã£o (a barra de tÃ­tulo mostra 'EdifÃ­cio'). A informaÃ§Ã£o contida inclui:<br>
+- <em>DescriÃ§Ã£o:</em> fornece informaÃ§Ãµes sobre o edifÃ­cio. Se nÃ£o houver informaÃ§Ã£o disponÃ­vel entÃ£o 'residÃªncia', ou 'edifÃ­cio industrial', ou 'comÃ©rcio e lojas' (no caso de edifÃ­cios comerciais) Ã© mostrado. <br>
+- <em>Cidade de:</em> indica a qual Ã¡rea urbana que o edifÃ­cio faz parte.<br>
+- <em>GeraÃ§Ã£o de viagens:</em> Ã© a popularidade relativa como destino para passageiros.<br>
+- <em>GeraÃ§Ã£o de correios:</em> Ã© a popularidade relativa como destino para correio.<br>
+- <em>ConstruÃ­do a partir de:</em> indica o ano que o edifÃ­cio aparece quando se joga com <a href="new_world.txt">Linha do tempo</a>.<br>
+- <em>Valor:</em> indica o custo para remover o edifÃ­cio com a ferramenta <a href="window.txt">Remover</a>.<br>
+- <em>ConstruÃ­do por:</em> nome da pessoa que criou o edifÃ­cio para o Simutrans.
 </p>
 <p>
-<em>Monumentos</em> / <a href="curiositylist_filter.txt"><em>Atrações turísticas</em></a> abrem uma caixa de diálogo que fornece informações sobre a atração (a barra de título mostra se é um monumento ou uma atração turística). A informação contida inclui:<br>
-- <em>Propriedade pública:</em> indica que o item não pertence a nenhuma companhia de transporte.<br>
-- <em>Descrição:</em> fornece informações sobre a atração.<br>
-- <em>Geração de viagens:</em> é a popularidade relativa como destino para passageiros.<br>
-- <em>Geração de correios:</em> é a popularidade relativa como destino para correio.<br>
-- <em>Construído a partir de:</em> indica o ano que o edifício aparece quando se joga com <a href="new_world.txt">Linha do tempo</a>.<br>
-- <em>Construído por:</em> nome da pessoa que criou a atração para o Simutrans.
+<em>Monumentos</em> / <a href="curiositylist_filter.txt"><em>AtraÃ§Ãµes turÃ­sticas</em></a> abrem uma caixa de diÃ¡logo que fornece informaÃ§Ãµes sobre a atraÃ§Ã£o (a barra de tÃ­tulo mostra se Ã© um monumento ou uma atraÃ§Ã£o turÃ­stica). A informaÃ§Ã£o contida inclui:<br>
+- <em>Propriedade pÃºblica:</em> indica que o item nÃ£o pertence a nenhuma companhia de transporte.<br>
+- <em>DescriÃ§Ã£o:</em> fornece informaÃ§Ãµes sobre a atraÃ§Ã£o.<br>
+- <em>GeraÃ§Ã£o de viagens:</em> Ã© a popularidade relativa como destino para passageiros.<br>
+- <em>GeraÃ§Ã£o de correios:</em> Ã© a popularidade relativa como destino para correio.<br>
+- <em>ConstruÃ­do a partir de:</em> indica o ano que o edifÃ­cio aparece quando se joga com <a href="new_world.txt">Linha do tempo</a>.<br>
+- <em>ConstruÃ­do por:</em> nome da pessoa que criou a atraÃ§Ã£o para o Simutrans.
 </p>
 <p>
-<em>Estradas e trilhos</em> abrem uma caixa de diálogo que fornece informações sobre a estrada ou trilho (a barra de título mostra qual o tipo de via que se está usando - no caso de trilhos de bonde construídos em estradas a barra de título indica o tipo da estrada). A informação contida inclui:<br>
-- <em>Vel. Máxima:</em> velocidade máxima permitida na estrada ou trilho.<br>
-- <em>Ribi (unmasked):</em> é um contador interno que indica a direção da via.<br>
-- <em>Ribi (masked):</em> é um contador interno que indica a direção da via levando em conta sinais e/ou placas.<br>
-- <em>com sinal:</em> é mostrado se há um sinal ou placa presente.<br>
-- <em>eletrificado</em> / <em>não eletrificado:</em> indica se a via está eletrificada.<br>
-- <em>comboios passados no último mês:</em> indica o número de <a href="convoiinfo.txt">veículos</a> que usaram a via no último mês do jogo.<br>
-- <em>está reservado para um trem:</em> indica qual veículo reservou o trecho de trilho para usar até ter passado.<br>
-- <em>wayslope</em> [aguardando definição]<br>
-- <em>coordenadas:</em> mostradas na barra inferior da <a href="window.txt">área de jogo</a><br>
-Caso haja trilhos de bonde construídos em estradas as informações aparecem duas vezes, pimeiro para a estrada e depois para o trilho de bonde.
+<em>Estradas e trilhos</em> abrem uma caixa de diÃ¡logo que fornece informaÃ§Ãµes sobre a estrada ou trilho (a barra de tÃ­tulo mostra qual o tipo de via que se estÃ¡ usando - no caso de trilhos de bonde construÃ­dos em estradas a barra de tÃ­tulo indica o tipo da estrada). A informaÃ§Ã£o contida inclui:<br>
+- <em>Vel. MÃ¡xima:</em> velocidade mÃ¡xima permitida na estrada ou trilho.<br>
+- <em>Ribi (unmasked):</em> Ã© um contador interno que indica a direÃ§Ã£o da via.<br>
+- <em>Ribi (masked):</em> Ã© um contador interno que indica a direÃ§Ã£o da via levando em conta sinais e/ou placas.<br>
+- <em>com sinal:</em> Ã© mostrado se hÃ¡ um sinal ou placa presente.<br>
+- <em>eletrificado</em> / <em>nÃ£o eletrificado:</em> indica se a via estÃ¡ eletrificada.<br>
+- <em>comboios passados no Ãºltimo mÃªs:</em> indica o nÃºmero de <a href="convoiinfo.txt">veÃ­culos</a> que usaram a via no Ãºltimo mÃªs do jogo.<br>
+- <em>estÃ¡ reservado para um trem:</em> indica qual veÃ­culo reservou o trecho de trilho para usar atÃ© ter passado.<br>
+- <em>wayslope</em> [aguardando definiÃ§Ã£o]<br>
+- <em>coordenadas:</em> mostradas na barra inferior da <a href="window.txt">Ã¡rea de jogo</a><br>
+Caso haja trilhos de bonde construÃ­dos em estradas as informaÃ§Ãµes aparecem duas vezes, pimeiro para a estrada e depois para o trilho de bonde.
 </p>
 <p>
-<em>Sinais</em> / <em>Placas</em> abrem uma caixa de diálogo que fornece informações sobre o sinal ou placa (a barra de título mostra se é um sinal ou uma placa). A informação contida inclui:<br>
-- <em>direção:</em> é um contador interno que indica a direção a que o sinal se aplica.
+<em>Sinais</em> / <em>Placas</em> abrem uma caixa de diÃ¡logo que fornece informaÃ§Ãµes sobre o sinal ou placa (a barra de tÃ­tulo mostra se Ã© um sinal ou uma placa). A informaÃ§Ã£o contida inclui:<br>
+- <em>direÃ§Ã£o:</em> Ã© um contador interno que indica a direÃ§Ã£o a que o sinal se aplica.
 </p>
 <p>
-<a href="special.txt"><em>Linhas elétricas</em></a> / <em>Transformadores</em> abrem uma caixa de diálogo que fornece informações sobre a distribuição de eletricidade (a barra de título nostra 'Linha de transmissão'). A informação contida inclui:<br>
-- <em>Potência:</em> indica a quantidade de energia fornecida.<br>
-- <em>Disponível:</em> o valor aparece nos <a href="special.txt">transformadores</a> das <a href="industry_info.txt">indústrias</a> e indica a quantidade relativa de energia fornecida.<br>
-- <em>Net:</em> é o número de identificação da rede de distribuição. Dois pontos com o mesmo número estão conectados.
+<a href="special.txt"><em>Linhas elÃ©tricas</em></a> / <em>Transformadores</em> abrem uma caixa de diÃ¡logo que fornece informaÃ§Ãµes sobre a distribuiÃ§Ã£o de eletricidade (a barra de tÃ­tulo nostra 'Linha de transmissÃ£o'). A informaÃ§Ã£o contida inclui:<br>
+- <em>PotÃªncia:</em> indica a quantidade de energia fornecida.<br>
+- <em>DisponÃ­vel:</em> o valor aparece nos <a href="special.txt">transformadores</a> das <a href="industry_info.txt">indÃºstrias</a> e indica a quantidade relativa de energia fornecida.<br>
+- <em>Net:</em> Ã© o nÃºmero de identificaÃ§Ã£o da rede de distribuiÃ§Ã£o. Dois pontos com o mesmo nÃºmero estÃ£o conectados.
 </p>
 <p>
-<it>Árvores</it> abrem uma caixa de diálogo (a barra de título mostra 'Árvore'). A informação contida inclui:<br>
-- <em>Nome:</em> mostra a espécie da árvore.<br>
-- <em>Meses de idade:</em> idade da árvore mostrada em meses.
+<it>Ãrvores</it> abrem uma caixa de diÃ¡logo (a barra de tÃ­tulo mostra 'Ãrvore'). A informaÃ§Ã£o contida inclui:<br>
+- <em>Nome:</em> mostra a espÃ©cie da Ã¡rvore.<br>
+- <em>Meses de idade:</em> idade da Ã¡rvore mostrada em meses.
 </p>
 <p>
-{Dicas: opção de abrir caixas de diálogo em estradas privadas e pedestras está disponível no arquivo simuconf.tab}.
+{Dicas: opÃ§Ã£o de abrir caixas de diÃ¡logo em estradas privadas e pedestras estÃ¡ disponÃ­vel no arquivo simuconf.tab}.
 </p>
-<p> Traduzido pela Equipe de tradução do Simutrans PT-SubFórum (<em>http://pt.simutrans.com</em>), 17/01/2008.
+<p> Traduzido pela Equipe de traduÃ§Ã£o do Simutrans PT-SubFÃ³rum (<em>http://pt.simutrans.com</em>), 17/01/2008.
 </p>

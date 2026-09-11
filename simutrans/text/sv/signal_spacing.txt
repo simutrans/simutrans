@@ -1,21 +1,21 @@
-<title>Hjälp om signalintervall</title>
+<title>HjÃ¤lp om signalintervall</title>
 
-<h1>Allmänt bruk:</h1><br>
+<h1>AllmÃ¤nt bruk:</h1><br>
 <p>
--- Ctrl-klicka på signalikonen för att ta fram denna dialog.<br>
+-- Ctrl-klicka pÃ¥ signalikonen fÃ¶r att ta fram denna dialog.<br>
 
--- Klicka-och-dra längs spår ger en förhandsvisning av de signaler som kommer att byggas; släpp knappen för att genomföra byggnationen. Signalerna kommer att byggas så att tåg kan färdas längs spåret endast i den riktning som du drog musen.<br>
+-- Klicka-och-dra lÃ¤ngs spÃ¥r ger en fÃ¶rhandsvisning av de signaler som kommer att byggas; slÃ¤pp knappen fÃ¶r att genomfÃ¶ra byggnationen. Signalerna kommer att byggas sÃ¥ att tÃ¥g kan fÃ¤rdas lÃ¤ngs spÃ¥ret endast i den riktning som du drog musen.<br>
 
--- I nätverksspel: Ctrl-klicka först på spåret och släpp musknappen. När du håller ner musknappen och flyttar musen får du en förhandsvisning. Återigen släpper du knappen för att genomföra byggnationen.<br>
+-- I nÃ¤tverksspel: Ctrl-klicka fÃ¶rst pÃ¥ spÃ¥ret och slÃ¤pp musknappen. NÃ¤r du hÃ¥ller ner musknappen och flyttar musen fÃ¥r du en fÃ¶rhandsvisning. Ã…terigen slÃ¤pper du knappen fÃ¶r att genomfÃ¶ra byggnationen.<br>
 </p>
 <h1>Parametrar i denna dialog:</h1>
 <p>
--- <em>Avstånd:</em> hur många rutor som skall skilja intilliggande signaler åt (diagonal räknas som 1/2 ruta). 
-Detta värde visas på knappen om signalverktyget är valt.<br>
+-- <em>AvstÃ¥nd:</em> hur mÃ¥nga rutor som skall skilja intilliggande signaler Ã¥t (diagonal rÃ¤knas som 1/2 ruta). 
+Detta vÃ¤rde visas pÃ¥ knappen om signalverktyget Ã¤r valt.<br>
 
--- <em>Ta bort mellanliggande signaler:</em> om aktiverad så kommer redan existerande signaler tas bort från sträckan.<br>
+-- <em>Ta bort mellanliggande signaler:</em> om aktiverad sÃ¥ kommer redan existerande signaler tas bort frÃ¥n strÃ¤ckan.<br>
 
--- <em>Ersätt andra signaler:</em> om aktiverad, så kommer existerande signaler på de rutor där nya signaler skall byggas att tas bort.<br>
+-- <em>ErsÃ¤tt andra signaler:</em> om aktiverad, sÃ¥ kommer existerande signaler pÃ¥ de rutor dÃ¤r nya signaler skall byggas att tas bort.<br>
 <br>
-Dessa parametrar ställs in för varje signaltyp separat.
+Dessa parametrar stÃ¤lls in fÃ¶r varje signaltyp separat.
 </p>

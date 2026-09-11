@@ -1,96 +1,96 @@
-<title>InformaÁıes do Comboio</title>
+<title>Informa√ß√µes do Comboio</title>
 
-<h1><strong>InformaÁıes do Comboio</strong></h1>
-
-<p>
-A janela <strong>InformaÁıes do Comboio</strong> oferece informaÁıes sobre um Comboio (um veÌculo operacional ou uma combinaÁ„o de veÌculos) o qual È utilizado para transportar mercadorias e passageiros.<br>
-Ela lista os itens carregados por um Comboio e tambÈm possui os controles para acessar os detalhes e vender o Comboio; seguir o Comboio na vis„o do jogo; e alterar o nome e a <a href="schedule.txt">ProgramaÁ„o</a> de um Comboio.
-</p>
+<h1><strong>Informa√ß√µes do Comboio</strong></h1>
 
 <p>
-Um Comboio È composto de pelo menos um veÌculo com forÁa (motorizado) e qualquer tipo de reboque, como um vag„o.<br>
-Exemplos de Comboios incluem: um grupo de cavalos puxando uma carruagem; ou uma locomotiva ligada a um tender e a vagıes; ou um Ùnibus; ou uma van; ou um caminh„o ligado a um reboque; ou bondes conectados entre si; ou um navio; ou um rebocador puxando uma barcaÁa; ou um avi„o.<br>
-Os Comboios s„o montados e comprados do <a href="depot.txt">depÛsito</a> para o seu respectivo tipo de transporte.<br>
-{Dica: Um Comboio tem um n˙mero limite m·ximo de veÌculos em sua composiÁ„o: trens, 24; veÌculos rodovi·rios, 4 .}
+A janela <strong>Informa√ß√µes do Comboio</strong> oferece informa√ß√µes sobre um Comboio (um ve√≠culo operacional ou uma combina√ß√£o de ve√≠culos) o qual √© utilizado para transportar mercadorias e passageiros.<br>
+Ela lista os itens carregados por um Comboio e tamb√©m possui os controles para acessar os detalhes e vender o Comboio; seguir o Comboio na vis√£o do jogo; e alterar o nome e a <a href="schedule.txt">Programa√ß√£o</a> de um Comboio.
+</p>
+
+<p>
+Um Comboio √© composto de pelo menos um ve√≠culo com for√ßa (motorizado) e qualquer tipo de reboque, como um vag√£o.<br>
+Exemplos de Comboios incluem: um grupo de cavalos puxando uma carruagem; ou uma locomotiva ligada a um tender e a vag√µes; ou um √¥nibus; ou uma van; ou um caminh√£o ligado a um reboque; ou bondes conectados entre si; ou um navio; ou um rebocador puxando uma barca√ßa; ou um avi√£o.<br>
+Os Comboios s√£o montados e comprados do <a href="depot.txt">dep√≥sito</a> para o seu respectivo tipo de transporte.<br>
+{Dica: Um Comboio tem um n√∫mero limite m√°ximo de ve√≠culos em sua composi√ß√£o: trens, 24; ve√≠culos rodovi√°rios, 4 .}
 </p>
 <p>
-Clique em um Comboio enquanto estiver na vis„o do jogo com a <a href="inspection_tool.txt">ferramenta Consultar</a> ou clique no Comboio listado na <a href="convoi.txt">Lista de VeÌculos</a> ou no <a href="linemanagement.txt">Gerenciador de Linhas</a> para abrir a janela <strong>InformaÁıes do Comboio</strong><br>
-A barra de tÌtulo da janela <strong>InformaÁıes do Comboio</strong> mostra um n˙mero de identificaÁ„o ˙nico e o nome do Comboio (por padr„o isso È feito quando o primeiro veÌculo È comprado ou montado em um <a href="depot.txt">depÛsito</a>).<br>
-A janela <strong>InformaÁıes do Comboio</strong> contÈm uma caixa do nome; uma mini-vis„o e a informaÁ„o sobre o Comboio; botıes de opÁıes; e uma lista de todos os itens atualmente sendo carregados (se todos os itens n„o est„o visÌveis <a href="mouse.txt">reajuste</a> a janela de <strong>InformaÁıes do Comboio</strong> ou use as barras laterais para ver os outros itens).
+Clique em um Comboio enquanto estiver na vis√£o do jogo com a <a href="inspection_tool.txt">ferramenta Consultar</a> ou clique no Comboio listado na <a href="convoi.txt">Lista de Ve√≠culos</a> ou no <a href="linemanagement.txt">Gerenciador de Linhas</a> para abrir a janela <strong>Informa√ß√µes do Comboio</strong><br>
+A barra de t√≠tulo da janela <strong>Informa√ß√µes do Comboio</strong> mostra um n√∫mero de identifica√ß√£o √∫nico e o nome do Comboio (por padr√£o isso √© feito quando o primeiro ve√≠culo √© comprado ou montado em um <a href="depot.txt">dep√≥sito</a>).<br>
+A janela <strong>Informa√ß√µes do Comboio</strong> cont√©m uma caixa do nome; uma mini-vis√£o e a informa√ß√£o sobre o Comboio; bot√µes de op√ß√µes; e uma lista de todos os itens atualmente sendo carregados (se todos os itens n√£o est√£o vis√≠veis <a href="mouse.txt">reajuste</a> a janela de <strong>Informa√ß√µes do Comboio</strong> ou use as barras laterais para ver os outros itens).
 </p>
 <p>
-A informaÁ„o mostrada na janela de <strong>InformaÁıes do Comboio</strong> inclui:
+A informa√ß√£o mostrada na janela de <strong>Informa√ß√µes do Comboio</strong> inclui:
 </p>
 <p>
-<em>ID Interno</em>: um n˙mero ˙nico de identificaÁ„o para o Comboio (designado por padr„o quando o Comboio È comprado ou montado pela primeira vez em um <a href="depot.txt">depÛsito</a>).
+<em>ID Interno</em>: um n√∫mero √∫nico de identifica√ß√£o para o Comboio (designado por padr√£o quando o Comboio √© comprado ou montado pela primeira vez em um <a href="depot.txt">dep√≥sito</a>).
 </p>
 <p>
-- <em>Nome</em>: mostra o nome designado do Comboio (por padr„o isso j· È feito ao primeiro veÌculo comprado ou montado no Comboio em um <a href="depot.txt">depÛsito</a>).<br>
+- <em>Nome</em>: mostra o nome designado do Comboio (por padr√£o isso j√° √© feito ao primeiro ve√≠culo comprado ou montado no Comboio em um <a href="depot.txt">dep√≥sito</a>).<br>
 Clique na caixa de texto e digite um novo para alterar o nome do Comboio.
 </p>
 <p>
 - <em>Velocidade:</em> velocidade atual mostrada em km/h.<br>
-Entre parÍnteses est· localizada a velocidade m·xima que pode ser atingida pelo Comboio (determinada pelo veÌculo mais lento no Comboio).<br>
-Uma barra de progresso verde indica a velocidade atual relativa ao limite de velocidade m·xima.
+Entre par√™nteses est√° localizada a velocidade m√°xima que pode ser atingida pelo Comboio (determinada pelo ve√≠culo mais lento no Comboio).<br>
+Uma barra de progresso verde indica a velocidade atual relativa ao limite de velocidade m√°xima.
 </p>
 <p>
-- <em>Renda:</em> lucro gerado por veÌculo (renda gerada menos os custos operacionais) de acordo com o ano atual do calend·rio do jogo.<br>
-Entre parÍnteses est· o custo operacional do Comboio em CrÈditos Hajo.
+- <em>Renda:</em> lucro gerado por ve√≠culo (renda gerada menos os custos operacionais) de acordo com o ano atual do calend√°rio do jogo.<br>
+Entre par√™nteses est√° o custo operacional do Comboio em Cr√©ditos Hajo.
 </p>
 <p>
 - <em>Peso:</em> peso combinado atual do Comboio e itens carregados em toneladas.<br>
-Entre parÍnteses est· o peso atual dos veÌculos carregados.<br>
+Entre par√™nteses est√° o peso atual dos ve√≠culos carregados.<br>
 Uma barra de progresso verde indica a capacidade usada, para carregar mercadorias e passageiros.<br>
-Uma barra amarela indica o nÌvel de <a href="schedule.txt">Espera</a> (quantidade mÌnima de mercadorias e passageiros necess·rios para o Comboio prosseguir) ajustado nas opÁıes da Linha.<br>
-{Dica: Para ajustar os nÌveis de Espera para todos os Comboios de uma Linha, use o bot„o Atualizar em <a href="linemanagement.txt">Gerenciador de Linhas</a> ou em <a href="depot.txt">Controles do DepÛsito</a>. Para ajustar o nÌvel de Espera para apenas um Comboio e mais nenhum outro em uma Linha atribuÌda, use o bot„o <em>Programar</em> na janela <strong>InformaÁıes do Comboio</strong> ou Controles do DepÛsito.}
+Uma barra amarela indica o n√≠vel de <a href="schedule.txt">Espera</a> (quantidade m√≠nima de mercadorias e passageiros necess√°rios para o Comboio prosseguir) ajustado nas op√ß√µes da Linha.<br>
+{Dica: Para ajustar os n√≠veis de Espera para todos os Comboios de uma Linha, use o bot√£o Atualizar em <a href="linemanagement.txt">Gerenciador de Linhas</a> ou em <a href="depot.txt">Controles do Dep√≥sito</a>. Para ajustar o n√≠vel de Espera para apenas um Comboio e mais nenhum outro em uma Linha atribu√≠da, use o bot√£o <em>Programar</em> na janela <strong>Informa√ß√µes do Comboio</strong> ou Controles do Dep√≥sito.}
 </p>
 <p>
-- <em>Destino:</em> A prÛxima <a href="station.txt">Parada</a> ou ponto de passagem na <a href="schedule.txt">ProgramaÁ„o</a> do Comboio.<br>
-Uma barra de progresso verde indica o progresso do Comboio atÈ o prÛximo Destino.
+- <em>Destino:</em> A pr√≥xima <a href="station.txt">Parada</a> ou ponto de passagem na <a href="schedule.txt">Programa√ß√£o</a> do Comboio.<br>
+Uma barra de progresso verde indica o progresso do Comboio at√© o pr√≥ximo Destino.
 </p>
 <p>
-- <em>Serve a linha:</em> indica qualquer <a href="linemanagement.txt">Linha</a> atribuÌda ao Comboio.
+- <em>Serve a linha:</em> indica qualquer <a href="linemanagement.txt">Linha</a> atribu√≠da ao Comboio.
 </p>
 <p>
 - <em>Mini-vista</em> mostra o Comboio.<br>
-Clique na mini-vista para centralizar a vis„o do jogo no Comboio.
+Clique na mini-vista para centralizar a vis√£o do jogo no Comboio.
 </p>
 <p>
-Clique nos botıes da janela <strong>InformaÁıes do Comboio</strong> para abrir os controles ou selecionar as opÁıes:
+Clique nos bot√µes da janela <strong>Informa√ß√µes do Comboio</strong> para abrir os controles ou selecionar as op√ß√µes:
 </p>
 <p>
-<a href="schedule.txt"><em>Programar:</em></a> abre os controles para modificar a rota e a quantidade mÌnima de mercadorias e passageiros necess·rios para o Comboio prosseguir.
+<a href="schedule.txt"><em>Programar:</em></a> abre os controles para modificar a rota e a quantidade m√≠nima de mercadorias e passageiros necess√°rios para o Comboio prosseguir.
 </p>
 <p>
-<em>Recolher:</em> manda o Comboio ao <a href="depot.txt">depÛsito</a> apropriado mais prÛximo. Quaisquer itens carregados ser„o perdidos, apesar de que o faturamento È recebido pelo transporte ao depÛsito.<br>
-No depÛsto, o Comboio mantÈm sua <a href="schedule.txt">ProgramaÁ„o</a> e sua <a href="linemanagement.txt">Linha</a> atribuÌda.
+<em>Recolher:</em> manda o Comboio ao <a href="depot.txt">dep√≥sito</a> apropriado mais pr√≥ximo. Quaisquer itens carregados ser√£o perdidos, apesar de que o faturamento √© recebido pelo transporte ao dep√≥sito.<br>
+No dep√≥sto, o Comboio mant√©m sua <a href="schedule.txt">Programa√ß√£o</a> e sua <a href="linemanagement.txt">Linha</a> atribu√≠da.
 </p>
 <p>
-<em>Siga-me:</em> bot„o que quando ativado move a vis„o do jogo junto com o Comboio.<br>
-Para desativar esta opÁ„o, clique no bot„o novamente ou clique com o bot„o direito no <a href="map.txt">Mapa</a>.
+<em>Siga-me:</em> bot√£o que quando ativado move a vis√£o do jogo junto com o Comboio.<br>
+Para desativar esta op√ß√£o, clique no bot√£o novamente ou clique com o bot√£o direito no <a href="map.txt">Mapa</a>.
 </p>
 <p>
-<em>Gr·fico:</em> clique nesse bot„o para ativar/desativar o gr·fico (o bot„o fica pressionado quando o gr·fico est· visÌvel) em <strong>InformaÁıes do Comboio</strong>.<br>
-O gr·fico mostra as estatÌsticas para os ˙ltimos 12 meses (eixo horizontal) quando uma opÁ„o do gr·fico est· selecionada.<br>
-Clique no bot„o de opÁ„o de gr·fico para ver a informaÁ„o no gr·fico (o bot„o fica em baixo-relevo quando a opÁ„o est· selecionada).<br>
-As cores das linhas no gr·fico correspondem ‡s cores dos botıes de opÁ„o do gr·fico:<br>
-- <em>Capacidade</em> indica o espaÁo sem uso no Comboio.<br>
-- <em>Vol. Transportado</em> indica o n˙mero de mercadorias, passageiros e correio transportados.<br>
+<em>Gr√°fico:</em> clique nesse bot√£o para ativar/desativar o gr√°fico (o bot√£o fica pressionado quando o gr√°fico est√° vis√≠vel) em <strong>Informa√ß√µes do Comboio</strong>.<br>
+O gr√°fico mostra as estat√≠sticas para os √∫ltimos 12 meses (eixo horizontal) quando uma op√ß√£o do gr√°fico est√° selecionada.<br>
+Clique no bot√£o de op√ß√£o de gr√°fico para ver a informa√ß√£o no gr√°fico (o bot√£o fica em baixo-relevo quando a op√ß√£o est√° selecionada).<br>
+As cores das linhas no gr√°fico correspondem √†s cores dos bot√µes de op√ß√£o do gr√°fico:<br>
+- <em>Capacidade</em> indica o espa√ßo sem uso no Comboio.<br>
+- <em>Vol. Transportado</em> indica o n√∫mero de mercadorias, passageiros e correio transportados.<br>
 - <em>Faturamento</em> indica o lucro gerado pelo transporte.<br>
-- <em>OperaÁ„o</em> indica os custos do Comboio enquanto est· trafegando.<br>
+- <em>Opera√ß√£o</em> indica os custos do Comboio enquanto est√° trafegando.<br>
 - <em>Lucro</em> indica o lucro recebido pelo transporte (Lucro Bruto menos os custos operacionais).
 </p>
 <p>
-<em>Detalhes</em> abre os <a href="convoidetail.txt">Detalhes do Comboio</a> que contÍm mais informaÁıes e a opÁ„o para vender o Comboio.
+<em>Detalhes</em> abre os <a href="convoidetail.txt">Detalhes do Comboio</a> que cont√™m mais informa√ß√µes e a op√ß√£o para vender o Comboio.
 </p>
 <p>
 <em>Passageiros/carga carregada:</em> lista os itens carregados atualmente pelo Comboio.<br>
-A informaÁ„o mostrada inclui a quantidade carregada e a capacidade do Comboio, o tipo do item, o destino final e a primeira <a href="station.txt">Parada</a>.<br>
-O bot„o de opÁ„o (o nome varia de acordo com a seleÁ„o) organiza os itens carregados em grupos de passageiros, correio e mercadorias por:<br>
- - <em>Destino:</em> organiza os itens carregados alfanumericamente de acordo com a ordem do cÛdigo ASCII (letras mai˙sculas antes das letras min˙sculas), pelo nome designado da Parada final.<br>
- - <em>Via (detalhe):</em> organiza os itens carregados alfanumericamente de acordo com a ordem do cÛdigo ASCII (letras mai˙sculas antes das letras min˙sculas), pelo nome designado da primeira Parada de transferÍncia.<br>
- - <em>Via (quant.):</em> organiza os itens carregados pela quantidade levada ‡ primeira Parada de transferÍncia.<br>
+A informa√ß√£o mostrada inclui a quantidade carregada e a capacidade do Comboio, o tipo do item, o destino final e a primeira <a href="station.txt">Parada</a>.<br>
+O bot√£o de op√ß√£o (o nome varia de acordo com a sele√ß√£o) organiza os itens carregados em grupos de passageiros, correio e mercadorias por:<br>
+ - <em>Destino:</em> organiza os itens carregados alfanumericamente de acordo com a ordem do c√≥digo ASCII (letras mai√∫sculas antes das letras min√∫sculas), pelo nome designado da Parada final.<br>
+ - <em>Via (detalhe):</em> organiza os itens carregados alfanumericamente de acordo com a ordem do c√≥digo ASCII (letras mai√∫sculas antes das letras min√∫sculas), pelo nome designado da primeira Parada de transfer√™ncia.<br>
+ - <em>Via (quant.):</em> organiza os itens carregados pela quantidade levada √† primeira Parada de transfer√™ncia.<br>
  - <em>Quantidade:</em> organiza os itens carregados pela quantidade em ordem decrescente.
 </p>
-<p> Traduzido pela Equipe de traduÁ„o do Simutrans PT-SubFÛrum (<em>http://pt.simutrans.com</em>), 17/01/2008.
+<p> Traduzido pela Equipe de tradu√ß√£o do Simutrans PT-SubF√≥rum (<em>http://pt.simutrans.com</em>), 17/01/2008.
 </p>

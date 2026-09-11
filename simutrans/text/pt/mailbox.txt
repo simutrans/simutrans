@@ -1,64 +1,64 @@
-<title>Ajuda - Mensagens & Opç;ões das Mensagens</title>
+<title>Ajuda - Mensagens & OpÃ§;Ãµes das Mensagens</title>
 
 <h1><strong>Mensagens</strong></h1>
 
 <p>
-A janela <strong>Mensagens</strong> lista mensagens que o jogo lhe dá e abre controles para selecionar como são mostradas.
+A janela <strong>Mensagens</strong> lista mensagens que o jogo lhe dÃ¡ e abre controles para selecionar como sÃ£o mostradas.
 </p>
 <p>
-Para abrir a janela de mensagens, clique no ícone da caixa de correio na barra superior do jogo ou pressione <a href="keys.txt">[B]</a>.<br>
-Clique sobre a mensagem para abrir uma janela com a mensagem e a imagem do local dela. Clique no botão com uma flecha no canto esquerdo da mensagem para ir pro local relacionado a mensagem.
+Para abrir a janela de mensagens, clique no Ã­cone da caixa de correio na barra superior do jogo ou pressione <a href="keys.txt">[B]</a>.<br>
+Clique sobre a mensagem para abrir uma janela com a mensagem e a imagem do local dela. Clique no botÃ£o com uma flecha no canto esquerdo da mensagem para ir pro local relacionado a mensagem.
 </p>
 <p>
-O botão <em>Opções</em> abre a <strong>Opções das mensagens</strong> para determinar como são exibidas as mensagens.
+O botÃ£o <em>OpÃ§Ãµes</em> abre a <strong>OpÃ§Ãµes das mensagens</strong> para determinar como sÃ£o exibidas as mensagens.
 </p>
 <p>
-<h1>Opções das mensagens</h1>
+<h1>OpÃ§Ãµes das mensagens</h1>
 </p>
 <p>
-A janela <strong>Opções das mensagens</strong> tem quatro colunas com botões quadrados que selecionam como são exibidas as mensagens.
+A janela <strong>OpÃ§Ãµes das mensagens</strong> tem quatro colunas com botÃµes quadrados que selecionam como sÃ£o exibidas as mensagens.
 </p>
 <p>
-Da esquerda para a direita, as colunas selecionam se as mensagens são mostradas como:<br>
+Da esquerda para a direita, as colunas selecionam se as mensagens sÃ£o mostradas como:<br>
 - Desativa as mensagens daquele tipo;<br>
 - Texto rolando na barra inferior do jogo;<br>
-- Janela temporária (aparece por alguns segundo); ou<br>
-- Janela permanente (fica na tela até você fechar).<br>
+- Janela temporÃ¡ria (aparece por alguns segundo); ou<br>
+- Janela permanente (fica na tela atÃ© vocÃª fechar).<br>
 {Dica: clique no X no canto superior esquedo da mensagem ou use o teclado para fechar janelas permanentes.}
 </p>
 <p>
 Segue o tipo de mensagens exibidas por linha:
 </p>
 <p>
-<em>Ano novo:</em> Mostra uma mensagem todo começo de ano avisando sobre o novo ano.
+<em>Ano novo:</em> Mostra uma mensagem todo comeÃ§o de ano avisando sobre o novo ano.
 </p>
 <p>
-<em>Concorrência:</em> Mostra mensagens sobre outros <a href="players.txt">jogadores</a>.
+<em>ConcorrÃªncia:</em> Mostra mensagens sobre outros <a href="players.txt">jogadores</a>.
 </p>
 <p>
-<em>Notícias cidades:</em> Mostra mensagens das <a href="citywindow.txt">cidades</a>, como construção de monumentos e novas prefeituras.
+<em>NotÃ­cias cidades:</em> Mostra mensagens das <a href="citywindow.txt">cidades</a>, como construÃ§Ã£o de monumentos e novas prefeituras.
 </p>
 <p>
-<em>Sem rota:</em> Mostra uma mensagem toda vez que um veiculo não pode achar uma rota para seu próximo <a href="schedule.txt">destino</a> (uma <a href="station.txt">parada</a> ou ponto de passagem).
+<em>Sem rota:</em> Mostra uma mensagem toda vez que um veiculo nÃ£o pode achar uma rota para seu prÃ³ximo <a href="schedule.txt">destino</a> (uma <a href="station.txt">parada</a> ou ponto de passagem).
 </p>
 <p>
-<em>Novas rotas:</em> Toda vez que uma nova rota ficar disponível, com uma nova cadeia <a href="industryinfo.txt">empresarial</a> aparecer (um consumidor final e os fornecedores nescessários) devido ao crecimentos de uma <a href="citywindow.txt">cidade</a>.
+<em>Novas rotas:</em> Toda vez que uma nova rota ficar disponÃ­vel, com uma nova cadeia <a href="industryinfo.txt">empresarial</a> aparecer (um consumidor final e os fornecedores nescessÃ¡rios) devido ao crecimentos de uma <a href="citywindow.txt">cidade</a>.
 </p>
 <p>
-<em>Chat:</em> Mostra textos de conversas de outros usuários quando estiver jogando online.
+<em>Chat:</em> Mostra textos de conversas de outros usuÃ¡rios quando estiver jogando online.
 </p>
 <p>
-<em>Notícias veículos:</em> Mostra mensagens quando um novo veículo ficar disponível, ou terminar a produção de um. (só aparecem se a opção <a href="new_world.txt">linha do tempo</a> estiver ligada).
+<em>NotÃ­cias veÃ­culos:</em> Mostra mensagens quando um novo veÃ­culo ficar disponÃ­vel, ou terminar a produÃ§Ã£o de um. (sÃ³ aparecem se a opÃ§Ã£o <a href="new_world.txt">linha do tempo</a> estiver ligada).
 </p>
 <p>
-<em>Estação lotada:</em> Se uma <a href="station.txt">estação</a> ou <a href="station.txt">parada</a> ficar cheia, aparecerá uma mensagem.
+<em>EstaÃ§Ã£o lotada:</em> Se uma <a href="station.txt">estaÃ§Ã£o</a> ou <a href="station.txt">parada</a> ficar cheia, aparecerÃ¡ uma mensagem.
 </p>
 <p>
-<em>Problemas:</em> Mensagens de quaisquer problema com sua empresa de transporte, como dívidas.
+<em>Problemas:</em> Mensagens de quaisquer problema com sua empresa de transporte, como dÃ­vidas.
 </p>
 <p>
-<em>Congestionamento:</em> Quando um veículo seu ficar parado em um congestionamento, uma mensagem vai aparecer.
+<em>Congestionamento:</em> Quando um veÃ­culo seu ficar parado em um congestionamento, uma mensagem vai aparecer.
 </p>
-<p> Traduzido pela Equipe de tradução do Simutrans PT-SubFórum (<em>http://pt.simutrans.com</em>), 11/08/2011.<br>
-Acesse a wiki para mais informações e ajudas: <em>http://wiki.simutrans-germany.com/</em>
+<p> Traduzido pela Equipe de traduÃ§Ã£o do Simutrans PT-SubFÃ³rum (<em>http://pt.simutrans.com</em>), 11/08/2011.<br>
+Acesse a wiki para mais informaÃ§Ãµes e ajudas: <em>http://wiki.simutrans-germany.com/</em>
 </p>

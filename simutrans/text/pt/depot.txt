@@ -1,104 +1,104 @@
-<title>DepÛsitos</title>
+<title>Dep√≥sitos</title>
 
-<h1><strong>DepÛsitos</strong></h1>
+<h1><strong>Dep√≥sitos</strong></h1>
 
 <p>
-DepÛsitos s„o usados para comprar e gerenciar veÌculos. Tipos diferentes de transporte possuem seus prÛprios depÛsitos. Somente aparecer„o veÌculos elÈtricos no depÛsito se eles estiverem em vias eletrificadas.<br>
-Se estiver jogando com <a href="new_world.txt">linha do tempo</a>, ent„o conforme o tempo passa no Simutrans mais veÌculos podem aparecer.
+Dep√≥sitos s√£o usados para comprar e gerenciar ve√≠culos. Tipos diferentes de transporte possuem seus pr√≥prios dep√≥sitos. Somente aparecer√£o ve√≠culos el√©tricos no dep√≥sito se eles estiverem em vias eletrificadas.<br>
+Se estiver jogando com <a href="new_world.txt">linha do tempo</a>, ent√£o conforme o tempo passa no Simutrans mais ve√≠culos podem aparecer.
 </p>
 <p>
-Ferramentas para a construÁ„o de depÛsitos est„o disponÌveis na barra de ferramentas de cada tipo de transporte: <a href="railtools.txt">depÛsitos ferrovi·rios</a>; <a href="monorailtools.txt">depÛsitos de monotrilhos</a>; <a href="tramtools.txt">depÛsitos de bondes</a>; <a href="roadtools.txt">garagens</a>; <a href="shiptools.txt">estaleiros</a> e <a href="airtools.txt">hangares</a>.
+Ferramentas para a constru√ß√£o de dep√≥sitos est√£o dispon√≠veis na barra de ferramentas de cada tipo de transporte: <a href="railtools.txt">dep√≥sitos ferrovi√°rios</a>; <a href="monorailtools.txt">dep√≥sitos de monotrilhos</a>; <a href="tramtools.txt">dep√≥sitos de bondes</a>; <a href="roadtools.txt">garagens</a>; <a href="shiptools.txt">estaleiros</a> e <a href="airtools.txt">hangares</a>.
 </p>
 <p>
-Clique em um depÛsito construÌdo na ·rea de jogo com a ferramenta <a href="inspection_tool.txt">Consultar</a> para abrir a <strong>janela de controles do depÛsito</strong>, que fornecem informaÁıes e permitem a compra e o gerenciamento dos <a href="convoiinfo.txt">comboios</a> (um veÌculo operacional ou a combinaÁ„o de mais de uma unidade veicular).<br>
-A barra de tÌtulo da <strong>janela do depÛsito</strong> indica para que tipo de veÌculo o depÛsito serve.
+Clique em um dep√≥sito constru√≠do na √°rea de jogo com a ferramenta <a href="inspection_tool.txt">Consultar</a> para abrir a <strong>janela de controles do dep√≥sito</strong>, que fornecem informa√ß√µes e permitem a compra e o gerenciamento dos <a href="convoiinfo.txt">comboios</a> (um ve√≠culo operacional ou a combina√ß√£o de mais de uma unidade veicular).<br>
+A barra de t√≠tulo da <strong>janela do dep√≥sito</strong> indica para que tipo de ve√≠culo o dep√≥sito serve.
 </p>
 <p>
-A <strong>janela do depÛsito</strong> pode ser <a href="mouse.txt">redimensionada</a> (clique na seta para baixo da barra de tÌtulo para retornar ao tamanho original).<br>
-Clique nas setas para a direita/esquerda na barra de tÌtulo para percorrer os depÛsitos do mesmo tipo de transporte (a ·rea de jogo ficar· centralizada no depÛsito).
+A <strong>janela do dep√≥sito</strong> pode ser <a href="mouse.txt">redimensionada</a> (clique na seta para baixo da barra de t√≠tulo para retornar ao tamanho original).<br>
+Clique nas setas para a direita/esquerda na barra de t√≠tulo para percorrer os dep√≥sitos do mesmo tipo de transporte (a √°rea de jogo ficar√° centralizada no dep√≥sito).
 </p>
 <p>
-No topo da janela, s„o mostrados o n˙mero de <a href="convoiinfo.txt">comboios</a> no depÛsito, o nome e a <a href="linemanagement.txt">linha</a>.
+No topo da janela, s√£o mostrados o n√∫mero de <a href="convoiinfo.txt">comboios</a> no dep√≥sito, o nome e a <a href="linemanagement.txt">linha</a>.
 </p>
 <p>
-<em>Nome do </em><a href="convoiinfo.txt"><em>comboio:</em></a> clique nas setas existentes nos lados da caixa de nome do comboio para percorrer os comboios armazenados no depÛsito.<br>
-Para mudar o nome do comboio: clique na caixa de nome do comboio e digite o novo nome (por padr„o isso È feito na primeira unidade veicular comprada ou montada para um novo comboio).
+<em>Nome do </em><a href="convoiinfo.txt"><em>comboio:</em></a> clique nas setas existentes nos lados da caixa de nome do comboio para percorrer os comboios armazenados no dep√≥sito.<br>
+Para mudar o nome do comboio: clique na caixa de nome do comboio e digite o novo nome (por padr√£o isso √© feito na primeira unidade veicular comprada ou montada para um novo comboio).
 </p>
 <p>
-<em>Nome da </em><a href="linemanagement.txt"><em>linha:</em></a> clique nas setas existentes nos lados do nome da linha para selecionar as linhas daquele tipo de transporte, ou clique na caixa de nome para abrir uma lista das linhas existentes (clique em uma delas para selecion·-la).<br>
-Para mudar o nome da linha: clique na caixa de nome da linha e digite o novo nome (por padr„o quando uma nova linha È criada ela È identificada por um n˙mero).
+<em>Nome da </em><a href="linemanagement.txt"><em>linha:</em></a> clique nas setas existentes nos lados do nome da linha para selecionar as linhas daquele tipo de transporte, ou clique na caixa de nome para abrir uma lista das linhas existentes (clique em uma delas para selecion√°-la).<br>
+Para mudar o nome da linha: clique na caixa de nome da linha e digite o novo nome (por padr√£o quando uma nova linha √© criada ela √© identificada por um n√∫mero).
 </p>
 <p>
-<em>Gr·fico:</em> abaixo das caixas de nome, È mostrado o gr·fico do comboio selecionado.<br>
-Passe o cursor do mouse por cima do gr·fico das unidades veiculares do comboio selecionado para ver detalhes sobre a unidade veicular (mostrados na parte inferior da <strong>janela do depÛsito</strong>).<br>
-Clique em uma unidade veicular para removÍ-la do comboio selecionado e armazen·-la no depÛsito.
+<em>Gr√°fico:</em> abaixo das caixas de nome, √© mostrado o gr√°fico do comboio selecionado.<br>
+Passe o cursor do mouse por cima do gr√°fico das unidades veiculares do comboio selecionado para ver detalhes sobre a unidade veicular (mostrados na parte inferior da <strong>janela do dep√≥sito</strong>).<br>
+Clique em uma unidade veicular para remov√™-la do comboio selecionado e armazen√°-la no dep√≥sito.
 </p>
 <p>
-Abaixo do gr·fico s„o mostrados o n˙mero de unidades veiculares do comboio selecionado, bem como a quantidade de quadros de estaÁ„o precisos (todas as unidades veiculares devem caber em uma <a href="station.txt"><em>parada</em></a> para poder recolher e entregar mercadorias e passageiros), e a linha a que serve.
+Abaixo do gr√°fico s√£o mostrados o n√∫mero de unidades veiculares do comboio selecionado, bem como a quantidade de quadros de esta√ß√£o precisos (todas as unidades veiculares devem caber em uma <a href="station.txt"><em>parada</em></a> para poder recolher e entregar mercadorias e passageiros), e a linha a que serve.
 </p>
 <p>
-Os botıes de opÁ„o (logo abaixo, clique para usar) da <strong>janela do depÛsito</strong> incluem:
+Os bot√µes de op√ß√£o (logo abaixo, clique para usar) da <strong>janela do dep√≥sito</strong> incluem:
 </p>
 <p>
 <em>Partir:</em> Coloca o Comboio em funcionamento se uma rota foi programada e/ou encontrada.
 </p>
 <p>
-<a href="schedule.txt"><em>Programar:</em></a> abre controles para mudar a rota e quantidade de itens que um <a href="convoiinfo.txt">comboio</a> esperar· em uma <a href="station.txt">parada</a>.
+<a href="schedule.txt"><em>Programar:</em></a> abre controles para mudar a rota e quantidade de itens que um <a href="convoiinfo.txt">comboio</a> esperar√° em uma <a href="station.txt">parada</a>.
 </p>
 <p>
-<em>Desmontar:</em> armazena no depÛsito a(s) unidade(s) veicular(es) do <a href="convoiinfo.txt">comboio</a> selecionado.
+<em>Desmontar:</em> armazena no dep√≥sito a(s) unidade(s) veicular(es) do <a href="convoiinfo.txt">comboio</a> selecionado.
 </p>
 <p>
-<em>Vender:</em> vende o <a href="convoiinfo.txt">comboio</a> selecionado. O <em>Valor de venda</em> ser· creditado no balanÁo.
+<em>Vender:</em> vende o <a href="convoiinfo.txt">comboio</a> selecionado. O <em>Valor de venda</em> ser√° creditado no balan√ßo.
 </p>
 <p>
-<a href="linemanagement.txt"><em>Nova linha:</em></a> abre controles para definir uma <a href="schedule.txt">programaÁ„o</a> (uma rota e quantidade mÌnima de itens que um comboio esperar· em uma parada), que pode ser usada por m˙ltiplos <a href="convoiinfo.txt">comboios</a>.
+<a href="linemanagement.txt"><em>Nova linha:</em></a> abre controles para definir uma <a href="schedule.txt">programa√ß√£o</a> (uma rota e quantidade m√≠nima de itens que um comboio esperar√° em uma parada), que pode ser usada por m√∫ltiplos <a href="convoiinfo.txt">comboios</a>.
 </p>
 <p>
-<em>Associar:</em> associa a <a href="linemanagement.txt">linha</a> mostrada na caixa de nome da linha no topo da <strong>janela do depÛsito</strong> ao <a href="convoiinfo.txt">comboio</a> selecionado.
+<em>Associar:</em> associa a <a href="linemanagement.txt">linha</a> mostrada na caixa de nome da linha no topo da <strong>janela do dep√≥sito</strong> ao <a href="convoiinfo.txt">comboio</a> selecionado.
 </p>
 <p>
-<a href="linemanagement.txt"><em>Atualizar:</em></a> abre controles para mudar a <a href="schedule.txt">programaÁ„o</a> da linha selecionada.
+<a href="linemanagement.txt"><em>Atualizar:</em></a> abre controles para mudar a <a href="schedule.txt">programa√ß√£o</a> da linha selecionada.
 </p>
 <p>
-<em>Copiar </em><a href="convoiinfo.txt"><em>comboio:</em></a> compra e monta outro comboio com a mesma composiÁ„o, <a href="schedule.txt">programaÁ„o</a> e <a href="linemanagement.txt">linha</a> do comboio selecionado.
+<em>Copiar </em><a href="convoiinfo.txt"><em>comboio:</em></a> compra e monta outro comboio com a mesma composi√ß√£o, <a href="schedule.txt">programa√ß√£o</a> e <a href="linemanagement.txt">linha</a> do comboio selecionado.
 </p>
 <p>
-Abaixo dos botıes s„o mostrados gr·ficos de todas as unidades veiculares disponÌveis para compra.<br>
-<em>Gr·ficos das unidades veiculares:</em> unidades veiculares s„o divididas em categorias (unidades para passageiros e correio, unidades motorizadas, e aquelas que servem como reboque), que podem ser exibidas clicando nas respectivas abas.<br>
-Um n˙mero branco em cima do gr·fico da unidade veicular indica a quantidade armazenada se um ou mais comboios foram desmontados. Unidades armazenadas podem ser vendidas ou usadas na montagem de um novo comboio.
+Abaixo dos bot√µes s√£o mostrados gr√°ficos de todas as unidades veiculares dispon√≠veis para compra.<br>
+<em>Gr√°ficos das unidades veiculares:</em> unidades veiculares s√£o divididas em categorias (unidades para passageiros e correio, unidades motorizadas, e aquelas que servem como reboque), que podem ser exibidas clicando nas respectivas abas.<br>
+Um n√∫mero branco em cima do gr√°fico da unidade veicular indica a quantidade armazenada se um ou mais comboios foram desmontados. Unidades armazenadas podem ser vendidas ou usadas na montagem de um novo comboio.
 </p>
 <p>
-Passe o cursor do mouse sobre o gr·fico de uma unidade veicular para ver as seguintes informaÁıes:<br>
-<em>Nome:</em> e entre parÍnteses o tipo de energia utilizado pelas unidades motorizadas.<br>
-<em>PreÁo:</em> valor para compra e entre parÍnteses o custo de operaÁ„o por quilÙmetro.<br>
-<em>PotÍncia:</em> potÍncia do motor e velocidade m·xima para unidades motorizadas.<br>
+Passe o cursor do mouse sobre o gr√°fico de uma unidade veicular para ver as seguintes informa√ß√µes:<br>
+<em>Nome:</em> e entre par√™nteses o tipo de energia utilizado pelas unidades motorizadas.<br>
+<em>Pre√ßo:</em> valor para compra e entre par√™nteses o custo de opera√ß√£o por quil√¥metro.<br>
+<em>Pot√™ncia:</em> pot√™ncia do motor e velocidade m√°xima para unidades motorizadas.<br>
 <em>Capacidade:</em> quantidade e <a href="goods_filter.txt">nome da mercadoria</a> suportados pela unidade veicular.<br>
 <em>Peso:</em> em toneladas.<br>
-<em>Velocidade m·xima:</em> para unidades veiculares n„o motorizadas.<br>
-<em>IntroduÁ„o:</em> data em que a unidade veicular se torna disponÌvel quando se joga com <a href="new_world.txt">linha do tempo</a>.<br>
-<em>Fim da produÁ„o:</em> data em que a unidade veicular se torna obsoleta.<br>
-<em>ConstruÌdo por:</em> pessoa que criou o veÌculo para o Simutrans.<br>
-<em>C‚mbio:</em> relaÁ„o de forÁa.<br>
+<em>Velocidade m√°xima:</em> para unidades veiculares n√£o motorizadas.<br>
+<em>Introdu√ß√£o:</em> data em que a unidade veicular se torna dispon√≠vel quando se joga com <a href="new_world.txt">linha do tempo</a>.<br>
+<em>Fim da produ√ß√£o:</em> data em que a unidade veicular se torna obsoleta.<br>
+<em>Constru√≠do por:</em> pessoa que criou o ve√≠culo para o Simutrans.<br>
+<em>C√¢mbio:</em> rela√ß√£o de for√ßa.<br>
 <em>Valor de venda:</em> quantidade de dinheiro recebida se a unidade veicular anteriormente comprada for vendida.
 </p>
 <p>
-Clique em um dos veÌculos abaixo das categorias para compr·-los ou vendÍ-los dependendo do estado do bot„o encontrado no canto inferior direito dos <strong>controles do depÛsito</strong>. O bot„o alterna entre as trÍs seguintes opÁıes:<br>
+Clique em um dos ve√≠culos abaixo das categorias para compr√°-los ou vend√™-los dependendo do estado do bot√£o encontrado no canto inferior direito dos <strong>controles do dep√≥sito</strong>. O bot√£o alterna entre as tr√™s seguintes op√ß√µes:<br>
 <em>A reboque:</em> compra uma nova unidade veicular e a adiciona ao comboio selecionado, ou cria um novo comboio.<br>
-<em>¿ frente:</em> compra uma nova unidade veicular e a adiciona ‡ frente do comboio selecionado, ou cria um novo comboio.<br>
-<em>Armazenar:</em> vende os veÌculos contidos no depÛsito.<br>
+<em>√Ä frente:</em> compra uma nova unidade veicular e a adiciona √† frente do comboio selecionado, ou cria um novo comboio.<br>
+<em>Armazenar:</em> vende os ve√≠culos contidos no dep√≥sito.<br>
 </p>
 <p>
-<em>Barras de cores</em> abaixo dos gr·ficos das unidades veiculares indicam quais e em qual ordem as unidades veiculares podem ser montadas, para formar um <a href="convoiinfo.txt">comboio</a> operacional (as cores podem mudar dependendo dos diferentes estados do bot„o do canto inferior direito e do comboio seleceionado).<br>
+<em>Barras de cores</em> abaixo dos gr√°ficos das unidades veiculares indicam quais e em qual ordem as unidades veiculares podem ser montadas, para formar um <a href="convoiinfo.txt">comboio</a> operacional (as cores podem mudar dependendo dos diferentes estados do bot√£o do canto inferior direito e do comboio seleceionado).<br>
 Significado das cores:<br>
 - <em>verde:</em> a unidade veicular pode ser usada.<br>
-- <em>vermelho:</em> a unidade veicular n„o pode ser usada.<br>
-- <em>amarelo:</em> outra unidade veicular precisa ser conectada para montar um veÌculo operacional.<br>
-- <em>azul:</em> a unidade veicular pode ser usada, mas est· obsoleta.<br>
-{Dicas: um comboio È operacional se ele mostra barras verdes em todas as unidades veiculares; se houver alguma barra amarela ent„o È necess·ria outra unidade veicular.}
+- <em>vermelho:</em> a unidade veicular n√£o pode ser usada.<br>
+- <em>amarelo:</em> outra unidade veicular precisa ser conectada para montar um ve√≠culo operacional.<br>
+- <em>azul:</em> a unidade veicular pode ser usada, mas est√° obsoleta.<br>
+{Dicas: um comboio √© operacional se ele mostra barras verdes em todas as unidades veiculares; se houver alguma barra amarela ent√£o √© necess√°ria outra unidade veicular.}
 </p>
 <p>
-<em>Mostrar obsoletos:</em> jogando com <a href="new_world.txt">linha do tempo</a>, quando o bot„o È pressionado (clique para usar) mostra as unidade veiculares que tiveram sua produÁ„o terminada.
+<em>Mostrar obsoletos:</em> jogando com <a href="new_world.txt">linha do tempo</a>, quando o bot√£o √© pressionado (clique para usar) mostra as unidade veiculares que tiveram sua produ√ß√£o terminada.
 </p>
-<p> Traduzido pela Equipe de traduÁ„o do Simutrans PT-SubFÛrum (<em>http://pt.simutrans.com</em>), 17/01/2008.
+<p> Traduzido pela Equipe de tradu√ß√£o do Simutrans PT-SubF√≥rum (<em>http://pt.simutrans.com</em>), 17/01/2008.
 </p>

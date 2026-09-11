@@ -2,7 +2,7 @@
 
 <h1>Expandir mapa</h1>
 
-<p>Aqui, o jogador pode expandir o mapa ‡ direita e para baixo. Se o jogador quiser estender ‡ esquerda e para cima, È necess·rio girar o mapa antes, ent„o expande-se o mapa, e gira-se de volta.
+<p>Aqui, o jogador pode expandir o mapa √† direita e para baixo. Se o jogador quiser estender √† esquerda e para cima, √© necess√°rio girar o mapa antes, ent√£o expande-se o mapa, e gira-se de volta.
 <br>
-Uma prÈ-visualizaÁ„o do mapa expandido È mostrada acima ‡ direita da janela de di·logo.
+Uma pr√©-visualiza√ß√£o do mapa expandido √© mostrada acima √† direita da janela de di√°logo.
 </p>

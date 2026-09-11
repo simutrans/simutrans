@@ -1,25 +1,25 @@
-<title>Ajuda - Língua</title>
+<title>Ajuda - LÃ­ngua</title>
 
 <h1><strong>Linguagem</strong></h1>
 
 <p>
-<strong>Língua</strong> altera o idioma utilizado no jogo.
+<strong>LÃ­ngua</strong> altera o idioma utilizado no jogo.
 </p>
 <p>
-<strong>Língua</strong> abre a partir de <a href="options.txt">Preferências</a> ou a partir de <a href="new_world.txt">Novo Mundo</a>.
+<strong>LÃ­ngua</strong> abre a partir de <a href="options.txt">PreferÃªncias</a> ou a partir de <a href="new_world.txt">Novo Mundo</a>.
 </p>
 <p>
-Para jogar com outro idioma: clique no botão ao lado do idioma desejado para selecionar este idioma; para que os lugares tenham os nomes no novo idioma, faça isso antes de começar um novo mapa.
+Para jogar com outro idioma: clique no botÃ£o ao lado do idioma desejado para selecionar este idioma; para que os lugares tenham os nomes no novo idioma, faÃ§a isso antes de comeÃ§ar um novo mapa.
 </p>
 <p>
-O novo idioma pode apenas aparecer em novas ou reabertas barras de ferramentas, opções e textos no jogo.<br>
-Se uma tradução não está disponível no idioma selecionado, ele pode abrir em inglês.
+O novo idioma pode apenas aparecer em novas ou reabertas barras de ferramentas, opÃ§Ãµes e textos no jogo.<br>
+Se uma traduÃ§Ã£o nÃ£o estÃ¡ disponÃ­vel no idioma selecionado, ele pode abrir em inglÃªs.
 </p>
 <p>
-Visite http://translator.simutrans.com para ajuda com traduções.
+Visite http://translator.simutrans.com para ajuda com traduÃ§Ãµes.
 </p>
-<p> Traduzido pela Equipe de tradução do Simutrans PT-SubFórum (<em>http://pt.simutrans.com</em>), 17/01/2008.
+<p> Traduzido pela Equipe de traduÃ§Ã£o do Simutrans PT-SubFÃ³rum (<em>http://pt.simutrans.com</em>), 17/01/2008.
 </p>
-<p>Para ajudar na tradução do Simutrans para o seu idioma,<br>
+<p>Para ajudar na traduÃ§Ã£o do Simutrans para o seu idioma,<br>
 visite https://translator.simutrans.com
 </p>

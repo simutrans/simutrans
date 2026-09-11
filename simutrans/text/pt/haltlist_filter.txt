@@ -2,38 +2,38 @@
 
 <h1><strong>Filtro da Lista de Paradas</strong></h1>
 <p>
-O <strong>Filtro da Lista de Paradas</strong> tem as opções para determinar quais <a href="station.txt">paradas</a>, onde os veículos acolhem e deixam passageiros e mercadorias, são mostradas na <a href="haltlist.txt">Lista de Paradas</a>.  (Isso só vale para paradas que não sejam exclusivas de veículos de transporte na água).
+O <strong>Filtro da Lista de Paradas</strong> tem as opÃ§Ãµes para determinar quais <a href="station.txt">paradas</a>, onde os veÃ­culos acolhem e deixam passageiros e mercadorias, sÃ£o mostradas na <a href="haltlist.txt">Lista de Paradas</a>.  (Isso sÃ³ vale para paradas que nÃ£o sejam exclusivas de veÃ­culos de transporte na Ã¡gua).
 </p>
 <p>
-Para acessar o filtro, clique sobre o botão Parâmetros na <a href="haltlist.txt">Lista de Paradas</a> para abrir o <strong>Filtro da Lista de Paradas</strong>.
+Para acessar o filtro, clique sobre o botÃ£o ParÃ¢metros na <a href="haltlist.txt">Lista de Paradas</a> para abrir o <strong>Filtro da Lista de Paradas</strong>.
 </p>
 <p>
-Os botões de opção limitam as <a href="station.txt">paradas</a> que serão listadas na <a href="haltlist.txt">Lista de Paradas</a> conforme o filtro desejado. Somente serão listadas as paradas que caibam em todos os critérios selecionados.
+Os botÃµes de opÃ§Ã£o limitam as <a href="station.txt">paradas</a> que serÃ£o listadas na <a href="haltlist.txt">Lista de Paradas</a> conforme o filtro desejado. Somente serÃ£o listadas as paradas que caibam em todos os critÃ©rios selecionados.
 </p>
 <p>
-Clique sobre um botão para selecionar critérios para a filtragem (o botão fica afundado quando selecionado):
+Clique sobre um botÃ£o para selecionar critÃ©rios para a filtragem (o botÃ£o fica afundado quando selecionado):
 </p>
 <p>
-<em>Filtro por nome:</em> seleciona <a href="station.txt">paradas</a> pelo nome. Para usá-lo, clique sobre o botão para ativar o filtro, e clique então sobre a caixa de nome e digite o nome da parada exatamente. (a opção é sensível a maiúsculas e minúsculas (ou caixa alta e baixa) ).
+<em>Filtro por nome:</em> seleciona <a href="station.txt">paradas</a> pelo nome. Para usÃ¡-lo, clique sobre o botÃ£o para ativar o filtro, e clique entÃ£o sobre a caixa de nome e digite o nome da parada exatamente. (a opÃ§Ã£o Ã© sensÃ­vel a maiÃºsculas e minÃºsculas (ou caixa alta e baixa) ).
 </p>
 <p>
-<em>Filtro por tipo:</em> listará as <a href="station.txt">paradas</a> que atendem a pelo menos um dos tipos de veículos selecionados. Para usá-lo,  clicar sobre os botões com os nomes do tipos de veículo. (Apenas as paradas exclusivas para veículos de transporte na água não são listados na lista da paradas)
+<em>Filtro por tipo:</em> listarÃ¡ as <a href="station.txt">paradas</a> que atendem a pelo menos um dos tipos de veÃ­culos selecionados. Para usÃ¡-lo,  clicar sobre os botÃµes com os nomes do tipos de veÃ­culo. (Apenas as paradas exclusivas para veÃ­culos de transporte na Ã¡gua nÃ£o sÃ£o listados na lista da paradas)
 </p>
 <p>
 <em>Filtro especial:</em><br>
-- <em>lotadas:</em> não está funcionando.<br>
-- <em>não conectadas</em> seleciona <a href="station.txt">paradas</a> com nenhum serviço de transporte.
+- <em>lotadas:</em> nÃ£o estÃ¡ funcionando.<br>
+- <em>nÃ£o conectadas</em> seleciona <a href="station.txt">paradas</a> com nenhum serviÃ§o de transporte.
 </p>
 <p>
-<em>Necessidade:</em> Seleciona as <a href="station.txt">paradas</a> de acordo com as necessidades das indústrias próximas. Use a <a href="mouse.txt">barra de rolagem</a> para rolar pela lista dos artigos. As opções incluem:<br>
+<em>Necessidade:</em> Seleciona as <a href="station.txt">paradas</a> de acordo com as necessidades das indÃºstrias prÃ³ximas. Use a <a href="mouse.txt">barra de rolagem</a> para rolar pela lista dos artigos. As opÃ§Ãµes incluem:<br>
  - <em>tudo</em> seleciona todos os artigos.<br>
- - <em>nada</em> desfaz todas as seleções.<br>
- - <em>inv.</em> inverte a seleção atual.
+ - <em>nada</em> desfaz todas as seleÃ§Ãµes.<br>
+ - <em>inv.</em> inverte a seleÃ§Ã£o atual.
 </p>
 <p>
-<em>Produção:</em> Seleciona as <a href="station.txt">paradas</a> de acordo com os produtos das indútrias próximas. Use a <a href="mouse.txt">barra de rolagem</a> para rolar pela lista dos artigos. As opções incluem:<br>
+<em>ProduÃ§Ã£o:</em> Seleciona as <a href="station.txt">paradas</a> de acordo com os produtos das indÃºtrias prÃ³ximas. Use a <a href="mouse.txt">barra de rolagem</a> para rolar pela lista dos artigos. As opÃ§Ãµes incluem:<br>
  - <em>tudo</em> seleciona todos os artigos.<br>
- - <em>nada</em> desfaz todas as seleções.<br>
- - <em>inv.</em> inverte a seleção atual. </p>
-<p> Traduzido pela Equipe de tradução do Simutrans PT-SubFórum (<em>http://pt.simutrans.com</em>), 17/01/2008.
+ - <em>nada</em> desfaz todas as seleÃ§Ãµes.<br>
+ - <em>inv.</em> inverte a seleÃ§Ã£o atual. </p>
+<p> Traduzido pela Equipe de traduÃ§Ã£o do Simutrans PT-SubFÃ³rum (<em>http://pt.simutrans.com</em>), 17/01/2008.
 </p>

@@ -1,66 +1,66 @@
 <title> Ajuda - Aeroportos</title>
 <h1><strong>Aeroportos</strong></h1>
 <p>
-<strong>A Barra Aeroportos</strong> contÈm ferramentas para construir uma rede de transportes aÈreos. As ferramentas podem construir: pista de taxiamento e pistas de pouso para aeronaves (ou removÍ-las), hangares (usados para compra e manutenÁ„o dos veÌculos), <a href="station.txt">Paradas de Aeronaves</a> (usados para carga e descarga de bens e passageiros) e v·rios edifÌcios aeroportu·rios. Se jogar com a <a href="new_world.txt">Linha do Tempo</a> ativa, com o passar do tempo no jogo, outras opÁıes de ferramentas poder„o aparecer.
+<strong>A Barra Aeroportos</strong> cont√©m ferramentas para construir uma rede de transportes a√©reos. As ferramentas podem construir: pista de taxiamento e pistas de pouso para aeronaves (ou remov√™-las), hangares (usados para compra e manuten√ß√£o dos ve√≠culos), <a href="station.txt">Paradas de Aeronaves</a> (usados para carga e descarga de bens e passageiros) e v√°rios edif√≠cios aeroportu√°rios. Se jogar com a <a href="new_world.txt">Linha do Tempo</a> ativa, com o passar do tempo no jogo, outras op√ß√µes de ferramentas poder√£o aparecer.
 </p>
-<p> Clique no Ìcone do avi„o ao topo da tela do jogo para abrir a barra de ferramentas.
-<br> Passe o cursor do mouse por cima dos botıes para poder ver o nome e, onde for o caso, o <a href="finances.txt">custo</a> de construÁ„o, custo de manutenÁ„o (dentro dos parÍnteses) e limite de velocidade m·xima.
+<p> Clique no √≠cone do avi√£o ao topo da tela do jogo para abrir a barra de ferramentas.
+<br> Passe o cursor do mouse por cima dos bot√µes para poder ver o nome e, onde for o caso, o <a href="finances.txt">custo</a> de constru√ß√£o, custo de manuten√ß√£o (dentro dos par√™nteses) e limite de velocidade m√°xima.
 </p>
 <p> As ferramentas podem incluir, da esquerda para direita:
 </p>
 <p>
-<em> Pista de taxiamento:</em> A ferramenta constrÛi pistas de taxiamento (·reas de tr·fego terrestre para as aeronaves irem das <a href="station.txt">Paradas de Aeronaves</a> para uma pista de decolagem). As pista de taxiamento s„o construÌdas sobre o solo na tela do jogo.
-<br> IMPORTANTE: N√O conecte as pistas de taxiamento ‡s extremidades de uma pista de decolagem (cabeceiras), sen„o as aeronaves n„o poder„o decolar e pousar.
+<em> Pista de taxiamento:</em> A ferramenta constr√≥i pistas de taxiamento (√°reas de tr√°fego terrestre para as aeronaves irem das <a href="station.txt">Paradas de Aeronaves</a> para uma pista de decolagem). As pista de taxiamento s√£o constru√≠das sobre o solo na tela do jogo.
+<br> IMPORTANTE: N√ÉO conecte as pistas de taxiamento √†s extremidades de uma pista de decolagem (cabeceiras), sen√£o as aeronaves n√£o poder√£o decolar e pousar.
 </p>
-<p> Para construir uma pista de taxiamento: clique sobre a ferramenta para selecion·-la (o cursor torna-se uma pista de taxiamento), ent„o clique sobre o terreno para o ponto inicial (uma escavadora aparece sobre o cursor na tela do jogo e as coordenadas do mapa no canto inferior esquerdo da tela), e clique sobre o terreno ou sobre uma pista de decolagem para ponto final.
+<p> Para construir uma pista de taxiamento: clique sobre a ferramenta para selecion√°-la (o cursor torna-se uma pista de taxiamento), ent√£o clique sobre o terreno para o ponto inicial (uma escavadora aparece sobre o cursor na tela do jogo e as coordenadas do mapa no canto inferior esquerdo da tela), e clique sobre o terreno ou sobre uma pista de decolagem para ponto final.
 </p>
 <p>
 <em> Pista de Pouso e Decolagem:
-</em> A ferramenta constrÛi uma pista usada pelas aeronaves para decolar e pousar. As pistas s„o construÌdas sobre o nÌvel do solo na tela do jogo e podem cruzar entre si.
+</em> A ferramenta constr√≥i uma pista usada pelas aeronaves para decolar e pousar. As pistas s√£o constru√≠das sobre o n√≠vel do solo na tela do jogo e podem cruzar entre si.
 </p>
-<p> Para construir uma pista de pouso e decolagem: clique sobre a ferramenta para selecion·-la (o cursor torna-se uma pista), ent„o clique sobre o terreno para fixar o ponto inicial da pista de pouso e decolagem (uma escavadora aparece sobre o cursor na tela do jogo), e finalmente clique sobre o terreno para fixar o ponto final da pista.
+<p> Para construir uma pista de pouso e decolagem: clique sobre a ferramenta para selecion√°-la (o cursor torna-se uma pista), ent√£o clique sobre o terreno para fixar o ponto inicial da pista de pouso e decolagem (uma escavadora aparece sobre o cursor na tela do jogo), e finalmente clique sobre o terreno para fixar o ponto final da pista.
 </p>
 <p>
 <em> Remover Pistas de Pouso e Decolagem:
-</em> a ferramenta que remove um segmento de uma pista de taxiamento ou pista de pouso e decolagem, quando nenhuma aeronave est· presente, entre dois pontos na tela do jogo. O custo do uso desta ferramenta È igual ao
-<a href="finances.txt">custo de construÁ„o</a>.
+</em> a ferramenta que remove um segmento de uma pista de taxiamento ou pista de pouso e decolagem, quando nenhuma aeronave est√° presente, entre dois pontos na tela do jogo. O custo do uso desta ferramenta √© igual ao
+<a href="finances.txt">custo de constru√ß√£o</a>.
 </p>
-<p> Para remover pistas de pouso e decolagem: clique sobre o bot„o Remover Pistas (o cursor torna-se um X vermelho); ent„o clique sobre o ponto inicial do segmento da pista a ser removida (um X vermelho È fixado neste ponto na tela do jogo) e finalmente clique no ponto final do segmento da pista. Todo o segmento entre os pontos marcados ser· removido.
+<p> Para remover pistas de pouso e decolagem: clique sobre o bot√£o Remover Pistas (o cursor torna-se um X vermelho); ent√£o clique sobre o ponto inicial do segmento da pista a ser removida (um X vermelho √© fixado neste ponto na tela do jogo) e finalmente clique no ponto final do segmento da pista. Todo o segmento entre os pontos marcados ser√° removido.
 </p>
 <p>
-<em> DepÛsito de aeronaves ou hangar:
-</em> A ferramenta constrÛi <a href="depot.txt">hangares</a> para compra e gerenciamento das aeronaves. Os hangares tÍm um custo de manutenÁ„o e s„o construÌdos sobre o fim de uma pista de taxiamento.
+<em> Dep√≥sito de aeronaves ou hangar:
+</em> A ferramenta constr√≥i <a href="depot.txt">hangares</a> para compra e gerenciamento das aeronaves. Os hangares t√™m um custo de manuten√ß√£o e s√£o constru√≠dos sobre o fim de uma pista de taxiamento.
 </p>
-<p> Para construir hangares: clique no bot„o (o cursor torna-se um depÛsito de aeronaves), ent„o clique sobre o fim de uma pista de taxiamento.
+<p> Para construir hangares: clique no bot√£o (o cursor torna-se um dep√≥sito de aeronaves), ent√£o clique sobre o fim de uma pista de taxiamento.
 </p>
 <p>
 <em> Paradas de Aeronaves
 </em> e
 <em> Ponte de Embarque:
-</em> A ferramenta constrÛi Paradas de Aeronaves para carga e descarga de bens e passageiros na tela de jogo.
-<br> Uma Parada de Aeronaves, quando n„o for construÌda adjacentemente a uma j· existente, far· com que seja criada uma nova Parada independente.
-<br> As Paradas de Aeronaves s„o construÌdas sobre o final de um trecho de uma pista de taxiamento e tem uma ·rea de captura para bens, passageiros e correio. Uma aeronave somente ir· pousar em um aeroporto se houver uma Parada de Aeronaves vazia disponÌvel.
+</em> A ferramenta constr√≥i Paradas de Aeronaves para carga e descarga de bens e passageiros na tela de jogo.
+<br> Uma Parada de Aeronaves, quando n√£o for constru√≠da adjacentemente a uma j√° existente, far√° com que seja criada uma nova Parada independente.
+<br> As Paradas de Aeronaves s√£o constru√≠das sobre o final de um trecho de uma pista de taxiamento e tem uma √°rea de captura para bens, passageiros e correio. Uma aeronave somente ir√° pousar em um aeroporto se houver uma Parada de Aeronaves vazia dispon√≠vel.
 </p>
-<p> Para construir uma Parada de aeronaves: Clique sobre o bot„o para selecionar a ferramenta Parada de Aeronaves e ent„o sobre clique sobre a extremidade de uma pista de taxiamento.
+<p> Para construir uma Parada de aeronaves: Clique sobre o bot√£o para selecionar a ferramenta Parada de Aeronaves e ent√£o sobre clique sobre a extremidade de uma pista de taxiamento.
 </p>
 <p> {Dica: Pressione
-<a href="keys.txt">[v]</a> para exibir ou ocultar ·rea de captura para bens e passageiros na tela do jogo.}
+<a href="keys.txt">[v]</a> para exibir ou ocultar √°rea de captura para bens e passageiros na tela do jogo.}
 </p>
 <p>
-<em> EdifÌcios Aeroportu·rios:
-</em> A ferramenta constrÛi extensıes e edifÌcios para
+<em> Edif√≠cios Aeroportu√°rios:
+</em> A ferramenta constr√≥i extens√µes e edif√≠cios para
 <a href="station.txt"> Paradas de Aeronaves
-</a> os quais podem incrementar a capacidade e a ·rea de captura para bens e passageiros, assim como custo de manutenÁ„o. No canto superior esquerdo de alguns dos botıes existe um pequeno Ìcone (usado tambÈm em
-<a href="haltlist.txt">Lista de Paradas</a> e InformaÁıes da Parada) que indica quais os itens (bens, passageiros ou correio) a extens„o habilita a Parada de Aeronaves a manipular.
+</a> os quais podem incrementar a capacidade e a √°rea de captura para bens e passageiros, assim como custo de manuten√ß√£o. No canto superior esquerdo de alguns dos bot√µes existe um pequeno √≠cone (usado tamb√©m em
+<a href="haltlist.txt">Lista de Paradas</a> e Informa√ß√µes da Parada) que indica quais os itens (bens, passageiros ou correio) a extens√£o habilita a Parada de Aeronaves a manipular.
 </p>
-<p> Para construir uma extens„o: Clique sobre o bot„o para selecionar uma extens„o (o cursor torna-se a extens„o selecionada), ent„o clique na posiÁ„o requerida, prÛxima a uma Parada de Aeronaves existente na tela do jogo. A nova extens„o agora passa a ser parte da Parada de Aeronaves existente.
+<p> Para construir uma extens√£o: Clique sobre o bot√£o para selecionar uma extens√£o (o cursor torna-se a extens√£o selecionada), ent√£o clique na posi√ß√£o requerida, pr√≥xima a uma Parada de Aeronaves existente na tela do jogo. A nova extens√£o agora passa a ser parte da Parada de Aeronaves existente.
 </p>
-<p> {Dica: Um modo de construir um aeroporto simples È:
+<p> {Dica: Um modo de construir um aeroporto simples √©:
 <br> i) construa uma pista de pouso e conecte a ela uma pista de taxiamento;
 <br> ii) coloque uma parada de aeronaves no fim da pista de taxiamento;
-<br> iii) adicione mais edifÌcios aeroportu·rios se desejar.}
-<br> {Dica: Use o bot„o Remover <a href="keys.txt">[r]</a> para remover partes individuais das pistas de taxiamento, pouso, remover hangares e demais edifÌcios. O Desfazer <a href="keys.txt">[z]</a> n„o reembolsa os custos das construÁıes.
-<br> Pressione <a href="keys.txt">[v]</a> para exibir ou ocultar ·rea de captura para bens e passageiros na tela do jogo.}
+<br> iii) adicione mais edif√≠cios aeroportu√°rios se desejar.}
+<br> {Dica: Use o bot√£o Remover <a href="keys.txt">[r]</a> para remover partes individuais das pistas de taxiamento, pouso, remover hangares e demais edif√≠cios. O Desfazer <a href="keys.txt">[z]</a> n√£o reembolsa os custos das constru√ß√µes.
+<br> Pressione <a href="keys.txt">[v]</a> para exibir ou ocultar √°rea de captura para bens e passageiros na tela do jogo.}
 </p>
-<p> Traduzido pela Equipe de traduÁ„o do Simutrans PT-SubFÛrum (<em>http://pt.simutrans.com</em>), 17/01/2008.
+<p> Traduzido pela Equipe de tradu√ß√£o do Simutrans PT-SubF√≥rum (<em>http://pt.simutrans.com</em>), 17/01/2008.
 </p>

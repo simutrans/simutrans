@@ -1,7 +1,7 @@
-<title>Semáforo</title>  
+<title>SemÃ¡foro</title>  
   
-<h1><strong>Semáforo</strong></h1>  
+<h1><strong>SemÃ¡foro</strong></h1>  
   
 <p>  
-Você pode controlar a freqüência de fases vermelhas e verdes dos semáforos. Os números que você pode escolher aqui são a duração da fase verde em segundos para direções norte/sul e leste/oeste.
+VocÃª pode controlar a freqÃ¼Ãªncia de fases vermelhas e verdes dos semÃ¡foros. Os nÃºmeros que vocÃª pode escolher aqui sÃ£o a duraÃ§Ã£o da fase verde em segundos para direÃ§Ãµes norte/sul e leste/oeste.
 </p>

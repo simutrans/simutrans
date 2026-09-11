@@ -1,4 +1,4 @@
-<title>Hjälp för flygplatsverktyg</title>
+<title>HjÃ¤lp fÃ¶r flygplatsverktyg</title>
 
 
 
@@ -8,88 +8,88 @@
 
 <p>
 
-<strong>Flygplatsverktyg</strong> innehåller verktyg för att bygga upp ett flygtransportnätverk. Verktygen kan bygga eller ta bort taxibanor och landningsbanor för flygplan, flyghållplatser (för att hämta och lämna gods och passagerare), hangarer (för handel med och underhåll av flygfarkoster) och olika flygplatsbyggnader. Om du spelar med <a href="new_world.txt">tidslinje</a> aktiv så kan fler verktyg bli tillgängliga efterhand som tiden förflyter i Simutrans.
+<strong>Flygplatsverktyg</strong> innehÃ¥ller verktyg fÃ¶r att bygga upp ett flygtransportnÃ¤tverk. Verktygen kan bygga eller ta bort taxibanor och landningsbanor fÃ¶r flygplan, flyghÃ¥llplatser (fÃ¶r att hÃ¤mta och lÃ¤mna gods och passagerare), hangarer (fÃ¶r handel med och underhÃ¥ll av flygfarkoster) och olika flygplatsbyggnader. Om du spelar med <a href="new_world.txt">tidslinje</a> aktiv sÃ¥ kan fler verktyg bli tillgÃ¤ngliga efterhand som tiden fÃ¶rflyter i Simutrans.
 </p>
 
 <p>
-Klicka på flygplansikonen ovanför kartan för att öppna verktygsraden.<br>
-Låt muspekaren vila över ett verktygsalternativ (efter att du öppnat eller klickat på verktygsraden) för att se dess namn och där så tillämpligt: <a href="finances.txt">byggkostnader</a>, underhållskostnad i parenteser, och hastighetsbegränsning.
+Klicka pÃ¥ flygplansikonen ovanfÃ¶r kartan fÃ¶r att Ã¶ppna verktygsraden.<br>
+LÃ¥t muspekaren vila Ã¶ver ett verktygsalternativ (efter att du Ã¶ppnat eller klickat pÃ¥ verktygsraden) fÃ¶r att se dess namn och dÃ¤r sÃ¥ tillÃ¤mpligt: <a href="finances.txt">byggkostnader</a>, underhÃ¥llskostnad i parenteser, och hastighetsbegrÃ¤nsning.
 
 </p>
 
 <p>
 
-{Tips: Ett sätt att bygga en enkel flygplats är:<br>
+{Tips: Ett sÃ¤tt att bygga en enkel flygplats Ã¤r:<br>
 
 i) bygg och bind samman taxibanor och landningsbanor;<br>
 
-ii) placera ut flyghållplatser i änden av taxibanorna;<br>
+ii) placera ut flyghÃ¥llplatser i Ã¤nden av taxibanorna;<br>
 
-iii) lägg till de flygplatsbyggnader som krävs.}
-
-</p>
-
-<p>
-
-Bland verktygen kan finnas, från vänster till höger:
+iii) lÃ¤gg till de flygplatsbyggnader som krÃ¤vs.}
 
 </p>
 
 <p>
 
-<em>Taxibana:</em> verktyget bygger markområden där flygplatser kan ta sig från en flyghållplats till en landningsbana. Taxibanor byggs på jämn mark på kartan.<br>
-VIKTIGT: Om taxibanor ansluter till änden av landningsbanan, så kan inte flygplan landa och lyfta.<br>
-För att bygga en taxibana: klicka på verktyget för att välja (pekaren ändras till en taxibana), klicka sedan på terrängen för att ange startpunkt (visar en bulldozer på kartan och visar kartkoordinater längst nere till höger i fönstret), och klicka slutligen på marken eller en landningsbana för att ange slutpunkt.<br>
-
-{Tips: Använd Förstör/Ta bort för att avlägsna enstaka bitar av en taxibana. Ångra <a href="keys.txt">[z]</a> betalar inte tillbaka byggkostnader.}
+Bland verktygen kan finnas, frÃ¥n vÃ¤nster till hÃ¶ger:
 
 </p>
 
 <p>
 
-<em>Landningsbana:</em> verktyget bygger en landningsbana där flygplan kan landa och lyfta. Landningsbanor byggs på jämn mark på kartan, och kan korsa varandra.<br>
+<em>Taxibana:</em> verktyget bygger markomrÃ¥den dÃ¤r flygplatser kan ta sig frÃ¥n en flyghÃ¥llplats till en landningsbana. Taxibanor byggs pÃ¥ jÃ¤mn mark pÃ¥ kartan.<br>
+VIKTIGT: Om taxibanor ansluter till Ã¤nden av landningsbanan, sÃ¥ kan inte flygplan landa och lyfta.<br>
+FÃ¶r att bygga en taxibana: klicka pÃ¥ verktyget fÃ¶r att vÃ¤lja (pekaren Ã¤ndras till en taxibana), klicka sedan pÃ¥ terrÃ¤ngen fÃ¶r att ange startpunkt (visar en bulldozer pÃ¥ kartan och visar kartkoordinater lÃ¤ngst nere till hÃ¶ger i fÃ¶nstret), och klicka slutligen pÃ¥ marken eller en landningsbana fÃ¶r att ange slutpunkt.<br>
 
-För att bygga en landningsbana: klicka på verktyget för att välja (pekaren ändras till en väg) och klicka sedan på marken för att ange startpunkt (visar en bulldozer på kartan) och klicka slutligen på marken för att ange slutpunkt.<br>
-
-{Tips: Låt ändarna av landningbanor vara fria annars så kan inte flygplan landa eller lyfta. Använd Förstör/Ta bort för att avlägsna enstaka bitar av en taxibana. Ångra [z] betalar inte tillbaka byggkostnader.}
-
-</p>
-
-<p>
-
-<em>Ta bort landnings- och taxibanor:</em> verktyget tar bort ett segment mellan två punkter på kartan av en taxibana eller landningsbana när det inte finns några flygplan där. Det medför <a href="finances.txt">byggkostnader</a> att använda verktyget.<br>
-För att ta bort en landnings- eller taxibana: klicka på verktyget (pekaren ändras till ett rött kors); klicka sedan på den bana som skall tas bort (väljer borttagningspunkt som visas som ett rött kors på kartan); klicka slutligen på en annan punkt på samma bana för att avlägsna sträckan mellan denna och den först angivna borttagningspunkten.
-
-{Tips: Låt ändarna av landningbanor vara fria annars så kan inte flygplan landa eller lyfta. Använd Förstör/Ta bort för att avlägsna enstaka bitar av en taxi- eller landningsbana.}
+{Tips: AnvÃ¤nd FÃ¶rstÃ¶r/Ta bort fÃ¶r att avlÃ¤gsna enstaka bitar av en taxibana. Ã…ngra <a href="keys.txt">[z]</a> betalar inte tillbaka byggkostnader.}
 
 </p>
 
 <p>
 
-<a href="depot.txt"><em>Hangarer:</em></a> verktyg för att bygga hangarer för att köpa eller administrera flygplan. Hangarer kostar underhåll och byggs i slutet av en bit taxibana.<br>
+<em>Landningsbana:</em> verktyget bygger en landningsbana dÃ¤r flygplan kan landa och lyfta. Landningsbanor byggs pÃ¥ jÃ¤mn mark pÃ¥ kartan, och kan korsa varandra.<br>
 
-{Tips: Ta bort hangarer med Förstör/Ta bort.}
+FÃ¶r att bygga en landningsbana: klicka pÃ¥ verktyget fÃ¶r att vÃ¤lja (pekaren Ã¤ndras till en vÃ¤g) och klicka sedan pÃ¥ marken fÃ¶r att ange startpunkt (visar en bulldozer pÃ¥ kartan) och klicka slutligen pÃ¥ marken fÃ¶r att ange slutpunkt.<br>
 
-</p>
-
-<p>
-
-<em>Flyghållplats</em>&<em>embarkeringsbrygga:</em> verktyget bygger hållplatser på kartan där flygplan kan hämta och lämna gods eller passagerare.<br>
-
-En flyghållplats som inte byggs i anslutning till en existerande <a href="station.txt">hållplats</a> skapar en ny hållplats.<br>
-Flyghållplatser byggs i änden av en taxibana; kostar underhåll, har ett upptagningsområde för gods, passagerare och post. Ett flygplan landar enbart på en flygplats om det finns en ledig flyghållplats.<br>
-
-För att bygga en flyghållplats: klicka på verktyget för att välja det och klicka sedan på änden av en taxibana.<br>
-
-{Tips: Ta bort flyghållplatser med Förstör/Ta bort. Tryck [v] för att visa/dölja upptagningsområdet för gods och passagerare på kartan.}
+{Tips: LÃ¥t Ã¤ndarna av landningbanor vara fria annars sÃ¥ kan inte flygplan landa eller lyfta. AnvÃ¤nd FÃ¶rstÃ¶r/Ta bort fÃ¶r att avlÃ¤gsna enstaka bitar av en taxibana. Ã…ngra [z] betalar inte tillbaka byggkostnader.}
 
 </p>
 
 <p>
 
-<em>Flygplatsbyggnader:</em> verktyget bygger tillbyggnader till <a href="station.txt">hållplatser</a> som kan medföra ökade underhållskostnader och utökat upptagningsområde eller större lagringskapacitet för gods och passagerare. I hörnet av några verktygsalternativ visas en ikon (används i <a href="haltlist.txt">stationslistan</a> & hållplatsinformation) som anger vad som tillbyggnaden möjliggör för hållplatsen att hantera.<br>
-För att bygga en tillbyggnad: klicka på verktyget för att välja tillbyggnad (pekaren ändras till tillbyggnaden) och klicka sedan på önskad plats i anslutning till en existerande hållplats på kartan. Den nya tillbyggnaden anses nu vara en del av hållplatsen..<br>
+<em>Ta bort landnings- och taxibanor:</em> verktyget tar bort ett segment mellan tvÃ¥ punkter pÃ¥ kartan av en taxibana eller landningsbana nÃ¤r det inte finns nÃ¥gra flygplan dÃ¤r. Det medfÃ¶r <a href="finances.txt">byggkostnader</a> att anvÃ¤nda verktyget.<br>
+FÃ¶r att ta bort en landnings- eller taxibana: klicka pÃ¥ verktyget (pekaren Ã¤ndras till ett rÃ¶tt kors); klicka sedan pÃ¥ den bana som skall tas bort (vÃ¤ljer borttagningspunkt som visas som ett rÃ¶tt kors pÃ¥ kartan); klicka slutligen pÃ¥ en annan punkt pÃ¥ samma bana fÃ¶r att avlÃ¤gsna strÃ¤ckan mellan denna och den fÃ¶rst angivna borttagningspunkten.
 
-{Tips: Ta bort tillbyggnader med Förstör/Ta bort. Tryck [v] för att visa/dölja upptagningsområdet för gods och passagerare på kartan.}
+{Tips: LÃ¥t Ã¤ndarna av landningbanor vara fria annars sÃ¥ kan inte flygplan landa eller lyfta. AnvÃ¤nd FÃ¶rstÃ¶r/Ta bort fÃ¶r att avlÃ¤gsna enstaka bitar av en taxi- eller landningsbana.}
+
+</p>
+
+<p>
+
+<a href="depot.txt"><em>Hangarer:</em></a> verktyg fÃ¶r att bygga hangarer fÃ¶r att kÃ¶pa eller administrera flygplan. Hangarer kostar underhÃ¥ll och byggs i slutet av en bit taxibana.<br>
+
+{Tips: Ta bort hangarer med FÃ¶rstÃ¶r/Ta bort.}
+
+</p>
+
+<p>
+
+<em>FlyghÃ¥llplats</em>&<em>embarkeringsbrygga:</em> verktyget bygger hÃ¥llplatser pÃ¥ kartan dÃ¤r flygplan kan hÃ¤mta och lÃ¤mna gods eller passagerare.<br>
+
+En flyghÃ¥llplats som inte byggs i anslutning till en existerande <a href="station.txt">hÃ¥llplats</a> skapar en ny hÃ¥llplats.<br>
+FlyghÃ¥llplatser byggs i Ã¤nden av en taxibana; kostar underhÃ¥ll, har ett upptagningsomrÃ¥de fÃ¶r gods, passagerare och post. Ett flygplan landar enbart pÃ¥ en flygplats om det finns en ledig flyghÃ¥llplats.<br>
+
+FÃ¶r att bygga en flyghÃ¥llplats: klicka pÃ¥ verktyget fÃ¶r att vÃ¤lja det och klicka sedan pÃ¥ Ã¤nden av en taxibana.<br>
+
+{Tips: Ta bort flyghÃ¥llplatser med FÃ¶rstÃ¶r/Ta bort. Tryck [v] fÃ¶r att visa/dÃ¶lja upptagningsomrÃ¥det fÃ¶r gods och passagerare pÃ¥ kartan.}
+
+</p>
+
+<p>
+
+<em>Flygplatsbyggnader:</em> verktyget bygger tillbyggnader till <a href="station.txt">hÃ¥llplatser</a> som kan medfÃ¶ra Ã¶kade underhÃ¥llskostnader och utÃ¶kat upptagningsomrÃ¥de eller stÃ¶rre lagringskapacitet fÃ¶r gods och passagerare. I hÃ¶rnet av nÃ¥gra verktygsalternativ visas en ikon (anvÃ¤nds i <a href="haltlist.txt">stationslistan</a> & hÃ¥llplatsinformation) som anger vad som tillbyggnaden mÃ¶jliggÃ¶r fÃ¶r hÃ¥llplatsen att hantera.<br>
+FÃ¶r att bygga en tillbyggnad: klicka pÃ¥ verktyget fÃ¶r att vÃ¤lja tillbyggnad (pekaren Ã¤ndras till tillbyggnaden) och klicka sedan pÃ¥ Ã¶nskad plats i anslutning till en existerande hÃ¥llplats pÃ¥ kartan. Den nya tillbyggnaden anses nu vara en del av hÃ¥llplatsen..<br>
+
+{Tips: Ta bort tillbyggnader med FÃ¶rstÃ¶r/Ta bort. Tryck [v] fÃ¶r att visa/dÃ¶lja upptagningsomrÃ¥det fÃ¶r gods och passagerare pÃ¥ kartan.}
 
 </p>

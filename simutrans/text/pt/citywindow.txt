@@ -1,78 +1,78 @@
-<title> Ajuda - Estatísticas da Cidade</title>
-<h1><strong>Estatísticas da Cidade</strong></h1>
+<title> Ajuda - EstatÃ­sticas da Cidade</title>
+<h1><strong>EstatÃ­sticas da Cidade</strong></h1>
 <p>
-<strong>Estatísticas da Cidade</strong> mostra estatísticas sobre a área urbana (cidade) selecionada e pode ser usada para alterar o seu nome.
+<strong>EstatÃ­sticas da Cidade</strong> mostra estatÃ­sticas sobre a Ã¡rea urbana (cidade) selecionada e pode ser usada para alterar o seu nome.
 </p>
-<p> Cada cidade tem sua própria Prefeitura, ao redor da qual ela se desenvolve. O transporte de passageiros e de correio ajuda o seu crescimento, de forma que novas estradas são construídas e administradas pelo
-<a href="players.txt">Jogador Poder Público</a>, novos prédios aparecem na cidade,
-<a href="industry_info.txt">indústrias</a> são criadas e os limites da cidade se expandem.
+<p> Cada cidade tem sua prÃ³pria Prefeitura, ao redor da qual ela se desenvolve. O transporte de passageiros e de correio ajuda o seu crescimento, de forma que novas estradas sÃ£o construÃ­das e administradas pelo
+<a href="players.txt">Jogador Poder PÃºblico</a>, novos prÃ©dios aparecem na cidade,
+<a href="industry_info.txt">indÃºstrias</a> sÃ£o criadas e os limites da cidade se expandem.
 </p>
 <p> Clique em uma Prefeitura na tela do jogo com a
-<a href="inspection_tool.txt">Ferramenta Consultar</a> ou em uma cidade listada em <a href="citylist_filter.txt">Lista das Cidades</a> para abrir <strong>Informações das Cidades</strong>, a qual contém: um campo para o nome, estatísticas, dois mini-mapas e um gráfico informativo da área urbana.
+<a href="inspection_tool.txt">Ferramenta Consultar</a> ou em uma cidade listada em <a href="citylist_filter.txt">Lista das Cidades</a> para abrir <strong>InformaÃ§Ãµes das Cidades</strong>, a qual contÃ©m: um campo para o nome, estatÃ­sticas, dois mini-mapas e um grÃ¡fico informativo da Ã¡rea urbana.
 </p>
 <p>
-<em> Nome:</em> o nome atribuído à cidade aparece num campo de nome no topo das <strong>Estatísticas da Cidade</strong>. Este nome é usado nos nomes dados às Paradas criadas.
+<em> Nome:</em> o nome atribuÃ­do Ã  cidade aparece num campo de nome no topo das <strong>EstatÃ­sticas da Cidade</strong>. Este nome Ã© usado nos nomes dados Ã s Paradas criadas.
 <br> Para alterar o nome: clique no campo do nome e digite o novo nome.
   <br> {Dica: Use
-  <a href="keys.txt">[!]</a> para alternar a visualização do nome da área urbana sobre a Prefeitura e os marcadores das diversas paradas criadas, na tela do jogo. Veja readme_citylist.txt (em ...simutrans/text/) para maior ajuda na criação de nomes para as cidades}.
+  <a href="keys.txt">[!]</a> para alternar a visualizaÃ§Ã£o do nome da Ã¡rea urbana sobre a Prefeitura e os marcadores das diversas paradas criadas, na tela do jogo. Veja readme_citylist.txt (em ...simutrans/text/) para maior ajuda na criaÃ§Ã£o de nomes para as cidades}.
 </p>
-<p> Algumas estatísticas da área urbana selecionada são mostradas logo abaixo do campo do nome:
+<p> Algumas estatÃ­sticas da Ã¡rea urbana selecionada sÃ£o mostradas logo abaixo do campo do nome:
   <br>
-  <em> População:
-  </em> é o número de habitantes. O mais recente aumento da população é mostrado entre parênteses.
+  <em> PopulaÃ§Ã£o:
+  </em> Ã© o nÃºmero de habitantes. O mais recente aumento da populaÃ§Ã£o Ã© mostrado entre parÃªnteses.
   <br>
-  <em> Edifícios:
-  </em> é o número de edifícios da cidade.
+  <em> EdifÃ­cios:
+  </em> Ã© o nÃºmero de edifÃ­cios da cidade.
   <br>
   <em> Coordenadas no mapa:
-  </em> indica os limites da cidade (são alterados conforme a cidade cresce).
+  </em> indica os limites da cidade (sÃ£o alterados conforme a cidade cresce).
   <p>
-  </p> As seguintes informações aumentam com o crescimento da cidade e diminuem com a construção de novos prédios:
+  </p> As seguintes informaÃ§Ãµes aumentam com o crescimento da cidade e diminuem com a construÃ§Ã£o de novos prÃ©dios:
   <br>
   <em> Desempregados:
-  </em> o seu valor determina qual o tipo de construção (comercial/industrial) pode ser construída.
+  </em> o seu valor determina qual o tipo de construÃ§Ã£o (comercial/industrial) pode ser construÃ­da.
   <br>
   <em> Sem-teto:
-  </em> a sua existência determina que residências podem ser construídas.
+  </em> a sua existÃªncia determina que residÃªncias podem ser construÃ­das.
 </p>
 <p>
   <em> Mini-mapas
-  </em> abrangendo toda a área de jogo em
-  <strong>Estatísticas da Cidade</strong> mostram o destino de passageiros e do correio.
-  <br> Os destinos são mostrados por pontos coloridos referentes ao corrente mês do jogo (mini-mapa da direita) e ao mês anterior (mini-mapa da esquerda). A cor dos pontos indicam os seguintes detalhes sobre passageiros e correio:
+  </em> abrangendo toda a Ã¡rea de jogo em
+  <strong>EstatÃ­sticas da Cidade</strong> mostram o destino de passageiros e do correio.
+  <br> Os destinos sÃ£o mostrados por pontos coloridos referentes ao corrente mÃªs do jogo (mini-mapa da direita) e ao mÃªs anterior (mini-mapa da esquerda). A cor dos pontos indicam os seguintes detalhes sobre passageiros e correio:
   <br> - amarelo: foi encontrada uma rota e uma
-  <a href="station.txt">Parada</a> descongestionada para início do deslocamento (rosto feliz mostrado nas Informações da Parada).
-  <br> - laranja: não foi encontrada nenhuma rota para seu destino desejado.
-  <br> - vermelho: foi encontrada uma rota porém a Parada estava super-congestionada (rosto zangado mostrado nas Informações da Parada).
+  <a href="station.txt">Parada</a> descongestionada para inÃ­cio do deslocamento (rosto feliz mostrado nas InformaÃ§Ãµes da Parada).
+  <br> - laranja: nÃ£o foi encontrada nenhuma rota para seu destino desejado.
+  <br> - vermelho: foi encontrada uma rota porÃ©m a Parada estava super-congestionada (rosto zangado mostrado nas InformaÃ§Ãµes da Parada).
 </p>
 <p>
-  <em> Gráfico
-  </em> mostra estatísticas da cidade.
+  <em> GrÃ¡fico
+  </em> mostra estatÃ­sticas da cidade.
   <br> O eixo Y (vertical) indica a quantidade, o eixo X (horizontal) indica o tempo.
-  <br> Clique nas abas superiores do gráfico para alterar a escala do eixo X:
+  <br> Clique nas abas superiores do grÃ¡fico para alterar a escala do eixo X:
   <br>
   <em> Anos:
-  </em> mostra os valores anuais para os últimos 12 anos de jogo.
+  </em> mostra os valores anuais para os Ãºltimos 12 anos de jogo.
   <br>
   <em> Meses:
-  </em> mostra os valores para os últimos 12 meses de jogo.
+  </em> mostra os valores para os Ãºltimos 12 meses de jogo.
 </p>
-<p> Clique nos botões de opções abaixo do gráfico para ver mais informações (o botão fica pressionado quando selecionado).
-  <br> A cores das linhas no gráfico correspondem às cores dos botões de opções:
+<p> Clique nos botÃµes de opÃ§Ãµes abaixo do grÃ¡fico para ver mais informaÃ§Ãµes (o botÃ£o fica pressionado quando selecionado).
+  <br> A cores das linhas no grÃ¡fico correspondem Ã s cores dos botÃµes de opÃ§Ãµes:
   <br>
-  <em> População:
-  </em> número de habitantes da cidade.
+  <em> PopulaÃ§Ã£o:
+  </em> nÃºmero de habitantes da cidade.
   <br>
   <em> Crescimento:
-  </em> variação da população (depende do tamanho da cidade e do serviço de transporte de passageiros e correio providenciado).
+  </em> variaÃ§Ã£o da populaÃ§Ã£o (depende do tamanho da cidade e do serviÃ§o de transporte de passageiros e correio providenciado).
   <br>
   <em> Vol. Transportado:
-  </em> passageiros e correio que entraram no sistema de transporte (indicado como o <a href="station.txt">rosto feliz</a> na Informação das Paradas)
+  </em> passageiros e correio que entraram no sistema de transporte (indicado como o <a href="station.txt">rosto feliz</a> na InformaÃ§Ã£o das Paradas)
   <br>
   <em> Passageiros:
-  </em> Número total de passageiros e correio gerados na cidade.
+  </em> NÃºmero total de passageiros e correio gerados na cidade.
 </p>
-<p> {Dicas: Configurações relacioandas às cidades podem ser alteradas no arquivo simuconf.tab e cityrules.tab}.
+<p> {Dicas: ConfiguraÃ§Ãµes relacioandas Ã s cidades podem ser alteradas no arquivo simuconf.tab e cityrules.tab}.
 </p>
-<p> Traduzido pela Equipe de tradução do Simutrans PT-SubFórum (<em>http://pt.simutrans.com</em>), 17/01/2008.
+<p> Traduzido pela Equipe de traduÃ§Ã£o do Simutrans PT-SubFÃ³rum (<em>http://pt.simutrans.com</em>), 17/01/2008.
 </p>

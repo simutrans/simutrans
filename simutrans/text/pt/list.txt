@@ -3,35 +3,35 @@
 <h1><strong>Listas</strong></h1>
 
 <p>
-<strong>Listas</strong> tem opções para abrir controles para informação sobre o estado atual do jogo (e também um controle para ajustar renda relativa recebida de diferentes <a href="goods_filter.txt">bens, passageiros e correio</a>).
+<strong>Listas</strong> tem opÃ§Ãµes para abrir controles para informaÃ§Ã£o sobre o estado atual do jogo (e tambÃ©m um controle para ajustar renda relativa recebida de diferentes <a href="goods_filter.txt">bens, passageiros e correio</a>).
 </p>
 <p>
-A informação está disponível para um jogador em listas sobre: <a href="station.txt">Paradas</a>; <a href="convoiinfo.txt">Veículos</a>; <a href="citywindow.txt">Áreas urbanas</a>; rendas recebidas de diferentes <a href="goods_filter.txt">bens</a>, passageiros e correio; <a href="industry_info.txt">Fábricas</a>; e atrações turísticas.
+A informaÃ§Ã£o estÃ¡ disponÃ­vel para um jogador em listas sobre: <a href="station.txt">Paradas</a>; <a href="convoiinfo.txt">VeÃ­culos</a>; <a href="citywindow.txt">Ãreas urbanas</a>; rendas recebidas de diferentes <a href="goods_filter.txt">bens</a>, passageiros e correio; <a href="industry_info.txt">FÃ¡bricas</a>; e atraÃ§Ãµes turÃ­sticas.
 </p>
 <p>
-Clique sobre o botão Listas no topo da tela do jogo para abrir <strong>Listas</strong>.<br>
-Mova o cursor do mouse, depois de abrir ou clicar na barra de ferramentas, por cima dos botões da barra para ver o nome.
+Clique sobre o botÃ£o Listas no topo da tela do jogo para abrir <strong>Listas</strong>.<br>
+Mova o cursor do mouse, depois de abrir ou clicar na barra de ferramentas, por cima dos botÃµes da barra para ver o nome.
 </p>
 <p>
-Clique sobre o botão para abrir os controles de informação, da esquerda para direita, sobre:
+Clique sobre o botÃ£o para abrir os controles de informaÃ§Ã£o, da esquerda para direita, sobre:
 </p>
 <p>
-<a href="haltlist.txt"><em>Lista de Paradas:</em></a> <a href="station.txt">Paradas</a>, onde os veículos carregam e descarregam objetos e passageiros (paradas só marítimas não são listadas).
+<a href="haltlist.txt"><em>Lista de Paradas:</em></a> <a href="station.txt">Paradas</a>, onde os veÃ­culos carregam e descarregam objetos e passageiros (paradas sÃ³ marÃ­timas nÃ£o sÃ£o listadas).
 </p>
 <p>
-<a href="convoi.txt"><em>Lista de Veículos:</em></a> <a href="convoiinfo.txt">veículos</a> rodoviários e ferroviários, aeronaves e barcos.
+<a href="convoi.txt"><em>Lista de VeÃ­culos:</em></a> <a href="convoiinfo.txt">veÃ­culos</a> rodoviÃ¡rios e ferroviÃ¡rios, aeronaves e barcos.
 </p>
 <p>
-<a href="citylist_filter.txt"><em>Lista das cidades:</em></a> <a href="citywindow.txt">Áreas urbanas</a> (aldeias, vilas e cidades).
+<a href="citylist_filter.txt"><em>Lista das cidades:</em></a> <a href="citywindow.txt">Ãreas urbanas</a> (aldeias, vilas e cidades).
 </p>
 <p>
-<a href="goods_filter.txt"><em>Lista das cargas:</em></a> rendas, recepção de diferentes bens, passageiros e correio (está incluído um controle para ajustar renda relativa).
+<a href="goods_filter.txt"><em>Lista das cargas:</em></a> rendas, recepÃ§Ã£o de diferentes bens, passageiros e correio (estÃ¡ incluÃ­do um controle para ajustar renda relativa).
 </p>
 <p>
-<a href="factorylist_filter.txt"><em>Lista das Fábricas:</em></a> <a href="industry_info.txt">Fábricas</a> (consumidoras e fornecedoras de bens).
+<a href="factorylist_filter.txt"><em>Lista das FÃ¡bricas:</em></a> <a href="industry_info.txt">FÃ¡bricas</a> (consumidoras e fornecedoras de bens).
 </p>
 <p>
-<a href="curiositylist_filter.txt"><em>Lista das atrações:</em></a> atrações turísticas.
+<a href="curiositylist_filter.txt"><em>Lista das atraÃ§Ãµes:</em></a> atraÃ§Ãµes turÃ­sticas.
 </p>
-<p> Traduzido pela Equipe de tradução do Simutrans PT-SubFórum (<em>http://pt.simutrans.com</em>), 17/01/2008, atualizado em 07/02/2008.
+<p> Traduzido pela Equipe de traduÃ§Ã£o do Simutrans PT-SubFÃ³rum (<em>http://pt.simutrans.com</em>), 17/01/2008, atualizado em 07/02/2008.
 </p>

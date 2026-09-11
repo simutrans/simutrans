@@ -3,18 +3,18 @@
 <h1><strong>Interface/Janela do Jogo</strong></h1>
 
 <p>
-O Simutrans È jogado atravÈs da <strong>Interface/Janela do Jogo,</strong> que fornece informaÁıes sobre o jogo atual; acesso ‡s barras de ferramentas e controles do jogo, e uma vis„o do jogo atual.
+O Simutrans √© jogado atrav√©s da <strong>Interface/Janela do Jogo,</strong> que fornece informa√ß√µes sobre o jogo atual; acesso √†s barras de ferramentas e controles do jogo, e uma vis√£o do jogo atual.
 </p>
 <p>
-<em>Barra de tÌtulo</em>: o lado esquerdo da barra de tÌtulo da <strong>Interface/Janela do Jogo</strong> mostra a vers„o e a data de lanÁamento do Simutrans que est· sendo jogado no momento.<br>
-O lado direito da barra de tÌtulo oferece controles para minimizar, maximizar a <strong>Interface/Janela do Jogo</strong> e tambÈm para sair do Simutrans.
+<em>Barra de t√≠tulo</em>: o lado esquerdo da barra de t√≠tulo da <strong>Interface/Janela do Jogo</strong> mostra a vers√£o e a data de lan√ßamento do Simutrans que est√° sendo jogado no momento.<br>
+O lado direito da barra de t√≠tulo oferece controles para minimizar, maximizar a <strong>Interface/Janela do Jogo</strong> e tamb√©m para sair do Simutrans.
 </p>
 <p>
-<em>Õcones</em>: uma fileira de Ìcones, utilizada para acessar as barras de ferramentas e os controles do jogo enquanto ele est· sendo jogado, est· diretamente abaixo da <em>barra de tÌtulo</em>. Os <em>Ìcones</em> (clique para usar) est„o agrupados em trÍs conjuntos:
+<em>√çcones</em>: uma fileira de √≠cones, utilizada para acessar as barras de ferramentas e os controles do jogo enquanto ele est√° sendo jogado, est√° diretamente abaixo da <em>barra de t√≠tulo</em>. Os <em>√≠cones</em> (clique para usar) est√£o agrupados em tr√™s conjuntos:
 </p>
 <p>
-- Os Ìcones do <a href="general.txt"><it>Menu Principal</it></a> incluem:<br>
-- <em>Disquete</em>: abre as <a href="options.txt">PreferÍncias</a><br>
+- Os √≠cones do <a href="general.txt"><it>Menu Principal</it></a> incluem:<br>
+- <em>Disquete</em>: abre as <a href="options.txt">Prefer√™ncias</a><br>
 - <em>Mapa</em>: abre o <a href="map.txt">Mapa</a>
 <br>
 - <em>Lupa</em> seleciona a <a href="inspection_tool.txt">Ferramenta Consultar</a><br>
@@ -24,54 +24,54 @@ O lado direito da barra de tÌtulo oferece controles para minimizar, maximizar a 
 - <em>Monotrilho/Maglev</em>: <a href="monorailtools.txt">barra de ferramentas Monotrilhos e Maglevs</a><br>
 - <em>Bonde</em>: abre a <a href="tramtools.txt">barra de ferramentas Bondes</a>
 <br>
-- <em>Caminh„o</em>: abre a <a href="roadtools.txt">barra de ferramentas Estradas</a><br>
-- <em>Barco</em>: abre a <a href="shiptools.txt">barra de ferramentas NavegaÁ„o</a>
+- <em>Caminh√£o</em>: abre a <a href="roadtools.txt">barra de ferramentas Estradas</a><br>
+- <em>Barco</em>: abre a <a href="shiptools.txt">barra de ferramentas Navega√ß√£o</a>
 <br>
-- <em>Avi„o</em>: abre a <a href="airtools.txt">barra de ferramentas Aeroportos</a>
+- <em>Avi√£o</em>: abre a <a href="airtools.txt">barra de ferramentas Aeroportos</a>
 <br>
-- <em>CÌrculo amarelo com uma bola vermelha dentro</em> (um <em>guindaste</em> no pak128): abre a <a href="special.txt">barra de Ferramentas Especiais</a><br>
+- <em>C√≠rculo amarelo com uma bola vermelha dentro</em> (um <em>guindaste</em> no pak128): abre a <a href="special.txt">barra de Ferramentas Especiais</a><br>
 - <em>X vermelho</em> (um <em>trator</em> no pak128): seleciona a <a href="removal_tool.txt">ferramenta Remover</a>
 </p>
 <p>
-- Os Ìcones do <a href="general.txt"><it>Menu de Gerenciamento</it></a> incluem:<br>
+- Os √≠cones do <a href="general.txt"><it>Menu de Gerenciamento</it></a> incluem:<br>
 - <em>Rede de transportes</em>: abre o <a href="linemanagement.txt">Gerenciador de Linhas</a>
 <br>
 - <em>Lista</em>: abre as <a href="list.txt">Listas</a>
 <br>
 - <em>Caixa de correio</em>: abre as <a href="mailbox.txt">Mensagens</a>
 <br>
-- <em>CÈdula de dinheiro</em>: abre as <a href="finances.txt">FinanÁas</a>
+- <em>C√©dula de dinheiro</em>: abre as <a href="finances.txt">Finan√ßas</a>
 </p>
 <p>
-- Os Ìcones das <a href="general.txt"><it>Outras OpÁıes</it></a> incluem:<br>
-- <em>C‚mera fotogr·fica</em>: captura uma imagem do que est· acontecendo no momento na <strong>Interface/Janela do Jogo</strong> (sem a <em>barra de tÌtulo</em>) e salva a imagem como um arquivo bitmap (.bmp) na pasta ...simutrans/screenshot/<br>
-{Dica: as imagens tambÈm podem ser capturadas pressionando a tecla <a href="keys.txt">[c]</a>.}
+- Os √≠cones das <a href="general.txt"><it>Outras Op√ß√µes</it></a> incluem:<br>
+- <em>C√¢mera fotogr√°fica</em>: captura uma imagem do que est√° acontecendo no momento na <strong>Interface/Janela do Jogo</strong> (sem a <em>barra de t√≠tulo</em>) e salva a imagem como um arquivo bitmap (.bmp) na pasta ...simutrans/screenshot/<br>
+{Dica: as imagens tamb√©m podem ser capturadas pressionando a tecla <a href="keys.txt">[c]</a>.}
 <br>
 - <em>Duas barras verticais amarelas</em>: pausa/volta ao jogo .<br>
-{Dica: Pressionando-se [p] tambÈm pausa/volta ao jogo}.<br>
-- <em>Ìcone >></em>: ativa/desativa a funÁ„o AvanÁo R·pido (muda a velocidade com a qual o Tempo, <em>T</em>, passa no jogo).<br>
-{Dica: A funÁ„o AvanÁo R·pido tambÈm pode ser ativada/desativada pressionando-se <a href="keys.txt">[W]</a><br>
-IMPORTANTE: O jogo pode n„o rodar perfeitamente; a janela <a href="display.txt"><strong>VÌdeo</strong></a>, acessÌvel a partir de <a href="options.txt">PreferÍncias</a>, indica se o computador aceita essa funÁ„o sem problemas.}<br>
+{Dica: Pressionando-se [p] tamb√©m pausa/volta ao jogo}.<br>
+- <em>√≠cone >></em>: ativa/desativa a fun√ß√£o Avan√ßo R√°pido (muda a velocidade com a qual o Tempo, <em>T</em>, passa no jogo).<br>
+{Dica: A fun√ß√£o Avan√ßo R√°pido tamb√©m pode ser ativada/desativada pressionando-se <a href="keys.txt">[W]</a><br>
+IMPORTANTE: O jogo pode n√£o rodar perfeitamente; a janela <a href="display.txt"><strong>V√≠deo</strong></a>, acess√≠vel a partir de <a href="options.txt">Prefer√™ncias</a>, indica se o computador aceita essa fun√ß√£o sem problemas.}<br>
 - <em>?</em>: abre a <a href="general.txt">Ajuda</a> do jogo.
 </p>
 <p>
-A <em>vis„o do jogo</em> de uma porÁ„o do mundo (jogo) atual È mostrada abaixo dos <em>Õcones</em>.<br>
-VocÍ pode aumentar ou diminuir o zoom na vis„o do jogo e tambÈm visualizar as outras partes do mundo atual usando o <a href="mouse.txt">mouse</a> ou o <a href="keys.txt">teclado</a>.
+A <em>vis√£o do jogo</em> de uma por√ß√£o do mundo (jogo) atual √© mostrada abaixo dos <em>√çcones</em>.<br>
+Voc√™ pode aumentar ou diminuir o zoom na vis√£o do jogo e tamb√©m visualizar as outras partes do mundo atual usando o <a href="mouse.txt">mouse</a> ou o <a href="keys.txt">teclado</a>.
 </p>
 <p>
-Uma <em>barra deslizante tempor·ria</em> aparece e mostra <a href="mailbox.txt">mensagens</a> na parte inferior da vis„o do jogo.<br>
-{Dica: Clique em uma mensagem para centralizar a vis„o do jogo para a posiÁ„o informada na mensagem.}
+Uma <em>barra deslizante tempor√°ria</em> aparece e mostra <a href="mailbox.txt">mensagens</a> na parte inferior da vis√£o do jogo.<br>
+{Dica: Clique em uma mensagem para centralizar a vis√£o do jogo para a posi√ß√£o informada na mensagem.}
 </p>
 <p>
-Uma <em>barra inferior</em> a qual mostra informaÁıes sobre o jogo atual È mostrada na vis„o do jogo.<br>
-A informaÁ„o fornecida, da esquerda para a direita na barra inferior inclui:<br>
-- <em>Data e hora</em>: a data e hora atuais do jogo carregado, seguido por um Ìcone e o nome da estaÁ„o.<br>
-- <em>Caixa atual</em>: o dinheiro atualmente disponÌvel para construÁ„o e outros custos (compra de veÌculos, manutenÁ„o da infra-estrutura para transportes e custos operacionais para os veÌculos que est„o em funcionamento).<br>
-- <em>Coordenadas</em>: indica a posiÁ„o do cursor do mouse na vis„o do jogo. Os n˙meros representam as coordenadas X, Y, e a altitude.<br>
+Uma <em>barra inferior</em> a qual mostra informa√ß√µes sobre o jogo atual √© mostrada na vis√£o do jogo.<br>
+A informa√ß√£o fornecida, da esquerda para a direita na barra inferior inclui:<br>
+- <em>Data e hora</em>: a data e hora atuais do jogo carregado, seguido por um √≠cone e o nome da esta√ß√£o.<br>
+- <em>Caixa atual</em>: o dinheiro atualmente dispon√≠vel para constru√ß√£o e outros custos (compra de ve√≠culos, manuten√ß√£o da infra-estrutura para transportes e custos operacionais para os ve√≠culos que est√£o em funcionamento).<br>
+- <em>Coordenadas</em>: indica a posi√ß√£o do cursor do mouse na vis√£o do jogo. Os n√∫meros representam as coordenadas X, Y, e a altitude.<br>
 - <em>T</em>: indica a velocidade com a qual o tempo passa no jogo.<br>
-{Dica: Pressione <a href="keys.txt">[.]</a> / [,]  para acelerar/desacelerar o Tempo, (T); o menu <a href="display.txt"><strong>VÌdeo</strong></a> indica se o computador suporta esta mudanÁa.<br>
-O uso da funÁ„o <a href="fast_forward.txt">AvanÁo</a> substitui <em>T</em> por ">>" na barra inferior.}<br>
+{Dica: Pressione <a href="keys.txt">[.]</a> / [,]  para acelerar/desacelerar o Tempo, (T); o menu <a href="display.txt"><strong>V√≠deo</strong></a> indica se o computador suporta esta mudan√ßa.<br>
+O uso da fun√ß√£o <a href="fast_forward.txt">Avan√ßo</a> substitui <em>T</em> por ">>" na barra inferior.}<br>
 - <em>Linha do tempo</em>: indica se a <a href="new_world.txt">Linha do tempo</a> foi ativada para o jogo atual.
 </p>
-<p> Traduzido pela Equipe de traduÁ„o do Simutrans PT-SubFÛrum (<em>http://pt.simutrans.com</em>), 16/02/2008.
+<p> Traduzido pela Equipe de tradu√ß√£o do Simutrans PT-SubF√≥rum (<em>http://pt.simutrans.com</em>), 16/02/2008.
 </p>

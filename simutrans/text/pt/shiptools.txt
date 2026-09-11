@@ -1,56 +1,56 @@
-<title>Ajuda - NavegaÁ„o</title>
+<title>Ajuda - Navega√ß√£o</title>
 
-<h1><strong>Ferramentas de navegaÁ„o</strong></h1>
+<h1><strong>Ferramentas de navega√ß√£o</strong></h1>
 
 <p>
-As <strong>Ferramentas de navegaÁ„o</strong> constrÛem uma rede de transporte por mares e canais. As ferramentas podem construir ou remover: canais, eclusas, v·rios tipos de doca e estaleiros. Se estiver jogando com <a href="new_world.txt">linha do tempo</a>, ent„o conforme o tempo passa no Simutrans mais opÁıes de ferramentas podem aparecer.
+As <strong>Ferramentas de navega√ß√£o</strong> constr√≥em uma rede de transporte por mares e canais. As ferramentas podem construir ou remover: canais, eclusas, v√°rios tipos de doca e estaleiros. Se estiver jogando com <a href="new_world.txt">linha do tempo</a>, ent√£o conforme o tempo passa no Simutrans mais op√ß√µes de ferramentas podem aparecer.
 </p>
 <p>
-Clique no Ìcone de um barco no topo da ·rea de jogo para abrir a barra de ferramentas.<br>
-Passe o cursor do mouse em cima das opÁıes (apÛs ter aberto ou clicado na barra de ferramentas) para ver o nome, o <a href="finances.txt">custo</a> de construÁ„o, custo de manutenÁ„o (entre parÍnteses), e o limite m·ximo de velocidade.
+Clique no √≠cone de um barco no topo da √°rea de jogo para abrir a barra de ferramentas.<br>
+Passe o cursor do mouse em cima das op√ß√µes (ap√≥s ter aberto ou clicado na barra de ferramentas) para ver o nome, o <a href="finances.txt">custo</a> de constru√ß√£o, custo de manuten√ß√£o (entre par√™nteses), e o limite m√°ximo de velocidade.
 </p>
 <p>
-As <strong>Ferramentas de navegaÁ„o</strong> incluem, da esquerda para a direita:
+As <strong>Ferramentas de navega√ß√£o</strong> incluem, da esquerda para a direita:
 </p>
 <p>
-<em>Canal:</em> constrÛi hidrovias para veÌculos aqu·ticos, entre dois pontos na ·rea de jogo.<br>
-Canais podem somente ser construÌdos em terra firme e podem n„o encontrar um caminho atravÈs de terrenos acidentados. Canais construÌdos entre dois pontos podem usar trechos de canais existentes em seu caminho.<br>
-Para construir um canal: clique na ferramenta para ativ·-la (o cursor mudar· para um canal), e clique na ·rea de jogo no ponto inicial do canal (mostra um trator na ·rea de jogo e as coordenadas do mapa no lado direito da barra inferior do jogo), e finalmente clique na ·rea de jogo no ponto final.<br>
-{Dicas: canais construÌdos por <a href="players.txt">jogadores</a> diferentes podem n„o se conectar. Use o <a href="slopetools.txt">Editor de terrenos</a> para modificar o terreno, possibilitando caminhos para os canais. Use a ferrramenta Remover para remover partes individuais do canal e obst·culos. O desfazer <a href="keys.txt">[z]</a> n„o reembolsa os custos da construÁ„o.}
+<em>Canal:</em> constr√≥i hidrovias para ve√≠culos aqu√°ticos, entre dois pontos na √°rea de jogo.<br>
+Canais podem somente ser constru√≠dos em terra firme e podem n√£o encontrar um caminho atrav√©s de terrenos acidentados. Canais constru√≠dos entre dois pontos podem usar trechos de canais existentes em seu caminho.<br>
+Para construir um canal: clique na ferramenta para ativ√°-la (o cursor mudar√° para um canal), e clique na √°rea de jogo no ponto inicial do canal (mostra um trator na √°rea de jogo e as coordenadas do mapa no lado direito da barra inferior do jogo), e finalmente clique na √°rea de jogo no ponto final.<br>
+{Dicas: canais constru√≠dos por <a href="players.txt">jogadores</a> diferentes podem n√£o se conectar. Use o <a href="slopetools.txt">Editor de terrenos</a> para modificar o terreno, possibilitando caminhos para os canais. Use a ferrramenta Remover para remover partes individuais do canal e obst√°culos. O desfazer <a href="keys.txt">[z]</a> n√£o reembolsa os custos da constru√ß√£o.}
 </p>
 <p>
-<em>Remover canais:</em> remove partes do canal, quando n„o houver veÌculos presentes, entre dois pontos na ·rea de jogo (Obs.: cais de canal no caminho s„o removidos tambÈm). O uso da ferramenta tem um <a href="finances.txt">custo</a> de construÁ„o.<br>
-Para remover canais: clique na ferramenta para ativ·-la (o cursor mudar· para um X vermelho), e clique no canal que ser· removido (o ponto selecionado È mostrado por um X vermelho na ·rea de jogo), e finalmente clique no segundo ponto em um canal conectado, para remover o trecho de canais desde o ponto inicial selecionado.
+<em>Remover canais:</em> remove partes do canal, quando n√£o houver ve√≠culos presentes, entre dois pontos na √°rea de jogo (Obs.: cais de canal no caminho s√£o removidos tamb√©m). O uso da ferramenta tem um <a href="finances.txt">custo</a> de constru√ß√£o.<br>
+Para remover canais: clique na ferramenta para ativ√°-la (o cursor mudar√° para um X vermelho), e clique no canal que ser√° removido (o ponto selecionado √© mostrado por um X vermelho na √°rea de jogo), e finalmente clique no segundo ponto em um canal conectado, para remover o trecho de canais desde o ponto inicial selecionado.
 </p>
 <p>
-<em>Canal elevado:</em> constrÛi eclusas e uma ponte de canal para elevar/rebaixar o canal em um nÌvel na ·rea de jogo. A ponte possui um comprimento m·ximo e È construÌda no fim de um canal atÈ um ponto disponÌvel (outro final de canal ou um trecho de terra mais alto, dentro do limite).<br>
-Para construir um canal elevado: clique na ferramenta para ativ·-la (o cursor mudar· para um canal elevado), e clique na ·rea de jogo no fim de um canal (ele ser· o ponto inicial da ponte). Obst·culos ou a falta de um lugar propÌcio para o fim da ponte podem interromper a construÁ„o: construa canais dos dois lados que devem ser ligados pela ponte e tente novamente.<br>
-{Dicas: use a ferramenta Remover para remover pontes (clique no comeÁo dela) ou obst·culos para a construÁ„o. Use <em>canais</em> para conectar pontes com hidrovias.}.
+<em>Canal elevado:</em> constr√≥i eclusas e uma ponte de canal para elevar/rebaixar o canal em um n√≠vel na √°rea de jogo. A ponte possui um comprimento m√°ximo e √© constru√≠da no fim de um canal at√© um ponto dispon√≠vel (outro final de canal ou um trecho de terra mais alto, dentro do limite).<br>
+Para construir um canal elevado: clique na ferramenta para ativ√°-la (o cursor mudar√° para um canal elevado), e clique na √°rea de jogo no fim de um canal (ele ser√° o ponto inicial da ponte). Obst√°culos ou a falta de um lugar prop√≠cio para o fim da ponte podem interromper a constru√ß√£o: construa canais dos dois lados que devem ser ligados pela ponte e tente novamente.<br>
+{Dicas: use a ferramenta Remover para remover pontes (clique no come√ßo dela) ou obst√°culos para a constru√ß√£o. Use <em>canais</em> para conectar pontes com hidrovias.}.
 </p>
 <p>
-<em>Cais de canal:</em> constrÛi uma doca em um canal na ·rea de jogo para navios e barcaÁas recolherem e entregarem mercadorias, passageiros e correio.<br>
-Quando uma doca n„o for construÌda ao lado de uma <a href="station.txt">parada</a> existente, ser· criada uma nova.<br>
-Uma doca possui uma ·rea de captura para mercadorias, passageiros e correio. No canto superior esquerdo um Ìcone (usado na <a href="haltlist.txt">Lista de paradas</a> e nas <a href="station.txt">InformaÁıes das estaÁıes</a>) mostra que tipos de itens uma parada suporta.<br>
-Para construir uma doca: clique na ferramenta para ativ·-la (o cursor mudar· para um cais de canal); e clique em um ponto do canal na ·rea de jogo.<br>
-{Dicas: remova as docas com a ferramenta Remover. Pressione [v] para mostrar/ocultar a ·rea de captura para mercadorias, passageiros e correio na ·rea de jogo.<br>
-Paradas somente de veÌculos aqu·ticos n„o ser„o listadas na <a href="haltlist.txt">Lista de paradas/estaÁıes</a>}.
+<em>Cais de canal:</em> constr√≥i uma doca em um canal na √°rea de jogo para navios e barca√ßas recolherem e entregarem mercadorias, passageiros e correio.<br>
+Quando uma doca n√£o for constru√≠da ao lado de uma <a href="station.txt">parada</a> existente, ser√° criada uma nova.<br>
+Uma doca possui uma √°rea de captura para mercadorias, passageiros e correio. No canto superior esquerdo um √≠cone (usado na <a href="haltlist.txt">Lista de paradas</a> e nas <a href="station.txt">Informa√ß√µes das esta√ß√µes</a>) mostra que tipos de itens uma parada suporta.<br>
+Para construir uma doca: clique na ferramenta para ativ√°-la (o cursor mudar√° para um cais de canal); e clique em um ponto do canal na √°rea de jogo.<br>
+{Dicas: remova as docas com a ferramenta Remover. Pressione [v] para mostrar/ocultar a √°rea de captura para mercadorias, passageiros e correio na √°rea de jogo.<br>
+Paradas somente de ve√≠culos aqu√°ticos n√£o ser√£o listadas na <a href="haltlist.txt">Lista de paradas/esta√ß√µes</a>}.
 </p>
 <p>
-<em>Paradas marinhas:</em> os v·rios itens a seguir constrÛem docas na ·rea de jogo para veÌculos aqu·ticos.<br>
-Docas s„o construÌdas em uma porÁ„o reta da costa.<br>
-Quando uma doca n„o for construÌda ao lado de uma <a href="station.txt">parada</a> existente, ser· criada uma nova.<br>
-Uma doca possui uma ·rea de captura para mercadorias, passageiros e correio. No canto superior esquerdo um Ìcone (usado na <a href="haltlist.txt">Lista de paradas</a> e nas <a href="station.txt">InformaÁıes das EstaÁıes</a>) mostra que tipos de itens uma parada suporta. Diferentes docas podem ter diferentes capacidades para mercadorias, passageiros e correio.<br>
-Para construir uma doca: clique na ferramenta para ativ·-la (o cursor mudar· para uma doca) e ent„o clique em um quadro adjacente ao mar.<br>
+<em>Paradas marinhas:</em> os v√°rios itens a seguir constr√≥em docas na √°rea de jogo para ve√≠culos aqu√°ticos.<br>
+Docas s√£o constru√≠das em uma por√ß√£o reta da costa.<br>
+Quando uma doca n√£o for constru√≠da ao lado de uma <a href="station.txt">parada</a> existente, ser√° criada uma nova.<br>
+Uma doca possui uma √°rea de captura para mercadorias, passageiros e correio. No canto superior esquerdo um √≠cone (usado na <a href="haltlist.txt">Lista de paradas</a> e nas <a href="station.txt">Informa√ß√µes das Esta√ß√µes</a>) mostra que tipos de itens uma parada suporta. Diferentes docas podem ter diferentes capacidades para mercadorias, passageiros e correio.<br>
+Para construir uma doca: clique na ferramenta para ativ√°-la (o cursor mudar√° para uma doca) e ent√£o clique em um quadro adjacente ao mar.<br>
 {Dicas: remova docas com a ferramenta Remover.<br>
-O tamanho das docas pode ser incrementado construindo nos quadros adjacentes. VeÌculos de transporte aqu·tico podem usar qualquer quadro de ·gua na ·rea de captura da doca.<br>
-Paradas somente de veÌculos aqu·ticos n„o ser„o listadas na <a href="haltlist.txt">Lista de paradas/estaÁıes</a>}.
-<a href="industry_info.txt">Ind˙strias</a> em alto-mar como plataformas de petrÛleo n„o precisam de docas. VeÌculos de transporte aqu·tico podem usar qualquer quadro da ·rea de captura da ind˙stria.<br>
-Pressione [v] para mostrar/ocultar a ·rea de captura para mercadorias, passageiros e correio na ·rea de jogo.
+O tamanho das docas pode ser incrementado construindo nos quadros adjacentes. Ve√≠culos de transporte aqu√°tico podem usar qualquer quadro de √°gua na √°rea de captura da doca.<br>
+Paradas somente de ve√≠culos aqu√°ticos n√£o ser√£o listadas na <a href="haltlist.txt">Lista de paradas/esta√ß√µes</a>}.
+<a href="industry_info.txt">Ind√∫strias</a> em alto-mar como plataformas de petr√≥leo n√£o precisam de docas. Ve√≠culos de transporte aqu√°tico podem usar qualquer quadro da √°rea de captura da ind√∫stria.<br>
+Pressione [v] para mostrar/ocultar a √°rea de captura para mercadorias, passageiros e correio na √°rea de jogo.
 </p>
 <p>
-<em>Construir <a href="depot.txt"><em>estaleiro:</em></a></em> constrÛi um depÛsito para a compra e gerenciamento de navios, barcos e barcaÁas. DepÛsitos possuem um custo de manutenÁ„o e s„o construÌdos dentro d'·gua na ·rea de jogo.<br>
-Para construir um estaleiro: clique na ferramenta para ativ·-la (o cursor mudar· para um estaleiro), e clique na ·gua na ·rea de jogo.<br>
-{Dicas: remova os depÛsitos com a ferramenta Remover.}
+<em>Construir <a href="depot.txt"><em>estaleiro:</em></a></em> constr√≥i um dep√≥sito para a compra e gerenciamento de navios, barcos e barca√ßas. Dep√≥sitos possuem um custo de manuten√ß√£o e s√£o constru√≠dos dentro d'√°gua na √°rea de jogo.<br>
+Para construir um estaleiro: clique na ferramenta para ativ√°-la (o cursor mudar√° para um estaleiro), e clique na √°gua na √°rea de jogo.<br>
+{Dicas: remova os dep√≥sitos com a ferramenta Remover.}
 </p>
-<p> Traduzido pela Equipe de traduÁ„o do Simutrans PT-SubFÛrum (<em>http://pt.simutrans.com</em>), 17/01/2008.
+<p> Traduzido pela Equipe de tradu√ß√£o do Simutrans PT-SubF√≥rum (<em>http://pt.simutrans.com</em>), 17/01/2008.
 </p>

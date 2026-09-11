@@ -3,71 +3,71 @@
 <h1><strong>Gerenciador de Linhas</strong></h1>
 
 <p>
-O <strong>Gerenciador de Linhas</strong> fornece informaÁıes e ferramentas para o gerenciamento de linhas (caminhos e quantidades mÌnimas de carregamento requeridas por uma <a href="convoiinfo.txt">composiÁ„o</a> para partir) para uma composiÁ„o ou mais com a mesma rota.
+O <strong>Gerenciador de Linhas</strong> fornece informa√ß√µes e ferramentas para o gerenciamento de linhas (caminhos e quantidades m√≠nimas de carregamento requeridas por uma <a href="convoiinfo.txt">composi√ß√£o</a> para partir) para uma composi√ß√£o ou mais com a mesma rota.
 </p>
 <p>
-Linhas consistem em <a href="station.txt">Paradas</a> onde os veÌculos pegam e deixam mercadorias e passageiros (veÌculos aqu·ticos podem usar qualquer quadro de ·gua na ·rea de captura de uma doca) e pontos de passagem (usados para forÁar os veÌculos a irem por um caminho).
+Linhas consistem em <a href="station.txt">Paradas</a> onde os ve√≠culos pegam e deixam mercadorias e passageiros (ve√≠culos aqu√°ticos podem usar qualquer quadro de √°gua na √°rea de captura de uma doca) e pontos de passagem (usados para for√ßar os ve√≠culos a irem por um caminho).
 </p>
 <p>
-Clique no Ìcone que (parece uma rede) na barra do alto da tela ou pressione <a href="keys.txt">[w]</a> para abrir a janela do <strong>Gerenciador de Linhas</strong>, que pode ser <a href="mouse.txt">redimensionada</a> (clique no bot„o com uma seta para baixo na barra do tÌtulo para retornar ao tamanho original).
+Clique no √≠cone que (parece uma rede) na barra do alto da tela ou pressione <a href="keys.txt">[w]</a> para abrir a janela do <strong>Gerenciador de Linhas</strong>, que pode ser <a href="mouse.txt">redimensionada</a> (clique no bot√£o com uma seta para baixo na barra do t√≠tulo para retornar ao tamanho original).
 </p>
 <p>
 O lado esquerdo do <strong>Gerenciador de Linhas</strong> lista as linhas existentes (para rolar pela lista: use a barra do lado direito da lista), que pode ser filtrado por tipo de transporte, clicando numa das abas que ficam acima da lista pra selecionar:<br>
-<em>Todos</em>: lista as linhas de todos os tipos de veÌculos.<br>
-<em>Trem</em>: lista as linhas para os veÌculos ferrovi·rios.<br>
-<em>Monotrilho</em>: lista as linhas para os monotrilhos ou maglevs (trens magnÈticos).<br>
-<em>Tram</em>: lista as linhas dos bondes/elÈctricos.<br>
-<em>Caminhıes</em>: lista as linhas para os veÌculos rodovi·rios.<br>
-<em>Navios</em>: lista as linhas para os veÌculos aqu·ticos.<br>
-<em>Ar</em>: lista as linhas para os veÌculos aÈreos.
+<em>Todos</em>: lista as linhas de todos os tipos de ve√≠culos.<br>
+<em>Trem</em>: lista as linhas para os ve√≠culos ferrovi√°rios.<br>
+<em>Monotrilho</em>: lista as linhas para os monotrilhos ou maglevs (trens magn√©ticos).<br>
+<em>Tram</em>: lista as linhas dos bondes/el√©ctricos.<br>
+<em>Caminh√µes</em>: lista as linhas para os ve√≠culos rodovi√°rios.<br>
+<em>Navios</em>: lista as linhas para os ve√≠culos aqu√°ticos.<br>
+<em>Ar</em>: lista as linhas para os ve√≠culos a√©reos.
 </p>
 <p>
 A cor dos nomes das linhas significam o seguinte:<br>
-<it>branco</it> - n„o h· nenhum veÌculo associado ‡ linha<br>
-<it>amarelo</it> - n„o operacional, ou n„o est· dando lucro nem prejuÌzo<br>
+<it>branco</it> - n√£o h√° nenhum ve√≠culo associado √† linha<br>
+<it>amarelo</it> - n√£o operacional, ou n√£o est√° dando lucro nem preju√≠zo<br>
 <it>negro</it> - linha lucrativa, com capacidade ociosa, sem necessidade de melhoria<br>
-<it>azul</it> - linha lucrativa, com pouca capacidade ociosa, ou com veÌculos obsoletos <br>
+<it>azul</it> - linha lucrativa, com pouca capacidade ociosa, ou com ve√≠culos obsoletos <br>
 <it>vermelho</it> - linha com perdas<br>
 </p>
 <p>
-Sob a lista das linhas existentes h· alguns botıes, que incluem:
+Sob a lista das linhas existentes h√° alguns bot√µes, que incluem:
 </p>
 <p>
-<em>Nova Linha:</em> abre controles para definir uma <a href="schedule.txt">ProgramaÁ„o</a> (caminhos e quantidades mÌnimas de carregamento requeridas por uma <a href="convoiinfo.txt">composiÁ„o</a> para partir) para uma nova linha.<br>
-Adicione tantas <a href="station.txt">paradas</a> ou pontos de passagem quanto necess·rios, estabeleÁa as quantidades de espera necess·rias, e ent„o feche a janela para criar a nova linha, clicando no bot„o "x" na barra de tÌtulo ou com o <a href="keys.txt">teclado</a>). A nova linha ter· associado um n˙mero e ser· listada na lista do <strong>Gerenciador de Linhas</strong>.<br>
-{Dicas: Selecione o tipo de transporte nas abas antes de criar uma nova linha. Os veÌculos n„o pegam nem deixam mercadorias e passageiros nos pontos de passagem.}
+<em>Nova Linha:</em> abre controles para definir uma <a href="schedule.txt">Programa√ß√£o</a> (caminhos e quantidades m√≠nimas de carregamento requeridas por uma <a href="convoiinfo.txt">composi√ß√£o</a> para partir) para uma nova linha.<br>
+Adicione tantas <a href="station.txt">paradas</a> ou pontos de passagem quanto necess√°rios, estabele√ßa as quantidades de espera necess√°rias, e ent√£o feche a janela para criar a nova linha, clicando no bot√£o "x" na barra de t√≠tulo ou com o <a href="keys.txt">teclado</a>). A nova linha ter√° associado um n√∫mero e ser√° listada na lista do <strong>Gerenciador de Linhas</strong>.<br>
+{Dicas: Selecione o tipo de transporte nas abas antes de criar uma nova linha. Os ve√≠culos n√£o pegam nem deixam mercadorias e passageiros nos pontos de passagem.}
 </p>
 <p>
-<em>Atualizar:</em> abre os controles para modificar uma <a href="schedule.txt">ProgramaÁ„o</a> existente. As mudanÁas afetar„o todos os veÌculos associados ‡ linha, assim que a janela desses controles for fechada.<br>
-Para us·-lo, È necess·rio selecionar uma linha na lista antes de clicar nele e editar a linha.
+<em>Atualizar:</em> abre os controles para modificar uma <a href="schedule.txt">Programa√ß√£o</a> existente. As mudan√ßas afetar√£o todos os ve√≠culos associados √† linha, assim que a janela desses controles for fechada.<br>
+Para us√°-lo, √© necess√°rio selecionar uma linha na lista antes de clicar nele e editar a linha.
 </p>
 <p>
-<em>Apagar:</em> apaga a linha selecionada. Para us·-lo, È necess·rio selecionar uma linha na lista antes de clicar nele e apagar a linha.
+<em>Apagar:</em> apaga a linha selecionada. Para us√°-lo, √© necess√°rio selecionar uma linha na lista antes de clicar nele e apagar a linha.
 </p>
 <p>
-Quando uma linha È selecionada, ele fica destacada das outras, e as paradas que est„o associadas ‡ linha aparecem embaixo dos botıes "Nova Linha", "Atualizar" e "Apagar". Clique numa parada para abrir suas informaÁıes.<br>
+Quando uma linha √© selecionada, ele fica destacada das outras, e as paradas que est√£o associadas √† linha aparecem embaixo dos bot√µes "Nova Linha", "Atualizar" e "Apagar". Clique numa parada para abrir suas informa√ß√µes.<br>
 Os itens listados para cada parada incluem:<br>
-<em>barra da cor de status:</em> as cores indicam a situaÁ„o da <a href="station.txt">parada</a> com relaÁ„o ‡ sua lotaÁ„o. È a mesma barra mostrada na  <a href="haltlist.txt">Lista de Paradas</a>, na janela InformaÁıes da Parada e na barra que fica acima da parada no jogo:<br>
-- <em>amarelo:</em> fora de serviÁo.<br>
-- <em>verde:</em> nenhuma melhoria necess·ria.<br>
-- <em>laranja:</em> melhorias possÌveis.<br>
-- <em>vermelho:</em> melhorias necess·rias.<br>
+<em>barra da cor de status:</em> as cores indicam a situa√ß√£o da <a href="station.txt">parada</a> com rela√ß√£o √† sua lota√ß√£o. √© a mesma barra mostrada na  <a href="haltlist.txt">Lista de Paradas</a>, na janela Informa√ß√µes da Parada e na barra que fica acima da parada no jogo:<br>
+- <em>amarelo:</em> fora de servi√ßo.<br>
+- <em>verde:</em> nenhuma melhoria necess√°ria.<br>
+- <em>laranja:</em> melhorias poss√≠veis.<br>
+- <em>vermelho:</em> melhorias necess√°rias.<br>
 {Dica: Use [!] para fazer aparecer a barra da cor de status acima da parada na tela do jogo.} <br>
 <em>nome</em> da parada.<br>
-<em>n˙mero</em> da parada (elas pode ser numeradas se a opÁ„o for escolhida no simuconf.tab).<br>
-<em>Ìcone de veÌculos(s)</em> indicam quais tipos de veÌculo podem usar a  parada. Os Ìcones incluem: Ùnibus/autocarro (para veÌculos rodovi·rios de transporte de passageiros), cami(nh)„o (para veÌculos rodovi·rios de transporte de cargas), trem/comboio, barco e avi„o. Bondes/elÈctricos podem ser indicados por um Ùnibus ou trem conforme o tipo de via da parada.<br>
-<em>Ìcone de carga(s)</em> indica com quais itens (passageiros, cargas ou correio) uma parada pode lidar (tambÈm s„o usados nas InformaÁıes das Paradas e na Lista de Paradas.<br>
-{Dica: adicionar extensıes apropriadas pode modificar as categorias de itens que uma parada pode lidar. <a href="special.txt">AgÍncias de correio</a> podem ser adicionadas ‡s paradas para o transporte de correspondÍncias}.<br>
+<em>n√∫mero</em> da parada (elas pode ser numeradas se a op√ß√£o for escolhida no simuconf.tab).<br>
+<em>√≠cone de ve√≠culos(s)</em> indicam quais tipos de ve√≠culo podem usar a  parada. Os √≠cones incluem: √¥nibus/autocarro (para ve√≠culos rodovi√°rios de transporte de passageiros), cami(nh)√£o (para ve√≠culos rodovi√°rios de transporte de cargas), trem/comboio, barco e avi√£o. Bondes/el√©ctricos podem ser indicados por um √¥nibus ou trem conforme o tipo de via da parada.<br>
+<em>√≠cone de carga(s)</em> indica com quais itens (passageiros, cargas ou correio) uma parada pode lidar (tamb√©m s√£o usados nas Informa√ß√µes das Paradas e na Lista de Paradas.<br>
+{Dica: adicionar extens√µes apropriadas pode modificar as categorias de itens que uma parada pode lidar. <a href="special.txt">Ag√™ncias de correio</a> podem ser adicionadas √†s paradas para o transporte de correspond√™ncias}.<br>
 <em>espera</em> detalhes das diversas mercadorias e passageiros.
 </p>
 <p>
-No lado direito do <strong>Gerenciador de Linhas</strong> s„o exibidos um gr·fico com dados da linha selecionada, uma caixa de nome e uma lista das <a href="convoiinfo.txt">composiÁıes</a> associadas ‡ linha.
+No lado direito do <strong>Gerenciador de Linhas</strong> s√£o exibidos um gr√°fico com dados da linha selecionada, uma caixa de nome e uma lista das <a href="convoiinfo.txt">composi√ß√µes</a> associadas √† linha.
 </p>
 <p>
-Clique no nome da linha pra selecion·-la. Ele ficar· destacado. Clique nos botıes para ver as informaÁıes sobre a linha, sendo que o eixo horizontal representa os ˙ltimos 12 meses:
+Clique no nome da linha pra selecion√°-la. Ele ficar√° destacado. Clique nos bot√µes para ver as informa√ß√µes sobre a linha, sendo que o eixo horizontal representa os √∫ltimos 12 meses:
 </p>
 <p>
-- <em>Capacidade</em> - quantidade de mercadorias ou passageiros que puderam ser transportadas no perÌodo.
+- <em>Capacidade</em> - quantidade de mercadorias ou passageiros que puderam ser transportadas no per√≠odo.
 </p>
 <p>
 - <em>Vol. Transportado</em> - quantidade de mercadorias ou passageiros que realmente foram transportados.
@@ -76,26 +76,26 @@ Clique no nome da linha pra selecion·-la. Ele ficar· destacado. Clique nos botıe
 - <em>Faturamento</em> - total recebido pelo transporte de mercadorias ou passageiros.
 </p>
 <p>
-- <em>OperaÁ„o</em> - custo da operaÁ„o dos veÌculos, ou seja, de eles estarem rodando.
+- <em>Opera√ß√£o</em> - custo da opera√ß√£o dos ve√≠culos, ou seja, de eles estarem rodando.
 </p>
 <p>
-- <a href="finances.txt"><em>Lucro</em></a> - diferenÁa entre o faturamento e a operaÁ„o.
+- <a href="finances.txt"><em>Lucro</em></a> - diferen√ßa entre o faturamento e a opera√ß√£o.
 </p>
 <p>
-- <a href="convoiinfo.txt"><em>VeÌculos</em></a> - n˙mero de veÌculos associados ‡ linha.
+- <a href="convoiinfo.txt"><em>Ve√≠culos</em></a> - n√∫mero de ve√≠culos associados √† linha.
 </p>
 <p>
-Para modificar o nome da linha: clique na caixa de nome, abaixo do gr·fico, onde aparece o nome da linha, e escreva o nome desejado.
+Para modificar o nome da linha: clique na caixa de nome, abaixo do gr√°fico, onde aparece o nome da linha, e escreva o nome desejado.
 </p>
 <p>
-Abaixo da caixa de nomes aparece a lista dos <a href="convoiinfo.txt">veÌculos</a> associados a ela.<br>
-No topo da lista dos veÌculos vem a quantidade de veÌculos associados a ela, a renda da linha (o lucro operacional, melhor dizendo), a capacidade e a quantidade  transportada no momento, com a porcentagem da capacidade entre parÍnteses).<br>
-Clique num item listado para ver mais informaÁıes sobre o veÌculo selecionado (use a barra de rolagem para ver os outros veÌculos da linha).<br>
-S„o listados, para cada veÌculo:<br>
-<em>nome</em> nome dado do veÌculo, que normalmente È o do primeiro componente <a href="depot.txt">comprado</a> ou montado na composiÁ„o).<br>
-<em>renda</em> o lucro operacional do veÌculo: faturamento menos custo operacional.<br>
-<em>linha:</em> mostra o nome da linha e se o veÌculo est· num <a href="depot.txt">depÛsito</a>.<br>
-<em>gr·fico</em> mostra o veÌculo e a capacidade utilizada do veÌculo no momento.
+Abaixo da caixa de nomes aparece a lista dos <a href="convoiinfo.txt">ve√≠culos</a> associados a ela.<br>
+No topo da lista dos ve√≠culos vem a quantidade de ve√≠culos associados a ela, a renda da linha (o lucro operacional, melhor dizendo), a capacidade e a quantidade  transportada no momento, com a porcentagem da capacidade entre par√™nteses).<br>
+Clique num item listado para ver mais informa√ß√µes sobre o ve√≠culo selecionado (use a barra de rolagem para ver os outros ve√≠culos da linha).<br>
+S√£o listados, para cada ve√≠culo:<br>
+<em>nome</em> nome dado do ve√≠culo, que normalmente √© o do primeiro componente <a href="depot.txt">comprado</a> ou montado na composi√ß√£o).<br>
+<em>renda</em> o lucro operacional do ve√≠culo: faturamento menos custo operacional.<br>
+<em>linha:</em> mostra o nome da linha e se o ve√≠culo est√° num <a href="depot.txt">dep√≥sito</a>.<br>
+<em>gr√°fico</em> mostra o ve√≠culo e a capacidade utilizada do ve√≠culo no momento.
 </p>
-<p> Traduzido pela Equipe de traduÁ„o do Simutrans PT-SubFÛrum (<em>http://pt.simutrans.com</em>), 17/01/2008.
+<p> Traduzido pela Equipe de tradu√ß√£o do Simutrans PT-SubF√≥rum (<em>http://pt.simutrans.com</em>), 17/01/2008.
 </p>

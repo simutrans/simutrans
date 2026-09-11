@@ -3,38 +3,38 @@
 <h1><strong>Editor de terrenos</strong></h1>
 
 <p>
-As ferramentas do <strong>Editor de terrenos</strong> elevam e rebaixam o terreno, e podem ser usadas para obter locais vi·veis para construÁ„o.
+As ferramentas do <strong>Editor de terrenos</strong> elevam e rebaixam o terreno, e podem ser usadas para obter locais vi√°veis para constru√ß√£o.
 </p>
 <p>
-Clique no Ìcone de terreno que est· no topo da ·rea de jogo para abrir a barra de ferramentas.<br>
-Depois de abrir ou clicar sobre a barra de ferramentas, passe o cursor do mouse por cima das opÁıes para ver o nome e o <a href="finances.txt">custo</a> de construÁ„o.
+Clique no √≠cone de terreno que est√° no topo da √°rea de jogo para abrir a barra de ferramentas.<br>
+Depois de abrir ou clicar sobre a barra de ferramentas, passe o cursor do mouse por cima das op√ß√µes para ver o nome e o <a href="finances.txt">custo</a> de constru√ß√£o.
 </p>
-<p>A ferramenta funciona em ·reas livres de obst·culos (exemplos: estradas, trilhos, edificaÁıes, paradas, estaÁıes etc).
+<p>A ferramenta funciona em √°reas livres de obst√°culos (exemplos: estradas, trilhos, edifica√ß√µes, paradas, esta√ß√µes etc).
 </p>
 <p>
-Clique em um dos botıes para ativar (o cursor muda-se de aparÍncia), ent„o posicione o cursor sobre o terreno na tela do jogo e clique para usar:
+Clique em um dos bot√µes para ativar (o cursor muda-se de apar√™ncia), ent√£o posicione o cursor sobre o terreno na tela do jogo e clique para usar:
 </p>
 <p>
 <em>Elevar terreno</em>/<em>Abaixar terreno:</em> eleva/abaixa o terreno.<br>
-O cursor mudar· para uma seta para baixo ou para cima.<br>
-A ferramenta tambÈm È ativada pelas teclas <a href="keys.txt">[u]</a> e <a href="keys.txt">[d]</a>.
+O cursor mudar√° para uma seta para baixo ou para cima.<br>
+A ferramenta tamb√©m √© ativada pelas teclas <a href="keys.txt">[u]</a> e <a href="keys.txt">[d]</a>.
 </p>
 <p>
-<em>Barrancos:</em> cria um barranco na direÁ„o indicada pelo bot„o, podendo criar juntamente muros de arrimo verticais nas laterais<br>
-O cursor mudar· para um cubo amarelo vazio que posiciona o barranco.
+<em>Barrancos:</em> cria um barranco na dire√ß√£o indicada pelo bot√£o, podendo criar juntamente muros de arrimo verticais nas laterais<br>
+O cursor mudar√° para um cubo amarelo vazio que posiciona o barranco.
 </p>
 <p>
-<em>Abaixar quadro</em>/<em>Elevar quadro:</em> abaixa/eleva um quadro especÌfico do terreno, podendo juntamente criar muros de arrimo verticais em suas laterais.<br>
-O cursor mudar· para um cubo amarelo vazio que modifica o quadro.
+<em>Abaixar quadro</em>/<em>Elevar quadro:</em> abaixa/eleva um quadro espec√≠fico do terreno, podendo juntamente criar muros de arrimo verticais em suas laterais.<br>
+O cursor mudar√° para um cubo amarelo vazio que modifica o quadro.
 </p>
 <p>
 <em>Restaurar relevo natural:</em> retorna a forma natural do terreno, removendo juntamente os muros de arrimo.<br>
-O cursor mudar· para um cubo amarelo vazio que restaura o terreno no quadro.
+O cursor mudar√° para um cubo amarelo vazio que restaura o terreno no quadro.
 </p>
 <p>
-{Dica: O Editor de terreno fica mais f·cil de se usar com a grade. Pressione [#] para exibir/ocultar a grade sobre o terreno.<br>
-Use a ferramenta Remover para remover obst·culos.<br>
-Dependendo do local do mapa, as ferramentas podem elevar ou rebaixar terreno dentro da ·gua.}
+{Dica: O Editor de terreno fica mais f√°cil de se usar com a grade. Pressione [#] para exibir/ocultar a grade sobre o terreno.<br>
+Use a ferramenta Remover para remover obst√°culos.<br>
+Dependendo do local do mapa, as ferramentas podem elevar ou rebaixar terreno dentro da √°gua.}
 </p>
-<p> Traduzido pela Equipe de traduÁ„o do Simutrans PT-SubFÛrum (<em>http://pt.simutrans.com</em>), 17/01/2008.
+<p> Traduzido pela Equipe de tradu√ß√£o do Simutrans PT-SubF√≥rum (<em>http://pt.simutrans.com</em>), 17/01/2008.
 </p>

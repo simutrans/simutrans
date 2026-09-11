@@ -1,84 +1,84 @@
-<title>Informações das Paradas</title>
+<title>InformaÃ§Ãµes das Paradas</title>
 
-<h1><strong>Informações das Paradas</strong></h1>
+<h1><strong>InformaÃ§Ãµes das Paradas</strong></h1>
 
 <p>
-As <strong>Paradas</strong> são os locais onde os <a href="convoiinfo.txt">veículos</a> apanham e deixam passageiros ou cargas. A janela que se abre ao clicar em uma parada dá acesso a diversos detalhes da parada além de permitir mudar o seu nome.
+As <strong>Paradas</strong> sÃ£o os locais onde os <a href="convoiinfo.txt">veÃ­culos</a> apanham e deixam passageiros ou cargas. A janela que se abre ao clicar em uma parada dÃ¡ acesso a diversos detalhes da parada alÃ©m de permitir mudar o seu nome.
 </p>
 <p>
-Além de ser o local onde os veículos param, uma parada pode ser composta de extensões, que adicionam capacidade de armazenamento ou permitem que a parada aceite outros tipos de carga além dos originais.
+AlÃ©m de ser o local onde os veÃ­culos param, uma parada pode ser composta de extensÃµes, que adicionam capacidade de armazenamento ou permitem que a parada aceite outros tipos de carga alÃ©m dos originais.
 </p>
 <p>
-As ferramentas para a construção de paradas estão disponíveis nas respectivas barras de cada tipo de transporte:<br>
+As ferramentas para a construÃ§Ã£o de paradas estÃ£o disponÃ­veis nas respectivas barras de cada tipo de transporte:<br>
 - <a href="railtools.txt">plataformas de trem/comboio</a>;<br>
 - <a href="monorailtools.txt">plataformas de monotrilho</a>;<br>
-- <a href="tramtools.txt">paradas de bonde/eléctrico</a>;<br>
-- <a href="roadtools.txt">paradas de ônibus/autocarro ou caminhão/camião</a>;<br>
+- <a href="tramtools.txt">paradas de bonde/elÃ©ctrico</a>;<br>
+- <a href="roadtools.txt">paradas de Ã´nibus/autocarro ou caminhÃ£o/camiÃ£o</a>;<br>
 - <a href="shiptools.txt">docas</a>;<br>
 - e <a href="airtools.txt">aeroportos</a>.<br>
 
-(Dicas: Veículos aquáticos podem usar qualquer quadro de água na área de captura de uma doca para pegar e deixar cargas e passageiros. Parada maiores podem ser construídas simplesmente adicionando mais quadros de parada. Uma parada pode aceitar mais de um tipo de veículo adicionando-se os quadros adequados nas vias próprias; ou seja, uma estação de trem pode ser colocada ao lado de uma parada de ônibus, desde que haja um trilho passando ao lado da rua onde está a parada.)
+(Dicas: VeÃ­culos aquÃ¡ticos podem usar qualquer quadro de Ã¡gua na Ã¡rea de captura de uma doca para pegar e deixar cargas e passageiros. Parada maiores podem ser construÃ­das simplesmente adicionando mais quadros de parada. Uma parada pode aceitar mais de um tipo de veÃ­culo adicionando-se os quadros adequados nas vias prÃ³prias; ou seja, uma estaÃ§Ã£o de trem pode ser colocada ao lado de uma parada de Ã´nibus, desde que haja um trilho passando ao lado da rua onde estÃ¡ a parada.)
 </p>
 <p>
-Clique numa parada na tela do jogo com a ferramenta <a href="inspection_tool.txt">Consultar</a> ou numa parada listada na<a href="haltlist.txt">Lista de paradas</a> ou <a href="linemanagement.txt">Gerenciador de Linhas</a> para abrir as informações das <strong>paradas</strong> que mostra o nome da parada em sua barra de título.<br>
-A janela das <strong>paradas</strong> contém uma caixa de nome, uma vista da parada, informações sobre a parada, botões de opção e uma lista de todos os bens e passageiros prontos para serem transportados. Se não for possível ver todos os bens, ou todas as informações sobre eles, redimensione a janela da <strong>parada</strong> ou use as barras de rolagem para mostrar os itens:
+Clique numa parada na tela do jogo com a ferramenta <a href="inspection_tool.txt">Consultar</a> ou numa parada listada na<a href="haltlist.txt">Lista de paradas</a> ou <a href="linemanagement.txt">Gerenciador de Linhas</a> para abrir as informaÃ§Ãµes das <strong>paradas</strong> que mostra o nome da parada em sua barra de tÃ­tulo.<br>
+A janela das <strong>paradas</strong> contÃ©m uma caixa de nome, uma vista da parada, informaÃ§Ãµes sobre a parada, botÃµes de opÃ§Ã£o e uma lista de todos os bens e passageiros prontos para serem transportados. Se nÃ£o for possÃ­vel ver todos os bens, ou todas as informaÃ§Ãµes sobre eles, redimensione a janela da <strong>parada</strong> ou use as barras de rolagem para mostrar os itens:
 </p>
 <p>
-<em>Nome</em>: O nome da parada é mostrado na caixa que fica em cima na janela de informações das <strong>Paradas</strong>.<br>
-Por padrão, um nome é atribuído automaticamente à parada quando ela é construída e depende da <a href="citywindow.txt">área urbana</a> onde é inserida ou das <a href="industry_info.txt">indústrias</a> próximas, dentro da área de captura da parada.<br>
+<em>Nome</em>: O nome da parada Ã© mostrado na caixa que fica em cima na janela de informaÃ§Ãµes das <strong>Paradas</strong>.<br>
+Por padrÃ£o, um nome Ã© atribuÃ­do automaticamente Ã  parada quando ela Ã© construÃ­da e depende da <a href="citywindow.txt">Ã¡rea urbana</a> onde Ã© inserida ou das <a href="industry_info.txt">indÃºstrias</a> prÃ³ximas, dentro da Ã¡rea de captura da parada.<br>
 Para alterar o nome da parada, basta clicar na caixa do nome e escrever o novo nome da parada.<br>
-(dicas: Use <a href="keys.txt">[!]</a> para alterar a visualização dos nomes das paradas sobre elas. Use [v] para alterar a visão da área de captura da parada. Opção para numerar as paradas está disponível no arquivo simuconf.tab [numbered_stops=])
+(dicas: Use <a href="keys.txt">[!]</a> para alterar a visualizaÃ§Ã£o dos nomes das paradas sobre elas. Use [v] para alterar a visÃ£o da Ã¡rea de captura da parada. OpÃ§Ã£o para numerar as paradas estÃ¡ disponÃ­vel no arquivo simuconf.tab [numbered_stops=])
 </p>
 <p>
-<em>Barra de estado</em> Suas cores indicam a qualidade da operação da parada. Elas também são usadas na <a href="haltlist.txt">Lista das Paradas</a> e no <a href="linemanagement.txt">Gerenciador de Linhas</a>, e são as mesmas exibidas acima da parada na tela do jogo:<br>
-- <em>amarelo:</em> parada sem atendimento; nenhum veículo a utiliza.<br>
-- <em>verde:</em> não é necessário melhorar o atendimento; a parada não lota.<br>
-- <em>laranja:</em> alguma melhoria é necessária.<br>
-- <em>vermelho:</em> é necessário melhorar o atendimento urgentemente.<br>
-(Dicas: Use <a href="keys.txt">[!]</a> para alternar a visualização das barras de estado sobre as paradas na tela do jogo.)
+<em>Barra de estado</em> Suas cores indicam a qualidade da operaÃ§Ã£o da parada. Elas tambÃ©m sÃ£o usadas na <a href="haltlist.txt">Lista das Paradas</a> e no <a href="linemanagement.txt">Gerenciador de Linhas</a>, e sÃ£o as mesmas exibidas acima da parada na tela do jogo:<br>
+- <em>amarelo:</em> parada sem atendimento; nenhum veÃ­culo a utiliza.<br>
+- <em>verde:</em> nÃ£o Ã© necessÃ¡rio melhorar o atendimento; a parada nÃ£o lota.<br>
+- <em>laranja:</em> alguma melhoria Ã© necessÃ¡ria.<br>
+- <em>vermelho:</em> Ã© necessÃ¡rio melhorar o atendimento urgentemente.<br>
+(Dicas: Use <a href="keys.txt">[!]</a> para alternar a visualizaÃ§Ã£o das barras de estado sobre as paradas na tela do jogo.)
 </p>
 <p>
-Também há ícones que representam:<br>
-- <em>carga(s)</em> indicam quais itens são aceitos na parada: (passageiros, carga ou correio).<br>
-- <em>veículo(s)</em> indicam quais tipos de veículo podem usar a parada. Eles incluem: ônibus/autocarro, caminhão/camião, trem/comboio, barco/navio e avião. Bondes/eléctricos são ora representados pelo símbolo de ônibus/autocarro, ora pelo de trem/comboio, conforme o tipo original da parada.
+TambÃ©m hÃ¡ Ã­cones que representam:<br>
+- <em>carga(s)</em> indicam quais itens sÃ£o aceitos na parada: (passageiros, carga ou correio).<br>
+- <em>veÃ­culo(s)</em> indicam quais tipos de veÃ­culo podem usar a parada. Eles incluem: Ã´nibus/autocarro, caminhÃ£o/camiÃ£o, trem/comboio, barco/navio e aviÃ£o. Bondes/elÃ©ctricos sÃ£o ora representados pelo sÃ­mbolo de Ã´nibus/autocarro, ora pelo de trem/comboio, conforme o tipo original da parada.
 </p>
 <p>
 <em>Capacidade de armazenamento:</em> o quanto de cada carga a parada pode acomodar.
 </p>
 <p>
-<em>Imagem da parada</em>: uma visão da parada e quaisquer veículos visíveis.<br>
-Clique na imagem para centralizar a visão do jogo sobre a parada.</p>
+<em>Imagem da parada</em>: uma visÃ£o da parada e quaisquer veÃ­culos visÃ­veis.<br>
+Clique na imagem para centralizar a visÃ£o do jogo sobre a parada.</p>
 <p>
-<em>Passageiros</em> os números indicam a quantidade de passageiros que querem iniciar sua viagem pela parada em foco:<br>
-- <em>rosto feliz</em> indica a quantidade de passageiros que chegaram à parada e encontraram-na sem estar lotada e encontram uma rota para o seu destino.<br>
-- <em>rosto triste ou bravo</em> indica a quantidade de passageiros que chegaram à parada, mas encontraram-na lotada, o que os fez desistir de viajar.<br>
-- <em>sem caminho</em> indica a quantidade de passageiros que chegaram à parada, mas não encontraram uma rota para chegar ao seu destino.<br>
-(Dicas: Manter os passageiros felizes ajuda a aumentar a população das <a href="citywindow.txt">cidades</a>. É possível alterar o número máximo de transferências no arquivo simuconf.tab}.
+<em>Passageiros</em> os nÃºmeros indicam a quantidade de passageiros que querem iniciar sua viagem pela parada em foco:<br>
+- <em>rosto feliz</em> indica a quantidade de passageiros que chegaram Ã  parada e encontraram-na sem estar lotada e encontram uma rota para o seu destino.<br>
+- <em>rosto triste ou bravo</em> indica a quantidade de passageiros que chegaram Ã  parada, mas encontraram-na lotada, o que os fez desistir de viajar.<br>
+- <em>sem caminho</em> indica a quantidade de passageiros que chegaram Ã  parada, mas nÃ£o encontraram uma rota para chegar ao seu destino.<br>
+(Dicas: Manter os passageiros felizes ajuda a aumentar a populaÃ§Ã£o das <a href="citywindow.txt">cidades</a>. Ã‰ possÃ­vel alterar o nÃºmero mÃ¡ximo de transferÃªncias no arquivo simuconf.tab}.
 </p>
 <p>
 <em>Passageiros/mercadoria esperando:</em> lista os itens que esperam por transporte na parada em grupos de: passageiros; correio; e tipo de mercadorias.<br>
-A informação mostrada de cada item inclui quantidade, tipo, destino final e primeira parada de transferência.<br>
-O botão de opções (que muda seu nome conforme se clica nele) organiza os itens das seguintes maneiras:<br>
- - <em>destino:</em> organiza os itens alfanumericamente, de acordo com a codificação ASCII (letra maiúsculas antes das minúsculas e estas, antes das acentuadas), pelo nome da parada do destino final.<br>
- - <em>via (detalhe):</em> organiza os itens alfanumericamente, de acordo com a codificação ASCII (letra maiúsculas antes das minúsculas e estas, antes das acentuadas), pelo nome da primeira parada de transferência.<br>
+A informaÃ§Ã£o mostrada de cada item inclui quantidade, tipo, destino final e primeira parada de transferÃªncia.<br>
+O botÃ£o de opÃ§Ãµes (que muda seu nome conforme se clica nele) organiza os itens das seguintes maneiras:<br>
+ - <em>destino:</em> organiza os itens alfanumericamente, de acordo com a codificaÃ§Ã£o ASCII (letra maiÃºsculas antes das minÃºsculas e estas, antes das acentuadas), pelo nome da parada do destino final.<br>
+ - <em>via (detalhe):</em> organiza os itens alfanumericamente, de acordo com a codificaÃ§Ã£o ASCII (letra maiÃºsculas antes das minÃºsculas e estas, antes das acentuadas), pelo nome da primeira parada de transferÃªncia.<br>
  - <em>via (quantidade):</em> organiza os itens pela quantidade que vai ser transferida numa parada imediatamente posterior.<br>
  - <em>quantidade:</em> organiza por ordem decrescente da quantidade do item em espera.<br>
-(Dicas: as barras coloridas sobre uma parada indicam a quantidade de mercadoria ou de passageiros esperando para ser transportada e são as mesmas que se vê na <a href="goods_filter.txt">Lista das cargas</a>.)
+(Dicas: as barras coloridas sobre uma parada indicam a quantidade de mercadoria ou de passageiros esperando para ser transportada e sÃ£o as mesmas que se vÃª na <a href="goods_filter.txt">Lista das cargas</a>.)
 </p>
 <p>
-<em>Gráfico:</em> Clique no botão para acionar os gráficos da janela de <strong>Informações da Parada</strong> (quando a área do gráfico está visível, o botão fica afundado).<br>
-O gráfico mostra estatísticas para os últimos 12 meses (eixo horizontal) para o(s) dado(s) selecionado(s).<br>
-As cores das linha do gráfico correspondem às dos botões sobre ele:<br>
-- <em>Contentes</em> indica a quantidade de passageiros que chegaram à parada e encontraram-na sem estar lotada e encontram uma rota para o seu destino.<br>
-- <em>Descontentes</em> indica a quantidade de passageiros que chegaram à parada, mas encontraram-na lotada, o que os fez desistir de viajar.<br>
-- <em>Sem rota</em> indica a quantidade de passageiros que chegaram à parada, mas não encontraram uma rota para chegar ao seu destino.<br>
-- <em>Espera:</em> quantidade de passageiros e mercadorias à espera de transporte.<br>
-- <em>Chegados:</em> quantidade de passageiros e mercadorias que chegaram à parada através de veículos, não pela área de captura.<br>
-- <em>Saídos:</em> quantidade de passageiros e mercadorias que saíram da parada através de veículos.<br>
-- <em>Veículos:</em> quantidade de veículos que partiram da parada.
+<em>GrÃ¡fico:</em> Clique no botÃ£o para acionar os grÃ¡ficos da janela de <strong>InformaÃ§Ãµes da Parada</strong> (quando a Ã¡rea do grÃ¡fico estÃ¡ visÃ­vel, o botÃ£o fica afundado).<br>
+O grÃ¡fico mostra estatÃ­sticas para os Ãºltimos 12 meses (eixo horizontal) para o(s) dado(s) selecionado(s).<br>
+As cores das linha do grÃ¡fico correspondem Ã s dos botÃµes sobre ele:<br>
+- <em>Contentes</em> indica a quantidade de passageiros que chegaram Ã  parada e encontraram-na sem estar lotada e encontram uma rota para o seu destino.<br>
+- <em>Descontentes</em> indica a quantidade de passageiros que chegaram Ã  parada, mas encontraram-na lotada, o que os fez desistir de viajar.<br>
+- <em>Sem rota</em> indica a quantidade de passageiros que chegaram Ã  parada, mas nÃ£o encontraram uma rota para chegar ao seu destino.<br>
+- <em>Espera:</em> quantidade de passageiros e mercadorias Ã  espera de transporte.<br>
+- <em>Chegados:</em> quantidade de passageiros e mercadorias que chegaram Ã  parada atravÃ©s de veÃ­culos, nÃ£o pela Ã¡rea de captura.<br>
+- <em>SaÃ­dos:</em> quantidade de passageiros e mercadorias que saÃ­ram da parada atravÃ©s de veÃ­culos.<br>
+- <em>VeÃ­culos:</em> quantidade de veÃ­culos que partiram da parada.
 </p>
 <p>
-<em>Detalhes:</em> botão que abre a janela de <a href="station_details.txt">Detalhes da Parada</a> que fornece outras características da parada, não disponíveis na janela principal.
+<em>Detalhes:</em> botÃ£o que abre a janela de <a href="station_details.txt">Detalhes da Parada</a> que fornece outras caracterÃ­sticas da parada, nÃ£o disponÃ­veis na janela principal.
 </p>
-<p> Traduzido pela Equipe de tradução do Simutrans PT-SubFórum (<em>http://pt.simutrans.com</em>), 17/01/2008, atualizado em 07/02/2008.
+<p> Traduzido pela Equipe de traduÃ§Ã£o do Simutrans PT-SubFÃ³rum (<em>http://pt.simutrans.com</em>), 17/01/2008, atualizado em 07/02/2008.
 </p>

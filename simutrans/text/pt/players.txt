@@ -3,32 +3,32 @@
 <h1><strong>Lista de jogadores</strong></h1>
 
 <p>
-A <strong>Lista de jogadores</strong> fornece informaÁ„o e possui controles para as diferentes companhias dos jogadores.
+A <strong>Lista de jogadores</strong> fornece informa√ß√£o e possui controles para as diferentes companhias dos jogadores.
 </p>
 <p>
-Clique em 'Jogadores' na janela <a href="options.txt">PreferÍncias</a> ou pressione <a href="keys.txt">[k]</a> para abrir a <strong>Lista de jogadores</strong>, que mostra o nome das companhias e seus <a href="finances.txt">balanÁos</a>.
+Clique em 'Jogadores' na janela <a href="options.txt">Prefer√™ncias</a> ou pressione <a href="keys.txt">[k]</a> para abrir a <strong>Lista de jogadores</strong>, que mostra o nome das companhias e seus <a href="finances.txt">balan√ßos</a>.
 </p>
 <p>
-H· oito jogadores: jogador humano, Poder p˙blico e seis jogadores controlados por inteligÍncia artificial (IA). Os controles permitem jogar como outra companhia de transporte se <a href="new_world.txt">Permitir mudanÁa de jogador</a> foi selecionado na criaÁ„o do jogo.
+H√° oito jogadores: jogador humano, Poder p√∫blico e seis jogadores controlados por intelig√™ncia artificial (IA). Os controles permitem jogar como outra companhia de transporte se <a href="new_world.txt">Permitir mudan√ßa de jogador</a> foi selecionado na cria√ß√£o do jogo.
 </p>
 <p>
-Clique no bot„o em forma de seta para atuar como aquela companhia no jogo atual. Uma mensagem de confirmaÁ„o aparece quando se È trocado o jogador: clique no x do canto superior esquerdo da mensagem ou use o teclado para fech·-la.
+Clique no bot√£o em forma de seta para atuar como aquela companhia no jogo atual. Uma mensagem de confirma√ß√£o aparece quando se √© trocado o jogador: clique no x do canto superior esquerdo da mensagem ou use o teclado para fech√°-la.
 </p>
 <p>
-Clique no nome do jogador para ver suas <a href="finances.txt">FinanÁas</a>.
+Clique no nome do jogador para ver suas <a href="finances.txt">Finan√ßas</a>.
 </p>
 <p>
-Clique no bot„o quadrado ao lado de um jogador de IA para ativ·-lo/desativ·-lo (o bot„o aparece pressionado quando a opÁ„o È selecionada).
+Clique no bot√£o quadrado ao lado de um jogador de IA para ativ√°-lo/desativ√°-lo (o bot√£o aparece pressionado quando a op√ß√£o √© selecionada).
 </p>
 <p>
-Jogadores de IA n„o v„o ‡ bancarrota e gerenciam seus veÌculos com m·xima eficiÍncia.<br>
-Desativando um jogador de IA durante o jogo n„o remover· sua rede de transporte.<br>
-Alguns jogadores de IA podem usar somente veÌculos de estradas ou ferrovias, alguns podem somente transportar mercadorias ou passageiros.
+Jogadores de IA n√£o v√£o √† bancarrota e gerenciam seus ve√≠culos com m√°xima efici√™ncia.<br>
+Desativando um jogador de IA durante o jogo n√£o remover√° sua rede de transporte.<br>
+Alguns jogadores de IA podem usar somente ve√≠culos de estradas ou ferrovias, alguns podem somente transportar mercadorias ou passageiros.
 </p>
 <p>
-{Dicas: veÌculos n„o podem usar trilhos de outro jogador ou <a href="station.txt">estaÁıes</a> (de qualquer modo, veÌculos de todos os jogadores podem usar itens construÌdos pelo Poder p˙blico).<br>
-Jogadores n„o podem construir itens ou colocar <a href="special.txt">marcadores</a> nos <a href="railtools.txt">trilhos</a> ou <a href="roadtools.txt">estradas</a> de outro jogador, ou remover itens construÌdos por outro jogador (de qualquer modo, alguns itens construÌdos pelo Poder p˙blico podem ser removidos usando a ferramenta <a href="removal_tool.txt">Remover</a>).<br>
-Desabilitar a mudanÁa de jogador tambÈm restringe as <a href="edittools.txt">ferramentas</a> extras como Poder p˙blico.}
+{Dicas: ve√≠culos n√£o podem usar trilhos de outro jogador ou <a href="station.txt">esta√ß√µes</a> (de qualquer modo, ve√≠culos de todos os jogadores podem usar itens constru√≠dos pelo Poder p√∫blico).<br>
+Jogadores n√£o podem construir itens ou colocar <a href="special.txt">marcadores</a> nos <a href="railtools.txt">trilhos</a> ou <a href="roadtools.txt">estradas</a> de outro jogador, ou remover itens constru√≠dos por outro jogador (de qualquer modo, alguns itens constru√≠dos pelo Poder p√∫blico podem ser removidos usando a ferramenta <a href="removal_tool.txt">Remover</a>).<br>
+Desabilitar a mudan√ßa de jogador tamb√©m restringe as <a href="edittools.txt">ferramentas</a> extras como Poder p√∫blico.}
 </p>
-<p> Traduzido pela Equipe de traduÁ„o do Simutrans PT-SubFÛrum (<em>http://pt.simutrans.com</em>), 17/01/2008.
+<p> Traduzido pela Equipe de tradu√ß√£o do Simutrans PT-SubF√≥rum (<em>http://pt.simutrans.com</em>), 17/01/2008.
 </p>

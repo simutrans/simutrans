@@ -3,29 +3,29 @@
 <h1><strong>Ferramenta Remover</strong></h1>
 
 <p>
-<strong>Ferramenta Remover</strong> È usada para destruir e remover os itens e obst·culos n„o desejados ‡ construÁ„o em um ˙nico quadro do terreno na
+<strong>Ferramenta Remover</strong> √© usada para destruir e remover os itens e obst√°culos n√£o desejados √† constru√ß√£o em um √∫nico quadro do terreno na
 <a href="window.txt">tela do jogo</a>.
 </p>
 <p>
-Para usar: Clique no Ìcone com uma cruz vermelha (ou <it>escavadora</it>, no pak128) no topo da tela do jogo ou pressione <a href="keys.txt">[a]</a> para abrir a <strong>Ferramenta Remover</strong> (o cursor torna-se numa cruz vermelha numa nuvem de poeira).<br>
-Posicione o cursor na tela dojogo, um ret‚ngulo amarelo indica a posiÁ„o em que a ferramenta ir· operar (as coordenadas do mapa s„o indicadas na barra cinza abaixo). Ent„o clique sobre o objeto na tela do jogo para remover.
+Para usar: Clique no √≠cone com uma cruz vermelha (ou <it>escavadora</it>, no pak128) no topo da tela do jogo ou pressione <a href="keys.txt">[a]</a> para abrir a <strong>Ferramenta Remover</strong> (o cursor torna-se numa cruz vermelha numa nuvem de poeira).<br>
+Posicione o cursor na tela dojogo, um ret√¢ngulo amarelo indica a posi√ß√£o em que a ferramenta ir√° operar (as coordenadas do mapa s√£o indicadas na barra cinza abaixo). Ent√£o clique sobre o objeto na tela do jogo para remover.
 </p>
 <p>
-O custo do uso da ferramenta È indicado na tela do jogo e aparece bem onde estava o <a href="finances.txt">item eliminado</a>. O custo da remoÁ„o È equivalente ao custo da construÁ„o para os itens do jogador.<br>
-O custo de destruir <a href="inspection_tool.txt">edifÌcios da cidade</a> È o mesmo valor apresentado na caixa de di·logo deste edifÌcio aberta pela <it>Ferramenta de consula</it>. O custo de destruir ·rvores È de 100 Hajo Credits.
+O custo do uso da ferramenta √© indicado na tela do jogo e aparece bem onde estava o <a href="finances.txt">item eliminado</a>. O custo da remo√ß√£o √© equivalente ao custo da constru√ß√£o para os itens do jogador.<br>
+O custo de destruir <a href="inspection_tool.txt">edif√≠cios da cidade</a> √© o mesmo valor apresentado na caixa de di√°logo deste edif√≠cio aberta pela <it>Ferramenta de consula</it>. O custo de destruir √°rvores √© de 100 Hajo Credits.
 </p>
 <p>
-<strong>Ferramenta de remoÁ„o</strong> pode ser usada para remover os pedestres individuais e os carros privados.
+<strong>Ferramenta de remo√ß√£o</strong> pode ser usada para remover os pedestres individuais e os carros privados.
 </p>
 <p>
-A ordem de remoÁ„o dos itens em um quadro do terreno: carros e pedestres, sinais, paradas ou plataforma, eletrificaÁ„o das vias, ponte ou t˙nel, vias (trilhos primeiramente se sobre estradas).
+A ordem de remo√ß√£o dos itens em um quadro do terreno: carros e pedestres, sinais, paradas ou plataforma, eletrifica√ß√£o das vias, ponte ou t√∫nel, vias (trilhos primeiramente se sobre estradas).
 </p>
 <p>
-{Dicas: Para remover um veÌculo do jogador, venda o veÌculo a partir de <a href="convoidetail.txt">Detalhes do Comboio</a>.<br>
-Para remover ind˙strias, atraÁıes turÌsticas e a prefeitura, primeiro altere para jogador ServiÁo P˙blico. <it>Por favor atenÁ„o:</it> o uso da <strong>ferramenta de remoÁ„o</strong> em uma prefeitura remover· todos os edifÌcios da cidade da ·rea urbana.<br>
-Use <a href="keys.txt">[Ctrl]</a> para usar a ferramenta em objetos no nÌvel superior.<br>
-Para destruir/remover itens de outros jogadores, primeiro faÁa a mudanÁa de jogador em <a href="players.txt">Lista de Jogadores</a>.<br>
-Para remover trechos de um trilho ou estrada, use <a href="railtools.txt">Remover trecho de trilhos</a> tambÈm encontrado em <a href="tramtools.txt">Bondes</a>) ou <a href="roadtools.txt">Remover trecho de estradas</a>.}
+{Dicas: Para remover um ve√≠culo do jogador, venda o ve√≠culo a partir de <a href="convoidetail.txt">Detalhes do Comboio</a>.<br>
+Para remover ind√∫strias, atra√ß√µes tur√≠sticas e a prefeitura, primeiro altere para jogador Servi√ßo P√∫blico. <it>Por favor aten√ß√£o:</it> o uso da <strong>ferramenta de remo√ß√£o</strong> em uma prefeitura remover√° todos os edif√≠cios da cidade da √°rea urbana.<br>
+Use <a href="keys.txt">[Ctrl]</a> para usar a ferramenta em objetos no n√≠vel superior.<br>
+Para destruir/remover itens de outros jogadores, primeiro fa√ßa a mudan√ßa de jogador em <a href="players.txt">Lista de Jogadores</a>.<br>
+Para remover trechos de um trilho ou estrada, use <a href="railtools.txt">Remover trecho de trilhos</a> tamb√©m encontrado em <a href="tramtools.txt">Bondes</a>) ou <a href="roadtools.txt">Remover trecho de estradas</a>.}
 </p>
-<p> Traduzido pela Equipe de traduÁ„o do Simutrans PT-SubFÛrum (<em>http://pt.simutrans.com</em>), 17/01/2008.
+<p> Traduzido pela Equipe de tradu√ß√£o do Simutrans PT-SubF√≥rum (<em>http://pt.simutrans.com</em>), 17/01/2008.
 </p>
