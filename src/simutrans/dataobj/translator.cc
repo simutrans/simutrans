@@ -25,6 +25,23 @@
 
 using std::string;
 
+static const char* special_locale[] =
+{
+	"be_BY",
+	"ca_ES",
+	"da_DK",
+	"el_GR",
+	"en_US",
+	"eo",
+	"et_EE",
+	"ja_JP",
+	"ko_KR",
+	"nn_NO",
+	"sq_AL",
+	"sv_SE",
+	"uk_UA",
+};
+
 // allow all kinds of line feeds
 static char *fgets_line(char *buffer, int max_len, FILE *file)
 {
@@ -434,7 +451,7 @@ uint32 translator::guess_highest_unicode(int n)
 		uint32 max_char2 = get_highest_character((const utf8*)T2);
 		max_char = max(max_char, max_char2);
 	}
-	const char* T3 = langs[n].texts.get("Start");
+	const char* T3 = langs[n].texts.get("Das Feld gehoert\neinem anderen Spieler\n");
 	if (T3) {
 		uint32 max_char3 = get_highest_character((const utf8*)T3);
 		max_char = max(max_char, max_char3);
@@ -520,15 +537,25 @@ bool translator::load()
 			langs[single_instance.lang_count].iso_base[0] = tolower(iso[0]);
 			langs[single_instance.lang_count].iso_base[1] = tolower(iso[1]);
 			langs[single_instance.lang_count].iso_base[2] = 0;
+			// now find the string if it needs a special treament
+			for (int i = 0; i < lengthof(special_locale); i++) {
+				if (strncmp(langs[single_instance.lang_count].iso_base, special_locale[i], 2)==0) {
+					strcpy(langs[single_instance.lang_count].iso, special_locale[i]);
+					goto have_long_iso;
+				}
+			}
 			if (strcmp(langs[single_instance.lang_count].iso_base, "cn") == 0) {
-				strcpy(langs[single_instance.lang_count].iso, "zh-CN");
+				strcpy(langs[single_instance.lang_count].iso, "zh_CN");
 			}
 			else if (strcmp(langs[single_instance.lang_count].iso_base, "zh") == 0) {
-				strcpy(langs[single_instance.lang_count].iso, "zh-TW");
+				strcpy(langs[single_instance.lang_count].iso, "zh_TW");
 			}
 			else {
-				strcpy(langs[single_instance.lang_count].iso, langs[single_instance.lang_count].iso_base);
+				// else just double letters
+				sprintf(langs[single_instance.lang_count].iso, "%c%c_%c%c", tolower(iso[0]), tolower(iso[1]), toupper(iso[0]), toupper(iso[1]));
 			}
+have_long_iso:
+			printf("Locale \"%s\" results in %s\n", langs[single_instance.lang_count].iso_base, langs[single_instance.lang_count].iso);
 			load_language_file(file);
 			fclose(file);
 			langs[single_instance.lang_count].highest_character = guess_highest_unicode( single_instance.lang_count );

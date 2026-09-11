@@ -44,6 +44,7 @@
 #	endif
 #	include "../simdebug.h"
 #else
+#	include <locale.h>
 #	include <limits.h>
 #	include <dirent.h>
 #	if !defined __AMIGA__ && !defined __BEOS__
@@ -1447,8 +1448,17 @@ int dr_compare_uft8_string(const utf8* s1, const utf8* s2, const utf8* locale)
 }
 #else
 {
-	// for now
-	return STRICMP(s1, s2 );
+	static const utf8* last_locale = 0;
+	if (last_locale != locale) {
+		static char new_locale_utf[16];
+		sprintf(new_locale_utf, "%s.UTF-8", locale);
+		const char* current_loc = setlocale(LC_ALL, new_locale_utf);
+		setlocale(LC_CTYPE, "");
+		setlocale(LC_NUMERIC, "en_US.UTF-8");
+		printf("%s -> %p\n", new_locale_utf, current_loc);
+		last_locale = locale;
+	}
+	return strcoll( (const char*)s1, (const char *)s2 );
 }
 #endif
 
@@ -1587,7 +1597,8 @@ int sysmain(int const argc, char** const argv)
 	if (length != -1) {
 		buffer[length] = '\0'; /* readlink() does not NUL-terminate */
 		argv_copy[0] = buffer;
-	} else if (strchr(argv_copy[0], '/') == NULL) {
+	}
+	else if (strchr(argv_copy[0], '/') == NULL) {
 		// no /proc, no '/' in argv[0] => search PATH
 		const char* path = getenv("PATH");
 		if (path != NULL) {
