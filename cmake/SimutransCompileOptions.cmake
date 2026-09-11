@@ -135,6 +135,7 @@ if (MSVC)
 	add_definitions(-D_SCL_SECURE_NO_WARNINGS)
 	add_definitions(-DNOMINMAX)
 	add_definitions(-DWIN32_LEAN_AND_MEAN)
+	add_definitions( -DWINVER=_WIN32_WINNT_VISTA )
 
 	if (SIMUTRANS_WARNINGS_AS_ERRORS)
 		add_compile_options(/WX)
