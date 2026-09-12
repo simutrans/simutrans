@@ -1471,7 +1471,7 @@ const char *tool_setslope_t::tool_set_slope_work( player_t *player, koord3d pos,
 		// maximum difference check with tiles to north, south east and west
 		const sint8 test_hgt = hgt+(new_slope!=0);
 
-		if(  gr1->get_typ()==grund_t::boden  ) {
+		if(  gr1->get_typ()==grund_t::boden  ||  gr1->get_typ()==grund_t::fundament  ) {
 			for(  sint16 i = 0 ;  i < 4 ;  i++  ) {
 				const koord neighbour = k + koord::nesw[i];
 

@@ -188,6 +188,7 @@ all_tests <- [
 	test_slope_restore_on_bridge,
 	test_slope_restore_on_label,
 	test_slope_max_height_diff,
+	test_slope_max_height_diff_on_field,
 	test_vm_ops_counters_are_integers,
 	test_vm_ops_counters_track_each_other,
 	test_vm_suspend_resume_keeps_state,

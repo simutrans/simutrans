@@ -174,6 +174,98 @@ function test_slope_max_height_diff()
 }
 
 
+//
+// A factory field sits on a foundation (grund_t::fundament), not on plain
+// ground, and the check above only looked at plain ground. Reported by poppo
+// in forum topic 24086: the height of a field tile could be changed past the
+// limit, over and over, while ordinary ground next to it could not.
+//
+function test_slope_max_height_diff_on_field()
+{
+	local pl        = player_x(0)
+	local public_pl = player_x(1)
+	local setslope  = command_x.set_slope
+
+	// the pak64 factory that owns fields
+	ASSERT_EQUAL(command_x(tool_build_factory).work(pl, coord3d(3, 4, 0), "011024,PVkraftwerk"), null)
+
+	local fab = factory_x(3, 4)
+	ASSERT_TRUE(fab != null)
+	// with only the minimum number of fields left, the tool stops earlier - at
+	// the check that the tile could be cleared - and never reaches this one
+	ASSERT_TRUE(fab.get_field_count() > fab.get_min_field_count())
+
+	// a field away from the map border whose four neighbours are flat
+	local fx = -1
+	local fy = -1
+	foreach (t in fab.get_fields_list()) {
+		if (t.x < 2  ||  t.x > 13  ||  t.y < 2  ||  t.y > 13) {
+			continue
+		}
+		if (   square_x(t.x,     t.y    ).get_ground_tile().z == 0
+		    && square_x(t.x,     t.y - 1).get_ground_tile().z == 0
+		    && square_x(t.x + 1, t.y    ).get_ground_tile().z == 0
+		    && square_x(t.x,     t.y + 1).get_ground_tile().z == 0
+		    && square_x(t.x - 1, t.y    ).get_ground_tile().z == 0) {
+			fx = t.x
+			fy = t.y
+			break
+		}
+	}
+	ASSERT_TRUE(fx >= 0)
+
+	local field_count = fab.get_field_count()
+
+	// upwards, height difference = 4, exactly as on plain ground
+	ASSERT_EQUAL(setslope(pl, coord3d(fx, fy, 0), slope.all_up_slope), null)
+	ASSERT_EQUAL(setslope(pl, coord3d(fx, fy, 1), slope.all_up_slope), null)
+	ASSERT_EQUAL(setslope(pl, coord3d(fx, fy, 2), slope.all_up_slope), null)
+	ASSERT_EQUAL(setslope(pl, coord3d(fx, fy, 3), slope.all_up_slope), null)
+	ASSERT_EQUAL(square_x(fx, fy).get_ground_tile().z, 4)
+
+	// the fifth step is refused, and repeating it changes nothing at all
+	local cash = pl.get_current_cash()
+	ASSERT_EQUAL(setslope(pl, coord3d(fx, fy, 4), slope.all_up_slope), "Maximum tile height difference reached.")
+	ASSERT_EQUAL(setslope(pl, coord3d(fx, fy, 4), slope.all_up_slope), "Maximum tile height difference reached.")
+	ASSERT_EQUAL(square_x(fx, fy).get_ground_tile().z, 4)
+	ASSERT_EQUAL(pl.get_current_cash(), cash)
+	ASSERT_EQUAL(fab.get_field_count(), field_count)
+
+	// and the field still belongs to its factory
+	local field = tile_x(fx, fy, 4).find_object(mo_field)
+	ASSERT_TRUE(field != null)
+	ASSERT_TRUE(field.get_factory() != null)
+
+	// downwards, the same limit
+	ASSERT_EQUAL(setslope(pl, coord3d(fx, fy,  4), slope.all_down_slope), null)
+	ASSERT_EQUAL(setslope(pl, coord3d(fx, fy,  3), slope.all_down_slope), null)
+	ASSERT_EQUAL(setslope(pl, coord3d(fx, fy,  2), slope.all_down_slope), null)
+	ASSERT_EQUAL(setslope(pl, coord3d(fx, fy,  1), slope.all_down_slope), null)
+	ASSERT_EQUAL(setslope(pl, coord3d(fx, fy,  0), slope.all_down_slope), null)
+	ASSERT_EQUAL(setslope(pl, coord3d(fx, fy, -1), slope.all_down_slope), null)
+	ASSERT_EQUAL(setslope(pl, coord3d(fx, fy, -2), slope.all_down_slope), null)
+	ASSERT_EQUAL(setslope(pl, coord3d(fx, fy, -3), slope.all_down_slope), null)
+	ASSERT_EQUAL(square_x(fx, fy).get_ground_tile().z, -4)
+
+	ASSERT_EQUAL(setslope(pl, coord3d(fx, fy, -4), slope.all_down_slope), "Maximum tile height difference reached.")
+	ASSERT_EQUAL(square_x(fx, fy).get_ground_tile().z, -4)
+	ASSERT_EQUAL(fab.get_field_count(), field_count)
+
+	// a building stands on a foundation too, and is still refused before this
+	ASSERT_EQUAL(setslope(pl, coord3d(3, 4, 0), slope.all_up_slope), "Tile not empty.")
+
+	// and clean up
+	ASSERT_EQUAL(setslope(pl, coord3d(fx, fy, -4), slope.all_up_slope), null)
+	ASSERT_EQUAL(setslope(pl, coord3d(fx, fy, -3), slope.all_up_slope), null)
+	ASSERT_EQUAL(setslope(pl, coord3d(fx, fy, -2), slope.all_up_slope), null)
+	ASSERT_EQUAL(setslope(pl, coord3d(fx, fy, -1), slope.all_up_slope), null)
+	ASSERT_EQUAL(square_x(fx, fy).get_ground_tile().z, 0)
+
+	ASSERT_EQUAL(command_x(tool_remover).work(public_pl, coord3d(3, 4, 0)), null)
+	RESET_ALL_PLAYER_FUNDS()
+}
+
+
 function test_slope_get_price()
 {
 	local pl = player_x(0)
