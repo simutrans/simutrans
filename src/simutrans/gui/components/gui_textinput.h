@@ -108,6 +108,8 @@ public:
 
 	gui_textinput_t();
 
+	~gui_textinput_t();
+
 	// update changes with delay (in ms), 0=immeadiately 0xFFFF=never
 	void set_notify_all_changes_delay(uint16 _n) { notify_all_changes_delay = _n; }
 

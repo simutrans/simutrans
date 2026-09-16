@@ -319,9 +319,10 @@ bool dr_os_init(const int* parameter)
 	if (has_soft_keyboard  &&  !env_t::hide_keyboard) {
 		env_t::hide_keyboard = true;
 	}
-	if (!env_t::hide_keyboard) {
+// we alwaye enable it
+//	if (!env_t::hide_keyboard) {
 		SDL_EventState(SDL_TEXTINPUT, SDL_ENABLE);
-	}
+//	}
 
 	sync_blit = parameter[0];  // hijack SDL1 -async flag for SDL2 vsync
 	use_dirty_tiles = !parameter[1]; // hijack SDL1 -use_hw flag to turn off dirty tile updates (force fullscreen updates)
@@ -1094,22 +1095,15 @@ void dr_sleep(uint32 usec)
 
 void dr_start_textinput()
 {
-	if(  env_t::hide_keyboard  ) {
-	    SDL_StartTextInput();
-		DBG_MESSAGE("SDL_StartTextInput", "");
-	}
+	SDL_StartTextInput();
+	DBG_MESSAGE("SDL_StartTextInput", "");
 }
 
 
 void dr_stop_textinput()
 {
-	if(  env_t::hide_keyboard  ) {
-	    SDL_StopTextInput();
-		DBG_MESSAGE("SDL_StoptTextInput", "");
-	}
-	else {
-		SDL_EventState(SDL_TEXTINPUT, SDL_ENABLE);
-	}
+	SDL_StopTextInput();
+	DBG_MESSAGE("SDL_StoptTextInput", "");
 }
 
 void dr_notify_input_pos(scr_coord pos)

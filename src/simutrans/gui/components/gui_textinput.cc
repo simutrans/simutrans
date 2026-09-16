@@ -34,6 +34,12 @@ gui_textinput_t::gui_textinput_t() :
 { }
 
 
+gui_textinput_t::~gui_textinput_t()
+{
+	// does not hurt to close the screen window again to be sure ...
+	dr_stop_textinput();
+}
+
 scr_size gui_textinput_t::get_min_size() const
 {
 	return scr_size(4*LINESPACE, ::max(LINESPACE+4, D_EDIT_HEIGHT) );
@@ -459,6 +465,7 @@ bool gui_textinput_t::infowin_event(const event_t *ev)
 			tail_cursor_pos = head_cursor_pos = gfx->calc_text_index_for_width( text, ev->click_pos.x - 2 + scroll_offset );
 		}
 		cursor_reference_time = dr_time(); // update reference time for cursor blinking
+		dr_start_textinput();
 		return true;
 	}
 	else if(  IS_LEFTDRAG(ev)  ) {
