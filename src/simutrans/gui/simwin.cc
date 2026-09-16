@@ -2184,7 +2184,7 @@ void win_display_flush(double konto)
 			break;
 
 		case MENU_RIGHT:
-			menu_pos.x = screen.h - env_t::iconsize.w;
+			menu_pos.x = screen.w - env_t::iconsize.w;
 			menu_size = scr_size(env_t::iconsize.w, screen.h - win_get_statusbar_height()-show_ticker*TICKER_HEIGHT );
 			clip_rr = scr_rect(0, 0, screen.w - env_t::iconsize.w, screen.h);
 			break;
