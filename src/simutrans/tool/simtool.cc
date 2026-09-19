@@ -2712,22 +2712,14 @@ const char* tool_build_way_t::get_default_param(player_t *player) const
 	if (player==NULL) {
 		return default_param;
 	}
-	if (desc) {
-		return desc->get_name();
-	}
-	else {
-		if (default_param == NULL) {
-			// no chance to guess anything sensible
-			return NULL;
-		}
+	if (default_param && atoi(default_param)) {
+		// numerical way type, 
 		const way_desc_t* test_desc = get_desc();
 		if (test_desc) {
 			return test_desc->get_name();
 		}
-		else {
-			return default_param;
-		}
 	}
+	return default_param;
 }
 
 bool tool_build_way_t::is_selected() const
@@ -2749,25 +2741,55 @@ bool tool_build_way_t::init( player_t *player )
 
 	// now get current desc
 	desc = get_desc();
-	if(  desc  &&  desc->get_cursor()->get_image_id(0) != IMG_EMPTY  ) {
-		cursor = desc->get_cursor()->get_image_id(0);
+	if (!desc) {
+		return false;
 	}
-
-	const char* n;
-	terraform_only = false; // a tool instance can be reused with another parameter
-	if (default_param && (n = strchr(default_param, ','))!=NULL) {
-		automatic_tunnel_and_bridges = n[1] == '1';
-		terraform_only = n[1] == '2';
-		if (n[2] == ',') {
-			max_length = atol(n + 3);
-		}
-	}
-
-	if(  desc  &&  !desc->is_available(welt->get_timeline_year_month())  &&  player!=NULL  &&  player!=welt->get_public_player()  ) {
+	if (!desc->is_available(welt->get_timeline_year_month()) && player != NULL && player != welt->get_public_player()) {
 		// non available way => fail if not public player
 		return false;
 	}
-	return desc!=NULL;
+	if(desc->get_cursor()->get_image_id(0) != IMG_EMPTY  ) {
+		cursor = desc->get_cursor()->get_image_id(0);
+	}
+	tunnel = NULL;
+	bridge = NULL;
+
+	const char* n;
+	terraform_only = false; // a tool instance can be reused with another parameter
+	if (!default_param || (n = strchr(default_param, ',')) == NULL) {
+		// dunny for correct init
+		n = "\0";
+	}
+	int i = 1;
+	automatic_tunnel_and_bridges = n[i] == 'a';
+	if (automatic_tunnel_and_bridges) i++;
+	terraform_only = n[i] == 't';
+	if (terraform_only) i++;
+	keep_ways = n[i] == 'k';
+	if (keep_ways) i++;
+	straight_ways = n[i] == 's';
+	if (straight_ways) i++;
+	if (n[i] == ',') {
+		max_length = atol(n+i+1);
+		n = strchr(n + i + 1, ',');
+		i = i;
+		if (n) {
+			// bridge name
+			char temp[1024];
+			tstrncpy(temp, n + 1, lengthof(temp));
+			char *tn = strchr(temp, ',');
+			if (tn) {
+				*tn++ = 0;
+				bridge = bridge_builder_t::get_desc(temp);
+				tunnel = tunnel_builder_t::get_desc(tn);
+			}
+			else {
+				bridge = bridge_builder_t::get_desc(temp);
+				tunnel = NULL;
+			}
+		}
+	}
+	return true;
 }
 
 void tool_build_way_t::rdwr_custom_data(memory_rw_t *packet)
@@ -2866,21 +2888,23 @@ const char *tool_build_way_t::calc_route( way_builder_t &bauigel, const koord3d 
 	if(desc->get_styp()==type_elevated  &&  desc->get_wtyp()!=air_wt) {
 		bautyp |= way_builder_t::elevated_flag;
 	}
-	const tunnel_desc_t* tunnel = NULL;
-	const bridge_desc_t* br = NULL;
-	if (automatic_tunnel_and_bridges) {
+	if (automatic_tunnel_and_bridges  ||  bridge  ||  tunnel) {
 		// automatich selecting tunnel and bridges
 		bautyp |= way_builder_t::terraform_flag;
-		br = bridge_builder_t::find_bridge(desc->get_wtyp(), desc->get_topspeed(), welt->get_timeline_year_month());
-		tunnel = tunnel_builder_t::get_tunnel_desc(desc->get_wtyp(), desc->get_topspeed(), welt->get_timeline_year_month());
+		if (!bridge) {
+			bridge = bridge_builder_t::find_bridge(desc->get_wtyp(), desc->get_topspeed(), welt->get_timeline_year_month());
+		}
+		if (!tunnel) {
+			tunnel = tunnel_builder_t::get_tunnel_desc(desc->get_wtyp(), desc->get_topspeed(), welt->get_timeline_year_month());
+		}
 	}
 	else if (terraform_only) {
 		// terraforming, but without a tunnel or bridge to fall back on
 		bautyp |= way_builder_t::terraform_flag;
 	}
 
-	bauigel.init_builder(bautyp, desc, tunnel, br);
-	if(  is_ctrl_pressed()  &&  !is_shift_pressed()) {
+	bauigel.init_builder(bautyp, desc, tunnel, bridge);
+	if(  is_ctrl_pressed()  &&  !is_shift_pressed()  ||  !keep_ways) {
 		bauigel.set_keep_existing_ways( false );
 	}
 	else {
@@ -2956,7 +2980,7 @@ const char *tool_build_way_t::calc_route( way_builder_t &bauigel, const koord3d 
 
 	// and continue as normal ...
 	const char *err;
-	if (is_ctrl_pressed() || (env_t::straight_way_without_control && !env_t::networkmode && !is_scripted())
+	if (is_ctrl_pressed() || (env_t::straight_way_without_control && !env_t::networkmode && !is_scripted()) || straight_ways
 #ifdef USE_TOWN_ROAD_BUILDER_TOOL
 		|| get_id() == (TOOL_BUILD_CITYROAD | GENERAL_TOOL)
 #endif

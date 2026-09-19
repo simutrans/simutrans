@@ -137,10 +137,14 @@ bool way_builder_t::register_desc(way_desc_t *desc)
 }
 
 
-const vector_tpl<const way_desc_t *>&  way_builder_t::get_way_list(const waytype_t wtyp, systemtype_t styp)
+const vector_tpl<const way_desc_t *>&  way_builder_t::get_way_list(waytype_t wtyp, systemtype_t styp)
 {
 	static vector_tpl<const way_desc_t *> dummy;
 	dummy.clear();
+	if (wtyp == tram_wt) {
+		wtyp = track_wt;
+		styp = type_tram;
+	}
 	const uint16 time = welt->get_timeline_year_month();
 	for(auto const& i : desc_table) {
 		way_desc_t const* const test = i.value;
@@ -1477,6 +1481,11 @@ void way_builder_t::init_builder(bautyp_t wt, const way_desc_t *b, const tunnel_
 #ifdef AUTOMATIC_TUNNELS
 		if(!tunnel_desc) { tunnel_desc = tunnel_builder_t::get_tunnel_desc(b->get_wtyp(), 25, welt->get_timeline_year_month()); }
 #endif
+	}
+
+	if (wt != air_wt && wt != powerline_wt && (br || tunnel_desc)) {
+		bridge_desc = br;
+		tunnel_desc = tunnel;
 	}
 
 	DBG_MESSAGE("way_builder_t::init_builder()", "setting way type to %d, desc=%s, bridge_desc=%s, tunnel_desc=%s",

@@ -52,6 +52,7 @@
 #include "../gui/sprachen.h"
 #include "../gui/themeselector.h"
 #include "../gui/vehiclelist_frame.h"
+#include "../gui/way_builder_frame.h"
 
 #include "../obj/baum.h"
 #include "../obj/groundobj.h"
@@ -693,6 +694,25 @@ public:
 	bool is_selected() const OVERRIDE { return win_get_magic(magic_player_ranking); }
 	bool init(player_t */*player*/) OVERRIDE {
 		create_win(new player_ranking_frame_t(), w_info, magic_player_ranking);
+		return false;
+	}
+	bool exit(player_t*) OVERRIDE { destroy_win(magic_player_ranking); return false; }
+	bool is_init_keeps_game_state() const OVERRIDE { return true; }
+	bool is_work_keeps_game_state() const OVERRIDE { return true; }
+};
+
+// way builder tool
+class dialog_way_builder_t : public tool_t {
+public:
+	dialog_way_builder_t() : tool_t(DIALOG_WAY_BUILDER | DIALOGE_TOOL) {}
+	char const* get_tooltip(player_t const*) const OVERRIDE { return translator::translate("Way builder"); }
+	bool is_selected() const OVERRIDE { return win_get_magic(magic_way_builder); }
+	bool init(player_t*/*player*/) OVERRIDE {
+		waytype_t wt = invalid_wt;
+		if (default_param && default_param[0] > 0) {
+			wt = (waytype_t)atoi(default_param);
+		}
+		create_win(new way_builder_frame_t(wt), w_info, magic_way_builder);
 		return false;
 	}
 	bool exit(player_t*) OVERRIDE { destroy_win(magic_player_ranking); return false; }

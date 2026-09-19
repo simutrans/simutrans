@@ -35,7 +35,7 @@ private:
 	// (re-)initialize the current tab using the static saved structure
 	void init_tab();
 
-	void way_builder_frame_t::call_building_tool(bool init = false);
+	void call_building_tool(bool init = false);
 
 public:
 	way_builder_frame_t(waytype_t wt);

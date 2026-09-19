@@ -400,6 +400,7 @@ tool_t* create_dialog_tool(int toolnr)
 	case DIALOG_EDIT_GROUNDOBJ:  tool = new dialog_edit_groundobj_t();  break;
 	case DIALOG_CHAT:            tool = new dialog_chat_t();            break;
 	case DIALOG_PLAYER_RANKING:  tool = new dialog_player_ranking_t();  break;
+	case DIALOG_WAY_BUILDER:     tool = new dialog_way_builder_t();     break;
 	default:
 		dbg->error("create_dialog_tool()", "cannot satisfy request for dialog_tool[%i]!", toolnr);
 		return NULL;

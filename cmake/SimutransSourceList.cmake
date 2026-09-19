@@ -194,6 +194,7 @@ target_sources(simutrans PRIVATE
 	src/simutrans/gui/tool_selector.cc
 	src/simutrans/gui/trafficlight_info.cc
 	src/simutrans/gui/vehiclelist_frame.cc
+	src/simutrans/gui/way_builder_frame.cc
 	src/simutrans/gui/welt.cc
 	src/simutrans/io/classify_file.cc
 	src/simutrans/io/raw_image.cc

@@ -495,6 +495,7 @@ SOURCES += src/simutrans/gui/themeselector.cc
 SOURCES += src/simutrans/gui/tool_selector.cc
 SOURCES += src/simutrans/gui/trafficlight_info.cc
 SOURCES += src/simutrans/gui/vehiclelist_frame.cc
+SOURCES += src/simutrans/gui/way_builder_frame.cc
 SOURCES += src/simutrans/gui/welt.cc
 SOURCES += src/simutrans/io/classify_file.cc
 SOURCES += src/simutrans/io/raw_image.cc

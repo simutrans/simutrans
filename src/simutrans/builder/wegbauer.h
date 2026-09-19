@@ -50,7 +50,7 @@ public:
 
 	static bool waytype_available( const waytype_t wtyp, uint16 time );
 
-	static const vector_tpl<const way_desc_t *>&  get_way_list(waytype_t, systemtype_t system_type);
+	static const vector_tpl<const way_desc_t *>&  get_way_list(waytype_t, systemtype_t);
 
 	/**
 	 * Fill menu with icons of given waytype

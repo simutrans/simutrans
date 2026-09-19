@@ -35,6 +35,8 @@ class building_desc_t;
 class roadsign_desc_t;
 class factory_desc_t;
 class way_desc_t;
+class bridge_desc_t;
+class tunnel_desc_t;
 class route_t;
 class way_obj_desc_t;
 
@@ -288,6 +290,18 @@ public:
 	bool is_work_here_keeps_game_state(player_t*, koord3d) OVERRIDE { return true; }
 };
 
+
+/** tool_build_way_t
+ * deafult string either
+ * way_name[,arst,span[,bridge_name,tunnelname]
+ * 'a' bridges and tunnels
+ * 't' terraform
+ * 'r' for replace all ways
+ * 's' only straight ways
+ * span the maximum length of a way (-1: no limit)
+ * bridge and tunnel names for desc to be used (will switch tinnels and bridges on)
+ * 
+ */
 class tool_build_way_t : public two_click_tool_t {
 private:
 	static const way_desc_t *defaults[17]; // default ways for all types
@@ -298,9 +312,12 @@ private:
 
 protected:
 	const way_desc_t *desc;
+	const bridge_desc_t* bridge;
+	const tunnel_desc_t* tunnel;
 	bool   automatic_tunnel_and_bridges;
 	bool   terraform_only;
 	uint32 max_length;
+	bool  straight_ways, keep_ways;
 
 	virtual way_desc_t const* get_desc() const;
 	const char *calc_route( way_builder_t &bauigel, const koord3d &, const koord3d & );
