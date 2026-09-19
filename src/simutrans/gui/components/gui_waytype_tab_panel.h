@@ -11,16 +11,24 @@
 #include "../../simhalt.h"
 #include "gui_tab_panel.h"
 
+#define MAX_WAYTYPE_TABS (9)
+
+
 // panel that show the available waytypes
 class gui_waytype_tab_panel_t :
 	public gui_tab_panel_t
 {
 private:
+	bool include_all;
+
 	// since waytypes may change during timeline
-	waytype_t tabs_to_waytype[9];
+	waytype_t tabs_to_waytype[MAX_WAYTYPE_TABS];
 
 public:
-	gui_waytype_tab_panel_t() { gui_tab_panel_t(); }
+	gui_waytype_tab_panel_t(bool b = true) {
+		include_all = b;
+		gui_tab_panel_t();
+	}
 
 	// all tabs habe the same gui_component with this!
 	void init_tabs(gui_component_t *c);

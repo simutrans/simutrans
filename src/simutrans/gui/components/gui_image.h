@@ -25,13 +25,14 @@ class gui_image_t : public gui_component_t
 	FLAGGED_PIXVAL      color_index;
 
 public:
-	gui_image_t( const image_id i=IMG_EMPTY, const uint8 p=0, control_alignment_t alignment_par = ALIGN_NONE, bool remove_offset = false );
+	gui_image_t( const image_id i=IMG_EMPTY, const uint8 p=0, control_alignment_t alignment_par = ALIGN_NONE, bool remove_offset = true );
 
 public:
 	void set_player_nr(uint8_t player) { player_nr = player; }
 	void set_size( scr_size size_par ) OVERRIDE;
-	void set_image( const image_id i, bool remove_offsets = false );
+	void set_image( const image_id i, bool remove_offsets );
 
+	// FIXME without offset removal, this routine crashes!
 	void enable_offset_removal(bool remove_offsets) { set_image(id,remove_offsets); }
 
 	void set_transparent(FLAGGED_PIXVAL c) { color_index = c; }

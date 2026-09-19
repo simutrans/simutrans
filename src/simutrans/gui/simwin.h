@@ -39,7 +39,7 @@ ENUM_BITSET(wintype)
 
 
 enum magic_numbers {
-	magic_none     = -1,
+	magic_none = -1,
 	magic_reserved = 0,
 
 	// from here on, delete second 'new'-ed object in create_win
@@ -76,16 +76,16 @@ enum magic_numbers {
 
 	// player dependent stuff => 16 times present
 	magic_finances_t,
-	magic_convoi_list        = magic_finances_t         + MAX_PLAYER_COUNT,
-	magic_convoi_list_filter = magic_convoi_list        + MAX_PLAYER_COUNT,
-	magic_line_list          = magic_convoi_list_filter + MAX_PLAYER_COUNT,
-	magic_halt_list          = magic_line_list          + MAX_PLAYER_COUNT,
-	magic_line_management_t  = magic_halt_list          + MAX_PLAYER_COUNT,
-	magic_ai_options_t       = magic_line_management_t  + MAX_PLAYER_COUNT,
-	magic_ai_selector        = magic_ai_options_t       + MAX_PLAYER_COUNT,
-	magic_pwd_t              = magic_ai_selector        + MAX_PLAYER_COUNT,
-	magic_jump               = magic_pwd_t              + MAX_PLAYER_COUNT,
-	magic_headquarter        = magic_jump               + MAX_PLAYER_COUNT,
+	magic_convoi_list = magic_finances_t + MAX_PLAYER_COUNT,
+	magic_convoi_list_filter = magic_convoi_list + MAX_PLAYER_COUNT,
+	magic_line_list = magic_convoi_list_filter + MAX_PLAYER_COUNT,
+	magic_halt_list = magic_line_list + MAX_PLAYER_COUNT,
+	magic_line_management_t = magic_halt_list + MAX_PLAYER_COUNT,
+	magic_ai_options_t = magic_line_management_t + MAX_PLAYER_COUNT,
+	magic_ai_selector = magic_ai_options_t + MAX_PLAYER_COUNT,
+	magic_pwd_t = magic_ai_selector + MAX_PLAYER_COUNT,
+	magic_jump = magic_pwd_t + MAX_PLAYER_COUNT,
+	magic_headquarter = magic_jump + MAX_PLAYER_COUNT,
 
 	// normal stuff
 	magic_curiositylist,
@@ -113,19 +113,20 @@ enum magic_numbers {
 
 	// magic numbers with big jumps between them
 	magic_convoi_info,
-	magic_UNUSED_convoi_detail = magic_convoi_info          + 0x10000, // unused range
-	magic_halt_info            = magic_UNUSED_convoi_detail + 0x10000,
-	magic_UNUSED_halt_detail   = magic_halt_info            + 0x10000, // unused range
-	magic_toolbar              = magic_UNUSED_halt_detail   + 0x10000,
-	magic_script_error         = magic_toolbar              + 0x100,
+	magic_UNUSED_convoi_detail = magic_convoi_info + 0x10000, // unused range
+	magic_halt_info = magic_UNUSED_convoi_detail + 0x10000,
+	magic_UNUSED_halt_detail = magic_halt_info + 0x10000, // unused range
+	magic_toolbar = magic_UNUSED_halt_detail + 0x10000,
+	magic_script_error = magic_toolbar + 0x100,
 	magic_haltlist_filter,
 	magic_depot, // only used to load/save
-	magic_depotlist   = magic_depot + MAX_PLAYER_COUNT,
-	magic_vehiclelist = magic_depotlist   + MAX_PLAYER_COUNT,
+	magic_depotlist = magic_depot + MAX_PLAYER_COUNT,
+	magic_vehiclelist = magic_depotlist + MAX_PLAYER_COUNT,
 	magic_pakinstall,
 	magic_chatframe,
 	magic_player_ranking,
 	magic_script_generator,	// only during saving
+	magic_way_builder,
 	magic_max
 };
 

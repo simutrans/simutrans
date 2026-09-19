@@ -27,17 +27,17 @@
 void gui_waytype_tab_panel_t::init_tabs(gui_component_t* c)
 {
 	uint8 max_idx = 0;
-	add_tab(c, translator::translate("All"));
-	tabs_to_waytype[max_idx++] = ignore_wt;
+
+	// some request no generic waytype
+	if (include_all) {
+		add_tab(c, translator::translate("All"));
+		tabs_to_waytype[max_idx++] = ignore_wt;
+	}
 
 	// now add all specific tabs
-	if (maglev_t::default_maglev) {
-		add_tab(c, translator::translate("Maglev"), skinverwaltung_t::maglevhaltsymbol, translator::translate("Maglev"));
-		tabs_to_waytype[max_idx++] = maglev_wt;
-	}
-	if (monorail_t::default_monorail) {
-		add_tab(c, translator::translate("Monorail"), skinverwaltung_t::monorailhaltsymbol, translator::translate("Monorail"));
-		tabs_to_waytype[max_idx++] = monorail_wt;
+	if (strasse_t::default_strasse) {
+		add_tab(c, translator::translate("Truck"), skinverwaltung_t::autohaltsymbol, translator::translate("Truck"));
+		tabs_to_waytype[max_idx++] = road_wt;
 	}
 	if (schiene_t::default_schiene) {
 		add_tab(c, translator::translate("Train"), skinverwaltung_t::zughaltsymbol, translator::translate("Train"));
@@ -51,9 +51,13 @@ void gui_waytype_tab_panel_t::init_tabs(gui_component_t* c)
 		add_tab(c, translator::translate("Tram"), skinverwaltung_t::tramhaltsymbol, translator::translate("Tram"));
 		tabs_to_waytype[max_idx++] = tram_wt;
 	}
-	if (strasse_t::default_strasse) {
-		add_tab(c, translator::translate("Truck"), skinverwaltung_t::autohaltsymbol, translator::translate("Truck"));
-		tabs_to_waytype[max_idx++] = road_wt;
+	if (maglev_t::default_maglev) {
+		add_tab(c, translator::translate("Maglev"), skinverwaltung_t::maglevhaltsymbol, translator::translate("Maglev"));
+		tabs_to_waytype[max_idx++] = maglev_wt;
+	}
+	if (monorail_t::default_monorail) {
+		add_tab(c, translator::translate("Monorail"), skinverwaltung_t::monorailhaltsymbol, translator::translate("Monorail"));
+		tabs_to_waytype[max_idx++] = monorail_wt;
 	}
 	if (!vehicle_builder_t::get_info(water_wt).empty()) {
 		add_tab(c, translator::translate("Ship"), skinverwaltung_t::schiffshaltsymbol, translator::translate("Ship"));

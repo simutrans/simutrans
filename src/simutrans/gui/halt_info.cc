@@ -294,8 +294,7 @@ gui_halt_type_images_t::gui_halt_type_images_t(halthandle_t h)
 	for(uint i=0; i < lengthof(symbols); i++) {
 		if ( *symbols[i].desc ) {
 			add_component(img_transport + i);
-			img_transport[i].set_image( (*symbols[i].desc)->get_image_id(0));
-			img_transport[i].enable_offset_removal(true);
+			img_transport[i].set_image( (*symbols[i].desc)->get_image_id(0), true);
 			img_transport[i].set_visible( (halttype & symbols[i].type) != 0);
 		}
 	}
@@ -357,13 +356,12 @@ void halt_info_t::init(halthandle_t halt)
 			{
 				add_component(&indicator_color);
 				// indicator for enabled freight type
-				img_enable[0].set_image(skinverwaltung_t::passengers->get_image_id(0));
-				img_enable[1].set_image(skinverwaltung_t::mail->get_image_id(0));
-				img_enable[2].set_image(skinverwaltung_t::goods->get_image_id(0));
+				img_enable[0].set_image(skinverwaltung_t::passengers->get_image_id(0),true);
+				img_enable[1].set_image(skinverwaltung_t::mail->get_image_id(0), true);
+				img_enable[2].set_image(skinverwaltung_t::goods->get_image_id(0), true);
 
 				for(uint i=0; i<3; i++) {
 					add_component(img_enable + i);
-					img_enable[i].enable_offset_removal(true);
 				}
 				img_types = new_component<gui_halt_type_images_t>(halt);
 			}
