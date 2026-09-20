@@ -163,7 +163,7 @@ private:
 
 	// checks, if we can build a bridge here ...
 	// may modify next_gr array!
-	void check_for_bridge(const grund_t* parent_from, const grund_t* from, const vector_tpl<koord3d> &ziel);
+	void check_for_bridge(const grund_t* from, const koord zv, const vector_tpl<koord3d>& ziel);
 
 	sint32 intern_calc_route(const vector_tpl<koord3d> &start, const vector_tpl<koord3d> &ziel);
 	void intern_calc_straight_route(const koord3d start, const koord3d ziel);

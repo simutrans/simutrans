@@ -361,7 +361,8 @@ public:
 	sint32 way_count_double_curve    =   10;
 	sint32 way_count_90_curve        =   30;
 	sint32 way_count_slope           =   20;
-	sint32 way_count_tunnel          =   16;
+	sint32 way_count_tunnel          =   12;
+	uint32 way_count_bridge          =    6;
 	sint32 way_count_no_way          =    3; // slightly prefer existing ways
 	sint32 way_count_avoid_crossings =    8; // prefer less system crossings
 	sint32 way_count_leaving_way     =   50;

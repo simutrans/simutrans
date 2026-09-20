@@ -589,8 +589,18 @@ bool way_builder_t::is_allowed_step(const grund_t *from, const grund_t *to, sint
 	}
 	else {
 		// check slopes
-		bool ok_slope = from->get_weg_hang() == slope_t::flat  ||  ribi_t::doubles(ribi_type(from->get_weg_hang()))==ribi_t::doubles(ribi_type(zv));
-		ok_slope &= to->get_weg_hang() == slope_t::flat  ||  ribi_t::doubles(ribi_type(to->get_weg_hang()))==ribi_t::doubles(ribi_type(zv));
+		bool ok_slope = true;
+		ribi_t::ribi wr = ribi_t::doubles(ribi_type(zv));
+		if (slope_t::type h = from->get_weg_hang()) {
+			ok_slope &= slope_t::is_way_double(h,desc->has_double_slopes());
+			ok_slope &= slope_t::is_way_ew(h) & ribi_t::is_straight_ew(ribi_type(zv));
+		}
+		if (ok_slope) {
+			if (slope_t::type h = to->get_weg_hang()) {
+				ok_slope &= slope_t::is_way_double(h, desc->has_double_slopes());
+				ok_slope &= slope_t::is_way_ew(h) & ribi_t::is_straight_ew(ribi_type(zv));
+			}
+		}
 
 		// try terraforming
 		if (!ok_slope) {
@@ -1305,10 +1315,10 @@ void way_builder_t::do_terraforming()
 	}
 }
 
-void way_builder_t::check_for_bridge(const grund_t* parent_from, const grund_t* from, const vector_tpl<koord3d> &ziel)
+void way_builder_t::check_for_bridge(const grund_t* from, const koord zv, const vector_tpl<koord3d> &ziel)
 {
-	// wrong starting slope or tile already occupied with a way ...
-	if (!slope_t::is_way(from->get_grund_hang())) {
+	// wrong starting slope
+	if (!slope_t::is_way_double(from->get_grund_hang(),desc->has_double_slopes())) {
 		return;
 	}
 
@@ -1357,7 +1367,6 @@ void way_builder_t::check_for_bridge(const grund_t* parent_from, const grund_t* 
 		}
 	}
 
-	const koord zv=from->get_pos().get_2d()-parent_from->get_pos().get_2d();
 	const ribi_t::ribi ribi = ribi_type(zv);
 
 	// now check ribis of existing ways
@@ -1368,15 +1377,14 @@ void way_builder_t::check_for_bridge(const grund_t* parent_from, const grund_t* 
 	}
 
 	// ok, so now we do a closer investigation
-	if(  bridge_desc  && (  ribi_type(from->get_grund_hang()) == ribi_t::backward(ribi_type(zv))  ||  from->get_grund_hang() == 0  )) {
+	if(  bridge_desc  &&  bridge_builder_t::check_start_tile(player_builder, from, ribi_type(zv), bridge_desc)) {
 		// Try a bridge.
 
-		const sint32 cost_difference = desc->get_maintenance() > 0 ? (bridge_desc->get_maintenance() * 4l + 3l) / desc->get_maintenance() : 16;
+//		const sint32 cost_difference = desc->get_maintenance() > 0 ? (bridge_desc->get_maintenance() * 4l + 3l) / desc->get_maintenance() : 16;
 		// try eight possible lengths ..
-		uint32 min_length = 1;
-		for (uint8 i = 0; i < 8 && min_length <= welt->get_settings().way_max_bridge_len; ++i) {
+		for (uint32 length = 1; length <= welt->get_settings().way_max_bridge_len; length++) {
 			sint8 bridge_height;
-			const grund_t* gr_end = welt->lookup_kartenboden(from->get_pos().get_2d() + zv * i);
+			const grund_t* gr_end = welt->lookup_kartenboden(from->get_pos().get_2d() + zv * length);
 			if (!gr_end) {
 				// not on map any more
 				break;
@@ -1385,20 +1393,17 @@ void way_builder_t::check_for_bridge(const grund_t* parent_from, const grund_t* 
 			const char *error = bridge_builder_t::can_build_bridge( player_builder, from->get_pos(), end, bridge_height, bridge_desc);
 			if(error) {
 				// no valid end point found
-				min_length++;
 				continue;
 			}
-			uint32 length = koord_distance(from->get_pos(), end);
 			// check_start_tile returns an error message, NULL meaning the tile is usable,
 			// so the test has to be negated - it replaced can_place_ramp(), which returned
 			// a plain bool with true meaning usable.
-			if(!ziel.is_contained(end)  &&  !bridge_builder_t::check_start_tile(player_builder, gr_end, ribi_type(-zv), bridge_desc)) {
+			if(!ziel.is_contained(end)) {
 				// If there is a slope on the starting tile, it's taken into account in is_allowed_step, but a bridge will be flat!
 				sint8 num_slopes = (from->get_grund_hang() == slope_t::flat) ? 1 : -1;
 				// On the end tile, we haven't to subtract way_count_slope, since is_allowed_step isn't called with this tile.
 				num_slopes += (gr_end->get_grund_hang() == slope_t::flat) ? 1 : 0;
-				next_gr.append(next_gr_t(welt->lookup(end), length * cost_difference + num_slopes*welt->get_settings().way_count_slope, build_straight | build_tunnel_bridge));
-				min_length = length+1;
+				next_gr.append(next_gr_t(welt->lookup(end), length*welt->get_settings().way_count_bridge + num_slopes*welt->get_settings().way_count_slope, build_straight | build_tunnel_bridge));
 			}
 			else {
 				break;
@@ -1407,14 +1412,27 @@ void way_builder_t::check_for_bridge(const grund_t* parent_from, const grund_t* 
 		return;
 	}
 
-	if(  tunnel_desc  &&  ribi_type(from->get_grund_hang()) == ribi_type(zv)  ) {
+	if(  tunnel_desc  &&  ribi_type(from->get_grund_hang()) == ribi_type(zv)) {
 		// uphill hang ... may be tunnel?
-		const sint32 cost_difference = desc->get_maintenance() > 0 ? (tunnel_desc->get_maintenance() * 4l + 3l) / desc->get_maintenance() : 16;
-		koord3d end = tunnel_builder_t::find_end_pos( player_builder, from->get_pos(), zv, tunnel_desc);
-		if(  end != koord3d::invalid  &&  !ziel.is_contained(end)  ) {
-			uint32 length = koord_distance(from->get_pos(), end);
-			next_gr.append(next_gr_t(welt->lookup(end), length * cost_difference, build_straight | build_tunnel_bridge ));
-			return;
+		for (uint32 length = 1; length <= welt->get_settings().way_max_bridge_len; length++) {
+			sint8 bridge_height;
+			const grund_t* gr_end = welt->lookup(from->get_pos() + zv * length);
+			if (!gr_end) {
+				// not an end point for sure
+				continue;
+			}
+			if (slope_t::opposite(gr_end->get_weg_hang()) != from->get_grund_hang()) {
+				break;
+			}
+			koord3d end = gr_end->get_pos();
+			if (!ziel.is_contained(end)  &&  end == tunnel_builder_t::find_end_pos(player_builder, from->get_pos(), zv, tunnel_desc)) {
+				uint32 length = koord_distance(from->get_pos(), end);
+				if (length < welt->get_settings().way_max_bridge_len) {
+					// end tile slope is already accounted for
+					sint32 costs = length * welt->get_settings().way_count_tunnel - welt->get_settings().way_count_slope;
+					next_gr.append(next_gr_t(welt->lookup(end), costs, build_straight | build_tunnel_bridge));
+				}
+			}
 		}
 	}
 }
@@ -1568,6 +1586,7 @@ sint32 way_builder_t::intern_calc_route(const vector_tpl<koord3d> &start, const 
 	route_t::ANode *tmp=NULL;
 	uint32 step = 0;
 	const grund_t* gr=NULL;
+	const bool check_for_bridges = bridge_desc || tunnel_desc;
 
 	for(koord3d const& i : start) {
 		gr = welt->lookup(i);
@@ -1688,10 +1707,16 @@ DBG_DEBUG("insert to close","(%i,%i,%i)  f=%i",gr->get_pos().x,gr->get_pos().y,g
 			if(is_ok) {
 				// now add it to the array ...
 				next_gr.append(next_gr_t(to, new_cost, do_terraform ? build_straight | terraform : 0));
+
+				if (check_for_bridges  &&   gr->get_weg_hang()  &&  (tmp->count & build_tunnel_bridge) == 0) {
+					// check if a bridge/tunnel is better when it is a slope
+					check_for_bridge(gr, zv, ziel);
+				}
+
 			}
-			else if(tmp->parent!=NULL  &&  r==straight_dir  &&  (tmp->count & build_tunnel_bridge)==0) {
+			else if(check_for_bridges  &&  tmp->parent!=NULL  &&  r==straight_dir  &&  (tmp->count & build_tunnel_bridge)==0) {
 				// try to build a bridge or tunnel here, since we cannot go here ...
-				check_for_bridge(tmp->parent->gr,gr,ziel);
+				check_for_bridge(gr, zv, ziel);
 			}
 		}
 
