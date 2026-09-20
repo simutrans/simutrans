@@ -439,27 +439,24 @@ bool way_builder_t::check_powerline(const koord zv, const grund_t *bd) const
 // allowed slope?
 bool way_builder_t::check_slope( const grund_t *from, const grund_t *to )
 {
-	const koord from_pos=from->get_pos().get_2d();
-	const koord to_pos=to->get_pos().get_2d();
-	const koord zv=to_pos-from_pos;
-
-	if(  !desc->has_double_slopes()
-		&&  (    (from->get_weg_hang()  &&  !is_one_high(from->get_weg_hang()))
-		      ||   (to->get_weg_hang()  &&    !is_one_high(to->get_weg_hang()))  )  ) {
-		return false;
-	}
-
 	if(from==to) {
-		if(!slope_t::is_way(from->get_weg_hang())) {
+		if(!slope_t::is_way_double(from->get_weg_hang(),desc->has_double_slopes())) {
 			return false;
 		}
 	}
 	else {
-		if(from->get_weg_hang()!=slope_t::flat  &&  ribi_t::doubles(ribi_type(from->get_weg_hang()))!=ribi_t::doubles(ribi_type(zv))) {
-			return false;
+		const koord from_pos = from->get_pos().get_2d();
+		const koord to_pos = to->get_pos().get_2d();
+		const ribi_t::ribi ribis = ribi_t::doubles(ribi_type(to_pos - from_pos));
+		if (slope_t::type h = from->get_weg_hang()) {
+			if (ribi_t::doubles(ribi_type(h)) != ribis || (!desc->has_double_slopes() && slope_t::max_diff(h) > 1)) {
+				return false;
+			}
 		}
-		if(to->get_weg_hang()!=slope_t::flat  &&  ribi_t::doubles(ribi_type(to->get_weg_hang()))!=ribi_t::doubles(ribi_type(zv))) {
-			return false;
+		if (slope_t::type h = to->get_weg_hang()) {
+			if (ribi_t::doubles(ribi_type(h)) != ribis || (!desc->has_double_slopes() && slope_t::max_diff(h) > 1)) {
+				return false;
+			}
 		}
 	}
 
@@ -1318,10 +1315,11 @@ void way_builder_t::do_terraforming()
 void way_builder_t::check_for_bridge(const grund_t* from, const koord zv, const vector_tpl<koord3d> &ziel)
 {
 	// wrong starting slope
-	if (!slope_t::is_way_double(from->get_grund_hang(),desc->has_double_slopes())) {
+	if (!slope_t::is_way(from->get_grund_hang())) {
 		return;
 	}
 
+	const ribi_t::ribi ribi = ribi_type(zv);
 	/*
 	 * now check existing ways:
 	 * no tunnels/bridges at crossings and no track tunnels/bridges on roads (but road tunnels/bridges on tram are allowed).
@@ -1365,19 +1363,16 @@ void way_builder_t::check_for_bridge(const grund_t* from, const koord zv, const 
 					return;
 				}
 		}
-	}
 
-	const ribi_t::ribi ribi = ribi_type(zv);
-
-	// now check ribis of existing ways
-	const ribi_t::ribi wayribi = way0 ? way0->get_ribi_unmasked() | (way1 ? way1->get_ribi_unmasked() : (ribi_t::ribi)ribi_t::none) : (ribi_t::ribi)ribi_t::none;
-	if (  wayribi & (~ribi)  ) {
-		// curves at bridge start
-		return;
+		const ribi_t::ribi wayribi = way0->get_ribi_unmasked() | (way1 ? way1->get_ribi_unmasked() : (ribi_t::ribi)ribi_t::none);
+		if (wayribi & (~ribi)) {
+			// curves at bridge start
+			return;
+		}
 	}
 
 	// ok, so now we do a closer investigation
-	if(  bridge_desc  &&  bridge_builder_t::check_start_tile(player_builder, from, ribi_type(zv), bridge_desc)) {
+	if(  bridge_desc  &&  bridge_builder_t::check_start_tile(player_builder, from, ribi, bridge_desc)) {
 		// Try a bridge.
 
 //		const sint32 cost_difference = desc->get_maintenance() > 0 ? (bridge_desc->get_maintenance() * 4l + 3l) / desc->get_maintenance() : 16;
@@ -1412,7 +1407,7 @@ void way_builder_t::check_for_bridge(const grund_t* from, const koord zv, const 
 		return;
 	}
 
-	if(  tunnel_desc  &&  ribi_type(from->get_grund_hang()) == ribi_type(zv)) {
+	if(  tunnel_desc  &&  ribi_type(from->get_grund_hang()) == ribi  &&  slope_t::is_way_double(from->get_grund_hang(),false)) {
 		// uphill hang ... may be tunnel?
 		for (uint32 length = 1; length <= welt->get_settings().way_max_bridge_len; length++) {
 			sint8 bridge_height;
@@ -1662,9 +1657,11 @@ DBG_DEBUG("insert to close","(%i,%i,%i)  f=%i",gr->get_pos().x,gr->get_pos().y,g
 		// test directions
 		// .. use only those that are allowed by current slope
 		// .. do not go backward
-		const ribi_t::ribi slope_dir = (slope_t::is_way_ns(gr->get_weg_hang()) ? ribi_t::northsouth : ribi_t::none) | (slope_t::is_way_ew(gr->get_weg_hang()) ? ribi_t::eastwest : ribi_t::none);
-		const ribi_t::ribi test_dir = (tmp->count & build_straight)==0  ?  slope_dir  & ~ribi_t::backward(straight_dir)
-		                                                                :  straight_dir;
+		ribi_t::ribi slope_dir = ribi_t::all;
+		if (slope_t::type h = gr->get_weg_hang()) {
+			slope_dir = ribi_t::doubles(ribi_type(h));
+		}
+		const ribi_t::ribi test_dir = (tmp->count & build_straight)==0  ?  slope_dir  & ~ribi_t::backward(straight_dir) :  straight_dir;
 
 		// testing all four possible directions
 		for(ribi_t::ribi r=1; (r&16)==0; r<<=1) {
@@ -1692,6 +1689,10 @@ DBG_DEBUG("insert to close","(%i,%i,%i)  f=%i",gr->get_pos().x,gr->get_pos().y,g
 					}
 				}
 				else {
+					// bridge o double slope?
+					if (check_for_bridges && r == straight_dir) {
+						check_for_bridge(gr, zv, ziel);
+					}
 					continue;
 				}
 			}
@@ -1714,7 +1715,7 @@ DBG_DEBUG("insert to close","(%i,%i,%i)  f=%i",gr->get_pos().x,gr->get_pos().y,g
 				}
 
 			}
-			else if(check_for_bridges  &&  tmp->parent!=NULL  &&  r==straight_dir  &&  (tmp->count & build_tunnel_bridge)==0) {
+			else if(check_for_bridges  &&  r==straight_dir  &&  (tmp->count & build_tunnel_bridge)==0) {
 				// try to build a bridge or tunnel here, since we cannot go here ...
 				check_for_bridge(gr, zv, ziel);
 			}

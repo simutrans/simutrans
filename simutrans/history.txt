@@ -30,6 +30,8 @@
 	FIX: Crash on Windows when receiving gameinfo for server with motd with >= 260 chars
 	CHG: Now using iso codes for CS, DA and EL (was CZ, DK and GR)
 	ADD: alpha version of a way builder tool DIALOG_TOOL[38] (that show how bad automatic bridge building is right now)
+	FIX: way builder now builds agian automatic bridges from slopes and tries tunnel and bridges even to span normal otherwise terrain with ways
+	FIX: waybuilder should avoid double slopes if the way does not have them, (was broken)
 
 
 Release of 124.5 (r11993 on 31-May-2026):
