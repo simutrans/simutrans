@@ -2903,8 +2903,9 @@ const char *tool_build_way_t::calc_route( way_builder_t &bauigel, const koord3d 
 	}
 
 	bauigel.init_builder(bautyp, desc, tunnel, bridge);
+	bauigel.set_keep_existing_faster_ways(true);
 	if (keep_ways) {
-		bauigel.set_keep_existing_faster_ways(true);
+		bauigel.set_keep_existing_faster_ways(false);
 	}
 	else if(  is_ctrl_pressed()  &&  !is_shift_pressed()) {
 		bauigel.set_keep_existing_ways( false );

@@ -590,12 +590,12 @@ bool way_builder_t::is_allowed_step(const grund_t *from, const grund_t *to, sint
 		ribi_t::ribi wr = ribi_t::doubles(ribi_type(zv));
 		if (slope_t::type h = from->get_weg_hang()) {
 			ok_slope &= slope_t::is_way_double(h,desc->has_double_slopes());
-			ok_slope &= slope_t::is_way_ew(h) & ribi_t::is_straight_ew(ribi_type(zv));
+			ok_slope &= slope_t::is_way_ew(h) ? ribi_t::is_straight_ew(wr) : ribi_t::is_straight_ns(wr);
 		}
 		if (ok_slope) {
 			if (slope_t::type h = to->get_weg_hang()) {
 				ok_slope &= slope_t::is_way_double(h, desc->has_double_slopes());
-				ok_slope &= slope_t::is_way_ew(h) & ribi_t::is_straight_ew(ribi_type(zv));
+				ok_slope &= slope_t::is_way_ew(h) ? ribi_t::is_straight_ew(wr) : ribi_t::is_straight_ns(wr);
 			}
 		}
 
