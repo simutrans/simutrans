@@ -1945,15 +1945,6 @@ uint16 win_get_statusbar_height()
  *
  * Not part of the status bar and not a tooltip.
  *
- * The status bar is already at capacity: it has its own ladder for giving up
- * content when it runs out of width (compact date, then ellipsised player name,
- * then short money, then money alone - see win_display_flush below), so a
- * second variable-width tenant would push the money off screen on small
- * displays. A tooltip is wrong for a different reason: it would tie active
- * build feedback both to env_t::show_tooltips and to a mouse hovering
- * something, and neither is true of a build in progress - least of all on
- * touch, where there is no hover at all.
- *
  * Painted over the world rather than reserving space, so appearing and
  * disappearing never reflows windows or the viewport.
  *
@@ -2283,9 +2274,11 @@ void win_display_flush(double konto)
 
 		POP_CLIP();
 
-		// Deliberately outside the env_t::show_tooltips block above: hover
-		// tooltips stay under that setting, active build feedback does not.
-		display_tool_context_bar( screen, show_ticker );
+		if (env_t::show_construction_info) {
+			// Deliberately outside the env_t::show_tooltips block above: hover
+			// tooltips stay under that setting, active build feedback does not.
+			display_tool_context_bar(screen, show_ticker);
+		}
 
 		if(!wl) {
 			// no infos during loading etc

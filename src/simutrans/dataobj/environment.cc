@@ -28,12 +28,14 @@ bool env_t::single_toolbar_mode = false;
 bool env_t::stack_toolbars = true;
 sint16 env_t::dpi_scale = 100;
 bool env_t::single_info = 1;
+bool env_t::show_construction_info = true;
 #else
 sint16 env_t::menupos = MENU_BOTTOM;
 bool env_t::single_toolbar_mode = true;
 bool env_t::stack_toolbars = false;
 sint16 env_t::dpi_scale = -1;
 bool env_t::single_info = 0;
+bool env_t::show_construction_info = false;
 #endif
 sint16 env_t::fullscreen = WINDOWED;
 sint16 env_t::display_scale_percent = 100;
@@ -170,7 +172,6 @@ uint32 env_t::fps;
 uint32 env_t::ff_fps;
 sint16 env_t::max_acceleration;
 uint8 env_t::num_threads;
-bool env_t::show_construction_info;
 bool env_t::show_tooltips;
 rgb888_t env_t::tooltip_color_rgb;
 PIXVAL env_t::tooltip_color;

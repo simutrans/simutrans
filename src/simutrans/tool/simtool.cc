@@ -13,6 +13,7 @@
 #include "../simmesg.h"
 #include "../simconvoi.h"
 #include "../gui/simwin.h"
+#include "../gui/way_builder_frame.h"
 #include "../display/viewport.h"
 
 #include "../builder/fabrikbauer.h"
@@ -2763,12 +2764,12 @@ bool tool_build_way_t::init( player_t *player )
 	int i = 1;
 	automatic_tunnel_and_bridges = n[i] == 'a';
 	if (automatic_tunnel_and_bridges) i++;
-	terraform_only = n[i] == 't';
-	if (terraform_only) i++;
 	keep_ways = n[i] == 'k';
 	if (keep_ways) i++;
 	straight_ways = n[i] == 's';
 	if (straight_ways) i++;
+	terraform_only = n[i] == 't';
+	if (terraform_only) i++;
 	if (n[i] == ',') {
 		max_length = atol(n+i+1);
 		n = strchr(n + i + 1, ',');
@@ -3019,6 +3020,11 @@ const char* tool_build_way_t::do_work(player_t* player, const koord3d& start, co
 			}
 		}
 
+		win_set_static_tooltip(NULL);	// Publish the estimate first (no dummygrounds, if bauigel.calc_costs() is called).
+		if (gui_frame_t* win = win_get_magic(magic_way_builder)) {
+			((way_builder_frame_t*)win)->costs.set_text(NULL);
+		}
+
 		return NULL;
 	}
 	return err ? err : "";
@@ -3033,9 +3039,14 @@ void tool_build_way_t::mark_tiles(player_t* player, const koord3d& start, const 
 	bool is_elevated = desc->get_styp() == type_elevated && desc->get_wtyp() != air_wt;
 	uint8 offset = is_elevated ? welt->get_settings().get_way_height_clearance() : 0;
 
+	const char *tool_str = NULL;
 	if (bauigel.get_count() > 1) {
-		// Publish the estimate first (no dummygrounds, if bauigel.calc_costs() is called).
-		win_set_tool_estimate(this, bauigel.get_count(), bauigel.calc_costs());
+
+		// Set tooltip first (no dummygrounds, if bauigel.calc_casts() is called).
+		tool_str = tooltip_with_price_length("Building costs estimates", bauigel.calc_costs(), bauigel.get_count());
+		if (env_t::show_construction_info) {
+			win_set_tool_estimate(this, bauigel.get_count(), bauigel.calc_costs());
+		}
 
 		// make dummy route from bauigel
 		for (uint32 j = 0; j < bauigel.get_count(); j++) {
@@ -3043,6 +3054,88 @@ void tool_build_way_t::mark_tiles(player_t* player, const koord3d& start, const 
 			grund_t* base_gr = welt->lookup(base_pos);
 			sint8 extra_h = (is_elevated && base_gr) ? base_gr->get_bridge_slope_extra_height() : 0;
 			koord3d pos = base_pos + koord3d(0, 0, offset + extra_h);
+			if (j > 0) {
+				koord3d old_pos = bauigel.get_route()[j - 1];
+				if (koord_distance(pos, old_pos) > 1) {
+					// bridge or tunnel here
+					grund_t* from = welt->lookup(old_pos);
+					// elevates way and bridges ... we leave this for now
+					slope_t::type h = from->get_grund_hang();
+					ribi_t::ribi wr = ribi_type(old_pos-pos);
+					if (h == slope_t::flat || ribi_type(h) == wr) {
+						// bridges
+						// we have already put a zeiger here
+						zeiger_t* z = from->find<zeiger_t>();
+						slope_t::type wh = h ? slope_t::flat : slope_t::type(wr);
+						z->set_image(bridge->get_background(bridge->get_end(h, h, wh), false));
+						z->set_foreground_image(bridge->get_foreground(bridge->get_end(h, h, wh), false));
+						z->mark_image_dirty(z->get_image(), 0);
+						sint8 z_offset = -slope_t::max_diff(h) * TILE_HEIGHT_STEP;
+						z->set_yoff(z_offset);
+						if (z_offset == 0) {
+							z_offset -= TILE_HEIGHT_STEP;
+						}
+						// now the bridge
+						koord zv = koord(wr);
+						while(1) {
+							old_pos -= zv;
+							if (old_pos == pos) {
+								break;
+							}
+							// now the other slope
+							grund_t* gr = welt->lookup(old_pos);
+							if (!gr) {
+								gr = new monorailboden_t(old_pos, slope_t::flat);
+								// should only be here when elevated/monorail, therefore will be at height offset above ground
+								welt->access(old_pos.get_2d())->boden_hinzufuegen(gr);
+							}
+							z = new zeiger_t(old_pos, player);
+							z->set_image(bridge->get_background(bridge->get_straight(wr, 1),false));
+							z->set_foreground_image(bridge->get_foreground(bridge->get_straight(wr, 1),false));
+							gr->obj_add(z);
+							marked.insert(z);
+							z->mark_image_dirty(z->get_image(), 0);
+							z->set_yoff(z_offset);
+						}
+						// now the other slope
+						grund_t* to = welt->lookup(pos);
+						if (!to) {
+							to = new monorailboden_t(pos, slope_t::flat);
+							// should only be here when elevated/monorail, therefore will be at height offset above ground
+							to->set_grund_hang(base_gr->get_weg_hang());
+							welt->access(pos.get_2d())->boden_hinzufuegen(to);
+						}
+						h = base_gr->get_grund_hang();
+						z = new zeiger_t(pos, player);
+						wr = ribi_t::backward(wr);
+						wh = h ? slope_t::flat : slope_t::type(wr);
+						z->set_image(bridge->get_background(bridge->get_end(h, h, wh), false));
+						z->set_foreground_image(bridge->get_foreground(bridge->get_end(h, h, wh), false));
+						to->obj_add(z);
+						marked.insert(z);
+						z->mark_image_dirty(z->get_image(), 0);
+						z->set_yoff(-slope_t::max_diff(h) * TILE_HEIGHT_STEP);
+					}
+					else {
+						// tunnel
+						// we have already put a zeiger here
+						zeiger_t* z = from->find<zeiger_t>();
+						z->set_image(tunnel->get_background_id(h, 0, 0));
+						z->set_foreground_image(tunnel->get_foreground_id(h, 0, 0));
+						z->mark_image_dirty(z->get_image(), 0);
+						// now the other slope
+						h = base_gr->get_grund_hang();
+						z = new zeiger_t(pos, player);
+						z->set_image(tunnel->get_background_id(h, 0, 0));
+						z->set_foreground_image(tunnel->get_foreground_id(h, 0, 0));
+						z->mark_image_dirty(z->get_image(), 0);
+						base_gr->obj_add(z);
+						marked.insert(z);
+						z->mark_image_dirty(z->get_image(), 0);
+					}
+					continue;
+				}
+			}
 			grund_t* gr = welt->lookup(pos);
 			if (!gr) {
 				gr = new monorailboden_t(pos, slope_t::flat);
@@ -3137,6 +3230,11 @@ void tool_build_way_t::mark_tiles(player_t* player, const koord3d& start, const 
 		// engine did not say why" state, and saying that much is still better
 		// than the silence it used to be. No reason gets invented for it.
 		win_set_tool_problem(this, err);
+		tool_str = err;
+	}
+	win_set_static_tooltip(tool_str);	// Publish the estimate first (no dummygrounds, if bauigel.calc_costs() is called).
+	if (gui_frame_t* win = win_get_magic(magic_way_builder)) {
+		((way_builder_frame_t*)win)->costs.set_text(tool_str);
 	}
 }
 

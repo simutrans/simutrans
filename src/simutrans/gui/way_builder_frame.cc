@@ -309,7 +309,7 @@ void way_builder_frame_t::call_building_tool(bool init)
 
 		cbuffer_t old_str(toolstr);
 		toolstr.clear();
-		toolstr.printf("%s,%s%s,0,%s,%s", current.way->get_name(), current.terraform ? "t" : "", current.keep ? "k" : "", current.straight ? "s" : "", current.bridge ? current.bridge->get_name() : "", current.tunnel ? current.tunnel->get_name() : "");
+		toolstr.printf("%s,%s%s%s,0,%s,%s", current.way->get_name(), current.keep ? "k" : "", current.straight ? "s" : "", current.terraform ? "t" : "", current.bridge ? current.bridge->get_name() : "", current.tunnel ? current.tunnel->get_name() : "");
 		if (welt->get_tool(active_player_nr) != tool || strcmp(old_str, toolstr)) {
 			// set tool to current tool
 			tool->set_default_param(toolstr);

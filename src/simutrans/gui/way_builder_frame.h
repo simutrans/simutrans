@@ -52,13 +52,15 @@ public:
  */
 class way_builder_frame_t : public gui_frame_t, public action_listener_t
 {
+public:
+	gui_label_t costs;
+
 private:
 	gui_aligned_container_t cont;
 	gui_waytype_tab_panel_t tabs;
 	gui_image_combobox_t ways_c, bridges_c, tunnels_c;
 	button_t bt_terraform, bt_straight_way, bt_replace_way;
 
-	gui_label_t costs;
 
 	// reads current selection
 	void read_selection();
