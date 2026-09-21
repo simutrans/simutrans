@@ -83,24 +83,6 @@ else ()
 	add_library(libfluidsynth-assetloader SHARED IMPORTED)
 	set_target_properties(libfluidsynth-assetloader PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/../fluidsynth/lib/${CMAKE_ANDROID_ARCH_ABI}/libfluidsynth-assetloader.so)
 
-	add_library(libgio-2.0 SHARED IMPORTED)
-	set_target_properties(libgio-2.0 PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/../fluidsynth/lib/${CMAKE_ANDROID_ARCH_ABI}/libgio-2.0.so)
-
-	add_library(libglib-2.0 SHARED IMPORTED)
-	set_target_properties(libglib-2.0 PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/../fluidsynth/lib/${CMAKE_ANDROID_ARCH_ABI}/libglib-2.0.so)
-
-	add_library(libgmodule-2.0 SHARED IMPORTED)
-	set_target_properties(libgmodule-2.0 PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/../fluidsynth/lib/${CMAKE_ANDROID_ARCH_ABI}/libgmodule-2.0.so)
-
-	add_library(libgobject-2.0 SHARED IMPORTED)
-	set_target_properties(libgobject-2.0 PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/../fluidsynth/lib/${CMAKE_ANDROID_ARCH_ABI}/libgobject-2.0.so)
-
-	add_library(libgthread-2.0 SHARED IMPORTED)
-	set_target_properties(libgthread-2.0 PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/../fluidsynth/lib/${CMAKE_ANDROID_ARCH_ABI}/libgthread-2.0.so)
-
-	add_library(libinstpatch-1.0 SHARED IMPORTED)
-	set_target_properties(libinstpatch-1.0 PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/../fluidsynth/lib/${CMAKE_ANDROID_ARCH_ABI}/libinstpatch-1.0.so)
-
 	add_library(liboboe SHARED IMPORTED)
 	set_target_properties(liboboe PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/../fluidsynth/lib/${CMAKE_ANDROID_ARCH_ABI}/liboboe.so)
 
@@ -109,12 +91,6 @@ else ()
 
 	add_library(libopus SHARED IMPORTED)
 	set_target_properties(libopus PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/../fluidsynth/lib/${CMAKE_ANDROID_ARCH_ABI}/libopus.so)
-
-	add_library(libpcre SHARED IMPORTED)
-	set_target_properties(libpcre PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/../fluidsynth/lib/${CMAKE_ANDROID_ARCH_ABI}/libpcre.so)
-
-	add_library(libpcreposix SHARED IMPORTED)
-	set_target_properties(libpcreposix PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/../fluidsynth/lib/${CMAKE_ANDROID_ARCH_ABI}/libpcreposix.so)
 
 	add_library(libsndfile SHARED IMPORTED)
 	set_target_properties(libsndfile PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/../fluidsynth/lib/${CMAKE_ANDROID_ARCH_ABI}/libsndfile.so)
@@ -132,17 +108,9 @@ else ()
 	target_link_libraries(fluidsynth INTERFACE
 		libFLAC
 		libfluidsynth-assetloader
-		libgio-2.0
-		libglib-2.0
-		libgmodule-2.0
-		libgobject-2.0
-		libgthread-2.0
-		libinstpatch-1.0
 		liboboe
 		libogg
 		libopus
-		libpcre
-		libpcreposix
 		libsndfile
 		libvorbis
 		libvorbisenc
