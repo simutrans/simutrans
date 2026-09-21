@@ -911,10 +911,9 @@ int create_win(scr_coord pos, gui_frame_t *const gui, wintype const wt, ptrdiff_
 		if (stored == scr_size()) {
 			// not stored, take current
 			stored = gui->get_windowsize();
+			// use default width
+			stored.clip_lefttop(scr_size(D_DEFAULT_WIDTH, D_DEFAULT_HEIGHT));
 		}
-
-		// use default width
-		stored.clip_lefttop(scr_size(D_DEFAULT_WIDTH, D_DEFAULT_HEIGHT));
 		// clip to display size
 		const scr_size screen = gfx->get_screen_size();
 		stored.clip_rightbottom( scr_size(screen.w, screen.h - env_t::iconsize.h - win_get_statusbar_height() ) );

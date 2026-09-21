@@ -15,6 +15,38 @@
 #include "components/gui_textinput.h"
 #include "components/gui_waytype_tab_panel.h"
 
+
+class gui_image_combobox_t : public gui_combobox_t
+{
+private:
+	gui_image_t img;
+
+public:
+	gui_image_combobox_t(gui_scrolled_list_t::item_compare_func cmp = 0);
+
+	//	bool infowin_event(event_t const*) OVERRIDE;
+
+	//	bool action_triggered(gui_action_creator_t*, value_t) OVERRIDE;
+
+	void draw(scr_coord offset) OVERRIDE;
+
+	void set_image(const image_id i) {
+		img.set_image(i, true);
+	}
+
+	void set_size(scr_size size) OVERRIDE;
+
+	scr_size get_min_size() const OVERRIDE;
+
+	// only has one size ...
+	scr_size get_size() const OVERRIDE { return get_min_size(); }
+	scr_size get_max_size() const OVERRIDE { return get_min_size(); }
+
+	// save selection
+//	void rdwr(loadsave_t* file) OVERWRITE;
+};
+
+
 /**
  * Window displaying information about all schedules and lines.
  */
@@ -23,9 +55,8 @@ class way_builder_frame_t : public gui_frame_t, public action_listener_t
 private:
 	gui_aligned_container_t cont;
 	gui_waytype_tab_panel_t tabs;
-	gui_image_t	   way_i, bridge_i, tunnel_i;
-	gui_combobox_t ways_c, bridges_c, tunnels_c;
-	button_t bt_straight_way, bt_replace_way;
+	gui_image_combobox_t ways_c, bridges_c, tunnels_c;
+	button_t bt_terraform, bt_straight_way, bt_replace_way;
 
 	gui_label_t costs;
 

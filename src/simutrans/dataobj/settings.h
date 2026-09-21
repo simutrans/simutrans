@@ -548,6 +548,7 @@ public:
 	bool is_no_routing_over_overcrowding() const { return no_routing_over_overcrowding; }
 
 	sint16 get_river_number() const { return river_number; }
+	void set_river_number(sint16 r) { river_number = r; }
 	sint16 get_min_river_length() const { return min_river_length; }
 	sint16 get_max_river_length() const { return max_river_length; }
 

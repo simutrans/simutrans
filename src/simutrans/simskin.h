@@ -80,7 +80,9 @@ public:
 	// isometric compass for main map (evt. minimap)
 	static const skin_desc_t *compass_iso;
 	// normal staight compass for minimap
-	static const skin_desc_t *compass_map;
+	static const skin_desc_t* compass_map;
+	// empty toolbar icon
+	static const skin_desc_t* menu_icon;
 	/// @}
 
 	/// @name icons used for the tabs in the line management window

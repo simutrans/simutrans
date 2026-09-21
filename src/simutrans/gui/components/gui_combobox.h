@@ -24,7 +24,7 @@ class gui_combobox_t :
 	public gui_component_t,
 	public action_listener_t
 {
-private:
+protected:
 	char editstr[256],old_editstr[256],old_searchstr[256],search_str[256];
 
 	// buttons for setting selection manually

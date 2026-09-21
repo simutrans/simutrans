@@ -71,7 +71,7 @@ bool gui_combobox_t::infowin_event(const event_t *ev)
 
 	if(  !droplist.is_visible()  ) {
 DBG_MESSAGE("event","%d,%d",ev->click_pos.x, ev->click_pos.y);
-		if(  bt_prev.getroffen(ev->click_pos)  ) {
+if (bt_prev.is_visible()  &&  bt_prev.getroffen(ev->click_pos)) {
 DBG_MESSAGE("event","HOWDY!");
 			bt_prev.pressed = IS_LEFT_BUTTON_PRESSED(ev);
 			if(IS_LEFTRELEASE(ev)) {
@@ -83,7 +83,7 @@ DBG_MESSAGE("event","HOWDY!");
 			}
 			return true;
 		}
-		else if(  bt_next.getroffen(ev->click_pos)  ) {
+		else if(bt_next.is_visible()  &&  bt_next.getroffen(ev->click_pos)  ) {
 			bt_next.pressed = IS_LEFT_BUTTON_PRESSED(ev);
 			if(IS_LEFTRELEASE(ev)) {
 				bt_next.pressed = false;
@@ -167,16 +167,23 @@ DBG_MESSAGE("event","HOWDY!");
 
 			// determine possible size of droplist and whether open below/above input field
 			scr_coord_val win_height = win_get_top()->get_windowsize().h - D_TITLEBAR_HEIGHT;
+			scr_coord_val drop_max_width = win_get_top()->get_windowsize().w;
 			scr_coord_val last_draw_y = last_draw_offset.y  + get_pos().y - win_get_pos(win_get_top()).y- D_TITLEBAR_HEIGHT;
 			scr_coord_val height_above = last_draw_y - D_V_SPACE;
 			scr_coord_val height_below = win_height - (last_draw_y + textinp.get_size().h + D_V_SPACE);
 			// we try to show all all the time
-			scr_coord_val drop_max_height = droplist.get_max_size().h;
-			scr_coord_val request_height = min(max(height_above,height_below), drop_max_height);
+			scr_size      drop_min_size = droplist.get_min_size();
+			scr_size      drop_max_size = droplist.get_max_size();
+			scr_coord_val request_height = min(max(height_above,height_below), drop_max_size.h);
+			scr_coord_val request_width = max(this->size.w, min(drop_max_width, drop_min_size.w));
+			if (request_width < drop_min_size.w) {
+				// add horizontal scrollbar space
+				request_height += gui_theme_t::gui_scrollbar_size.h;
+			}
 
 			// request size of droplist, should stay inside window
 			// call returns actual height, might be smaller than request_height
-			request_height = droplist.request_size(scr_size(this->size.w, min(request_height, max(height_above, height_below))) ).h;
+			request_height = droplist.request_size(scr_size(request_width,request_height)).h;
 
 			// open below if enough space or more space than above
 			opened_above = request_height > height_below  &&  height_below < height_above;
@@ -190,7 +197,7 @@ DBG_MESSAGE("event","HOWDY!");
 			search_str[0] = 0;
 			old_searchstr[0] = 0;
 			if (!forbid_search) {
-				allow_search = drop_max_height > request_height;
+				allow_search = drop_max_size.h > request_height;
 			}
 
 			if(allow_search) {
@@ -292,12 +299,14 @@ void gui_combobox_t::draw(scr_coord offset)
 	offset += pos;
 
 	bool with_focus = (win_get_focus()==this)  &&  (item==NULL  ||  item->is_editable());
-	textinp.display_with_focus( offset, with_focus);
+	if (textinp.is_visible()) {
+		textinp.display_with_focus(offset, with_focus);
+	}
 
-	if(  droplist.is_visible()  ) {
+	if (droplist.is_visible()) {
 		droplist.draw(offset);
 	}
-	else {
+	else if(bt_prev.is_visible()) {
 		bt_prev.draw(offset);
 		bt_next.draw(offset);
 	}
@@ -422,13 +431,23 @@ void gui_combobox_t::close_box()
 
 void gui_combobox_t::set_pos(scr_coord pos_par)
 {
-	gui_component_t::set_pos( pos_par );
+	gui_component_t::set_pos(pos_par);
 
-	if(  opened_above  ) {
-		droplist.set_pos( scr_size( (get_size().w -droplist.get_size().w)/2, D_V_SPACE/4 - droplist.get_size().h) );
+	scr_coord_val left_x = max(0,(get_size().w - droplist.get_size().w) / 2);
+	if (gui_frame_t* win = win_get_top()) {
+		scr_size wsize = win->get_client_windowsize();
+		if (pos.x + droplist.get_size().w > wsize.w) {
+			//		scr_coord wpos = win_get_pos(win);
+			left_x = (wsize.w - droplist.get_size().w);
+			left_x = left_x>pos.x ? -pos.x : left_x-pos.x;	// this is now relative to the window
+		}
+	}
+
+	if (opened_above) {
+		droplist.set_pos(scr_coord(left_x, D_V_SPACE / 4 - droplist.get_size().h));
 	}
 	else {
-		droplist.set_pos( scr_size( (get_size().w -droplist.get_size().w)/2, textinp.get_size().h) );
+		droplist.set_pos(scr_coord(left_x, textinp.get_size().h));
 	}
 }
 

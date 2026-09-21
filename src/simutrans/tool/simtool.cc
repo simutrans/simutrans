@@ -2890,7 +2890,6 @@ const char *tool_build_way_t::calc_route( way_builder_t &bauigel, const koord3d 
 	}
 	if (automatic_tunnel_and_bridges  ||  bridge  ||  tunnel) {
 		// automatich selecting tunnel and bridges
-		bautyp |= way_builder_t::terraform_flag;
 		if (!bridge) {
 			bridge = bridge_builder_t::find_bridge(desc->get_wtyp(), desc->get_topspeed(), welt->get_timeline_year_month());
 		}
@@ -2898,23 +2897,27 @@ const char *tool_build_way_t::calc_route( way_builder_t &bauigel, const koord3d 
 			tunnel = tunnel_builder_t::get_tunnel_desc(desc->get_wtyp(), desc->get_topspeed(), welt->get_timeline_year_month());
 		}
 	}
-	else if (terraform_only) {
-		// terraforming, but without a tunnel or bridge to fall back on
+	if (terraform_only  ||  automatic_tunnel_and_bridges) {
+		// terraforming
 		bautyp |= way_builder_t::terraform_flag;
 	}
 
 	bauigel.init_builder(bautyp, desc, tunnel, bridge);
-	if(  is_ctrl_pressed()  &&  !is_shift_pressed()  ||  !keep_ways) {
+	if (keep_ways) {
+		bauigel.set_keep_existing_faster_ways(true);
+	}
+	else if(  is_ctrl_pressed()  &&  !is_shift_pressed()) {
 		bauigel.set_keep_existing_ways( false );
 	}
 	else {
 		bauigel.set_keep_existing_faster_ways( true );
 	}
 	// if shift pressed, keep city roads
-	if (is_shift_pressed()  &&  desc->get_styp() == type_flat  &&  desc->get_wtyp() == road_wt) {
-		bauigel.set_keep_city_roads(true);
+	if (desc->get_wtyp() == road_wt && desc->get_styp() == type_flat) {
+		if (keep_ways  ||  is_shift_pressed()) {
+			bauigel.set_keep_city_roads(true);
+		}
 	}
-
 
 	koord3d my_end = end;
 	// ending point is applied that elevated ways with SHIFT selects the current layer, when already on an elevated way

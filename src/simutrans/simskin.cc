@@ -69,6 +69,7 @@ const skin_desc_t* skinverwaltung_t::color_options      = NULL;
 
 const skin_desc_t* skinverwaltung_t::compass_iso        = NULL;
 const skin_desc_t* skinverwaltung_t::compass_map        = NULL; // compass for minimap
+const skin_desc_t* skinverwaltung_t::menu_icon          = NULL;
 
 // cursors
 const skin_desc_t* skinverwaltung_t::cursor_general     = NULL; // new cursors
@@ -157,6 +158,7 @@ static special_obj_tpl<skin_desc_t> const fakultative_objekte[] = {
 	{ &skinverwaltung_t::happy,              "Happy"          },
 	{ &skinverwaltung_t::unhappy,            "Unhappy"        },
 	{ &skinverwaltung_t::no_route,           "NoRoute"        },
+	{ &skinverwaltung_t::menu_icon,          "MenuButton"     },
 	{ NULL, NULL }
 };
 

@@ -1487,16 +1487,11 @@ void way_builder_t::init_builder(bautyp_t wt, const way_desc_t *b, const tunnel_
 		bridge_desc = NULL;
 		tunnel_desc = NULL;
 	}
-	else if(  bautyp != river  ) {
-#ifdef AUTOMATIC_BRIDGES
-		if(!bridge_desc) { bridge_desc = bridge_builder_t::find_bridge(b->get_wtyp(), 25, welt->get_timeline_year_month()); }
-#endif
-#ifdef AUTOMATIC_TUNNELS
-		if(!tunnel_desc) { tunnel_desc = tunnel_builder_t::get_tunnel_desc(b->get_wtyp(), 25, welt->get_timeline_year_month()); }
-#endif
+	if(  bautyp == river  ) {
+		bridge_desc = NULL;
+		tunnel_desc = NULL;
 	}
-
-	if (wt != air_wt && wt != powerline_wt && (br || tunnel_desc)) {
+	else if (br || tunnel_desc) {
 		bridge_desc = br;
 		tunnel_desc = tunnel;
 	}

@@ -1557,6 +1557,7 @@ int simu_main(int argc, char** argv)
 		sets.set_factory_count(3);
 		sets.set_tourist_attractions(1);
 		sets.set_traffic_level(7);
+		sets.set_river_number(1);
 		welt->init(&sets,0);
 
 		//  start in June ...

@@ -46,6 +46,7 @@ public:
 	const tunnel_desc_t* tunnel;
 	bool straight;
 	bool keep;
+	bool terraform;
 	way_selection_t() :
 		wt(invalid_wt),
 		way(0),
@@ -63,7 +64,7 @@ static way_selection_t selected_way[MAX_PLAYER_COUNT][MAX_WAYTYPE_TABS];
 /// selected tab per player
 static uint8 selected_tab[MAX_PLAYER_COUNT] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
-static uint8 active_player_nr = -1;
+static uint8 active_player_nr = 255;
 static uint8 active_tab = -1;
 
 static vector_tpl<char *>way_strings;
@@ -74,6 +75,8 @@ static vector_tpl<char *>tunnel_strings;
 static vector_tpl<const tunnel_desc_t*>tunnel_descs;
 
 static bool pending_tool_update = false;
+
+static image_id empty_selection;
 
 const char* generate_description(const char* name, uint32 speed, sint64 price, sint64 maintenance, bool elevated, sint64 span)
 {
@@ -97,6 +100,48 @@ const char* generate_description(const char* name, uint32 speed, sint64 price, s
 }
 
 
+
+scr_size gui_image_combobox_t::get_min_size() const
+{
+	return env_t::iconsize;
+}
+
+void gui_image_combobox_t::draw(scr_coord offset)
+{
+	gui_combobox_t::draw(offset);
+	img.draw(offset+get_pos());
+
+	// to be fixed: streching
+//	gfx->fit_img_to_width(back_img, env_t::iconsize.w);
+//	gfx->draw_color_img(back_img, draw_pos.x, draw_pos.y, welt->get_active_player_nr(), false, true CLIP_NUM_DEFAULT);
+}
+
+void gui_image_combobox_t::set_size(scr_size size)
+{
+	gui_combobox_t::set_size(size);
+
+	textinp.set_size(env_t::iconsize);
+
+	bt_prev.set_pos(scr_coord(0,0));
+	bt_next.set_pos(scr_coord(0,0));
+	img.set_pos(scr_coord(0, 0));
+}
+
+
+gui_image_combobox_t::gui_image_combobox_t(gui_scrolled_list_t::item_compare_func cmp) :
+	gui_combobox_t(cmp)
+{
+	textinp.set_visible(false);
+	bt_prev.set_visible(false);
+	bt_next.set_visible(false);
+	empty_selection = skinverwaltung_t::menu_icon ? skinverwaltung_t::menu_icon->get_image_id(0) : skinverwaltung_t::bauigelsymbol->get_image_id(0);
+
+	img.set_image(empty_selection, true);
+	img.set_size(env_t::iconsize);
+}
+
+/*********************** end of helper class **********************/
+
 void way_builder_frame_t::read_selection()
 {
 	// maybe save old ones
@@ -109,16 +154,17 @@ void way_builder_frame_t::read_selection()
 	cur.bridge = bridges_c.get_selection() > 0 ? bridge_descs[bridges_c.get_selection()-1] : NULL;
 	cur.tunnel = tunnels_c.get_selection() > 0 ? tunnel_descs[tunnels_c.get_selection()-1] : NULL;
 
+	cur.terraform = bt_terraform.pressed;
 	cur.straight = bt_straight_way.pressed;
 	cur.keep = bt_replace_way.pressed;
 	if (cur.way) {
-		way_i.set_image(cur.way->get_builder()->get_icon(welt->get_player(active_player_nr)), true);
+		ways_c.set_image(cur.way->get_builder()->get_icon(welt->get_player(active_player_nr)));
 	}
 	if (cur.bridge) {
-		bridge_i.set_image(cur.bridge->get_builder()->get_icon(welt->get_player(active_player_nr)), true);
+		bridges_c.set_image(cur.bridge->get_builder()->get_icon(welt->get_player(active_player_nr)));
 	}
 	if (cur.tunnel) {
-		tunnel_i.set_image(cur.tunnel->get_builder()->get_icon(welt->get_player(active_player_nr)), true);
+		tunnels_c.set_image(cur.tunnel->get_builder()->get_icon(welt->get_player(active_player_nr)));
 	}
 	pending_tool_update = true;
 	resize(scr_coord(0, 0));
@@ -152,16 +198,19 @@ void way_builder_frame_t::init_tab()
 
 	// add new ones
 	way_selection_t& sel = selected_way[active_player_nr][selected_tab[active_player_nr]];
+	if (sel.wt == 0) {
+		// TOTO: init with default way
+	}
 	sel.wt = tabs.get_active_tab_waytype();
 	ways_c.set_selection(-1);
 
 	bridges_c.new_component<gui_scrolled_list_t::const_text_scrollitem_t>("Don't build bridges", SYSCOL_TEXT);
 	bridges_c.set_selection(0);
-	bridge_i.set_image(IMG_EMPTY,true);
+	bridges_c.set_image(empty_selection);
 
 	tunnels_c.new_component<gui_scrolled_list_t::const_text_scrollitem_t>("Don't build tunnels", SYSCOL_TEXT);
 	tunnels_c.set_selection(0);
-	tunnel_i.set_image(IMG_EMPTY,true);
+	tunnels_c.set_image(empty_selection);
 
 	// ways
 	ways_c.set_force_selection(true);
@@ -170,7 +219,7 @@ void way_builder_frame_t::init_tab()
 		ways_c.new_component<gui_scrolled_list_t::const_text_scrollitem_t>("Don't build bridges", SYSCOL_TEXT);
 		ways_c.set_selection(0);
 
-		way_i.set_image(skinverwaltung_t::bauigelsymbol->get_image_id(0),true);
+		ways_c.set_image(empty_selection);
 		sel.way = NULL;
 		sel.bridge = NULL;
 		sel.tunnel = NULL;
@@ -203,10 +252,10 @@ void way_builder_frame_t::init_tab()
 			}
 		}
 		if (sel.way) {
-			way_i.set_image(sel.way->get_builder()->get_icon(welt->get_active_player()),true);
+			ways_c.set_image(sel.way->get_builder()->get_icon(welt->get_active_player()));
 		}
 		else {
-			way_i.set_image(skinverwaltung_t::bauigelsymbol->get_image_id(0),true);
+			ways_c.set_image(empty_selection);
 		}
 
 		for (auto br : bridge_builder_t::get_available_bridges(sel.wt)) {
@@ -218,7 +267,7 @@ void way_builder_frame_t::init_tab()
 			}
 		}
 		if (sel.bridge) {
-			bridge_i.set_image(sel.bridge->get_builder()->get_icon(welt->get_active_player()), true);
+			bridges_c.set_image(sel.bridge->get_builder()->get_icon(welt->get_active_player()));
 		}
 
 		for (auto tu : tunnel_builder_t::get_available_tunnels(sel.wt)) {
@@ -230,10 +279,11 @@ void way_builder_frame_t::init_tab()
 			}
 		}
 		if (sel.tunnel) {
-			tunnel_i.set_image(sel.tunnel->get_builder()->get_icon(welt->get_active_player()),true);
+			tunnels_c.set_image(sel.tunnel->get_builder()->get_icon(welt->get_active_player()));
 		}
 	}
 
+	bt_terraform.pressed = sel.terraform;
 	bt_straight_way.pressed = sel.straight;
 	bt_replace_way.pressed = sel.keep;
 }
@@ -259,7 +309,7 @@ void way_builder_frame_t::call_building_tool(bool init)
 
 		cbuffer_t old_str(toolstr);
 		toolstr.clear();
-		toolstr.printf("%s,%s%s,0,%s,%s", current.way->get_name(), current.keep ? "k" : "", current.straight ? "s" : "", current.bridge ? current.bridge->get_name() : "", current.tunnel ? current.tunnel->get_name() : "");
+		toolstr.printf("%s,%s%s,0,%s,%s", current.way->get_name(), current.terraform ? "t" : "", current.keep ? "k" : "", current.straight ? "s" : "", current.bridge ? current.bridge->get_name() : "", current.tunnel ? current.tunnel->get_name() : "");
 		if (welt->get_tool(active_player_nr) != tool || strcmp(old_str, toolstr)) {
 			// set tool to current tool
 			tool->set_default_param(toolstr);
@@ -279,6 +329,7 @@ way_builder_frame_t::way_builder_frame_t(waytype_t initial_wt) :
 	cont(4,0),
 	tabs(false)
 {
+	bool first_call = active_player_nr == 255;
 	set_table_layout(1,0);
 
 	// tab panel
@@ -293,21 +344,20 @@ way_builder_frame_t::way_builder_frame_t(waytype_t initial_wt) :
 		}
 	}
 	init_tab();
-	call_building_tool(true);
-
-	// selected images
-	cont.add_component(&way_i);
-	cont.add_component(&bridge_i);
-	cont.add_component(&tunnel_i);
-	cont.new_component<gui_fill_t>();
+	pending_tool_update = true;
 
 	// comboboxes for building types
-	cont.add_component(&ways_c,4);
+	cont.add_component(&ways_c);
 	ways_c.add_listener(this);
-	cont.add_component(&bridges_c,4);
+	cont.add_component(&bridges_c);
 	bridges_c.add_listener(this);
-	cont.add_component(&tunnels_c,4);
+	cont.add_component(&tunnels_c);
 	tunnels_c.add_listener(this);
+	cont.new_component<gui_fill_t>();
+
+	bt_terraform.init(button_t::square_automatic, "Automatic terraforming");
+	cont.add_component(&bt_terraform, 4);
+	bt_terraform.add_listener(this);
 
 	bt_straight_way.init(button_t::square_automatic, "Straight ways");
 	cont.add_component(&bt_straight_way, 4);
@@ -319,8 +369,12 @@ way_builder_frame_t::way_builder_frame_t(waytype_t initial_wt) :
 
 	cont.add_component(&costs, 3);
 
-	set_resizemode(diagonal_resize);
 	reset_min_windowsize();
+
+	if (first_call) {
+		resize(get_min_windowsize()-get_windowsize());
+		set_resizemode(no_resize);
+	}
 }
 
 
@@ -335,6 +389,7 @@ bool way_builder_frame_t::infowin_event(const event_t* ev)
 	}
 	else if (pending_tool_update && win_get_top() == this) {
 		call_building_tool();
+		set_resizemode(horizontal_resize);
 	}
 	return gui_frame_t::infowin_event(ev);
 }
@@ -359,6 +414,7 @@ void way_builder_frame_t::draw(scr_coord pos, scr_size size)
 	if (welt->get_active_player_nr() != active_player_nr) {
 		read_selection();
 		init_tab();
+		this->set_owner(welt->get_active_player());
 	}
 	gui_frame_t::draw(pos, size);
 }

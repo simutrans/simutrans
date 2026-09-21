@@ -770,21 +770,21 @@ void karte_t::create_rivers( sint16 number )
 			}
 		}
 
-		// now try 256 random locations
-		for(  sint32 i=0;  i<256  &&  !valid_water_tiles.empty();  i++  ) {
+		// now try retrys random locations
+		for(  sint32 i=0;  i<retrys  &&  !valid_water_tiles.empty();  i++  ) {
 			koord const end = pick_any(valid_water_tiles);
 			valid_water_tiles.remove( end );
 			way_builder_t riverbuilder(get_public_player());
 			riverbuilder.init_builder(way_builder_t::river, river_desc);
 			sint16 dist = koord_distance(start,end);
 			riverbuilder.set_maximum( dist*50 );
-			riverbuilder.calc_route( lookup_kartenboden(end)->get_pos(), lookup_kartenboden(start)->get_pos() );
-			if(  riverbuilder.get_count() >= (uint32)settings.get_min_river_length()  ) {
-				// do not built too short rivers
-				riverbuilder.build();
-				number --;
-				retrys++;
-				break;
+			if (!riverbuilder.calc_route(lookup_kartenboden(end)->get_pos(), lookup_kartenboden(start)->get_pos())) {
+				if (riverbuilder.get_count() >= (uint32)settings.get_min_river_length()) {
+					// do not built too short rivers
+					riverbuilder.build();
+					break;
+				}
+				number--;
 			}
 		}
 
