@@ -1101,6 +1101,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)src\simutrans\simsocial.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\simutrans\gui\way_builder_frame.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)src\simutrans\builder\brueckenbauer.h">
@@ -2280,6 +2283,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)src\simutrans\simsocial.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\simutrans\gui\way_builder_frame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -999,32 +999,34 @@ bool prepare_for_server( char *externalIPAddress, char *externalAltIPAddress, in
 		struct IGDdatas data;
 
 #if MINIUPNPC_API_VERSION <= 17
-		UPNP_GetValidIGD( devlist, &urls, &data, lanaddr, sizeof(lanaddr) );
+		int status = UPNP_GetValidIGD( devlist, &urls, &data, lanaddr, sizeof(lanaddr) );
 #else
 		char wanaddr[64] = "uset";
-		UPNP_GetValidIGD(devlist, &urls, &data, lanaddr, sizeof(lanaddr), wanaddr, sizeof(lanaddr));
+		int status = UPNP_GetValidIGD(devlist, &urls, &data, lanaddr, sizeof(lanaddr), wanaddr, sizeof(wanaddr));
 #endif
-		// we must know our IP address first
-		if(  UPNP_GetExternalIPAddress(urls.controlURL, data.first.servicetype, externalIPAddress) ==  UPNPCOMMAND_SUCCESS  ) {
-			// this is our ID (at least the routes tells us this)
-			char eport[19];
-			char *iport = eport;
-			sprintf( eport, "%d", port );
-			// remove anz forwarding
-			UPNP_DeletePortMapping(urls.controlURL, data.first.servicetype, eport, "TCP", NULL);
-			// setting up tcp redirect forever (last parameter "0")
-			if(  UPNP_AddPortMapping(urls.controlURL, data.first.servicetype, eport, iport, lanaddr, "simutrans", "TCP", 0, "0")  ==  UPNPCOMMAND_SUCCESS  ) {
-				// ok, we have our ID and redirected a port to us
-				has_IP = true;
+		if (status == UPNP_PRIVATEIP_IGD || status == UPNP_CONNECTED_IGD) {
+			// we must know our IP address first
+			if (UPNP_GetExternalIPAddress(urls.controlURL, data.first.servicetype, externalIPAddress) == UPNPCOMMAND_SUCCESS) {
+				// this is our ID (at least the routes tells us this)
+				char eport[19];
+				char* iport = eport;
+				sprintf(eport, "%d", port);
+				// remove anz forwarding
+				UPNP_DeletePortMapping(urls.controlURL, data.first.servicetype, eport, "TCP", NULL);
+				// setting up tcp redirect forever (last parameter "0")
+				if (UPNP_AddPortMapping(urls.controlURL, data.first.servicetype, eport, iport, lanaddr, "simutrans", "TCP", 0, "0") == UPNPCOMMAND_SUCCESS) {
+					// ok, we have our ID and redirected a port to us
+					has_IP = true;
+				}
+				else {
+					dbg->warning("prepare_for_server()", "Could not redirect port (but may be still ok");
+					has_IP = true;
+				}
 			}
-			else {
-				dbg->warning( "prepare_for_server()", "Could not redirect port (but may be still ok" );
-				has_IP = true;
-			}
+			FreeUPNPUrls(&urls);
 		}
-		FreeUPNPUrls(&urls);
+		freeUPNPDevlist(devlist);
 	}
-	freeUPNPDevlist(devlist);
 
 	externalAltIPAddress[0] = 0;
 	// use the same routine as later the announce routine, otherwise update with dynamic IP fails
