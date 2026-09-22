@@ -118,13 +118,13 @@ public:
 #ifdef MULTI_THREAD
 	// this draws the "real" aircrafts (when flying)
 	void display_after(int xpos, int ypos, const sint8 clip_num) const OVERRIDE;
-
-	// this routine will display a tooltip for lost, on depot order, and stuck vehicles
-	void display_overlay(int xpos, int ypos) const OVERRIDE;
 #else
 	// this draws the "real" aircrafts (when flying)
 	void display_after(int xpos, int ypos, bool dirty) const OVERRIDE;
 #endif
+
+	// this routine will display a tooltip for lost, on depot order, and stuck vehicles
+	void display_overlay(int xpos, int ypos) const OVERRIDE;
 
 	void calc_friction(const grund_t*) OVERRIDE {}
 

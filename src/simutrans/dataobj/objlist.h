@@ -133,11 +133,11 @@ public:
 
 #ifdef MULTI_THREAD
 	void display_obj_fg(const sint16 xpos, const sint16 ypos, const uint8 start_offset, const sint8 clip_num ) const;
-
-	void display_obj_overlay(const sint16 xpos, const sint16 ypos) const;
 #else
 	void display_obj_fg(const sint16 xpos, const sint16 ypos, const uint8 start_offset, const bool is_global ) const;
 #endif
+
+	void display_obj_overlay(const sint16 xpos, const sint16 ypos) const;
 } GCC_PACKED;
 
 #endif

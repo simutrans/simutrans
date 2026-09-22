@@ -1257,7 +1257,7 @@ void air_vehicle_t::initialise_journey(route_t::index_t start_route_index, bool 
 #ifdef MULTI_THREAD
 void air_vehicle_t::display_after(int xpos_org, int ypos_org, const sint8 clip_num) const
 #else
-void air_vehicle_t::display_after(int xpos_org, int ypos_org, bool is_global) const
+void air_vehicle_t::display_after(int xpos_org, int ypos_org, bool /*is_global*/) const
 #endif
 {
 	if(  image != IMG_EMPTY  &&  !is_on_ground()  ) {
@@ -1286,13 +1286,12 @@ void air_vehicle_t::display_after(int xpos_org, int ypos_org, bool is_global) co
 		// will be dirty
 		// the aircraft!!!
 		gfx->draw_color( image, xpos, ypos, get_owner_nr(), true, true/*get_flag(obj_t::dirty)*/  CLIP_NUM_PAR);
-#ifndef MULTI_THREAD
-		vehicle_t::display_after( xpos_org, ypos_org - tile_raster_scale_y( current_flughohe - hoff - 2, raster_width ), is_global );
-#endif
 		gfx->swap_clip_rect(CLIP_NUM_VAR);
 	}
-#ifdef MULTI_THREAD
 }
+
+
+// this routine will display a tooltip for lost, on depot order, and stuck vehicles
 void air_vehicle_t::display_overlay(int xpos_org, int ypos_org) const
 {
 	if(  image != IMG_EMPTY  &&  !is_on_ground()  ) {
@@ -1312,14 +1311,9 @@ void air_vehicle_t::display_overlay(int xpos_org, int ypos_org) const
 
 		vehicle_t::display_overlay( xpos_org, ypos_org - tile_raster_scale_y( current_flughohe - get_hoff() - 2, raster_width ) );
 	}
-#endif
 	else if(  is_on_ground()  ) {
 		// show loading tooltips on ground
-#ifdef MULTI_THREAD
 		vehicle_t::display_overlay( xpos_org, ypos_org );
-#else
-		vehicle_t::display_after( xpos_org, ypos_org, is_global );
-#endif
 	}
 }
 

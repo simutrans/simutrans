@@ -1745,9 +1745,7 @@ void grund_t::display_text_label(sint16 xpos, sint16 ypos, const char* text, con
 void grund_t::display_overlay(const sint16 xpos, const sint16 ypos)
 {
 	const bool dirty = get_flag(grund_t::dirty);
-#ifdef MULTI_THREAD
 	objlist.display_obj_overlay( xpos, ypos );
-#endif
 	// marker/station text
 	if(  get_flag(has_text)  ) {
 		

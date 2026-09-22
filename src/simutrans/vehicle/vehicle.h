@@ -283,11 +283,7 @@ public:
 	bool is_stuck() OVERRIDE;
 
 	// this routine will display a tooltip for lost, on depot order, and stuck vehicles
-#ifdef MULTI_THREAD
 	void display_overlay(int xpos, int ypos) const OVERRIDE;
-#else
-	void display_after(int xpos, int ypos, bool dirty) const OVERRIDE;
-#endif
 };
 
 

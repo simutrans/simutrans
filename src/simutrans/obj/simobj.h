@@ -313,13 +313,11 @@ public:
 	virtual void display_after(int xpos, int ypos, bool is_global) const;
 #endif
 
-#ifdef MULTI_THREAD
 	/**
 	 * Draw overlays
 	 * (convoi tooltips)
 	 */
 	virtual void display_overlay(int /*xpos*/, int /*ypos*/) const { return; }
-#endif
 
 	/**
 	* When a vehicle moves or a cloud moves, it needs to mark the old spot as dirty (to copy to screen).

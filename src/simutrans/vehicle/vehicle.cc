@@ -1124,15 +1124,9 @@ vehicle_t::~vehicle_t()
 }
 
 
-#ifdef MULTI_THREAD
 void vehicle_t::display_overlay(int xpos, int ypos) const
 {
 	if(  cnv  &&  leading  ) {
-#else
-void vehicle_t::display_after(int xpos, int ypos, bool is_global) const
-{
-	if(  is_global  &&  cnv  &&  leading  ) {
-#endif
 		PIXVAL color = 0; // not used, but stop compiler warning about uninitialized
 		char tooltip_text[1024];
 		tooltip_text[0] = 0;
