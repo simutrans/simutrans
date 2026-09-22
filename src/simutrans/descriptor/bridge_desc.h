@@ -50,6 +50,9 @@ public:
 		NS_Segment2, OW_Segment2, N_Start2, S_Start2, O_Start2, W_Start2, N_Ramp2, S_Ramp2, O_Ramp2, W_Ramp2, NS_Pillar2, OW_Pillar2
 	};
 
+	// in case of only older bridges
+	static img_t single_img[24];
+
 	/*
 	 * Name and Copyright used to be saved only with the Cursor
 	 */

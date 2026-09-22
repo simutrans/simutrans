@@ -3062,13 +3062,18 @@ void tool_build_way_t::mark_tiles(player_t* player, const koord3d& start, const 
 					// elevates way and bridges ... we leave this for now
 					slope_t::type h = from->get_grund_hang();
 					ribi_t::ribi wr = ribi_type(old_pos-pos);
+					koord zv = koord(wr);
 					if (h == slope_t::flat || ribi_type(h) == wr) {
 						// bridges
 						// we have already put a zeiger here
 						zeiger_t* z = from->find<zeiger_t>();
-						slope_t::type wh = h ? slope_t::flat : slope_t::type(wr);
-						z->set_image(bridge->get_background(bridge->get_end(h, h, wh), false));
-						z->set_foreground_image(bridge->get_foreground(bridge->get_end(h, h, wh), false));
+						slope_t::type wh = h ? slope_t::flat : slope_type(-zv);
+						bridge_desc_t::img_t img = bridge->get_end(h, h, wh);
+						z->set_image(bridge->get_background(img,false));
+						z->set_foreground_image(bridge->get_foreground(img, false));
+						if (z->get_image() == IMG_EMPTY && z->get_front_image() == IMG_EMPTY) {
+							z->set_image(bridge->get_background(bridge_desc_t::single_img[img], false));
+						}
 						z->mark_image_dirty(z->get_image(), 0);
 						sint8 z_offset = -slope_t::max_diff(h) * TILE_HEIGHT_STEP;
 						z->set_yoff(z_offset);
@@ -3076,7 +3081,6 @@ void tool_build_way_t::mark_tiles(player_t* player, const koord3d& start, const 
 							z_offset -= TILE_HEIGHT_STEP;
 						}
 						// now the bridge
-						koord zv = koord(wr);
 						while(1) {
 							old_pos -= zv;
 							if (old_pos == pos) {
@@ -3107,8 +3111,7 @@ void tool_build_way_t::mark_tiles(player_t* player, const koord3d& start, const 
 						}
 						h = base_gr->get_grund_hang();
 						z = new zeiger_t(pos, player);
-						wr = ribi_t::backward(wr);
-						wh = h ? slope_t::flat : slope_t::type(wr);
+						wh = h ? slope_t::flat : slope_type(wr);
 						z->set_image(bridge->get_background(bridge->get_end(h, h, wh), false));
 						z->set_foreground_image(bridge->get_foreground(bridge->get_end(h, h, wh), false));
 						to->obj_add(z);

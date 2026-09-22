@@ -584,25 +584,11 @@ bool way_builder_t::is_allowed_step(const grund_t *from, const grund_t *to, sint
 			return false;
 		}
 	}
-	else {
-		// check slopes
-		bool ok_slope = true;
-		ribi_t::ribi wr = ribi_t::doubles(ribi_type(zv));
-		if (slope_t::type h = from->get_weg_hang()) {
-			ok_slope &= slope_t::is_way_double(h,desc->has_double_slopes());
-			ok_slope &= slope_t::is_way_ew(h) ? ribi_t::is_straight_ew(wr) : ribi_t::is_straight_ns(wr);
-		}
-		if (ok_slope) {
-			if (slope_t::type h = to->get_weg_hang()) {
-				ok_slope &= slope_t::is_way_double(h, desc->has_double_slopes());
-				ok_slope &= slope_t::is_way_ew(h) ? ribi_t::is_straight_ew(wr) : ribi_t::is_straight_ns(wr);
-			}
-		}
-
-		// try terraforming
-		if (!ok_slope) {
+	else if(bautyp& terraform_flag  &&  from->ist_natur()  &&  to->ist_natur()) {
+		// maybe we need terraforming
+		if (!check_slope(from, to)) {
 			uint8 dummy,to_slope;
-			if (  (bautyp & terraform_flag) != 0  &&  from->ist_natur()  &&  to->ist_natur()  &&  check_terraforming(from,to,&dummy,&to_slope) ) {
+			if (check_terraforming(from,to,&dummy,&to_slope)) {
 				to_flat = to_slope == slope_t::flat;
 			}
 			else {
@@ -1372,7 +1358,7 @@ void way_builder_t::check_for_bridge(const grund_t* from, const koord zv, const 
 	}
 
 	// ok, so now we do a closer investigation
-	if(  bridge_desc  &&  bridge_builder_t::check_start_tile(player_builder, from, ribi, bridge_desc)) {
+	if(  bridge_desc  &&  bridge_builder_t::check_start_tile(player_builder, from, ribi_t::backward(ribi), bridge_desc)==NULL) {
 		// Try a bridge.
 
 //		const sint32 cost_difference = desc->get_maintenance() > 0 ? (bridge_desc->get_maintenance() * 4l + 3l) / desc->get_maintenance() : 16;
@@ -1576,14 +1562,13 @@ sint32 way_builder_t::intern_calc_route(const vector_tpl<koord3d> &start, const 
 	route_t::ANode *tmp=NULL;
 	uint32 step = 0;
 	const grund_t* gr=NULL;
-	const bool check_for_bridges = bridge_desc || tunnel_desc;
 
 	for(koord3d const& i : start) {
 		gr = welt->lookup(i);
 
 		// is valid ground?
 		sint32 dummy;
-		if( !gr || !is_allowed_step(gr,gr,&dummy) ) {
+		if( !gr  || !check_slope(gr,gr)  ||  !is_allowed_step(gr,gr,&dummy)) {
 			// DBG_MESSAGE("way_builder_t::intern_calc_route()","cannot start on (%i,%i,%i)",start.x,start.y,start.z);
 			continue;
 		}
@@ -1658,6 +1643,14 @@ DBG_DEBUG("insert to close","(%i,%i,%i)  f=%i",gr->get_pos().x,gr->get_pos().y,g
 		}
 		const ribi_t::ribi test_dir = (tmp->count & build_straight)==0  ?  slope_dir  & ~ribi_t::backward(straight_dir) :  straight_dir;
 
+		bool check_for_bridges = false;
+		if (bridge_desc || tunnel_desc) {
+			if (tmp->parent && koord_distance(tmp->parent->gr->get_pos(), tmp->gr->get_pos())==1) {
+				// this tile is not a ramp or tunnel portal => can try a bridge
+				check_for_bridges = true;
+			}
+		}
+
 		// testing all four possible directions
 		for(ribi_t::ribi r=1; (r&16)==0; r<<=1) {
 			if((r & test_dir)==0) {
@@ -1668,7 +1661,10 @@ DBG_DEBUG("insert to close","(%i,%i,%i)  f=%i",gr->get_pos().x,gr->get_pos().y,g
 			bool do_terraform = false;
 			const koord zv(r);
 			if(!gr->get_neighbour(to,invalid_wt,r)  ||  !check_slope(gr, to)) {
-				// slopes do not match
+				// slopes do not match or too steep
+				if (check_for_bridges && r == straight_dir) {
+					check_for_bridge(gr, zv, ziel);
+				}
 				// terraforming enabled?
 				if (bautyp==river  ||  (bautyp & terraform_flag) == 0) {
 					continue;
@@ -1683,14 +1679,8 @@ DBG_DEBUG("insert to close","(%i,%i,%i)  f=%i",gr->get_pos().x,gr->get_pos().y,g
 						do_terraform = true;
 					}
 				}
-				else {
-					// bridge o double slope?
-					if (check_for_bridges && r == straight_dir) {
-						check_for_bridge(gr, zv, ziel);
-					}
-					continue;
-				}
 			}
+			// can built normally
 
 			// something valid?
 			if(marker.is_marked(to)) {
@@ -1704,13 +1694,13 @@ DBG_DEBUG("insert to close","(%i,%i,%i)  f=%i",gr->get_pos().x,gr->get_pos().y,g
 				// now add it to the array ...
 				next_gr.append(next_gr_t(to, new_cost, do_terraform ? build_straight | terraform : 0));
 
-				if (check_for_bridges  &&   gr->get_weg_hang()  &&  (tmp->count & build_tunnel_bridge) == 0) {
+				if (check_for_bridges  &&   gr->get_weg_hang()  &&  build_tunnel_bridge) {
 					// check if a bridge/tunnel is better when it is a slope
 					check_for_bridge(gr, zv, ziel);
 				}
 
 			}
-			else if(check_for_bridges  &&  r==straight_dir  &&  (tmp->count & build_tunnel_bridge)==0) {
+			else if(check_for_bridges  &&  r==straight_dir  &&  build_tunnel_bridge) {
 				// try to build a bridge or tunnel here, since we cannot go here ...
 				check_for_bridge(gr, zv, ziel);
 			}
@@ -1850,7 +1840,7 @@ void way_builder_t::intern_calc_straight_route(const koord3d start, const koord3
 	const grund_t *test_bd = start_gr;
 	bool ok = false;
 
-	if (test_bd  &&  is_allowed_step(test_bd,test_bd,&dummy_cost)  ) {
+	if (test_bd  &&  check_slope(test_bd, test_bd)  &&  is_allowed_step(test_bd,test_bd,&dummy_cost)  ) {
 		//there is a legal ground at the start
 		ok = true;
 	}
@@ -1859,7 +1849,7 @@ void way_builder_t::intern_calc_straight_route(const koord3d start, const koord3
 	}
 	if (bautyp&elevated_flag) {
 		test_bd = welt->lookup(start + koord3d(0, 0, get_way_height_offset(start_gr)));
-		if (test_bd  &&  is_allowed_step(test_bd,test_bd,&dummy_cost, true)  ) {
+		if (test_bd  &&  check_slope(test_bd, test_bd)  &&  is_allowed_step(test_bd,test_bd,&dummy_cost, true)  ) {
 			//there is a legal way at the upper layer of start
 			ok = true;
 		}

@@ -42,19 +42,6 @@ bruecke_t::bruecke_t(koord3d pos, player_t *player, const bridge_desc_t *desc, b
 	player_t::book_construction_costs( get_owner(), -desc->get_price(), get_pos().get_2d(), desc->get_waytype());
 }
 
-
-// single height segments
-static bridge_desc_t::img_t single_img[24]= {
-	bridge_desc_t::NS_Segment, bridge_desc_t::OW_Segment,
-	bridge_desc_t::N_Start, bridge_desc_t::S_Start, bridge_desc_t::O_Start, bridge_desc_t::W_Start,
-	bridge_desc_t::N_Ramp, bridge_desc_t::S_Ramp, bridge_desc_t::O_Ramp, bridge_desc_t::W_Ramp,
-	bridge_desc_t::NS_Pillar, bridge_desc_t::OW_Pillar,
-	bridge_desc_t::NS_Segment, bridge_desc_t::OW_Segment,
-	bridge_desc_t::N_Start, bridge_desc_t::S_Start, bridge_desc_t::O_Start, bridge_desc_t::W_Start,
-	bridge_desc_t::N_Ramp, bridge_desc_t::S_Ramp, bridge_desc_t::O_Ramp, bridge_desc_t::W_Ramp,
-	bridge_desc_t::NS_Pillar, bridge_desc_t::OW_Pillar
-};
-
 void bruecke_t::calc_image()
 {
 	grund_t *gr=welt->lookup(get_pos());
@@ -71,7 +58,7 @@ void bruecke_t::calc_image()
 			// handle cases where old bridges don't have correct images
 			image_id display_image=desc->get_background( img, is_snow );
 			if(  display_image==IMG_EMPTY && desc->get_foreground( img, is_snow )==IMG_EMPTY  ) {
-				display_image=desc->get_background( single_img[img], is_snow );
+				display_image=desc->get_background( bridge_desc_t::single_img[img], is_snow );
 			}
 			weg0->set_image( display_image );
 
@@ -111,7 +98,7 @@ image_id bruecke_t::get_front_image() const
 	// handle cases where old bridges don't have correct images
 	image_id display_image=desc->get_foreground( img, is_snow );
 	if(  display_image==IMG_EMPTY && desc->get_background( img, is_snow )==IMG_EMPTY  ) {
-		display_image=desc->get_foreground( single_img[img], is_snow );
+		display_image=desc->get_foreground( bridge_desc_t::single_img[img], is_snow );
 	}
 	return display_image;
 }

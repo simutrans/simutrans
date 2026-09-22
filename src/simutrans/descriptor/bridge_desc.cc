@@ -10,6 +10,18 @@
 #include "../network/checksum.h"
 
 
+// single height segments
+bridge_desc_t::img_t bridge_desc_t::single_img[24] = {
+	bridge_desc_t::NS_Segment, bridge_desc_t::OW_Segment,
+	bridge_desc_t::N_Start, bridge_desc_t::S_Start, bridge_desc_t::O_Start, bridge_desc_t::W_Start,
+	bridge_desc_t::N_Ramp, bridge_desc_t::S_Ramp, bridge_desc_t::O_Ramp, bridge_desc_t::W_Ramp,
+	bridge_desc_t::NS_Pillar, bridge_desc_t::OW_Pillar,
+	bridge_desc_t::NS_Segment, bridge_desc_t::OW_Segment,
+	bridge_desc_t::N_Start, bridge_desc_t::S_Start, bridge_desc_t::O_Start, bridge_desc_t::W_Start,
+	bridge_desc_t::N_Ramp, bridge_desc_t::S_Ramp, bridge_desc_t::O_Ramp, bridge_desc_t::W_Ramp,
+	bridge_desc_t::NS_Pillar, bridge_desc_t::OW_Pillar
+};
+
 /**
  * Returns image index of a straight piece (excluding start pieces)
  */
