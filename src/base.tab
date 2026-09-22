@@ -3792,6 +3792,22 @@ obj=program_text
 name=Copy to clipboard
 note=In chat window
 -
+obj=program_text
+name=Copy
+note=Text field edit menu, next to Cut and Paste
+-
+obj=program_text
+name=Cut
+note=Text field edit menu: remove the selected text and put it on the clipboard
+-
+obj=program_text
+name=Paste
+note=Text field edit menu: insert the clipboard at the cursor
+-
+obj=program_text
+name=Select all
+note=Text field edit menu: select the whole contents of the field
+-
 obj=error_text
 name=Only up and down movement in the underground!
 note=Tried to use a directional slope in the underground

@@ -47,7 +47,8 @@ enum sim_mouse_action_t : unsigned long
 	SIM_MOUSE_MIDBUTTON   = 6,
 	SIM_MOUSE_MOVED       = 7,
 	SIM_MOUSE_WHEELUP     = 8,
-	SIM_MOUSE_WHEELDOWN   = 9
+	SIM_MOUSE_WHEELDOWN   = 9,
+	SIM_MOUSE_LONGPRESS   = 10 ///< a touch held in place; a mouse never sends this
 };
 
 

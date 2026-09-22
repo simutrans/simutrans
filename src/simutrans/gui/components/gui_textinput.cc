@@ -6,6 +6,8 @@
 #include <string.h>
 
 #include "gui_textinput.h"
+#include "../gui_frame.h"
+#include "../gui_theme.h"
 #include "../simwin.h"
 #include "../../dataobj/translator.h"
 #include "../../utils/simstring.h"
@@ -30,7 +32,11 @@ gui_textinput_t::gui_textinput_t() :
 	focus_received(false),
 	enabled(true),
 	notify_all_changes_delay(0xFFFF),
-	cursor_reference_time(0)
+	cursor_reference_time(0),
+	edit_menu_open(false),
+	edit_menu_opening_gesture(false),
+	edit_menu_pressed(-1),
+	edit_menu_area(0, 0, 0, 0)
 { }
 
 
@@ -117,12 +123,216 @@ void gui_textinput_t::set_composition_status( char *c, int start, int length )
 }
 
 
+const char *gui_textinput_t::get_command_text( int cmd )
+{
+	switch(  cmd  ) {
+		case EDIT_COPY:       return translator::translate("Copy");
+		case EDIT_CUT:        return translator::translate("Cut");
+		case EDIT_PASTE:      return translator::translate("Paste");
+		case EDIT_SELECT_ALL: return translator::translate("Select all");
+	}
+	return "";
+}
+
+
+bool gui_textinput_t::is_command_enabled( int cmd ) const
+{
+	if(  text == NULL  ) {
+		return false;
+	}
+	switch(  cmd  ) {
+		case EDIT_COPY:
+		case EDIT_CUT: {
+			// a password field shows asterisks; it does not hand out the password
+			if(  is_secret()  ) {
+				return false;
+			}
+			// set_text() parks the head cursor at 0xFFFF until a draw resolves it;
+			// that is not a selection, whatever the raw comparison says
+			const size_t len = strlen(text);
+			return min(len, head_cursor_pos) != min(len, tail_cursor_pos);
+		}
+
+		case EDIT_PASTE: {
+			// dr_paste() is told how much room is left and must not be called with
+			// none; a selection is replaced, so it counts as room
+			size_t len = strlen(text);
+			if(  head_cursor_pos != tail_cursor_pos  ) {
+				const size_t start_pos = min(head_cursor_pos, tail_cursor_pos);
+				const size_t end_pos = min(len, ::max(head_cursor_pos, tail_cursor_pos));
+				len -= end_pos - start_pos;
+			}
+			return len + 1 < max;
+		}
+
+		case EDIT_SELECT_ALL:
+			return text[0] != 0;
+	}
+	return false;
+}
+
+
+int gui_textinput_t::edit_menu_index_at( const scr_coord &point ) const
+{
+	if(  !edit_menu_open  ||  !edit_menu_area.contains(point)  ) {
+		return -1;
+	}
+	const int i = (point.y - edit_menu_area.y - 1) / (LINESPACE + 2);
+	return i >= 0  &&  i < EDIT_COMMAND_COUNT ? i : -1;
+}
+
+
+void gui_textinput_t::run_edit_command( int cmd )
+{
+	// the control characters the key handling below already listens for
+	static const uint16 ctrl_code[EDIT_COMMAND_COUNT] = { 3, 24, 22, 1 };
+
+	if(  cmd < 0  ||  cmd >= EDIT_COMMAND_COUNT  ||  !is_command_enabled(cmd)  ) {
+		return;
+	}
+	event_t key(EVENT_KEYDOWN);
+	key.ev_code    = ctrl_code[cmd];
+	key.ev_key_mod = SIM_KEYMOD_CTRL;
+	infowin_event( &key );
+}
+
+
+void gui_textinput_t::draw_edit_menu( scr_coord offset )
+{
+	const scr_coord_val row_height = LINESPACE + 2;
+	const scr_coord_val height = EDIT_COMMAND_COUNT * row_height + 2;
+
+	scr_coord_val width = 4 * LINESPACE;
+	for(  int i = 0;  i < EDIT_COMMAND_COUNT;  i++  ) {
+		width = ::max( width, (scr_coord_val)(gfx->calc_text_width(get_command_text(i)) + 2 * D_H_SPACE) );
+	}
+
+	// Below the field, like a drop list. gui_frame_t::draw() clips its children
+	// to the client area, so anything hanging out of the window is not drawn at
+	// all: the menu has to be kept inside it, whatever that takes.
+	scr_coord_val mx = 0;
+	scr_coord_val my = size.h;
+	if(  const gui_frame_t *top = win_get_top()  ) {
+		const scr_coord win_pos = win_get_pos( top );
+		const scr_size win_size = top->get_windowsize();
+		const scr_coord_val abs_x = pos.x + offset.x;
+		const scr_coord_val abs_y = pos.y + offset.y;
+		const scr_coord_val clip_top = win_pos.y + (top->has_title() ? D_TITLEBAR_HEIGHT : 0) + 1;
+		const scr_coord_val clip_bottom = win_pos.y + win_size.h - 1;
+
+		if(  abs_y + size.h + height > clip_bottom  ) {
+			if(  abs_y - height >= clip_top  ) {
+				my = -height;                            // above the field instead
+			}
+			else {
+				my = clip_bottom - height - abs_y;       // as far in as it goes
+				if(  abs_y + my < clip_top  ) {
+					my = clip_top - abs_y;               // window smaller than the menu
+				}
+			}
+		}
+		if(  abs_x + width > win_pos.x + win_size.w - 1  ) {
+			mx = ::max( (scr_coord_val)(win_pos.x + 1 - abs_x), (scr_coord_val)(win_pos.x + win_size.w - 1 - abs_x - width) );
+		}
+	}
+	edit_menu_area = scr_rect( mx, my, width, height );
+
+	const scr_coord_val x = pos.x + offset.x + mx;
+	const scr_coord_val y = pos.y + offset.y + my;
+
+	gfx->draw_stretch_map( gui_theme_t::listbox, scr_rect( scr_coord(x, y), scr_size(width, height) ) );
+	gfx->draw_box3d_clipped( x, y, width, height, SYSCOL_HIGHLIGHT, SYSCOL_SHADOW );
+
+	for(  int i = 0;  i < EDIT_COMMAND_COUNT;  i++  ) {
+		const scr_coord_val ry = y + 1 + i * row_height;
+		const bool usable = is_command_enabled( i );
+		const bool marked = usable  &&  i == edit_menu_pressed;
+		if(  marked  ) {
+			gfx->draw_rect_clipped( x + 1, ry, width - 2, row_height, SYSCOL_EDIT_BACKGROUND_SELECTED, true CLIP_NUM_DEFAULT );
+		}
+		gfx->draw_text_clipped( x + D_H_SPACE, ry + D_GET_CENTER_ALIGN_OFFSET(LINESPACE, row_height),
+			get_command_text(i), ALIGN_LEFT | DT_CLIP,
+			!usable ? SYSCOL_BUTTON_TEXT_DISABLED : (marked ? SYSCOL_EDIT_TEXT_SELECTED : SYSCOL_TEXT), true );
+	}
+
+	// the menu lives outside this component, so its area must be repainted when it goes
+	gfx->mark_rect_dirty_wc( x, y, x + width, y + height );
+}
+
+
 /**
  * Events are notified to GUI components via this method
  */
 bool gui_textinput_t::infowin_event(const event_t *ev)
 {
 	if (!enabled) {
+		return false;
+	}
+
+	if(  edit_menu_open  ) {
+		// while it is open the menu owns every pointer event, so that the tap
+		// that ends a long press cannot reach the text and move the cursor
+		switch(  ev->ev_class  ) {
+			case EVENT_CLICK:
+			case EVENT_DOUBLE_CLICK:
+			case EVENT_TRIPLE_CLICK:
+				if(  !edit_menu_opening_gesture  ) {
+					edit_menu_pressed = edit_menu_index_at( ev->click_pos );
+				}
+				return true;
+
+			case EVENT_DRAG:
+				// the armed entry follows the pointer, so that sliding off it is
+				// visibly a way out rather than a slower way to run it
+				if(  !edit_menu_opening_gesture  ) {
+					edit_menu_pressed = edit_menu_index_at( ev->mouse_pos );
+				}
+				return true;
+
+			case EVENT_LONG_PRESS:
+				return true;
+
+			case EVENT_RELEASE: {
+				if(  edit_menu_opening_gesture  ) {
+					// the finger coming off the hold, or the right button coming
+					// up: the gesture that asked for the menu, not an answer to it
+					edit_menu_opening_gesture = false;
+					return true;
+				}
+				// where the pointer is now, not where it went down: letting go
+				// away from the entry is how every other menu is cancelled
+				const int cmd = edit_menu_index_at( ev->mouse_pos );
+				const bool same = cmd >= 0  &&  cmd == edit_menu_pressed;
+				edit_menu_pressed = -1;
+				edit_menu_open = false;
+				if(  same  ) {
+					run_edit_command( cmd );
+				}
+				// released anywhere else: the menu just goes away
+				return true;
+			}
+
+			default:
+				if(  IS_KEYDOWN(ev)  ||  ev->ev_class == EVENT_STRING  ) {
+					// there is a keyboard after all: close and let the key through
+					edit_menu_open = false;
+					edit_menu_opening_gesture = false;
+					edit_menu_pressed = -1;
+				}
+				break;
+		}
+	}
+	else if(  IS_LONGPRESS(ev)  ||  IS_RIGHTCLICK(ev)  ) {
+		// a held finger has no other meaning, and a right click in a text field had none
+		scr_rect this_comp( get_size() );
+		if(  text  &&  win_get_focus() == this  &&  this_comp.contains( ev->click_pos )  ) {
+			edit_menu_open = true;
+			edit_menu_opening_gesture = true;
+			edit_menu_pressed = -1;
+			// nothing can be hit until draw_edit_menu() has said where it is
+			edit_menu_area = scr_rect( 0, 0, 0, 0 );
+			return true;
+		}
 		return false;
 	}
 
@@ -517,6 +727,9 @@ bool gui_textinput_t::infowin_event(const event_t *ev)
 		tail_cursor_pos = 0;
 	}
 	else if(  ev->ev_class==INFOWIN  &&  ev->ev_code==WIN_UNTOP  ) {
+		edit_menu_open = false;
+		edit_menu_opening_gesture = false;
+		edit_menu_pressed = -1;
 		if(  text_dirty  ) {
 			text_dirty = false;
 			call_listeners((long)INPUT_UNTOP);
@@ -525,6 +738,9 @@ bool gui_textinput_t::infowin_event(const event_t *ev)
 	}
 	else if(  ev->ev_class == INFOWIN   &&  ev->ev_code == WIN_CLOSE  &&  focus_received  ) {
 		// release focus on close and close keyboard
+		edit_menu_open = false;
+		edit_menu_opening_gesture = false;
+		edit_menu_pressed = -1;
 		dr_stop_textinput();
 		if (text_dirty) {
 			// note all pending changes
@@ -550,6 +766,10 @@ bool gui_textinput_t::infowin_event(const event_t *ev)
 void gui_textinput_t::draw(scr_coord offset)
 {
 	display_with_focus( offset, (win_get_focus()==this) );
+	if(  edit_menu_open  ) {
+		// drawn last and outside this component, the way a drop list is
+		draw_edit_menu( offset );
+	}
 	if (text_dirty  &&  dr_time() > next_update_call) {
 		// need to trigger a dummy event for next processing
 		event_t* ev = new event_t(EVENT_KEYDOWN);
@@ -579,6 +799,9 @@ void gui_textinput_t::display_with_focus(scr_coord offset, bool has_focus)
 			dr_notify_input_pos({ x, y });
 		}
 		else {
+			edit_menu_open = false;
+			edit_menu_opening_gesture = false;
+			edit_menu_pressed = -1;
 			dr_stop_textinput();
 		}
 		focus_received = has_focus;
@@ -715,6 +938,11 @@ void gui_textinput_t::display_with_cursor(scr_coord offset, bool cursor_active, 
 
 void gui_textinput_t::set_text(char *t, size_t max)
 {
+	// the menu acts on the buffer it was opened over; it must not outlive it
+	edit_menu_open = false;
+	edit_menu_opening_gesture = false;
+	edit_menu_pressed = -1;
+
 	char *old_text = text;
 	this->text = t;
 	this->max = max;

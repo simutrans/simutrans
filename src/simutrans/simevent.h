@@ -31,6 +31,7 @@ enum event_class_t
 	WINDOW_RESIZE        =  11,
 	WINDOW_MAKE_MIN_SIZE =  12,
 	WINDOW_CHOOSE_NEXT   =  13,
+	EVENT_LONG_PRESS     =  14,  ///< a touch held in place, the touch equivalent of a right click
 
 	EVENT_SYSTEM         = 254,
 	IGNORE_EVENT         = 255
@@ -185,6 +186,11 @@ static inline bool IS_LEFTRELEASE(const event_t *ev) { return ev->ev_class == EV
 static inline bool IS_LEFTDRAG   (const event_t *ev) { return ev->ev_class == EVENT_DRAG         && ev->ev_code == MOUSE_LEFTBUTTON; }
 static inline bool IS_LEFTDBLCLK (const event_t *ev) { return ev->ev_class == EVENT_DOUBLE_CLICK && ev->ev_code == MOUSE_LEFTBUTTON; }
 static inline bool IS_LEFTTPLCLK (const event_t *ev) { return ev->ev_class == EVENT_TRIPLE_CLICK && ev->ev_code == MOUSE_LEFTBUTTON; }
+
+/* A finger held in place. Deliberately outside the EVENT_CLICK..EVENT_DRAG range:
+ * nothing that reacts to a click may react to this, so adding it changes no
+ * existing behaviour. Only components that opt in ever see an effect. */
+static inline bool IS_LONGPRESS  (const event_t *ev) { return ev->ev_class == EVENT_LONG_PRESS; }
 
 static inline bool IS_RIGHTCLICK  (const event_t *ev) { return ev->ev_class == EVENT_CLICK        && ev->ev_code == MOUSE_RIGHTBUTTON; }
 static inline bool IS_RIGHTRELEASE(const event_t *ev) { return ev->ev_class == EVENT_RELEASE      && ev->ev_code == MOUSE_RIGHTBUTTON; }

@@ -174,6 +174,14 @@ static void fill_event(event_t* const ev)
 					pressed_buttons &= ~MOUSE_MIDBUTTON;
 					is_dragging = false;
 					break;
+
+				case SIM_MOUSE_LONGPRESS:
+					// the finger is still down; the press/release pair still follows on lift
+					ev->ev_class = EVENT_LONG_PRESS;
+					ev->ev_code = MOUSE_LEFTBUTTON;
+					ev->click_pos.x = cx = sys_event.mx;
+					ev->click_pos.y = cy = sys_event.my;
+					break;
 			}
 			break;
 
