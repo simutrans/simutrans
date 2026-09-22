@@ -166,7 +166,6 @@ const vector_tpl<const way_desc_t *>&  way_builder_t::get_way_list(waytype_t wty
 const way_desc_t* way_builder_t::weg_search(const waytype_t wtyp, const sint32 speed_limit, const uint16 time, const systemtype_t system_type)
 {
 	const way_desc_t* best = NULL;
-	bool best_allowed = false; // Does the best way fulfil the timeline?
 
 	for(auto const& iter : desc_table) {
 		way_desc_t const* const test = iter.value;
@@ -175,17 +174,15 @@ const way_desc_t* way_builder_t::weg_search(const waytype_t wtyp, const sint32 s
 			(test->get_styp()==system_type  ||  system_type==type_all))  ||  (test->get_wtyp()==track_wt  &&  test->get_styp()==type_tram  &&  wtyp==tram_wt))
 			&&  test->get_cursor()->get_image_id(1)!=IMG_EMPTY  )
 		{
-			const bool test_allowed = test->get_intro_year_month()<=time  &&  time<test->get_retire_year_month();
-			if(  !best_allowed  ||  time==0  ||  test_allowed  ) {
-				if(  best==NULL  ||
-					( best->get_topspeed() <  test->get_topspeed()  &&  test->get_topspeed() <=     speed_limit  )    || // closer to desired speed (from the low end)
-					(     speed_limit      <  best->get_topspeed()  &&  test->get_topspeed() <   best->get_topspeed()) || // respects speed_limit better
-					( time!=0  &&  !best_allowed  &&  test_allowed)                                                       // current choice is actually not really allowed, timewise
-					)
-				{
-					best = test;
-					best_allowed = test_allowed;
-				}
+			if (!test->is_available(time)) {
+				continue;
+			}
+			if(  best==NULL  ||
+				( best->get_topspeed() <  test->get_topspeed()  &&  test->get_topspeed() <=     speed_limit  )    || // closer to desired speed (from the low end)
+				(     speed_limit      <  best->get_topspeed()  &&  test->get_topspeed() <   best->get_topspeed())   // respects speed_limit better
+				)
+			{
+				best = test;
 			}
 		}
 	}

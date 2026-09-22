@@ -405,11 +405,6 @@ const vehicle_desc_t *vehicle_builder_t::vehicle_search( waytype_t wt, const uin
 	const vehicle_desc_t *desc = NULL;
 	sint32 desc_index = -100000;
 
-	if(  target_freight==NULL  &&  target_weight==0  ) {
-		// no power, no freight => no vehicle to search
-		return NULL;
-	}
-
 	for(vehicle_desc_t const* const test_desc : typ_fahrzeuge[0][GET_WAYTYPE_INDEX(wt)]) {
 		// no constricts allow for rail vehicles concerning following engines
 		if(wt==track_wt  &&  !test_desc->can_follow_any()  ) {
@@ -469,8 +464,7 @@ const vehicle_desc_t *vehicle_builder_t::vehicle_search( waytype_t wt, const uin
 				DBG_MESSAGE( "vehicle_builder_t::vehicle_search","Found car %s",desc->get_name());
 			}
 		}
-
-		else {
+		else if(target_weight) {
 			// engine/tugboat/truck for trailer
 			if(  test_desc->get_capacity()!=0  ||  !test_desc->can_follow(NULL)  ) {
 				continue;
@@ -496,6 +490,10 @@ const vehicle_desc_t *vehicle_builder_t::vehicle_search( waytype_t wt, const uin
 				desc_index = current_index;
 				DBG_MESSAGE( "vehicle_builder_t::vehicle_search","Found engine %s",desc->get_name());
 			}
+		}
+		else {
+			// target_freigth and target_weight both zero: find if there is any
+			return test_desc;
 		}
 	}
 	// no vehicle found!

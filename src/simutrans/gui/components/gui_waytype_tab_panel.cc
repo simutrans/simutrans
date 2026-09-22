@@ -10,6 +10,7 @@
 #include "../../simhalt.h"
 
 #include "../../builder/vehikelbauer.h"
+#include "../../builder/wegbauer.h"
 
 #include "../../obj/way/kanal.h"
 #include "../../obj/way/maglev.h"
@@ -23,6 +24,7 @@
 
 #include "../../descriptor/skin_desc.h"
 
+#include "../../world/simworld.h"
 
 void gui_waytype_tab_panel_t::init_tabs(gui_component_t* c)
 {
@@ -34,36 +36,38 @@ void gui_waytype_tab_panel_t::init_tabs(gui_component_t* c)
 		tabs_to_waytype[max_idx++] = ignore_wt;
 	}
 
+	const uint32 month_now = world()->get_timeline_year_month();
+
 	// now add all specific tabs
 	if (strasse_t::default_strasse) {
 		add_tab(c, translator::translate("Truck"), skinverwaltung_t::autohaltsymbol, translator::translate("Truck"));
 		tabs_to_waytype[max_idx++] = road_wt;
 	}
-	if (schiene_t::default_schiene) {
+	if (way_builder_t::weg_search(track_wt, 1, month_now, type_flat)) {
 		add_tab(c, translator::translate("Train"), skinverwaltung_t::zughaltsymbol, translator::translate("Train"));
 		tabs_to_waytype[max_idx++] = track_wt;
 	}
-	if (narrowgauge_t::default_narrowgauge) {
+	if (way_builder_t::weg_search(narrowgauge_wt, 1, month_now, type_flat)) {
 		add_tab(c, translator::translate("Narrowgauge"), skinverwaltung_t::narrowgaugehaltsymbol, translator::translate("Narrowgauge"));
 		tabs_to_waytype[max_idx++] = narrowgauge_wt;
 	}
-	if (!vehicle_builder_t::get_info(tram_wt).empty()) {
+	if (vehicle_builder_t::vehicle_search(tram_wt, month_now, 0, 0, NULL, true, false)) {
 		add_tab(c, translator::translate("Tram"), skinverwaltung_t::tramhaltsymbol, translator::translate("Tram"));
 		tabs_to_waytype[max_idx++] = tram_wt;
 	}
-	if (maglev_t::default_maglev) {
+	if (way_builder_t::weg_search(maglev_wt, 1, month_now, type_flat)  ||  way_builder_t::weg_search(maglev_wt, 1, month_now, type_elevated)) {
 		add_tab(c, translator::translate("Maglev"), skinverwaltung_t::maglevhaltsymbol, translator::translate("Maglev"));
 		tabs_to_waytype[max_idx++] = maglev_wt;
 	}
-	if (monorail_t::default_monorail) {
+	if (way_builder_t::weg_search(monorail_wt, 1, month_now, type_flat)  ||  way_builder_t::weg_search(monorail_wt, 1, month_now, type_elevated)) {
 		add_tab(c, translator::translate("Monorail"), skinverwaltung_t::monorailhaltsymbol, translator::translate("Monorail"));
 		tabs_to_waytype[max_idx++] = monorail_wt;
 	}
-	if (!vehicle_builder_t::get_info(water_wt).empty()) {
+	if (vehicle_builder_t::vehicle_search(water_wt, month_now, 0, 0, NULL, true, false)) {
 		add_tab(c, translator::translate("Ship"), skinverwaltung_t::schiffshaltsymbol, translator::translate("Ship"));
 		tabs_to_waytype[max_idx++] = water_wt;
 	}
-	if (runway_t::default_runway) {
+	if (way_builder_t::weg_search(air_wt, 1, month_now, type_flat)) {
 		add_tab(c, translator::translate("Aircraft"), skinverwaltung_t::airhaltsymbol, translator::translate("Aircraft"));
 		tabs_to_waytype[max_idx++] = air_wt;
 	}
@@ -98,3 +102,5 @@ haltestelle_t::stationtyp gui_waytype_tab_panel_t::get_active_tab_stationtype() 
 
 	}
 }
+
+

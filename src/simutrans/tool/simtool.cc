@@ -3238,6 +3238,7 @@ void tool_build_way_t::mark_tiles(player_t* player, const koord3d& start, const 
 	win_set_static_tooltip(tool_str);	// Publish the estimate first (no dummygrounds, if bauigel.calc_costs() is called).
 	if (gui_frame_t* win = win_get_magic(magic_way_builder)) {
 		((way_builder_frame_t*)win)->costs.set_text(tool_str);
+		((way_builder_frame_t*)win)->costs.set_color(SYSCOL_TEXT);
 	}
 }
 

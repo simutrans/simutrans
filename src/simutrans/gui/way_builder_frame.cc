@@ -166,7 +166,15 @@ void way_builder_frame_t::read_selection()
 	if (cur.tunnel) {
 		tunnels_c.set_image(cur.tunnel->get_builder()->get_icon(welt->get_player(active_player_nr)));
 	}
-	pending_tool_update = true;
+	if (cur.way) {
+		pending_tool_update = true;
+		costs.set_text(NULL);
+		costs.set_color(SYSCOL_TEXT);
+	}
+	else {
+		costs.set_text("Please select a way to build!");
+		costs.set_color(SYSCOL_TEXT_STRONG);
+	}
 	resize(scr_coord(0, 0));
 }
 
@@ -325,12 +333,12 @@ void way_builder_frame_t::call_building_tool(bool init)
 
 
 way_builder_frame_t::way_builder_frame_t(waytype_t initial_wt) :
-	gui_frame_t( translator::translate("Way builder"), world()->get_active_player()),
-	cont(4,0),
+	gui_frame_t(translator::translate("Way builder"), world()->get_active_player()),
+	cont(4, 0),
 	tabs(false)
 {
 	bool first_call = active_player_nr == 255;
-	set_table_layout(1,0);
+	set_table_layout(1, 0);
 
 	// tab panel
 	tabs.init_tabs(&cont);
@@ -372,7 +380,7 @@ way_builder_frame_t::way_builder_frame_t(waytype_t initial_wt) :
 	reset_min_windowsize();
 
 	if (first_call) {
-		resize(get_min_windowsize()-get_windowsize());
+		resize(get_min_windowsize() - get_windowsize());
 		set_resizemode(no_resize);
 	}
 }
@@ -387,7 +395,8 @@ bool way_builder_frame_t::infowin_event(const event_t* ev)
 	else if (ev->ev_class == INFOWIN && ev->ev_code == WIN_TOP) {
 		call_building_tool();
 	}
-	else if (pending_tool_update && win_get_top() == this) {
+	else if (selected_way[active_player_nr][selected_tab[active_player_nr]].way  &&  pending_tool_update) {
+		// check each draw if we are still active ...
 		call_building_tool();
 		set_resizemode(horizontal_resize);
 	}
@@ -395,9 +404,9 @@ bool way_builder_frame_t::infowin_event(const event_t* ev)
 }
 
 
-bool way_builder_frame_t::action_triggered( gui_action_creator_t *comp, value_t v )
+bool way_builder_frame_t::action_triggered(gui_action_creator_t* comp, value_t v)
 {
-	if(  comp == &tabs  ) {
+	if (comp == &tabs) {
 		read_selection();
 		init_tab();
 	}
@@ -415,6 +424,9 @@ void way_builder_frame_t::draw(scr_coord pos, scr_size size)
 		read_selection();
 		init_tab();
 		this->set_owner(welt->get_active_player());
+	}
+	if (!pending_tool_update  &&  win_get_top() == this  &&  welt->get_tool(active_player_nr) == tool_t::general_tool[TOOL_QUERY]) {
+		pending_tool_update = true;
 	}
 	gui_frame_t::draw(pos, size);
 }
