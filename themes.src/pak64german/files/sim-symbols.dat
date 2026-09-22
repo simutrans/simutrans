@@ -91,10 +91,6 @@ name=NoRoute
 Image[0]=> stations_status.0.2
 --------------------
 Obj=symbol
-name=MessageOptions
-Image[0]=> ls-symbols.2.3
---------------------
-Obj=symbol
 name=Electricity
 Image[0]=> stations_status.2.0
 --------------------
