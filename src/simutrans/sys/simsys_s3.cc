@@ -912,6 +912,34 @@ void dr_textur(int xp, int yp, int w, int h)
 // threshold for zooming in/out with multitouch, as in simsys_s2
 #define DELTA_PINCH (0.033)
 
+/* A finger held in place is a long press. r12289 gave the text fields a copy /
+ * cut / paste menu that a touch screen opens this way, because a soft keyboard
+ * has no Ctrl key, but only simsys_s2 ever produced the event - so on this
+ * backend the menu existed and could not be asked for. The three numbers are
+ * simsys_s2's, deliberately: the same gesture has to mean the same thing on
+ * both backends, and a player moving between them must not have to learn a
+ * different hold.
+ *
+ * LONGPRESS_MS is Android's own default; LONGPRESS_SLOP is how far a resting
+ * finger may still wander, since a finger is never quite still.
+ *
+ * LONGPRESS_REPEAT_MS: a held finger stays held, so the state is re-announced
+ * while it lasts. This is insurance, not a fix for a known loss on this
+ * backend - it mirrors simsys_s2, where one long press was once announced and
+ * never arrived and the cause was never established. It is safe because the
+ * announcement is idempotent by contract: a consumer that has already acted on
+ * it ignores the next one, which is what gui_textinput_t does. Setting
+ * LONGPRESS_REPEAT_MS to LONGPRESS_REPEAT_UNTIL_MS switches the repeat off
+ * and leaves exactly one announcement per gesture.
+ *
+ * LONGPRESS_REPEAT_UNTIL_MS bounds it, because in_finger_handling is cleared
+ * by the finger going up: a touch sequence that ends without one would
+ * otherwise repeat for as long as the process lives. */
+#define LONGPRESS_MS (500)
+#define LONGPRESS_SLOP (16)
+#define LONGPRESS_REPEAT_UNTIL_MS (LONGPRESS_MS + 1000)
+#define LONGPRESS_REPEAT_MS (250)
+
 /* Enough for every hand on the glass. A device that reports more simply has the
  * extra fingers ignored, which is safer than growing a table from a number the
  * driver chooses. */
@@ -1059,6 +1087,42 @@ static inline unsigned int ModifierKeys()
 }
 
 
+/**
+ * A finger resting in place is a long press, the one touch gesture Simutrans
+ * did not use until r12289. It has to be recognised here: SDL_EVENT_FINGER_DOWN
+ * reports nothing by itself - the press is synthesised from the first motion or
+ * from the lift - and a held finger sends nothing else to go by, so the hold is
+ * timed rather than received. The caller has already established that the
+ * finger has not wandered off.
+ *
+ * Positions are in texture pixels, converted by the caller the same way the
+ * rest of the finger handling converts them.
+ */
+static bool emit_longpress_if_due(uint32 down_time, bool &already_sent, uint32 &last_sent, sint32 mx, sint32 my)
+{
+	const uint32 now = dr_time();
+	if(  now - down_time >= LONGPRESS_REPEAT_UNTIL_MS  ) {
+		// said often enough; whoever wanted it has had it
+		return false;
+	}
+	if(  already_sent  ?  now - last_sent < LONGPRESS_REPEAT_MS  :  now - down_time < LONGPRESS_MS  ) {
+		return false;
+	}
+	if(  !already_sent  ) {
+		DBG_MESSAGE( "internal_GetEvents(SDL3)", "SIM_MOUSE_LONGPRESS at %i,%i", mx, my );
+	}
+	already_sent      = true;
+	last_sent         = now;
+	sys_event.type    = SIM_MOUSE_BUTTONS;
+	sys_event.code    = SIM_MOUSE_LONGPRESS;
+	sys_event.mb      = 0;
+	sys_event.mx      = mx;
+	sys_event.my      = my;
+	sys_event.key_mod = ModifierKeys();
+	return true;
+}
+
+
 static uint16 conv_mouse_buttons(SDL_MouseButtonFlags state)
 {
 	return
@@ -1121,6 +1185,14 @@ static void internal_GetEvents()
 	static bool   has_queued_finger_release = false;
 	static sint32 last_mx = 0, last_my = 0;
 
+	/* Where and when the finger that owns the gesture landed, so that a hold
+	 * can be told from a drag and timed. SDL delivers no event for a finger
+	 * that simply stays down, so this is the only record of it. */
+	static uint32 finger_down_time = 0;
+	static sint32 finger_down_mx = 0, finger_down_my = 0;
+	static bool   longpress_sent = false;
+	static uint32 longpress_last_sent = 0;
+
 	/* The size last reported as a SYSTEM_RESIZE, so that the two SDL3 events
 	 * that describe one resize do not become two. Zero is not a size the game
 	 * can be asked for, so the first real one always gets through. */
@@ -1142,6 +1214,13 @@ static void internal_GetEvents()
 	// SDL2->SDL3: SDL_PollEvent returns bool instead of int. Zero still means
 	// "no event", so the test itself is unchanged in meaning.
 	if(  !SDL_PollEvent( &event )  ) {
+		/* An idle queue is one of the two moments a hold can be noticed. A
+		 * single finger that has become neither a drag nor a pinch is still
+		 * resting: dLastDist is the has-this-finger-moved-yet flag here, as
+		 * everywhere else in this file. */
+		if(  in_finger_handling  &&  !previous_multifinger_touch  &&  dLastDist == 0.0  ) {
+			emit_longpress_if_due( finger_down_time, longpress_sent, longpress_last_sent, finger_down_mx, finger_down_my );
+		}
 		return;
 	}
 
@@ -1316,6 +1395,15 @@ static void internal_GetEvents()
 				FirstFingerId = event.tfinger.fingerID;
 				in_finger_handling = true;
 				previous_multifinger_touch = 0;
+
+				// remember when and where, to be able to recognise a hold later
+				if(  framebuffer  ) {
+					const scr_size screen_size = gfx->get_screen_size();
+					finger_down_mx = (sint32)(event.tfinger.x * screen_size.w);
+					finger_down_my = (sint32)(event.tfinger.y * screen_size.h);
+				}
+				finger_down_time = dr_time();
+				longpress_sent = false;
 			}
 			else if(  FirstFingerId != event.tfinger.fingerID  ) {
 				// a second finger: this is a gesture, not a drag
@@ -1386,19 +1474,36 @@ static void internal_GetEvents()
 			}
 			else if(  framebuffer  &&  previous_multifinger_touch == 0  &&  FirstFingerId == event.tfinger.fingerID  ) {
 				// one finger drags, which the game reads as the left button
+				const sint32 mx = (sint32)(event.tfinger.x * screen_size.w);
+				const sint32 my = (sint32)(event.tfinger.y * screen_size.h);
+
+				if(  dLastDist == 0.0  &&  abs( mx - finger_down_mx ) + abs( my - finger_down_my ) <= LONGPRESS_SLOP  ) {
+					/* Still resting, not dragging - and this is the other moment
+					 * a hold can be noticed, because a finger that jitters keeps
+					 * the queue busy so the idle path above never runs.
+					 * Reporting a press here would clear the very selection a
+					 * long press is about to copy; the press still follows from
+					 * the lift, or from the first motion that leaves the slop. */
+					emit_longpress_if_due( finger_down_time, longpress_sent, longpress_last_sent, finger_down_mx, finger_down_my );
+					break;
+				}
+
 				if(  dLastDist == 0.0  ) {
 					// no press was sent yet, so this motion carries it
 					dLastDist = 1e-99;
 					sys_event.type = SIM_MOUSE_BUTTONS;
 					sys_event.code = SIM_MOUSE_LEFTBUTTON;
 					previous_multifinger_touch = 0;
+					// anchor it where the finger landed, not where it has got to
+					sys_event.mx = finger_down_mx;
+					sys_event.my = finger_down_my;
 				}
 				else {
 					sys_event.type = SIM_MOUSE_MOVE;
 					sys_event.code = SIM_MOUSE_MOVED;
+					sys_event.mx = mx;
+					sys_event.my = my;
 				}
-				sys_event.mx      = (sint32)(event.tfinger.x * screen_size.w);
-				sys_event.my      = (sint32)(event.tfinger.y * screen_size.h);
 				sys_event.mb      = MOUSE_LEFTBUTTON;
 				sys_event.key_mod = ModifierKeys();
 			}
