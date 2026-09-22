@@ -161,7 +161,12 @@ private:
 			type= (forbid_type)t;
 			file->rdwr_short(toolnr);
 			file->rdwr_short(waytype);
-			file->rdwr_long(parameter_hash);
+			if (file->is_version_atleast(124, 3)) {
+				file->rdwr_long(parameter_hash);
+			}
+			else if (file->is_loading()) {
+				parameter_hash = 0;
+			}
 			file->rdwr_short(pos_nw.x); file->rdwr_short(pos_nw.y);
 			file->rdwr_short(pos_se.x); file->rdwr_short(pos_se.y);
 			file->rdwr_byte(hmin);

@@ -76,6 +76,9 @@ public:
 	// can we understand the received packet?
 	bool check_version() const { return is_saving() || (version <= NETWORK_VERSION); }
 
+	// to fix loading old savegames when packet is used as template parameter
+	bool is_version_atleast(int, int) const { return true; }
+
 	uint16 get_id() const { return id; }
 	void set_id(uint16 id_) { id = id_; }
 
