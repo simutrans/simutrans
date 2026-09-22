@@ -73,8 +73,6 @@ private:
 public:
 	way_builder_frame_t(waytype_t wt);
 
-//	~way_builder_frame_t();
-
 	void draw(scr_coord pos, scr_size size) OVERRIDE;
 
 	const char* get_help_filename() const OVERRIDE { return "way_builder.txt"; }

@@ -4558,11 +4558,11 @@ note=in factory info electricity tab
 --
 obj=program_text
 name=straight route
-note=contextual construction information
+note=contextual construction information + String in way_builder_frame
 --
 obj=program_text
 name=replace existing ways
-note=contextual construction information
+note=contextual construction information + String in way_builder_frame
 --
 obj=program_text
 name=keep city roads
@@ -4580,6 +4580,27 @@ obj=program_text
 name=Stack toolbars
 note=display setting option
 -
+obj=program_text
+name=Please select a way to build!
+note=String in way_builder_frame
+-
+obj=program_text
+name=Don't build bridges
+note=String in way_builder_frame
+-
+obj=program_text
+name=Don't build tunnels
+note=String in way_builder_frame
+-
+obj=program_text
+name=automatic terraforming
+note=String in way_builder_frame
+-
+obj=program_text
+name=Way builder
+note=String in way_builder_frame
+-
+
 
 #obj=help_text
 #name=Lower values mean more local sounds

@@ -157,23 +157,35 @@ void way_builder_frame_t::read_selection()
 	cur.terraform = bt_terraform.pressed;
 	cur.straight = bt_straight_way.pressed;
 	cur.keep = bt_replace_way.pressed;
-	if (cur.way) {
-		ways_c.set_image(cur.way->get_builder()->get_icon(welt->get_player(active_player_nr)));
-	}
-	if (cur.bridge) {
-		bridges_c.set_image(cur.bridge->get_builder()->get_icon(welt->get_player(active_player_nr)));
-	}
-	if (cur.tunnel) {
-		tunnels_c.set_image(cur.tunnel->get_builder()->get_icon(welt->get_player(active_player_nr)));
-	}
-	if (cur.way) {
-		pending_tool_update = true;
-		costs.set_text(NULL);
-		costs.set_color(SYSCOL_TEXT);
+	ways_c.set_image(empty_selection);
+	bridges_c.set_image(empty_selection);
+	tunnels_c.set_image(empty_selection);
+
+	if (!welt->get_scenario()->is_tool_allowed(welt->get_active_player(), TOOL_BUILD_WAY | GENERAL_TOOL, cur.wt, 0)) {
+		ways_c.set_image(empty_selection);
+		cur.way = NULL;
+		costs.set_text("Forbidden by scenario");
+		costs.set_color(SYSCOL_TEXT_STRONG);
 	}
 	else {
-		costs.set_text("Please select a way to build!");
-		costs.set_color(SYSCOL_TEXT_STRONG);
+		if (cur.way) {
+			ways_c.set_image(cur.way->get_builder()->get_icon(welt->get_player(active_player_nr)));
+		}
+		if (cur.bridge) {
+			bridges_c.set_image(cur.bridge->get_builder()->get_icon(welt->get_player(active_player_nr)));
+		}
+		if (cur.tunnel) {
+			tunnels_c.set_image(cur.tunnel->get_builder()->get_icon(welt->get_player(active_player_nr)));
+		}
+		if (cur.way) {
+			pending_tool_update = true;
+			costs.set_text(NULL);
+			costs.set_color(SYSCOL_TEXT);
+		}
+		else {
+			costs.set_text("Please select a way to build!");
+			costs.set_color(SYSCOL_TEXT_STRONG);
+		}
 	}
 	resize(scr_coord(0, 0));
 }
@@ -222,73 +234,60 @@ void way_builder_frame_t::init_tab()
 
 	// ways
 	ways_c.set_force_selection(true);
-	if (!welt->get_scenario()->is_tool_allowed(welt->get_active_player(), TOOL_BUILD_WAY | GENERAL_TOOL, sel.wt, 0)) {
-		// not allow this ways at all
-		ways_c.new_component<gui_scrolled_list_t::const_text_scrollitem_t>("Don't build bridges", SYSCOL_TEXT);
-		ways_c.set_selection(0);
-
-		ways_c.set_image(empty_selection);
-		sel.way = NULL;
-		sel.bridge = NULL;
-		sel.tunnel = NULL;
-		costs.set_text("Forbidden to build");
+	const vector_tpl<const way_desc_t*>& wl = way_builder_t::get_way_list(sel.wt, type_flat);
+	for (const way_desc_t* w : wl) {
+		if (active_player_nr == PLAYER_PUBLIC_NR || w->get_builder()->get_icon(welt->get_active_player()) != IMG_EMPTY) {
+			// allowed way!
+			way_descs.append(w);
+			way_strings.append(strdup(generate_description(w->get_name(), w->get_topspeed(), w->get_price(), w->get_maintenance(), false, 0)));
+			ways_c.new_component<gui_scrolled_list_t::const_text_scrollitem_t>(way_strings.back(), SYSCOL_TEXT);
+			if (w == sel.way) {
+				ways_c.set_selection(ways_c.count_elements() - 1);
+			}
+		}
 	}
-	else {
-		const vector_tpl<const way_desc_t*>& wl = way_builder_t::get_way_list(sel.wt, type_flat);
+	if (sel.wt != tram_wt) {
+		const vector_tpl<const way_desc_t*>& wl = way_builder_t::get_way_list(sel.wt, type_elevated);
 		for (const way_desc_t* w : wl) {
 			if (active_player_nr == PLAYER_PUBLIC_NR || w->get_builder()->get_icon(welt->get_active_player()) != IMG_EMPTY) {
-				// allowed way!
 				way_descs.append(w);
-				way_strings.append(strdup(generate_description(w->get_name(), w->get_topspeed(), w->get_price(), w->get_maintenance(), false, 0)));
+				way_strings.append(strdup(generate_description(w->get_name(), w->get_topspeed(), w->get_price(), w->get_maintenance(), true, 0)));
 				ways_c.new_component<gui_scrolled_list_t::const_text_scrollitem_t>(way_strings.back(), SYSCOL_TEXT);
 				if (w == sel.way) {
 					ways_c.set_selection(ways_c.count_elements() - 1);
 				}
 			}
 		}
-		if (sel.wt != tram_wt) {
-			const vector_tpl<const way_desc_t*>& wl = way_builder_t::get_way_list(sel.wt, type_elevated);
-			for (const way_desc_t* w : wl) {
-				if (active_player_nr == PLAYER_PUBLIC_NR || w->get_builder()->get_icon(welt->get_active_player()) != IMG_EMPTY) {
-					way_descs.append(w);
-					way_strings.append(strdup(generate_description(w->get_name(), w->get_topspeed(), w->get_price(), w->get_maintenance(), true, 0)));
-					ways_c.new_component<gui_scrolled_list_t::const_text_scrollitem_t>(way_strings.back(), SYSCOL_TEXT);
-					if (w == sel.way) {
-						ways_c.set_selection(ways_c.count_elements() - 1);
-					}
-				}
-			}
-		}
-		if (sel.way) {
-			ways_c.set_image(sel.way->get_builder()->get_icon(welt->get_active_player()));
-		}
-		else {
-			ways_c.set_image(empty_selection);
-		}
+	}
+	if (sel.way) {
+		ways_c.set_image(sel.way->get_builder()->get_icon(welt->get_active_player()));
+	}
+	else {
+		ways_c.set_image(empty_selection);
+	}
 
-		for (auto br : bridge_builder_t::get_available_bridges(sel.wt)) {
-			bridge_descs.append(br);
-			bridge_strings.append(strdup(generate_description(br->get_name(), br->get_topspeed(), br->get_price(), br->get_maintenance(), false, br->get_max_length())));
-			bridges_c.new_component<gui_scrolled_list_t::const_text_scrollitem_t>(bridge_strings.back(), SYSCOL_TEXT);
-			if (br == sel.bridge) {
-				bridges_c.set_selection(bridges_c.count_elements() - 1);
-			}
+	for (auto br : bridge_builder_t::get_available_bridges(sel.wt)) {
+		bridge_descs.append(br);
+		bridge_strings.append(strdup(generate_description(br->get_name(), br->get_topspeed(), br->get_price(), br->get_maintenance(), false, br->get_max_length())));
+		bridges_c.new_component<gui_scrolled_list_t::const_text_scrollitem_t>(bridge_strings.back(), SYSCOL_TEXT);
+		if (br == sel.bridge) {
+			bridges_c.set_selection(bridges_c.count_elements() - 1);
 		}
-		if (sel.bridge) {
-			bridges_c.set_image(sel.bridge->get_builder()->get_icon(welt->get_active_player()));
-		}
+	}
+	if (sel.bridge) {
+		bridges_c.set_image(sel.bridge->get_builder()->get_icon(welt->get_active_player()));
+	}
 
-		for (auto tu : tunnel_builder_t::get_available_tunnels(sel.wt)) {
-			tunnel_descs.append(tu);
-			tunnel_strings.append(strdup(generate_description(tu->get_name(), tu->get_topspeed(), tu->get_price(), tu->get_maintenance(), false, 0)));
-			tunnels_c.new_component<gui_scrolled_list_t::const_text_scrollitem_t>(tunnel_strings.back(), SYSCOL_TEXT);
-			if (tu == sel.tunnel) {
-				tunnels_c.set_selection(tunnels_c.count_elements() - 1);
-			}
+	for (auto tu : tunnel_builder_t::get_available_tunnels(sel.wt)) {
+		tunnel_descs.append(tu);
+		tunnel_strings.append(strdup(generate_description(tu->get_name(), tu->get_topspeed(), tu->get_price(), tu->get_maintenance(), false, 0)));
+		tunnels_c.new_component<gui_scrolled_list_t::const_text_scrollitem_t>(tunnel_strings.back(), SYSCOL_TEXT);
+		if (tu == sel.tunnel) {
+			tunnels_c.set_selection(tunnels_c.count_elements() - 1);
 		}
-		if (sel.tunnel) {
-			tunnels_c.set_image(sel.tunnel->get_builder()->get_icon(welt->get_active_player()));
-		}
+	}
+	if (sel.tunnel) {
+		tunnels_c.set_image(sel.tunnel->get_builder()->get_icon(welt->get_active_player()));
 	}
 
 	bt_terraform.pressed = sel.terraform;
@@ -363,15 +362,15 @@ way_builder_frame_t::way_builder_frame_t(waytype_t initial_wt) :
 	tunnels_c.add_listener(this);
 	cont.new_component<gui_fill_t>();
 
-	bt_terraform.init(button_t::square_automatic, "Automatic terraforming");
+	bt_terraform.init(button_t::square_automatic, "automatic terraforming");
 	cont.add_component(&bt_terraform, 4);
 	bt_terraform.add_listener(this);
 
-	bt_straight_way.init(button_t::square_automatic, "Straight ways");
+	bt_straight_way.init(button_t::square_automatic, "straight route");
 	cont.add_component(&bt_straight_way, 4);
 	bt_straight_way.add_listener(this);
 
-	bt_replace_way.init(button_t::square_automatic, "Replace all existing ways");
+	bt_replace_way.init(button_t::square_automatic, "replace existing ways");
 	cont.add_component(&bt_replace_way, 4);
 	bt_replace_way.add_listener(this);
 
@@ -423,6 +422,7 @@ void way_builder_frame_t::draw(scr_coord pos, scr_size size)
 	if (welt->get_active_player_nr() != active_player_nr) {
 		read_selection();
 		init_tab();
+		read_selection();
 		this->set_owner(welt->get_active_player());
 	}
 	if (!pending_tool_update  &&  win_get_top() == this  &&  welt->get_tool(active_player_nr) == tool_t::general_tool[TOOL_QUERY]) {
