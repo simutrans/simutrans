@@ -1980,7 +1980,7 @@ void way_builder_t::intern_calc_straight_route(const koord3d start, const koord3
 				}
 				else {
 					// slopes do not match
-					warn_fail = "Slope is too steep";
+					warn_fail = translator::translate("Slope is too steep");
 					// terraforming enabled?  or able to follow upper layer?
 					if ((bautyp==river  ||  (bautyp & terraform_flag) == 0)  &&  (bautyp&elevated_flag) == 0  ) {
 						// The only rejection outside is_allowed_step() that a
