@@ -1133,6 +1133,8 @@ static void internal_GetEvents()
 		case SDL_KEYUP: {
 			sys_event.type = SIM_KEYBOARD;
 			sys_event.code = 0;
+			// key_mod is not reset between events, so a released modifier would otherwise stay set
+			sys_event.key_mod = ModifierKeys();
 			break;
 		}
 		case SDL_QUIT: {

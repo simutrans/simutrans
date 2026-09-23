@@ -1662,9 +1662,11 @@ static void internal_GetEvents()
 		case SDL_EVENT_KEY_UP:
 			// A released key carries no code, but the event still has to be
 			// reported, exactly as simsys_s2 does: an EVENT_NONE here would end
-			// the event drain loop of simwin one iteration early.
+			// the event drain loop of simwin one iteration early. key_mod is not
+			// reset between events, so a released modifier would otherwise stay set.
 			sys_event.type = SIM_KEYBOARD;
 			sys_event.code = 0;
+			sys_event.key_mod = ModifierKeys();
 			break;
 
 		case SDL_EVENT_TEXT_INPUT: {
