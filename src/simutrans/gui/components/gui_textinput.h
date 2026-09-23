@@ -8,22 +8,23 @@
 
 
 #include "gui_action_creator.h"
+#include "action_listener.h"
 #include "gui_component.h"
+#include "gui_scrolled_list.h"
 #include "../../simcolor.h"
 #include "../../display/simgraph.h"
 #include "../../utils/cbuffer.h"
-
 
 /**
  * A simple text input field. It has no Text Buffer,
  * only a pointer to a buffer created by someone else.
  */
 class gui_textinput_t :
+	public action_listener_t,
 	public gui_action_creator_t,
 	public gui_component_t
 {
 protected:
-
 	/**
 	 * The string buffer
 	 */
@@ -91,43 +92,13 @@ protected:
 	 */
 	uint32 cursor_reference_time;
 
-	/* Copy, cut, paste and select-all are reachable through Ctrl+C/X/V/A only,
-	 * and a soft keyboard has no Ctrl key: on a touch-only device the commands
-	 * exist but cannot be given. This is the same four commands as a small
-	 * menu, opened by a long press or by a right click, and every entry runs
-	 * the very same key handling below rather than a second copy of it. */
-	enum edit_command_t {
-		EDIT_COPY = 0,
-		EDIT_CUT,
-		EDIT_PASTE,
-		EDIT_SELECT_ALL,
-		EDIT_COMMAND_COUNT
-	};
-
-	bool edit_menu_open : 1;
-
-	/// the press and release still to come from the gesture that opened it
-	bool edit_menu_opening_gesture : 1;
-
-	/// entry the pointer went down on, -1 for none
-	sint8 edit_menu_pressed;
-
-	/// where the menu was last drawn, relative to this component
-	scr_rect edit_menu_area;
+	gui_scrolled_list_t edit_menu;
 
 	/// the label of a command, translated
 	static const char *get_command_text( int cmd );
 
-	/// a command the current content cannot serve is shown greyed out
-	bool is_command_enabled( int cmd ) const;
-
 	/// which entry lies under a point, -1 for none
 	int edit_menu_index_at( const scr_coord &point ) const;
-
-	/// run one command by feeding its keystroke back through infowin_event()
-	void run_edit_command( int cmd );
-
-	void draw_edit_menu( scr_coord offset );
 
 	/**
 	 * determine new cursor position from event coordinates
@@ -177,7 +148,7 @@ public:
 	// x position of the current cursor (for IME purposes)
 	scr_coord_val get_current_cursor_x() { return calc_cursor_pos(head_cursor_pos); }
 
-	// set currsen selection (not checks!)
+	// set current selection (not checks!)
 	void set_cursor(sint32 h, sint32 t) {
 		head_cursor_pos = h;
 		tail_cursor_pos = t;
@@ -206,19 +177,21 @@ public:
 
 	/// true when the content must never leave the field (a password)
 	virtual bool is_secret() const { return false; }
+
+	bool action_triggered(gui_action_creator_t* comp, value_t extra) OVERRIDE;
 };
 
 
 class gui_hidden_textinput_t : public gui_textinput_t
 {
+public:
+	gui_hidden_textinput_t();
+
 	// and set the cursor right when clicking with the mouse
 	bool infowin_event(event_t const*) OVERRIDE;
 
 	// function that performs the actual display; just draw with stars ...
 	void display_with_cursor(scr_coord offset, bool cursor_active, bool cursor_visible) OVERRIDE;
-
-	// what is shown as asterisks is not offered to the clipboard
-	bool is_secret() const OVERRIDE { return true; }
 };
 
 

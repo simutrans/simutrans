@@ -51,7 +51,7 @@ scr_size gui_scrollpane_t::get_min_size() const
 		csize.h += D_SCROLLBAR_HEIGHT;
 	}
 	csize.w = max(csize.w, scroll_x.get_min_size().w);
-	csize.h = max(csize.h, scroll_y.get_min_size().h);
+	csize.h = max(csize.h, scroll_y.get_min_size().h * scroll_y.is_visible());
 	return csize;
 
 }

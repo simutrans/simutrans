@@ -110,12 +110,12 @@ protected:
 	scroll_container_t container;
 	vector_tpl <gui_component_t *>& item_list;
 
-	void reset_container_size();
-
 	/// deletes invalid elements from list
 	void cleanup_elements(bool resize=true);
 
 public:
+	void reset_container_size();
+
 	scr_size get_container_min_size() const { return container.get_min_size(); }
 
 	virtual void set_skin_type(enum type t) { this->type = t; }
