@@ -2998,7 +2998,7 @@ const char *tool_build_way_t::calc_route( way_builder_t &bauigel, const koord3d 
 	}
 
 	DBG_MESSAGE("tool_build_way_t()", "builder found route with %d squares length.", bauigel.get_count());
-	return err;
+	return err ? translator::translate(err) : NULL;
 }
 
 const char* tool_build_way_t::do_work(player_t* player, const koord3d& start, const koord3d& end)

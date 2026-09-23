@@ -712,7 +712,7 @@ bool way_builder_t::is_allowed_step(const grund_t* from, const grund_t* to, sint
 
 		// universal check for depots/stops/...
 		if(  !check_building( from, zv )  ||  !check_building( to, -zv )  ) {
-			warn_fail = translator::translate("A building blocks the construction");
+			warn_fail = "A building blocks the construction";
 			return false;
 		}
 
@@ -788,7 +788,7 @@ bool way_builder_t::is_allowed_step(const grund_t* from, const grund_t* to, sint
 			// this string is also what calc_route() hands back to scripts and
 			// this cut does not change what any call returns. The bar copes with
 			// both: translating an already-translated string is a no-op.
-			warn_fail = translator::translate("No suitable crossing");
+			warn_fail = "No suitable crossing";
 			return false;
 		}
 	}
@@ -1980,7 +1980,7 @@ void way_builder_t::intern_calc_straight_route(const koord3d start, const koord3
 				}
 				else {
 					// slopes do not match
-					warn_fail = translator::translate("Slope is too steep");
+					warn_fail = "Slope is too steep";
 					// terraforming enabled?  or able to follow upper layer?
 					if ((bautyp==river  ||  (bautyp & terraform_flag) == 0)  &&  (bautyp&elevated_flag) == 0  ) {
 						// The only rejection outside is_allowed_step() that a
@@ -2038,6 +2038,7 @@ DBG_MESSAGE("way_builder_t::intern_calc_straight_route()","found straight route 
 	else {
 		route.clear();
 		terraform_index.clear();
+		warn_fail = translator::translate(warn_fail);
 	}
 }
 
