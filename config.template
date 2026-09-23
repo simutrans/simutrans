@@ -55,6 +55,10 @@
 # using FluidSynth for MIDI playback (SDL2 backend needed for Linux/MacOS, SDL2 or GDI for MinGW)
 #USE_FLUIDSYNTH_MIDI := 1
 
+# sdl3 backend only: music in any format SDL3_mixer decodes (MP3, Ogg, Opus, FLAC, WAV, ...),
+# instead of the per-platform MIDI routine. MIDI then needs a SoundFont (soundfont_filename).
+#USE_SDL3_MIXER := 1
+
 # Define these as empty strings, if you don't have the respective config program
 #ALLEGRO_CONFIG :=
 #PNG_CONFIG     :=

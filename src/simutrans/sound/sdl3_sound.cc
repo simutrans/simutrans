@@ -27,6 +27,7 @@
 #include <SDL3/SDL.h>
 
 #include "sound.h"
+#include "sdl3_audio.h"
 #include "../simdebug.h"
 
 #include <cstring>
@@ -99,6 +100,15 @@ static const SDL_AudioSpec output_audio_format = { SDL_AUDIO_S16, 1, 22050 };
 
 static SDL_AudioStream *audio_stream = NULL;
 
+/// -1: the stream could not be opened, 0: not tried yet, 1: open
+static int stream_state = 0;
+
+/// music mixed on top of the effects, if any; only changed with the stream locked
+static sdl3_audio_music_fn music_mix = NULL;
+
+/// how the music releases what it holds of SDL, if it holds anything
+static sdl3_audio_close_fn music_close = NULL;
+
 
 void SDLCALL sdl_sound_callback(void *, SDL_AudioStream *stream, int additional_amount, int)
 {
@@ -138,6 +148,10 @@ void SDLCALL sdl_sound_callback(void *, SDL_AudioStream *stream, int additional_
 			}
 		}
 
+		if(  music_mix  ) {
+			music_mix(buffer, len);
+		}
+
 		// The SDL3 callback does not fill a buffer, it feeds the stream.
 		if(  !SDL_PutAudioStreamData(stream, buffer, len)  ) {
 			// Retrying cannot help and would spin the audio thread.
@@ -149,18 +163,23 @@ void SDLCALL sdl_sound_callback(void *, SDL_AudioStream *stream, int additional_
 }
 
 
-bool dr_init_sound()
+bool sdl3_audio_open()
 {
-	// avoid init twice
-	if (use_sound != 0) {
-		return use_sound > 0;
+	// avoid opening twice: effects and music share this stream
+	if(  stream_state != 0  ) {
+		return stream_state > 0;
 	}
 
 	// initialize SDL sound subsystem
 	if(  !SDL_InitSubSystem(SDL_INIT_AUDIO)  ) {
 		dbg->error("dr_init_sound(SDL3)", "Could not initialize sound system: %s. Muting.", SDL_GetError());
-		use_sound = -1;
+		stream_state = -1;
 		return false;
+	}
+
+	// the callback may start before dr_init_sound() when music opened the stream
+	for (int i = 0; i < NUM_AUDIO_CHANNELS; i++) {
+		channels[i].sample = NO_SAMPLE;
 	}
 
 	// open an audio channel
@@ -174,20 +193,67 @@ bool dr_init_sound()
 	if(  !audio_stream  ) {
 		dbg->error("dr_init_sound(SDL3)", "Could not open required audio channel: %s. Muting.", SDL_GetError());
 		SDL_QuitSubSystem(SDL_INIT_AUDIO);
-		use_sound = -1;
+		stream_state = -1;
 		return false;
-	}
-
-	// finished initializing
-	for (int i = 0; i < NUM_AUDIO_CHANNELS; i++) {
-		channels[i].sample = NO_SAMPLE;
 	}
 
 	// start playing sounds
 	SDL_ResumeAudioStreamDevice(audio_stream);
 
-	use_sound = 1;
+	stream_state = 1;
 	return true;
+}
+
+
+const SDL_AudioSpec *sdl3_audio_format()
+{
+	return &output_audio_format;
+}
+
+
+void sdl3_audio_set_music(sdl3_audio_music_fn mix)
+{
+	// the stream lock is held while the callback runs, so once it is ours the
+	// callback is not inside the previous routine and will not enter it again.
+	// Music is closed after gfx->exit(), whose SDL_Quit() has destroyed the
+	// stream already: then there is no callback left to keep out.
+	const bool lock = audio_stream  &&  SDL_WasInit(SDL_INIT_AUDIO);
+	if(  lock  ) {
+		SDL_LockAudioStream(audio_stream);
+	}
+	music_mix = mix;
+	if(  lock  ) {
+		SDL_UnlockAudioStream(audio_stream);
+	}
+}
+
+
+void sdl3_audio_set_close(sdl3_audio_close_fn close)
+{
+	music_close = close;
+}
+
+
+void sdl3_audio_close()
+{
+	// cleared first: the routine may unregister itself
+	const sdl3_audio_close_fn close = music_close;
+	music_close = NULL;
+	if(  close  ) {
+		close();
+	}
+}
+
+
+bool dr_init_sound()
+{
+	// avoid init twice
+	if (use_sound != 0) {
+		return use_sound > 0;
+	}
+
+	use_sound = sdl3_audio_open() ? 1 : -1;
+	return use_sound > 0;
 }
 
 

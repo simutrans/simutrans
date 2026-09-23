@@ -244,7 +244,8 @@ elseif (SIMUTRANS_BACKEND STREQUAL "sdl3")
 	# simgraph16 still draws into a CPU framebuffer, exactly as for sdl2.
 	# Sound is sdl3_sound.cc, the SDL3 counterpart of the sdl2_sound.cc the
 	# sdl2 backend uses. Music is not an SDL concern for either backend: it
-	# comes from the same per-platform routines, selected further down.
+	# comes from the same per-platform routines, selected further down, unless
+	# SIMUTRANS_USE_SDL3_MIXER is set.
 	target_sources(simutrans PRIVATE src/simutrans/display/simgraph16.cc src/simutrans/sys/simsys_s3.cc
 		src/simutrans/sound/sdl3_sound.cc)
 	target_include_directories(simutrans PRIVATE ${SDL3_INCLUDE_DIRS})
@@ -265,6 +266,28 @@ elseif (SIMUTRANS_BACKEND STREQUAL "sdl3")
 		target_link_libraries(simutrans PRIVATE PkgConfig::SDL3)
 	endif ()
 	target_compile_definitions(simutrans PRIVATE COLOUR_DEPTH=16)
+
+	# Opt-in: music through SDL3_mixer, mixed into the sound stream above. It
+	# replaces the per-platform MIDI routine (and FluidSynth, which SDL3_mixer
+	# can use itself for MIDI), so it is added here and the music block further
+	# down is skipped.
+	if (SIMUTRANS_USE_SDL3_MIXER)
+		if (NOT SDL3_mixer_FOUND)
+			message(FATAL_ERROR "SIMUTRANS_USE_SDL3_MIXER=ON was requested, but SDL3_mixer was not found. "
+				"Install the SDL3_mixer development package (or the sdl3-mixer vcpkg port) "
+				"or configure with SIMUTRANS_USE_SDL3_MIXER=OFF.")
+		endif ()
+		target_sources(simutrans PRIVATE src/simutrans/music/sdl3_music.cc)
+		if (MINGW)
+			target_link_libraries(simutrans PRIVATE ${SDL3_mixer_STATIC_LIBRARIES})
+		elseif (APPLE)
+			target_link_libraries(simutrans PRIVATE ${SDL3_mixer_LIBRARIES})
+		elseif (MSVC)
+			target_link_libraries(simutrans PRIVATE SDL3_mixer::SDL3_mixer)
+		else ()
+			target_link_libraries(simutrans PRIVATE PkgConfig::SDL3_mixer)
+		endif ()
+	endif ()
 
 	# Freetype is mandatory for graphical builds, exactly as for sdl2 and gdi -
 	# including the ANDROID arm, where freetype is an imported target rather than
@@ -349,8 +372,14 @@ if (SIMUTRANS_USE_ZSTD)
 	endif ()
 endif (SIMUTRANS_USE_ZSTD)
 
+if (SIMUTRANS_USE_SDL3_MIXER AND NOT (SIMUTRANS_BACKEND STREQUAL "sdl3"))
+	message(FATAL_ERROR "SIMUTRANS_USE_SDL3_MIXER needs SIMUTRANS_BACKEND=sdl3, not '${SIMUTRANS_BACKEND}'.")
+endif ()
+
 # only consider FluidSynth for the backends that play music at all
-if ((SIMUTRANS_BACKEND STREQUAL "sdl2") OR (SIMUTRANS_BACKEND STREQUAL "sdl3") OR (SIMUTRANS_BACKEND STREQUAL "gdi"))
+if (SIMUTRANS_USE_SDL3_MIXER)
+	# music comes from sdl3_music.cc, added with the sdl3 backend
+elseif ((SIMUTRANS_BACKEND STREQUAL "sdl2") OR (SIMUTRANS_BACKEND STREQUAL "sdl3") OR (SIMUTRANS_BACKEND STREQUAL "gdi"))
 	if (SIMUTRANS_USE_FLUIDSYNTH_MIDI)
 		target_sources(simutrans PRIVATE src/simutrans/music/fluidsynth.cc src/simutrans/gui/loadsoundfont_frame.cc)
 		target_compile_definitions(simutrans PRIVATE USE_FLUIDSYNTH_MIDI=1)

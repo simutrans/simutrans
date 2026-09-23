@@ -42,6 +42,8 @@ if (FluidSynth_FOUND AND NOT WIN32)
 	option(SIMUTRANS_USE_FLUIDSYNTH_MIDI "Enable FluidSynth for MIDI playback" ON)
 endif (FluidSynth_FOUND AND NOT WIN32)
 
+option(SIMUTRANS_USE_SDL3_MIXER "sdl3 backend only: play music in any format SDL3_mixer decodes, instead of the per-platform MIDI routine" OFF)
+
 if(Fontconfig_FOUND)
 	option(SIMUTRANS_USE_FONTCONFIG "Use Fontconfig for font autodetection" ON)
 endif()

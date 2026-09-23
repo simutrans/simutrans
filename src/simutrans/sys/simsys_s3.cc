@@ -60,6 +60,7 @@
 #include "../gui/components/gui_component.h"
 #include "../gui/components/gui_textinput.h"
 #include "../music/music.h"
+#include "../sound/sdl3_audio.h"
 #include "../utils/unicode.h"
 #include "../world/simworld.h"
 
@@ -742,7 +743,8 @@ void dr_os_close()
 	 *   4 free framebuffer - ours; nothing inside SDL points at it
 	 *   5 destroy cursors  - independent of the window, but before SDL_Quit
 	 *   6 destroy window   - now nothing refers to it
-	 *   7 SDL_Quit         - last, or the calls above have no subsystem left
+	 *   7 close music      - SDL3_mixer, if used, owns audio streams of its own
+	 *   8 SDL_Quit         - last, or the calls above have no subsystem left
 	 */
 	if(  window  ) {
 		SDL_StopTextInput( window );
@@ -771,6 +773,8 @@ void dr_os_close()
 		SDL_DestroyWindow( window );
 		window = NULL;
 	}
+
+	sdl3_audio_close();
 
 	SDL_Quit();
 }

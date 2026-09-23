@@ -24,6 +24,7 @@ HOSTCXX ?=$(CXX)
 SDL2_CONFIG      ?= pkg-config sdl2
 #SDL2_CONFIG     ?= sdl2-config
 SDL3_CONFIG      ?= pkg-config sdl3
+SDL3_MIXER_CONFIG ?= pkg-config sdl3-mixer
 FREETYPE_CONFIG  ?= pkg-config freetype2
 # FREETYPE_CONFIG ?= freetype-config
 FONTCONFIG_CONFIG  ?= pkg-config fontconfig
@@ -34,6 +35,12 @@ OSTYPES   := amiga freebsd haiku linux mac mingw openbsd
 
 ifeq ($(findstring $(BACKEND), $(BACKENDS)),)
   $(error Unkown BACKEND "$(BACKEND)", must be one of "$(BACKENDS)")
+endif
+
+ifeq ($(USE_SDL3_MIXER),1)
+  ifneq ($(BACKEND),sdl3)
+    $(error USE_SDL3_MIXER needs BACKEND sdl3, not "$(BACKEND)")
+  endif
 endif
 
 ifeq ($(findstring $(OSTYPE), $(OSTYPES)),)
@@ -722,9 +729,16 @@ ifeq ($(BACKEND),sdl3)
   SOURCES += src/simutrans/sys/simsys_s3.cc
   # Sound is the SDL3 counterpart of the sdl2_sound.cc the sdl2 backend uses.
   # Music is not an SDL concern for either backend, so the per-platform
-  # routine is picked exactly as it is picked there.
+  # routine is picked exactly as it is picked there, unless USE_SDL3_MIXER.
   SOURCES += src/simutrans/sound/sdl3_sound.cc
-  ifneq ($(shell expr $(USE_FLUIDSYNTH_MIDI) \>= 1), 1)
+  ifeq ($(USE_SDL3_MIXER),1)
+    # Optional: music of any format SDL3_mixer decodes, mixed into the same
+    # stream as the sound effects instead of the per-platform routine.
+    ifeq ($(shell expr $(USE_FLUIDSYNTH_MIDI) \>= 1), 1)
+      $(error USE_SDL3_MIXER and USE_FLUIDSYNTH_MIDI both provide the music routine, choose one)
+    endif
+    SOURCES += src/simutrans/music/sdl3_music.cc
+  else ifneq ($(shell expr $(USE_FLUIDSYNTH_MIDI) \>= 1), 1)
     ifneq ($(OSTYPE),mingw)
       SOURCES += src/simutrans/music/no_midi.cc
     else
@@ -749,6 +763,25 @@ ifeq ($(BACKEND),sdl3)
       ifeq ($(OSTYPE),mingw)
         SDL_LDFLAGS = $(shell $(SDL3_CONFIG) --static --libs)
       endif
+    endif
+  endif
+  ifeq ($(USE_SDL3_MIXER),1)
+    ifeq ($(SDL3_CONFIG),)
+      ifeq ($(OSTYPE),mac)
+        SDL_LDFLAGS := -framework SDL3_mixer $(SDL_LDFLAGS)
+      else
+        SDL_LDFLAGS := -lSDL3_mixer $(SDL_LDFLAGS)
+      endif
+    else
+      # linked the way SDL3 itself is linked just above
+      SDL_CFLAGS  += $(shell $(SDL3_MIXER_CONFIG) --cflags)
+      MIXER_LDFLAGS := $(DYNAMICSTART) $(shell $(SDL3_MIXER_CONFIG) --libs) $(DYNAMICEND)
+      ifeq ($(shell expr $(STATIC) \>= 1), 1)
+        ifeq ($(OSTYPE),mingw)
+          MIXER_LDFLAGS := $(shell $(SDL3_MIXER_CONFIG) --static --libs)
+        endif
+      endif
+      SDL_LDFLAGS := $(MIXER_LDFLAGS) $(SDL_LDFLAGS)
     endif
   endif
   CFLAGS += $(SDL_CFLAGS)

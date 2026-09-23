@@ -101,6 +101,14 @@
          .gitignore. -->
     <VcpkgManifestInstalledBaseDir>$(MSBuildThisFileDirectory)vcpkg_installed_sdl3\</VcpkgManifestInstalledBaseDir>
   </PropertyGroup>
+  <!-- Opt-in: music through SDL3_mixer instead of w32_midi.cc, with
+       /p:SimutransSdl3Mixer=true. It needs the sdl3-mixer feature too, and a tree
+       of its own again: the install stamp does not see the install options, so
+       switching the property on over vcpkg_installed_sdl3 would skip the install. -->
+  <PropertyGroup Label="Vcpkg" Condition="'$(SimutransSdl3Mixer)'=='true'">
+    <VcpkgAdditionalInstallOptions>--x-feature=sdl3 --x-feature=sdl3-mixer --x-no-default-features</VcpkgAdditionalInstallOptions>
+    <VcpkgManifestInstalledBaseDir>$(MSBuildThisFileDirectory)vcpkg_installed_sdl3_mixer\</VcpkgManifestInstalledBaseDir>
+  </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -192,9 +200,16 @@
       <Profile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</Profile>
     </Link>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(SimutransSdl3Mixer)'=='true'">
+    <Link>
+      <!-- system libraries the static decoders need: FluidSynth's DirectSound and waveOut drivers, mpg123's Path* calls -->
+      <AdditionalDependencies>%(AdditionalDependencies);dsound.lib;ksuser.lib;shlwapi.lib</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\simutrans\display\simgraph16.cc" />
-    <ClCompile Include="src\simutrans\music\w32_midi.cc" />
+    <ClCompile Include="src\simutrans\music\w32_midi.cc" Condition="'$(SimutransSdl3Mixer)'!='true'" />
+    <ClCompile Include="src\simutrans\music\sdl3_music.cc" Condition="'$(SimutransSdl3Mixer)'=='true'" />
     <ClCompile Include="src\simutrans\sound\sdl3_sound.cc" />
     <ClCompile Include="src\simutrans\sys\clipboard_s3.cc" />
     <ClCompile Include="src\simutrans\sys\simsys_s3.cc" />

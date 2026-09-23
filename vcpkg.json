@@ -22,6 +22,20 @@
             "dependencies": [
                 "sdl3"
             ]
+        },
+        "sdl3-mixer": {
+            "description": "SDL3 backend music through SDL3_mixer: MP3, Ogg, Opus, FLAC, WAV and MIDI with a SoundFont",
+            "dependencies": [
+                {
+                    "name": "sdl3-mixer",
+                    "features": [
+                        "fluidsynth",
+                        "libflac",
+                        "mpg123",
+                        "opusfile"
+                    ]
+                }
+            ]
         }
     },
 	"builtin-baseline": "c5a15727ee70fddf0296f0d8aafc3f58916fefac"
