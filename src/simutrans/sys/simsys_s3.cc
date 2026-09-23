@@ -1601,6 +1601,7 @@ static void internal_GetEvents()
 				case SDLK_BACKSPACE:  code = SIM_KEYCODE_BACKSPACE;  break;
 				case SDLK_TAB:        code = SIM_KEYCODE_TAB;        break;
 				case SDLK_RETURN:     code = SIM_KEYCODE_ENTER;      break;
+				case SDLK_AC_BACK: // Android back button: close windows instead of deleting text, as in simsys_s2
 				case SDLK_ESCAPE:     code = SIM_KEYCODE_ESCAPE;     break;
 				case SDLK_DELETE:     code = SIM_KEYCODE_DELETE;     break;
 				case SDLK_DOWN:       code = SIM_KEYCODE_DOWN;       break;
@@ -1880,8 +1881,30 @@ static void internal_GetEvents()
 }
 
 
+/* SDL3 shows the screen keyboard only if SDL_ScreenKeyboardShown() says it is
+ * hidden, and hides it only if it says shown; on Android that state follows
+ * the UI thread. Moving the focus between two text fields stops text input
+ * for one and starts it for the other within one frame: the stop queues a
+ * hide, the start still sees the keyboard as shown and skips the show, and
+ * the keyboard vanishes under a focused field. So a stop is carried out at
+ * the next event poll, and a start before then cancels it. */
+static bool textinput_stop_pending = false;
+
+static void flush_textinput_stop()
+{
+	if(  textinput_stop_pending  ) {
+		textinput_stop_pending = false;
+		if(  window  ) {
+			SDL_StopTextInput( window );
+			DBG_MESSAGE("dr_stop_textinput(SDL3)", "");
+		}
+	}
+}
+
+
 void GetEvents()
 {
+	flush_textinput_stop();
 	internal_GetEvents();
 }
 
@@ -1890,9 +1913,16 @@ void GetEvents()
 
 void dr_start_textinput()
 {
+	textinput_stop_pending = false;
 	if(  env_t::hide_keyboard  &&  window  ) {
-		// SDL2->SDL3: text input is started per window.
-		SDL_StartTextInput( window );
+		// SDL2->SDL3: text input is started per window. SDL3 also defaults to
+		// sentence capitalisation and autocorrect, which a screen keyboard
+		// applies to names and file names; SDL2 asked for neither.
+		SDL_PropertiesID props = SDL_CreateProperties();
+		SDL_SetNumberProperty( props, SDL_PROP_TEXTINPUT_CAPITALIZATION_NUMBER, SDL_CAPITALIZE_NONE );
+		SDL_SetBooleanProperty( props, SDL_PROP_TEXTINPUT_AUTOCORRECT_BOOLEAN, false );
+		SDL_StartTextInputWithProperties( window, props );
+		SDL_DestroyProperties( props );
 		DBG_MESSAGE("dr_start_textinput(SDL3)", "");
 	}
 }
@@ -1902,8 +1932,7 @@ void dr_stop_textinput()
 {
 	if(  window  ) {
 		if(  env_t::hide_keyboard  ) {
-			SDL_StopTextInput( window );
-			DBG_MESSAGE("dr_stop_textinput(SDL3)", "");
+			textinput_stop_pending = true;
 		}
 		else {
 			SDL_SetEventEnabled( SDL_EVENT_TEXT_INPUT, true );
