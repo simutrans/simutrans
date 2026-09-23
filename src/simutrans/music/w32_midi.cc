@@ -19,6 +19,12 @@
 static int         midi_number = -1;
 static plainstring midi_filenames[MAX_MIDI];
 
+// whether the SimuMIDI alias is open; MCI cannot tell a finished song from one that never opened
+static bool midi_open = false;
+// songs MCI could not open or play are skipped from then on instead of retried
+static bool midi_failed[MAX_MIDI];
+static int  midi_failed_count = 0;
+
 
 static int OldMIDIVol[2] = {-1, -1};
 
@@ -62,6 +68,7 @@ int dr_load_midi(const char *filename)
 				}
 			}
 
+			midi_failed[i] = false;
 			midi_number = i;
 		}
 	}
@@ -77,17 +84,32 @@ void dr_play_midi(int key)
 {
 	char str[200], retstr[200];
 
-	if (midi_number > 0) {
+	if (midi_number >= 0) {
 
 		if (key >= 0 && key <= midi_number) {
+			if (midi_failed[key]) {
+				return; // already reported
+			}
 			sprintf(str, "open \"%s\" type sequencer alias SimuMIDI", midi_filenames[key].c_str());
 			dbg->debug("dr_play_midi(w32)", "MCI string: %s", str);
 
-			if (mciSendStringA(str, NULL, 0, NULL) != 0) {
-				dbg->warning("dr_play_midi(w32)", "Unable to load MIDI %d", key);
+			MCIERROR err = mciSendStringA(str, NULL, 0, NULL);
+			if (err == 0) {
+				err = mciSendStringA("play SimuMIDI", NULL, 0, NULL);
+				if (err != 0) {
+					mciSendStringA("close SimuMIDI", NULL, 0, NULL);
+				}
 			}
-			else if (mciSendStringA("play SimuMIDI", retstr, 200, NULL) != 0) {
-				dbg->warning("dr_play_midi(w32)", "Unable to play MIDI %d - %s\n", key, retstr);
+			if (err == 0) {
+				midi_open = true;
+			}
+			else {
+				mciGetErrorStringA(err, retstr, sizeof(retstr));
+				dbg->warning("dr_play_midi(w32)", "Unable to play MIDI %d (%s): %s", key, midi_filenames[key].c_str(), retstr);
+				midi_failed[key] = true;
+				if (++midi_failed_count > midi_number) {
+					dbg->warning("dr_play_midi(w32)", "No MIDI file could be played, music stays silent");
+				}
 			}
 		}
 		else {
@@ -108,6 +130,7 @@ void dr_stop_midi()
 
 	mciSendStringA("stop SimuMIDI", retstr, 200, NULL);
 	mciSendStringA("close SimuMIDI", retstr, 200, NULL);
+	midi_open = false;
 }
 
 
@@ -119,6 +142,11 @@ sint32 dr_midi_pos()
 	char retstr[200];
 	long length;
 
+	if (!midi_open) {
+		// nothing is playing: move on to the next song, unless none of them can be played
+		return midi_failed_count > midi_number ? 0 : -1;
+	}
+
 	mciSendStringA("set SimuMIDI time format milliseconds", retstr, 200, NULL);
 	mciSendStringA("status SimuMIDI length", retstr, 200, NULL);
 	length = atol(retstr);
@@ -128,6 +156,7 @@ sint32 dr_midi_pos()
 		if (pos == length) {
 			mciSendStringA("stop SimuMIDI", retstr, 200, NULL);  // We must stop ourselves
 			mciSendStringA("close SimuMIDI", retstr, 200, NULL);
+			midi_open = false;
 			return (-1);
 		}
 		else {
@@ -143,8 +172,10 @@ sint32 dr_midi_pos()
  */
 void dr_destroy_midi()
 {
+	dr_stop_midi();
 	__win32_set_midi_volume(__MIDI_VOL_WIN32, OldMIDIVol[0], OldMIDIVol[1]);
 	midi_number = -1;
+	midi_failed_count = 0;
 }
 
 
