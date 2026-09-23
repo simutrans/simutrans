@@ -1004,8 +1004,9 @@ bool prepare_for_server( char *externalIPAddress, char *externalAltIPAddress, in
 		char wanaddr[64] = "uset";
 		int status = UPNP_GetValidIGD(devlist, &urls, &data, lanaddr, sizeof(lanaddr), wanaddr, sizeof(wanaddr));
 #endif
-		if (status == UPNP_PRIVATEIP_IGD || status == UPNP_CONNECTED_IGD) {
-			// we must know our IP address first
+//		if (status == UPNP_PRIVATEIP_IGD || status == UPNP_CONNECTED_IGD) {
+		if (status == 1 || status == 2) {
+				// we must know our IP address first
 			if (UPNP_GetExternalIPAddress(urls.controlURL, data.first.servicetype, externalIPAddress) == UPNPCOMMAND_SUCCESS) {
 				// this is our ID (at least the routes tells us this)
 				char eport[19];
