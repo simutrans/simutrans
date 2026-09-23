@@ -1442,7 +1442,7 @@ function test_way_road_build_terraform_single_step()
 	// cannot stop on the slope: only the near edge would be levelled and the tile would
 	// be left with a single raised corner, so the tool refuses and changes nothing
 	ASSERT_FALSE(planner.is_allowed_step(tile_x(8, 9, 0), tile_x(9, 9, 0)))
-	ASSERT_EQUAL(command_x.build_way(pl, coord3d(8, 9, 0), coord3d(9, 9, 0), road_desc, true, true), "")
+	ASSERT_EQUAL(command_x.build_way(pl, coord3d(8, 9, 0), coord3d(9, 9, 0), road_desc, true, true), "Slope is too steep")
 	ASSERT_EQUAL(tile_x(9, 9, 0).get_slope(), slope.south)
 	ASSERT_FALSE(tile_x(8, 9, 0).has_way(wt_road))
 	ASSERT_FALSE(tile_x(9, 9, 0).has_way(wt_road))
@@ -1483,7 +1483,7 @@ function test_way_road_build_terraform_is_no_bypass()
 
 	local cash = pl.get_current_cash()
 	ASSERT_EQUAL(command_x.build_way(pl, coord3d(4, 2, 0), coord3d(4, 4, 1), road_desc, true), "Slope is too steep")
-	ASSERT_EQUAL(command_x.build_way(pl, coord3d(4, 2, 0), coord3d(4, 4, 1), road_desc, true, true), "")
+	ASSERT_EQUAL(command_x.build_way(pl, coord3d(4, 2, 0), coord3d(4, 4, 1), road_desc, true, true), "Slope is too steep")
 	ASSERT_EQUAL(pl.get_current_cash(), cash)
 	ASSERT_TRUE(square_x(4, 4).get_tile_at_height(0) == null)
 	ASSERT_EQUAL(tile_x(4, 4, 1).get_slope(), slope.flat)
@@ -1531,7 +1531,7 @@ function test_way_road_build_terraform_builds_no_bridge()
 	ASSERT_EQUAL(command_x.build_way(pl, coord3d(8, 0, 0), coord3d(8, 15, 0), taxiway, true), null)
 
 	// the automatic mode picks a bridge for exactly this drag
-	ASSERT_EQUAL(command_x(tool_build_way).work(pl, coord3d(6, 8, 0), coord3d(10, 8, 0), road_desc.get_name() + ",1"), null)
+	ASSERT_EQUAL(command_x(tool_build_way).work(pl, coord3d(6, 8, 0), coord3d(10, 8, 0), road_desc.get_name() + ",a"), null)
 	ASSERT_TRUE(tile_x(7, 8, 0).find_object(mo_bridge) != null)
 	ASSERT_EQUAL(remover.work(pl, coord3d(6, 8, 0), coord3d(10, 8, 0), "" + wt_road), null)
 
@@ -1562,7 +1562,7 @@ function test_way_road_build_terraform_not_kept_by_the_tool()
 	// belongs to the single command, and the same instance is used for both.
 	// The ctrl flag makes the drag go straight, and the tool clears it per call.
 	builder.set_flags(2)
-	ASSERT_EQUAL(builder.work(pl, coord3d(3, 4, 0), coord3d(5, 4, 0), road_desc.get_name() + ",2"), null)
+	ASSERT_EQUAL(builder.work(pl, coord3d(3, 4, 0), coord3d(5, 4, 0), road_desc.get_name() + ",t"), null)
 	ASSERT_EQUAL(tile_x(4, 4, 0).get_slope(), slope.flat)
 
 	builder.set_flags(2)

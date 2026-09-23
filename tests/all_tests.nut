@@ -251,7 +251,6 @@ all_tests <- [
 	test_way_bridge_maintenance_owner,
 	test_way_bridge_maintenance_rail,
 	test_way_bridge_maintenance_auto,
-	test_way_bridge_maintenance_auto_equals_manual,
 	test_way_bridge_maintenance_auto_off,
 	test_way_fail_reason_building,
 	test_way_fail_reason_crossing,

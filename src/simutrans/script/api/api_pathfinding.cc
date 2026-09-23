@@ -147,7 +147,11 @@ bool way_builder_is_allowed_step(way_builder_t *bob, grund_t *from, grund_t *to)
 		return false;
 	}
 	sint32 costs = 0;
-	return bob->is_allowed_step(from, to, &costs);
+	if (bob->get_bautyp() & way_builder_t::terraform_flag  ||  bob->check_slope(from, to)) {
+		// we allow to succeed even if theslope check does not, assuming we execute a terraforming later
+		return bob->is_allowed_step(from, to, &costs, 2);
+	}
+	return false;
 }
 
 
@@ -161,7 +165,7 @@ SQInteger way_builder_get_step_cost(HSQUIRRELVM vm) // instance, from, to
 	grund_t *to   = param<grund_t*>::get(vm, 3);
 
 	sint32 costs = 0;
-	if (from == NULL || to == NULL || !bob->is_allowed_step(from, to, &costs)) {
+	if (from == NULL || to == NULL || !(bob->get_bautyp() & way_builder_t::terraform_flag || bob->check_slope(from, to)) || !bob->is_allowed_step(from, to, &costs, 2)) {
 		sq_pushnull(vm);
 		return 1;
 	}
@@ -302,6 +306,7 @@ void export_pathfinding(HSQUIRRELVM vm)
 					  func_signature_t<sbt_type>::get_typemask(true).c_str());
 
 	log_squirrel_type(func_signature_t<sbt_type>::get_squirrel_class(true), "set_build_types", func_signature_t<sbt_type>::get_squirrel_type(true, 0));
+
 	/**
 	 * Checks if player can build way from @p from to @p to.
 	 * @param from from here
@@ -312,6 +317,7 @@ void export_pathfinding(HSQUIRRELVM vm)
 	 *       the tool that builds applies its own checks.
 	 */
 	register_method(vm, way_builder_is_allowed_step, "is_allowed_step", true);
+
 	/**
 	 * Costs of the step from @p from to @p to, as used by the route search of the way builder.
 	 * These are the weights derived from the way_count_* settings, not an amount of money.

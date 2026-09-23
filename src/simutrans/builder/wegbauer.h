@@ -140,8 +140,9 @@ public:
 	 * it will check
 	 * A) allowed step
 	 * B) if allowed, calculate the cost for the step from @p from to @p to
+	 * if terraform is 2, needs to cehck again
 	 */
-	bool is_allowed_step(const grund_t *from, const grund_t *to, sint32 *costs, bool is_upperlayer = false );
+	bool is_allowed_step(const grund_t *from, const grund_t *to, sint32 *costs, int terraform, bool is_upperlayer = false );
 
 	/**
 	 * Height in tiles between a base ground and the elevated way surface built above it:
@@ -163,7 +164,7 @@ private:
 
 	// checks, if we can build a bridge here ...
 	// may modify next_gr array!
-	void check_for_bridge(const grund_t* from, const koord zv, const vector_tpl<koord3d>& ziel);
+	bool check_for_bridge(const grund_t* from, const koord zv, const vector_tpl<koord3d>& ziel);
 
 	sint32 intern_calc_route(const vector_tpl<koord3d> &start, const vector_tpl<koord3d> &ziel);
 	void intern_calc_straight_route(const koord3d start, const koord3d ziel);
@@ -224,6 +225,8 @@ public:
 	void set_build_sidewalk(bool yesno) { build_sidewalk = yesno; }
 
 	void init_builder(bautyp_t wt, const way_desc_t * desc, const tunnel_desc_t *tunnel_desc=NULL, const bridge_desc_t *bridge_desc=NULL);
+
+	bautyp_t get_bautyp() const { return bautyp; }
 
 	void set_maximum(uint32 n) { maximum = n; }
 

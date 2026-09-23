@@ -354,7 +354,7 @@ function test_way_planner_terraform_matches_executor()
 
 	// a route stopping on the slope only ever levels the near edge, which would leave
 	// the tile with a single raised corner, so the tool refuses to build it at all
-	ASSERT_EQUAL(command_x.build_way(pl, coord3d(8, 9, 0), coord3d(9, 9, 0), road, true, true), "")
+	ASSERT_EQUAL(command_x.build_way(pl, coord3d(8, 9, 0), coord3d(9, 9, 0), road, true, true), "Slope is too steep")
 	ASSERT_EQUAL(tile_x(9, 9, 0).get_slope(), slope.south)
 	ASSERT_FALSE(tile_x(8, 9, 0).has_way(wt_road))
 	ASSERT_FALSE(tile_x(9, 9, 0).has_way(wt_road))

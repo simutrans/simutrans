@@ -336,13 +336,17 @@ call_tool_work build_way(player_t* pl, koord3d start, koord3d end, const way_des
 	}
 	// the tool takes the building policy as second field of its parameter
 	cbuffer_t buf;
+	buf.printf("%s,", way->get_name());
+	if (keep_city_roads) {
+		buf.append("k");
+	}
+	if (straight) {
+		buf.append("s");
+	}
 	if (terraform) {
-		buf.printf("%s,2", way->get_name());
+		buf.append("t");
 	}
-	else {
-		buf.printf("%s", way->get_name());
-	}
-	return call_tool_work(TOOL_BUILD_WAY | GENERAL_TOOL, buf, (straight ? 2 : 0) + (keep_city_roads ? 1 : 0), pl, start, end);
+	return call_tool_work(TOOL_BUILD_WAY | GENERAL_TOOL, buf, 0, pl, start, end);
 }
 
 
