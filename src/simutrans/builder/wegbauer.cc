@@ -2038,7 +2038,9 @@ DBG_MESSAGE("way_builder_t::intern_calc_straight_route()","found straight route 
 	else {
 		route.clear();
 		terraform_index.clear();
-		warn_fail = translator::translate(warn_fail);
+		if (warn_fail) {
+			translator::translate(warn_fail);
+		}
 	}
 }
 
