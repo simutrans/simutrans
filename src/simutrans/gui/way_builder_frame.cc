@@ -337,6 +337,9 @@ way_builder_frame_t::way_builder_frame_t(waytype_t initial_wt) :
 	tabs(false)
 {
 	bool first_call = active_player_nr == 255;
+	if (skinverwaltung_t::menu_icon) {
+		gfx->fit_img_to_width(skinverwaltung_t::menu_icon->get_image_id(0), env_t::iconsize.w);
+	}
 	set_table_layout(1, 0);
 
 	// tab panel
