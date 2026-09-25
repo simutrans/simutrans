@@ -595,7 +595,10 @@ bool gui_textinput_t::infowin_event(const event_t *ev)
 		tail_cursor_pos = 0;
 	}
 	else if(  ev->ev_class==INFOWIN  &&  ev->ev_code==WIN_UNTOP  ) {
-		dr_stop_textinput();
+		// the focus has already moved on: a field that takes text keeps the keyboard
+		if(  !win_is_textinput()  ) {
+			dr_stop_textinput();
+		}
 		edit_menu.set_visible(false);
 		if(  text_dirty  ) {
 			text_dirty = false;
