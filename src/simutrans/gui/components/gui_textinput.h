@@ -94,6 +94,9 @@ protected:
 
 	gui_scrolled_list_t edit_menu;
 
+	/// the long press that opened the menu has not been lifted yet
+	bool edit_menu_opening_gesture;
+
 	/// the label of a command, translated
 	static const char *get_command_text( int cmd );
 

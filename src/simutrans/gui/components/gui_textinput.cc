@@ -43,7 +43,8 @@ gui_textinput_t::gui_textinput_t() :
 	enabled(true),
 	notify_all_changes_delay(0xFFFF),
 	cursor_reference_time(0),
-	edit_menu(gui_scrolled_list_t::listskin)
+	edit_menu(gui_scrolled_list_t::listskin),
+	edit_menu_opening_gesture(false)
 {
 	for (int i= 0; i < lengthof(edit_menu_str); i++) {
 		edit_menu.new_component<gui_scrolled_list_t::const_text_scrollitem_t>(translator::translate(edit_menu_str[i]),SYSCOL_TEXT);
@@ -158,6 +159,19 @@ bool gui_textinput_t::infowin_event(const event_t *ev)
 		return false;
 	}
 
+	if(  edit_menu.is_visible()  &&  edit_menu_opening_gesture  ) {
+		// The finger that held for the menu still has to come off, and its lift
+		// arrives as a click and a release where it rested (SIM_MOUSE_LONGPRESS in
+		// simevent.cc). That ends the gesture that asked for the menu; it is not a
+		// click outside it.
+		if(  IS_LEFTRELEASE(ev)  ) {
+			edit_menu_opening_gesture = false;
+			return true;
+		}
+		if(  IS_LEFTCLICK(ev)  ||  IS_LEFTDRAG(ev)  ||  IS_LONGPRESS(ev)  ) {
+			return true;
+		}
+	}
 	if(  edit_menu.is_visible()  &&  IS_LEFTCLICK(ev)  &&  !edit_menu.getroffen(ev->click_pos)) {
 		// click outside => close it
 		edit_menu.set_visible(false);
@@ -199,6 +213,7 @@ bool gui_textinput_t::infowin_event(const event_t *ev)
 			edit_menu.set_pos(scr_coord(0, 0));
 			edit_menu.set_visible(true);
 			edit_menu.set_selection(-1);
+			edit_menu_opening_gesture = IS_LONGPRESS(ev);
 			return true;
 		}
 		return false;
