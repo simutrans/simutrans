@@ -333,7 +333,7 @@ bool bridge_builder_t::is_monorail_junction(koord3d pos, player_t *player, const
 
 
 /**
- * checks if a bridge can start (or end) on this tile in priciple
+ * checks if a bridge can start (or end) on this tile in principle
  * @returns either an error_message (must abort bridge building) or NULL
  */
 const char* bridge_builder_t::check_start_tile(const player_t* player, const grund_t* gr, ribi_t::ribi bridge_ribi, const bridge_desc_t* desc)
@@ -383,7 +383,7 @@ const char* bridge_builder_t::check_start_tile(const player_t* player, const gru
 	}
 
 	if (const char* err = gr->kann_alle_obj_entfernen(player)) {
-		// therse is something not from us blocking construction
+		// there is something not from us blocking construction
 		return err;
 	}
 
