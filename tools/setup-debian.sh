@@ -12,3 +12,5 @@ apt -y install gcc g++ libbz2-dev libfreetype-dev libfontconfig-dev libpng-dev l
 # optional for SLD2 builds:
 apt -y install libsdl2-dev
 
+# optional for SLD3 builds:
+apt -y install libsdl3-dev
