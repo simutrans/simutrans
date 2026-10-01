@@ -49,7 +49,7 @@ climate_gui_t::climate_gui_t(settings_t* const sets_par) :
 
 		// Mountain roughness
 		new_component<gui_label_t>("Map roughness");
-		mountain_roughness.init( mountain_roughness_start, 0, min(10, 11-((mountain_height_start+99)/100)), gui_numberinput_t::AUTOLINEAR, false );
+		mountain_roughness.init( mountain_roughness_start, 0, 2+min(7, 11-((mountain_height_start+99)/100)), gui_numberinput_t::AUTOLINEAR, false );
 		mountain_roughness.add_listener( this );
 		add_component( &mountain_roughness );
 

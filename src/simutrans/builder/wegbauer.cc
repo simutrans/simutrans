@@ -1390,13 +1390,22 @@ bool way_builder_t::check_for_bridge(const grund_t* from, const koord zv, const 
 		// Try a bridge.
 		bool ok = false;
 
+		// cannot go through mountains => can stop at this height
+		sint8 finish_height = from->get_pos().z;
+		if (slope_t::type h = from->get_grund_hang()) {
+			finish_height += slope_t::max_diff(h);
+		}
+		else {
+			finish_height += bridge_desc->has_double_ramp() + 1;
+		}
+
 //		const sint32 cost_difference = desc->get_maintenance() > 0 ? (bridge_desc->get_maintenance() * 4l + 3l) / desc->get_maintenance() : 16;
 		// try eight possible lengths ..
 		for (uint32 length = 1; length <= welt->get_settings().way_max_bridge_len; length++) {
 			sint8 bridge_height;
 			const grund_t* gr_end = welt->lookup_kartenboden(from->get_pos().get_2d() + zv * length);
-			if (!gr_end) {
-				// not on map any more
+			if (!gr_end  ||  gr_end->get_pos().z==finish_height) {
+				// not on map any more or too height ground
 				break;
 			}
 			koord3d end = gr_end->get_pos();
@@ -1406,7 +1415,7 @@ bool way_builder_t::check_for_bridge(const grund_t* from, const koord zv, const 
 				continue;
 			}
 			if (length == 1 && end.z != from->get_pos().z) {
-				// woudl be just a ramp ...
+				// would be just a ramp ...
 				continue;
 			}
 			// check_start_tile returns an error message, NULL meaning the tile is usable,
@@ -1433,12 +1442,9 @@ bool way_builder_t::check_for_bridge(const grund_t* from, const koord zv, const 
 		// uphill hang ... may be tunnel?
 		for (uint32 length = 1; length <= welt->get_settings().way_max_bridge_len; length++) {
 			sint8 bridge_height;
-			const grund_t* gr_end = welt->lookup(from->get_pos() + zv * length);
-			if (!gr_end) {
-				// not an end point for sure
-				continue;
-			}
-			if (slope_t::opposite(gr_end->get_weg_hang()) != from->get_grund_hang()) {
+			const grund_t* gr_end = welt->lookup_kartenboden(from->get_pos().get_2d() + zv * length);
+			if (!gr_end  ||  gr_end->get_pos().z<from->get_pos().z) {
+				// not on map any more
 				break;
 			}
 			koord3d end = gr_end->get_pos();
