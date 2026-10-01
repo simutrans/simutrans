@@ -1061,7 +1061,7 @@ stadt_t::stadt_t(player_t* player, koord pos, sint32 citizens, const building_de
 	has_townhall = false;
 
 	// 1. Rathaus bei 0 Leuten bauen
-	check_bau_townhall( true, th, rotation);
+	check_bau_townhall( th, rotation);
 
 	unsupplied_city_growth = 0;
 	allow_citygrowth = true;
@@ -1320,7 +1320,7 @@ void stadt_t::finish_rd()
 
 	if (!has_townhall) {
 		dbg->warning("stadt_t::finish_rd()", "City %s has no valid townhall after loading the savegame, try to build a new one.", get_name());
-		check_bau_townhall(true,NULL,-1);
+		check_bau_townhall(NULL,-1);
 	}
 	// new city => need to grow
 	if (buildings.empty()) {
@@ -1828,7 +1828,7 @@ void stadt_t::step_grow_city( bool new_town )
 		}
 
 		check_bau_spezial(new_town);
-		check_bau_townhall(new_town,NULL,-1);
+		check_bau_townhall(NULL,-1);
 		check_bau_factory(new_town); // add industry? (not during creation)
 		INT_CHECK("simcity 275");
 	}
@@ -2467,7 +2467,7 @@ void stadt_t::check_bau_spezial(bool new_town)
 
 
 
-void stadt_t::check_bau_townhall(bool new_town, const building_desc_t* desc, sint16 rotation)
+void stadt_t::check_bau_townhall(const building_desc_t* desc, sint16 rotation)
 {
 	if (desc == NULL) {
 		desc = hausbauer_t::get_special(has_townhall ? bev : 0, building_desc_t::townhall, welt->get_timeline_year_month(), (bev == 0) || !has_townhall, welt->get_climate(pos));
@@ -2610,7 +2610,8 @@ void stadt_t::check_bau_townhall(bool new_town, const building_desc_t* desc, sin
 		}
 		// on which side should we place the road?
 		uint8 dir = ribi_t::layout_to_ribi[layout & 3];
-		if (neugruendung || umziehen) {
+		if(neugruendung || umziehen) {
+			// place changed
 			best_pos = townhall_placefinder_t(welt, dir).find_place(pos, desc->get_x(layout) + (dir & ribi_t::eastwest ? 1 : 0), desc->get_y(layout) + (dir & ribi_t::northsouth ? 1 : 0), desc->get_allowed_climate_bits());
 			// check, if the was something found
 			if (best_pos == koord::invalid) {
@@ -2624,24 +2625,25 @@ void stadt_t::check_bau_townhall(bool new_town, const building_desc_t* desc, sin
 				best_pos.y++;
 			}
 		}
+		// this is always tile 0,0
 		gebaeude_t const* const new_gb = hausbauer_t::build(owner, best_pos, layout, desc);
+		best_pos = new_gb->get_pos().get_2d();
 		DBG_MESSAGE("new townhall", "use layout=%i", layout);
 		add_gebaeude_to_stadt(new_gb);
 		// sets has_townhall to true
 		DBG_MESSAGE("stadt_t::check_bau_townhall()", "add townhall (bev=%i, ptr=%p)", buildings.get_sum_weight(),welt->lookup_kartenboden(best_pos)->first_no_way_obj());
 
 		// if not during initialization
-		koord offset(dir == ribi_t::west, dir == ribi_t::north);
-		if (!new_town) {
+		if (umziehen) {
 			cbuffer_t buf;
 			buf.printf(translator::translate("%s wasted\nyour money with a\nnew townhall\nwhen it reached\n%i inhabitants."), name.c_str(), get_einwohner());
 			welt->get_message()->add_message(buf, new_gb->get_pos(), message_t::city, CITY_KI, desc->get_tile(layout, 0, 0)->get_background(0, 0, 0));
 		}
-		else {
-			welt->lookup_kartenboden(best_pos + offset)->set_text( name );
-		}
 
+		koord offset = koord(0,0);
 		if (neugruendung || umziehen) {
+			// place name closest to the player
+			offset += new_gb->get_tile()->get_desc()->get_size(new_gb->get_tile()->get_layout())-koord(1,1);
 
 			// offset of building within searched place, start and end of road
 			koord road0(0,0);

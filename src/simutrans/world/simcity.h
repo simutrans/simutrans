@@ -374,14 +374,14 @@ private:
 	void merke_passagier_ziel(koord ziel, pax_dest_status_t status);
 
 	/**
-	 * baut Spezialgebaeude, z.B Stadion
+	 * builds tourist attractions
 	 */
 	void check_bau_spezial(bool);
 
 	/**
-	 * baut ein angemessenes Rathaus
+	 * Builds or renovates townhall
 	 */
-	void check_bau_townhall(bool new_town, const building_desc_t* th, sint16 rotation);
+	void check_bau_townhall(const building_desc_t* th, sint16 rotation);
 
 	/**
 	 * constructs a new consumer
