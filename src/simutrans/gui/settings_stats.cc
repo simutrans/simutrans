@@ -515,7 +515,7 @@ void settings_climates_stats_t::init(settings_t* const sets)
 	SEPERATOR
 	INIT_NUM_NEW( "Water level", sets->get_groundwater(), -20*(ground_desc_t::double_grounds?2:1), 20, gui_numberinput_t::AUTOLINEAR, false );
 	INIT_NUM_NEW( "Mountain height", mountain_height_start, 0, min(1000,100*(11-mountain_roughness_start)), 10, false );
-	INIT_NUM_NEW( "Map roughness", mountain_roughness_start, 0, min(10, 11-((mountain_height_start+99)/100)), gui_numberinput_t::AUTOLINEAR, false );
+	INIT_NUM_NEW( "Map roughness", mountain_roughness_start, 0, 10+min(10, 11-((mountain_height_start+99)/100)), gui_numberinput_t::AUTOLINEAR, false );
 
 	SEPERATOR
 	INIT_NUM_NEW( "Wind direction", sets->wind_direction, 0, 3, 1, true );

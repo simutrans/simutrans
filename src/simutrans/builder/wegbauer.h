@@ -83,7 +83,8 @@ private:
 		build_straight      = 1 << 0, ///< next step has to be straight
 		terraform           = 1 << 1, ///< terraform this tile
 		build_tunnel_bridge = 1 << 2, ///< bridge/tunnel ends here
-		is_upperlayer       = 1 << 3  ///< only used when elevated  true:upperlayer
+		is_upperlayer       = 1 << 3, ///< only used when elevated  true:upperlayer
+		must_build_bridge   = 1 << 4  ///< this slope is not usuable but for start of bridge
 	};
 
 	struct next_gr_t
@@ -246,7 +247,8 @@ public:
 	// checks whether buildings on the tile allow to leave in direction dir
 	bool check_building( const grund_t *to, const koord dir ) const;
 	// allowed slope?
-	bool check_slope( const grund_t *from, const grund_t *to );
+	bool check_slope(const grund_t* from, const grund_t* to);
+	bool check_slope_double(const grund_t* from, const grund_t* to);
 
 	bool check_terraforming( const grund_t *from, const grund_t *to, uint8* new_from_slope=NULL, uint8* new_to_slope=NULL) const;
 	bool check_terraforming( const grund_t *from, const grund_t *to, slope_t::type from_slope, sint8 from_hgt, slope_t::type to_slope, sint8 to_hgt, uint8* new_from_slope, uint8* new_to_slope) const;
