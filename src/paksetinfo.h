@@ -2,10 +2,10 @@
 #define PAKSET_COUNT 20
 #define OBSOLETE_FROM (12)
 paksetinfo_t pakinfo[PAKSET_COUNT] = {
-	{ "http://downloads.sourceforge.net/project/simutrans/pak64/124-4/simupak64-124-4.zip", "pak", "pak64 124.4 r2222M", 16464 },
-	{ "http://downloads.sourceforge.net/project/simutrans/pak128/pak128%20for%20ST%20124.4up%20%282.10.1%29/simupak128-2-10-1-for124-4up.zip", "pak128", "pak128 2.10.1 for 124.4 git r699 hash 6dccf5d4", 415900 },
+	{ "http://downloads.sourceforge.net/project/simutrans/pak64/125-0/simupak64-125-0.zip", "pak", "pak64 125.0 r2234M", 16552 },
+	{ "http://downloads.sourceforge.net/project/simutrans/pak128/pak128%20for%20ST%20125.0%20up%20%282.10.3%29/simupak128-2-1023-for-125-0up.zip", "pak128", "pak128 2.10.3 for 125.0 up git r hash ", 418031 },
 	{ "http://downloads.sourceforge.net/project/simutrans/pak192.comic/pak192.comic%20V0.7.2/pak192-comic.zip", "pak192.comic", "Pak192.Comic V0.7.2 Rev 1296", 909748 },
-	{ "http://simutrans-germany.com/pak.german/pak64.german_0-124-4-0-1_full.zip", "pak64.german", "pak64.german 0.124.4.0.1", 29232 },
+	{ "http://simutrans-germany.com/pak.german/pak64.german_0-124-5-1-1_full.zip", "pak64.german", "pak64.german 0.124.5.1.1", 29476 },
 	{ "http://downloads.sourceforge.net/project/simutrans/PAK128.german/PAK128.german_2.4_for_ST_124.3.1/PAK128.german_2.4_for_ST_124.3.1.zip", "PAK128.german", "Pak128.german VS 2.4 (Rev. 547)", 576132 },
 	{ "http://downloads.sourceforge.net/project/simutrans/pak64.japan/123-0/simupak64.japan-123-0.zip", "pak.japan", "pak64.japan 123 r2101", 10175 },
 	{ "https://github.com/wa-st/pak-nippon/releases/download/v0.6.2/pak.nippon-v0.6.2.zip", "pak.nippon", "pak.nippon v0.6.2", 50198 },

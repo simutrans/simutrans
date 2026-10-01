@@ -12,7 +12,7 @@ Prop-Latin1.bdf
 #                             Language: de Deutsch                             #
 #                                Encoding: UTF-8                               #
 #                             Font: Prop-Latin1.bdf                            #
-#                           Date Created: 10.09 2026                           #
+#                            Date Created: 1.10 2026                           #
 #                                                                              #
 ################################################################################
 #__________________________________button_text__________________________________
@@ -719,6 +719,8 @@ auto
 automatisch
 Autohalt muss auf\nStrasse liegen!\n
 Autohalt muss auf\nStraße liegen!\n
+automatic terraforming
+Versuche Aufschüttungen
 Available
 Verfügbar
 Available at custom date
@@ -1097,6 +1099,10 @@ Dock
 Hafen
 Dock must be built on single slope!
 Ein Hafen muss an einem\ngeraden Ufer gebaut werden!\n
+Don't build bridges
+Keine Brücken
+Don't build tunnels
+Keine Tunnel
 Downloading
 Herunterladen
 dp_title
@@ -1825,6 +1831,8 @@ Player ranking
 Spielerrangfolge
 Please choose vehicles first\n
 Bitte wählen sie zuerst einen Fahrzeugverband aus.
+Please select a way to build!
+Kann nicht bauen ohen Weg!
 Postrate
 Postaufkommen
 Power
@@ -2159,6 +2167,8 @@ Spielstand wurde\ngespeichert!\n
 \nSpielstand wurde\ngespeichert!\n\n
 Sprachen
 Sprachauswahl
+Stack toolbars
+Werkzeugleisten übereinander
 Start
 Starten
 Start the selected vehicle(s)
@@ -2186,7 +2196,7 @@ Auf Lager
 Storage capacity
 Lagerkapazität
 straight route
-gerade Strecke
+Nur Gerade und Diagonale
 Strassendepot
 Bus und LKW Depot
 Strassentunnel
@@ -2387,6 +2397,8 @@ way %s cannot longer used:\n%s\n
 %s steht nicht mehr zur Verfügung:\n
 way %s now available:\n
 Weg %s kann\nab sofort gebaut werden.
+Way builder
+Universeller Wegbauer
 Way toll
 Maut
 Ways not connected

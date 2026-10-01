@@ -2,12 +2,12 @@
 SectionGroup /e "Pak64: main and addons" pak64group
 
 Section /o "pak" pak
-  AddSize 16464
-  StrCpy $downloadlink "http://downloads.sourceforge.net/project/simutrans/pak64/124-4/simupak64-124-4.zip"
+  AddSize 16552
+  StrCpy $downloadlink "http://downloads.sourceforge.net/project/simutrans/pak64/125-0/simupak64-125-0.zip"
   SetOutPath $PAKDIR
-  StrCpy $archievename "simupak64-124-4.zip"
+  StrCpy $archievename "simupak64-125-0.zip"
   StrCpy $downloadname "pak"
-  StrCpy $VersionString "pak64 124.4 r2223"
+  StrCpy $VersionString "pak64 125.0 r2234M"
   Call DownloadInstallZip
 SectionEnd
 Section /o "pak64 Food addon"
@@ -27,12 +27,12 @@ SectionGroupEnd
 
 
 Section /o "pak128" pak128
-  AddSize 415900
-  StrCpy $downloadlink "http://downloads.sourceforge.net/project/simutrans/pak128/pak128%20for%20ST%20124.4up%20%282.10.1%29/simupak128-2-10-1-for124-4up.zip"
+  AddSize 418031
+  StrCpy $downloadlink "http://downloads.sourceforge.net/project/simutrans/pak128/pak128%20for%20ST%20125.0%20up%20%282.10.3%29/simupak128-2-1023-for-125-0up.zip"
   SetOutPath $PAKDIR
-  StrCpy $archievename "simupak128-2-10-1-for124-4up.zip"
+  StrCpy $archievename "simupak128-2-1023-for-125-0up.zip"
   StrCpy $downloadname "pak128"
-  StrCpy $VersionString "pak128 2.10.1 for 124.4 git r699 hash 6dccf5d4"
+  StrCpy $VersionString "pak128 2.10.3 for 125.0 up git r hash "
   Call DownloadInstallZip
 SectionEnd
 
@@ -47,12 +47,12 @@ Section /o "pak192.comic" pak192.comic
 SectionEnd
 
 Section /o "pak64.german" pak64.german
-  AddSize 29232
-  StrCpy $downloadlink "http://simutrans-germany.com/pak.german/pak64.german_0-124-4-0-1_full.zip"
+  AddSize 29476
+  StrCpy $downloadlink "http://simutrans-germany.com/pak.german/pak64.german_0-124-5-1-1_full.zip"
   SetOutPath $PAKDIR
-  StrCpy $archievename "pak64.german_0-124-4-0-1_full.zip"
+  StrCpy $archievename "pak64.german_0-124-5-1-1_full.zip"
   StrCpy $downloadname "pak64.german"
-  StrCpy $VersionString "pak64.german 0.124.4.0.1"
+  StrCpy $VersionString "pak64.german 0.124.5.1.1"
   Call DownloadInstallZip
 SectionEnd
 

@@ -207,8 +207,8 @@ download_and_install_pakset()
 # generated list of pak sets
 obsolete_start_index=12
 paksets=( \
-  "http://downloads.sourceforge.net/project/simutrans/pak64/124-4/simupak64-124-4.zip" \
-  "http://downloads.sourceforge.net/project/simutrans/pak128/pak128%20for%20ST%20124.4up%20%282.10.1%29/simupak128-2-10-1-for124-4up.zip" \
+  "http://downloads.sourceforge.net/project/simutrans/pak64/125-0/simupak64-125-0.zip" \
+  "http://downloads.sourceforge.net/project/simutrans/pak128/pak128%20for%20ST%20125.0%20up%20%282.10.3%29/simupak128-2-1023-for-125-0up.zip" \
   "http://downloads.sourceforge.net/project/simutrans/pak192.comic/pak192.comic%20V0.7.2/pak192-comic.zip" \
   "http://simutrans-germany.com/pak.german/pak64.german_0-124-5-1-1_full.zip" \
   "http://downloads.sourceforge.net/project/simutrans/PAK128.german/PAK128.german_2.4_for_ST_124.3.1/PAK128.german_2.4_for_ST_124.3.1.zip" \

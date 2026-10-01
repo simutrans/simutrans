@@ -12,7 +12,7 @@ wenquanyi_9pt.bdf
 #                           Language: cn Sim. Chinese                          #
 #                                Encoding: UTF-8                               #
 #                            Font: wenquanyi_9pt.bdf                           #
-#                           Date Created: 10.09 2026                           #
+#                            Date Created: 1.10 2026                           #
 #                                                                              #
 ################################################################################
 #__________________________________button_text__________________________________
@@ -735,6 +735,8 @@ auto
 自动
 Autohalt muss auf\nStrasse liegen!\n
 巴士、车辆停靠站必须建在道路上
+automatic terraforming
+自动生成地形
 Available
 可用
 Available at custom date
@@ -1137,6 +1139,10 @@ Dock
 码头
 Dock must be built on single slope!
 码头只能建造在沿海单面斜坡上
+Don't build bridges
+不要建桥
+Don't build tunnels
+不要建隧道
 Downloading
 下载中
 dp_title
@@ -1931,6 +1937,8 @@ Player ranking
 玩家评级
 Please choose vehicles first\n
 请先选择载具
+Please select a way to build!
+请选择一条路以建造。
 Post
 邮件
 Postrate
@@ -2211,6 +2219,8 @@ show station names
 显示车站名称
 show waiting bars
 显示等候图表
+show_construction_info
+显示施工信息
 show/hide block reservations
 显示/隐藏预留块
 Show/hide estimated arrival times
@@ -2293,6 +2303,8 @@ Sprache
 语言
 Sprachen
 语言
+Stack toolbars
+堆叠工具栏
 Stadtinformation
 城市统计数据
 Start
@@ -2535,6 +2547,8 @@ way %s cannot longer used:\n%s\n
 不能再建造 %s 路。\n
 way %s now available:\n
 %s 路现在可用。\n
+Way builder
+通用道路建造工具
 Way toll
 通行费
 Ways not connected

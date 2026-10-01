@@ -12,7 +12,7 @@ Prop-Latin1.bdf
 #                             Language: en English                             #
 #                             Encoding: ISO-8859-1                             #
 #                             Font: Prop-Latin1.bdf                            #
-#                           Date Created: 10.09 2026                           #
+#                            Date Created: 1.10 2026                           #
 #                                                                              #
 ################################################################################
 #__________________________________button_text__________________________________
@@ -528,7 +528,7 @@ Build Shipyard
 Build truck depot
 Build Garage
 Building costs estimates
-Estimated construction cost
+Estimated costs
 Buildings
 City buildings
 Built artifical slopes
