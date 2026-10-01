@@ -116,7 +116,7 @@ elif [ "$OST" = "mingw" ]; then
     simarchivbase=$simarchivbase"-sdl3"
   fi
   cd simutrans
-  if [ "$PGC" -ne 0 ]; then
+  if [ -n "$PGC" ]; then
     getDLL
   fi
   cd ..

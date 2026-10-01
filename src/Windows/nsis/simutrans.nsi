@@ -154,11 +154,12 @@ SectionEnd
 
 ; make sure, at least one executable is installed
 Function .onSelChange
-!insertmacro StartRadioButtons $9
-    !insertmacro RadioButton ${GDIexe}
-    !insertmacro RadioButton ${SDLexe}
-    !insertmacro RadioButton ${GDI64exe}
-    !insertmacro RadioButton ${SDL64exe}
+!insertmacro StartRadioButtons $ExecutableRadioState
+  !insertmacro RadioButton ${GDIexe}
+  !insertmacro RadioButton ${SDLexe}
+  !insertmacro RadioButton ${GDI64exe}
+  !insertmacro RadioButton ${SDL64exe}
+  !insertmacro RadioButton ${SDL364exe}
 !insertmacro EndRadioButtons
 
 test_for_pak:

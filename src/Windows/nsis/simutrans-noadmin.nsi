@@ -78,7 +78,7 @@ Section /o "Executable (GDI)" GDIexe
   Call PostExeInstall
 SectionEnd
 
-Section "Executable (SDL2)" SDLexe
+Section /o "Executable (SDL2)" SDLexe
   AddSize 23728
   StrCpy $downloadlink "http://downloads.sourceforge.net/project/simutrans/simutrans/125-0/simuwin-sdl-125-0.zip"
   StrCpy $archievename "simuwin-sdl-125-0.zip"
@@ -98,7 +98,7 @@ Section /o "Executable (GDI 64bit)" GDI64exe
   Call PostExeInstall
 SectionEnd
 
-Section /o "Executable (SDL2 64bit)" SDL64exe
+Section "Executable (SDL2 64bit)" SDL64exe
   AddSize 22936
   StrCpy $downloadlink "http://downloads.sourceforge.net/project/simutrans/simutrans/125-0/simuwin-x64-sdl-125-0.zip"
   StrCpy $archievename "simuwin-x64-sdl-125-0.zip"
@@ -148,11 +148,12 @@ SectionEnd
 
 ; make sure, at least one executable is installed
 Function .onSelChange
-!insertmacro StartRadioButtons $9
-    !insertmacro RadioButton ${GDIexe}
-    !insertmacro RadioButton ${SDLexe}
-    !insertmacro RadioButton ${GDI64exe}
-    !insertmacro RadioButton ${SDL64exe}
+!insertmacro StartRadioButtons $ExecutableRadioState
+  !insertmacro RadioButton ${GDIexe}
+  !insertmacro RadioButton ${SDLexe}
+  !insertmacro RadioButton ${GDI64exe}
+  !insertmacro RadioButton ${SDL64exe}
+  !insertmacro RadioButton ${SDL364exe}
 !insertmacro EndRadioButtons
 
 test_for_pak:

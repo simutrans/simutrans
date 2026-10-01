@@ -7,6 +7,7 @@
 
 !include "TextFunc.nsh"
 
+Var ExecutableRadioState
 
 ; Usage ...
 ; Push "|" ;divider char
@@ -356,8 +357,9 @@ Function .oninit
 
   !insertmacro MULTIUSER_INIT
 
-  StrCpy $9 ${SDLexe} ;The default for radiobutton
-
+  ;The default for radiobutton
+  StrCpy $ExecutableRadioState ${SDL64exe}
+  
   InitPluginsDir
   StrCpy $multiuserinstall "1"
  ; avoids two instance at the same time ...

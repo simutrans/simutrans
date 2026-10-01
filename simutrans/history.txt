@@ -7,7 +7,7 @@ Release of 125.0 (r12321 on 1-Oct-2026):
 	FIX: citybuildings of level 1 were actually level zero due to makeobj substracting 1 on loading.
 	FIX: correct citysize again after renovation.
 	CHG: reserved tile for way choose of non-trains (road and air) will now be shown in green when reservation display is on
-	CHG: very much overhauled airplane state machine: Should give much fewer deadlocks (no landing and blockign runway with not free stop, not leaving bay when plane comign in my direction for take off)
+	CHG: very much overhauled airplane state machine: Should give much fewer deadlocks (no landing and blockign runway with not free stop, not leaving bay when plane coming in my direction for take off)
 	CHG: direction switches will first display the undefined graphic (if there)
 	ADD: close diagonal became possible including trains passing in different directions.
 	ADD: Including handling of wayobj (as with ways, define diagonal[close1] for close diagonal image)
