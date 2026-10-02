@@ -825,6 +825,14 @@ void gui_textinput_t::display_with_cursor(scr_coord offset, bool cursor_active, 
 
 
 
+/// true if a cursor may stand at byte @p pos of @p t: at its end or on the first byte of a character
+static bool is_cursor_position(const char *t, size_t pos)
+{
+	const size_t len = strlen(t);
+	return pos < len ? ((uint8)t[pos] & 0xC0) != 0x80 : pos == len;
+}
+
+
 void gui_textinput_t::set_text(char *t, size_t max)
 {
 	// the menu acts on the buffer it was opened over; it must not outlive it
@@ -833,8 +841,10 @@ void gui_textinput_t::set_text(char *t, size_t max)
 	this->max = max;
 
 	edit_menu.set_visible(false);
-	if (old_text  &&   tail_cursor_pos == head_cursor_pos) {
+	if (old_text  &&   tail_cursor_pos == head_cursor_pos  &&  (t == NULL  ||  is_cursor_position(t, head_cursor_pos))) {
 		// if same, keep positions
+		// (the buffer may hold another string now, e.g. a combobox showing the next entry; a
+		//  byte position inside one of its characters would split it when drawn or edited)
 	}
 	else {
 		// whole text is selected by default
