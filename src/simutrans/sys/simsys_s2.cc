@@ -339,7 +339,7 @@ bool dr_os_init(const int* parameter)
 	if (has_soft_keyboard  &&  !env_t::hide_keyboard) {
 		env_t::hide_keyboard = true;
 	}
-// we alwaye enable it
+// we always enable it
 //	if (!env_t::hide_keyboard) {
 		SDL_EventState(SDL_TEXTINPUT, SDL_ENABLE);
 //	}
@@ -1190,8 +1190,10 @@ void dr_start_textinput()
 
 void dr_stop_textinput()
 {
-	SDL_StopTextInput();
-	DBG_MESSAGE("SDL_StoptTextInput", "");
+	if (env_t::hide_keyboard) {
+		SDL_StopTextInput();
+		DBG_MESSAGE("SDL_StopTextInput", "");
+	}
 }
 
 void dr_notify_input_pos(scr_coord pos)
