@@ -1556,9 +1556,54 @@ char **copy_argv(int argc, char *argv[]) {
 	return new_argv;
 }
 
+#ifdef _WIN32
+/**
+ * The C runtime builds argv from the command line in the ANSI code page, but Simutrans keeps every
+ * path in UTF-8: an accented -set_basedir became invalid UTF-8, and other scripts became '?'.
+ * Re-encode the arguments from the wide command line. An argument is only replaced if the wide
+ * parse agrees with the runtime's own (same count, same text once converted to ANSI), so the
+ * splitting of the command line never changes.
+ */
+static void utf8_arguments(int argc, char **argv)
+{
+	int wargc = 0;
+	LPWSTR *const wargv = CommandLineToArgvW(GetCommandLineW(), &wargc);
+	if(  !wargv  ) {
+		return;
+	}
+	if(  wargc == argc  ) {
+		for(  int i = 1;  i < argc;  i++  ) {
+			int const ansi_size = WideCharToMultiByte(CP_ACP, 0, wargv[i], -1, NULL, 0, NULL, NULL);
+			if(  ansi_size <= 0  ) {
+				continue;
+			}
+			char *const ansi = new char[ansi_size];
+			WideCharToMultiByte(CP_ACP, 0, wargv[i], -1, ansi, ansi_size, NULL, NULL);
+			bool const same_argument = strcmp(ansi, argv[i]) == 0;
+			delete[] ansi;
+			if(  same_argument  ) {
+				int const size = WideCharToMultiByte(CP_UTF8, 0, wargv[i], -1, NULL, 0, NULL, NULL);
+				if(  size <= 0  ) {
+					continue;
+				}
+				char *const utf8 = new char[size];
+				WideCharToMultiByte(CP_UTF8, 0, wargv[i], -1, utf8, size, NULL, NULL);
+				delete[] argv[i];
+				argv[i] = utf8;
+			}
+		}
+	}
+	LocalFree(wargv);
+}
+#endif
+
+
 int sysmain(int const argc, char** const argv)
 {
 	char ** argv_copy = copy_argv(argc,argv);
+#ifdef _WIN32
+	utf8_arguments(argc, argv_copy);
+#endif
 	sys_event.type = SIM_NOEVENT;
 	sys_event.code = 0;
 
