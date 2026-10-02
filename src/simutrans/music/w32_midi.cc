@@ -5,6 +5,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string>
 #include <windows.h>
 #include <mmsystem.h>
 
@@ -82,7 +83,7 @@ int dr_load_midi(const char *filename)
  */
 void dr_play_midi(int key)
 {
-	char str[200], retstr[200];
+	char retstr[200];
 
 	if (midi_number >= 0) {
 
@@ -90,10 +91,18 @@ void dr_play_midi(int key)
 			if (midi_failed[key]) {
 				return; // already reported
 			}
-			sprintf(str, "open \"%s\" type sequencer alias SimuMIDI", midi_filenames[key].c_str());
-			dbg->debug("dr_play_midi(w32)", "MCI string: %s", str);
+			dbg->debug("dr_play_midi(w32)", "MCI string: open \"%s\" type sequencer alias SimuMIDI", midi_filenames[key].c_str());
 
-			MCIERROR err = mciSendStringA(str, NULL, 0, NULL);
+			// the name is UTF-8 and of any length: hand it to MCI as a wide string
+			MCIERROR err = MCIERR_INVALID_FILE;
+			const int wlen = MultiByteToWideChar(CP_UTF8, MB_ERR_INVALID_CHARS, midi_filenames[key], -1, NULL, 0);
+			if (wlen > 0) {
+				std::wstring name(wlen, L'\0');
+				MultiByteToWideChar(CP_UTF8, MB_ERR_INVALID_CHARS, midi_filenames[key], -1, &name[0], wlen);
+				name.resize(wlen - 1);
+				const std::wstring open = L"open \"" + name + L"\" type sequencer alias SimuMIDI";
+				err = mciSendStringW(open.c_str(), NULL, 0, NULL);
+			}
 			if (err == 0) {
 				err = mciSendStringA("play SimuMIDI", NULL, 0, NULL);
 				if (err != 0) {
