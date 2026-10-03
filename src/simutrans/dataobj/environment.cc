@@ -111,6 +111,7 @@ sint16 env_t::midi_volume = 127;
 uint16 env_t::specific_volume[MAX_SOUND_TYPES];
 
 std::string env_t::soundfont_filename = "";
+std::string env_t::music_folder = "";
 std::string env_t::pakset_tutorial_dir = "tutorial";
 bool env_t::global_mute_sound = false;
 bool env_t::mute_midi = false;
@@ -684,6 +685,14 @@ void env_t::rdwr(loadsave_t *file)
 	if (file->is_version_atleast(124, 6)) {
 		file->rdwr_bool(horizontal_stripe_owner);
 		file->rdwr_bool(show_construction_info);
+	}
+
+	if (file->is_version_atleast(125, 6)) {
+		plainstring str = music_folder.c_str();
+		file->rdwr_str(str);
+		if (file->is_loading()) {
+			music_folder = str ? str.c_str() : "";
+		}
 	}
 
 	// server settings are not saved, since they are server specific

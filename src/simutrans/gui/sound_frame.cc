@@ -11,6 +11,9 @@
 #include "../dataobj/translator.h"
 #include "../dataobj/environment.h"
 #include "components/gui_divider.h"
+#include "simwin.h"
+#include "music_folder_frame.h"
+#include "../utils/simstring.h"
 #ifdef USE_FLUIDSYNTH_MIDI
 #include "loadsoundfont_frame.h"
 #endif
@@ -47,6 +50,23 @@ void sound_frame_t::update_song_name()
 	song_credits_label.buf().printf(credits.c_str());
 	song_credits_label.update();
 	song_credits_label.set_size( song_credits_label.get_min_size() );
+
+	if(  env_t::music_folder.empty()  ) {
+		music_source_label.buf().append( translator::translate("Default music") );
+	}
+	else {
+		std::string folder = env_t::music_folder;
+		while(  folder.length() > 1  &&  (folder.back() == '/'  ||  folder.back() == '\\')  ) {
+			folder.pop_back();
+		}
+		music_source_label.buf().append( str_get_filename( folder.c_str(), true ).c_str() );
+		if(  !midi_from_music_folder()  ) {
+			// not found at start: the default music plays instead
+			music_source_label.buf().printf( " (%s)", translator::translate("not available") );
+		}
+	}
+	music_source_label.update();
+	music_source_label.set_size( music_source_label.get_min_size() );
 
 	// Loadsoundfont dialog may unmute us, update mute status
 	music_mute_button.pressed = midi_get_mute();
@@ -165,6 +185,19 @@ sound_frame_t::sound_frame_t() :
 
 	new_component<gui_margin_t>();
 
+	// where the songs come from; the name last, since it changes while the window is open
+	add_table( 3, 1 );
+	{
+		new_component<gui_label_t>( "Music source:" );
+
+		music_folder_button.init( button_t::roundbox, "Select music" );
+		music_folder_button.add_listener( this );
+		add_component( &music_folder_button );
+
+		add_component( &music_source_label );
+	}
+	end_table();
+
 #ifdef USE_FLUIDSYNTH_MIDI
 	// Soundfont selection
 	soundfont_button.init( button_t::roundbox_state | button_t::flexible, "Select soundfont" );
@@ -215,6 +248,9 @@ bool sound_frame_t::action_triggered( gui_action_creator_t *comp, value_t p)
 	}
 	else if (comp == &sound_range) {
 		env_t::sound_distance_scaling = p.i;
+	}
+	else if(  comp == &music_folder_button  ) {
+		create_win( new music_folder_frame_t(), w_info, magic_music_folder );
 	}
 #ifdef USE_FLUIDSYNTH_MIDI
 	else if(  comp == &soundfont_button  ) {

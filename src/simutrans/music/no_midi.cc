@@ -49,6 +49,17 @@ sint32 dr_midi_pos(void)
 }
 
 
+void dr_clear_midi()
+{
+}
+
+
+const char *dr_get_midi_extensions()
+{
+	return "";
+}
+
+
 /**
  * Midi shutdown/cleanup
  */

@@ -127,6 +127,7 @@ enum magic_numbers {
 	magic_player_ranking,
 	magic_script_generator,	// only during saving
 	magic_way_builder,
+	magic_music_folder,
 	magic_max
 };
 

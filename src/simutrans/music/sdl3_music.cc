@@ -172,6 +172,37 @@ void dr_stop_midi()
 }
 
 
+void dr_clear_midi()
+{
+	dr_stop_midi();
+	midi_number = -1;
+	midi_failed_count = 0;
+}
+
+
+const char *dr_get_midi_extensions()
+{
+	// only what the decoders SDL3_mixer was built with can play
+	static const char *const decoder_extensions[][2] = {
+		{ "WAV", ".wav " }, { "VORBIS", ".ogg " }, { "STBVORBIS", ".ogg " }, { "OPUS", ".opus " },
+		{ "FLAC", ".flac " }, { "DRFLAC", ".flac " }, { "MPG123", ".mp3 " }, { "DRMP3", ".mp3 " },
+		{ "FLUIDSYNTH", ".mid .midi " }, { "TIMIDITY", ".mid .midi " }
+	};
+	static std::string extensions;
+	extensions.clear();
+	if(  mixer  ) {
+		for(  int i = 0;  i < MIX_GetNumAudioDecoders();  i++  ) {
+			for(  auto const &d : decoder_extensions  ) {
+				if(  SDL_strcmp(MIX_GetAudioDecoder(i), d[0]) == 0  &&  extensions.find(d[1]) == std::string::npos  ) {
+					extensions += d[1];
+				}
+			}
+		}
+	}
+	return extensions.c_str();
+}
+
+
 sint32 dr_midi_pos()
 {
 	if(  track  &&  MIX_TrackPlaying(track)  ) {

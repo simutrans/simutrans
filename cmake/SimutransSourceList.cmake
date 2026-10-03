@@ -167,6 +167,7 @@ target_sources(simutrans PRIVATE
 	src/simutrans/gui/messagebox.cc
 	src/simutrans/gui/minimap.cc
 	src/simutrans/gui/money_frame.cc
+	src/simutrans/gui/music_folder_frame.cc
 	src/simutrans/gui/obj_info.cc
 	src/simutrans/gui/optionen.cc
 	src/simutrans/gui/pakinstaller.cc

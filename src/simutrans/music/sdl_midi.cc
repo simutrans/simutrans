@@ -6,6 +6,8 @@
 #include <SDL.h>
 #include <SDL_mixer.h>
 
+#include <string>
+
 #include "../simdebug.h"
 #include "../utils/plainstring.h"
 #include "music.h"
@@ -90,6 +92,34 @@ sint32 dr_midi_pos(void)
 	else {
 		return 0;
 	}
+}
+
+
+void dr_clear_midi()
+{
+	dr_stop_midi();
+	midi_number = -1;
+}
+
+
+const char *dr_get_midi_extensions()
+{
+	// only what the music decoders SDL_mixer was built with can play
+	static const char *const decoder_extensions[][2] = {
+		{ "WAVE", ".wav " }, { "OGG", ".ogg " }, { "OPUS", ".opus " }, { "FLAC", ".flac " },
+		{ "MP3", ".mp3 " }, { "MPG123", ".mp3 " }, { "DRMP3", ".mp3 " }, { "MINIMP3", ".mp3 " },
+		{ "MIDI", ".mid .midi " }, { "FLUIDSYNTH", ".mid .midi " }, { "TIMIDITY", ".mid .midi " }, { "NATIVEMIDI", ".mid .midi " }
+	};
+	static std::string extensions;
+	extensions.clear();
+	for(  int i = 0;  i < Mix_GetNumMusicDecoders();  i++  ) {
+		for(  auto const &d : decoder_extensions  ) {
+			if(  SDL_strcasecmp(Mix_GetMusicDecoder(i), d[0]) == 0  &&  extensions.find(d[1]) == std::string::npos  ) {
+				extensions += d[1];
+			}
+		}
+	}
+	return extensions.c_str();
 }
 
 

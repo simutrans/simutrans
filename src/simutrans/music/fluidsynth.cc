@@ -183,6 +183,20 @@ sint32 dr_midi_pos(void)
 }
 
 
+void dr_clear_midi()
+{
+	// synth and SoundFont stay loaded for the next list
+	dr_stop_midi();
+	midi_number = -1;
+}
+
+
+const char *dr_get_midi_extensions()
+{
+	return ".mid .midi ";
+}
+
+
 /**
  * Midi shutdown/cleanup
  */

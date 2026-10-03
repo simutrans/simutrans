@@ -475,6 +475,7 @@ SOURCES += src/simutrans/gui/message_stats.cc
 SOURCES += src/simutrans/gui/messagebox.cc
 SOURCES += src/simutrans/gui/minimap.cc
 SOURCES += src/simutrans/gui/money_frame.cc
+SOURCES += src/simutrans/gui/music_folder_frame.cc
 SOURCES += src/simutrans/gui/obj_info.cc
 SOURCES += src/simutrans/gui/optionen.cc
 SOURCES += src/simutrans/gui/pakinstaller.cc

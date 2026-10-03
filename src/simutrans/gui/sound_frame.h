@@ -30,11 +30,13 @@ private:
 	button_t next_song_button;
 	button_t previous_song_button;
 	button_t shuffle_song_button;
+	button_t music_folder_button;
 #ifdef USE_FLUIDSYNTH_MIDI
 	button_t soundfont_button;
 #endif
 	gui_label_buf_t song_name_label;
 	gui_label_buf_t song_credits_label;
+	gui_label_buf_t music_source_label;
 
 	void update_song_name();
 

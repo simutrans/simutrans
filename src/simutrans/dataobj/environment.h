@@ -516,6 +516,9 @@ public:
 	// FluidSynth MIDI parameters
 	static std::string soundfont_filename;
 
+	/// folder the music is taken from instead of the default music.tab; empty for the default
+	static std::string music_folder;
+
 	/// @}
 
 	/// if true this will show a softkeyboard only when editing text

@@ -51,6 +51,20 @@ sint32 dr_midi_pos();
 
 
 /**
+ * Stops playing and forgets all loaded MIDI files, so another list can be
+ * loaded. The routine itself stays initialised.
+ */
+void dr_clear_midi();
+
+
+/**
+ * @return the file extensions this routine can play, each with its dot and
+ * followed by a space, e.g. ".mid .midi "
+ */
+const char *dr_get_midi_extensions();
+
+
+/**
  * Midi shutdown/cleanup
  */
 void dr_destroy_midi();

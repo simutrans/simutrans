@@ -74,6 +74,22 @@ sint32 dr_midi_pos()
 }
 
 
+void dr_clear_midi()
+{
+	if (nowPlaying != -1) {
+		dr_stop_midi();
+	}
+	nowPlaying = -1;
+	[players removeAllObjects];
+}
+
+
+char const* dr_get_midi_extensions()
+{
+	return ".mid .midi ";
+}
+
+
 void dr_destroy_midi()
 {
 	if (nowPlaying != -1) {

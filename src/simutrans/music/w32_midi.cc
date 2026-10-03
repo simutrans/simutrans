@@ -176,6 +176,21 @@ sint32 dr_midi_pos()
 }
 
 
+void dr_clear_midi()
+{
+	dr_stop_midi();
+	midi_number = -1;
+	midi_failed_count = 0;
+}
+
+
+const char *dr_get_midi_extensions()
+{
+	// MCI is asked for a sequencer, so MIDI only
+	return ".mid .midi ";
+}
+
+
 /**
  * Midi shutdown/cleanup
  */

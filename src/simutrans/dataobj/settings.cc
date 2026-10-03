@@ -1500,6 +1500,11 @@ void settings_t::parse_simuconf( tabfile_t& simuconf, sint16& disp_width, sint16
 		env_t::soundfont_filename = ltrim(contents.get("soundfont_filename"));
 	}
 
+	// a folder of music instead of the default music.tab; a user choice, so not from a pakset
+	if(  set_objfilename  &&  *contents.get("music_folder")  ) {
+		env_t::music_folder = ltrim(contents.get("music_folder"));
+	}
+
 	env_t::pakset_tutorial_dir = ltrim( contents.get_string("pakset_tutorial_dir", env_t::pakset_tutorial_dir.c_str()) );
 }
 

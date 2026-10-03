@@ -70,6 +70,22 @@ bool midi_get_mute();
 
 /* MIDI routines */
 extern int midi_init(const char *path);
+
+/// Loads the songs of env_t::music_folder, or the first music.tab of pakset,
+/// user and program directory if that is empty or has no music.
+/// @return false if no song was found at all
+extern bool midi_load_list();
+
+/// Stops the music and loads the list again after env_t::music_folder changed.
+/// @return false if there is no music routine to reload
+extern bool midi_reload();
+
+/// @return whether the current songs came from env_t::music_folder
+extern bool midi_from_music_folder();
+
+/// @return whether @p folder has a music.tab or a file the music routine can play
+extern bool midi_folder_has_music(const char *folder);
+
 extern void midi_play(const int no);
 extern void check_midi();
 
