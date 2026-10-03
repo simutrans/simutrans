@@ -15,6 +15,7 @@ target_sources(simutrans PRIVATE
 	src/simutrans/dataobj/koord.cc
 	src/simutrans/dataobj/koord3d.cc
 	src/simutrans/dataobj/loadsave.cc
+	src/simutrans/dataobj/local_preferences.cc
 	src/simutrans/dataobj/marker.cc
 	src/simutrans/dataobj/objlist.cc
 	src/simutrans/dataobj/pakset_manager.cc

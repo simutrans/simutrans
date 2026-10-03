@@ -22,6 +22,8 @@ class music_folder_frame_t : public savegame_frame_t
 private:
 	/// restored on cancel
 	std::string old_music_folder;
+	bool old_preferred;
+	std::string old_preference;
 
 	button_t default_button;
 

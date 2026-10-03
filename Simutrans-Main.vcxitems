@@ -30,6 +30,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)src\simutrans\dataobj\koord3d.cc" />
     <ClCompile Include="$(MSBuildThisFileDirectory)src\simutrans\dataobj\koord.cc" />
     <ClCompile Include="$(MSBuildThisFileDirectory)src\simutrans\dataobj\loadsave.cc" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\simutrans\dataobj\local_preferences.cc" />
     <ClCompile Include="$(MSBuildThisFileDirectory)src\simutrans\dataobj\marker.cc" />
     <ClCompile Include="$(MSBuildThisFileDirectory)src\simutrans\dataobj\objlist.cc" />
     <ClCompile Include="$(MSBuildThisFileDirectory)src\simutrans\dataobj\pakset_manager.cc" />
@@ -391,6 +392,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)src\simutrans\dataobj\koord3d.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)src\simutrans\dataobj\koord.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)src\simutrans\dataobj\loadsave.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\simutrans\dataobj\local_preferences.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)src\simutrans\dataobj\marker.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)src\simutrans\dataobj\objlist.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)src\simutrans\dataobj\pakset_manager.h" />

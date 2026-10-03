@@ -75,6 +75,7 @@
 #include "network/network.h" // must be before any "windows.h" is included via bzlib2.h ...
 #include "dataobj/loadsave.h"
 #include "dataobj/environment.h"
+#include "dataobj/local_preferences.h"
 #include "dataobj/tabfile.h"
 #include "dataobj/scenario.h"
 #include "dataobj/settings.h"
@@ -663,6 +664,14 @@ int simu_main(int argc, char** argv)
 		}
 	}
 
+	// preferences that do not depend on the savegame version; they win over settings.xml
+	local_preferences_t::load();
+	const bool music_folder_preferred = local_preferences_t::has("music_folder");
+	if(  music_folder_preferred  ) {
+		// may be empty: then the default music was chosen
+		env_t::music_folder = local_preferences_t::get("music_folder");
+	}
+
 	sint16 disp_width = 0;
 	sint16 disp_height = 0;
 	sint16 fullscreen = WINDOWED;
@@ -684,8 +693,8 @@ int simu_main(int argc, char** argv)
 				// We had a valid soundfont saved by the user, let's restore it
 				env_t::soundfont_filename = old_soundfont_filename;
 			}
-			if(  !old_music_folder.empty()  ) {
-				// same for the music folder chosen by the user
+			if(  !old_music_folder.empty()  ||  music_folder_preferred  ) {
+				// same for the music folder chosen by the user (even the default music)
 				env_t::music_folder = old_music_folder;
 			}
 			env_t::fontname = old_fontname;
