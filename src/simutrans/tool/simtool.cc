@@ -2891,10 +2891,10 @@ const char *tool_build_way_t::calc_route( way_builder_t &bauigel, const koord3d 
 	}
 	if (automatic_tunnel_and_bridges  ||  bridge  ||  tunnel) {
 		// automatich selecting tunnel and bridges
-		if (!bridge) {
+		if (!bridge  &&  automatic_tunnel_and_bridges) {
 			bridge = bridge_builder_t::find_bridge(desc->get_wtyp(), desc->get_topspeed(), welt->get_timeline_year_month());
 		}
-		if (!tunnel) {
+		if (!tunnel  && automatic_tunnel_and_bridges) {
 			tunnel = tunnel_builder_t::get_tunnel_desc(desc->get_wtyp(), desc->get_topspeed(), welt->get_timeline_year_month());
 		}
 	}
@@ -3083,7 +3083,7 @@ void tool_build_way_t::mark_tiles(player_t* player, const koord3d& start, const 
 						// now the bridge
 						while(1) {
 							old_pos -= zv;
-							if (old_pos == pos) {
+							if (old_pos.get_2d() == pos.get_2d()) {
 								break;
 							}
 							// now the other slope

@@ -1438,24 +1438,16 @@ bool way_builder_t::check_for_bridge(const grund_t* from, const koord zv, const 
 		return ok;
 	}
 
-	if(  tunnel_desc  &&  ribi_type(from->get_grund_hang()) == ribi  &&  slope_t::is_way_double(from->get_grund_hang(),false)) {
+	if (tunnel_desc && ribi_type(from->get_grund_hang()) == ribi && slope_t::is_way_double(from->get_grund_hang(), false)) {
 		// uphill hang ... may be tunnel?
-		for (uint32 length = 1; length <= welt->get_settings().way_max_bridge_len; length++) {
-			sint8 bridge_height;
-			const grund_t* gr_end = welt->lookup_kartenboden(from->get_pos().get_2d() + zv * length);
-			if (!gr_end  ||  gr_end->get_pos().z<from->get_pos().z) {
-				// not on map any more
-				break;
-			}
-			koord3d end = gr_end->get_pos();
-			if (!ziel.is_contained(end)  &&  end == tunnel_builder_t::find_end_pos(player_builder, from->get_pos(), zv, tunnel_desc)) {
-				uint32 length = koord_distance(from->get_pos(), end);
-				if (length < welt->get_settings().way_max_bridge_len) {
-					// end tile slope is already accounted for
-					sint32 costs = length * welt->get_settings().way_count_tunnel - welt->get_settings().way_count_slope;
-					next_gr.append(next_gr_t(welt->lookup(end), costs, build_straight | build_tunnel_bridge));
-					return true;
-				}
+		koord3d end_pos = tunnel_builder_t::find_end_pos(player_builder, from->get_pos(), zv, tunnel_desc);
+		if (end_pos != koord3d::invalid) {
+			uint32 length = koord_distance(end_pos, from->get_pos());
+			if (length < welt->get_settings().way_max_bridge_len && !ziel.is_contained(end_pos)) {
+				// end tile slope is already accounted for
+				sint32 costs = length * welt->get_settings().way_count_tunnel - welt->get_settings().way_count_slope;
+				next_gr.append(next_gr_t(welt->lookup(end_pos), costs, build_straight | build_tunnel_bridge));
+				return true;
 			}
 		}
 	}
@@ -2845,7 +2837,7 @@ sint64 way_builder_t::calc_costs()
 					// already a bridge/tunnel there ...
 					continue;
 				}
-				if(start->get_grund_hang()==0  ||  start->get_grund_hang()==slope_type(zv*(-1))) {
+				if(start->get_grund_hang() == 0  ||  ribi_type(start->get_grund_hang()) == ribi_type(-d)) {
 					// bridge
 					costs += bridge_desc->get_price()*(sint64)(koord_distance(route[i], route[i+1])+1);
 					continue;

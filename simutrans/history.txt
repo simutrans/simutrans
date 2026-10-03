@@ -1,3 +1,8 @@
+	FIX: crash when dragging way from single to double slope
+	FIX: building tunnels (or bridges) even of only one of them is selected
+	FIX: could not input text commands with SDL2
+
+
 Release of 125.0 (r12321 on 1-Oct-2026):
 	FIX: If factory status label were always on, then factories with stops (like oil rigg and fish swarm) the halt status clashed with factory status. Moreover, the factory name could differ from stop name, so both needs to be show then
 	CHG: using memcpy for image loading (when possible) reduces loading time of paks again
