@@ -63,9 +63,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)src\simutrans\dataobj\loadsave.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\simutrans\dataobj\local_preferences.cc">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)src\simutrans\dataobj\marker.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -1158,9 +1155,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)src\simutrans\dataobj\loadsave.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)src\simutrans\dataobj\local_preferences.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)src\simutrans\dataobj\marker.h">

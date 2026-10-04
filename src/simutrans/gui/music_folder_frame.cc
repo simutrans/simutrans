@@ -9,7 +9,6 @@
 
 #include "../simsound.h"
 #include "../dataobj/environment.h"
-#include "../dataobj/local_preferences.h"
 #include "../dataobj/translator.h"
 #include "../sys/simsys.h"
 
@@ -22,8 +21,6 @@ music_folder_frame_t::music_folder_frame_t() : savegame_frame_t(NULL, true, NULL
 	label_enabled = false;
 
 	old_music_folder = env_t::music_folder;
-	old_preferred = local_preferences_t::has("music_folder");
-	old_preference = local_preferences_t::get("music_folder");
 
 	default_button.init( button_t::roundbox_state | button_t::flexible, "Default music" );
 	default_button.add_listener( this );
@@ -46,9 +43,6 @@ void music_folder_frame_t::select_folder(const char *folder)
 		env_t::music_folder.clear();
 		create_win( new news_img("No music could be loaded from this folder."), w_time_delete, magic_none );
 	}
-	// kept at once, so it is not lost if the game does not end normally
-	local_preferences_t::set( "music_folder", env_t::music_folder );
-	local_preferences_t::save();
 }
 
 
@@ -73,14 +67,6 @@ bool music_folder_frame_t::cancel_action(const char *)
 		env_t::music_folder = old_music_folder;
 		midi_reload();
 	}
-	// and the preference as it was: a folder only given in simuconf.tab must not become one
-	if(  old_preferred  ) {
-		local_preferences_t::set( "music_folder", old_preference );
-	}
-	else {
-		local_preferences_t::unset( "music_folder" );
-	}
-	local_preferences_t::save();
 	return true;
 }
 

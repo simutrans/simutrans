@@ -322,7 +322,6 @@ SOURCES += src/simutrans/dataobj/height_map_loader.cc
 SOURCES += src/simutrans/dataobj/koord.cc
 SOURCES += src/simutrans/dataobj/koord3d.cc
 SOURCES += src/simutrans/dataobj/loadsave.cc
-SOURCES += src/simutrans/dataobj/local_preferences.cc
 SOURCES += src/simutrans/dataobj/marker.cc
 SOURCES += src/simutrans/dataobj/objlist.cc
 SOURCES += src/simutrans/dataobj/pakset_manager.cc
