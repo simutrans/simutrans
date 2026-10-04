@@ -1326,7 +1326,7 @@ void way_builder_t::do_terraforming()
 	}
 }
 
-bool way_builder_t::check_for_bridge(const grund_t* from, const koord zv, const vector_tpl<koord3d> &ziel)
+bool way_builder_t::check_for_bridge(const grund_t* from, const koord zv, const vector_tpl<koord3d> &ziel, const uint32 max_length)
 {
 	// wrong starting slope
 	if (!slope_t::is_way(from->get_grund_hang())) {
@@ -1401,7 +1401,7 @@ bool way_builder_t::check_for_bridge(const grund_t* from, const koord zv, const 
 
 //		const sint32 cost_difference = desc->get_maintenance() > 0 ? (bridge_desc->get_maintenance() * 4l + 3l) / desc->get_maintenance() : 16;
 		// try eight possible lengths ..
-		for (uint32 length = 1; length <= welt->get_settings().way_max_bridge_len; length++) {
+		for (uint32 length = 1; length <= max_length; length++) {
 			sint8 bridge_height;
 			const grund_t* gr_end = welt->lookup_kartenboden(from->get_pos().get_2d() + zv * length);
 			if (!gr_end  ||  gr_end->get_pos().z==finish_height) {
@@ -1443,7 +1443,7 @@ bool way_builder_t::check_for_bridge(const grund_t* from, const koord zv, const 
 		koord3d end_pos = tunnel_builder_t::find_end_pos(player_builder, from->get_pos(), zv, tunnel_desc);
 		if (end_pos != koord3d::invalid) {
 			uint32 length = koord_distance(end_pos, from->get_pos());
-			if (length < welt->get_settings().way_max_bridge_len && !ziel.is_contained(end_pos)) {
+			if (length <= max_length && !ziel.is_contained(end_pos)) {
 				// end tile slope is already accounted for
 				sint32 costs = length * welt->get_settings().way_count_tunnel - welt->get_settings().way_count_slope;
 				next_gr.append(next_gr_t(welt->lookup(end_pos), costs, build_straight | build_tunnel_bridge));
@@ -1633,6 +1633,7 @@ sint32 way_builder_t::intern_calc_route(const vector_tpl<koord3d> &start, const 
 
 	// to speed up search, but may not find all shortest ways
 	uint32 min_dist = 99999999;
+	const uint32 max_bridge_len = welt->get_settings().way_max_bridge_len;
 
 	//DBG_MESSAGE("route_t::intern_calc_route()","calc route from %d,%d,%d to %d,%d,%d",ziel.x, ziel.y, ziel.z, start.x, start.y, start.z);
 	do {
@@ -1677,10 +1678,10 @@ sint32 way_builder_t::intern_calc_route(const vector_tpl<koord3d> &start, const 
 		if (slope_t::type h = gr->get_weg_hang()) {
 			slope_dir = ribi_t::doubles(ribi_type(h));
 		}
-		 ribi_t::ribi test_dir = straight_dir!=ribi_t::all ? slope_dir & ~ribi_t::backward(straight_dir) : straight_dir;
-		 if (tmp->count & (build_tunnel_bridge | must_build_bridge | build_straight)) {
-			 test_dir &= straight_dir;
-		 }
+		ribi_t::ribi test_dir = straight_dir!=ribi_t::all ? slope_dir & ~ribi_t::backward(straight_dir) : straight_dir;
+		if (tmp->count & (build_tunnel_bridge | must_build_bridge | build_straight)) {
+			test_dir &= straight_dir;
+		}
 
 		bool check_for_bridges = bridge_desc || tunnel_desc;
 		if (check_for_bridges  &&  tmp->parent  &&  tmp->count&build_tunnel_bridge) {
@@ -1703,7 +1704,7 @@ sint32 way_builder_t::intern_calc_route(const vector_tpl<koord3d> &start, const 
 				if (to  &&  check_slope_double(gr,to)) {
 					if (tmp->count & must_build_bridge) {
 						// too step slope, must start a bridge here
-						do_bridge = check_for_bridge(gr, zv, ziel);
+						do_bridge = check_for_bridge(gr, zv, ziel, max_bridge_len);
 						continue;
 						// nothing else allowed ...
 					}
@@ -1731,7 +1732,7 @@ sint32 way_builder_t::intern_calc_route(const vector_tpl<koord3d> &start, const 
 				}
 				// check a bridge starting here
 				if(check_for_bridges && r == straight_dir) {
-					do_bridge = check_for_bridge(gr, zv, ziel);
+					do_bridge = check_for_bridge(gr, zv, ziel, max_bridge_len);
 				}
 				// terraforming enabled?
 				if (bautyp==river  ||  (bautyp & terraform_flag) == 0  ||  (tmp->count & build_tunnel_bridge)) {
@@ -1755,7 +1756,7 @@ sint32 way_builder_t::intern_calc_route(const vector_tpl<koord3d> &start, const 
 			}
 			// can built normally
 			if (tmp->count & must_build_bridge) {
-				check_for_bridge(gr, zv, ziel);
+				check_for_bridge(gr, zv, ziel, max_bridge_len);
 				continue;
 			}
 
@@ -1773,13 +1774,13 @@ sint32 way_builder_t::intern_calc_route(const vector_tpl<koord3d> &start, const 
 
 				if (!do_bridge && check_for_bridges && !(tmp->count & (build_straight|build_tunnel_bridge)) && gr->get_weg_hang() && build_tunnel_bridge) {
 					// check if a bridge/tunnel is better when it is a slope
-					check_for_bridge(gr, zv, ziel);
+					check_for_bridge(gr, zv, ziel, max_bridge_len);
 				}
 
 			}
 			else if (!do_bridge && check_for_bridges && r == straight_dir && !(tmp->count & build_straight) && build_tunnel_bridge) {
 				// try to build a bridge or tunnel here, since we cannot go here ...
-				check_for_bridge(gr, zv, ziel);
+				check_for_bridge(gr, zv, ziel, max_bridge_len);
 			}
 		}
 
@@ -1916,6 +1917,8 @@ void way_builder_t::intern_calc_straight_route(const koord3d start, const koord3
 	const grund_t *start_gr = welt->lookup(start);
 	const grund_t *test_bd = start_gr;
 	bool ok = false;
+	vector_tpl<koord3d> ziel_vec;
+	ziel_vec.append(ziel);
 
 	if (test_bd  &&  check_slope(test_bd, test_bd)  &&  is_allowed_step(test_bd,test_bd,&dummy_cost,0)  ) {
 		//there is a legal ground at the start
@@ -1965,6 +1968,17 @@ void way_builder_t::intern_calc_straight_route(const koord3d start, const koord3
 	route.append(start);
 	terraform_index.clear();
 	bool check_terraform = (start.x == ziel.x || start.y == ziel.y) && (bautyp & terraform_flag);
+	bool check_for_bridges = bridge_desc || tunnel_desc;
+	sint32 start_ziel_bridge_len = 0;	// maximum bridges length
+	if (check_for_bridges) {
+		if (abs(pos.x - ziel.x) >= abs(pos.y - ziel.y)) {
+			// longer part east west
+			start_ziel_bridge_len = abs(start.x - ziel.x) - abs(start.y - ziel.y);
+		}
+		else {
+			start_ziel_bridge_len = abs(start.x - ziel.x) - abs(start.y - ziel.y);
+		}
+	}
 
 	while(pos.get_2d()!=ziel.get_2d()  &&  ok) {
 
@@ -2028,6 +2042,10 @@ void way_builder_t::intern_calc_straight_route(const koord3d start, const koord3
 			}
 		}
 		else {
+			sint32 max_bridge_len = start_ziel_bridge_len - route.get_count();
+			bool is_allowed_tunnel_bridge = route.get_count() > 1 && check_for_bridges && next_gr.empty() && max_bridge_len > 1;
+			next_gr.clear();
+
 			grund_t *bd_von = welt->lookup(pos);
 			ok = false;
 			grund_t *bd_nach = NULL;
@@ -2039,13 +2057,24 @@ void way_builder_t::intern_calc_straight_route(const koord3d start, const koord3
 					// slopes do not match
 					warn_fail = "Slope is too steep";
 					// terraforming enabled?  or able to follow upper layer?
-					if ((bautyp==river  ||  (bautyp & terraform_flag) == 0)  &&  (bautyp&elevated_flag) == 0  ) {
-						// The only rejection outside is_allowed_step() that a
-						// player meets routinely: a straight route gives up on a
-						// slope here, before the step is ever offered for
-						// checking, so without this the commonest refusal of the
-						// commonest gesture stays nameless.
+					if (bautyp==river) {
+						// no artifical slopes for rivers => fail!
 						break;
+					}
+					if (bd_nach && is_allowed_tunnel_bridge && slope_t::is_way(bd_nach->get_weg_hang()) && check_for_bridge(bd_nach, koord(diff), ziel_vec, max_bridge_len)) {
+						// may be double slopes to bridge: we take the shortest bridge possible
+						route.append(bd_nach->get_pos());
+						pos = next_gr[0].gr->get_pos();
+						route.append(pos);
+						ok = true;
+						continue;
+					}
+					if (is_allowed_tunnel_bridge && check_for_bridge(bd_von, koord(diff), ziel_vec, max_bridge_len+1)) {
+						// may be double slopes to bridge: we take the shortest bridge possible
+						pos = next_gr[0].gr->get_pos();
+						route.append(pos);
+						ok = true;
+						continue;
 					}
 					// check terraforming (but not in curves)
 					if (check_terraform) {
@@ -2059,11 +2088,20 @@ void way_builder_t::intern_calc_straight_route(const koord3d start, const koord3
 							ok = true;
 						}
 					}
+					else {
+						// no bridge, no terraforming => fail!
+						break;
+					}
 				}
 				// allowed ground?
 				ok = ok  &&  bd_nach  &&  is_allowed_step(bd_von,bd_nach,&dummy_cost, do_terraform);
 				if (ok) {
 					pos = bd_nach->get_pos();
+				}
+				else if (!do_terraform && is_allowed_tunnel_bridge && check_for_bridge(bd_von, koord(diff), ziel_vec, max_bridge_len)) {
+					// we take the shortest bridge possible
+					pos = next_gr[0].gr->get_pos();
+					ok = true;
 				}
 			}
 			// if failed
