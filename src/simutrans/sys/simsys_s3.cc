@@ -1960,10 +1960,21 @@ void GetEvents()
 
 /* ------------------------------------------------------------- text input */
 
+/* A device with a screen keyboard shows it only while text is typed:
+ * dr_os_init() sets hide_keyboard for that. But simuconf.tab is read again
+ * later - opening the new game window does it - and its "hide_keyboard = 0"
+ * would switch that off for the rest of the session, after which no field can
+ * bring the keyboard up. So the device keeps deciding here. */
+static bool keyboard_on_demand()
+{
+	return  env_t::hide_keyboard  ||  has_soft_keyboard;
+}
+
+
 void dr_start_textinput()
 {
 	textinput_stop_pending = false;
-	if(  env_t::hide_keyboard  &&  window  ) {
+	if(  keyboard_on_demand()  &&  window  ) {
 		// SDL2->SDL3: text input is started per window. SDL3 also defaults to
 		// sentence capitalisation and autocorrect, which a screen keyboard
 		// applies to names and file names; SDL2 asked for neither.
@@ -1980,7 +1991,7 @@ void dr_start_textinput()
 void dr_stop_textinput()
 {
 	if(  window  ) {
-		if(  env_t::hide_keyboard  ) {
+		if(  keyboard_on_demand()  ) {
 			textinput_stop_pending = true;
 		}
 		else {
