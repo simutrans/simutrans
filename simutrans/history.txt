@@ -1,6 +1,9 @@
+Release of 125.0.1 (r12334 on 5-Oct-2026):
 	FIX: crash when dragging way from single to double slope
 	FIX: building tunnels (or bridges) even of only one of them is selected
 	FIX: could not input text commands with SDL2
+	CHG: Underground building without portal using sliced underground mode
+	ADD: midi music folder selection
 
 
 Release of 125.0 (r12321 on 1-Oct-2026):

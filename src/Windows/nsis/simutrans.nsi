@@ -12,7 +12,7 @@
 ; untgz
 ; ShellLink
 
-!define VERSION "0.125.0.0"
+!define VERSION "0.125.0.1"
 
 VIProductVersion "${VERSION}"
 VIFileVersion "${VERSION}"
@@ -75,8 +75,8 @@ FunctionEnd
 
 Section /o "Executable (GDI)" GDIexe
   AddSize 21504
-  StrCpy $downloadlink "http://downloads.sourceforge.net/project/simutrans/simutrans/125-0/simuwin-125-0.zip"
-  StrCpy $archievename "simuwin-125-0.zip"
+  StrCpy $downloadlink "http://downloads.sourceforge.net/project/simutrans/simutrans/125-0-1/simuwin-125-0-1.zip"
+  StrCpy $archievename "simuwin-125-0-1.zip"
   StrCpy $downloadname "nodelete"
   SetOutPath $INSTDIR
   Call DownloadInstallZip
@@ -85,8 +85,8 @@ SectionEnd
 
 Section "Executable (SDL2)" SDLexe
   AddSize 23728
-  StrCpy $downloadlink "http://downloads.sourceforge.net/project/simutrans/simutrans/125-0/simuwin-sdl-125-0.zip"
-  StrCpy $archievename "simuwin-sdl-125-0.zip"
+  StrCpy $downloadlink "http://downloads.sourceforge.net/project/simutrans/simutrans/125-0-1/simuwin-sdl-125-0-1.zip"
+  StrCpy $archievename "simuwin-sdl-125-0-1.zip"
   StrCpy $downloadname "nodelete"
   SetOutPath $INSTDIR
   Call DownloadInstallZip
@@ -95,8 +95,8 @@ SectionEnd
 
 Section /o "Executable (GDI 64bit)" GDI64exe
   AddSize 20728
-  StrCpy $downloadlink "http://downloads.sourceforge.net/project/simutrans/simutrans/125-0/simuwin-x64-125-0.zip"
-  StrCpy $archievename "simuwin-x64-125-0.zip"
+  StrCpy $downloadlink "http://downloads.sourceforge.net/project/simutrans/simutrans/125-0-1/simuwin-x64-125-0-1.zip"
+  StrCpy $archievename "simuwin-x64-125-0-1.zip"
   StrCpy $downloadname "nodelete"
   SetOutPath $INSTDIR
   Call DownloadInstallZip
@@ -105,8 +105,8 @@ SectionEnd
 
 Section /o "Executable (SDL2 64bit)" SDL64exe
   AddSize 22936
-  StrCpy $downloadlink "http://downloads.sourceforge.net/project/simutrans/simutrans/125-0/simuwin-x64-sdl-125-0.zip"
-  StrCpy $archievename "simuwin-x64-sdl-125-0.zip"
+  StrCpy $downloadlink "http://downloads.sourceforge.net/project/simutrans/simutrans/125-0-1/simuwin-x64-sdl-125-0-1.zip"
+  StrCpy $archievename "simuwin-x64-sdl-125-0-1.zip"
   StrCpy $downloadname "nodelete"
   SetOutPath $INSTDIR
   Call DownloadInstallZip
@@ -115,8 +115,8 @@ SectionEnd
 
 Section /o "Executable (SDL3 64bit beta)" SDL364exe
   AddSize 24573
-  StrCpy $downloadlink "http://downloads.sourceforge.net/project/simutrans/simutrans/125-0/simuwin-x64-sdl3-125-0.zip"
-  StrCpy $archievename "simuwin-x64-sdl-125-0.zip"
+  StrCpy $downloadlink "http://downloads.sourceforge.net/project/simutrans/simutrans/125-0-1/simuwin-x64-sdl3-125-0-1.zip"
+  StrCpy $archievename "simuwin-x64-sdl-125-0-1.zip"
   StrCpy $downloadname "nodelete"
   SetOutPath $INSTDIR
   Call DownloadInstallZip
