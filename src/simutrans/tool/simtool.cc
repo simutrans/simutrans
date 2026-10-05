@@ -3628,6 +3628,13 @@ const char *tool_build_tunnel_t::check_pos( player_t *player, koord3d pos)
 				return NULL;
 			}
 		}
+		else if (grund_t* boden = welt->lookup_kartenboden(pos.get_2d())) {
+			// still on map
+			if (pos.z + welt->get_settings().get_way_height_clearance() <= boden->get_pos().z) {
+				// deep enough => allow with temporary ground
+				return NULL;
+			}
+		}
 		return two_click_tool_t::check_pos(player, pos);
 	}
 }
@@ -3744,6 +3751,20 @@ uint8 tool_build_tunnel_t::is_valid_pos(  player_t *player, const koord3d &pos, 
 		}
 	}
 	else {
+		if (grund_t* boden = welt->lookup_kartenboden(pos.get_2d())) {
+			// still on map
+			if (pos.z + welt->get_settings().get_way_height_clearance() <= boden->get_pos().z) {
+				// make dummy ground:
+				gr = new tunnelboden_t(pos, slope_t::flat);
+				welt->access(pos.get_2d())->boden_hinzufuegen(gr);
+				zeiger_t* way = new zeiger_t(pos, player);
+				way->set_image(skinverwaltung_t::bauigelsymbol->get_image_id(0));
+				gr->obj_add(way);
+				marked.insert(way);
+				way->mark_image_dirty(way->get_image(), 0);
+				return 2;
+			}
+		}
 		error = NOTICE_UNSUITABLE_GROUND;
 		return 0;
 	}

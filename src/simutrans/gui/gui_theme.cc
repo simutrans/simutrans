@@ -194,6 +194,7 @@ void gui_theme_t::init_gui_defaults()
 
 	env_t::gui_player_color_bright = 4;
 	env_t::gui_player_color_dark   = 1;
+	env_t::window_buttons_right = false;
 
 	gui_button_size              = scr_size(92,14);
 	gui_color_button_size        = scr_size(92,16);
@@ -545,7 +546,7 @@ bool gui_theme_t::themes_init(const char *file_name, bool init_fonts, bool init_
 	gui_theme_t::gui_color_empty                        = (PIXVAL)contents.get_color("gui_color_empty", SYSCOL_EMPTY);
 	gui_theme_t::gui_color_chat_window_network_transparency = (PIXVAL)contents.get_color("gui_color_chat_window_network_transparency", gui_color_chat_window_network_transparency);
 	gui_theme_t::gui_color_image_transparency           = (PIXVAL)contents.get_color("gui_color_image_transparency", SYSCOL_IMAGE_TRANSPARENCY);
-gui_theme_t::gui_color_object_highlight                 = (PIXVAL)contents.get_color("gui_color_object_highlight", SYSCOL_OBJECT_HIGHLIGHT);
+	gui_theme_t::gui_color_object_highlight             = (PIXVAL)contents.get_color("gui_color_object_highlight", SYSCOL_OBJECT_HIGHLIGHT);
 
 	gui_theme_t::gui_waitingbar_width = (uint32)contents.get_int("gui_waitingbar_width", gui_theme_t::gui_waitingbar_width);
 

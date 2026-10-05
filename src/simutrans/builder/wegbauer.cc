@@ -1924,8 +1924,14 @@ void way_builder_t::intern_calc_straight_route(const koord3d start, const koord3
 		//there is a legal ground at the start
 		ok = true;
 	}
-	if (ok  &&  (bautyp&tunnel_flag) && !test_bd->ist_tunnel()) {
+	if (ok && (bautyp & tunnel_flag) && !test_bd->ist_tunnel()) {
 		return; // start tunnelbuilding in tunnels
+	}
+	if (!test_bd && bautyp & tunnel_flag) {
+		if (grund_t* boden = welt->lookup_kartenboden(start.get_2d())) {
+			// still on map
+			ok = start.z + welt->get_settings().get_way_height_clearance() <= boden->get_pos().z;
+		}
 	}
 	if (bautyp&elevated_flag) {
 		test_bd = welt->lookup(start + koord3d(0, 0, get_way_height_offset(start_gr)));
