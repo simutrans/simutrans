@@ -24,6 +24,7 @@ static void            simgraph0_set_daynight_level         (int night);
 static scr_coord_val   simgraph0_set_base_raster_width      (scr_coord_val new_raster);
 static int             simgraph0_zoom_factor_up             ();
 static int             simgraph0_zoom_factor_down           ();
+static uint32          simgraph0_get_zoom_factor            ();
 static bool            simgraph0_init                       (scr_size window_size, sint16 full_screen);
 static bool            simgraph0_is_display_init            ();
 static void            simgraph0_exit                       ();
@@ -134,6 +135,7 @@ simgraph_t g_simgraph0 = {
 	/*.set_base_raster_width       =*/ simgraph0_set_base_raster_width,
 	/*.zoom_factor_up              =*/ simgraph0_zoom_factor_up,
 	/*.zoom_factor_down            =*/ simgraph0_zoom_factor_down,
+	/*.zoom_factor_down            =*/ simgraph0_get_zoom_factor,
 	/*.init                        =*/ simgraph0_init,
 	/*.is_display_init             =*/ simgraph0_is_display_init,
 	/*.exit                        =*/ simgraph0_exit,
@@ -211,6 +213,11 @@ simgraph_t g_simgraph0 = {
 	/*.activate_ribi_clip          =*/ simgraph0_activate_ribi_clip,
 };
 
+
+static uint32          simgraph0_get_zoom_factor()
+{
+	return ZOOM_NEUTRAL;
+}
 
 static PIXVAL simgraph0_palette_lookup(palette_index_t idx)
 {

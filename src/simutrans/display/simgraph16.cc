@@ -499,6 +499,7 @@ static void            simgraph16_set_daynight_level         (int night);
 static scr_coord_val   simgraph16_set_base_raster_width      (scr_coord_val new_raster);
 static int             simgraph16_zoom_factor_up             ();
 static int             simgraph16_zoom_factor_down           ();
+static uint32          simgraph16_get_zoom_factor            ();
 static bool            simgraph16_init                       (scr_size window_size, sint16 full_screen);
 static bool            simgraph16_is_display_init            ();
 static void            simgraph16_exit                       ();
@@ -587,8 +588,8 @@ simgraph_t g_simgraph16 = {
 	/*.draw_blend                =*/ NULL,
 	/*.draw_alpha                =*/ NULL,
 
-	/*.zoom_num =*/ { 2, 3, 4, 1, 3, 5, 1, 3, 1, 1 },
-	/*.zoom_den =*/ { 1, 2, 3, 1, 4, 8, 2, 8, 4, 8 },
+	/*.zoom_num =*/ { 2, 7, 3, 11, 4, 5, 9, 1, 3, 5, 1, 3, 1, 1 },
+	/*.zoom_den =*/ { 1, 4, 2,  8, 3, 4, 8, 1, 4, 8, 2, 8, 4, 8 }, /* attention, denominator can be only 1,2,3,4,8! */
 
 	/*.palette_lookup              =*/ simgraph16_palette_lookup,
 	/*.palette_indexof             =*/ simgraph16_palette_indexof,
@@ -602,6 +603,7 @@ simgraph_t g_simgraph16 = {
 	/*.set_base_raster_width       =*/ simgraph16_set_base_raster_width,
 	/*.zoom_factor_up              =*/ simgraph16_zoom_factor_up,
 	/*.zoom_factor_down            =*/ simgraph16_zoom_factor_down,
+	/*.get_zoom_factor             =*/ simgraph16_get_zoom_factor,
 	/*.init                        =*/ simgraph16_init,
 	/*.is_display_init             =*/ simgraph16_is_display_init,
 	/*.exit                        =*/ simgraph16_exit,
@@ -681,6 +683,7 @@ simgraph_t g_simgraph16 = {
 
 static uint32 zoom_factor = ZOOM_NEUTRAL;
 
+static uint32 simgraph16_get_zoom_factor() { return zoom_factor; }
 
 static inline rgb888_t pixval_to_rgb888(PIXVAL colour)
 {

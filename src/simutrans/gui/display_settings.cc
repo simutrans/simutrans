@@ -208,13 +208,15 @@ void gui_settings_t::draw(scr_coord offset)
 		color = gfx->palette_lookup(( loops <= target_fps*16/2 ) ? COL_RED : COL_YELLOW);
 	}
 	fps_value_label.set_color(color);
-	fps_value_label.buf().printf(" %d fps", loops/16 );
+	uint32 zoom = gfx->get_zoom_factor();
+	fps_value_label.buf().printf(" %d fps at zoom %d %%", loops/16, (100*gfx->zoom_num[zoom])/gfx->zoom_den[zoom]);
 #if MSG_LEVEL >= 3
 	if(  env_t::simple_drawing  ) {
 		fps_value_label.buf().append( "*" );
 	}
 #endif
 	fps_value_label.update();
+	fps_value_label.set_size(scr_size(get_size().w - D_MARGINS_X, fps_value_label.get_size().h));
 
 	//simloops_label
 	loops = world()->get_simloops();

@@ -80,8 +80,8 @@ typedef void (*draw_alpha_proc)(const image_id n, const image_id alpha_n, const 
 typedef image_id stretch_map_t[3][3];
 
 #if COLOUR_DEPTH != 0
-#  define MAX_ZOOM_FACTOR (9)
-#  define ZOOM_NEUTRAL    (3)
+#  define MAX_ZOOM_FACTOR (13)
+#  define ZOOM_NEUTRAL    (7)
 #else
 #  define MAX_ZOOM_FACTOR (0)
 #  define ZOOM_NEUTRAL    (0)
@@ -151,6 +151,7 @@ struct simgraph_t
 
 	int (*zoom_factor_up)();
 	int (*zoom_factor_down)();
+	uint32 (*get_zoom_factor)();
 
 	/// Initialises the graphics module
 	bool (*init)(scr_size window_size, sint16 fullscreen);
