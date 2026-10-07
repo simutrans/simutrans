@@ -308,9 +308,10 @@ SOCKET network_open_address(char const* cp, char const*& err)
 				if (connect(my_client_socket, walk_remote->ai_addr, (socklen_t)walk_remote->ai_addrlen) != 0) {
 
 					if(  GET_LAST_ERROR() != EINPROGRESS) {
-						// connection failed
+						// connection failed: close this socket here, once, and do not use it again
 						network_close_socket(my_client_socket);
-						continue;
+						my_client_socket = INVALID_SOCKET;
+						break;
 					}
 
 					// connection pending
@@ -358,7 +359,8 @@ SOCKET network_open_address(char const* cp, char const*& err)
 					if (!blocking_mode) {
 						DBG_MESSAGE("network_open_address()", "Could not reset to non-blocking.");
 						network_close_socket(my_client_socket);
-						continue;
+						my_client_socket = INVALID_SOCKET;
+						break;
 					}
 					// linux non-blocking sockets seems to not work at all!
 #endif
