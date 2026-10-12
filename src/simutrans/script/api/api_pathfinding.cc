@@ -149,7 +149,7 @@ bool way_builder_is_allowed_step(way_builder_t *bob, grund_t *from, grund_t *to)
 	sint32 costs = 0;
 	if (bob->get_bautyp() & way_builder_t::terraform_flag  ||  bob->check_slope(from, to)) {
 		// we allow to succeed even if theslope check does not, assuming we execute a terraforming later
-		return bob->is_allowed_step(from, to, &costs, 2);
+		return bob->is_allowed_step(from, to, &costs, 2) == way_builder_t::STEP_OK;
 	}
 	return false;
 }
@@ -165,7 +165,7 @@ SQInteger way_builder_get_step_cost(HSQUIRRELVM vm) // instance, from, to
 	grund_t *to   = param<grund_t*>::get(vm, 3);
 
 	sint32 costs = 0;
-	if (from == NULL || to == NULL || !(bob->get_bautyp() & way_builder_t::terraform_flag || bob->check_slope(from, to)) || !bob->is_allowed_step(from, to, &costs, 2)) {
+	if (from == NULL || to == NULL || !(bob->get_bautyp() & way_builder_t::terraform_flag || bob->check_slope(from, to)) || bob->is_allowed_step(from, to, &costs, 2) != way_builder_t::STEP_OK) {
 		sq_pushnull(vm);
 		return 1;
 	}

@@ -136,6 +136,18 @@ private:
 	const char *warn_fail;
 
 public:
+	enum step_failure_t {
+		STEP_UNDEF = 0,
+		STEP_OK = 1,
+		STEP_SLOPE,     // wrong slopes
+		STEP_DOUBLE_SLOPE, // double slopes with single way
+		STEP_CROSSING,  // not crossing possible
+		STEP_FORBIDDEN, // rules forbid this step
+		STEP_CLEARANCE, // low bridge or slope on top
+		STEP_OBSTACLE,  // non-removable thing in the way
+		STEP_GENERAL    // all other reasons
+	};
+
 	/**
 	 * This is the core routine for the way search
 	 * it will check
@@ -143,7 +155,7 @@ public:
 	 * B) if allowed, calculate the cost for the step from @p from to @p to
 	 * if terraform is 2, needs to cehck again
 	 */
-	bool is_allowed_step(const grund_t *from, const grund_t *to, sint32 *costs, int terraform, bool is_upperlayer = false );
+	step_failure_t is_allowed_step(const grund_t *from, const grund_t *to, sint32 *costs, int terraform, bool is_upperlayer = false );
 
 	/**
 	 * Height in tiles between a base ground and the elevated way surface built above it:
