@@ -264,27 +264,13 @@ void ai_scripted_t::rdwr(loadsave_t *file)
 		}
 
 		if (!rdwr_error) {
-			// restore persistent data
-			const char* err = script->eval_string(str);
-			if (err  &&  strcmp(err, "Error compiling string buffer")==0) {
-				// sqai produced invalid table keys up to r9007 (and later as well... )
-				repair_table_keys(str);
-				dbg->warning("ai_scripted_t::rdwr", "repaired persistent ai data: %s", str.c_str());
-				// close error message
-				destroy_win(magic_script_error);
-				// and try again
-				err = script->eval_string(str);
-			}
-			if (err) {
-				dbg->warning("ai_scripted_t::rdwr", "error [%s] evaluating persistent ai data for script '%s'", err, ai_name.c_str());
-				rdwr_error = true;
-			}
+			// The persistent data recreates script objects such as factory_x, whose
+			// constructors read the world. Factories, stops and convois are not
+			// finished yet, so it is restored in finish_rd().
+			persistent_on_load = str;
 		}
 		else {
 			dbg->warning("ai_scripted_t::rdwr", "could not load script file %s", (const char*)script_filename);
-		}
-
-		if (rdwr_error) {
 			delete script;
 			script = NULL;
 		}
@@ -305,6 +291,27 @@ void ai_scripted_t::rdwr(loadsave_t *file)
 void ai_scripted_t::finish_rd()
 {
 	ai_t::finish_rd();
+
+	if (script  &&  persistent_on_load) {
+		// restore persistent data
+		plainstring str = persistent_on_load;
+		persistent_on_load = NULL;
+		const char* err = script->eval_string(str);
+		if (err  &&  strcmp(err, "Error compiling string buffer")==0) {
+			// sqai produced invalid table keys up to r9007 (and later as well... )
+			repair_table_keys(str);
+			dbg->warning("ai_scripted_t::finish_rd", "repaired persistent ai data: %s", str.c_str());
+			// close error message
+			destroy_win(magic_script_error);
+			// and try again
+			err = script->eval_string(str);
+		}
+		if (err) {
+			dbg->warning("ai_scripted_t::finish_rd", "error [%s] evaluating persistent ai data for script '%s'", err, ai_name.c_str());
+			delete script;
+			script = NULL;
+		}
+	}
 
 	if (script) {
 		uint8 dummy = 0;

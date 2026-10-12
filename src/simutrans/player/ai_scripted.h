@@ -32,6 +32,9 @@ class ai_scripted_t : public ai_t
 	/// pointer to virtual machine
 	script_vm_t *script;
 
+	/// persistent data read by rdwr(), evaluated by finish_rd() once the world is complete
+	plainstring persistent_on_load;
+
 public:
 	ai_scripted_t(uint8 nr);
 
