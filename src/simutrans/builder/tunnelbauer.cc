@@ -234,7 +234,7 @@ koord3d tunnel_builder_t::find_end_pos(player_t *player, koord3d pos, koord zv, 
 				}
 				// fake tunnel tile
 				tunnelboden_t from(pos - zv, slope_t::flat);
-				if (bauigel.is_allowed_step(&from, gr, &dummy, 0) != way_builder_t::STEP_OK) {
+				if (bauigel.is_allowed_step(&from, gr, &dummy, 0) == way_builder_t::STEP_OK) {
 					return gr->get_pos();
 				}
 				else {

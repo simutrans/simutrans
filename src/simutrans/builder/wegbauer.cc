@@ -740,7 +740,7 @@ way_builder_t::step_failure_t way_builder_t::is_allowed_step(const grund_t* from
 		return STEP_OK;
 	}
 
-	// the forrowing checks make only sense if we actually connect two tiles
+	// the following checks make only sense if we actually connect two tiles
 	bool to_way = false;
 	if (weg_t* w = to->get_weg(desc->get_waytype())) {
 		if (roadsign_t* rs = to->find<roadsign_t>(1)) {
@@ -1061,7 +1061,7 @@ way_builder_t::step_failure_t way_builder_t::is_allowed_step(const grund_t* from
 	// line or a way underneath crossed at the wrong angle - so a single message
 	// would be a guess. Naming these needs the conditions split up, which is
 	// more than adding assignments, so they stay unexplained rather than wrong.
-	warn_fail = "";
+	warn_fail = NULL;
 	return STEP_OK;
 }
 
