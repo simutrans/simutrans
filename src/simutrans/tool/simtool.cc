@@ -6203,6 +6203,11 @@ const char* tool_build_depot_t::tool_depot_aux(player_t* player, koord3d pos, co
 		ribi = bd->get_weg_ribi_unmasked(wegtype);
 	}
 
+	if (bd->get_weg_hang() != bd->get_grund_hang() && bd->ist_tunnel()) {
+		// not building on tunnel portals
+		return "Depots must be built on flat dead-end way tiles!";
+	}
+
 	int layout = 0;
 	if (bd->get_weg_hang() != slope_t::flat) {
 		return "Depots must be built on flat dead-end way tiles!";

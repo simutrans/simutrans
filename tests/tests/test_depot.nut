@@ -427,17 +427,13 @@ function test_depot_build_on_tunnel_entrance()
 		for (local d = dir.north; d < dir.all; d = d*2) {
 			local p = coord3d(4, 2, 0) + dir.to_coord(d)
 
-			ASSERT_EQUAL(command_x.build_depot(pl, p, get_depot_by_wt(wt_rail)), null)
+			ASSERT_EQUAL(command_x.build_depot(pl, p, get_depot_by_wt(wt_rail)), "Depots must be built on flat dead-end way tiles!")
 		}
 	}
 
 	local remover = command_x(tool_remover)
 	remover.set_flags(2)
 	ASSERT_EQUAL(remover.work(pl, coord3d(4, 1, 0)), null)
-	ASSERT_EQUAL(remover.work(pl, coord3d(4, 1, 0)), null)
-	ASSERT_EQUAL(remover.work(pl, coord3d(5, 2, 0)), null)
-	ASSERT_EQUAL(remover.work(pl, coord3d(4, 3, 0)), null)
-	ASSERT_EQUAL(remover.work(pl, coord3d(3, 2, 0)), null)
 
 	ASSERT_EQUAL(command_x.grid_lower(pl, coord3d(4, 2, 0)), null)
 	ASSERT_EQUAL(command_x.grid_lower(pl, coord3d(4, 3, 0)), null)
