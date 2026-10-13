@@ -182,7 +182,7 @@ bool nwc_nick_t::execute(karte_t *welt)
 	if(env_t::server) {
 		uint32 client_id = socket_list_t::get_client_id(packet->get_sender());
 
-		if(nickname==NULL  ||  nickname=="Admin"  || nick_already_taken(nickname, client_id)) {
+		if(!nickname  ||  nickname=="Admin"  || nick_already_taken(nickname, client_id)) {
 			if (nickname  &&  id == NWC_NICK) {
 				// Player tried to change nickname, but it is already taken
 				nwc_nick_t::server_tools(welt, client_id, NICK_TAKEN, nickname);
@@ -208,7 +208,7 @@ bool nwc_nick_t::execute(karte_t *welt)
 		return true;
 	}
 	else {
-		env_t::nickname = nickname!=NULL ? nickname.c_str() : "(null)";
+		env_t::nickname = nickname ? nickname.c_str() : "(null)";
 	}
 	return true;
 }
@@ -355,7 +355,7 @@ void nwc_chat_t::add_message(karte_t* welt) const
 	FLAGGED_PIXVAL color = player_nr < PLAYER_UNOWNED  ? PLAYER_FLAG | player_nr :  gfx->palette_lookup(COL_WHITE);
 	uint16 flag = message_t::chat;
 
-	if (  destination == NULL  ) {
+	if (  !destination  ) {
 		if (  player_nr < PLAYER_UNOWNED  &&  welt->get_player(player_nr)) {
 			buf.printf( "%s <%s>: %s", clientname.c_str(), welt->get_player( player_nr )->get_name(), message.c_str() );
 		}
@@ -379,7 +379,7 @@ void nwc_chat_t::add_message(karte_t* welt) const
 
 bool nwc_chat_t::execute (karte_t* welt)
 {
-	if (  message == NULL  ) {
+	if (  !message  ) {
 		dbg->warning("nwc_chat_t::execute", "null message");
 		return true;
 	}
@@ -401,7 +401,7 @@ bool nwc_chat_t::execute (karte_t* welt)
 
 		nwc_chat_t* nwchat = new nwc_chat_t( message, player_nr, channel_nr, info.nickname.c_str(), destination, pos );
 
-		if (  destination == NULL  ||  destination=="") {
+		if (  !destination  ) {
 			// Do not send messages to ourself (server)
 			network_send_all( nwchat, true );
 
@@ -1117,7 +1117,7 @@ void nwc_tool_t::rdwr()
 	packet->rdwr_short(tool_id);
 	packet->rdwr_short(wt);
 	packet->rdwr_str(default_param);
-	if(  packet->is_loading()  &&  default_param == NULL  ) {
+	if(  packet->is_loading()  &&  default_param.c_str()==NULL  ) {
 		// rdwr_str yields a NULL plainstring for a len==0 wire string, and the
 		// wire can't tell an empty param from "no param" anyway. Normalise to ""
 		// so tools never see a NULL here; they treat "" and NULL identically

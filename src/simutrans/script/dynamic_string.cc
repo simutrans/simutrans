@@ -145,7 +145,7 @@ void dynamic_string::update(script_vm_t *script, player_t *player, bool force_up
 	else {
 		if (env_t::networkmode  &&  !env_t::server) {
 			s = dynamic_string::fetch_result( function, NULL, this, force_update);
-			if ( s == NULL) {
+			if (s.c_str() == NULL) {
 				s = "Waiting for server response...";
 			}
 		}

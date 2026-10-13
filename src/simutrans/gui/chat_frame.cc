@@ -441,10 +441,7 @@ void chat_frame_t::fill_list()
 			break;
 
 		case CH_WHISPER:
-			if (i->destination == NULL  ||  i->sender == NULL) {
-				continue;
-			}
-			if (i->destination == ""  ||  i->sender == "") {
+			if (!i->destination  ||  !i->sender) {
 				continue;
 			}
 			if (i->destination!=env_t::nickname.c_str()  &&  i->sender!=env_t::nickname.c_str()) {
@@ -462,7 +459,7 @@ void chat_frame_t::fill_list()
 			if (i->channel_nr != -1) {
 				continue; // other company's message
 			}
-			if (i->destination != NULL && i->destination != "") {
+			if (!i->destination) {
 				continue; // direct message
 			}
 			break;

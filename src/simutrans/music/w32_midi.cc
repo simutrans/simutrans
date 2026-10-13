@@ -63,7 +63,7 @@ int dr_load_midi(const char *filename)
 			midi_filenames[i] = filename;
 
 			// need to make dos path separators
-			for (char* j = midi_filenames[i]; *j != '\0'; ++j) {
+			for (char* j = const_cast<char *>(midi_filenames[i].c_str()); *j != '\0'; ++j) {
 				if (*j == '/') {
 					*j = '\\';
 				}

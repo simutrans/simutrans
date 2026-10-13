@@ -167,7 +167,7 @@ void repair_table_keys(plainstring &str)
 	// iterate linewise
 	// replace [0\t]*([0-9][.*]) = by ["\1"]=
 	// replace [0\t]*(".*") =      by [\1]=
-	char *p = str;
+	char *p = const_cast<char *>(str.c_str()); // beware, we really manipulate data here!
 
 	char *line = p; // start of line
 	char *equal = NULL; // place of equality sign
@@ -228,7 +228,7 @@ void ai_scripted_t::rdwr(loadsave_t *file)
 
 	if (file->is_loading()) {
 		// ai saved, but no script was assigned
-		if (ai_name == NULL  ||  *ai_name == 0) {
+		if (!ai_name) {
 			script = NULL;
 			return;
 		}

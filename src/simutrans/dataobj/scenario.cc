@@ -990,7 +990,7 @@ plainstring scenario_t::load_language_file(const char* filename)
 	std::string wanted_file = path + translator::get_lang()->iso_base + PATH_SEPARATOR + filename;
 
 	const plainstring& cached = cached_text_files.get(wanted_file.c_str());
-	if (cached != NULL) {
+	if (cached.c_str()==NULL) {
 		// file already cached
 		return cached;
 	}

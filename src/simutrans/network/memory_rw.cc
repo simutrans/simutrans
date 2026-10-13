@@ -164,7 +164,7 @@ void memory_rw_t::rdwr_str(plainstring &s)
 		free(t);
 	}
 	else {
-		char *t = s;
+		char *t = const_cast<char *>(s.c_str());
 		rdwr_str(t);
 	}
 }
