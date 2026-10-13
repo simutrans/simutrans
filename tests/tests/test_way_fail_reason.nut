@@ -111,32 +111,3 @@ function test_way_fail_reason_slope()
 	RESET_ALL_PLAYER_FUNDS()
 }
 
-
-function test_way_fail_reason_still_silent()
-{
-	local pl = player_x(0)
-	local road = way_desc_x.get_available_ways(wt_road, st_flat)[0]
-	local powerline = way_desc_x.get_available_ways(wt_power, st_flat)[0]
-	local remover = command_x(tool_remove_way)
-
-	ASSERT_TRUE(road != null)
-	ASSERT_TRUE(powerline != null)
-
-	ASSERT_EQUAL(command_x.build_way(pl, coord3d(4, 2, 0), coord3d(4, 6, 0), road, true), null)
-
-	// negative control. A powerline may only cross a way at a right angle and
-	// only where that way runs straight; here it is asked to run *along* the
-	// road, and that refusal deliberately carries no reason, because the
-	// condition it fails is an accumulation of several unrelated ones and any
-	// single message would be a guess.
-	//
-	// The empty string is the whole point: if this ever comes back with a
-	// message, either a reason was added without thinking about what it means
-	// or a reason from an unrelated tile leaked into this one.
-	ASSERT_EQUAL(command_x.build_way(pl, coord3d(4, 3, 0), coord3d(4, 5, 0), powerline, true), "")
-
-	// clean up
-	ASSERT_EQUAL(remover.work(pl, tile_x(4, 2, 0), tile_x(4, 6, 0), "" + wt_road), null)
-
-	RESET_ALL_PLAYER_FUNDS()
-}

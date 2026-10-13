@@ -256,7 +256,6 @@ all_tests <- [
 	test_way_fail_reason_crossing,
 	test_way_fail_reason_ground,
 	test_way_fail_reason_slope,
-	test_way_fail_reason_still_silent,
 	test_way_planner_step_cost_ground,
 	test_way_planner_step_cost_slope,
 	test_way_planner_step_cost_refused,

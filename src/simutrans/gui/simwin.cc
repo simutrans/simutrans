@@ -2592,6 +2592,8 @@ void win_set_tool_estimate(const tool_t *owner, sint64 length, sint64 cost)
 	tool_estimate_owner  = owner;
 	tool_estimate_length = length;
 	tool_estimate_cost   = cost;
+	win_set_static_tooltip(tool_t::tooltip_with_price_length("Building costs estimates", cost, length));
+
 	// A preview that has a price is not a preview that failed.
 	tool_problem_owner = NULL;
 	tool_problem_text  = NULL;
@@ -2602,6 +2604,7 @@ void win_set_tool_problem(const tool_t *owner, const char *reason)
 {
 	tool_problem_owner = owner;
 	tool_problem_text  = reason;
+	win_set_static_tooltip(translator::translate(reason));
 	// ... and vice versa, so a cost from an earlier position cannot be left
 	// sitting next to "cannot build here".
 	tool_estimate_owner = NULL;
@@ -2610,6 +2613,7 @@ void win_set_tool_problem(const tool_t *owner, const char *reason)
 
 void win_clear_tool_estimate()
 {
+	win_set_static_tooltip(NULL);
 	tool_estimate_owner = NULL;
 	tool_problem_owner  = NULL;
 	tool_problem_text   = NULL;

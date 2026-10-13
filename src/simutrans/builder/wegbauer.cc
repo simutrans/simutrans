@@ -588,9 +588,10 @@ way_builder_t::step_failure_t way_builder_t::is_allowed_step(const grund_t* from
 	static monorailboden_t to_dummy(koord3d::invalid, slope_t::flat);
 
 	if (desc == NULL) {
-		assert(false);
+		warn_fail = "No descriptor given!";
 		// no reason recorded on purpose: a builder without a way descriptor is a
 		// programming error, not something to explain to a player
+		// It can only occur with scripts
 		return STEP_GENERAL;
 	}
 
@@ -633,36 +634,36 @@ way_builder_t::step_failure_t way_builder_t::is_allowed_step(const grund_t* from
 	}
 
 	// since terraforming does all checks, we can safely exit here
-	if(to_flat) {
+	if (to_flat) {
 		return STEP_OK;
 	}
 
 	// universal check for elevated things ...
-	if(bautyp & elevated_flag) {
-		if(  is_upperlayer  ) {
+	if (bautyp & elevated_flag) {
+		if (is_upperlayer) {
 			// check if both are elevated grounds with the same waytype
-			if(  (to->get_typ() != grund_t::monorailboden  ||  to->obj_count() == 0  ||  to->obj_bei(0)->get_waytype() != desc->get_wtyp()  ||  !check_owner(to->obj_bei(0)->get_owner(),player_builder) )  ||
-				 (from->get_typ() != grund_t::monorailboden  || from->obj_count() == 0  || from->obj_bei(0)->get_waytype() != desc->get_wtyp()  ||  !check_owner(from->obj_bei(0)->get_owner(),player_builder) )
+			if ((to->get_typ() != grund_t::monorailboden || to->obj_count() == 0 || to->obj_bei(0)->get_waytype() != desc->get_wtyp() || !check_owner(to->obj_bei(0)->get_owner(), player_builder)) ||
+				(from->get_typ() != grund_t::monorailboden || from->obj_count() == 0 || from->obj_bei(0)->get_waytype() != desc->get_wtyp() || !check_owner(from->obj_bei(0)->get_owner(), player_builder))
 				) {
 				warn_fail = "Elevated way can only be joined in line";
 				return STEP_GENERAL;
 			}
 		}
 		else {
-			if(  to->hat_weg(air_wt)  ||  welt->lookup_hgt( to_pos ) < welt->get_water_hgt( to_pos )  ||  !check_powerline( zv, to )  ||  (!to->ist_karten_boden()  &&  to->get_typ() != grund_t::monorailboden  &&  to->get_typ() != grund_t::brueckenboden)  ||  to->get_typ() == grund_t::tunnelboden  ) {
+			if (to->hat_weg(air_wt) || welt->lookup_hgt(to_pos) < welt->get_water_hgt(to_pos) || !check_powerline(zv, to) || (!to->ist_karten_boden() && to->get_typ() != grund_t::monorailboden && to->get_typ() != grund_t::brueckenboden) || to->get_typ() == grund_t::tunnelboden) {
 				// no suitable ground below!
 				warn_fail = "No suitable ground!";
 				return STEP_GENERAL;
 			}
-			gebaeude_t *gb = to->find<gebaeude_t>();
-			if(gb==NULL) {
+			gebaeude_t* gb = to->find<gebaeude_t>();
+			if (gb == NULL) {
 				// but depots might be overlooked ...
 				gb = to->get_depot();
 			}
-			if(gb) {
+			if (gb) {
 				// no halt => citybuilding => do not touch
 				// the whole building must fit below the deck, not just the crossed tile
-				if(!check_owner(gb->get_owner(),player_builder)  ||  gb->get_tile()->get_desc()->get_height_clearance() > get_way_height_offset(to)) {
+				if (!check_owner(gb->get_owner(), player_builder) || gb->get_tile()->get_desc()->get_height_clearance() > get_way_height_offset(to)) {
 					warn_fail = "A building blocks the construction";
 					return STEP_OBSTACLE;
 				}
@@ -670,23 +671,23 @@ way_builder_t::step_failure_t way_builder_t::is_allowed_step(const grund_t* from
 				*costs += 4;
 			}
 			// absolutely nothing allowed here for set which want double clearance
-			if(  welt->get_settings().get_way_height_clearance() == 2  &&  welt->lookup( to->get_pos()+koord3d(0,0,1) )  ) {
+			if (welt->get_settings().get_way_height_clearance() == 2 && welt->lookup(to->get_pos() + koord3d(0, 0, 1))) {
 				warn_fail = "Not enough clearance.";
 				return STEP_CLEARANCE;
 			}
 			// up to now 'to' and 'from' referred to the ground one height step below the elevated way
 			// now get the grounds at the right height
-			koord3d pos = to->get_pos() + koord3d( 0, 0, get_way_height_offset(to) );
-			grund_t *to2 = welt->lookup(pos);
-			if(to2) {
+			koord3d pos = to->get_pos() + koord3d(0, 0, get_way_height_offset(to));
+			grund_t* to2 = welt->lookup(pos);
+			if (to2) {
 				bool ok;
-				if(to2->get_weg_nr(0)) {
+				if (to2->get_weg_nr(0)) {
 					// already an elevated ground here => it will have always a way object, that indicates ownership
-					ok = to2->get_typ() == grund_t::monorailboden  &&  check_owner(to2->obj_bei(0)->get_owner(),player_builder);
+					ok = to2->get_typ() == grund_t::monorailboden && check_owner(to2->obj_bei(0)->get_owner(), player_builder);
 					ok &= to2->get_weg_nr(0)->get_desc()->get_wtyp() == desc->get_wtyp();
 				}
 				else {
-					ok = to2->find<leitung_t>()==NULL;
+					ok = to2->find<leitung_t>() == NULL;
 				}
 				if (!ok) {
 					warn_fail = "Another way blocks the construction";
@@ -701,9 +702,9 @@ way_builder_t::step_failure_t way_builder_t::is_allowed_step(const grund_t* from
 				to = &to_dummy;
 			}
 
-			pos = from->get_pos() + koord3d( 0, 0, get_way_height_offset(from) );
-			grund_t *from2 = welt->lookup(pos);
-			if(from2) {
+			pos = from->get_pos() + koord3d(0, 0, get_way_height_offset(from));
+			grund_t* from2 = welt->lookup(pos);
+			if (from2) {
 				from = from2;
 			}
 			else {
@@ -716,16 +717,16 @@ way_builder_t::step_failure_t way_builder_t::is_allowed_step(const grund_t* from
 		}
 	}
 
-	if(  welt->get_settings().get_way_height_clearance()==2  ) {
+	if (welt->get_settings().get_way_height_clearance() == 2) {
 		// cannot build if conversion factor 2, we aren't powerline and way with maximum speed > 0 or powerline 1 tile below
-		grund_t *to2 = welt->lookup( to->get_pos() + koord3d(0, 0, -1) );
-		if(  to2 && (((bautyp&bautyp_mask)!=leitung  &&  to2->get_weg_nr(0)  &&  to2->get_weg_nr(0)->get_desc()->get_topspeed()>0) || to2->get_leitung())  ) {
+		grund_t* to2 = welt->lookup(to->get_pos() + koord3d(0, 0, -1));
+		if (to2 && (((bautyp & bautyp_mask) != leitung && to2->get_weg_nr(0) && to2->get_weg_nr(0)->get_desc()->get_topspeed() > 0) || to2->get_leitung())) {
 			warn_fail = "Not enough clearance.";
 			return STEP_CLEARANCE;
 		}
 		// tiles directly above cannot have way unless it is a powerline bridge
-		to2 = welt->lookup( to->get_pos() + koord3d(0, 0, 1) );
-		if(  to2  &&  (to2->find<leitung_t>() == NULL  ||  to2->get_typ() != grund_t::brueckenboden)  ) {
+		to2 = welt->lookup(to->get_pos() + koord3d(0, 0, 1));
+		if (to2 && (to2->find<leitung_t>() == NULL || to2->get_typ() != grund_t::brueckenboden)) {
 			warn_fail = "Not enough clearance.";
 			return STEP_CLEARANCE;
 		}
@@ -735,7 +736,16 @@ way_builder_t::step_failure_t way_builder_t::is_allowed_step(const grund_t* from
 	settings_t const& s = welt->get_settings();
 	if ((zv.x | zv.y) == 0) {
 		// no step, just the from tile
-		*costs = from->hat_weg(desc->get_waytype()) ? 0 : s.way_count_no_way;
+		bool from_way = from->hat_weg(desc->get_waytype());
+		if (!from_way) {
+			if (desc->get_waytype() == water_wt) {
+				from_way = to->is_water();
+			}
+		}
+		*costs = from_way ? s.way_count_straight : s.way_count_no_way;
+		if ((bautyp & bautyp_mask) == schiene_tram && from->hat_weg(road_wt)) {
+			*costs += s.way_count_straight;
+		}
 		*costs += from->get_weg_hang() ? s.way_count_slope : 0;
 		return STEP_OK;
 	}
@@ -756,10 +766,9 @@ way_builder_t::step_failure_t way_builder_t::is_allowed_step(const grund_t* from
 		}
 		to_way = true;
 	}
-	
-	// can already calculate some costs
+
+	// prepare cost calculations
 	bool from_way = from->hat_weg(desc->get_waytype());
-	// test if we are next to a way
 	if (!from_way && prefer_parallel) {
 		if (to_way) {
 			// we have to join? make it expensive
@@ -774,12 +783,24 @@ way_builder_t::step_failure_t way_builder_t::is_allowed_step(const grund_t* from
 			*costs = s.way_count_no_way;
 		}
 	}
-	else {
-		// calculate costs
-		*costs = (!from_way ^ prefer_parallel) ? s.way_count_no_way : s.way_count_straight;
+	else if (from_way) {
+		if (!to_way) {
+			// leaving a way (expensive unless we try parallels)
+			*costs = prefer_parallel ? s.way_count_leaving_way : s.way_count_no_way;
+		}
+		else {
+			// both ways
+			*costs = prefer_parallel ? s.way_count_no_way : s.way_count_straight;
+		}
 	}
-	if (desc->get_styp()!=type_tram  &&  (from_way && to->has_two_ways()) || (!from_way && !to_way  &&  to->hat_wege())) {
-		*costs += s.way_count_avoid_crossings; // avoid crossings
+	else {
+		// joining a way is cheap
+		*costs = to_way ? s.way_count_straight : s.way_count_no_way;
+	}
+	if (to->hat_wege()  &&  !to_way) {
+		if ((bautyp & bautyp_mask) != schiene_tram || !to->hat_weg(road_wt)) {
+			*costs += s.way_count_avoid_crossings; // avoid crossings
+		}
 	}
 	if (to->get_weg_hang()  &&  !to_flat) {
 		*costs += s.way_count_slope;
@@ -914,13 +935,16 @@ way_builder_t::step_failure_t way_builder_t::is_allowed_step(const grund_t* from
 
 		case schiene_tram: // Dario: Tramway
 		{
-			const weg_t *sch=to->get_weg(track_wt);
+			const weg_t *sch=to->get_weg(desc->get_waytype());
 			// if  way there: check for right ground type, otherwise check owner
 			if (sch && !check_owner(sch->get_owner(), player_builder)) {
 				warn_fail = "Das Feld gehoert\neinem anderen Spieler\n";
 				return STEP_OBSTACLE;
 			}
 			// roads are checked in check_crossing
+			if (!sch  &&  to->hat_weg(road_wt)) {
+				*costs += s.way_count_straight;
+			}
 		}
 		break;
 
@@ -994,7 +1018,7 @@ way_builder_t::step_failure_t way_builder_t::is_allowed_step(const grund_t* from
 			// calculate costs
 			if(const weg_t* canal = to->get_weg(water_wt)) {
 				if (to->is_water()) {
-					*costs = 0; // prefer water very much
+					*costs = s.way_count_straight; // prefer water very much
 				}
 				else if (canal) {
 					*costs = s.way_count_straight; // next prefer existing canal
@@ -1544,7 +1568,7 @@ static void get_mini_maxi( const vector_tpl<koord3d> &ziel, koord3d &mini, koord
  * beware: change the cost and you will mess up the system!
  * (but you can try, look at simuconf.tab)
  */
-sint32 way_builder_t::intern_calc_route(const vector_tpl<koord3d> &start, const vector_tpl<koord3d> &ziel)
+sint32 way_builder_t::intern_calc_route(const vector_tpl<koord3d> &start, const vector_tpl<koord3d> &destinations)
 {
 	assert((get_random_mode() & SYNC_STEP_RANDOM) == 0);
 
@@ -1553,13 +1577,21 @@ sint32 way_builder_t::intern_calc_route(const vector_tpl<koord3d> &start, const 
 	terraform_index.clear();
 
 	// check for existing koordinates
-	bool has_target_ground = false;
-	for(koord3d const& i : ziel) {
-		has_target_ground |= welt->lookup(i) != 0;
+	vector_tpl<koord3d> ziel;
+	for (koord3d const& i : destinations) {
+		if (grund_t* gr = welt->lookup(i)) {
+			if (bautyp == leitung && gr->hat_wege() && !gr->get_leitung()) {
+				// cannot end on road
+				continue;
+			}
+			ziel.append(i);
+		}
 	}
-	if( !has_target_ground ) {
+	if (ziel.empty()) {
+		warn_fail = "No suitable ground!";
 		return -1;
 	}
+
 	// check scenario conditions for start and endpoint
 	for (koord3d const& pos : start) {
 		if (welt->get_scenario()->is_work_allowed_here(player_builder, TOOL_BUILD_WAY | GENERAL_TOOL, bautyp & bautyp_mask, desc->get_name(), pos) != NULL) {
@@ -1604,6 +1636,10 @@ sint32 way_builder_t::intern_calc_route(const vector_tpl<koord3d> &start, const 
 		sint32 dummy;
 		if (!gr || !check_slope(gr, gr) || is_allowed_step(gr, gr, &dummy, 0) != STEP_OK) {
 			// DBG_MESSAGE("way_builder_t::intern_calc_route()","cannot start on (%i,%i,%i)",start.x,start.y,start.z);
+			continue;
+		}
+		if (gr && bautyp == leitung && gr->hat_wege() && !gr->get_leitung()) {
+			// cannot start on a way with a powerline
 			continue;
 		}
 		tmp = &(route_t::nodes[step]);
@@ -1920,6 +1956,11 @@ void way_builder_t::intern_calc_straight_route(const koord3d start, const koord3
 		//there is a legal ground at the start
 		ok = true;
 	}
+	if (bautyp == leitung && test_bd->hat_wege() && !test_bd->get_leitung()) {
+		// cannot start on road
+		warn_fail = "No suitable ground!";
+		return;
+	}
 	if (ok && (bautyp & tunnel_flag) && !test_bd->ist_tunnel()) {
 		return; // start tunnelbuilding in tunnels
 	}
@@ -1942,6 +1983,11 @@ void way_builder_t::intern_calc_straight_route(const koord3d start, const koord3
 	}
 	const grund_t *ziel_gr = welt->lookup(ziel);
 	test_bd = ziel_gr;
+	if (bautyp == leitung && test_bd->hat_wege() && !test_bd->get_leitung()) {
+		// cannot end on road
+		warn_fail = "No suitable ground!";
+		return;
+	}
 	// we have to reach target height if no tunnel building or (target ground does not exists or is underground).
 	// in full underground mode if there is no tunnel under cursor, kartenboden gets selected
 	const bool target_3d = (bautyp&tunnel_flag)==0  ||  test_bd==NULL  ||  test_bd->ist_karten_boden();
@@ -2573,6 +2619,7 @@ const char *way_builder_t::calc_straight_route(koord3d start, const koord3d ziel
 		}
 	}
 	if(  !terraforming_leaves_way_slopes()  ) {
+		warn_fail = "Slope is too steep";
 		route.clear();
 		terraform_index.clear();
 	}
@@ -2635,6 +2682,7 @@ uint32 ms = dr_time();
 				intern_calc_route( ziel, start );
 				// the retry may have found a route, and it returns from here
 				if(  !terraforming_leaves_way_slopes()  ) {
+					warn_fail = "Slope is too steep";
 					route.clear();
 					terraform_index.clear();
 				}

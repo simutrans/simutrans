@@ -3841,7 +3841,7 @@ static utf32 simgraph16_get_next_char_with_metrics(const char* &text, unsigned c
 	size_t len = 0;
 	utf32 const char_code = utf8_decoder_t::decode((utf8 const *)text, len);
 
-	if(  char_code==UNICODE_NUL  ||  char_code == '\n') {
+	if(char_code==UNICODE_NUL) {
 		// case : end of text reached -> do not advance text pointer
 		// also stop at linebreaks
 		byte_length = 0;
@@ -3851,7 +3851,7 @@ static utf32 simgraph16_get_next_char_with_metrics(const char* &text, unsigned c
 	else {
 		text += len;
 		byte_length = (uint8)len;
-		pixel_width = default_font.get_glyph_advance(char_code);
+		pixel_width = (char_code == '\n') ? default_font.get_glyph_advance(32) : default_font.get_glyph_advance(char_code);
 	}
 	return char_code;
 }
@@ -4033,8 +4033,12 @@ static scr_coord_val simgraph16_draw_text_clipped_n(scr_coord_val x, scr_coord_v
 		iTextPos = decoder.get_position() - (utf8 const*)txt;
 
 		if(  c == '\n'  ) {
-			// stop at linebreak
-			break;
+			if (!decoder.has_next()) {
+				// omit NL at end of line only
+				break;
+			}
+			// replace with space
+			c = 32;
 		}
 		// print unknown character?
 		else if(  !fnt->is_valid_glyph(c)  ) {
