@@ -171,7 +171,7 @@ size_t strncopy_to_break( char *dest, const char *src, size_t n )
 /**
  * Creates a tooltip from tip text and money value
  */
-char *tooltip_with_price(const char * tip, sint64 price)
+char * tool_t::tooltip_with_price(const char * tip, sint64 price)
 {
 	int n = strncopy_to_break( tool_t::toolstr, translator::translate( tip ), 256 );
 	memcpy( tool_t::toolstr + n, ", ", 2 );
@@ -183,7 +183,7 @@ char *tooltip_with_price(const char * tip, sint64 price)
 /**
  * Creates a tooltip from tip text, money value and way/object length
  */
-char *tooltip_with_price_length(const char *tip, sint64 price, sint64 length)
+char * tool_t::tooltip_with_price_length(const char *tip, sint64 price, sint64 length)
 {
 	int n = sprintf(tool_t::toolstr, translator::translate("length: %d"), (int)length);
 	n += sprintf(tool_t::toolstr+n, ", ");
@@ -194,10 +194,7 @@ char *tooltip_with_price_length(const char *tip, sint64 price, sint64 length)
 }
 
 
-/**
- * Creates a tooltip from tip text and money value
- */
-char *tooltip_with_price_maintenance(karte_t *welt, const char *tip, sint64 price, sint64 maintenance)
+char * tool_t::tooltip_with_price_maintenance(karte_t *welt, const char *tip, sint64 price, sint64 maintenance)
 {
 	int n = strncopy_to_break( tool_t::toolstr, translator::translate( tip ), 256 );
 	memcpy( tool_t::toolstr+n, ", ", 2 );
@@ -218,7 +215,7 @@ char *tooltip_with_price_maintenance(karte_t *welt, const char *tip, sint64 pric
 /**
  * Creates a tooltip from tip text and money value
  */
-static char const* tooltip_with_price_maintenance_capacity(karte_t* const welt, char const* const tip, sint64 const price, sint64 const maintenance, uint32 const capacity, uint8 const enables)
+char * tool_t::tooltip_with_price_maintenance_capacity(karte_t* const welt, char const* const tip, sint64 const price, sint64 const maintenance, uint32 const capacity, uint8 const enables)
 {
 	int n = strncopy_to_break( tool_t::toolstr, translator::translate( tip ), 256 );
 	memcpy( tool_t::toolstr+n, ", ", 2 );
@@ -3020,7 +3017,7 @@ const char* tool_build_way_t::do_work(player_t* player, const koord3d& start, co
 			}
 		}
 
-		win_set_static_tooltip(NULL);	// Publish the estimate first (no dummygrounds, if bauigel.calc_costs() is called).
+		win_set_static_tooltip(NULL);
 		if (gui_frame_t* win = win_get_magic(magic_way_builder)) {
 			((way_builder_frame_t*)win)->costs.set_text(NULL);
 		}
@@ -3039,14 +3036,16 @@ void tool_build_way_t::mark_tiles(player_t* player, const koord3d& start, const 
 	bool is_elevated = desc->get_styp() == type_elevated && desc->get_wtyp() != air_wt;
 	uint8 offset = is_elevated ? welt->get_settings().get_way_height_clearance() : 0;
 
+	if (err) {
+		win_set_tool_problem(this, err);
+		return;
+	}
+
 	const char *tool_str = NULL;
 	if (bauigel.get_count() > 1) {
 
 		// Set tooltip first (no dummygrounds, if bauigel.calc_casts() is called).
-		tool_str = tooltip_with_price_length("Building costs estimates", bauigel.calc_costs(), bauigel.get_count());
-		if (env_t::show_construction_info) {
-			win_set_tool_estimate(this, bauigel.get_count(), bauigel.calc_costs());
-		}
+		win_set_tool_estimate(this, bauigel.get_count(), bauigel.calc_costs());
 
 		// make dummy route from bauigel
 		for (uint32 j = 0; j < bauigel.get_count(); j++) {
@@ -3223,19 +3222,6 @@ void tool_build_way_t::mark_tiles(player_t* player, const koord3d& start, const 
 			way->mark_image_dirty(way->get_image(), 0);
 		}
 	}
-	else {
-		// The route search did not get through. err is exactly what
-		// way_builder_t::calc_route() returned, i.e. its warn_fail, so the
-		// reason the engine already knows goes on the contextual bar instead of
-		// into a hover tooltip: this is feedback about a build in progress, and
-		// it has to survive env_t::show_tooltips being off.
-		// err == NULL is published too. That is the "cannot build here, and the
-		// engine did not say why" state, and saying that much is still better
-		// than the silence it used to be. No reason gets invented for it.
-		win_set_tool_problem(this, err);
-		tool_str = err;
-	}
-	win_set_static_tooltip(tool_str);	// Publish the estimate first (no dummygrounds, if bauigel.calc_costs() is called).
 	if (gui_frame_t* win = win_get_magic(magic_way_builder)) {
 		((way_builder_frame_t*)win)->costs.set_text(tool_str);
 		((way_builder_frame_t*)win)->costs.set_color(SYSCOL_TEXT);
@@ -3590,12 +3576,12 @@ const char *tool_build_tunnel_t::check_pos( player_t *player, koord3d pos)
 				// there is tunnel present -> allow, no chance to guess building cost.
 				return NULL;
 			}
+			win_clear_tool_estimate();
 			if( gr->ist_karten_boden() ) {
-				win_set_static_tooltip( translator::translate("No suitable ground!") );
+				win_set_tool_problem(this, "Tunnel muss an\neinfachem\nHang beginnen!\n");
 				// Every path out of here that is not a usable estimate has to
 				// drop the previous one, or hovering off a valid slope leaves
 				// the last cost on screen.
-				win_clear_tool_estimate();
 
 				slope_t::type sl = gr->get_grund_hang();
 				if(  sl == slope_t::flat  ||  !slope_t::is_way( sl ) ) {
@@ -3604,7 +3590,7 @@ const char *tool_build_tunnel_t::check_pos( player_t *player, koord3d pos)
 				}
 
 				if(  welt->get_settings().get_way_height_clearance() != slope_t::max_diff(sl)  ) {
-					win_set_static_tooltip( translator::translate("The gradient does not fit a tunnel") );
+					win_set_tool_problem(this, "The gradient does not fit a tunnel");
 					return "";
 				}
 
@@ -3618,6 +3604,7 @@ const char *tool_build_tunnel_t::check_pos( player_t *player, koord3d pos)
 				}
 
 				// Now check, if we can built a tunnel here and display costs
+				win_set_tool_problem(this, "No suitable ground!");
 				koord3d end = tunnel_builder_t::find_end_pos(player,pos, koord(gr->get_grund_hang()), desc, true );
 				if(  end == koord3d::invalid  ||  end == pos  ) {
 					// no end found

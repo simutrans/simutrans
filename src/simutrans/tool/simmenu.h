@@ -29,6 +29,7 @@ class toolbar_t;
 class memory_rw_t;
 class karte_ptr_t;
 class zeiger_t;
+class karte_t;
 
 enum {
 	// general tools (one click)
@@ -226,6 +227,12 @@ protected:
 	const char *default_param;
 
 public:
+	// generate toolstips
+	static char* tooltip_with_price(const char* tip, sint64 price);
+	static char* tooltip_with_price_length(const char* tip, sint64 price, sint64 length);
+	static char* tooltip_with_price_maintenance(karte_t* welt, const char* tip, sint64 price, sint64 maintenance);
+	static char* tooltip_with_price_maintenance_capacity(karte_t* const welt, char const* const tip, sint64 const price, sint64 const maintenance, uint32 const capacity, uint8 const enables);
+
 	uint16 get_id() const { return id; }
 
 	const char *get_name() const { return id_to_string(id); }
