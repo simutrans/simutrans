@@ -1,7 +1,7 @@
 # This workflow sets up and runs MSBuild and VSTest
 # to build and test a Visual Studio solution.
 
-name: Nightly Built Windows64 SDL2
+name: Nightly Built Windows ARM64 SDL3
 
 on: [push]
 
@@ -26,7 +26,7 @@ jobs:
       working-directory: ${{env.GITHUB_WORKSPACE}}
       run: |
         vcpkg integrate install
-        msbuild /m .\Simutrans-SDL3.vcxproj -p:Configuration=Release /p:platform=arm64
+        msbuild /m .\Simutrans-SDL3.vcxproj -p:Configuration=Release /p:platform=ARM64
 
     - name: Build zipfile
       shell: pwsh
