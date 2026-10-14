@@ -36,6 +36,7 @@ jobs:
       shell: pwsh
       working-directory: ${{env.GITHUB_WORKSPACE}}
       run: |
+        vcpkg integrate install
         vcpkg x-update-baseline
         msbuild /m .\Simutrans-GDI.vcxproj -p:Configuration=Release /p:platform=Win32
 
