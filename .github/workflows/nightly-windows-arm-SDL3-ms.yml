@@ -6,7 +6,7 @@ name: Nightly Built Windows ARM64 SDL3
 on: [push]
 
 jobs:
-  winSDL2-64:
+  winSDL3-ARM64:
    runs-on: windows-latest
    env:
       VCPKG_BINARY_SOURCES: 'clear;x-gha,readwrite'
@@ -26,7 +26,8 @@ jobs:
       with:
         script: |
           core.exportVariable('ACTIONS_CACHE_URL', process.env.ACTIONS_CACHE_URL || '');
-          core.exportVariable('ACTIONS_RUNTIME_TOKEN', process.env.ACTIONS_RUNTIME_TOKEN || 
+          core.exportVariable('ACTIONS_RUNTIME_TOKEN', process.env.ACTIONS_RUNTIME_TOKEN || '');
+
 
     - name: Make NSIS
       shell: pwsh
