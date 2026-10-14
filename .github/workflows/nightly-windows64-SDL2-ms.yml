@@ -16,8 +16,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v6
       id: checkout_code
-      with:
-        fetch-depth: 0
 
     - name: Setup MSBuild and add to PATH
       uses: microsoft/setup-msbuild@v3
