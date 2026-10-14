@@ -36,11 +36,7 @@ jobs:
       shell: pwsh
       working-directory: ${{env.GITHUB_WORKSPACE}}
       run: |
-        git clone https://github.com/Microsoft/vcpkg.git
-        cd vcpkg
-        ./bootstrap-vcpkg.bat
-        ./vcpkg integrate install
-        cd ..
+        vcpkg x-update-baseline --manifest-root="${{ github.workspace }}"
         msbuild /m .\Simutrans-GDI.vcxproj -p:Configuration=Release /p:platform=Win32
 
     - name: Build zipfile
