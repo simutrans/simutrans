@@ -1,0 +1,47 @@
+# This workflow sets up and runs MSBuild and VSTest
+# to build and test a Visual Studio solution.
+
+name: Nightly Built Windows64 SDL2
+
+on: [push]
+
+jobs:
+  winSDL2-64:
+   runs-on: windows-latest
+   steps:
+    - name: Setup MSBuild and add to PATH
+      uses: microsoft/setup-msbuild@v3
+
+    - name: Checkout code
+      uses: actions/checkout@v6
+      id: checkout_code
+
+    - name: Make NSIS
+      shell: pwsh
+      run:
+        ./.github/prepare-nsis.ps1
+
+    - name: Run MSBuild
+      shell: pwsh
+      working-directory: ${{env.GITHUB_WORKSPACE}}
+      run: |
+        vcpkg integrate install
+        msbuild /m .\Simutrans-SDL3.vcxproj -p:Configuration=Release /p:platform=arm64
+
+    - name: Build zipfile
+      shell: pwsh
+      run: |
+        move-item "build/SDL2/Simutrans SDL2 Nightly.exe" "simutrans/simutrans.exe"
+        move-item "src\Windows\nsis\download-paksets.exe" "simutrans/download-pakset.exe"
+        tools/get_lang_files.ps1
+        Compress-Archive -Path simutrans -DestinationPath "simuwin64-SDL2-nightly.zip"
+        dir
+
+    - name: Update binaries of Nightly Release
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: ./simuwin64-SDL2-nightly.zip
+        asset_name: simuwin64-SDL2-nightly.zip
+        tag: Nightly
+        overwrite: true

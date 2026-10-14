@@ -1,0 +1,29 @@
+<Project>
+  <PropertyGroup>
+    <VcpkgEnableManifest>true</VcpkgEnableManifest>
+  </PropertyGroup>
+
+  <!-- If the project configuration is explicitly Release (or Stable), force Release-only dependencies -->
+  <PropertyGroup Condition="'$(Configuration)' == 'Release' Or '$(Configuration)' == 'Stable'">
+    <VcpkgBuildType>release</VcpkgBuildType>
+    <VcpkgConfiguration>Release</VcpkgConfiguration>
+  </PropertyGroup>
+
+  <!-- If the project configuration is Debug, leave VcpkgBuildType empty so it builds BOTH Debug and Release dependencies -->
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <VcpkgBuildType></VcpkgBuildType>
+    <VcpkgConfiguration>Debug</VcpkgConfiguration>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Platform)' == 'Win32' Or '$(Platform)' == 'x86'">
+    <VcpkgTriplet>x86-windows-static</VcpkgTriplet>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Platform)' == 'x64'">
+    <VcpkgTriplet>x64-windows-static</VcpkgTriplet>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Platform)' == 'ARM64'">
+    <VcpkgTriplet>arm64-windows-static</VcpkgTriplet>
+  </PropertyGroup>
+</Project>

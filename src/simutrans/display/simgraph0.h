@@ -10,7 +10,7 @@
 #include "simgraph.h"
 
 
-extern const simgraph_t g_simgraph0;
+extern simgraph_t g_simgraph0;
 
 
 #endif

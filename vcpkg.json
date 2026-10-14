@@ -1,42 +1,39 @@
 {
-    "version-string": "1.0.0",
-    "dependencies": [
-        "freetype",
-        "miniupnpc",
-        "pthread",
-        "zstd",
-        "zlib"
-    ],
-    "default-features": [
+  "version-string": "1.0.0",
+  "dependencies": [
+    "freetype",
+    "miniupnpc",
+    "pthread",
+    "zstd",
+    "zlib"
+  ],
+  "features": {
+    "sdl2": {
+      "description": "SDL2 platform backend",
+      "dependencies": [
         "sdl2"
-    ],
-    "features": {
-        "sdl2": {
-            "description": "SDL2 platform backend",
-            "dependencies": [
-                "sdl2"
-            ]
-        },
-        "sdl3": {
-            "description": "SDL3 platform backend",
-            "dependencies": [
-                "sdl3"
-            ]
-        },
-        "sdl3-mixer": {
-            "description": "SDL3 backend music through SDL3_mixer: MP3, Ogg, Opus, FLAC, WAV and MIDI with a SoundFont",
-            "dependencies": [
-                {
-                    "name": "sdl3-mixer",
-                    "features": [
-                        "fluidsynth",
-                        "libflac",
-                        "mpg123",
-                        "opusfile"
-                    ]
-                }
-            ]
-        }
+      ]
     },
-	"builtin-baseline": "c5a15727ee70fddf0296f0d8aafc3f58916fefac"
+    "sdl3": {
+      "description": "SDL3 platform backend",
+      "dependencies": [
+        "sdl3"
+      ]
+    },
+    "sdl3-mixer": {
+      "description": "SDL3 backend music through SDL3_mixer: MP3, Ogg, Opus, FLAC, WAV and MIDI with a SoundFont",
+      "dependencies": [
+        {
+          "name": "sdl3-mixer",
+          "features": [
+            "fluidsynth",
+            "libflac",
+            "mpg123",
+            "opusfile"
+          ]
+        }
+      ]
+    }
+  },
+  "builtin-baseline": "e456309491fd875487bf02b8a0dca76c1b1b00cc"
 }
