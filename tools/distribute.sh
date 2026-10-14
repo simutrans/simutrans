@@ -103,8 +103,10 @@ elif [ "$OST" = "haiku" ]; then
  simarchivbase=simuhaiku
 elif [ "$OST" = "mingw" ]; then
   simexe=.exe
-  if [[ "mingw-w64-x86_64" == "$MINGW_PACKAGE_PREFIX" ]]; then
+  if [[ "$MINGW_PACKAGE_PREFIX" == *"x86_64"* ]]; then
     simarchivbase=simuwin-x64
+  elif [[ "$MINGW_PACKAGE_PREFIX" == *"aarch64"* ]]; then
+    simarchivbase=simuwin-arm
   else
     simarchivbase=simuwin
   fi

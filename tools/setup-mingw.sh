@@ -14,7 +14,7 @@ pacman -S --noconfirm $MINGW_PACKAGE_PREFIX-gcc $MINGW_PACKAGE_PREFIX-bzip2 $MIN
 pacman -S --noconfirm $MINGW_PACKAGE_PREFIX-SDL2
 
 # optional for SLD3 builds (only 64 bit):
-if [[ "mingw-w64-i686" != "$MINGW_PACKAGE_PREFIX" ]]; then
+if [[ "$MINGW_PACKAGE_PREFIX" != *"i686"* ]]; then
   pacman -S --noconfirm $MINGW_PACKAGE_PREFIX-sdl3
 fi
 

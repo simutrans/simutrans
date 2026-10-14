@@ -43,17 +43,17 @@ jobs:
     - name: Build zipfile
       shell: pwsh
       run: |
-        move-item "build/SDL2/Simutrans SDL2 Nightly.exe" "simutrans/simutrans.exe"
+        move-item "build/SDL3/Simutrans SDL3 Nightly.exe" "simutrans/simutrans.exe"
         move-item "src\Windows\nsis\download-paksets.exe" "simutrans/download-pakset.exe"
         tools/get_lang_files.ps1
-        Compress-Archive -Path simutrans -DestinationPath "simuwin64-SDL2-nightly.zip"
+        Compress-Archive -Path simutrans -DestinationPath "simuwin-arm-SDL3-nightly.zip"
         dir
 
     - name: Update binaries of Nightly Release
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: ./simuwin64-SDL2-nightly.zip
-        asset_name: simuwin64-SDL2-nightly.zip
+        file: ./simuwin-arm-SDL3-nightly.zip
+        asset_name: simuwin-arm-SDL3-nightly.zip
         tag: Nightly
         overwrite: true
