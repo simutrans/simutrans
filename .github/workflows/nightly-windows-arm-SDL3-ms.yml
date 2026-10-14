@@ -35,9 +35,9 @@ jobs:
     - name: Run MSBuild
       shell: pwsh
       working-directory: ${{env.GITHUB_WORKSPACE}}
+      # not needed any more: vcpkg x-update-baseline
       run: |
         vcpkg integrate install
-        vcpkg x-update-baseline
         msbuild /m .\Simutrans-SDL3.vcxproj -p:Configuration=Release /p:platform=ARM64
 
     - name: Build zipfile
