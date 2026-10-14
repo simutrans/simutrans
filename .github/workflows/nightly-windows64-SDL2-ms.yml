@@ -8,6 +8,13 @@ on: [push]
 jobs:
   winSDL2-64:
    runs-on: windows-latest
+
+    # vcpkg-Caching
+    env:
+      VCPKG_BINARY_SOURCES: 'clear;x-gha,readwrite'
+      ACTIONS_CACHE_URL: '${{ env.ACTIONS_CACHE_URL }}'
+      ACTIONS_RUNTIME_TOKEN: '${{ env.ACTIONS_RUNTIME_TOKEN }}'
+
    steps:
     - name: Setup MSBuild and add to PATH
       uses: microsoft/setup-msbuild@v3
@@ -15,6 +22,8 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v6
       id: checkout_code
+      with:
+        fetch-depth: 0
 
     - name: Make NSIS
       shell: pwsh
