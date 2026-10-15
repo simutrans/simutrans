@@ -1,5 +1,5 @@
 Section /o "Executable (GDI)" GDIexe
-  AddSize 22221 # simuwin-size
+  AddSize 28865 # simuwin-size
   StrCpy $downloadlink "http://downloads.sourceforge.net/project/simutrans/simutrans/${SF_VERSION}/simuwin-${SF_VERSION}.zip"
   StrCpy $archievename "simuwin-${SF_VERSION}.zip"
   StrCpy $downloadname "nodelete"
@@ -9,7 +9,7 @@ Section /o "Executable (GDI)" GDIexe
 SectionEnd
 
 Section "Executable (SDL2)" SDLexe
-  AddSize 24585 # simuwin-sdl-size
+  AddSize 31229 # simuwin-sdl-size
   StrCpy $downloadlink "http://downloads.sourceforge.net/project/simutrans/simutrans/${SF_VERSION}/simuwin-sdl-${SF_VERSION}.zip"
   StrCpy $archievename "simuwin-sdl-${SF_VERSION}.zip"
   StrCpy $downloadname "nodelete"

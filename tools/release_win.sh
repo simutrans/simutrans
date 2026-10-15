@@ -29,7 +29,7 @@ for arg in "$@"; do
 done
 
 # First update languages
-#$svn_flag && tools/get_lang_files.sh -svn
+$svn_flag && tools/get_lang_files.sh -svn
 
 
 # then get the version number from simversion

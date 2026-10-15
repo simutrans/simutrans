@@ -13,12 +13,14 @@
 #
 
 echo "=== Starting i686 (32-bit) Build ==="
-#MSYSTEM=MINGW32 bash --login -c '"$@"' _ tools/release_win.sh "$@"
+MSYSTEM=MINGW32 bash --login -c '"$@"' _ tools/release_win.sh "$@"
 
 echo "=== Starting x64 (64-bit) Build ==="
-#MSYSTEM=MINGW64 bash --login -c '"$@"' _ tools/release_win.sh "$@"
+MSYSTEM=MINGW64 bash --login -c '"$@"' _ tools/release_win.sh "$@"
+
+rm -rf build
 
 echo "=== Starting arm64 Build by MSBuild ==="
 cmd.exe //c "tools\\build_arm.bat"
 
-rm -rf Build
+rm -rf build
