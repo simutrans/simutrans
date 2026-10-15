@@ -29,7 +29,7 @@ for arg in "$@"; do
 done
 
 # First update languages
-$svn_flag && tools/get_lang_files.sh -svn
+#$svn_flag && tools/get_lang_files.sh -svn
 
 
 # then get the version number from simversion
@@ -81,12 +81,12 @@ fi
 echo -e "$GDI$CONFIG" > config.default
 make -j$(( $(nproc) + 1 ))
 if [ $? -eq 0 ];then
-  strip sim.exe
-  exe_size=$(du -s -Bk sim.exe | sed "s|K.*$||")
+  strip build/default/sim.exe
+  exe_size=$(du -s -Bk build/default/sim.exe | sed "s|K.*$||")
   tools/distribute.sh -no-lang
   mv "$simarchivbase-.zip" "$simarchivbase-$VERSION.zip"
   # Now output to nsh
-  if [ $svn_flag -ne 0 ]; then
+  if [ $svn_flag ]; then
     total_size=$(($base_size + $exe_size))
 	sed -i "s/  AddSize [0-9]* # $simarchivbase-size/  AddSize $total_size # $simarchivbase-size/" src/Windows/nsis/simutrans.nsh
   fi
@@ -99,11 +99,11 @@ make clean
 echo -e "$SDL2$CONFIG" > config.default
 make -j$(( $(nproc) + 1 ))
 if [ $? -eq 0 ];then
-  strip sim.exe
-  exe_size=$(du -s -Bk sim.exe | sed "s|K.*$||")
+  strip build/default/sim.exe
+  exe_size=$(du -s -Bk build/default/sim.exe | sed "s|K.*$||")
   tools/distribute.sh -no-lang
   mv "$simarchivbase-sdl-.zip" "$simarchivbase-sdl-$VERSION.zip"
-  if [ $svn_flag -ne 0 ]; then
+  if [ $svn_flag ]; then
     total_size=$(($base_size + $exe_size))
 	sed -i "s/  AddSize [0-9]* # $simarchivbase-sdl-size/  AddSize $total_size # $simarchivbase-sdl-size/" src/Windows/nsis/simutrans.nsh
   fi
@@ -116,11 +116,11 @@ make clean
 echo -e "$SDL3$CONFIG" > config.default
 make -j$(( $(nproc) + 1 ))
 if [ $? -eq 0 ];then
-  strip sim.exe
-  exe_size=$(du -s -Bk sim.exe | sed "s|K.*$||")
+  strip build/default/sim.exe
+  exe_size=$(du -s -Bk build/default/sim.exe | sed "s|K.*$||")
   tools/distribute.sh -no-lang
   mv "$simarchivbase-sdl3-.zip" "$simarchivbase-sdl3-$VERSION.zip"
-  if [ $svn_flag -ne 0 ]; then
+  if [ $svn_flag ]; then
     total_size=$(($base_size + $exe_size))
 	sed -i "s/  AddSize [0-9]* # $simarchivbase-sdl3-size/  AddSize $total_size # $simarchivbase-sdl3-size/" src/Windows/nsis/simutrans.nsh
   fi

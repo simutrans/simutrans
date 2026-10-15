@@ -1,5 +1,5 @@
 Section /o "Executable (GDI)" GDIexe
-  AddSize 111 # simuwin-size
+  AddSize 22221 # simuwin-size
   StrCpy $downloadlink "http://downloads.sourceforge.net/project/simutrans/simutrans/${SF_VERSION}/simuwin-${SF_VERSION}.zip"
   StrCpy $archievename "simuwin-${SF_VERSION}.zip"
   StrCpy $downloadname "nodelete"
@@ -9,7 +9,7 @@ Section /o "Executable (GDI)" GDIexe
 SectionEnd
 
 Section "Executable (SDL2)" SDLexe
-  AddSize 23728 # simuwin-sdl-size
+  AddSize 24585 # simuwin-sdl-size
   StrCpy $downloadlink "http://downloads.sourceforge.net/project/simutrans/simutrans/${SF_VERSION}/simuwin-sdl-${SF_VERSION}.zip"
   StrCpy $archievename "simuwin-sdl-${SF_VERSION}.zip"
   StrCpy $downloadname "nodelete"
@@ -19,7 +19,7 @@ Section "Executable (SDL2)" SDLexe
 SectionEnd
 
 Section /o "Executable (GDI 64bit)" GDI64exe
-  AddSize 20728 # simuwin-x64-size
+  AddSize 21589 # simuwin-x64-size
   StrCpy $downloadlink "http://downloads.sourceforge.net/project/simutrans/simutrans/${SF_VERSION}/simuwin-x64-${SF_VERSION}.zip"
   StrCpy $archievename "simuwin-x64-${SF_VERSION}.zip"
   StrCpy $downloadname "nodelete"
@@ -29,7 +29,7 @@ Section /o "Executable (GDI 64bit)" GDI64exe
 SectionEnd
 
 Section /o "Executable (SDL2 64bit)" SDL64exe
-  AddSize 22936 # simuwin-x64-sdl-size
+  AddSize 23793 # simuwin-x64-sdl-size
   StrCpy $downloadlink "http://downloads.sourceforge.net/project/simutrans/simutrans/${SF_VERSION}/simuwin-x64-sdl-${SF_VERSION}.zip"
   StrCpy $archievename "simuwin-x64-sdl-${SF_VERSION}.zip"
   StrCpy $downloadname "nodelete"
@@ -39,7 +39,7 @@ Section /o "Executable (SDL2 64bit)" SDL64exe
 SectionEnd
 
 Section /o "Executable (SDL3 64bit beta)" SDL364exe
-  AddSize 24573
+  AddSize 25321 # simuwin-x64-sdl3-size
   StrCpy $downloadlink "http://downloads.sourceforge.net/project/simutrans/simutrans/${SF_VERSION}/simuwin-x64-${SF_VERSION}.zip"
   StrCpy $archievename "simuwin-x64-${SF_VERSION}.zip"
   StrCpy $downloadname "nodelete"
