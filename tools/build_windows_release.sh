@@ -18,9 +18,6 @@ MSYSTEM=MINGW32 bash --login -c '"$@"' _ tools/release_win.sh "$@"
 echo "=== Starting x64 (64-bit) Build ==="
 MSYSTEM=MINGW64 bash --login -c '"$@"' _ tools/release_win.sh "$@"
 
-rm -rf build
+echo "=== Starting arm64 Build ==="
+MSYSTEM=clangarm64 bash --login -c '"$@"' _ tools/release_win.sh "$@" -cross
 
-echo "=== Starting arm64 Build by MSBuild ==="
-cmd.exe //c "tools\\build_arm.bat"
-
-rm -rf build

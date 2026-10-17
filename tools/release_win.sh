@@ -8,6 +8,7 @@
 #
 # This builds the release
 # "-svn" updates languages and the isntaller sizes
+# "-cross_arm" forces msbuild ARM64 crosscompile
 #
 # should be called from the main directory "tools/build_win.sh"
 #
@@ -31,6 +32,16 @@ done
 # First update languages
 $svn_flag && tools/get_lang_files.sh -svn
 
+# cross compile for ARM64
+not_cross_ming=true
+for arg in "$@"; do
+    if [ "$arg" = "-cross" ]; then
+        not_cross_ming=false
+        break # Schleife abbrechen, da die Option gefunden wurde
+    fi
+done
+
+echo "Find revision"
 
 # then get the version number from simversion
 while read -r _ name val _; do
@@ -48,6 +59,7 @@ else
     VERSION="${maj}-${min}-${patch}"
 fi
 WINVERSION="${maj}.${min}.${patch}"
+echo "Version $VERSION"
 
 # update installer version information
 $svn_flag && sed -i "s|!define VERSION.*|!define VERSION \"0.$WINVERSION\"|" src/Windows/nsis/simutrans.nsi
@@ -59,28 +71,39 @@ $svn_flag && sed -i "s|!define SF_VERSION.*|!define SF_VERSION \"$VERSION\"|" sr
 make clean
 mv config.default config.default_tmp
 
+
 if [[ "$MINGW_PACKAGE_PREFIX" == *"x86_64"* ]]; then
   simarchivbase=simuwin-x64
   nsis_id=x64
+  msbuild_id=x64
 elif [[ "$MINGW_PACKAGE_PREFIX" == *"aarch64"* ]]; then
   simarchivbase=simuwin-arm
   nsis_id=arm
+  msbuild_id=ARM64
 else
   simarchivbase=simuwin
   nsis_id=win32
+  msbuild_id=Win32
 fi
 
 # size of base files without executable
 base_size=$(du -s -Bk simutrans | sed "s|K.*$||")
 
-if [ $svn_flag ]; then
+if $svn_flag; then
   echo "updating svn and nsis installer"
 fi
 
 # now build gdi
+echo "$cross_arm"
+
 echo -e "$GDI$CONFIG" > config.default
-make -j$(( $(nproc) + 1 ))
-if [ $? -eq 0 ];then
+rm -rf build
+$not_cross_ming  &&  make -j$(( $(nproc) + 1 ))
+if [ ! -f "build/default/sim.exe" ]; then
+  echo "Try GDI built by msbuild!"
+  cmd.exe //c "tools\\use_msbuild.bat" GDI $msbuild_id
+fi
+if [ -f "build/default/sim.exe" ]; then
   strip build/default/sim.exe
   exe_size=$(du -s -Bk build/default/sim.exe | sed "s|K.*$||")
   tools/distribute.sh -no-lang
@@ -97,8 +120,13 @@ make clean
 
 # now build SDL2
 echo -e "$SDL2$CONFIG" > config.default
-make -j$(( $(nproc) + 1 ))
-if [ $? -eq 0 ];then
+rm -rf build
+$not_cross_ming  &&  make -j$(( $(nproc) + 1 ))
+if [ ! -f "build/default/sim.exe" ]; then
+  echo "Try SDL2 built by msbuild!"
+  cmd.exe //c "tools\\use_msbuild.bat" SDL2 $msbuild_id
+fi
+if [ -f "build/default/sim.exe" ]; then
   strip build/default/sim.exe
   exe_size=$(du -s -Bk build/default/sim.exe | sed "s|K.*$||")
   tools/distribute.sh -no-lang
@@ -114,8 +142,13 @@ make clean
 
 # now build SDL3
 echo -e "$SDL3$CONFIG" > config.default
-make -j$(( $(nproc) + 1 ))
-if [ $? -eq 0 ];then
+rm -rf build
+$not_cross_ming  &&  make -j$(( $(nproc) + 1 ))
+if [ ! -f "build/default/sim.exe" ]; then
+  echo "Try SDL3 built by msbuild!"
+  cmd.exe //c "tools\\use_msbuild.bat" SDL3 $msbuild_id
+fi
+if [ -f "build/default/sim.exe" ]; then
   strip build/default/sim.exe
   exe_size=$(du -s -Bk build/default/sim.exe | sed "s|K.*$||")
   tools/distribute.sh -no-lang
