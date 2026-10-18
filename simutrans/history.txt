@@ -2,6 +2,7 @@
 	FIX: trams behave like normal track for building parallels
 	FIX: tooltips cost preview works again
 	FIX: no depots on tunnel portals any more
+	CHG: Windows now supports WAV/FLAC/MP3/... for music too (as consequence, Simutrans needs Win8 at minimum)
 
 
 Release of 125.0.1 (r12334 on 5-Oct-2026):

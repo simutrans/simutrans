@@ -5,17 +5,148 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <string>
 #include <windows.h>
 #include <mmsystem.h>
 
+#include "../macros.h"
 #include "../utils/plainstring.h"
+#include "../utils/simstring.h"
 #include "music.h"
 #include "../simsound.h"
 #include "../simdebug.h"
 
+/*
+ * class to play other sampled data (REQUIRES WIN8 or later)
+ * because of COM callback mandatory
+ * MCI crashes on WIndow11 on many MP3 so we divide the playback
+ */
 
-// native win32 midi playing routines
+#include <mfapi.h>
+#include <mfmediaengine.h>
+
+#pragma comment(lib, "mfplat.lib")
+#pragma comment(lib, "mf.lib")
+#pragma comment(lib, "mfuuid.lib")
+#pragma comment(lib, "ole32.lib")
+
+// A minimal notify handler required by the Media Engine
+class AudioEngineNotify : public IMFMediaEngineNotify {
+	long m_cRef = 1;
+public:
+	STDMETHODIMP QueryInterface(REFIID riid, void** ppvObject)
+	{
+		if (!ppvObject) {
+			return E_POINTER;
+		}
+		if (riid == IID_IUnknown || riid == __uuidof(IMFMediaEngineNotify)) {
+			*ppvObject = static_cast<IMFMediaEngineNotify*>(this);
+			AddRef();
+			return S_OK;
+		}
+		*ppvObject = nullptr;
+		return E_NOINTERFACE;
+	}
+	STDMETHODIMP_(ULONG) AddRef() {	return InterlockedIncrement(&m_cRef); }
+
+	STDMETHODIMP_(ULONG) Release() {
+		long cRef = InterlockedDecrement(&m_cRef);
+		if (cRef == 0) delete this;
+		return cRef;
+	}
+
+	STDMETHODIMP EventNotify(DWORD eventCode, DWORD_PTR param1, DWORD param2) { return S_OK; }
+};
+
+// teh actual playback class
+class WindowsAudioPlayer {
+private:
+	IMFMediaEngine* m_pEngine = nullptr;
+	AudioEngineNotify* m_pNotify = nullptr;
+	IMFAttributes* m_pAttributes = nullptr;
+
+public:
+	WindowsAudioPlayer()
+	{
+		// Initialize COM and Media Foundation
+		CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED);
+		MFStartup(MF_VERSION);
+
+		// Set up the Media Engine
+		IMFMediaEngineClassFactory* pFactory = nullptr;
+		m_pNotify = new AudioEngineNotify();
+
+		if (SUCCEEDED(MFCreateAttributes(&m_pAttributes, 1))) {
+			m_pAttributes->SetUnknown(MF_MEDIA_ENGINE_CALLBACK, m_pNotify);
+			if (SUCCEEDED(CoCreateInstance(CLSID_MFMediaEngineClassFactory, nullptr,
+				CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&pFactory)))) {
+				// Create an audio-only instance
+				pFactory->CreateInstance(MF_MEDIA_ENGINE_AUDIOONLY, m_pAttributes, &m_pEngine);
+				pFactory->Release();
+			}
+		}
+	}
+
+	~WindowsAudioPlayer()
+	{
+		if (m_pEngine) m_pEngine->Release();
+		if (m_pAttributes) m_pAttributes->Release();
+		if (m_pNotify) m_pNotify->Release();
+		MFShutdown();
+		CoUninitialize();
+	}
+
+	// FUNCTION 1: Play file by its path
+	bool PlayFile(const char *filePath)
+	{
+		if (!m_pEngine) return false;
+
+		static WCHAR wFilename[MAX_PATH];
+		MultiByteToWideChar(CP_UTF8, MB_ERR_INVALID_CHARS, filePath, -1, wFilename, lengthof(wFilename));
+		HRESULT hr = m_pEngine->SetSource(wFilename);
+		if (SUCCEEDED(hr)) {
+			hr = m_pEngine->Play();
+			return SUCCEEDED(hr);
+		}
+		return false;
+	}
+
+	sint32 GetPosition()
+	{
+		if (!m_pEngine) {
+			return 0;
+		}
+		if (m_pEngine->IsEnded()) {
+			return -1; // not playing
+		}
+		return 1000 * m_pEngine->GetCurrentTime(); // Returns time in milliseconds
+	}
+
+	// volume (0.0 = Silent, 1.0 = Max Volume)
+	void SetVolume(double volume)
+	{
+		if (!m_pEngine) return;
+		if (volume < 0.0) volume = 0.0;
+		if (volume > 1.0) volume = 1.0;
+		m_pEngine->SetVolume(volume);
+	}
+
+	void StopPlaying()
+	{
+		// pause ...
+		if (!m_pEngine) return;
+		HRESULT hr = m_pEngine->Pause();
+		if (SUCCEEDED(hr)) {
+			// and rewind for next time (not needed actually here)
+			hr = m_pEngine->SetCurrentTime(0.0);
+		}
+	}
+};
+
+
+WindowsAudioPlayer* AP = NULL;
+
+
+/************** native win32 midi playing routines using ancient MCI interface ************************/
 
 static int         midi_number = -1;
 static plainstring midi_filenames[MAX_MIDI];
@@ -29,6 +160,7 @@ static int  midi_failed_count = 0;
 
 static int OldMIDIVol[2] = {-1, -1};
 
+bool last_playing_midi = true;
 
 #define __MIDI_VOL_SIMU    1  // 0-255
 #define __MIDI_VOL_WIN32   2  // 0-65535
@@ -43,6 +175,9 @@ void __win32_set_midi_volume(int type, int left, int right);
 void dr_set_midi_volume(int vol)
 {
 	__win32_set_midi_volume(__MIDI_VOL_SIMU, vol, vol);
+	if (AP) {
+		AP->SetVolume(vol / 255.0);
+	}
 }
 
 
@@ -88,20 +223,46 @@ void dr_play_midi(int key)
 	if (midi_number >= 0) {
 
 		if (key >= 0 && key <= midi_number) {
+
 			if (midi_failed[key]) {
 				return; // already reported
 			}
-			dbg->debug("dr_play_midi(w32)", "MCI string: open \"%s\" type sequencer alias SimuMIDI", midi_filenames[key].c_str());
+
+			if (last_playing_midi) {
+				// stop last open one (just to be sure)
+				mciSendStringA("stop SimuMIDI", retstr, 200, NULL);
+				mciSendStringA("close SimuMIDI", retstr, 200, NULL);
+				last_playing_midi = false;
+			}
+
+			// find out if midi
+			const char* f = midi_filenames[key].c_str();
+			if (const char* r = strrchr(f, '.')) {
+				if (STRNICMP(r+1, "MID", 3) != 0) {
+					if (!AP->PlayFile(midi_filenames[key])) {
+						midi_failed[key] = true;
+					}
+					return;
+				}
+			}
+			else {
+				if (!AP->PlayFile(midi_filenames[key])) {
+					midi_failed[key] = true;
+				}
+				return;
+			}
+
+			char command[MAX_PATH + 100];
+			sprintf(command, "open \"%s\" type sequencer alias SimuMIDI", midi_filenames[key].c_str());
+			dbg->debug("dr_play_midi(w32)", "MCI string: %s",command);
 
 			// the name is UTF-8 and of any length: hand it to MCI as a wide string
 			MCIERROR err = MCIERR_INVALID_FILE;
-			const int wlen = MultiByteToWideChar(CP_UTF8, MB_ERR_INVALID_CHARS, midi_filenames[key], -1, NULL, 0);
-			if (wlen > 0) {
-				std::wstring name(wlen, L'\0');
-				MultiByteToWideChar(CP_UTF8, MB_ERR_INVALID_CHARS, midi_filenames[key], -1, &name[0], wlen);
-				name.resize(wlen - 1);
-				const std::wstring open = L"open \"" + name + L"\" type sequencer alias SimuMIDI";
-				err = mciSendStringW(open.c_str(), NULL, 0, NULL);
+			WCHAR wCmd[MAX_PATH + 100];
+			const size_t wlen = MultiByteToWideChar(CP_UTF8, MB_ERR_INVALID_CHARS, command, -1, NULL, 0);
+			if (wlen > 0  &&  wlen < lengthof(wCmd)) {
+				MultiByteToWideChar(CP_UTF8, MB_ERR_INVALID_CHARS, command, -1, wCmd, wlen);
+				err = mciSendStringW(wCmd, NULL, 0, NULL);
 			}
 			if (err == 0) {
 				err = mciSendStringA("play SimuMIDI", NULL, 0, NULL);
@@ -111,6 +272,7 @@ void dr_play_midi(int key)
 			}
 			if (err == 0) {
 				midi_open = true;
+				last_playing_midi = true;
 			}
 			else {
 				mciGetErrorStringA(err, retstr, sizeof(retstr));
@@ -134,6 +296,10 @@ void dr_play_midi(int key)
  */
 void dr_stop_midi()
 {
+	if (AP) {
+		AP->StopPlaying();
+	}
+
 	//   stop_midi();
 	char retstr[200];
 
@@ -148,6 +314,14 @@ void dr_stop_midi()
  */
 sint32 dr_midi_pos()
 {
+	if (!last_playing_midi) {
+		if (AP) {
+			return AP->GetPosition();
+		}
+		return 0;
+	}
+
+
 	char retstr[200];
 	long length;
 
@@ -200,6 +374,10 @@ void dr_destroy_midi()
 	__win32_set_midi_volume(__MIDI_VOL_WIN32, OldMIDIVol[0], OldMIDIVol[1]);
 	midi_number = -1;
 	midi_failed_count = 0;
+	if (AP) {
+		delete AP;
+		AP = NULL;
+	}
 }
 
 
@@ -208,6 +386,9 @@ void dr_destroy_midi()
  */
 bool dr_init_midi()
 {
+	if (!AP) {
+		AP = new WindowsAudioPlayer();
+	}
  #ifdef MIXER_VOLUME
 	UINT nMIDIDevices;
 	MIXERLINECONTROLS mlc;
