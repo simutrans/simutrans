@@ -25,8 +25,6 @@
 #include <mfmediaengine.h>
 
 #pragma comment(lib, "mfplat.lib")
-#pragma comment(lib, "mf.lib")
-#pragma comment(lib, "mfuuid.lib")
 #pragma comment(lib, "ole32.lib")
 
 // A minimal notify handler required by the Media Engine
@@ -174,9 +172,9 @@ void __win32_set_midi_volume(int type, int left, int right);
  */
 void dr_set_midi_volume(int vol)
 {
-	__win32_set_midi_volume(__MIDI_VOL_SIMU, vol, vol);
+	__win32_set_midi_volume(__MIDI_VOL_WIN32, vol, vol);
 	if (AP) {
-		AP->SetVolume(vol / 255.0);
+		AP->SetVolume(vol/ 65535.0);
 	}
 }
 
@@ -534,7 +532,7 @@ void __win32_set_midi_volume(int type, int left, int right)
 void __win32_set_midi_volume(int , int left, int right)
 {
 	// short version
-	long vol = (left<<24)|(right<<8);
+	long vol = (left<<16)|(right);
 
 	if( midiOutGetNumDevs()== 0 ) {
 		return;

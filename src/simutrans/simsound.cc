@@ -96,10 +96,13 @@ void sound_set_shuffle_midi( bool shuffle )
 
 void sound_set_midi_volume(int volume)
 {
-	if(  !env_t::mute_midi  &&  max_midi > -1  ) {
-		dr_set_midi_volume(volume);
-	}
 	env_t::midi_volume = volume;
+	if(  !env_t::mute_midi  &&  max_midi > -1  ) {
+		// volume is is 0..255
+		// (255 ^ 3) or ^4 approximates a logarithmic sound, see https://www.dr-lex.be/info-stuff/volumecontrols.html
+		volume = (volume * volume * volume * volume) / 64518ul;
+		dr_set_midi_volume(volume); //actual volume in 0..65535
+	}
 }
 
 

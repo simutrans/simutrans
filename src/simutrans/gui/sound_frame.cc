@@ -152,6 +152,7 @@ sound_frame_t::sound_frame_t() :
 		new_component<gui_label_t>( "Music volume:" );
 
 		music_volume_scrollbar.set_knob( L_KNOB_SIZE, 255 + L_KNOB_SIZE );
+
 		music_volume_scrollbar.set_knob_offset( sound_get_midi_volume() );
 		music_volume_scrollbar.set_scroll_discrete( false );
 		music_volume_scrollbar.add_listener( this );
@@ -243,7 +244,6 @@ bool sound_frame_t::action_triggered( gui_action_creator_t *comp, value_t p)
 	}
 	else if (comp == &music_volume_scrollbar) {
 		uint32 volume = p.i;
-		volume = (volume * volume * volume * volume) / 16581375ul; // (255 ^ 3) approximates a logarithmic sound, see https://www.dr-lex.be/info-stuff/volumecontrols.html
 		sound_set_midi_volume(volume);
 	}
 	else if (comp == &sound_range) {

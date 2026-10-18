@@ -25,7 +25,7 @@ Mix_Music *music = NULL;
  */
 void dr_set_midi_volume(int vol)
 {
-	Mix_VolumeMusic((vol*MIX_MAX_VOLUME)/256);
+	Mix_VolumeMusic(((sint32)vol*MIX_MAX_VOLUME)/65535u);
 }
 
 

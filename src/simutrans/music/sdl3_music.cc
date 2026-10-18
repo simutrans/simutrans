@@ -98,8 +98,8 @@ static void song_failed(int key, const char *why)
 
 void dr_set_midi_volume(int vol)
 {
-	// Simutrans volume 0..255 to SDL3_mixer's linear gain, 255 being unity
-	music_gain = vol / 255.0f;
+	// Simutrans volume 0..32767 to SDL3_mixer's linear gain, 32767 being unity
+	music_gain = vol / 65535.0f;
 	if(  track  ) {
 		MIX_SetTrackGain(track, music_gain);
 	}

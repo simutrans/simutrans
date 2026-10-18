@@ -55,7 +55,7 @@ void dr_set_midi_volume(int vol)
 	 * Set gain using Simutrans's volume, as a number between 0
 	 * and 0.7 to balance with sound effects.
 	 */
-	if(  fluid_settings_setnum( settings, "synth.gain", 0.7 * vol / 255.0 ) != FLUID_OK  ) {
+	if(  fluid_settings_setnum( settings, "synth.gain", 0.7 * vol / 32767.0) != FLUID_OK  ) {
 		dbg->warning("dr_set_midi_volume()", "FluidSynth: Could not set volume.");
 	}
 }

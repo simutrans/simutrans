@@ -175,7 +175,7 @@ target_link_libraries(simutrans PRIVATE PNG::PNG)
 if (WIN32)
 	target_sources(simutrans PRIVATE src/Windows/simres.rc)
 	target_sources(simutrans PRIVATE src/simutrans/sys/clipboard_w32.cc)
-	target_link_libraries(simutrans PRIVATE ws2_32 winmm)
+	target_link_libraries(simutrans PRIVATE ws2_32 winmm old32 mfplat)
 
 	# Backup sound and music routines if the selected backend does not provide any routines
 	set(BACKUP_SOUND src/simutrans/sound/win32_sound_xa.cc)
