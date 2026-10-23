@@ -479,17 +479,20 @@ bool route_t::intern_calc_route(karte_t *welt, const koord3d ziel, const koord3d
 				if(tmp->parent!=NULL) {
 					current_dir = next_ribi[r] | tmp->ribi_from;
 					if(tmp->dir!=current_dir) {
+						// diagonal penalty (first stepo cannot go beyond)
 						new_g += 3;
-						if(tmp->parent->dir!=tmp->dir  &&  tmp->parent->parent!=NULL) {
-							// discourage 90 degree turns
-							new_g += 10;
-						}
-						else if(ribi_t::is_perpendicular(tmp->dir,current_dir)) {
-							// discourage v turns heavily
-							new_g += 25;
+						if (tmp->parent->parent) {
+							// some checks are only possible after two steps, liek for diagonals or sharp bends
+							if (tmp->parent->dir != tmp->dir) {
+								// discourage 90 degree turns
+								new_g += 10;
+							}
+							else if (ribi_t::is_perpendicular(tmp->dir, current_dir)) {
+								// discourage v turns heavily
+								new_g += 25;
+							}
 						}
 					}
-
 				}
 				else {
 					current_dir = next_ribi[r];
