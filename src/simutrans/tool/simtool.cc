@@ -3633,22 +3633,24 @@ void tool_build_tunnel_t::calc_route( way_builder_t &bauigel, const koord3d &sta
 
 	koord3d local_end = end;
 	if (grund_t::underground_mode == grund_t::ugm_all) {
-		local_end.z = start.z;
 		if (grund_t* gr = welt->lookup(start)) {
-			if (slope_t::type sl=gr->get_weg_hang()) {
-
-				// need to handle slope here! (must be automatically a valid way slope)
-				if (end.y > start.y) {
-					// going south
-					local_end.z += corner_se(sl);
-				}
-				else if (end.y < start.y  ||  end.x < start.x) {
-					// either north or west
-					local_end.z += corner_nw(sl);
-				}
-				else {
-					// left: east
-					local_end.z += corner_ne(sl);
+			if (!welt->lookup(end)) {
+				// non-existant tile => assume same height as start
+				local_end.z = start.z;
+				if (slope_t::type sl=gr->get_weg_hang()) {
+					// need to handle slope here! (must be automatically a valid way slope)
+					if (end.y > start.y) {
+						// going south
+						local_end.z += corner_se(sl);
+					}
+					else if (end.y < start.y  ||  end.x < start.x) {
+						// either north or west
+						local_end.z += corner_nw(sl);
+					}
+					else {
+						// left: east
+						local_end.z += corner_ne(sl);
+					}
 				}
 			}
 		}
