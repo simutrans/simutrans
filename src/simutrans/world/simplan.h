@@ -31,16 +31,9 @@ void swap(planquadrat_t& a, planquadrat_t& b);
  * The map (karte_t) consists of map squares (planquadrat_t).
  * planquadrat_t objects consist of zero or more ground objects (grund_t).
  * As it is not that often accessed and wasting 6 bytes per field for 64 bit.
- * This is the only structure we pak and makes the sync_step even faster.
- * (I guess more cache hits.)
- * As I have no ARM machine to test if it dies with 32 bit ARM misalignment
- * no packing is done for ARM for now
  */
-#if defined(__GNUC__)  &&  MAX_PLAN_SIZE==15
-class __attribute__((__packed__)) planquadrat_t
-#else
-class planquadrat_t
-#endif
+PACKED_STRUCT_START
+class PACKED_ATTR planquadrat_t
 {
 	static karte_ptr_t welt;
 private:
@@ -261,5 +254,6 @@ public:
 	 */
 	void update_underground() const;
 };
+PACKED_STRUCT_END
 
 #endif

@@ -16,7 +16,8 @@
 /**
  * 3D Coordinates
  */
-class koord3d
+PACKED_STRUCT_START
+class PACKED_ATTR koord3d
 {
 public:
 	sint16 x;
@@ -68,7 +69,8 @@ public:
 		y -= a.y;
 		return *this;
 	}
-} GCC_PACKED;
+}
+PACKED_STRUCT_END;
 
 
 static inline koord3d operator + (const koord3d& a, const koord3d& b)

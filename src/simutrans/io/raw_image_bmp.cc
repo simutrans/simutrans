@@ -25,17 +25,18 @@
 #pragma pack(push, 1)
 #endif
 
-struct bitmap_file_header_t
+PACKED_STRUCT_START
+struct PACKED_ATTR bitmap_file_header_t
 {
 	uint8 magic[2];
 	uint32 file_size;
 	uint16 reserved1;
 	uint16 reserved2;
 	uint32 image_data_offset;
-} GCC_PACKED;
+};
 
 
-struct bitmap_info_header_t
+struct PACKED_ATTR bitmap_info_header_t
 {
 	uint32 header_size;
 	sint32 width;
@@ -48,11 +49,9 @@ struct bitmap_info_header_t
 	uint32 vertical_resolution;
 	uint32 num_palette_colors;
 	uint32 num_important_colors;
-} GCC_PACKED;
+};
 
-#ifdef _MSC_VER
-#pragma pack(pop)
-#endif
+PACKED_STRUCT_END
 
 
 enum compression_method_t

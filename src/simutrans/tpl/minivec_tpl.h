@@ -12,7 +12,8 @@
 
 
 /** A template class for a simple vector type */
-template<class T> class minivec_tpl
+PACKED_STRUCT_START
+template<class T> class PACKED_ATTR minivec_tpl
 {
 public:
 	typedef const T* const_iterator;
@@ -170,6 +171,7 @@ private:
 	T* data;
 	uint8 size;  ///< Capacity
 	uint8 count; ///< Number of elements in vector
-} GCC_PACKED;
+};
+PACKED_STRUCT_END
 
 #endif

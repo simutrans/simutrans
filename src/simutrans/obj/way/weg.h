@@ -41,7 +41,8 @@ enum way_statistics {
  * A way always is of a single type (waytype_t).
  * Crossings are supported by the fact that a ground can have more than one way.
  */
-class weg_t : public obj_no_info_t
+PACKED_STRUCT_START
+class PACKED_ATTR weg_t : public obj_no_info_t
 {
 public:
 	/**
@@ -302,6 +303,7 @@ public:
 
 	// correct maintenance
 	bool finish_rd() OVERRIDE;
-} GCC_PACKED;
+};
+PACKED_STRUCT_END
 
 #endif

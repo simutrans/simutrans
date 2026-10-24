@@ -13,7 +13,8 @@
 /**
  * The water ground models rivers and lakes in Simutrans.
  */
-class wasser_t : public grund_t
+PACKED_STRUCT_START
+class PACKED_ATTR wasser_t : public grund_t
 {
 protected:
 	/// cache ribis to tiles connected by water
@@ -63,5 +64,6 @@ public:
 
 	static void prepare_for_refresh();
 };
+PACKED_STRUCT_END
 
 #endif

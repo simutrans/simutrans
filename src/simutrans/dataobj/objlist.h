@@ -20,7 +20,8 @@
  * The objects are sorted according to their drawing order.
  * ways are always first.
  */
-class objlist_t
+PACKED_STRUCT_START
+class PACKED_ATTR objlist_t
 {
 private:
 	union {
@@ -138,6 +139,7 @@ public:
 #endif
 
 	void display_obj_overlay(const sint16 xpos, const sint16 ypos) const;
-} GCC_PACKED;
+};
+PACKED_STRUCT_END
 
 #endif

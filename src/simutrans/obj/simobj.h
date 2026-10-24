@@ -23,7 +23,8 @@ class player_t;
  * Base class of all objects on the map, obj == thing
  * Since everything is a 'obj' on the map, we need to make this as compact and fast as possible.
  */
-class obj_t
+PACKED_STRUCT_START
+class PACKED_ATTR obj_t
 {
 public:
 	// flags
@@ -333,7 +334,7 @@ public:
 	 */
 	virtual void calc_image() {}
 };
-
+PACKED_STRUCT_END
 
 /**
  * Template to do casting of pointers based on obj_t::typ

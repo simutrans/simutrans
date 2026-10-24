@@ -156,18 +156,18 @@ typedef   signed long long  sint64;
 #ifndef NO_UINT64_TYPES
 typedef unsigned long long  uint64;
 #endif
+
 #ifdef _MSC_VER
-#	define GCC_PACKED
 #	define GCC_ALIGN(a)
 #	define MSVC_ALIGN(a) __declspec(align(a))
 #	define NORETURN __declspec(noreturn)
 #	pragma warning(disable: 4200 4311 4800 4996)
 #else
-#	define GCC_PACKED    __attribute__ ((__packed__))
 #	define GCC_ALIGN(a)  __attribute__ ((aligned (a)))
 #	define MSVC_ALIGN(a)
 #	define NORETURN      __attribute__ ((noreturn))
 #endif
+
 
 template<typename T> static inline int sgn(T x)
 {
@@ -243,5 +243,21 @@ typedef uint32 utf32;
 
 typedef unsigned char  utf8;
 typedef unsigned short utf16;
+
+
+// 1. Define cross-compiler packing macros
+#if defined(_MSC_VER)
+#define PACKED_STRUCT_START __pragma(pack(push, 1))
+#define PACKED_STRUCT_END   __pragma(pack(pop))
+#define PACKED_ATTR
+#elif defined(__GNUC__) || defined(__clang__)
+#define PACKED_STRUCT_START
+#define PACKED_STRUCT_END
+#define PACKED_ATTR __attribute__((packed))
+#else
+#define PACKED_STRUCT_START
+#define PACKED_STRUCT_END
+#define PACKED_ATTR
+#endif
 
 #endif
