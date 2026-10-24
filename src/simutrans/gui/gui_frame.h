@@ -68,7 +68,8 @@ protected:
 	 */
 	virtual void resize(const scr_coord delta);
 
-	void set_owner( const player_t *player ) { owner = player; }
+	void set_owner(const player_t* player) { owner = player; }
+	const player_t* get_owner() { return owner; }
 
 	void set_transparent( uint8 percent, PIXVAL col ) { opaque = percent==0; percent_transparent = percent; color_transparent = col; }
 

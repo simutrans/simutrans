@@ -3017,11 +3017,7 @@ const char* tool_build_way_t::do_work(player_t* player, const koord3d& start, co
 			}
 		}
 
-		win_set_static_tooltip(NULL);
-		if (gui_frame_t* win = win_get_magic(magic_way_builder)) {
-			((way_builder_frame_t*)win)->costs.set_text(NULL);
-		}
-
+		win_clear_tool_estimate();
 		return NULL;
 	}
 	return err ? err : "";
@@ -3221,10 +3217,6 @@ void tool_build_way_t::mark_tiles(player_t* player, const koord3d& start, const 
 			marked.insert(way);
 			way->mark_image_dirty(way->get_image(), 0);
 		}
-	}
-	if (gui_frame_t* win = win_get_magic(magic_way_builder)) {
-		((way_builder_frame_t*)win)->costs.set_text(tool_str);
-		((way_builder_frame_t*)win)->costs.set_color(SYSCOL_TEXT);
 	}
 }
 

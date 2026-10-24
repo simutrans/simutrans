@@ -144,8 +144,8 @@ gui_image_combobox_t::gui_image_combobox_t(gui_scrolled_list_t::item_compare_fun
 
 void way_builder_frame_t::read_selection()
 {
-	// maybe save old ones
 	if (active_player_nr < 0) {
+		// player not yet init
 		return;
 	}
 	way_selection_t& cur = selected_way[active_player_nr][selected_tab[active_player_nr]];
@@ -185,6 +185,7 @@ void way_builder_frame_t::read_selection()
 		else {
 			costs.set_text("Please select a way to build!");
 			costs.set_color(SYSCOL_TEXT_STRONG);
+			set_resizemode(horizontal_resize);
 		}
 	}
 	resize(scr_coord(0, 0));
@@ -224,11 +225,11 @@ void way_builder_frame_t::init_tab()
 	sel.wt = tabs.get_active_tab_waytype();
 	ways_c.set_selection(-1);
 
-	bridges_c.new_component<gui_scrolled_list_t::const_text_scrollitem_t>("Don't build bridges", SYSCOL_TEXT);
+	bridges_c.new_component<gui_scrolled_list_t::const_text_scrollitem_t>(translator::translate("Don't build bridges"), SYSCOL_TEXT);
 	bridges_c.set_selection(0);
 	bridges_c.set_image(empty_selection);
 
-	tunnels_c.new_component<gui_scrolled_list_t::const_text_scrollitem_t>("Don't build tunnels", SYSCOL_TEXT);
+	tunnels_c.new_component<gui_scrolled_list_t::const_text_scrollitem_t>(translator::translate("Don't build tunnels"), SYSCOL_TEXT);
 	tunnels_c.set_selection(0);
 	tunnels_c.set_image(empty_selection);
 
@@ -237,7 +238,9 @@ void way_builder_frame_t::init_tab()
 	const vector_tpl<const way_desc_t*>& wl = way_builder_t::get_way_list(sel.wt, type_flat);
 	for (const way_desc_t* w : wl) {
 		if (active_player_nr == PLAYER_PUBLIC_NR || w->get_builder()->get_icon(welt->get_active_player()) != IMG_EMPTY) {
-			// allowed way!
+			// if the toolbar had not opened yet, the icon is not yet scaled
+			gfx->fit_img_to_width(w->get_builder()->get_icon(welt->get_active_player()), env_t::iconsize.w);
+			// append the allowed way
 			way_descs.append(w);
 			way_strings.append(strdup(generate_description(w->get_name(), w->get_topspeed(), w->get_price(), w->get_maintenance(), false, 0)));
 			ways_c.new_component<gui_scrolled_list_t::const_text_scrollitem_t>(way_strings.back(), SYSCOL_TEXT);
@@ -267,6 +270,9 @@ void way_builder_frame_t::init_tab()
 	}
 
 	for (auto br : bridge_builder_t::get_available_bridges(sel.wt)) {
+		// if the toolbar had not opened yet, the icon is not yet scaled
+		gfx->fit_img_to_width(br->get_builder()->get_icon(welt->get_active_player()), env_t::iconsize.w);
+		// append the bridge
 		bridge_descs.append(br);
 		bridge_strings.append(strdup(generate_description(br->get_name(), br->get_topspeed(), br->get_price(), br->get_maintenance(), false, br->get_max_length())));
 		bridges_c.new_component<gui_scrolled_list_t::const_text_scrollitem_t>(bridge_strings.back(), SYSCOL_TEXT);
@@ -279,6 +285,9 @@ void way_builder_frame_t::init_tab()
 	}
 
 	for (auto tu : tunnel_builder_t::get_available_tunnels(sel.wt)) {
+		// if the toolbar had not opened yet, the icon is not yet scaled
+		gfx->fit_img_to_width(tu->get_builder()->get_icon(welt->get_active_player()), env_t::iconsize.w);
+		// append the tuneel
 		tunnel_descs.append(tu);
 		tunnel_strings.append(strdup(generate_description(tu->get_name(), tu->get_topspeed(), tu->get_price(), tu->get_maintenance(), false, 0)));
 		tunnels_c.new_component<gui_scrolled_list_t::const_text_scrollitem_t>(tunnel_strings.back(), SYSCOL_TEXT);
@@ -382,8 +391,8 @@ way_builder_frame_t::way_builder_frame_t(waytype_t initial_wt) :
 	reset_min_windowsize();
 
 	if (first_call) {
-		resize(get_min_windowsize() - get_windowsize());
-		set_resizemode(no_resize);
+		read_selection();
+		set_resizemode(horizontal_resize);
 	}
 }
 
@@ -409,8 +418,8 @@ bool way_builder_frame_t::infowin_event(const event_t* ev)
 bool way_builder_frame_t::action_triggered(gui_action_creator_t* comp, value_t v)
 {
 	if (comp == &tabs) {
-		read_selection();
 		init_tab();
+		read_selection();
 	}
 	else {
 		read_selection();
@@ -476,6 +485,7 @@ void way_builder_frame_t::rdwr(loadsave_t* file)
 		active_player_nr = -1;
 		active_tab = -1;
 		init_tab();
+		read_selection();
 		set_windowsize(size);
 	}
 }

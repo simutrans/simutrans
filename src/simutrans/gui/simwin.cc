@@ -2592,11 +2592,17 @@ void win_set_tool_estimate(const tool_t *owner, sint64 length, sint64 cost)
 	tool_estimate_owner  = owner;
 	tool_estimate_length = length;
 	tool_estimate_cost   = cost;
-	win_set_static_tooltip(tool_t::tooltip_with_price_length("Building costs estimates", cost, length));
+	const char* toolstr = tool_t::tooltip_with_price_length("Building costs estimates", cost, length);
+	win_set_static_tooltip(toolstr);
 
 	// A preview that has a price is not a preview that failed.
 	tool_problem_owner = NULL;
 	tool_problem_text  = NULL;
+
+	if (gui_frame_t* win = win_get_magic(magic_way_builder)) {
+		((way_builder_frame_t*)win)->costs.set_text(toolstr);
+		((way_builder_frame_t*)win)->costs.set_color(SYSCOL_TEXT);
+	}
 }
 
 
@@ -2608,6 +2614,11 @@ void win_set_tool_problem(const tool_t *owner, const char *reason)
 	// ... and vice versa, so a cost from an earlier position cannot be left
 	// sitting next to "cannot build here".
 	tool_estimate_owner = NULL;
+
+	if (gui_frame_t* win = win_get_magic(magic_way_builder)) {
+		((way_builder_frame_t*)win)->costs.set_text(reason);
+		((way_builder_frame_t*)win)->costs.set_color(SYSCOL_TEXT_STRONG);
+	}
 }
 
 
@@ -2617,6 +2628,10 @@ void win_clear_tool_estimate()
 	tool_estimate_owner = NULL;
 	tool_problem_owner  = NULL;
 	tool_problem_text   = NULL;
+	if (gui_frame_t* win = win_get_magic(magic_way_builder)) {
+		((way_builder_frame_t*)win)->costs.set_text(NULL);
+		((way_builder_frame_t*)win)->costs.set_color(SYSCOL_TEXT);
+	}
 }
 
 
