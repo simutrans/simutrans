@@ -752,10 +752,9 @@ way_builder_t::step_failure_t way_builder_t::is_allowed_step(const grund_t* from
 
 	// the following checks make only sense if we actually connect two tiles
 	bool to_way = false;
-	if (weg_t* w = to->get_weg(desc->get_waytype())) {
+	if (to->get_weg(desc->get_waytype())) {
 		if (roadsign_t* rs = to->find<roadsign_t>(1)) {
 			if (rs->get_desc()->is_private_way()) {
-				uint16 mask = rs->get_player_mask();
 				uint16 check = (1 << (player_builder->get_player_nr()));
 				if (!player_builder || (rs->get_player_mask() & check) == 0) {
 					// not crossing private way signs
@@ -993,7 +992,7 @@ way_builder_t::step_failure_t way_builder_t::is_allowed_step(const grund_t* from
 				}
 				// no bridges and monorails here in the air apart from another powerline bridge
 				if (grund_t* to2 = welt->lookup(to->get_pos() + koord3d(0,0,1))) {
-					if (!to2->find<leitung_t>() || !to2->get_typ() == grund_t::brueckenboden) {
+					if (!to2->find<leitung_t>()) {
 						// no power bridge
 						warn_fail = "Not enough clearance.";
 						return STEP_CLEARANCE;
@@ -1039,9 +1038,6 @@ way_builder_t::step_failure_t way_builder_t::is_allowed_step(const grund_t* from
 				*costs = 1;
 			}
 			else {
-				// only downstream
-				bool ok = from->get_pos().z>=to->get_pos().z  &&  (to->hat_weg(water_wt)  ||  !to->hat_wege());
-				// calculate costs
 				if (from->get_pos().z < to->get_pos().z) {
 					// no uphill ...
 					warn_fail = "No suitable ground!";
@@ -1805,7 +1801,7 @@ sint32 way_builder_t::intern_calc_route(const vector_tpl<koord3d> &start, const 
 				// now add it to the array ...
 				next_gr.append(next_gr_t(to, new_cost, do_terraform ? build_straight | terraform : 0));
 
-				if (!do_bridge && check_for_bridges && !(tmp->count & (build_straight|build_tunnel_bridge)) && gr->get_weg_hang() && build_tunnel_bridge) {
+				if (!do_bridge && check_for_bridges && !(tmp->count & (build_straight|build_tunnel_bridge)) && gr->get_weg_hang()) {
 					// check if a bridge/tunnel is better when it is a slope
 					check_for_bridge(gr, zv, ziel, max_bridge_len);
 				}
@@ -2915,7 +2911,6 @@ sint64 way_builder_t::calc_costs()
 			koord d = (route[i + 1] - route[i]).get_2d();
 			// ok, here is a gap ... => either bridge or tunnel
 			if(d.x > 1 || d.y > 1 || d.x < -1 || d.y < -1) {
-				koord zv = koord (sgn(d.x), sgn(d.y));
 				const grund_t* start = welt->lookup(route[i]);
 				const grund_t* end   = welt->lookup(route[i + 1]);
 				if(start->get_weg_hang()!=start->get_grund_hang()) {
