@@ -268,16 +268,19 @@ koord3d message_t::get_coord_from_text(const char* text)
 		str += 1;
 		int x=-1, y=-1, z=0;
 		int read_coords = sscanf(str, "%d,%d,%d", &x, &y, &z);
-		if (read_coords >= 2  &&  welt->is_within_limits(x,y)) {
-			if (read_coords == 3) {
-				pos.x = x;
-				pos.y = y;
-				pos.z = z;
+		if (read_coords >= 2) {
+			// is is on the map?
+			if (welt->lookup_kartenboden(x, y)) {
+				if (read_coords == 3) {
+					pos.x = x;
+					pos.y = y;
+					pos.z = z;
+				}
+				// wrong height? => we return ground level
+				if (!welt->lookup(pos)) {
+					pos = welt->lookup_kartenboden(x, y)->get_pos();
+				}
 			}
-			else {
-				pos = welt->lookup_kartenboden(x,y)->get_pos();
-			}
-			break; // success
 		}
 	}
 	return pos;

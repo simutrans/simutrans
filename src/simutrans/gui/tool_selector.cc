@@ -84,6 +84,8 @@ DBG_DEBUG4("tool_selector_t::add_tool()","ww=%i, tool_icon_width=%i",ww,tool_ico
 	tool_icon_disp_end = min( tool_icon_disp_start+tool_icon_width*tool_icon_height, tools.get_count() );
 	has_prev_next = ((uint32)tool_icon_width*tool_icon_height < tools.get_count());
 
+	gfx->fit_img_to_width(tool_img, env_t::iconsize.w);
+
 DBG_DEBUG4("tool_selector_t::add_tool()", "at position %i (width %i)", tools.get_count(), tool_icon_width);
 }
 
@@ -352,7 +354,6 @@ void tool_selector_t::draw(scr_coord pos, scr_size sz)
 		// if there's no image we simply skip, button will be transparent showing toolbar background
 		if(  icon_img != IMG_EMPTY  ) {
 			bool tool_dirty = dirty  ||  (tools[i].tool->is_selected() ^ tools[i].selected);
-			gfx->fit_img_to_width( icon_img, env_t::iconsize.w );
 			gfx->draw_color_img(icon_img, draw_pos.x, draw_pos.y, player->get_player_nr(), false, tool_dirty CLIP_NUM_DEFAULT);
 			tools[i].tool->draw_after( draw_pos, tool_dirty);
 			if (!tools[i].tool->enabled) {
