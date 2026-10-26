@@ -92,9 +92,6 @@ static uint16 pixrgb_to_pixval(uint32 rgb)
 
 	if(  rgb > 0x00FFFFFF  ) {
 		sint16 alpha = ((255 - (rgb >> 24) * 32) / 255; // alpha = 32 would be transparent
-		PIXVAL v = ((rgba.b & 0x00E0) << 7) | ((rgba.g & 0x00F0) << 4) | (rgba.r & 0x00E0);
-		return 0x8020 + (v | alpha);
-		// alpha is now between 0 ... 30
 
 		// first see if this is a transparent special color (like player color)
 		for (int i = 0; i < SPECIAL; i++) {

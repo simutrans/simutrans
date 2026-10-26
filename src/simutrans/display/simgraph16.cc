@@ -8,6 +8,7 @@
 #include "font.h"
 
 #include "../dataobj/environment.h"
+#include "../dataobj/environment.h"
 #include "../dataobj/translator.h"
 #include "../descriptor/image.h"
 #include "../gui/simwin.h"
@@ -280,8 +281,9 @@ inline PIXVAL rgb_shr2(PIXVAL c) { return (c >> 2) & TWO_OUT; }
  * 0x0000 - 0x7FFF: RGB colors
  * 0x8000 - 0x800F: Player colors
  * 0x8010 - 0x001F: Day&Night special colors
+ * There are also transparent colors in 31 transparency levels
  * The following transparent colors are not in the colortable
- * 0x8020 - 0xFFE1: 3 4 3 RGB transparent colors in 31 transparency levels
+ * 0x0x83F3 - 0xFFA1: 3 4 3 RGB transparent colors in 31 transparency levels
  */
 static PIXVAL rgbmap_day_night[RGBMAPSIZE];
 
@@ -351,6 +353,10 @@ struct imd {
 //#define FLAG_POSITION_CHANGED (16)
 
 #define TRANSPARENT_RUN (0x8000u)
+
+#define PIXVAL_SPECIAL_COLOR_START (0x8000)
+#define PIXVAL_TRANSPARENT_START (0x8020+(31*31))
+#define PIXVAL_TRANSPARENT_END (0x8020+(16*31)+(0x3FF*31))
 
 static scr_coord_val disp_width         = 640; // pitch (in pixels) of the render target texture
 static scr_coord_val disp_actual_width  = 640; // window width
@@ -1350,7 +1356,7 @@ PIXVAL inline zoomin_pixel(uint8 *p, uint8* pab, uint8 *prl, uint8* pdia)
  * Uses averages of all sampled points to get the "real" value
  * Blurs a bit
  */
-static void rezoom_img(const image_id n)
+static void rezoom_img_old(const image_id n)
 {
 	// may this image be zoomed
 	if(  n < anz_images  &&  images[n].base_h > 0  ) {
