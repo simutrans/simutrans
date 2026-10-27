@@ -200,6 +200,8 @@ struct simgraph_t
 	/// @note The size of the underlying render target texture may be larger for alignment reasons.
 	scr_size (*get_screen_size)();
 
+	void (*set_texture_ptr)(void *);
+
 	void (*set_screen_height)      (scr_coord_val new_height);
 	void (*set_screen_actual_width)(scr_coord_val new_actual_width);
 

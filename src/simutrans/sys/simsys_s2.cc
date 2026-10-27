@@ -583,6 +583,27 @@ void dr_prepare_flush()
 
 void dr_flush()
 {
+	// since SDL1 obsolte: SDL2 uses the texture, no need to Update calls
+	SDL_UnlockTexture(screen_tx);
+
+	SDL_RenderClear(renderer);
+
+	const scr_rect screen = gfx->get_screen_size();
+	SDL_Rect rSrc = { 0, 0, screen.w, screen.h };
+	SDL_RenderCopy(renderer, screen_tx, &rSrc, NULL);
+	SDL_RenderPresent(renderer);
+
+	void* next_frame_pixels = nullptr;
+	int pitch = 0;
+	if (SDL_LockTexture(screen_tx, NULL, &next_frame_pixels, &pitch) == 0) {
+		// Hier den globalen Simutrans-Screen-Pointer auf die neue Adresse setzen!
+		// Beispiel (je nach exakter Simutrans-Variablennummerierung):
+		gfx->set_texture_ptr(next_frame_pixels);
+	}
+}
+
+void dr_flush_old()
+{
 	gfx->flush_framebuffer();
 	if(  !use_dirty_tiles  ) {
 		SDL_UpdateTexture( screen_tx, NULL, screen->pixels, screen->pitch );
@@ -665,7 +686,7 @@ static bool emit_longpress_if_due(uint32 down_time, bool &already_sent, uint32 &
 	if (already_sent) {
 		// not yet time to repeat!
 		if (now - last_sent < LONGPRESS_REPEAT_MS) {
-			return false
+			return false;
 		}
 	}
 	else if(now - down_time < LONGPRESS_MS) {

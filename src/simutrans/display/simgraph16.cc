@@ -521,6 +521,7 @@ static void            simgraph16_mark_rect_dirty_wc         (scr_coord_val x1, 
 static void            simgraph16_mark_rect_dirty_clip       (scr_coord_val x1, scr_coord_val y1, scr_coord_val x2, scr_coord_val y2  CLIP_NUM_DEF);
 static void            simgraph16_mark_screen_dirty          ();
 static scr_size        simgraph16_get_screen_size            ();
+static void            simgraph16_set_texture_ptr            (void *);
 static void            simgraph16_set_screen_actual_width    (scr_coord_val w);
 static void            simgraph16_set_screen_height          (scr_coord_val const h);
 static scr_size        simgraph16_get_best_matching_size     (const image_id n, sint16 zoom_percent);
@@ -625,6 +626,7 @@ simgraph_t g_simgraph16 = {
 	/*.mark_rect_dirty_clip        =*/ simgraph16_mark_rect_dirty_clip,
 	/*.mark_screen_dirty           =*/ simgraph16_mark_screen_dirty,
 	/*.get_screen_size             =*/ simgraph16_get_screen_size,
+	/*.set_texture_ptr             =*/ simgraph16_set_texture_ptr,
 	/*.set_screen_height           =*/ simgraph16_set_screen_height,
 	/*.set_screen_actual_width     =*/ simgraph16_set_screen_actual_width,
 	/*.get_best_matching_size      =*/ simgraph16_get_best_matching_size,
@@ -802,6 +804,15 @@ static scr_size simgraph16_get_screen_size()
 {
 	return scr_size{ disp_actual_width, disp_height };
 }
+
+
+// replace texture pointer
+static void simgraph16_set_texture_ptr(void* new_texture)
+{
+	// assumes same size as old one!
+	textur = (PIXVAL*)new_texture;
+}
+
 
 
 // only use, if you are really really sure!
@@ -1356,7 +1367,7 @@ PIXVAL inline zoomin_pixel(uint8 *p, uint8* pab, uint8 *prl, uint8* pdia)
  * Uses averages of all sampled points to get the "real" value
  * Blurs a bit
  */
-static void rezoom_img_old(const image_id n)
+static void rezoom_img(const image_id n)
 {
 	// may this image be zoomed
 	if(  n < anz_images  &&  images[n].base_h > 0  ) {
