@@ -44,6 +44,8 @@ extern char **__argv;
 #else
 #endif
 
+// some defines for longpresses of the finger:
+
 // a finger held this long without moving is a long press (Android's own default)
 #define LONGPRESS_MS (500)
 
@@ -51,17 +53,10 @@ extern char **__argv;
 #define LONGPRESS_SLOP (16)
 
 /* A finger held down stays held, so the state is re-announced while it lasts.
- * This is insurance, not a fix for a known loss: during development one long
- * press was seen to be announced and never arrive, and the cause was never
- * established. Repeating costs two extra events per gesture and nothing else,
- * because the announcement is idempotent by contract - a consumer that has
- * already acted on it must ignore the next one, which is what the text field
- * does. Set LONGPRESS_REPEAT_UNTIL_MS to LONGPRESS_MS to switch it off. */
+ * Set LONGPRESS_REPEAT_UNTIL_MS to LONGPRESS_MS to switch it off. (prissi: Not sure why needed) */
 #define LONGPRESS_REPEAT_MS (250)
 
-// and it stops: in_finger_handling is cleared by SDL_FINGERUP alone, so a touch
-// sequence that ends without one would otherwise repeat for as long as the app
-// lives. Bounded, it can never become a stream.
+// not repeating LONGPRESS events after this
 #define LONGPRESS_REPEAT_UNTIL_MS (LONGPRESS_MS + 1000)
 
 // threshold for zooming in/out with multitouch
@@ -612,6 +607,8 @@ void dr_textur(int xp, int yp, int w, int h)
 		SDL_UpdateTexture( screen_tx, &r, (uint8 *)screen->pixels + yp * screen->pitch + xp * sizeof(PIXVAL), screen->pitch );
 	}
 }
+
+
 static bool in_finger_handling = false;
 
 // move cursor to the specified location
@@ -662,14 +659,21 @@ static bool emit_longpress_if_due(uint32 down_time, bool &already_sent, uint32 &
 {
 	const uint32 now = dr_time();
 	if(  now - down_time >= LONGPRESS_REPEAT_UNTIL_MS  ) {
-		// said often enough; whoever wanted it has had it
+		// repeated often enough
 		return false;
 	}
-	if(  already_sent  ?  now - last_sent < LONGPRESS_REPEAT_MS  :  now - down_time < LONGPRESS_MS  ) {
+	if (already_sent) {
+		// not yet time to repeat!
+		if (now - last_sent < LONGPRESS_REPEAT_MS) {
+			return false
+		}
+	}
+	else if(now - down_time < LONGPRESS_MS) {
+		// not yet time to send!
 		return false;
 	}
 	if(  !already_sent  ) {
-		DBG_MESSAGE("SDL_FINGERDOWN", "SIM_MOUSE_LONGPRESS at %i,%i", mx, my);
+		DBG_DEBUG4("SDL_FINGERDOWN", "SIM_MOUSE_LONGPRESS at %i,%i", mx, my);
 	}
 	already_sent      = true;
 	last_sent         = now;
