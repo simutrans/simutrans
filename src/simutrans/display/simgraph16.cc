@@ -2539,7 +2539,7 @@ static void simgraph16_draw_img_aux(const image_id n, scr_coord_val xp, scr_coor
 			// player colour images are rezoomed/recoloured in display_color_img
 			sp = images[n].data[use_player];
 			if(  sp == NULL  ) {
-				dbg->warning("display_img_aux", "CImg[%i] %u failed!", use_player, n);
+				dbg->debug("display_img_aux", "CImg[%i] %u failed!", use_player, n);
 				return;
 			}
 		}

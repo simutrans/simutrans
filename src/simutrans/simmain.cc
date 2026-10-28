@@ -165,7 +165,7 @@ static void show_times(karte_t *welt, main_view_t *view)
 	gfx->draw_color_img(img, 120, 100, 1, 0, 1 CLIP_NUM_DEFAULT);
 	uint32 ms = dr_time();
 	for (i = 0;  i < 6000000;  i++) {
-		gfx->draw_img_aux( img, 50, 50, 1, 0, true  CLIP_NUM_DEFAULT);
+		gfx->draw_img_aux( img, 50, 50, 0, 0, true  CLIP_NUM_DEFAULT);
 	}
 	dbg->message("show_times()", "draw_img_aux() %i iterations took %li ms", i, dr_time() - ms );
 
@@ -184,8 +184,9 @@ static void show_times(karte_t *welt, main_view_t *view)
 	dbg->message("show_times()", "draw_color_img() 3x %i iterations took %li ms", i, dr_time() - ms );
 
 #if !defined(MULTI_THREAD)
+	// will crash on GDI with threads ...
 	ms = dr_time();
-	for (i = 0;  i < 600000;  i++) {
+	for (i = 0;  i < 6000;  i++) {
 		dr_prepare_flush();
 		dr_flush();
 	}

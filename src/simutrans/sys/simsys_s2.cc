@@ -581,9 +581,11 @@ void dr_prepare_flush()
 }
 
 
-void dr_flush()
+void dr_flush_new()
 {
-	// since SDL1 obsolte: SDL2 uses the texture, no need to Update calls
+	// since SDL1 obsolte: SDL2 uses the texture internally, no need to for update calls
+	// However, we use a 565 texture, which apparently is still handled in software
+	// => this correct version is slower!
 	SDL_UnlockTexture(screen_tx);
 
 	SDL_RenderClear(renderer);
@@ -602,7 +604,7 @@ void dr_flush()
 	}
 }
 
-void dr_flush_old()
+void dr_flush()
 {
 	gfx->flush_framebuffer();
 	if(  !use_dirty_tiles  ) {
