@@ -715,7 +715,7 @@ public:
 		create_win(new way_builder_frame_t(wt), w_info, magic_way_builder);
 		return false;
 	}
-	bool exit(player_t*) OVERRIDE { destroy_win(magic_player_ranking); return false; }
+	bool exit(player_t*) OVERRIDE { destroy_win(magic_way_builder); return false; }
 	bool is_init_keeps_game_state() const OVERRIDE { return true; }
 	bool is_work_keeps_game_state() const OVERRIDE { return true; }
 };
