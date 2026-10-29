@@ -40,6 +40,7 @@ static void            simgraph0_mark_rect_dirty_wc         (scr_coord_val x1, s
 static void            simgraph0_mark_rect_dirty_clip       (scr_coord_val x1, scr_coord_val y1, scr_coord_val x2, scr_coord_val y2  CLIP_NUM_DEF);
 static void            simgraph0_mark_screen_dirty          ();
 static scr_size        simgraph0_get_screen_size            ();
+static void            simgraph0_set_texture_ptr            (void*);
 static void            simgraph0_set_screen_actual_width    (scr_coord_val w);
 static void            simgraph0_set_screen_height          (scr_coord_val const h);
 static scr_size        simgraph0_get_best_matching_size     (const image_id n, sint16 zoom_percent);
@@ -152,6 +153,7 @@ simgraph_t g_simgraph0 = {
 	/*.mark_screen_dirty           =*/ simgraph0_mark_screen_dirty,
 	/*.get_screen_size             =*/ simgraph0_get_screen_size,
 	/*.set_screen_height           =*/ simgraph0_set_screen_height,
+	/*.set_texture_ptr             =*/ simgraph0_set_texture_ptr,
 	/*.set_screen_actual_width     =*/ simgraph0_set_screen_actual_width,
 	/*.get_best_matching_size      =*/ simgraph0_get_best_matching_size,
 	/*.fit_img_to_width            =*/ simgraph0_fit_img_to_width,
@@ -286,6 +288,10 @@ static void simgraph0_mark_img_dirty(image_id, scr_coord_val, scr_coord_val)
 static bool simgraph0_load_font(const char *, bool)
 {
 	return true;
+}
+
+static void simgraph0_set_texture_ptr(void*)
+{
 }
 
 static scr_size simgraph0_get_screen_size()
