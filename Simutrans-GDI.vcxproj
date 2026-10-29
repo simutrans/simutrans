@@ -202,7 +202,7 @@
       <PreprocessorDefinitions>USE_ZSTD;USE_UPNP;COLOUR_DEPTH=16;MULTI_THREAD=1;MSG_LEVEL=3;NDEBUG;NOMINMAX;WIN32_LEAN_AND_MEAN;WINVER=_WIN32_WINNT_WIN8</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug' Or '$(Configuration)'=='Release'">
+  <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug' Or '$(Configuration)'=='Release' Or '$(Configuration)'=='Stable'">
     <PreBuildEvent>
       <Command>tools/get_revision.bat</Command>
       <Message>Obtain SVN revision number</Message>
