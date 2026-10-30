@@ -2624,13 +2624,15 @@ void win_set_tool_problem(const tool_t *owner, const char *reason)
 
 void win_clear_tool_estimate()
 {
-	win_set_static_tooltip(NULL);
-	tool_estimate_owner = NULL;
-	tool_problem_owner  = NULL;
-	tool_problem_text   = NULL;
-	if (gui_frame_t* win = win_get_magic(magic_way_builder)) {
-		((way_builder_frame_t*)win)->costs.set_text(NULL);
-		((way_builder_frame_t*)win)->costs.set_color(SYSCOL_TEXT);
+	if (tool_estimate_owner || tool_problem_text) {
+		win_set_static_tooltip(NULL);
+		tool_estimate_owner = NULL;
+		tool_problem_owner = NULL;
+		tool_problem_text = NULL;
+		if (gui_frame_t* win = win_get_magic(magic_way_builder)) {
+			((way_builder_frame_t*)win)->costs.set_text(NULL);
+			((way_builder_frame_t*)win)->costs.set_color(SYSCOL_TEXT);
+		}
 	}
 }
 

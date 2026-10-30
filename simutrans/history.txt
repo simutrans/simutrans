@@ -4,6 +4,7 @@
 	FIX: no depots on tunnel portals any more
 	CHG: Windows now supports WAV/FLAC/MP3/... for music too (as consequence, Simutrans needs Win8 at minimum)
 	ADD: copy convoi at home depot and home depot selector for convoi details tab of convois
+	FIX: only clear hints if there are some
 
 
 Release of 125.0.1 (r12334 on 5-Oct-2026):
