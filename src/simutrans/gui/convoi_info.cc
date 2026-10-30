@@ -31,6 +31,30 @@
 #include "convoi_detail.h"
 #include "line_management_gui.h"
 
+#include "../obj/depot.h"
+
+class scrollitem_koord3d_t : public gui_scrolled_list_t::const_text_scrollitem_t
+{
+private:
+	char text[16];
+	koord3d	pos;
+public:
+	void set_koord3d(koord3d k) {
+		pos = k;
+		tstrncpy(text, pos.get_str(), lengthof(text));
+	}
+
+	koord3d get_koord3d() const { return pos; }
+
+	scrollitem_koord3d_t(koord3d k) :
+		gui_scrolled_list_t::const_text_scrollitem_t(text,SYSCOL_TEXT)
+	{
+		set_koord3d(k);
+	}
+};
+
+
+
 #define CHART_HEIGHT (100)
 
 static const char cost_type[convoi_t::MAX_CONVOI_COST][64] =
@@ -209,15 +233,28 @@ void convoi_info_t::init(convoihandle_t cnv)
 		withdraw_button.add_listener(this);
 		container_details.add_component(&withdraw_button);
 
+		sale_button.init(button_t::roundbox | button_t::flexible, "Verkauf");
+		sale_button.set_tooltip("Remove vehicle from map. Use with care!");
+		sale_button.add_listener(this);
+		container_details.add_component(&sale_button);
+
+		container_details.new_component<gui_empty_t>();
+
+		copy_convoi.init(button_t::roundbox | button_t::flexible, "Copy Convoi");
+		copy_convoi.set_tooltip("Create a similar convoi at the home depot!");
+		copy_convoi.add_listener(this);
+		container_details.add_component(&copy_convoi);
+
 		go_home_button.init(button_t::roundbox | button_t::flexible, "go home");
 		go_home_button.set_tooltip("Sends the convoi to the last depot it departed from!");
 		go_home_button.add_listener(this);
 		container_details.add_component(&go_home_button);
 
-		sale_button.init(button_t::roundbox | button_t::flexible, "Verkauf");
-		sale_button.set_tooltip("Remove vehicle from map. Use with care!");
-		sale_button.add_listener(this);
-		container_details.add_component(&sale_button);
+		container_details.new_component<gui_label_t>("Select home depot");
+
+		home_depot.new_component<scrollitem_koord3d_t>(koord3d::invalid);
+		home_depot.add_listener(this);
+		container_details.add_component(&home_depot);
 	}
 	container_details.end_table();
 
@@ -468,7 +505,9 @@ void convoi_info_t::draw(scr_coord pos, scr_size size)
 	no_load_button.enable(is_change_allowed);
 	withdraw_button.enable(is_change_allowed);
 	sale_button.enable(is_change_allowed);
-	line_selector.enable( is_change_allowed );
+	line_selector.enable(is_change_allowed);
+	copy_convoi.enable(is_change_allowed);
+	home_depot.enable(is_change_allowed);
 
 	withdraw_button.pressed = cnv->get_withdraw();
 
@@ -548,10 +587,38 @@ bool convoi_info_t::action_triggered( gui_action_creator_t *comp, value_t v)
 				reset_min_windowsize();
 			}
 		}
-		else if(cnv->get_state()==convoi_t::EDIT_SCHEDULE  ||  cnv->get_state()==convoi_t::INITIAL) {
-			apply_schedule();
+		else {
+			// leaving schedule tab
+			if (cnv->get_state() == convoi_t::EDIT_SCHEDULE || cnv->get_state() == convoi_t::INITIAL) {
+				apply_schedule();
+			}
+			if (v.i == 3) {
+				// update the depot list
+				koord3d home = cnv->get_home_depot();
+				bool electric = cnv->needs_electrification();
+				waytype_t wt = cnv->get_schedule()->get_waytype();
+
+				home_depot.clear_elements();
+				for (depot_t* const d : depot_t::get_depot_list()) {
+					if (d->get_owner() != cnv->get_owner()) {
+						continue;
+					}
+					if (d->get_waytype() != wt) {
+						continue;
+					}
+					koord3d k = d->get_pos();
+					if (electric && !welt->lookup(k)->get_weg(wt != tram_wt ? wt : track_wt)->is_electrified()) {
+						continue;
+					}
+					// so no a possible depot
+					home_depot.new_component<scrollitem_koord3d_t>(k);
+					if (home == k) {
+						home_depot.set_selection(home_depot.count_elements() - 1);
+					}
+				}
+			}
+			scd.highlight_schedule(v.i == 1);
 		}
-		scd.highlight_schedule(v.i == 1);
 	}
 
 	// some actions only allowed, when I am the player
@@ -560,6 +627,10 @@ bool convoi_info_t::action_triggered( gui_action_creator_t *comp, value_t v)
 		if(  comp == &no_load_button    &&    !route_search_in_progress  ) {
 			cnv->call_convoi_tool( 'n', NULL );
 			return true;
+		}
+
+		if (comp == &home_depot) {
+			cnv->set_home_depot(dynamic_cast<scrollitem_koord3d_t*>(home_depot.get_element(v.i))->get_koord3d());
 		}
 
 		if(  comp == &go_home_button  &&  !route_search_in_progress  ) {
@@ -596,6 +667,20 @@ bool convoi_info_t::action_triggered( gui_action_creator_t *comp, value_t v)
 		else if (comp == &withdraw_button) {
 			cnv->call_convoi_tool('w', NULL);
 			return true;
+		}
+		else if (comp == &copy_convoi) {
+			if (grund_t* gr = welt->lookup(cnv->get_home_depot())) {
+				if (depot_t* depot = gr->get_depot()) {
+					depot->call_depot_tool('c', cnv, NULL);
+					if (depot_frame_t* const frame = dynamic_cast<depot_frame_t*>(win_get_magic((ptrdiff_t)depot))) {
+						top_win(frame);
+					}
+					else {
+						depot->show_info();
+					}
+					return true;
+				}
+			}
 		}
 		else if (comp == &scd) {
 			if( v.p == NULL ) {
@@ -768,6 +853,10 @@ void convoi_info_t::rdwr(loadsave_t *file)
 		if (switch_mode.get_aktives_tab() == &container_schedule) {
 			cnv->set_state(convoi_t::EDIT_SCHEDULE);
 			scd.highlight_schedule(true);
+		}
+		else if (switch_mode.get_aktives_tab() == &container_details) {
+			// update depot lists
+			action_triggered(&switch_mode, 3);
 		}
 		cnv->reset_freight_info();
 	}

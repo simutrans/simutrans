@@ -362,7 +362,7 @@ public:
 	/* set it here and on every vehicle, since check_next_tile() reads it there */
 	void set_needs_electrification(bool janein);
 
-	/* true, if electrification needed for this convoi */
+	/* true, if electrification can be additionally used for this convoi */
 	bool can_use_electrification() const { return sum_gear_and_power_electric!=0; }
 
 	/**

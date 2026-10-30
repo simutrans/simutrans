@@ -183,7 +183,12 @@ void depot_t::convoi_arrived(convoihandle_t acnv, bool schedule_adjust)
 
 void depot_t::show_info()
 {
-	create_win( new depot_frame_t(this), w_info, (ptrdiff_t)this );
+	if (gui_frame_t *frame = win_get_magic((ptrdiff_t)this)) {
+		top_win(frame);
+	}
+	else {
+		create_win(new depot_frame_t(this), w_info, (ptrdiff_t)this);
+	}
 }
 
 

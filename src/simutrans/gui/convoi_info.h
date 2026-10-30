@@ -58,7 +58,11 @@ private:
 	button_t line_button, line_button2;
 	bool line_bound;
 
+	// combobox of suitable home depots
+	gui_combobox_t home_depot;
+
 	// schedule handling
+	button_t copy_convoi;
 	button_t go_home_button;
 	button_t no_load_button;
 	button_t sale_button;
