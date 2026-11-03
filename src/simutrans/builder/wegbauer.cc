@@ -2065,17 +2065,21 @@ void way_builder_t::intern_calc_straight_route(const koord3d start, const koord3
 				bd_nach = new tunnelboden_t(pos + diff, slope_t::flat);
 				bd_nach_new = true;
 			}
-			// check for tunnel and right slope
-			ok = ok && bd_nach->ist_tunnel() && bd_nach->get_vmove(ribi_t::backward(diff))==pos.z;
+			else {
+				// check for tunnel or portal and right slope
+				ok = ok && (bd_nach->ist_tunnel() || bd_nach->find<tunnel_t>()) && bd_nach->get_vmove(ribi_t::backward(diff)) == pos.z;
+			}
 			// all other checks are done here (crossings, stations etc)
 			ok = ok && is_allowed_step(bd_von, bd_nach, &dummy_cost, 0) == STEP_OK;
 
 			// advance position
 			pos = bd_nach->get_pos();
 
-			// check new tile: ground must be above tunnel and below sea
-			grund_t *gr = welt->lookup_kartenboden(pos.get_2d());
-			ok = ok  &&  (gr->get_hoehe() > pos.z)  &&  (!gr->is_water()  ||  (welt->lookup_hgt(pos.get_2d()) > pos.z) );
+			if (!bd_nach->ist_karten_boden()) {
+				// if inside tunnel: ground must be above tunnel and below sea
+				grund_t* gr = welt->lookup_kartenboden(pos.get_2d());
+				ok = ok && (gr->get_hoehe() > pos.z) && (!gr->is_water() || (welt->lookup_hgt(pos.get_2d()) > pos.z));
+			}
 
 			if (bd_von_new) {
 				delete bd_von;
