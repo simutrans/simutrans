@@ -4545,8 +4545,12 @@ function optimize_way_line(route, wt, int_run, o_line) {
           // new way search
           if ( tile_list.len() > 0 ) {
 
-            local asf = astar_route_finder(wt)
-            local result = asf.search_route([tile_list[0]], [tile_list[tile_list.len()-1]])
+            local way_obj = route[0].find_object(mo_way).get_desc() //way_list[0]
+            if ( !way_obj.is_available(world.get_time()) ) {
+              way_obj = find_object("way", wt, way_obj.get_topspeed())
+            }
+            local result = test_route(our_player, [tile_list[tile_list.len()-1]], [tile_list[0]], way_obj)
+            //asf.search_route([tile_list[0]], [tile_list[tile_list.len()-1]])
 
             if ( "routes" in result ) {
               foreach(node in result.routes) {
@@ -4554,6 +4558,7 @@ function optimize_way_line(route, wt, int_run, o_line) {
                 if ( t.z == tile_list[0].z ) {
                   new_route.append(t)
                   reroute = true
+                  gui.add_message_at(our_player, "---------------- new_route ", t)
                 } else {
                   new_route.clear()
                   reroute = false
@@ -4843,12 +4848,20 @@ function optimize_way_line(route, wt, int_run, o_line) {
 
         local way_tile0_txt = coord3d_to_string(tile_list[0]) // for debug
         local tool = command_x(tool_remove_way)
-        err = tool.work(our_player, tile_list[1], build_tile, "" + wt)
 
-        local t = command_x(tool_build_tunnel)
-        t.set_flags(2)
-        // portal
-        err = t.work(our_player, tile_list[1], tunnel_obj.get_name())
+        local trial = 0
+        do {
+          err = tool.work(our_player, tile_list[1], build_tile, "" + wt)
+          trial++
+        } while (err != null && trial < 4)
+
+        local t = null
+        if ( err == null ) {
+          t = command_x(tool_build_tunnel)
+          t.set_flags(2)
+          // portal
+          err = t.work(our_player, tile_list[1], tunnel_obj.get_name())
+        }
         if ( err == null ) {
           // portal
           err = t.work(our_player, build_tile, tunnel_obj.get_name())
