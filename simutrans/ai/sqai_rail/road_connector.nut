@@ -86,6 +86,8 @@ class road_connector_t extends manager_t
       }
     }
 
+    // save route tiles to build
+    local route_tiles = []
 
     switch(phase) {
       case 0:  // station places
@@ -254,13 +256,17 @@ class road_connector_t extends manager_t
           local asf = astar_route_finder(wt_road)
           local result = asf.search_route([c_start], [c_end])
 
-          if ( "routes" in result ) {  } else {
+          if ( "routes" in result ) {
+            foreach(node in result.routes) {
+              route_tiles.append(tile_x(node.x, node.y, node.z))
+            }
+          } else {
             if ( ::debug.messages ) ::debug.pause()
             sleep()
             return r_t(RT_TOTAL_FAIL)
           }
 
-          if (  result.routes.len() <= 3 ) {
+          if (  route_tiles.len() <= 3 ) {
             //gui.add_message_at(pl, "route len < 3 tiles  ", c_end)
             local extension = find_extension(wt_road)
             local start_h = tile_x(c_start.x, c_start.y, c_start.z).get_halt().get_name()
@@ -271,16 +277,58 @@ class road_connector_t extends manager_t
               command_x.build_station(our_player, c_start, extension)
               remove_tile_to_empty(c_end, wt_road, 0)
               command_x.build_station(our_player, c_end, extension)
-              if ( result.routes.len() == 3 ) {
-                foreach(node in result.routes) {
-                  local tile = tile_x(node.x, node.y, node.z)
-                  if ( tile.find_object(mo_building) == null ) {
+              if ( route_tiles.len() == 3 ) {
+                for (local i = 0; i < route_tiles.len(); i++) {
+                  if ( route_tiles[i].find_object(mo_building) == null ) {
                     remove_tile_to_empty(tile, wt_road, 0)
                   }
                 }
               }
             }
             return r_t(RT_TOTAL_SUCCESS)
+          }
+
+          // check road lenght on station
+          //gui.add_message_at(pl, "station 2. tile: route_tiles[2].get_way_dirs(wt_road) " + route_tiles[2].get_way_dirs(wt_road), c_end)
+          //gui.add_message_at(pl, "station len - 2. tile: route_tiles[route_tiles.len()-2].get_way_dirs(wt_road) " + route_tiles[route_tiles.len()-2].get_way_dirs(wt_road), c_start)
+
+          /*if ( dir.is_threeway(route_tiles[3].get_way_dirs(wt_road)) || dir.is_threeway(route_tiles[route_tiles.len()-4].get_way_dirs(wt_road)) ) {
+            gui.add_message_at(pl, "is_threeway()  ", world.get_time())
+          } else {
+            gui.add_message_at(pl, "fsrc.input.len() " + fsrc.input.len(), world.get_time())
+          }*/
+
+          // cnv load, then 4 tiles private way
+          if ( fsrc.input.len() > 0 ) {
+            //local tile_check = true
+            /*for ( local i = 1; i < 5; i++ ) {
+              if ( dir.is_threeway(route_tiles[route_tiles.len()-i].get_way_dirs(wt_road)) ) {
+                tile_check = false
+              }
+            }*/
+            local private_sign = find_signal("private", wt_road)
+            if ( private_sign != null ) {
+              local sign_name = private_sign.get_name()
+              local tile = null
+              // private sign only on straight road
+              for ( local i = 1; i < 9; i++ ) {
+                tile = route_tiles[route_tiles.len()-i]
+                local tile_text = coord3d_to_string(tile)
+                if ( ( tile.get_way_dirs(wt_road) == 5 || tile.get_way_dirs(wt_road) == 10 ) && tile.get_slope() == 0 ) {
+                  //local err = command_x.build_sign_at(pl, tile, private_sign)
+                  if ( i == 4 ) { break }
+                } else if ( dir.is_threeway(tile.get_way_dirs(wt_road)) ) {
+                  i--
+                  tile = route_tiles[route_tiles.len()-i]
+                  break
+                }
+              }
+
+              if ( ( tile.get_way_dirs(wt_road) == 5 || tile.get_way_dirs(wt_road) == 10 ) && tile.get_slope() == 0 ) {
+                local err = command_x.build_sign_at(pl, tile, private_sign)
+              }
+
+            }
           }
 
           phase += 3
@@ -355,6 +403,16 @@ class road_connector_t extends manager_t
         }
       case 6: // create schedule
         {
+          // check station start and end exists
+          local obj_building = tile_x(c_start.x, c_start.y, c_start.z).find_object(mo_building)
+          if ( obj_building == null ) {
+            err = build_road_station(c_start, planned_station)
+          }
+          obj_building = tile_x(c_end.x, c_end.y, c_end.z).find_object(mo_building)
+          if ( obj_building == null ) {
+            err = build_road_station(c_end, planned_station)
+          }
+
           local sched = schedule_x(wt_road, [])
           sched.entries.append( schedule_entry_x(c_start, 100, 0) );
           sched.entries.append( schedule_entry_x(c_end, 0, 0) );

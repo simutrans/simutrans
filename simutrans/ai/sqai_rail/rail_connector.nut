@@ -26,6 +26,9 @@ class rail_connector_t extends manager_t
   c_sched = null
   c_line  = null
   c_cnv   = null
+  c_generate_start = 0 // compute start/end ourselves
+  c_generate_end   = 0
+  c_trial_route    = 0 // we tried to build route & stations several times
 
   t_start = []
   t_end = []
@@ -50,6 +53,9 @@ class rail_connector_t extends manager_t
     // TODO check if child does the right thing
     pl = our_player
     local tic = get_ops_total();
+
+    c_generate_start = c_start == null
+    c_generate_end   = c_end   == null
 
     local fs = fsrc.get_tile_list()
     local fd = fdest.get_tile_list()
@@ -99,10 +105,21 @@ class rail_connector_t extends manager_t
           gui.add_message_at(pl, "______________________ build rail ______________________", world.get_time())
           gui.add_message_at(pl, " line from " + fsrc.get_name() + " (" + coord_to_string(fs[0]) + ") to " + fdest.get_name() + " (" + coord_to_string(fd[0]) + ")", world.get_time())
         }
-        if (c_start == null) {
+        // count trials, and fail if necessary
+        if (c_trial_route > 3) {
+          print("Route building failed " + c_trial_route + " times.")
+          if ( ::debug.messages ) gui.add_message_at(pl, "Failed to complete route from  " + coord_to_string(fsrc) + " to " + coord_to_string(fdest) + " after " + c_trial_route + " attempts", fsrc)
+          return error_handler()
+        }
+        c_trial_route++
+        // make arrays if necessary
+        if (type(c_start) == "instance") { c_start = [c_start] }
+        if (type(c_end)   == "instance") { c_end   = [c_end]   }
+
+        if (c_generate_start) {
           c_start = ::finder.find_station_place(fsrc, fdest)
         }
-        if (c_start  &&  c_end == null) {
+        if (c_start  &&  c_generate_end) {
           c_end   = ::finder.find_station_place(fdest, c_start, finalize)
         }
 
@@ -190,13 +207,13 @@ class rail_connector_t extends manager_t
                 c_end = c
                 line_start = t_end[0]
               } else {
-                return r_t(RT_TOTAL_FAIL)
+                return restart_with_phase0()
               }
             } else {
               if ( build_status == true ) {
                 line_start = t_start[0]
               } else {
-                return r_t(RT_TOTAL_FAIL)
+                return restart_with_phase0()
               }
             }
           }
@@ -274,7 +291,7 @@ class rail_connector_t extends manager_t
           if (err) { // fail, c_start, c_end still arrays
             //print("Failed to build way from " + coord_to_string(c_start[0]) + " to " + coord_to_string(c_end[0]))
             gui.add_message_at(pl, "Failed to build way from " + coord_to_string(c_start[0]) + " to " + coord_to_string(c_end[0]), world.get_time())
-            return error_handler()
+            return restart_with_phase0()
           }
           else {
             // success, now c_start, c_end contain the start/end points where something was built
@@ -314,6 +331,7 @@ class rail_connector_t extends manager_t
             return error_handler()
           }
           */
+
           if ( print_message_box == 2 ) {
             gui.add_message_at(pl, " planned_convoy.length " + planned_convoy.length, world.get_time())
           }
@@ -615,6 +633,14 @@ class rail_connector_t extends manager_t
     gui.add_message_at(pl, msgtext, c_start)
 
     return r_t(RT_TOTAL_SUCCESS)
+  }
+
+  function restart_with_phase0()
+  {
+    if (c_generate_start) { c_start = null }
+    if (c_generate_end  ) { c_end   = null }
+    phase = 0
+    return r_t(RT_PARTIAL_SUCCESS)
   }
 
   function error_handler()

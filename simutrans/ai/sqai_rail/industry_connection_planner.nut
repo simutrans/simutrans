@@ -197,11 +197,15 @@ class industry_connection_planner_t extends manager_t
   {
 
     // set line build cost 0
-      industry_manager.set_link_build_cost(fsrc, fdest, freight, 0, 1)
-      industry_manager.set_link_build_cost(fsrc, fdest, freight, 0, 2)
-      industry_manager.set_link_build_cost(fsrc, fdest, freight, 0, 3)
-      industry_manager.set_link_build_cost(fsrc, fdest, freight, 0, 4)
+    industry_manager.set_link_build_cost(fsrc, fdest, freight, 0, 1)
+    industry_manager.set_link_build_cost(fsrc, fdest, freight, 0, 2)
+    industry_manager.set_link_build_cost(fsrc, fdest, freight, 0, 3)
+    industry_manager.set_link_build_cost(fsrc, fdest, freight, 0, 4)
 
+    if ( wt_name.len() == 4 ) {
+      wt_name.resize(17, null)
+      wt_name.insert(16, "wt_air")
+    }
 
     // compute correct distance
     if (distance == 0) {
@@ -254,7 +258,7 @@ class industry_connection_planner_t extends manager_t
       local t = tile_x(fsrc.x, fsrc.y, 0)
       gui.add_message_at(our_player, "Plan " + wt_name[wt] + " link for " + freight + " from " + fsrc.get_name() + " at " + fsrc.x + "," + fsrc.y + " to "+ fdest.get_name() + " at " + fdest.x + "," + fdest.y, t)
     }
-    if ( debug && print_message_box == 0 ) {
+    if ( ::debug.messages && print_message_box == 0 ) {
       local t = tile_x(fsrc.x, fsrc.y, 0)
       gui.add_message_at(our_player, "Plan " + wt_name[wt] + " link for " + freight + " from " + fsrc.get_name() + " at " + fsrc.x + "," + fsrc.y + " to "+ fdest.get_name() + " at " + fdest.x + "," + fdest.y, t)
     }
@@ -263,7 +267,7 @@ class industry_connection_planner_t extends manager_t
 
 
     if (prototyper.step().has_failed()) {
-      if ( debug && print_message_box == 0 ) gui.add_message_at(our_player, "ERROR # no " + wt_name[wt] + " vehicle found for freight " + freight, world.get_time())
+      if ( ::debug.messages && print_message_box == 0 ) gui.add_message_at(our_player, "ERROR # no " + wt_name[wt] + " vehicle found for freight " + freight, world.get_time())
       if ( print_message_box > 0 ) {
         //local v = valuator_simple_t.valuate_monthly_transport.bindenv(cnv_valuator)
         gui.add_message_at(our_player, "ERROR # no " + wt_name[wt] + " vehicle found for freight " + freight, world.get_time())

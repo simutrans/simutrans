@@ -1070,7 +1070,7 @@ class industry_manager_t extends manager_t
         local d = t.get_way_dirs(wt)
         if ( dir.is_threeway(d) ) {
           line.stuck_check = 1
-          gui.add_message_at(our_player, "**** line 1009 - set line.stuck_check = 1 ", t)
+          //gui.add_message_at(our_player, "**** line 1009 - set line.stuck_check = 1 ", t)
           break
         }
       }
@@ -1803,13 +1803,20 @@ class industry_manager_t extends manager_t
         local entries = line.get_schedule().entries
         local start_h = entries[0].get_halt(our_player)
         local d = start_h.get_waiting()
-        sleep()
+        //sleep()
 
-        if ( (check_fsrc_input(link.f_src) || d[0] > 0) && int_li < cnv_count ) {
-          append_child(c)
+        local check_input = true
+        if ( wt == wt_road ) {
+          check_input = check_dest_input(link.f_dest, freight)
+        }
+
+        if ( (check_fsrc_input(link.f_src) || d[0] > 0) && check_input && int_li < cnv_count ) {
+
           if ( cnv_retired.len() == 1 && cnv_retired.len() == cnv_count ) {
             cnv_retired[0].toggle_withdraw(our_player)
           }
+
+          append_child(c)
 
           dbgprint("==> build additional convoy")
           if ( print_message_box == 1 ) {
@@ -1858,7 +1865,7 @@ class industry_manager_t extends manager_t
           } else {
             line.next_vehicle_check = world.get_time().ticks + (world.get_time().ticks_per_month * 2)
           }
-
+          //sleep()
           return true
 
         } else {
