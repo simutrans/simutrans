@@ -30,13 +30,15 @@
 class freelist_size_t
 {
 private:
-	struct nodelist_node_t
+	PACKED_STRUCT_START
+	struct PACKED_ATTR nodelist_node_t
 	{
 #ifdef DEBUG_FREELIST
 		char canary[4];
 #endif
 		nodelist_node_t* next;
 	};
+	PACKED_STRUCT_END
 
 	char canary_free[4] = "\xAA\x55\xAA";
 	char canary_used[4] = "\x55\xAA\x55";
