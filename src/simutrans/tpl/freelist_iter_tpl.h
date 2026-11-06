@@ -141,9 +141,20 @@ private:
 	// number of currently allocated node
 	size_t nodecount;
 
+	// find out the size with the neccessary alignment
+#if defined(__arm__) || defined(_M_ARM)  || defined(__aarch64__) || defined(_M_ARM64)
+	// strict padding needed for ARM or crash!
+#define NODE_ALIGN (sizeof(void*))
+#elif defined(__clang__)
+	// i386 has no problem with misalignment unless clangs sanitize option is on
+#define NODE_ALIGN (sizeof(void*))
+#else
+#define NODE_ALIGN (2)
+#endif
+
 	// we aim for near 32 kB chunks, hoping that the system will allocate them on each page
 	// and they fit the L1 cache
-	static constexpr size_t NODE_SIZE = (sizeof(T) + sizeof(nodelist_node_t)-sizeof(nodelist_node_t *));
+	static constexpr size_t NODE_SIZE = (sizeof(T) + sizeof(nodelist_node_t)-sizeof(nodelist_node_t *) + NODE_ALIGN -1) & ~(NODE_ALIGN-1);
 	static constexpr size_t new_chuck_size = (32250*8) / (NODE_SIZE*8+1);
 
 	struct chunklist_node_t {

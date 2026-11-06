@@ -1806,8 +1806,7 @@ sint32 way_builder_t::intern_calc_route(const vector_tpl<koord3d> &start, const 
 					check_for_bridge(gr, zv, ziel, max_bridge_len);
 				}
 			}
-//			else if (!do_bridge && check_for_bridges && r == straight_dir && (result == STEP_DOUBLE_SLOPE || result == STEP_OBSTACLE) && !(tmp->count & (build_straight & build_tunnel_bridge))) {
-			else if (!do_bridge && check_for_bridges && r == straight_dir && (result == STEP_DOUBLE_SLOPE || result == STEP_OBSTACLE) && !(tmp->count & build_straight) && build_tunnel_bridge) {
+			else if (!do_bridge && check_for_bridges && r == straight_dir && (result == STEP_DOUBLE_SLOPE || result == STEP_OBSTACLE) && !(tmp->count & (build_straight & build_tunnel_bridge))) {
 				// try to build a bridge or tunnel here, since we cannot go here ...
 				check_for_bridge(gr, zv, ziel, max_bridge_len);
 			}
@@ -2053,6 +2052,7 @@ void way_builder_t::intern_calc_straight_route(const koord3d start, const koord3
 			if(  !bd_nach  ) {
 				// check for maximum height
 				planquadrat_t *pl = welt->access(pos.get_2d() + zv);
+				const sint8 clearance = welt->get_settings().get_way_height_clearance();
 				for (uint8 i = 1; i < pl->get_boden_count();  i++) {
 					grund_t* gr = pl->get_boden_bei(i);
 					if (gr->get_vmove(ribi_t::backward(diff)) == pos.z) {
@@ -2060,9 +2060,25 @@ void way_builder_t::intern_calc_straight_route(const koord3d start, const koord3
 						bd_nach = gr;
 						break;
 					}
+					// check clearance
+					else {
+						sint8 h_diff = gr->get_pos().z - pos.z;
+						if (h_diff > 0 && h_diff < clearance) {
+							// ground to close above
+							ok = false;
+							warn_fail = "Not enough clearance.";
+							break;
+						}
+						if (h_diff < 0 && gr->get_pos().z + slope_t::max_diff(gr->get_grund_hang()) + clearance > pos.z) {
+							// ground to close below
+							ok = false;
+							warn_fail = "Not enough clearance.";
+							break;
+						}
+					}
 				}
 			}
-			if(  bd_nach == NULL  ){
+			if(  ok  &&  bd_nach == NULL  ){
 				bd_nach = new tunnelboden_t(pos + diff, slope_t::flat);
 				bd_nach_new = true;
 			}
@@ -2072,6 +2088,11 @@ void way_builder_t::intern_calc_straight_route(const koord3d start, const koord3
 			}
 			// all other checks are done here (crossings, stations etc)
 			ok = ok && is_allowed_step(bd_von, bd_nach, &dummy_cost, 0) == STEP_OK;
+
+			if (!ok) {
+				// no tunnel here
+				break;
+			}
 
 			// advance position
 			pos = bd_nach->get_pos();

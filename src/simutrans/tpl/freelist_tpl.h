@@ -57,6 +57,17 @@ private:
 	pthread_mutex_t freelist_mutex = PTHREAD_MUTEX_INITIALIZER;;
 #endif
 
+// find out the size with the neccessary alignment
+#if defined(__arm__) || defined(_M_ARM)  || defined(__aarch64__) || defined(_M_ARM64)
+	// strict padding needed for ARM or crash!
+#define NODE_ALIGN (sizeof(void*))
+#elif defined(__clang__)
+	// i386 has no problem with misalignment unless clangs sanitize option is on
+#define NODE_ALIGN (sizeof(void*))
+#else
+#define NODE_ALIGN (2)
+#endif
+
 public:
 	freelist_size_t(size_t size) :
 		freelist(0),
@@ -65,6 +76,7 @@ public:
 	{
 		// the actual size depends on the size of the pointer since Arm64 and linux align on 8 byte boundary
 		NODE_SIZE = (size + sizeof(nodelist_node_t) - sizeof(nodelist_node_t*));
+		NODE_SIZE = (NODE_SIZE + NODE_ALIGN - 1) & ~(NODE_ALIGN-1);
 		new_chunk_size = ((32768 - sizeof(void*)) / NODE_SIZE);
 		canary_free[3] = canary_used[3] = NODE_SIZE;
 	}

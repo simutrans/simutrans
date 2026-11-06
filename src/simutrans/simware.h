@@ -22,6 +22,8 @@ class ware_t
 {
 	friend class goods_manager_t;
 
+	static freelist_tpl<ware_t> fl;
+
 private:
 	/// private lookup table to speedup
 	static const goods_desc_t *index_to_desc[256];
