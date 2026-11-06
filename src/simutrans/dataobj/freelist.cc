@@ -15,8 +15,11 @@
  // for 64 bit, set this to 128
 #define MAX_LIST_INDEX (128)
 
+// on arm and linux, pointers are enforced on 8 bytes borders, wasting 4 bytes per tree  and 5 per water tile ...
+#define FREELIST_ALIGNMENT (sizeof(void*))
+
 // list for nodes size 8...64
-#define NUM_LIST ((MAX_LIST_INDEX/4)+1)
+#define NUM_LIST (33)
 
 static freelist_size_t* all_lists[NUM_LIST] = {
 	NULL, NULL, NULL, NULL,
@@ -36,7 +39,7 @@ static pthread_mutex_t freelist_mutex_create = PTHREAD_MUTEX_INITIALIZER;
 
 void* freelist_t::gimme_node(size_t size)
 {
-	size_t idx = (size + 3) / 4;
+	size_t idx = (size + FREELIST_ALIGNMENT -1 ) / FREELIST_ALIGNMENT;
 	if (idx > NUM_LIST) {
 		return xmalloc(size);
 	}
@@ -44,7 +47,7 @@ void* freelist_t::gimme_node(size_t size)
 #ifdef MULTI_THREAD
 		pthread_mutex_lock(&freelist_mutex_create);
 #endif
-		all_lists[idx] = new freelist_size_t(idx * 4);
+		all_lists[idx] = new freelist_size_t(idx * FREELIST_ALIGNMENT);
 #ifdef MULTI_THREAD
 		pthread_mutex_unlock(&freelist_mutex_create);
 #endif
@@ -54,7 +57,7 @@ void* freelist_t::gimme_node(size_t size)
 
 void freelist_t::putback_node(size_t size, void* p)
 {
-	size = (size + 3) / 4;
+	size = (size + FREELIST_ALIGNMENT - 1) / FREELIST_ALIGNMENT;
 	if (size > NUM_LIST) {
 		free(p);
 	}

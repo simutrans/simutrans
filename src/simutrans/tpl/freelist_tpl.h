@@ -30,15 +30,13 @@
 class freelist_size_t
 {
 private:
-	PACKED_STRUCT_START
-	struct PACKED_ATTR nodelist_node_t
+	struct nodelist_node_t
 	{
 #ifdef DEBUG_FREELIST
 		char canary[4];
 #endif
 		nodelist_node_t* next;
 	};
-	PACKED_STRUCT_END
 
 	char canary_free[4] = "\xAA\x55\xAA";
 	char canary_used[4] = "\x55\xAA\x55";
@@ -65,6 +63,7 @@ public:
 		nodecount(0),
 		chunk_list(0)
 	{
+		// the actual size depends on the size of the pointer since Arm64 and linux align on 8 byte boundary
 		NODE_SIZE = (size + sizeof(nodelist_node_t) - sizeof(nodelist_node_t*));
 		new_chunk_size = ((32768 - sizeof(void*)) / NODE_SIZE);
 		canary_free[3] = canary_used[3] = NODE_SIZE;
