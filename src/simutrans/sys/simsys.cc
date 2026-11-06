@@ -1492,8 +1492,7 @@ bool dr_download_pakset( const char *data_dir, bool portable )
 
 	U16View const wpath_to_program(data_dir);
 	WCHAR wparam[1024];
-	swprintf(wparam, portable ? L"/P /D=%ls" : L"/D=%ls", wpath_to_program);
-
+	swprintf(wparam, portable ? L"/P /D=%ls" : L"/D=%ls", (LPCWSTR)wpath_to_program);
 
 	SHELLEXECUTEINFOW shExInfo;
 	shExInfo.cbSize = sizeof(shExInfo);

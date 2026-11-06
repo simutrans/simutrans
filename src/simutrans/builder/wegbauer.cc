@@ -1806,6 +1806,7 @@ sint32 way_builder_t::intern_calc_route(const vector_tpl<koord3d> &start, const 
 					check_for_bridge(gr, zv, ziel, max_bridge_len);
 				}
 			}
+//			else if (!do_bridge && check_for_bridges && r == straight_dir && (result == STEP_DOUBLE_SLOPE || result == STEP_OBSTACLE) && !(tmp->count & (build_straight & build_tunnel_bridge))) {
 			else if (!do_bridge && check_for_bridges && r == straight_dir && (result == STEP_DOUBLE_SLOPE || result == STEP_OBSTACLE) && !(tmp->count & build_straight) && build_tunnel_bridge) {
 				// try to build a bridge or tunnel here, since we cannot go here ...
 				check_for_bridge(gr, zv, ziel, max_bridge_len);

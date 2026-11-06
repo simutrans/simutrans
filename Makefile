@@ -1,4 +1,5 @@
 #
+#
 # This file is part of the Simutrans project under the Artistic License.
 # (see LICENSE.txt)
 #
@@ -824,10 +825,11 @@ CFLAGS += -DCOLOUR_DEPTH=$(COLOUR_DEPTH)
 
 ifeq ($(OSTYPE),mingw)
   SOURCES += src/Windows/simres.rc
+  WINDRES ?= windres
   ifneq ($(REV),)
-    WINDRES ?= windres -DREVISION=$(REV)
+    WINDRES_PRE ?=  -DREVISION=$(REV)
   else
-    WINDRES ?= windres -DREVISION
+    WINDRES_PRE ?=  -DREVISION 
   endif
 endif
 

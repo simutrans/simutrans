@@ -1994,7 +1994,7 @@ const char *tool_change_city_size_t::work( player_t *, koord3d pos )
 		city = welt->find_nearest_city(pos.get_2d());
 	}
 	if(city) {
-		const int delta = std::atoi(default_param);
+		const int delta = atoi(default_param);
 		city->change_size( delta );
 
 		// update the links from other cities to this city
@@ -2770,7 +2770,6 @@ bool tool_build_way_t::init( player_t *player )
 	if (n[i] == ',') {
 		max_length = atol(n+i+1);
 		n = strchr(n + i + 1, ',');
-		i = i;
 		if (n) {
 			// bridge name
 			char temp[1024];
