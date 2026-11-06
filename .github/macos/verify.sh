@@ -28,6 +28,8 @@ EXPECTED_ARCH=${2:?expected architecture is required}
 EXPECTED_SYMLINKS=${3:?expected symlink count is required}
 
 HERE=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+# shellcheck source=/dev/null
+. "$HERE/notary-lib.sh"
 
 if [ ! -f "$ZIP" ]; then
 	echo "::error::distribution archive not found: $ZIP"
@@ -94,7 +96,7 @@ echo
 # is only useful if it survived being archived.
 # ---------------------------------------------------------------------------
 echo "== stapled notarization ticket ============================="
-if ! xcrun stapler validate "$app"; then
+if ! stapler_run validate "$app"; then
 	note_failure "no valid notarization ticket is stapled to the extracted application"
 fi
 echo

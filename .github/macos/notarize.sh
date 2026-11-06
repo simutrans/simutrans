@@ -270,7 +270,7 @@ fi
 # ---------------------------------------------------------------------------
 echo
 echo "== stapling ================================================"
-if ! xcrun stapler staple "$APP"; then
+if ! stapler_run staple "$APP"; then
 	echo "::error::the notarization ticket could not be stapled to $APP."
 	echo "::error::The artifact would then need an online Gatekeeper check on"
 	echo "::error::first launch, so it is not shipped in this state."
@@ -278,7 +278,11 @@ if ! xcrun stapler staple "$APP"; then
 fi
 
 echo "--- stapler validate"
-xcrun stapler validate "$APP"
+# No set -e in this script, so a failure has to stop it explicitly.
+if ! stapler_run validate "$APP"; then
+	echo "::error::the ticket stapled to $APP could not be validated."
+	exit 1
+fi
 
 echo
 echo "notarized and stapled: $APP"

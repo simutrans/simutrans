@@ -213,8 +213,9 @@ jobs:
       - name: Staple the ticket
         run: |
           set -euo pipefail
-          xcrun stapler staple "${{ steps.bundle.outputs.app }}"
-          xcrun stapler validate "${{ steps.bundle.outputs.app }}"
+          . .github/macos/notary-lib.sh
+          stapler_run staple "${{ steps.bundle.outputs.app }}"
+          stapler_run validate "${{ steps.bundle.outputs.app }}"
 
       - name: Build the finished archive
         id: archive

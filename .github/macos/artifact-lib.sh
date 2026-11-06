@@ -46,6 +46,9 @@
 #                                                    ":encrypted data packet: mdc_method: 2"
 #   ... --force-aead --aead-algo OCB              -> ":aead encrypted packet: cipher=9 aead=2 cb=16"
 #
+# GnuPG 2.5.23 prints that last line as ":ocb encrypted packet:".  It is the same
+# tag 20 packet; only the name changed (GnuPG commit fecd542522).
+#
 # Be precise about what that first line means.  It is NOT an unprotected
 # message: OpenPGP's classic mode carries a Modification Detection Code, and
 # GnuPG refuses to hand back plaintext when the MDC fails.  What it is not is
@@ -101,9 +104,18 @@ artifact_key_present() {
 # assumed.
 # ---------------------------------------------------------------------------
 artifact_assert_aead() {
-	local f=$1 packets
-	packets=$(gpg --list-packets --list-only "$f" 2>/dev/null || true)
-	if ! grep -q ':aead encrypted packet:' <<<"$packets"; then
+	local f=$1 packets data_packets count header rc=0
+	packets=$(gpg --list-packets --list-only "$f" 2>/dev/null) || rc=$?
+	if [ "$rc" -ne 0 ]; then
+		echo "::error::gpg could not read the encrypted container (exit $rc)."
+		return 1
+	fi
+	# Exactly one session key and one data packet.  Anything else glued to a genuine
+	# container, which is public, is refused here and not left for gpg to catch.
+	data_packets=$(grep -E '^:[a-z ]*encrypted[a-z ]*packet:' <<<"$packets" || true)
+	count=$(grep -c '^:' <<<"$packets" || true)
+	if [ "$count" -ne 2 ] || ! grep -q '^:symkey enc packet:' <<<"$packets" || \
+	   ! grep -qE '^:(aead|ocb) encrypted packet:' <<<"$data_packets"; then
 		echo "::error::the encrypted container is not an AEAD message."
 		echo "::error::gpg produced this instead:"
 		printf '%s\n' "$packets" | sed 's/^/::error::  /'
@@ -112,10 +124,17 @@ artifact_assert_aead() {
 		echo "::error::this container is specified to use, so it is refused."
 		return 1
 	fi
-	if ! grep -qE ":aead encrypted packet: cipher=$_ARTIFACT_CIPHER_AES256 aead=$_ARTIFACT_AEAD_OCB " <<<"$packets"; then
+	if ! grep -qE "^:(aead|ocb) encrypted packet: cipher=$_ARTIFACT_CIPHER_AES256 aead=$_ARTIFACT_AEAD_OCB cb=[0-9]+\$" <<<"$data_packets"; then
 		echo "::error::unexpected cipher or AEAD mode:"
-		printf '%s\n' "$packets" | grep ':aead encrypted packet:' | sed 's/^/::error::  /'
+		printf '%s\n' "$data_packets" | sed 's/^/::error::  /'
 		echo "::error::Expected cipher=$_ARTIFACT_CIPHER_AES256 (AES-256) aead=$_ARTIFACT_AEAD_OCB (OCB)."
+		return 1
+	fi
+	# The name has changed once, so the packet tag is what identifies it.
+	header=$(awk '/^:(aead|ocb) encrypted packet:/ { print prev } { prev = $0 }' <<<"$packets")
+	if ! grep -qE '^# off=[0-9]+ ctb=[0-9a-f]+ tag=20 ' <<<"$header"; then
+		echo "::error::the AEAD line does not describe an OpenPGP tag 20 packet:"
+		printf '%s\n' "$packets" | sed 's/^/::error::  /'
 		return 1
 	fi
 	return 0

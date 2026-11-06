@@ -168,6 +168,65 @@ notary_write_key() {
 }
 
 # ---------------------------------------------------------------------------
+# stapler_failure_class <exit status> <output>
+#
+# "network" needs both EX_NOHOST (68) and an NSURLError code for a failed
+# connection: 68 alone does not say why.  Anything else is "permanent".
+# ---------------------------------------------------------------------------
+stapler_failure_class() {
+	local rc=$1 output=$2
+	if [ "$rc" -eq 68 ] && \
+	   grep -qE 'NSURLErrorDomain Code=-(1001|1003|1004|1005|1009)([^0-9]|$)' <<<"$output"; then
+		echo network
+	else
+		echo permanent
+	fi
+}
+
+# ---------------------------------------------------------------------------
+# stapler_run <staple|validate> <path>
+#
+# Both actions read Apple's CloudKit ticket database, and a lost connection there
+# used to discard a notarization Apple had accepted.  A network failure is retried
+# as Apple's DTS advises: at once with -v, then after a delay.  Only stapler itself
+# can report success.  Returns stapler's last exit status.
+# ---------------------------------------------------------------------------
+STAPLER_MAX_ATTEMPTS=4
+
+stapler_run() {
+	local action=$1 target=$2
+	local attempt=1 rc output class delay
+	while :; do
+		rc=0
+		if [ "$attempt" -eq 1 ]; then
+			output=$(xcrun stapler "$action" "$target" 2>&1) || rc=$?
+		else
+			output=$(xcrun stapler "$action" -v "$target" 2>&1) || rc=$?
+		fi
+		printf '%s\n' "$output"
+		if [ "$rc" -eq 0 ]; then
+			echo "stapler $action: attempt $attempt/$STAPLER_MAX_ATTEMPTS, exit 0, result success"
+			return 0
+		fi
+		class=$(stapler_failure_class "$rc" "$output")
+		if [ "$class" != network ] || [ "$attempt" -ge "$STAPLER_MAX_ATTEMPTS" ]; then
+			echo "stapler $action: attempt $attempt/$STAPLER_MAX_ATTEMPTS, exit $rc, $class error, result failure"
+			return "$rc"
+		fi
+		case "$attempt" in
+			1) delay=0 ;;
+			2) delay=${SIMU_STAPLER_DELAY_1:-30} ;;
+			*) delay=${SIMU_STAPLER_DELAY_2:-120} ;;
+		esac
+		echo "stapler $action: attempt $attempt/$STAPLER_MAX_ATTEMPTS, exit $rc, $class error, retrying in ${delay}s"
+		if [ "$delay" -gt 0 ]; then
+			sleep "$delay"
+		fi
+		attempt=$((attempt + 1))
+	done
+}
+
+# ---------------------------------------------------------------------------
 # utc_now
 # ---------------------------------------------------------------------------
 utc_now() {
