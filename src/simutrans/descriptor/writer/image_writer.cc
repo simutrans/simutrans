@@ -98,7 +98,7 @@ static uint16 pixrgb_to_pixval(uint32 rgb)
 			if (image_t::rgbtab[i] == (uint32)(rgb & 0x00FFFFFFu)) {
 				// player or light color
 				pix = 0x8020 +  i*31 + alpha;
-				return endian(pix);
+				return pix;
 			}
 		}
 		// else store color as 3 red, 4, green, 3 red

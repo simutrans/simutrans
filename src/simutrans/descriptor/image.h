@@ -18,6 +18,7 @@
 
 #define SPECIAL_TRANSPARENT (0x00E7FFFF)
 
+
 #if COLOUR_DEPTH == 0
 
 /**
@@ -28,6 +29,8 @@
  */
 class image_t : public obj_desc_t
 {
+	typedef unit8[4] RBGA;
+
 private:
 	static freelist_tpl<image_t> ifl;
 
@@ -89,6 +92,8 @@ private:
 	static freelist_tpl<image_t> ifl;
 
 public:
+	typedef uint8 RBGA[4];
+
 	static const uint32 rgbtab[SPECIAL];
 
 	size_t len = 0;       ///< length of data[] in STORED_PIXVAL units
@@ -141,6 +146,110 @@ public:
 	image_t* copy_fliphorizontal() const;
 
 	static image_t* create_single_pixel();
+
+	struct RGBA {
+		uint8 r, g, b, a; // or uint8 c[4];
+	};
+
+	inline bool is_transparent(STORED_PIXVAL pix) const {
+		return pix >= 0x8020;
+	}
+
+	inline RGBA get_rgba(STORED_PIXVAL pix) const {
+		// assume RGB 555 and special
+		// attention, for reading routines, alpha convetion is 0 opaque!
+
+		RGBA rgba;
+
+		// 1. Opaque standard RGB555 pixel (bit 15 is 0)
+		if ((pix & 0x8000) == 0) {
+			rgba.r = ((pix >> 7) & 0xF8);
+			rgba.g = ((pix >> 2) & 0xF8);
+			rgba.b = ((pix << 3) & 0xF8);
+			rgba.a = 0;
+			return rgba;
+		}
+
+		// 2. Opaque special color (0x8000 to 0x801F)
+		if (pix < 0x8020) {
+			int i = pix - 0x8000;
+			rgba.r = image_t::rgbtab[i] >> 16;
+			rgba.g = image_t::rgbtab[i] >> 8;
+			rgba.b = image_t::rgbtab[i];
+			rgba.a = 0;
+			return rgba;
+		}
+
+		// 3. Transparent / Alpha-blended pixel (pix >= 0x8020)
+		uint16 val = pix - 0x8020;
+
+		// Check if it is a transparent special color
+		if (val < SPECIAL * 31) {
+			int i = val / 31;
+			rgba.r = image_t::rgbtab[i] >> 16;
+			rgba.g = image_t::rgbtab[i] >> 8;
+			rgba.b = image_t::rgbtab[i];
+
+			// Reverse alpha formula: alpha = (((255 - a_byte) * 33) / 255) - 1
+			int alpha = val % 31; // Range: 0..30
+			rgba.a = 255 - (((alpha + 1) * 255 + 16) / 33);
+
+			return rgba;
+		}
+
+		// 4. Transparent general RGB (3-bit R, 4-bit G, 3-bit B)
+		val -= 31 * 31;
+		uint16 rgb10 = val / 31;
+		uint16 alpha = val % 31;
+
+		rgba.r = ((rgb10 & 0x0380) << 14); // 3 bits -> bits 23..21
+		rgba.g = ((rgb10 & 0x0078) << 9); // 4 bits -> bits 15..12
+		rgba.b = ((rgb10 & 0x0007) << 5); // 3 bits -> bits 7..5
+
+		rgba.a = 255 - (((alpha + 1) * 255 + 16) / 33);
+
+		return rgba;
+	}
+
+	inline STORED_PIXVAL get_pixval(RGBA rgba) const {
+		uint16 pix;
+
+		// find about alpha
+		if (rgba.a >= 0xF8) {
+			// transparent pixel (illegal data)
+			return 0xFFFF;
+		}
+
+		// make rgb to test if this is a transparent special color (like player color)
+		uint32 rgb = rgba.r * 0x10000ul + rgba.g * 0x100ul + rgba.b;
+
+		if (rgba.a > 0x07) { // transparencies smaller than this are considered opaque
+			sint16 alpha = (((255 - rgba.a) * 33) / 255) - 1; // alpha = 31 would be transparent -1 opaque
+
+			for (int i = 0; i < SPECIAL; i++) {
+				if (image_t::rgbtab[i] == rgb) {
+					// player or light color
+					pix = 0x8020 + (i * 31) + alpha;
+					return pix;
+				}
+			}
+			// else store color as 3 red, 4, green, 3 red
+			pix = ((rgb >> 14) & 0x0380) | ((rgb >> 9) & 0x0078) | ((rgb >> 5) & 0x07);
+			pix = 0x8020 + (31 * 31) + (pix * 31) + alpha;
+			return pix;
+		}
+
+		// force non-transparent pixel special
+		for (int i = 0; i < SPECIAL; i++) {
+			if (image_t::rgbtab[i] == (uint32)rgb) {
+				pix = 0x8000 + i;
+				return pix;
+			}
+		}
+
+		// non transparent normal pixel
+		return (rgba.r & 0xF8) * 0x0080u + (rgba.g & 0xF8) * 0x0004u + (rgba.b >> 3);
+	}
 
 	void register_image() { this->imageid = gfx->register_image(this); }
 

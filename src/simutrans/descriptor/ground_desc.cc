@@ -57,28 +57,23 @@ static image_t* create_textured_tile(const image_t* image_lightmap, const image_
 			sint16 runlen = *dest++;
 			assert(runlen >= 0);
 			for(int i=0; i<runlen; i++) {
-				assert(offset+x>0);
-				uint16 mix = texture[offset+x];
-
 				if (!binary) {
-					uint16 grey = *dest;
-					uint16 rc = (red_comp(grey)*red_comp(mix))/16;
-					if(rc>=32) {
-						rc = 31;
-					}
-					uint16 gc = (green_comp(grey)*green_comp(mix))/16;
-					if(gc>=32) {
-						gc = 31;
-					}
-					uint16 bc = (blue_comp(grey)*blue_comp(mix))/16;
-					if(bc>=32) {
-						bc = 31;
-					}
-					*dest++ = (rc<<10) | (gc<<5) | bc;
+					assert(offset+x>0);
+					image_t::RGBA mix_rgba = image_texture->get_rgba(texture[offset+x]);
+					image_t::RGBA rgba = image_dest->get_rgba(*dest);
+
+					uint16 rc = (rgba.r * (uint16)mix_rgba.r) / 128u;
+					rgba.r = (rc > 255) ? 255 : rc;
+					uint16 gc = (rgba.g * (uint16)mix_rgba.g) / 128u;
+					rgba.g = (gc > 255) ? 255 : gc;
+					uint16 bc = (rgba.b * (uint16)mix_rgba.b) / 128u;
+					rgba.b = (bc > 255) ? 255 : bc;
+					rgba.a = 0;	// ignore alpha for light blending
+
+					*dest++ = image_dest->get_pixval(rgba);
 				}
 				else {
-					if (*dest) { *dest = mix;}
-					dest++;
+					*dest++ = texture[offset + x];
 				}
 				x ++;
 			}
@@ -219,6 +214,12 @@ static image_t* create_alpha_tile(const image_t* image_lightmap, slope_t::type s
 				//
 				// clear 0x8000 bit as it has special meaning,
 				// confuses rezoom_img() and crashes later
+				PIXVAL px = alphamap[alphamap_offset];
+				if (image_alphamap->is_transparent(px)) {
+					image_t::RGBA rgba = image_alphamap->get_rgba(px);
+					rgba.a = 0;
+					px = image_alphamap->get_pixval(rgba);
+				}
 				*dest++ = alphamap[alphamap_offset] & 0x7fff;
 				tile_x++;
 			}
