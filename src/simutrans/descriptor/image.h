@@ -29,8 +29,6 @@
  */
 class image_t : public obj_desc_t
 {
-	typedef unit8[4] RBGA;
-
 private:
 	static freelist_tpl<image_t> ifl;
 
@@ -71,6 +69,20 @@ public:
 
 	static image_t* create_single_pixel();
 
+	struct RGBA {
+		uint8 r, g, b, a; // or uint8 c[4];
+	};
+
+	inline bool is_transparent(STORED_PIXVAL pix) const {
+		return pix >= 0x8020;
+	}
+
+	inline RGBA get_rgba(STORED_PIXVAL pix) const {
+		return RGBA{ 0,0,0,0 };
+	}
+
+	inline STORED_PIXVAL get_pixval(RGBA rgba) const { return 0xFFFF;  }
+
 	void register_image() { this->imageid = gfx->register_image(this); }
 
 private:
@@ -92,8 +104,6 @@ private:
 	static freelist_tpl<image_t> ifl;
 
 public:
-	typedef uint8 RBGA[4];
-
 	static const uint32 rgbtab[SPECIAL];
 
 	size_t len = 0;       ///< length of data[] in STORED_PIXVAL units
