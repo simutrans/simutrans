@@ -2175,33 +2175,48 @@ bool grund_t::remove_everything_from_way(player_t* player, waytype_t wt, ribi_t:
 			if(  obj->get_typ()==obj_t::way  ) {
 				continue;
 			}
+			const waytype_t obj_wt = obj->get_waytype();
+
+			// wrong waytypes => do not remove
+			if (obj_wt != wt) {
+				if (obj_wt == tram_wt) {
+					if (wt != track_wt) {
+						continue;
+					}
+				}
+				else if (obj_wt == track_wt) {
+					if (wt != tram_wt) {
+						continue;
+					}
+				}
+				else {
+					continue;
+				}
+			}
+
 			if (roadsign_t* const sign = obj_cast<roadsign_t>(obj)) {
 				// roadsigns: check dir: dirs changed => delete
-				if (sign->get_desc()->get_wtyp() == wt && (sign->get_dir() & ~add) != 0) {
+				if ((sign->get_dir() & ~add) != 0) {
 					costs -= sign->get_desc()->get_price();
 					delete sign;
 				}
 			}
 			else if (signal_t* const signal = obj_cast<signal_t>(obj)) {
 				// signal: not on crossings => can remove all
-				if (signal->get_desc()->get_wtyp() == wt) {
-					costs -= signal->get_desc()->get_price();
-					delete signal;
-				}
+				costs -= signal->get_desc()->get_price();
+				delete signal;
 			}
 			else if (wayobj_t* const wayobj = obj_cast<wayobj_t>(obj)) {
 				// wayobj: check dir
-				if (wayobj->get_desc()->get_wtyp() == wt) {
-					uint8 new_dir = wayobj->get_dir() & add;
-					if(new_dir) {
-						// just change dir
-						wayobj->set_dir(new_dir);
-						wayobj->calc_image();
-					}
-					else {
-						costs -= wayobj->get_desc()->get_price();
-						delete wayobj;
-					}
+				uint8 new_dir = wayobj->get_dir() & add;
+				if(new_dir) {
+					// just change dir
+					wayobj->set_dir(new_dir);
+					wayobj->calc_image();
+				}
+				else {
+					costs -= wayobj->get_desc()->get_price();
+					delete wayobj;
 				}
 			}
 			else if (private_car_t* const citycar = obj_cast<private_car_t>(obj)) {
@@ -2215,20 +2230,17 @@ bool grund_t::remove_everything_from_way(player_t* player, waytype_t wt, ribi_t:
 			else if (tunnel_t* const tunnel = obj_cast<tunnel_t>(obj)) {
 				// remove tunnel portal, if not the last tile ...
 				// must be done before weg_entfernen() to get maintenance right
-				uint8 wt = tunnel->get_desc()->get_waytype();
-				if (weg->get_waytype()==wt) {
-					if((flags&has_way2)==0) {
-						if (add==ribi_t::none) {
-							// last way was belonging to this tunnel
-							tunnel->cleanup(player);
-							delete tunnel;
-						}
+				if((flags&has_way2)==0) {
+					if (add==ribi_t::none) {
+						// last way was belonging to this tunnel
+						tunnel->cleanup(player);
+						delete tunnel;
 					}
-					else {
-						// we must leave the way to prevent destroying the other one
-						add |= get_weg_nr(1)->get_ribi_unmasked();
-						weg->calc_image();
-					}
+				}
+				else {
+					// we must leave the way to prevent destroying the other one
+					add |= get_weg_nr(1)->get_ribi_unmasked();
+					weg->calc_image();
 				}
 			}
 		}

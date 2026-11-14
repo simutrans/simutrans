@@ -3995,8 +3995,12 @@ bool tool_wayremover_t::calc_route( route_t &verbindung, player_t *player, const
 					if (obj_wt != invalid_wt) {
 						// check this thing if it has the same waytype or if we want to remove the whole bridge/tunnel tile
 						// special case: stations - take care not to produce station without any way
-						const bool lonely_station = type==obj_t::gebaeude  &&  !gr->has_two_ways();
-						if (check_all ||  obj_wt == wt  ||  lonely_station) {
+						bool force_remove = type==obj_t::gebaeude  &&  !gr->has_two_ways();
+						if (obj_wt == tram_wt  &&  wt == track_wt) {
+							// remove tram things from tracks and vice versa
+							force_remove = true;
+						}
+						if (check_all ||  obj_wt == wt  || force_remove) {
 							can_delete = (calc_route_error = obj->get_removal_error(player)) == NULL;
 						}
 					}
