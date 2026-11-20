@@ -12,6 +12,7 @@ class my_line_t extends line_x
   double_ways_count   = 0 // count of double way build
   double_ways_build   = 0 // double way build: 0 = no ; 1 = yes
   optimize_way_line   = 0 // is way line optimize: 0 = no ; 1 = run 1 ; 2 = run 2 ....
+  optimize_way_time   = world.get_time().ticks // last time way line optimize
   destroy_line_month  = world.get_time().month // test month save
   line_way_speed      = 0 // save way speed for line
   build_line          = world.get_time() // create line
@@ -1101,7 +1102,7 @@ class industry_manager_t extends manager_t
       }
     }
 
-    if (our_player.get_current_cash() > 50000 && wt != wt_water && wt != wt_air) {
+    if ( our_player.get_current_cash() > 50000 && wt != wt_water && wt != wt_air && line.optimize_way_time < world.get_time().ticks ) {
       if ( line.optimize_way_line == 0 ) {
         // optimize way line befor build double ways
         local err = optimize_way_line(nexttile, wt, line.optimize_way_line, line)
@@ -1118,12 +1119,13 @@ class industry_manager_t extends manager_t
         if ( err ) {
           line.optimize_way_line = 3
         }
-      } else if ( line.optimize_way_line == 3 && our_player.get_current_cash() > 1000000 && world.get_time().year >= 1950 ) {
+      } else if ( line.optimize_way_line >= 3 && our_player.get_current_cash() > 1000000 && world.get_time().year >= 1950 ) {
         local err = optimize_way_line(nexttile, wt, line.optimize_way_line, line)
         if ( err ) {
           line.optimize_way_line = 4
         }
       }
+      line.optimize_way_time = world.get_time().ticks + world.get_time().ticks_per_month
     }
 
       if ( bilanz_year < 0 ) {

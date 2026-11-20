@@ -339,8 +339,12 @@ function month_check_message() {
           // check all 5 years ( year xxx2 and xxx7 )
           if ( (yt.slice(-1) == "2" || yt.slice(-1) == "7") && world.get_time().month == 4 ) {
             // in may
-            // check unused halts
-            check_stations_connections()
+            local bcost = our_player.get_construction()
+            if ( bcost[0] == 0 ) {
+              // no construction costs in month
+              // check unused halts
+              check_stations_connections()
+            }
           }
 
           sleep()
