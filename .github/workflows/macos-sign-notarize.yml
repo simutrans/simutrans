@@ -418,7 +418,7 @@ jobs:
       - name: Install dependencies
         # Same package set as the existing nightly macOS workflows, so the
         # signed build is the same product, not a different one.
-        run: brew install pkg-config libpng freetype zstd sdl2 fluidsynth readline
+        run: brew install pkg-config libpng freetype zstd sdl3 fluidsynth readline
 
       - name: Build
         working-directory: source
@@ -475,7 +475,7 @@ jobs:
             echo "deployment_target_requested=13.0"
             echo
             echo "# Homebrew packages actually installed (mutable upstream, not pinnable here)"
-            brew list --versions pkg-config libpng freetype zstd sdl2 fluidsynth || true
+            brew list --versions pkg-config libpng freetype zstd sdl3 fluidsynth readline || true
             echo
             echo "# Language pack: regenerated server-side on every build, cannot be pinned"
             echo "language_pack_source=https://makie.de/translator (tools/get_lang_files.sh)"
