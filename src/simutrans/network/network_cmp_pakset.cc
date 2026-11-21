@@ -57,6 +57,10 @@ bool nwc_pakset_info_t::execute(karte_t *)
 			}
 
 			case CL_WANT_NEXT: // client received one info packet, wants next
+				if (server_receiver == INVALID_SOCKET || packet->get_sender() != server_receiver) {
+					// only the client that sent CL_INIT may walk the iterator
+					break;
+				}
 				if (server_iterator != pakset_info_t::info.end()) {
 					nwi.flag = SV_DATA;
 					nwi.chk  = new checksum_t(*server_iterator->value);
