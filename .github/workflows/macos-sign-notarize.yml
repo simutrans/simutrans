@@ -358,9 +358,9 @@ jobs:
           # macos-latest silently raised that floor once already.  Note that
           # GitHub still updates the contents of a pinned image.
           case "$ARCHITECTURE" in
-            arm64)  m='[{"arch":"arm64","runner":"macos-15"}]' ;;
+            arm64)  m='[{"arch":"arm64","runner":"macos-latest"}]' ;;
             x86_64) m='[{"arch":"x86_64","runner":"macos-15-intel"}]' ;;
-            both)   m='[{"arch":"arm64","runner":"macos-15"},{"arch":"x86_64","runner":"macos-15-intel"}]' ;;
+            both)   m='[{"arch":"arm64","runner":"macos-latest"},{"arch":"x86_64","runner":"macos-15-intel"}]' ;;
             *)
               echo "::error::unknown architecture '$ARCHITECTURE'"
               exit 1
