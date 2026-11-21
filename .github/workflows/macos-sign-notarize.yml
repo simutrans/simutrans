@@ -432,7 +432,6 @@ jobs:
           # inspection step measures across the whole bundle.
           MACOSX_DEPLOYMENT_TARGET: '13.0'
         run: |
-          set -euo pipefail
           cmake -S . -B build \
             -DCMAKE_BUILD_TYPE=Release \
             -DSIMUTRANS_UPDATE_LANGFILES=ON \
@@ -441,7 +440,6 @@ jobs:
 
       - name: Inspect the bundle
         run: |
-          set -euo pipefail
           chmod +x ci/.github/macos/*.sh
           ci/.github/macos/inspect-bundle.sh \
             source/build/simutrans/simutrans.app \
@@ -491,14 +489,13 @@ jobs:
       - name: Package the unsigned bundle
         id: package
         run: |
-          set -euo pipefail
           # ditto, not zip: the nested libraries include symlinks and the
           # bundle carries permissions that `zip -r` flattens.  A GitHub
           # artifact would lose them too, which is why what gets uploaded is
           # this archive as a single file rather than the directory tree.
+          set -euo pipefail
           symlinks=$(find source/build/simutrans/simutrans.app -type l | wc -l | tr -d ' ')
           echo "symlinks=$symlinks" >> "$GITHUB_OUTPUT"
-
           mkdir -p out
           /usr/bin/ditto -c -k --keepParent source/build/simutrans "out/simutrans-${{ matrix.arch }}-unsigned.zip"
           ls -l out
@@ -507,7 +504,7 @@ jobs:
         env:
           SYMLINKS: ${{ steps.package.outputs.symlinks }}
         run: |
-          set -euo pipefail
+          # cat in a pipe will fail: Why was this set here??? set -euo pipefail
           # The signing job re-reads these and refuses to sign an archive that
           # did not come from this run, this commit and this architecture.
           cat > out/provenance.json <<PROVENANCE

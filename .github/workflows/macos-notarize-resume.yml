@@ -66,7 +66,7 @@ concurrency:
 jobs:
   resume:
     name: Staple and verify ${{ inputs.architecture }}
-    runs-on: ${{ inputs.architecture == 'x86_64' && 'macos-15-intel' || 'macos-15' }}
+    runs-on: ${{ inputs.architecture == 'x86_64' && 'macos-15-intel' || 'macos-latest' }}
     permissions:
       contents: read
       actions: read
