@@ -6,6 +6,7 @@
 	ADD: copy convoi at home depot and home depot selector for convoi details tab of convois
 	FIX: only clear hints if there are some
 	CHG: ware_t memory now also maintained via freelist
+	FIX: road objs were not always correctly removed, especially with tram and track confusions
 
 
 Release of 125.0.1 (r12334 on 5-Oct-2026):

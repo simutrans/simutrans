@@ -386,7 +386,10 @@ bool tabfile_t::read(tabfileobj_t &objinfo, FILE *fp)
 
 						int value = atoi(buffer);
 						if (value == 0 && match_ribi(buffer)) {
-							sprintf(parameter_name[ names++ ], "%.*s", name_length, buffer);
+							if(  names >= (int)lengthof(parameter_name)  ) {
+								dbg->fatal("tabfile_t::read", "Too many ribi parameters (max %d) in line %d", (int)lengthof(parameter_name), current_line_number);
+							}
+							sprintf(parameter_name[ names++ ], "%.*s", min(name_length, (int)sizeof(parameter_name[0]) - 1), buffer);
 							parameter_ribi[i] = true;
 						}
 						parameter_value[i][parameter_values[i]++] = value;
@@ -398,7 +401,10 @@ bool tabfile_t::read(tabfileobj_t &objinfo, FILE *fp)
 									value = atoi(token_ptr);
 									if (parameter_ribi[i]) {
 										value = parameter_values[i];
-										sprintf(parameter_name[ names++ ], "%.*s", (int)strcspn(buffer+name_length+1,","), buffer+name_length+1);
+										if(  names >= (int)lengthof(parameter_name)  ) {
+											dbg->fatal("tabfile_t::read", "Too many ribi parameters (max %d) in line %d", (int)lengthof(parameter_name), current_line_number);
+										}
+										sprintf(parameter_name[ names++ ], "%.*s", min((int)strcspn(buffer+name_length+1,","), (int)sizeof(parameter_name[0]) - 1), buffer+name_length+1);
 										name_length += strcspn(buffer+name_length+1,",") + 1;
 									}
 									parameter_value[i][parameter_values[i]++] = value;
@@ -406,7 +412,10 @@ bool tabfile_t::read(tabfileobj_t &objinfo, FILE *fp)
 								case '-':
 									if (parameter_ribi[i]) {
 										value = parameter_values[i];
-										sprintf(parameter_name[value], "%.*s", (int)strcspn(buffer+name_length+1,","), buffer+name_length+1);
+										if(  value < 0  ||  value >= (int)lengthof(parameter_name)  ) {
+											dbg->fatal("tabfile_t::read", "Too many ribi parameters (max %d) in line %d", (int)lengthof(parameter_name), current_line_number);
+										}
+										sprintf(parameter_name[value], "%.*s", min((int)strcspn(buffer+name_length+1,","), (int)sizeof(parameter_name[0]) - 1), buffer+name_length+1);
 										name_length += strcspn(buffer+name_length+1,",") + 1;
 										parameter_value[i][parameter_values[i]++] = value;
 									}
