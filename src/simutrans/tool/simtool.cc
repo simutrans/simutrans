@@ -8774,14 +8774,13 @@ bool tool_change_depot_t::init( player_t *player )
 						nr++;
 						if (info->get_trailer_count() == 1) {
 							vehicle_desc_t const* const veh = info->get_trailer(0);
-							// the leading is any, we should keep it.
-							if (veh != vehicle_desc_t::any_vehicle) {
-								break;
+							if (veh == cnv->get_vehicle(nr)->get_desc()) {
+								// matching trailer here
+								continue;
 							}
 						}
-						else {
-							break;
-						}
+						// non matchinf vehicle
+						break;
 					}
 					// now remove the vehicles
 					if(  cnv->get_vehicle_count()==nr-start_nr  ||  (tool=='R'  &&  start_nr==0)  ) {
