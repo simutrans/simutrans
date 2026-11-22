@@ -789,7 +789,7 @@ class tool_pause_t : public tool_t {
 public:
 	tool_pause_t() : tool_t(TOOL_PAUSE | SIMPLE_TOOL) {}
 	char const* get_tooltip(player_t const*) const OVERRIDE;
-	image_id get_icon(player_t*) const OVERRIDE { return (env_t::networkmode && !env_t::server) ? IMG_EMPTY : icon; }
+	image_id get_icon(player_t*pl) const OVERRIDE { return (env_t::networkmode && !env_t::server  &&  !pl->is_public_service()) ? IMG_EMPTY : icon; }
 	bool is_selected() const OVERRIDE { return env_t::networkmode ? env_t::pause_server_no_clients : welt->is_paused(); }
 	bool init(player_t*) OVERRIDE;
 	bool exit(player_t *s) OVERRIDE { return init(s); }

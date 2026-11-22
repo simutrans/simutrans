@@ -7873,13 +7873,13 @@ char const* tool_pause_t::get_tooltip(player_t const*) const
 
 }
 
-bool tool_pause_t::init(player_t*)
+bool tool_pause_t::init(player_t* pl)
 {
 	if (!env_t::networkmode) {
 		welt->set_fast_forward(0);
 		welt->set_pause(welt->is_paused() ^ 1);
 	}
-	else {
+	else if(env_t::server  &&  pl->is_public_service()) {
 		env_t::pause_server_no_clients = !env_t::pause_server_no_clients;
 		if (socket_list_t::get_playing_clients() == 0) {
 			welt->set_pause(env_t::pause_server_no_clients);
