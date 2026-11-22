@@ -2194,7 +2194,7 @@ void stadt_t::add_target_city(stadt_t *const city)
 {
 	target_cities.append(
 		city,
-		weight_by_distance( city->get_einwohner()+1, shortest_distance( get_center(), city->get_center() ) )
+		weight_by_distance( city->get_einwohner(), shortest_distance( get_center(), city->get_center() ) )
 	);
 }
 
