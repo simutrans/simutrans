@@ -3,23 +3,23 @@ name: Nightly build makeobj
 on: [push]
 
 jobs:
-  makeobj_windows-nightly:
+  makeobj_windows-x64-nightly:
     name: makeobj Windows
     runs-on: windows-latest
 
+    defaults:
+        run:
+            shell: bash
+
     steps:
       - name: Setup Mingw
-        uses: msys2/setup-msys2@v2
-        with:
-          msystem: MINGW32
-          update: false
-          install: base-devel mingw-w64-i686-toolchain mingw-w64-i686-gcc mingw-w64-i686-libpng
-
+        run:
+          pacman -S --noconfirm $MINGW_PACKAGE_PREFIX-libpng
+    
       - name: Checkout code
         uses: actions/checkout@v6
 
       - name: build
-        shell: msys2 {0}
         working-directory: ${{env.GITHUB_WORKSPACE}}
         run: |
           printf 'BACKEND := posix\nOSTYPE := mingw\nOPTIMISE := 1\nSTATIC := 1\n' | cat >config.default
@@ -37,7 +37,7 @@ jobs:
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: build\default\makeobj\makeobj-windows-nightly.zip
-          asset_name: makeobj-win-nightly.zip
+          asset_name: makeobj-win-x64-nightly.zip
           tag: Nightly
           overwrite: true
 
