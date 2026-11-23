@@ -415,8 +415,12 @@ void gui_combobox_t::close_box()
 		}
 		textinp.set_text(NULL, 0);  // also to reset cursor position
 		textinp.set_placeholder_text(NULL);
-	}
 
+	}
+	if (allow_search) {
+		// Don't show "Type to search..." when editing text	}
+		textinp.set_placeholder_text(NULL);
+	}
 	textinp.set_text(editstr, lengthof(editstr) );
 	if (!selection_changed) {
 		sint32 len = strlen(editstr);
