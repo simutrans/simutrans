@@ -34,7 +34,7 @@ ifeq ($(OSTYPE),cygwin)
 endif
 
 ifeq ($(OSTYPE),mingw)
-  OS_OPT   ?= -DPNG_STATIC -DZLIB_STATIC -march=pentium
+  OS_OPT   ?= -DPNG_STATIC -DZLIB_STATIC
   LDFLAGS += -static-libgcc -static-libstdc++ -static
   # we need the libraries EXACTLY in this order to link
   STD_LIBS = -lmingw32 -lpng -lz
@@ -53,8 +53,10 @@ ifdef OPTIMISE
     CXXFLAGS += -O3
 
     # clang does not support fno-schedule-insns
-    ifeq ($(findstring clang, $(CXX)),)
-      CXXFLAGS += -fno-schedule-insns
+    ifeq ($(findstring clang,$(MINGW_PACKAGE_PREFIX)),)
+      ifeq ($(findstring ucrt,$(MINGW_PACKAGE_PREFIX)),)
+        CXXFLAGS += -fno-schedule-insns
+	  endif
     endif
   endif
 else
