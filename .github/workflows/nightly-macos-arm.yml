@@ -13,6 +13,7 @@ jobs:
     - name: install_dependencies
       run: |
         brew install pkg-config libpng freetype zstd sdl3 fluidsynth readline
+        brew reinstall readline
 
     - name: build
       run: |

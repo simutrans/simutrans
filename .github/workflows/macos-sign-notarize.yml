@@ -418,7 +418,9 @@ jobs:
       - name: Install dependencies
         # Same package set as the existing nightly macOS workflows, so the
         # signed build is the same product, not a different one.
-        run: brew install pkg-config libpng freetype zstd sdl3 fluidsynth readline
+        run: 
+          brew install pkg-config libpng freetype zstd sdl3 fluidsynth
+          brew reinstall readline
 
       - name: Build
         working-directory: source
