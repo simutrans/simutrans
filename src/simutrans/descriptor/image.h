@@ -81,7 +81,7 @@ public:
 		return RGBA{ 0,0,0,0 };
 	}
 
-	inline STORED_PIXVAL get_pixval(RGBA rgba) const { return 0xFFFF;  }
+	inline STORED_PIXVAL get_pixval(RGBA) const { return 0xFFFF;  }
 
 	void register_image() { this->imageid = gfx->register_image(this); }
 
