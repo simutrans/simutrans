@@ -26,7 +26,7 @@ jobs:
         run: |
           printf 'BACKEND := posix\nOSTYPE := mingw\nOPTIMISE := 1\nSTATIC := 1\nVERBOSE := 1\n' | cat >config.default
           cd src/makeobj
-          mingw32-make FLAGS="-march=x86-64" CFLAGS="-march=x86-64" CXXFLAGS="-march=x86-64"
+          mingw32-make
           cd ../../build/default/makeobj
           strip makeobj.exe
 
